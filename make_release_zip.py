@@ -11,14 +11,19 @@ JST = timezone(timedelta(hours=9))
 
 # --- project-specific includes (market-stats-viewer) ---
 INCLUDE_GLOBS = [
+    # Entry points / governance (keep in ZIP)
+    "START_HERE.md",
+    "AGENTS.md",
+    # App / scripts
     "README.md",
     "app.py",
     "requirements.txt",
     "make_release_zip.py",
     ".github/**/*",
     "scripts/**/*",
-    # Optional docs/policies (if you add later)
+    # Docs/policies
     "docs/**/*",
+    # Misc
     "LICENSE*",
     ".gitignore",
     ".gitattributes",
@@ -97,215 +102,135 @@ def safe_slug(s: str, max_len: int = 80) -> str:
 
 def run_git(cmd: list[str], cwd: Path) -> str:
     try:
-        return subprocess.check_output(
-            cmd, cwd=cwd, stderr=subprocess.DEVNULL, text=True
-        ).strip()
+        return subprocess.check_output(cmd, cwd=str(cwd), text=True).strip()
     except Exception:
         return ""
 
 
-def get_git_meta(repo_root: Path) -> tuple[str, str]:
-    branch = (
-        run_git(["git", "rev-parse", "--abbrev-ref", "HEAD"], repo_root) or "(unknown)"
-    )
-    commit = run_git(["git", "rev-parse", "--short", "HEAD"], repo_root) or "(unknown)"
-    return branch, commit
+def is_excluded(rel_posix: str) -> bool:
+    for pat in EXCLUDE_GLOBS:
+        if fnmatch.fnmatch(rel_posix, pat):
+            return True
+    return False
 
 
-def git_ls_files(repo_root: Path) -> set[Path]:
-    """Return tracked files (git ls-files)."""
-    try:
-        out = subprocess.check_output(
-            ["git", "ls-files", "-z"], cwd=repo_root, stderr=subprocess.DEVNULL
-        )
-        paths: set[Path] = set()
-        for b in out.split(b"\x00"):
-            if not b:
-                continue
-            rel = b.decode("utf-8", errors="replace")
-            p = repo_root / rel
-            if p.is_file():
-                paths.add(p)
-        return paths
-    except Exception:
-        return set()
+def matches_any(rel_posix: str, patterns: list[str]) -> bool:
+    return any(fnmatch.fnmatch(rel_posix, pat) for pat in patterns)
 
 
-def match_any(path_posix: str, patterns: list[str]) -> bool:
-    return any(fnmatch.fnmatch(path_posix, pat) for pat in patterns)
+def looks_dangerous(rel_posix: str) -> bool:
+    low = rel_posix.lower()
+    return any(h in low for h in DANGEROUS_HINTS)
 
 
-def expand_include_globs(repo_root: Path, include_globs: list[str]) -> set[Path]:
-    candidates: set[Path] = set()
-    for g in include_globs:
-        for p in repo_root.glob(g):
-            if p.is_file():
-                candidates.add(p)
-    return candidates
+def collect_files(repo_root: Path, use_git_only: bool, with_data: bool) -> list[Path]:
+    patterns = list(INCLUDE_GLOBS)
+    if with_data:
+        patterns += DATA_GLOBS
 
+    if use_git_only:
+        out = run_git(["git", "ls-files"], repo_root)
+        tracked = [repo_root / p for p in out.splitlines() if p.strip()]
+        candidates = [p for p in tracked if p.is_file()]
+    else:
+        candidates = [p for p in repo_root.rglob("*") if p.is_file()]
 
-def filter_files(
-    repo_root: Path, candidates: set[Path], exclude_globs: list[str]
-) -> list[Path]:
-    files: list[Path] = []
-    for p in sorted(candidates):
+    picked: list[Path] = []
+    for p in candidates:
         rel = p.relative_to(repo_root).as_posix()
-        if match_any(rel, exclude_globs):
+
+        if is_excluded(rel):
+            continue
+        if not matches_any(rel, patterns):
+            continue
+        if looks_dangerous(rel):
+            # hard block (safety)
             continue
 
-        # apply parent directory excludes too
-        parts = rel.split("/")
-        blocked = False
-        for i in range(1, len(parts)):
-            parent = "/".join(parts[:i]) + "/**"
-            if match_any(parent, exclude_globs):
-                blocked = True
-                break
-        if blocked:
-            continue
+        picked.append(p)
 
-        files.append(p)
-    return files
+    return sorted(set(picked))
 
 
-def scan_suspicious(repo_root: Path) -> list[str]:
-    """Heuristic scan for suspicious filenames before sharing."""
-    suspicious: list[str] = []
-    for p in repo_root.rglob("*"):
-        if not p.is_file():
-            continue
-        rel = p.relative_to(repo_root).as_posix().lower()
-
-        # reduce noise
-        if rel.startswith(".git/"):
-            continue
-        if "/.venv/" in rel or rel.startswith(".venv/") or rel.startswith("venv/"):
-            continue
-        if "/node_modules/" in rel or rel.startswith("node_modules/"):
-            continue
-
-        if any(h in rel for h in DANGEROUS_HINTS):
-            suspicious.append(rel)
-    return sorted(set(suspicious))
+def write_manifest(repo_root: Path, files: list[Path], meta: dict) -> tuple[str, str]:
+    version = meta["version"]
+    version_txt = f"{version}\n"
+    lines = [f"version: {version}"]
+    for k in ["repo", "branch", "commit", "created_at_jst", "with_data", "git_only"]:
+        if k in meta:
+            lines.append(f"{k}: {meta[k]}")
+    lines.append("")
+    lines.append("files:")
+    for p in files:
+        lines.append(f"- {p.relative_to(repo_root).as_posix()}")
+    manifest_txt = "\n".join(lines) + "\n"
+    return version_txt, manifest_txt
 
 
-def build_auto_tag(*, with_data: bool, branch: str, commit: str) -> str:
-    """
-    Auto tag when --tag is not provided.
-    Format: YYYYMMDD_HHMM_{code|data}_{branch}_{commit}
-    """
-    ts = datetime.now(JST).strftime("%Y%m%d_%H%M")
-    mode = "data" if with_data else "code"
-    b = safe_slug(branch, max_len=60)
-    c = safe_slug(commit, max_len=16)
-    return f"{ts}_{mode}_{b}_{c}"
-
-
-def main() -> int:
+def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tag", default=None)
-    ap.add_argument("--outdir", default="packages")
     ap.add_argument(
-        "--profile", choices=["handover", "full"], default="full"
-    )  # keep compat
-    ap.add_argument("--no-git-only", action="store_true")
-    ap.add_argument("--with-data", action="store_true")
-    # compat alias (older projects)
+        "--tag",
+        default="market-stats-viewer",
+        help="Tag prefix for package filename (default: market-stats-viewer)",
+    )
     ap.add_argument(
-        "--with-output-samples", action="store_true", help="alias of --with-data"
+        "--outdir",
+        default="packages",
+        help="Output directory (default: packages)",
+    )
+    ap.add_argument(
+        "--with-data",
+        action="store_true",
+        help="Include data/meta.json and data/market_stats.sqlite if present",
+    )
+    ap.add_argument(
+        "--no-git-only",
+        action="store_true",
+        help="Collect files from filesystem instead of git tracked files",
     )
     args = ap.parse_args()
 
-    repo_root = Path.cwd()
+    repo_root = Path(__file__).resolve().parent
     outdir = repo_root / args.outdir
     outdir.mkdir(parents=True, exist_ok=True)
 
-    branch, commit = get_git_meta(repo_root)
+    git_only = not args.no_git_only
 
-    with_data = bool(args.with_data or args.with_output_samples)
+    repo = run_git(["git", "config", "--get", "remote.origin.url"], repo_root)
+    branch = run_git(["git", "rev-parse", "--abbrev-ref", "HEAD"], repo_root)
+    commit = run_git(["git", "rev-parse", "--short", "HEAD"], repo_root)
 
-    tag = args.tag or build_auto_tag(with_data=with_data, branch=branch, commit=commit)
+    now = datetime.now(JST)
+    stamp = now.strftime("%Y%m%d_%H%M")
+    meta = {
+        "repo": repo or "unknown",
+        "branch": branch or "unknown",
+        "commit": commit or "unknown",
+        "created_at_jst": now.strftime("%Y-%m-%d %H:%M:%S %z"),
+        "with_data": bool(args.with_data),
+        "git_only": bool(git_only),
+    }
 
-    include_candidates = expand_include_globs(repo_root, INCLUDE_GLOBS)
+    version = f"{stamp}_{safe_slug(branch or 'main')}_{safe_slug(commit or 'nogit')}"
+    meta["version"] = version
 
-    # default: git-tracked only
-    if not args.no_git_only:
-        tracked = git_ls_files(repo_root)
-        if tracked:
-            include_candidates = include_candidates.intersection(tracked)
+    files = collect_files(repo_root, use_git_only=git_only, with_data=args.with_data)
+    version_txt, manifest_txt = write_manifest(repo_root, files, meta)
 
-    if with_data:
-        include_candidates |= expand_include_globs(repo_root, DATA_GLOBS)
-        if not args.no_git_only:
-            tracked = git_ls_files(repo_root)
-            if tracked:
-                include_candidates = include_candidates.union(
-                    expand_include_globs(repo_root, DATA_GLOBS).intersection(tracked)
-                )
+    zip_name = f"{safe_slug(args.tag)}_{version}_full.zip"
+    zip_path = outdir / zip_name
 
-    files = filter_files(repo_root, include_candidates, EXCLUDE_GLOBS)
+    with ZipFile(zip_path, "w", compression=ZIP_DEFLATED) as z:
+        z.writestr("VERSION.txt", version_txt)
+        z.writestr("MANIFEST.txt", manifest_txt)
 
-    zip_path = outdir / f"{repo_root.name}_{tag}_{args.profile}.zip"
-    now = datetime.now(JST).isoformat(timespec="seconds")
-
-    version_txt = (
-        f"package: {repo_root.name}\n"
-        f"tag: {tag}\n"
-        f"generated_at: {now}\n"
-        f"branch: {branch}\n"
-        f"commit: {commit}\n"
-        f"profile: {args.profile}\n"
-        f"with_data: {with_data}\n"
-    )
-
-    manifest_lines: list[str] = [
-        f"package: {repo_root.name}",
-        f"tag: {tag}",
-        f"generated_at: {now}",
-        f"branch: {branch}",
-        f"commit: {commit}",
-        f"profile: {args.profile}",
-        f"with_data: {with_data}",
-        "",
-        f"files_count: {len(files)}",
-        "files:",
-        *[p.relative_to(repo_root).as_posix() for p in files],
-        "",
-    ]
-    manifest_txt = "\n".join(manifest_lines)
-
-    suspicious = scan_suspicious(repo_root)
-
-    with ZipFile(zip_path, "w", compression=ZIP_DEFLATED) as zf:
-        zf.writestr("VERSION.txt", version_txt)
-        zf.writestr("MANIFEST.txt", manifest_txt)
         for p in files:
             rel = p.relative_to(repo_root).as_posix()
-            zf.write(p, rel)
+            z.write(p, arcname=rel)
 
-    print(f"[OK] created: {zip_path}")
-    print(f"[OK] profile: {args.profile} (with_data={with_data})")
-    print(f"[OK] files: {len(files)} (+ VERSION.txt, MANIFEST.txt)")
-    print(f"[OK] branch: {branch} / commit: {commit}")
-    print(f"[OK] tag: {tag}")
-
-    if not args.no_git_only:
-        tracked = git_ls_files(repo_root)
-        if not tracked:
-            print("[WARN] git tracked files not found (maybe no commit yet).")
-            print('       Consider: git add . && git commit -m "scaffold"')
-            print("       Current ZIP is based on INCLUDE_GLOBS only.")
-
-    if suspicious:
-        head = suspicious[:20]
-        print("[WARN] suspicious files exist in repo (review before sharing):")
-        for r in head:
-            print(f"  - {r}")
-        if len(suspicious) > len(head):
-            print(f"  ... and {len(suspicious) - len(head)} more")
-
-    return 0
+    print(f"OK: wrote {zip_path}")
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
