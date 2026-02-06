@@ -14,3 +14,4 @@ pip install -r requirements.txt
 
 python -m scripts.update_data
 streamlit run app.py
+```
