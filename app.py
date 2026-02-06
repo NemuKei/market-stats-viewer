@@ -17,9 +17,12 @@ META_PATH = DATA_DIR / "meta.json"
 def load_data() -> pd.DataFrame:
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
-    with sqlite3.connect(str(SQLITE_PATH)) as conn:
-        df = pd.read_sql_query("SELECT * FROM market_stats", conn)
-    return df
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query("SELECT * FROM market_stats", conn)
+        return df
+    except Exception:
+        return pd.DataFrame()
 
 
 def load_meta() -> dict:
