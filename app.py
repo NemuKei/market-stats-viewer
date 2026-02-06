@@ -43,7 +43,7 @@ def main() -> None:
     df = load_data()
     if df.empty:
         st.error(
-            "データがありません。先に scripts/update_data.py を実行して data/ を生成してください。"
+            "データがありません。先に python -m scripts.update_data を実行して data/ を生成してください。"
         )
         return
 
