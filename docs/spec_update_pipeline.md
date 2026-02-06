@@ -1,3 +1,5 @@
+# docs/spec_update_pipeline.md（全文置換）
+
 # spec_update_pipeline — 更新パイプライン仕様
 
 ## 目的
@@ -12,7 +14,9 @@
 2. 推移表ExcelのURLを抽出
 3. Excelをダウンロード
 4. sha256 を計算し、前回値と比較（差分が無ければ終了）
-5. 3シートをパースしてRAW化
+5. Excelを読み込み、想定3シート（`1-2/2-2/3-2`）をパースしてRAW化
+   - 読み込みは openpyxl の `load_workbook(..., read_only=False, data_only=True)` を採用する
+   - `read_only=False` は、セル参照型のパースで性能劣化が出るケースを避ける目的
 6. 全国（00）は 01〜47 合算で生成
 7. SQLite（market_stats）を再構築（MVPは replace で良い）
 8. meta.json を更新
