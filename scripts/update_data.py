@@ -120,7 +120,7 @@ def main() -> int:
             print("No change: source file hash unchanged.")
             return 0
 
-        wb = load_workbook(tmp_xlsx, read_only=True, data_only=True)
+        wb = load_workbook(tmp_xlsx, read_only=False, data_only=True)
         # 推移表の想定シート（今回MVPはこの3つに固定）
         ws_total = wb["1-2"]
         ws_jp = wb["2-2"]
