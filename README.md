@@ -3,7 +3,7 @@
 ## できること
 - 都道府県×月次の「延べ宿泊者数（全体/国内/海外）」を表＋グラフで表示
 - 観光庁ページの「推移表（Excel）」を取得→整形→SQLiteへ保存
-- GitHub Actionsで定期更新し、Streamlit Community Cloudで公開表示
+- GitHub Actionsで定期更新し、Streamlit Community Cloudで公開表示（public repo 前提）
 
 ## ローカル実行（VS Code）
 ```bash
