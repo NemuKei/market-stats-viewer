@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenv
+.venv/
+venv/
+ENV/
+env/
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build / packaging
+dist/
+build/
+*.spec
+
+# Node (将来入っても安全)
+node_modules/
+
+# Archives
+*.zip
+*.7z
+
+# Release packages output
+packages/
+
+# Temp
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Streamlit cache
+.streamlit/
+
+# NOTE:
+# data/market_stats.sqlite と data/meta.json は公開運用でコミットする想定なので除外しない
+# （必要なら data/_local/ のようなローカル用だけ ignore にする）
