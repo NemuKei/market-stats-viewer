@@ -10,8 +10,12 @@ from zipfile import ZIP_DEFLATED, ZipFile
 JST = timezone(timedelta(hours=9))
 
 # --- project-specific includes (market-stats-viewer) ---
+# NOTE:
+# - This script uses fnmatch for include filtering.
+# - Therefore patterns like "scripts/**/*" do NOT match "scripts/update_data.py".
+#   Use "scripts/**" (or "scripts/*.py") instead.
 INCLUDE_GLOBS = [
-    # Entry points / governance (keep in ZIP)
+    # Entry points / governance
     "START_HERE.md",
     "AGENTS.md",
     # App / scripts
@@ -19,10 +23,10 @@ INCLUDE_GLOBS = [
     "app.py",
     "requirements.txt",
     "make_release_zip.py",
-    ".github/**/*",
-    "scripts/**/*",
-    # Docs/policies
-    "docs/**/*",
+    ".github/**",
+    "scripts/**",
+    # Docs (spec/handovers/logs/templates)
+    "docs/**",
     # Misc
     "LICENSE*",
     ".gitignore",
@@ -79,7 +83,6 @@ DANGEROUS_HINTS = [
 
 
 def safe_slug(s: str, max_len: int = 80) -> str:
-    """Make a Windows-safe slug for filenames."""
     out = (
         s.strip()
         .replace(" ", "-")
@@ -108,10 +111,7 @@ def run_git(cmd: list[str], cwd: Path) -> str:
 
 
 def is_excluded(rel_posix: str) -> bool:
-    for pat in EXCLUDE_GLOBS:
-        if fnmatch.fnmatch(rel_posix, pat):
-            return True
-    return False
+    return any(fnmatch.fnmatch(rel_posix, pat) for pat in EXCLUDE_GLOBS)
 
 
 def matches_any(rel_posix: str, patterns: list[str]) -> bool:
@@ -144,7 +144,6 @@ def collect_files(repo_root: Path, use_git_only: bool, with_data: bool) -> list[
         if not matches_any(rel, patterns):
             continue
         if looks_dangerous(rel):
-            # hard block (safety)
             continue
 
         picked.append(p)
@@ -169,26 +168,10 @@ def write_manifest(repo_root: Path, files: list[Path], meta: dict) -> tuple[str,
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument(
-        "--tag",
-        default="market-stats-viewer",
-        help="Tag prefix for package filename (default: market-stats-viewer)",
-    )
-    ap.add_argument(
-        "--outdir",
-        default="packages",
-        help="Output directory (default: packages)",
-    )
-    ap.add_argument(
-        "--with-data",
-        action="store_true",
-        help="Include data/meta.json and data/market_stats.sqlite if present",
-    )
-    ap.add_argument(
-        "--no-git-only",
-        action="store_true",
-        help="Collect files from filesystem instead of git tracked files",
-    )
+    ap.add_argument("--tag", default="market-stats-viewer")
+    ap.add_argument("--outdir", default="packages")
+    ap.add_argument("--with-data", action="store_true")
+    ap.add_argument("--no-git-only", action="store_true")
     args = ap.parse_args()
 
     repo_root = Path(__file__).resolve().parent
@@ -224,12 +207,14 @@ def main() -> None:
     with ZipFile(zip_path, "w", compression=ZIP_DEFLATED) as z:
         z.writestr("VERSION.txt", version_txt)
         z.writestr("MANIFEST.txt", manifest_txt)
-
         for p in files:
             rel = p.relative_to(repo_root).as_posix()
             z.write(p, arcname=rel)
 
     print(f"OK: wrote {zip_path}")
+    print(
+        f"     git_only={git_only} with_data={bool(args.with_data)} files={len(files)}"
+    )
 
 
 if __name__ == "__main__":
