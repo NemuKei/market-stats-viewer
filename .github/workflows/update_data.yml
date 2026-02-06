@@ -25,7 +25,7 @@ jobs:
 
       - name: Update data
         run: |
-          python scripts/update_data.py
+          python -m scripts.update_data
 
       - name: Commit changes (if any)
         run: |
