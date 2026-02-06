@@ -12,5 +12,5 @@ python -m venv .venv
 # macOS/Linux: source .venv/bin/activate
 pip install -r requirements.txt
 
-python scripts/update_data.py
+python -m scripts.update_data
 streamlit run app.py

@@ -12,7 +12,10 @@ import requests
 from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
-from scripts.parse_ts_table import build_raw_from_three_sheets
+try:
+    from .parse_ts_table import build_raw_from_three_sheets
+except ImportError:  # pragma: no cover - fallback for direct script execution
+    from parse_ts_table import build_raw_from_three_sheets
 
 # 取得元（観光庁：宿泊旅行統計調査）
 SOURCE_PAGE_URL = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html"
