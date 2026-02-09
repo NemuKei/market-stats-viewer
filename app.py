@@ -215,11 +215,11 @@ def build_excel_report_bytes(
                 ts_chart.overlap = 100
             ts_chart.title = ts_title
             ts_chart.y_axis.title = "延べ宿泊者数"
-            ts_chart.x_axis.title = "月（年月）"
+            ts_chart.x_axis.title = None
             ts_chart.legend.position = "r"
             ts_chart.legend.overlay = False
-            ts_chart.legend.layout = Layout(
-                manualLayout=ManualLayout(x=0.82, y=0.1, w=0.18, h=0.8)
+            ts_chart.layout = Layout(
+                manualLayout=ManualLayout(x=0.12, y=0.08, w=0.70, h=0.78)
             )
             ts_data = Reference(
                 charts_ws,
@@ -243,6 +243,7 @@ def build_excel_report_bytes(
             try_set_attr(ts_chart.x_axis, "tickMarkSkip", 3)
             ts_chart.x_axis.majorTickMark = "out"
             ts_chart.y_axis.majorTickMark = "out"
+            try_set_attr(ts_chart.y_axis, "numFmt", "#,##0")
             ts_chart.y_axis.majorGridlines = ChartLines()
             ts_chart.width = 26
             ts_chart.height = 11
@@ -302,8 +303,8 @@ def build_excel_report_bytes(
             annual_chart.x_axis.title = None
             annual_chart.legend.position = "r"
             annual_chart.legend.overlay = False
-            annual_chart.legend.layout = Layout(
-                manualLayout=ManualLayout(x=0.82, y=0.1, w=0.18, h=0.8)
+            annual_chart.layout = Layout(
+                manualLayout=ManualLayout(x=0.12, y=0.08, w=0.70, h=0.78)
             )
             annual_data = Reference(
                 charts_ws,
@@ -327,6 +328,7 @@ def build_excel_report_bytes(
             try_set_attr(annual_chart.x_axis, "tickMarkSkip", 1)
             annual_chart.x_axis.majorTickMark = "out"
             annual_chart.y_axis.majorTickMark = "out"
+            try_set_attr(annual_chart.y_axis, "numFmt", "#,##0")
             annual_chart.y_axis.majorGridlines = ChartLines()
             annual_chart.width = 26
             annual_chart.height = 12
