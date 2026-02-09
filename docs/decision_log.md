@@ -17,3 +17,7 @@
 - D-20260209-002 | 時系列チャートに表示内容切替（国内+海外積み上げ / 全体 / 国内 / 海外）を追加する | status: spec_done | spec_link: docs/spec_app.md
 - D-20260209-003 | 地域区分に地方を追加し、地方選択時は都道府県（01〜47）の月次合算で表示する | status: spec_done | spec_link: docs/spec_app.md
 - D-20260209-004 | 期間指定UIを単一の年月選択から開始/終了の年・月分離に変更する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-005 | Excelエクスポートを「データ＋Excelネイティブグラフ（時系列/年別同月比較）」に拡張する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-006 | Excel出力の補助表重なりを防ぐため、年別補助表の開始行を動的決定し重なり検知ガードを入れる | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-007 | Excel出力の2チャートで軸IDを分離し、軸表示が不安定にならないようにする | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-008 | Excel出力チャートの可読性向上として凡例配置・軸表示/目盛り・グリッド・レイアウト調整を行う | status: spec_done | spec_link: docs/spec_app.md
