@@ -10,6 +10,7 @@ from pathlib import Path
 import altair as alt
 import pandas as pd
 import streamlit as st
+from openpyxl.chart import BarChart, Reference
 
 REPO_ROOT = Path(__file__).resolve().parent
 DATA_DIR = REPO_ROOT / "data"
@@ -107,13 +108,161 @@ def sanitize_for_filename(value: str) -> str:
     return f"scope_{suffix}"
 
 
-def dataframe_to_csv_bytes(df: pd.DataFrame) -> bytes:
-    return df.to_csv(index=False).encode("utf-8-sig")
+def normalize_selected_years(
+    selected_years: list[int] | tuple[int, ...], available_years: list[int]
+) -> list[int]:
+    if not available_years:
+        return []
+    normalized = sorted({int(y) for y in selected_years if int(y) in available_years})
+    if normalized:
+        return normalized
+    return available_years[-4:] if len(available_years) > 4 else available_years
 
 
-def dataframe_to_excel_bytes(df: pd.DataFrame) -> bytes:
+def write_helper_table(
+    ws, df: pd.DataFrame, start_row: int, start_col: int = 1
+) -> tuple[int, int]:
+    headers = df.columns.tolist()
+    for j, header in enumerate(headers, start=start_col):
+        ws.cell(row=start_row, column=j, value=header)
+    for i, row in enumerate(df.itertuples(index=False), start=start_row + 1):
+        for j, value in enumerate(row, start=start_col):
+            ws.cell(row=i, column=j, value=value)
+    end_row = start_row if df.empty else start_row + len(df)
+    end_col = start_col + len(headers) - 1
+    return end_row, end_col
+
+
+def build_excel_report_bytes(
+    df_filtered: pd.DataFrame, df_scope_all: pd.DataFrame, selection_state: dict
+) -> bytes:
+    time_series_label = selection_state["time_series_label"]
+    annual_metric_label = selection_state["annual_metric_label"]
+    annual_years = selection_state["annual_years"]
+
+    data_sheet_df = df_filtered[
+        ["ym", "pref_code", "pref_name", "total", "jp", "foreign"]
+    ].copy()
+    data_sheet_df = data_sheet_df.rename(
+        columns={
+            "ym": "年月",
+            "pref_code": "地域コード",
+            "pref_name": "地域名",
+            "total": "全体",
+            "jp": "国内",
+            "foreign": "海外",
+        }
+    )
+
     buffer = io.BytesIO()
-    df.to_excel(buffer, engine="openpyxl", index=False, sheet_name="data")
+    with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
+        data_sheet_df.to_excel(writer, sheet_name="data", index=False)
+        workbook = writer.book
+        charts_ws = workbook.create_sheet("charts")
+
+        charts_ws["A1"] = "Exported charts"
+
+        # Time-series helper and chart
+        ts_base = add_year_month_columns(df_filtered[["ym", "total", "jp", "foreign"]]).sort_values(
+            "ym"
+        )
+        ts_mode = TIME_SERIES_METRICS.get(time_series_label, "stacked")
+        if ts_mode == "stacked":
+            ts_helper = ts_base[["ym", "jp", "foreign"]].rename(
+                columns={"ym": "年月", "jp": "国内", "foreign": "海外"}
+            )
+            ts_title = "時系列（積み上げ）"
+            ts_grouping = "stacked"
+        else:
+            ts_helper = ts_base[["ym", ts_mode]].rename(
+                columns={"ym": "年月", ts_mode: time_series_label}
+            )
+            ts_title = f"時系列（{time_series_label}）"
+            ts_grouping = "clustered"
+
+        ts_start_row = 40
+        ts_end_row, ts_end_col = write_helper_table(charts_ws, ts_helper, ts_start_row)
+        if not ts_helper.empty:
+            ts_chart = BarChart()
+            ts_chart.type = "col"
+            ts_chart.grouping = ts_grouping
+            if ts_grouping == "stacked":
+                ts_chart.overlap = 100
+            ts_chart.title = ts_title
+            ts_chart.y_axis.title = "延べ宿泊者数"
+            ts_chart.x_axis.title = "年月"
+            ts_data = Reference(
+                charts_ws,
+                min_col=2,
+                max_col=ts_end_col,
+                min_row=ts_start_row,
+                max_row=ts_end_row,
+            )
+            ts_categories = Reference(
+                charts_ws,
+                min_col=1,
+                min_row=ts_start_row + 1,
+                max_row=ts_end_row,
+            )
+            ts_chart.add_data(ts_data, titles_from_data=True)
+            ts_chart.set_categories(ts_categories)
+            ts_chart.width = 24
+            ts_chart.height = 12
+            charts_ws.add_chart(ts_chart, "A2")
+        else:
+            charts_ws["A2"] = "時系列グラフ: データなし"
+
+        # Annual comparison helper and chart
+        annual_base = add_year_month_columns(df_scope_all[["ym", "total", "jp", "foreign"]])
+        available_years = sorted(annual_base["year"].unique().tolist())
+        years_for_chart = normalize_selected_years(annual_years, available_years)
+        annual_col = ANNUAL_METRICS.get(annual_metric_label, "total")
+
+        annual_pivot = (
+            annual_base[annual_base["year"].isin(years_for_chart)]
+            .pivot_table(index="month", columns="year", values=annual_col, aggfunc="sum")
+            .reindex(range(1, 13), fill_value=0)
+        )
+        for y in years_for_chart:
+            if y not in annual_pivot.columns:
+                annual_pivot[y] = 0
+        annual_pivot = annual_pivot[years_for_chart] if years_for_chart else annual_pivot
+        annual_pivot.index = [f"{m:02d}" for m in annual_pivot.index]
+        annual_helper = annual_pivot.reset_index().rename(columns={"index": "月", "month": "月"})
+        annual_helper.columns = ["月"] + [str(y) for y in years_for_chart]
+
+        annual_start_row = 70
+        annual_end_row, annual_end_col = write_helper_table(
+            charts_ws, annual_helper, annual_start_row
+        )
+        if years_for_chart:
+            annual_chart = BarChart()
+            annual_chart.type = "col"
+            annual_chart.grouping = "clustered"
+            annual_chart.title = f"年別同月比較（{annual_metric_label}）"
+            annual_chart.y_axis.title = "延べ宿泊者数"
+            annual_chart.x_axis.title = "月"
+            annual_data = Reference(
+                charts_ws,
+                min_col=2,
+                max_col=annual_end_col,
+                min_row=annual_start_row,
+                max_row=annual_end_row,
+            )
+            annual_categories = Reference(
+                charts_ws,
+                min_col=1,
+                min_row=annual_start_row + 1,
+                max_row=annual_end_row,
+            )
+            annual_chart.add_data(annual_data, titles_from_data=True)
+            annual_chart.set_categories(annual_categories)
+            annual_chart.width = 24
+            annual_chart.height = 12
+            charts_ws.add_chart(annual_chart, "A22")
+        else:
+            charts_ws["A22"] = "年別同月比較グラフ: データなし"
+
     buffer.seek(0)
     return buffer.getvalue()
 
@@ -319,18 +468,38 @@ def main() -> None:
     )
     scope_file_id = sanitize_for_filename(f"{scope_type}_{scope_id}")
     export_file_stem = f"market_stats_{scope_file_id}_{ym_from}_{ym_to}"
-    csv_bytes = dataframe_to_csv_bytes(table)
-    excel_bytes = dataframe_to_excel_bytes(table)
+    chart_year_options = sorted(
+        d_scope_all["ym"].str.slice(0, 4).astype(int).unique().tolist()
+    )
+    default_years = (
+        chart_year_options[-4:] if len(chart_year_options) > 4 else chart_year_options
+    )
+    chart_mode_options = [
+        "時系列（積み上げ縦棒：国内＋海外）",
+        "年別（同月比較：全体/国内/海外）",
+    ]
+    chart_mode = st.session_state.get("chart_mode_export", chart_mode_options[0])
+    if chart_mode not in chart_mode_options:
+        chart_mode = chart_mode_options[0]
+    ts_metric_label = st.session_state.get(
+        "ts_metric_export", "国内+海外（積み上げ）"
+    )
+    if ts_metric_label not in TIME_SERIES_METRICS:
+        ts_metric_label = "国内+海外（積み上げ）"
+    annual_metric_label = st.session_state.get("annual_metric_export", "全体")
+    if annual_metric_label not in ANNUAL_METRICS:
+        annual_metric_label = "全体"
+    selected_years_for_export = normalize_selected_years(
+        st.session_state.get("annual_years_export", default_years), chart_year_options
+    )
 
     chart_height = 520
     if show_mode in ["表＋グラフ", "グラフのみ"]:
         st.subheader("グラフ")
         chart_mode = st.radio(
             "チャートモード",
-            [
-                "時系列（積み上げ縦棒：国内＋海外）",
-                "年別（同月比較：全体/国内/海外）",
-            ],
+            chart_mode_options,
+            key="chart_mode_export",
         )
 
         if chart_mode == "時系列（積み上げ縦棒：国内＋海外）":
@@ -338,6 +507,7 @@ def main() -> None:
                 "時系列の表示内容",
                 list(TIME_SERIES_METRICS.keys()),
                 horizontal=True,
+                key="ts_metric_export",
             )
             if d.empty:
                 st.info("指定した期間にデータがありません。")
@@ -347,26 +517,29 @@ def main() -> None:
                 )
                 st.altair_chart(monthly_chart, use_container_width=True)
         else:
-            metric_label = st.radio("指標", list(ANNUAL_METRICS.keys()), horizontal=True)
-            chart_year_options = sorted(
-                d_scope_all["ym"].str.slice(0, 4).astype(int).unique().tolist()
+            annual_metric_label = st.radio(
+                "指標",
+                list(ANNUAL_METRICS.keys()),
+                horizontal=True,
+                key="annual_metric_export",
             )
-            default_years = (
-                chart_year_options[-4:]
-                if len(chart_year_options) > 4
-                else chart_year_options
-            )
-            selected_years = st.multiselect(
+            selected_years_ui = st.multiselect(
                 "年（同月比較に使う年）",
                 options=chart_year_options,
-                default=default_years,
+                default=selected_years_for_export,
+                key="annual_years_export",
+            )
+            selected_years_for_export = normalize_selected_years(
+                selected_years_ui, chart_year_options
             )
 
-            if not selected_years:
+            if not selected_years_ui:
                 st.info("年を1つ以上選択してください。")
             else:
                 yearly_chart = build_yearly_month_compare_chart(
-                    d_scope_all, ANNUAL_METRICS[metric_label], sorted(selected_years)
+                    d_scope_all,
+                    ANNUAL_METRICS[annual_metric_label],
+                    sorted(selected_years_ui),
                 ).properties(height=chart_height)
                 st.altair_chart(yearly_chart, use_container_width=True)
 
@@ -376,24 +549,26 @@ def main() -> None:
     if show_mode in ["表＋グラフ", "表のみ"]:
         st.subheader("表")
         st.dataframe(table, use_container_width=True, hide_index=True, height=560)
-        st.caption("Export")
-        export_col1, export_col2 = st.columns(2)
-        with export_col1:
-            st.download_button(
-                "Download CSV",
-                data=csv_bytes,
-                file_name=f"{export_file_stem}.csv",
-                mime="text/csv",
-                use_container_width=True,
-            )
-        with export_col2:
-            st.download_button(
-                "Download Excel (.xlsx)",
-                data=excel_bytes,
-                file_name=f"{export_file_stem}.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                use_container_width=True,
-            )
+        excel_report_bytes = build_excel_report_bytes(
+            d,
+            d_scope_all,
+            {
+                "scope_type": scope_type,
+                "scope_id": scope_id,
+                "ym_from": ym_from,
+                "ym_to": ym_to,
+                "time_series_label": ts_metric_label,
+                "annual_metric_label": annual_metric_label,
+                "annual_years": selected_years_for_export,
+            },
+        )
+        st.download_button(
+            "Excelダウンロード（データ＋グラフ）",
+            data=excel_report_bytes,
+            file_name=f"{export_file_stem}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            use_container_width=True,
+        )
 
     st.divider()
     st.caption("出典：観光庁『宿泊旅行統計調査』（推移表Excelを取得して整形）")
