@@ -161,6 +161,7 @@ def build_excel_report_bytes(
         charts_ws = workbook.create_sheet("charts")
 
         charts_ws["A1"] = "Exported charts"
+        helper_col = 30  # AD列付近に補助表を置き、見た目への干渉を避ける
 
         # Time-series helper and chart
         ts_base = add_year_month_columns(df_filtered[["ym", "total", "jp", "foreign"]]).sort_values(
@@ -180,8 +181,10 @@ def build_excel_report_bytes(
             ts_title = f"時系列（{time_series_label}）"
             ts_grouping = "clustered"
 
-        ts_start_row = 40
-        ts_end_row, ts_end_col = write_helper_table(charts_ws, ts_helper, ts_start_row)
+        ts_start_row = 2
+        ts_end_row, ts_end_col = write_helper_table(
+            charts_ws, ts_helper, ts_start_row, start_col=helper_col
+        )
         if not ts_helper.empty:
             ts_chart = BarChart()
             ts_chart.type = "col"
@@ -191,23 +194,24 @@ def build_excel_report_bytes(
             ts_chart.title = ts_title
             ts_chart.y_axis.title = "延べ宿泊者数"
             ts_chart.x_axis.title = "年月"
+            ts_chart.legend.position = "b"
             ts_data = Reference(
                 charts_ws,
-                min_col=2,
+                min_col=helper_col + 1,
                 max_col=ts_end_col,
                 min_row=ts_start_row,
                 max_row=ts_end_row,
             )
             ts_categories = Reference(
                 charts_ws,
-                min_col=1,
+                min_col=helper_col,
                 min_row=ts_start_row + 1,
                 max_row=ts_end_row,
             )
             ts_chart.add_data(ts_data, titles_from_data=True)
             ts_chart.set_categories(ts_categories)
-            ts_chart.width = 24
-            ts_chart.height = 12
+            ts_chart.width = 22
+            ts_chart.height = 7
             charts_ws.add_chart(ts_chart, "A2")
         else:
             charts_ws["A2"] = "時系列グラフ: データなし"
@@ -231,9 +235,9 @@ def build_excel_report_bytes(
         annual_helper = annual_pivot.reset_index().rename(columns={"index": "月", "month": "月"})
         annual_helper.columns = ["月"] + [str(y) for y in years_for_chart]
 
-        annual_start_row = 70
+        annual_start_row = 30
         annual_end_row, annual_end_col = write_helper_table(
-            charts_ws, annual_helper, annual_start_row
+            charts_ws, annual_helper, annual_start_row, start_col=helper_col
         )
         if years_for_chart:
             annual_chart = BarChart()
@@ -242,26 +246,28 @@ def build_excel_report_bytes(
             annual_chart.title = f"年別同月比較（{annual_metric_label}）"
             annual_chart.y_axis.title = "延べ宿泊者数"
             annual_chart.x_axis.title = "月"
+            annual_chart.legend.position = "b"
+            annual_chart.x_axis.tickLblSkip = 1
             annual_data = Reference(
                 charts_ws,
-                min_col=2,
+                min_col=helper_col + 1,
                 max_col=annual_end_col,
                 min_row=annual_start_row,
                 max_row=annual_end_row,
             )
             annual_categories = Reference(
                 charts_ws,
-                min_col=1,
+                min_col=helper_col,
                 min_row=annual_start_row + 1,
                 max_row=annual_end_row,
             )
             annual_chart.add_data(annual_data, titles_from_data=True)
             annual_chart.set_categories(annual_categories)
-            annual_chart.width = 24
-            annual_chart.height = 12
-            charts_ws.add_chart(annual_chart, "A22")
+            annual_chart.width = 22
+            annual_chart.height = 7
+            charts_ws.add_chart(annual_chart, "A38")
         else:
-            charts_ws["A22"] = "年別同月比較グラフ: データなし"
+            charts_ws["A38"] = "年別同月比較グラフ: データなし"
 
     buffer.seek(0)
     return buffer.getvalue()
