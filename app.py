@@ -146,6 +146,14 @@ def try_set_attr(obj, attr_name: str, value) -> None:
         pass
 
 
+def assign_axis_ids(chart, x_id: int, y_id: int) -> None:
+    chart.axId = [x_id, y_id]
+    chart.x_axis.axId = x_id
+    chart.y_axis.axId = y_id
+    chart.x_axis.crossAx = y_id
+    chart.y_axis.crossAx = x_id
+
+
 def build_excel_report_bytes(
     df_filtered: pd.DataFrame, df_scope_all: pd.DataFrame, selection_state: dict
 ) -> bytes:
@@ -202,6 +210,7 @@ def build_excel_report_bytes(
             ts_chart = BarChart()
             ts_chart.type = "col"
             ts_chart.grouping = ts_grouping
+            assign_axis_ids(ts_chart, 10, 100)
             if ts_grouping == "stacked":
                 ts_chart.overlap = 100
             ts_chart.title = ts_title
@@ -212,14 +221,6 @@ def build_excel_report_bytes(
             ts_chart.legend.layout = Layout(
                 manualLayout=ManualLayout(x=0.82, y=0.1, w=0.18, h=0.8)
             )
-            ts_chart.x_axis.delete = False
-            ts_chart.y_axis.delete = False
-            ts_chart.x_axis.tickLblPos = "low"
-            ts_chart.x_axis.tickLblSkip = 3
-            try_set_attr(ts_chart.x_axis, "tickMarkSkip", 3)
-            ts_chart.x_axis.majorTickMark = "out"
-            ts_chart.y_axis.majorTickMark = "out"
-            ts_chart.y_axis.majorGridlines = ChartLines()
             ts_data = Reference(
                 charts_ws,
                 min_col=helper_col + 1,
@@ -235,6 +236,14 @@ def build_excel_report_bytes(
             )
             ts_chart.add_data(ts_data, titles_from_data=True)
             ts_chart.set_categories(ts_categories)
+            ts_chart.x_axis.delete = False
+            ts_chart.y_axis.delete = False
+            ts_chart.x_axis.tickLblPos = "low"
+            ts_chart.x_axis.tickLblSkip = 3
+            try_set_attr(ts_chart.x_axis, "tickMarkSkip", 3)
+            ts_chart.x_axis.majorTickMark = "out"
+            ts_chart.y_axis.majorTickMark = "out"
+            ts_chart.y_axis.majorGridlines = ChartLines()
             ts_chart.width = 26
             ts_chart.height = 11
             charts_ws.add_chart(ts_chart, "A2")
@@ -287,6 +296,7 @@ def build_excel_report_bytes(
             annual_chart = BarChart()
             annual_chart.type = "col"
             annual_chart.grouping = "clustered"
+            assign_axis_ids(annual_chart, 20, 200)
             annual_chart.title = f"年別同月比較（{annual_metric_label}）"
             annual_chart.y_axis.title = "延べ宿泊者数"
             annual_chart.x_axis.title = None
@@ -295,14 +305,6 @@ def build_excel_report_bytes(
             annual_chart.legend.layout = Layout(
                 manualLayout=ManualLayout(x=0.82, y=0.1, w=0.18, h=0.8)
             )
-            annual_chart.x_axis.delete = False
-            annual_chart.y_axis.delete = False
-            annual_chart.x_axis.tickLblPos = "low"
-            annual_chart.x_axis.tickLblSkip = 1
-            try_set_attr(annual_chart.x_axis, "tickMarkSkip", 1)
-            annual_chart.x_axis.majorTickMark = "out"
-            annual_chart.y_axis.majorTickMark = "out"
-            annual_chart.y_axis.majorGridlines = ChartLines()
             annual_data = Reference(
                 charts_ws,
                 min_col=helper_col + 1,
@@ -318,6 +320,14 @@ def build_excel_report_bytes(
             )
             annual_chart.add_data(annual_data, titles_from_data=True)
             annual_chart.set_categories(annual_categories)
+            annual_chart.x_axis.delete = False
+            annual_chart.y_axis.delete = False
+            annual_chart.x_axis.tickLblPos = "low"
+            annual_chart.x_axis.tickLblSkip = 1
+            try_set_attr(annual_chart.x_axis, "tickMarkSkip", 1)
+            annual_chart.x_axis.majorTickMark = "out"
+            annual_chart.y_axis.majorTickMark = "out"
+            annual_chart.y_axis.majorGridlines = ChartLines()
             annual_chart.width = 26
             annual_chart.height = 12
             charts_ws.add_chart(annual_chart, "A30")
