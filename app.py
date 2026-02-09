@@ -345,14 +345,50 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
     ym_sort = sorted(work["ym"].unique().tolist())
 
     if TIME_SERIES_METRICS[metric_mode] == "stacked":
+        work["total"] = work["jp"] + work["foreign"]
         long_df = work.melt(
-            id_vars=["ym", "year", "month"],
+            id_vars=["ym", "year", "month", "total"],
             value_vars=["jp", "foreign"],
             var_name="metric",
             value_name="value",
         )
         long_df["metric"] = long_df["metric"].map({"jp": "国内", "foreign": "海外"})
-        return (
+        long_df["share_label"] = long_df.apply(
+            lambda r: f"{int(round((r['value'] / r['total']) * 100))}%"
+            if r["total"] > 0
+            else "",
+            axis=1,
+        )
+
+        jp_labels = work[["ym", "year", "month", "jp", "total"]].copy()
+        jp_labels["metric"] = "国内"
+        jp_labels["y_label"] = jp_labels["jp"] / 2
+        jp_labels["share_label"] = jp_labels.apply(
+            lambda r: f"{int(round((r['jp'] / r['total']) * 100))}%"
+            if r["total"] > 0
+            else "",
+            axis=1,
+        )
+
+        foreign_labels = work[["ym", "year", "month", "jp", "foreign", "total"]].copy()
+        foreign_labels["metric"] = "海外"
+        foreign_labels["y_label"] = foreign_labels["jp"] + (foreign_labels["foreign"] / 2)
+        foreign_labels["share_label"] = foreign_labels.apply(
+            lambda r: f"{int(round((r['foreign'] / r['total']) * 100))}%"
+            if r["total"] > 0
+            else "",
+            axis=1,
+        )
+
+        label_df = pd.concat(
+            [
+                jp_labels[["ym", "year", "month", "metric", "y_label", "share_label"]],
+                foreign_labels[["ym", "year", "month", "metric", "y_label", "share_label"]],
+            ],
+            ignore_index=True,
+        )
+
+        bars = (
             alt.Chart(long_df)
             .mark_bar()
             .encode(
@@ -370,9 +406,23 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
                     alt.Tooltip("month:Q", title="月"),
                     alt.Tooltip("metric:N", title="区分"),
                     alt.Tooltip("value:Q", title="値", format=",.0f"),
+                    alt.Tooltip("share_label:N", title="シェア"),
                 ],
             )
         )
+
+        share_text = (
+            alt.Chart(label_df)
+            .mark_text(color="white", fontSize=10)
+            .encode(
+                x=alt.X("ym:N", sort=ym_sort),
+                y=alt.Y("y_label:Q"),
+                text=alt.Text("share_label:N"),
+                detail=alt.Detail("metric:N"),
+            )
+        )
+
+        return bars + share_text
 
     metric_col = TIME_SERIES_METRICS[metric_mode]
     single_df = work[["ym", "year", "month", metric_col]].copy()
