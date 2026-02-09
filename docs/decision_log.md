@@ -14,3 +14,6 @@
 - D-20260206-008 | D-20260206-005（アンカーZIP運用）を START_HERE.md 整備により完了扱い（spec_done）とする | status: spec_done | spec_link: START_HERE.md
 - D-20260206-009 | openpyxl での推移表パースは `read_only=False` を採用し、セル参照型パースの性能劣化を回避する | status: spec_done | spec_link: docs/spec_update_pipeline.md
 - D-20260209-001 | グラフを折れ線から縦棒へ変更し、チャートモード（積み上げ/同月比較）と指標・年選択を追加する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-002 | 時系列チャートに表示内容切替（国内+海外積み上げ / 全体 / 国内 / 海外）を追加する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-003 | 地域区分に地方を追加し、地方選択時は都道府県（01〜47）の月次合算で表示する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260209-004 | 期間指定UIを単一の年月選択から開始/終了の年・月分離に変更する | status: spec_done | spec_link: docs/spec_app.md
