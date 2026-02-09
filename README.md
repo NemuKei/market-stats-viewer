@@ -1,7 +1,7 @@
 # 宿泊旅行統計（延べ宿泊者数）ビューア
 
 ## 公開URL
-- 公開URL: (未設定)
+- 公開URL: https://market-stats-viewer.streamlit.app/
 
 ## できること
 - 地域区分（都道府県 / 地方）を切り替えて表示
