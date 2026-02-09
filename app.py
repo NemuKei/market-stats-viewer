@@ -11,6 +11,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 from openpyxl.chart import BarChart, Reference
+from openpyxl.chart.axis import ChartLines
 
 REPO_ROOT = Path(__file__).resolve().parent
 DATA_DIR = REPO_ROOT / "data"
@@ -133,6 +134,13 @@ def write_helper_table(
     return end_row, end_col
 
 
+def try_set_attr(obj, attr_name: str, value) -> None:
+    try:
+        setattr(obj, attr_name, value)
+    except Exception:
+        pass
+
+
 def build_excel_report_bytes(
     df_filtered: pd.DataFrame, df_scope_all: pd.DataFrame, selection_state: dict
 ) -> bytes:
@@ -167,25 +175,16 @@ def build_excel_report_bytes(
         ts_base = add_year_month_columns(df_filtered[["ym", "total", "jp", "foreign"]]).sort_values(
             "ym"
         )
-        ts_ym_values = ts_base["ym"].tolist()
-        ts_axis_labels: list[str] = []
-        for i, ym in enumerate(ts_ym_values):
-            month = int(ym[5:7])
-            if i == 0 or i == len(ts_ym_values) - 1 or month in (1, 4, 7, 10):
-                ts_axis_labels.append(ym)
-            else:
-                ts_axis_labels.append("")
-        ts_base["axis_label"] = ts_axis_labels
         ts_mode = TIME_SERIES_METRICS.get(time_series_label, "stacked")
         if ts_mode == "stacked":
-            ts_helper = ts_base[["axis_label", "jp", "foreign"]].rename(
-                columns={"axis_label": "年月", "jp": "国内", "foreign": "海外"}
+            ts_helper = ts_base[["ym", "jp", "foreign"]].rename(
+                columns={"ym": "年月", "jp": "国内", "foreign": "海外"}
             )
             ts_title = "時系列（積み上げ）"
             ts_grouping = "stacked"
         else:
-            ts_helper = ts_base[["axis_label", ts_mode]].rename(
-                columns={"axis_label": "年月", ts_mode: time_series_label}
+            ts_helper = ts_base[["ym", ts_mode]].rename(
+                columns={"ym": "年月", ts_mode: time_series_label}
             )
             ts_title = f"時系列（{time_series_label}）"
             ts_grouping = "clustered"
@@ -203,10 +202,16 @@ def build_excel_report_bytes(
             ts_chart.title = ts_title
             ts_chart.y_axis.title = "延べ宿泊者数"
             ts_chart.x_axis.title = "月（年月）"
-            ts_chart.legend.position = "r"
+            ts_chart.legend.position = "b"
+            ts_chart.legend.overlay = False
+            ts_chart.x_axis.delete = False
+            ts_chart.y_axis.delete = False
             ts_chart.x_axis.tickLblPos = "low"
+            ts_chart.x_axis.tickLblSkip = 3
+            try_set_attr(ts_chart.x_axis, "tickMarkSkip", 3)
             ts_chart.x_axis.majorTickMark = "out"
             ts_chart.y_axis.majorTickMark = "out"
+            ts_chart.y_axis.majorGridlines = ChartLines()
             ts_data = Reference(
                 charts_ws,
                 min_col=helper_col + 1,
@@ -258,11 +263,13 @@ def build_excel_report_bytes(
             annual_chart.title = f"年別同月比較（{annual_metric_label}）"
             annual_chart.y_axis.title = "延べ宿泊者数"
             annual_chart.x_axis.title = "月"
-            annual_chart.legend.position = "r"
+            annual_chart.legend.position = "b"
+            annual_chart.legend.overlay = False
             annual_chart.x_axis.tickLblPos = "low"
             annual_chart.x_axis.tickLblSkip = 1
             annual_chart.x_axis.majorTickMark = "out"
             annual_chart.y_axis.majorTickMark = "out"
+            annual_chart.y_axis.majorGridlines = ChartLines()
             annual_data = Reference(
                 charts_ws,
                 min_col=helper_col + 1,
