@@ -219,7 +219,7 @@ def build_excel_report_bytes(
             ts_chart.legend.position = "r"
             ts_chart.legend.overlay = False
             ts_chart.layout = Layout(
-                manualLayout=ManualLayout(x=0.12, y=0.08, w=0.70, h=0.78)
+                manualLayout=ManualLayout(x=0.04, y=0.08, w=0.78, h=0.78)
             )
             ts_data = Reference(
                 charts_ws,
@@ -304,7 +304,7 @@ def build_excel_report_bytes(
             annual_chart.legend.position = "r"
             annual_chart.legend.overlay = False
             annual_chart.layout = Layout(
-                manualLayout=ManualLayout(x=0.12, y=0.08, w=0.70, h=0.78)
+                manualLayout=ManualLayout(x=0.04, y=0.08, w=0.78, h=0.78)
             )
             annual_data = Reference(
                 charts_ws,
