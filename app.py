@@ -66,7 +66,9 @@ def add_year_month_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 @st.cache_data(show_spinner=False)
-def get_scope_dataframe(df: pd.DataFrame, scope_type: str, scope_id: str) -> pd.DataFrame:
+def get_scope_dataframe(
+    df: pd.DataFrame, scope_type: str, scope_id: str
+) -> pd.DataFrame:
     if scope_type == "pref":
         out = df[df["pref_code"] == scope_id].copy()
         return out.sort_values("ym").reset_index(drop=True)
@@ -77,7 +79,9 @@ def get_scope_dataframe(df: pd.DataFrame, scope_type: str, scope_id: str) -> pd.
         return pd.DataFrame(columns=df.columns)
 
     grouped = (
-        work.groupby("ym", as_index=False)[["total", "jp", "foreign"]].sum().sort_values("ym")
+        work.groupby("ym", as_index=False)[["total", "jp", "foreign"]]
+        .sum()
+        .sort_values("ym")
     )
     grouped["pref_code"] = scope_id
     grouped["pref_name"] = scope_id
@@ -172,9 +176,9 @@ def build_excel_report_bytes(
         helper_col = 30  # AD列付近に補助表を置き、見た目への干渉を避ける
 
         # Time-series helper and chart
-        ts_base = add_year_month_columns(df_filtered[["ym", "total", "jp", "foreign"]]).sort_values(
-            "ym"
-        )
+        ts_base = add_year_month_columns(
+            df_filtered[["ym", "total", "jp", "foreign"]]
+        ).sort_values("ym")
         ts_mode = TIME_SERIES_METRICS.get(time_series_label, "stacked")
         if ts_mode == "stacked":
             ts_helper = ts_base[["ym", "jp", "foreign"]].rename(
@@ -234,22 +238,30 @@ def build_excel_report_bytes(
             charts_ws["A2"] = "時系列グラフ: データなし"
 
         # Annual comparison helper and chart
-        annual_base = add_year_month_columns(df_scope_all[["ym", "total", "jp", "foreign"]])
+        annual_base = add_year_month_columns(
+            df_scope_all[["ym", "total", "jp", "foreign"]]
+        )
         available_years = sorted(annual_base["year"].unique().tolist())
         years_for_chart = normalize_selected_years(annual_years, available_years)
         annual_col = ANNUAL_METRICS.get(annual_metric_label, "total")
 
         annual_pivot = (
             annual_base[annual_base["year"].isin(years_for_chart)]
-            .pivot_table(index="month", columns="year", values=annual_col, aggfunc="sum")
+            .pivot_table(
+                index="month", columns="year", values=annual_col, aggfunc="sum"
+            )
             .reindex(range(1, 13), fill_value=0)
         )
         for y in years_for_chart:
             if y not in annual_pivot.columns:
                 annual_pivot[y] = 0
-        annual_pivot = annual_pivot[years_for_chart] if years_for_chart else annual_pivot
+        annual_pivot = (
+            annual_pivot[years_for_chart] if years_for_chart else annual_pivot
+        )
         annual_pivot.index = [f"{m:02d}" for m in annual_pivot.index]
-        annual_helper = annual_pivot.reset_index().rename(columns={"index": "月", "month": "月"})
+        annual_helper = annual_pivot.reset_index().rename(
+            columns={"index": "月", "month": "月"}
+        )
         annual_helper.columns = ["月"] + [str(y) for y in years_for_chart]
 
         annual_start_row = max(30, ts_end_row + 3)
@@ -414,7 +426,9 @@ def main() -> None:
     with col2:
         if scope_label == "都道府県":
             prefs = (
-                df[["pref_code", "pref_name"]].drop_duplicates().sort_values("pref_code")
+                df[["pref_code", "pref_name"]]
+                .drop_duplicates()
+                .sort_values("pref_code")
             )
             pref_label = prefs.apply(
                 lambda r: f"{r['pref_code']} {r['pref_name']}", axis=1
@@ -425,7 +439,9 @@ def main() -> None:
             scope_id = pref_map[pref_sel]
         else:
             region_name = st.selectbox("地方", list(REGION_PREF_CODES.keys()), index=0)
-            st.caption(f"対象都道府県コード: {', '.join(REGION_PREF_CODES[region_name])}")
+            st.caption(
+                f"対象都道府県コード: {', '.join(REGION_PREF_CODES[region_name])}"
+            )
             scope_type = "region"
             scope_id = region_name
 
@@ -445,9 +461,13 @@ def main() -> None:
     default_to_year = int(default_ym_to[:4])
     default_to_month = int(default_ym_to[5:7])
 
-    year_options = sorted(d_scope_all["ym"].str.slice(0, 4).astype(int).unique().tolist())
+    year_options = sorted(
+        d_scope_all["ym"].str.slice(0, 4).astype(int).unique().tolist()
+    )
     month_options = list(range(1, 13))
-    month_formatter = lambda m: f"{m:02d}"
+
+    def format_month(m: int) -> str:
+        return f"{m:02d}"
 
     with col3:
         start_col, end_col = st.columns(2)
@@ -462,7 +482,7 @@ def main() -> None:
                 "開始（月）",
                 month_options,
                 index=month_options.index(default_from_month),
-                format_func=month_formatter,
+                format_func=format_month,
             )
         with end_col:
             st.caption("終了")
@@ -475,7 +495,7 @@ def main() -> None:
                 "終了（月）",
                 month_options,
                 index=month_options.index(default_to_month),
-                format_func=month_formatter,
+                format_func=format_month,
             )
 
     with col4:
@@ -495,9 +515,13 @@ def main() -> None:
 
     if ym_to_int(ym_from) > ym_to_int(ym_to):
         ym_from, ym_to = ym_to, ym_from
-        st.warning(f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。")
+        st.warning(
+            f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。"
+        )
 
-    d = d_scope_all[(d_scope_all["ym"] >= ym_from) & (d_scope_all["ym"] <= ym_to)].copy()
+    d = d_scope_all[
+        (d_scope_all["ym"] >= ym_from) & (d_scope_all["ym"] <= ym_to)
+    ].copy()
     d = d.sort_values("ym")
 
     # 表（年月縦）
@@ -520,9 +544,7 @@ def main() -> None:
     chart_mode = st.session_state.get("chart_mode_export", chart_mode_options[0])
     if chart_mode not in chart_mode_options:
         chart_mode = chart_mode_options[0]
-    ts_metric_label = st.session_state.get(
-        "ts_metric_export", "国内+海外（積み上げ）"
-    )
+    ts_metric_label = st.session_state.get("ts_metric_export", "国内+海外（積み上げ）")
     if ts_metric_label not in TIME_SERIES_METRICS:
         ts_metric_label = "国内+海外（積み上げ）"
     annual_metric_label = st.session_state.get("annual_metric_export", "全体")
