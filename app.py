@@ -12,6 +12,7 @@ import pandas as pd
 import streamlit as st
 from openpyxl.chart import BarChart, Reference
 from openpyxl.chart.axis import ChartLines
+from openpyxl.chart.layout import Layout, ManualLayout
 
 REPO_ROOT = Path(__file__).resolve().parent
 DATA_DIR = REPO_ROOT / "data"
@@ -206,8 +207,11 @@ def build_excel_report_bytes(
             ts_chart.title = ts_title
             ts_chart.y_axis.title = "延べ宿泊者数"
             ts_chart.x_axis.title = "月（年月）"
-            ts_chart.legend.position = "b"
+            ts_chart.legend.position = "r"
             ts_chart.legend.overlay = False
+            ts_chart.legend.layout = Layout(
+                manualLayout=ManualLayout(x=0.82, y=0.1, w=0.18, h=0.8)
+            )
             ts_chart.x_axis.delete = False
             ts_chart.y_axis.delete = False
             ts_chart.x_axis.tickLblPos = "low"
@@ -231,8 +235,8 @@ def build_excel_report_bytes(
             )
             ts_chart.add_data(ts_data, titles_from_data=True)
             ts_chart.set_categories(ts_categories)
-            ts_chart.width = 22
-            ts_chart.height = 9
+            ts_chart.width = 26
+            ts_chart.height = 11
             charts_ws.add_chart(ts_chart, "A2")
         else:
             charts_ws["A2"] = "時系列グラフ: データなし"
@@ -285,11 +289,17 @@ def build_excel_report_bytes(
             annual_chart.grouping = "clustered"
             annual_chart.title = f"年別同月比較（{annual_metric_label}）"
             annual_chart.y_axis.title = "延べ宿泊者数"
-            annual_chart.x_axis.title = "月"
-            annual_chart.legend.position = "b"
+            annual_chart.x_axis.title = None
+            annual_chart.legend.position = "r"
             annual_chart.legend.overlay = False
+            annual_chart.legend.layout = Layout(
+                manualLayout=ManualLayout(x=0.82, y=0.1, w=0.18, h=0.8)
+            )
+            annual_chart.x_axis.delete = False
+            annual_chart.y_axis.delete = False
             annual_chart.x_axis.tickLblPos = "low"
             annual_chart.x_axis.tickLblSkip = 1
+            try_set_attr(annual_chart.x_axis, "tickMarkSkip", 1)
             annual_chart.x_axis.majorTickMark = "out"
             annual_chart.y_axis.majorTickMark = "out"
             annual_chart.y_axis.majorGridlines = ChartLines()
@@ -308,8 +318,8 @@ def build_excel_report_bytes(
             )
             annual_chart.add_data(annual_data, titles_from_data=True)
             annual_chart.set_categories(annual_categories)
-            annual_chart.width = 22
-            annual_chart.height = 9
+            annual_chart.width = 26
+            annual_chart.height = 12
             charts_ws.add_chart(annual_chart, "A30")
         else:
             charts_ws["A30"] = "年別同月比較グラフ: データなし"
