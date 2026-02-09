@@ -390,7 +390,7 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
                 x=alt.X("ym:N", sort=ym_sort),
                 y=alt.Y("value:Q", stack="center"),
                 text=alt.Text("share_label:N"),
-                detail=alt.Detail("metric:N", sort=["国内", "海外"]),
+                detail=alt.Detail("metric:N"),
             )
         )
 
