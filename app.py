@@ -349,16 +349,39 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
         long_df = work.melt(
             id_vars=["ym", "year", "month", "total"],
             value_vars=["jp", "foreign"],
-            var_name="metric",
+            var_name="metric_key",
             value_name="value",
         )
-        long_df["metric"] = long_df["metric"].map({"jp": "国内", "foreign": "海外"})
+        metric_labels = {"jp": "国内", "foreign": "海外"}
+        long_df["metric"] = long_df["metric_key"].map(metric_labels)
         long_df["share_label"] = long_df.apply(
             lambda r: f"{int(round((r['value'] / r['total']) * 100))}%"
             if r["total"] > 0
             else "",
             axis=1,
         )
+        stack_order = [metric_labels["foreign"], metric_labels["jp"]]
+
+        label_base = work[["ym", "year", "month", "total", "jp", "foreign"]].copy()
+        jp_label_df = label_base.copy()
+        jp_label_df["metric"] = metric_labels["jp"]
+        jp_label_df["y_center"] = jp_label_df["foreign"] + (jp_label_df["jp"] / 2)
+        jp_label_df["share_label"] = jp_label_df.apply(
+            lambda r: f"{int(round((r['jp'] / r['total']) * 100))}%"
+            if r["total"] > 0
+            else "",
+            axis=1,
+        )
+        foreign_label_df = label_base.copy()
+        foreign_label_df["metric"] = metric_labels["foreign"]
+        foreign_label_df["y_center"] = foreign_label_df["foreign"] / 2
+        foreign_label_df["share_label"] = foreign_label_df.apply(
+            lambda r: f"{int(round((r['foreign'] / r['total']) * 100))}%"
+            if r["total"] > 0
+            else "",
+            axis=1,
+        )
+        share_df = pd.concat([jp_label_df, foreign_label_df], ignore_index=True)
 
         bars = (
             alt.Chart(long_df)
@@ -372,6 +395,7 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
                     sort=["国内", "海外"],
                     scale=alt.Scale(domain=["国内", "海外"]),
                 ),
+                order=alt.Order("metric:N", sort=stack_order),
                 tooltip=[
                     alt.Tooltip("ym:N", title="年月"),
                     alt.Tooltip("year:Q", title="年"),
@@ -384,11 +408,11 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
         )
 
         share_text = (
-            alt.Chart(long_df)
+            alt.Chart(share_df)
             .mark_text(color="white", fontSize=10)
             .encode(
                 x=alt.X("ym:N", sort=ym_sort),
-                y=alt.Y("value:Q", stack="center"),
+                y=alt.Y("y_center:Q"),
                 text=alt.Text("share_label:N"),
                 detail=alt.Detail("metric:N"),
             )
