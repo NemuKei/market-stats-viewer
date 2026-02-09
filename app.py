@@ -252,10 +252,21 @@ def build_excel_report_bytes(
         annual_helper = annual_pivot.reset_index().rename(columns={"index": "月", "month": "月"})
         annual_helper.columns = ["月"] + [str(y) for y in years_for_chart]
 
-        annual_start_row = 30
+        annual_start_row = max(30, ts_end_row + 3)
         annual_end_row, annual_end_col = write_helper_table(
             charts_ws, annual_helper, annual_start_row, start_col=helper_col
         )
+
+        # Guard: overlap regression detector for time-series category column.
+        ts_category_values = [
+            charts_ws.cell(row=r, column=helper_col).value
+            for r in range(ts_start_row + 1, ts_end_row + 1)
+        ]
+        if any(v == "月" for v in ts_category_values):
+            raise RuntimeError(
+                "Helper table overlap detected: time-series categories contain annual header."
+            )
+
         if years_for_chart:
             annual_chart = BarChart()
             annual_chart.type = "col"
