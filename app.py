@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import io
 import json
+import re
 import sqlite3
 from pathlib import Path
 
@@ -94,6 +97,25 @@ def clamp_ym_to_available_range(ym: str, min_ym: str, max_ym: str) -> tuple[str,
     if ym > max_ym:
         return max_ym, True
     return ym, False
+
+
+def sanitize_for_filename(value: str) -> str:
+    safe = re.sub(r"[^0-9A-Za-z_-]+", "_", value.strip()).strip("_")
+    if safe:
+        return safe
+    suffix = hashlib.sha1(value.encode("utf-8")).hexdigest()[:8]
+    return f"scope_{suffix}"
+
+
+def dataframe_to_csv_bytes(df: pd.DataFrame) -> bytes:
+    return df.to_csv(index=False).encode("utf-8-sig")
+
+
+def dataframe_to_excel_bytes(df: pd.DataFrame) -> bytes:
+    buffer = io.BytesIO()
+    df.to_excel(buffer, engine="openpyxl", index=False, sheet_name="data")
+    buffer.seek(0)
+    return buffer.getvalue()
 
 
 def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.Chart:
@@ -295,6 +317,10 @@ def main() -> None:
     table = table.rename(
         columns={"ym": "年月", "total": "全体", "jp": "国内", "foreign": "海外"}
     )
+    scope_file_id = sanitize_for_filename(f"{scope_type}_{scope_id}")
+    export_file_stem = f"market_stats_{scope_file_id}_{ym_from}_{ym_to}"
+    csv_bytes = dataframe_to_csv_bytes(table)
+    excel_bytes = dataframe_to_excel_bytes(table)
 
     chart_height = 520
     if show_mode in ["表＋グラフ", "グラフのみ"]:
@@ -350,6 +376,24 @@ def main() -> None:
     if show_mode in ["表＋グラフ", "表のみ"]:
         st.subheader("表")
         st.dataframe(table, use_container_width=True, hide_index=True, height=560)
+        st.caption("Export")
+        export_col1, export_col2 = st.columns(2)
+        with export_col1:
+            st.download_button(
+                "Download CSV",
+                data=csv_bytes,
+                file_name=f"{export_file_stem}.csv",
+                mime="text/csv",
+                use_container_width=True,
+            )
+        with export_col2:
+            st.download_button(
+                "Download Excel (.xlsx)",
+                data=excel_bytes,
+                file_name=f"{export_file_stem}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                use_container_width=True,
+            )
 
     st.divider()
     st.caption("出典：観光庁『宿泊旅行統計調査』（推移表Excelを取得して整形）")
