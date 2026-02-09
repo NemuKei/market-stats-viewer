@@ -354,13 +354,13 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
         )
         metric_labels = {"jp": "国内", "foreign": "海外"}
         long_df["metric"] = long_df["metric_key"].map(metric_labels)
+        long_df["stack_order"] = long_df["metric_key"].map({"foreign": 0, "jp": 1})
         long_df["share_label"] = long_df.apply(
             lambda r: f"{int(round((r['value'] / r['total']) * 100))}%"
             if r["total"] > 0
             else "",
             axis=1,
         )
-        stack_order = [metric_labels["foreign"], metric_labels["jp"]]
 
         label_base = work[["ym", "year", "month", "total", "jp", "foreign"]].copy()
         jp_label_df = label_base.copy()
@@ -395,7 +395,7 @@ def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.
                     sort=["国内", "海外"],
                     scale=alt.Scale(domain=["国内", "海外"]),
                 ),
-                order=alt.Order("metric:N", sort=stack_order),
+                order=alt.Order("stack_order:Q", sort="ascending"),
                 tooltip=[
                     alt.Tooltip("ym:N", title="年月"),
                     alt.Tooltip("year:Q", title="年"),
