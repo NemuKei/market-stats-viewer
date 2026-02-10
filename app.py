@@ -6,6 +6,7 @@ import json
 import re
 import sqlite3
 from pathlib import Path
+from typing import cast
 
 import altair as alt
 import pandas as pd
@@ -303,14 +304,12 @@ def build_excel_report_bytes(
         )
         for y in years_for_chart:
             if y not in annual_pivot.columns:
-                annual_pivot[y] = None
+                annual_pivot[y] = float("nan")
         annual_pivot = (
             annual_pivot[years_for_chart] if years_for_chart else annual_pivot
         )
         if not is_rolling:
             annual_pivot = annual_pivot.fillna(0)
-        else:
-            annual_pivot = annual_pivot.where(pd.notna(annual_pivot), None)
         annual_pivot.index = [f"{m:02d}" for m in annual_pivot.index]
         annual_helper = annual_pivot.reset_index().rename(
             columns={"index": "月", "month": "月"}
@@ -379,7 +378,9 @@ def build_excel_report_bytes(
     return buffer.getvalue()
 
 
-def build_time_series_chart(df_filtered: pd.DataFrame, metric_mode: str) -> alt.Chart:
+def build_time_series_chart(
+    df_filtered: pd.DataFrame, metric_mode: str
+) -> alt.Chart | alt.LayerChart:
     work = add_year_month_columns(df_filtered[["ym", "total", "jp", "foreign"]])
     ym_sort = sorted(work["ym"].unique().tolist())
 
@@ -665,8 +666,12 @@ def main() -> None:
         if not chart_scope_all.empty
         else []
     )
+    default_chart_years = (
+        chart_year_options[-4:] if len(chart_year_options) > 4 else chart_year_options
+    )
     selected_years_for_export = normalize_selected_years(
-        st.session_state.get("annual_years_export", chart_year_options), chart_year_options
+        st.session_state.get("annual_years_export", default_chart_years),
+        chart_year_options,
     )
 
     chart_height = 520
@@ -691,8 +696,11 @@ def main() -> None:
             if not chart_scope_all.empty
             else []
         )
+        default_chart_years = (
+            chart_year_options[-4:] if len(chart_year_options) > 4 else chart_year_options
+        )
         selected_years_for_export = normalize_selected_years(
-            st.session_state.get("annual_years_export", chart_year_options),
+            st.session_state.get("annual_years_export", default_chart_years),
             chart_year_options,
         )
 
@@ -714,7 +722,9 @@ def main() -> None:
                 monthly_chart = build_time_series_chart(
                     chart_filtered, ts_metric_label
                 ).properties(height=chart_height)
-                st.altair_chart(monthly_chart, use_container_width=True)
+                st.altair_chart(
+                    cast(alt.Chart, monthly_chart), use_container_width=True
+                )
         else:
             annual_metric_label = st.radio(
                 "指標",
