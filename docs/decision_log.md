@@ -21,3 +21,4 @@
 - D-20260209-006 | Excel出力の補助表重なりを防ぐため、年別補助表の開始行を動的決定し重なり検知ガードを入れる | status: spec_done | spec_link: docs/spec_app.md
 - D-20260209-007 | Excel出力の2チャートで軸IDを分離し、軸表示が不安定にならないようにする | status: spec_done | spec_link: docs/spec_app.md
 - D-20260209-008 | Excel出力チャートの可読性向上として凡例配置・軸表示/目盛り・グリッド・レイアウト調整を行う | status: spec_done | spec_link: docs/spec_app.md
+- D-20260210-001 | グラフに「値の種類（月次 / 年計推移=表記月起点の直近12か月ローリング）」切替を追加し、時系列・年別同月比較・Excelグラフに同一反映する。年計推移では先頭11か月を非表示とする | status: spec_done | spec_link: docs/spec_app.md
