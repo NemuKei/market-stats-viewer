@@ -509,7 +509,7 @@ def build_yearly_month_compare_chart(
 
 
 def main() -> None:
-    st.set_page_config(page_title="宿泊旅行統計（延べ宿泊者数）", page_icon="assets/favicon.png", layout="wide")
+    st.set_page_config(page_title="宿泊旅行統計（延べ宿泊者数）", page_icon="assets/logo_header.svg", layout="wide")
 
     st.title("宿泊旅行統計調査：延べ宿泊者数（全体 / 国内 / 海外）")
     meta = load_meta()
