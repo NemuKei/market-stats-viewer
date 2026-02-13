@@ -57,6 +57,8 @@ def save_meta_tcd(meta: dict) -> None:
 def fetch_source_page(url: str) -> str:
     res = requests.get(url, timeout=60)
     res.raise_for_status()
+    if not res.encoding or res.encoding.lower() == "iso-8859-1":
+        res.encoding = res.apparent_encoding
     return res.text
 
 
@@ -80,14 +82,14 @@ def extract_target_excel_links(html: str, base_url: str) -> list[dict[str, str]]
         if not (lower_url.endswith(".xlsx") or lower_url.endswith(".xls")):
             continue
 
-        # 「集計表」のみ対象。都道府県別参考などは除外。
-        if "集計表" not in text:
-            continue
-        if "都道府県" in text or "参考" in text:
+        # サイト本文の文字化け・表記揺れに備え、URLヒントでも拾う。
+        compact_text = text.replace(" ", "").replace("　", "")
+        has_target_hint = ("集計表" in compact_text) or ("/content/" in lower_url)
+        if not has_target_hint:
             continue
 
-        # 要件対象は確報と2次速報。
-        if not any(key in text for key in ["確報", "2次速報", "２次速報"]):
+        # 明確に対象外と判定できる場合のみ除外。
+        if "都道府県" in compact_text and "参考" in compact_text:
             continue
 
         if abs_url in seen:
@@ -378,6 +380,11 @@ def main() -> int:
         for x in old_meta.get("processed_files", [])
         if x.get("url") and x.get("sha256")
     }
+    old_titles = {
+        str(x.get("url")): str(x.get("title_a1"))
+        for x in old_meta.get("processed_files", [])
+        if x.get("url")
+    }
     old_rows = load_existing_tcd_rows(SQLITE_PATH)
 
     fetched_files: list[dict[str, str]] = []
@@ -414,6 +421,7 @@ def main() -> int:
             sha = item["sha256"]
             link_text = item["link_text"]
             local_path = Path(item["local_path"])
+            title_a1 = old_titles.get(url, "")
 
             can_reuse = (
                 old_processed.get(url) == sha
@@ -440,21 +448,21 @@ def main() -> int:
                 print(f"Reused cached rows: {url}")
                 continue
 
-            wb = load_workbook(local_path, read_only=False, data_only=True)
-            title_a1 = get_title_a1(wb)
-            period_type, period_key, period_label, release_type = parse_title_metadata(
-                title_a1, link_text
-            )
+            try:
+                wb = load_workbook(local_path, read_only=False, data_only=True)
+                title_a1 = get_title_a1(wb)
+            except Exception as e:
+                processed_entries.append(
+                    {
+                        "url": url,
+                        "sha256": sha,
+                        "title_a1": title_a1,
+                        "fetched_at": fetched_at,
+                    }
+                )
+                print(f"Skipped (open failed): {url} ({e})")
+                continue
 
-            parsed = extract_t06_rows(
-                workbook=wb,
-                source_url=url,
-                source_title=title_a1,
-                source_sha256=sha,
-                title_period_fallback=(period_type, period_key, period_label),
-                release_type=release_type,
-            )
-            rebuilt_parts.append(parsed)
             processed_entries.append(
                 {
                     "url": url,
@@ -463,12 +471,32 @@ def main() -> int:
                     "fetched_at": fetched_at,
                 }
             )
+
+            try:
+                period_type, period_key, period_label, release_type = parse_title_metadata(
+                    title_a1, link_text
+                )
+                parsed = extract_t06_rows(
+                    workbook=wb,
+                    source_url=url,
+                    source_title=title_a1,
+                    source_sha256=sha,
+                    title_period_fallback=(period_type, period_key, period_label),
+                    release_type=release_type,
+                )
+            except Exception as e:
+                print(f"Skipped (non-target/unsupported): {url} ({e})")
+                continue
+
+            rebuilt_parts.append(parsed)
             print(f"Parsed: {url}")
 
         if rebuilt_parts:
             new_df = pd.concat(rebuilt_parts, ignore_index=True)
         else:
-            new_df = empty_tcd_dataframe()
+            raise RuntimeError(
+                "No parsable TCD files found after download. Check source page structure."
+            )
 
         if not new_df.empty:
             new_df["period_key"] = new_df["period_key"].astype(str)
