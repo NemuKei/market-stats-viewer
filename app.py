@@ -964,7 +964,25 @@ def estimate_tcd_los_by_segment(
     if summary.empty:
         return pd.DataFrame()
 
+    one_night = (
+        work[work["nights_bin"] == "1\u6cca"]
+        .groupby("segment", as_index=False)["estimated_stays"]
+        .sum()
+        .rename(columns={"estimated_stays": "one_night_stays"})
+    )
+    summary = summary.merge(one_night, on="segment", how="left")
+    summary["one_night_stays"] = summary["one_night_stays"].fillna(0.0)
+    summary["two_plus_stays"] = (summary["estimated_stays"] - summary["one_night_stays"]).clip(
+        lower=0.0
+    )
+
     summary["estimated_los"] = summary["total_nights"] / summary["estimated_stays"]
+    summary["one_night_share_pct"] = (
+        summary["one_night_stays"] / summary["estimated_stays"] * 100.0
+    )
+    summary["two_plus_share_pct"] = (
+        summary["two_plus_stays"] / summary["estimated_stays"] * 100.0
+    )
     summary["segment_label"] = summary["segment"].map(TCD_SEGMENT_LABELS)
 
     segment_order = list(TCD_SEGMENT_LABELS.keys())
@@ -1125,6 +1143,33 @@ def render_tcd_view() -> None:
         st.caption(
             "\u8a08\u7b97\u5f0f: LOS \u2248 \u03a3(\u5ef6\u3079\u6cca\u6570) / "
             "\u03a3(\u5404\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
+        )
+
+        share_display = (
+            los_summary[["segment_label", "one_night_share_pct", "two_plus_share_pct"]]
+            .rename(
+                columns={
+                    "segment_label": "\u7cfb\u5217",
+                    "one_night_share_pct": "1\u6cca\u30b7\u30a7\u30a2",
+                    "two_plus_share_pct": "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2",
+                }
+            )
+            .copy()
+        )
+        share_display["1\u6cca\u30b7\u30a7\u30a2"] = share_display["1\u6cca\u30b7\u30a7\u30a2"].map(
+            lambda v: f"{v:.1f}%"
+        )
+        share_display[
+            "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"
+        ] = share_display["2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"].map(
+            lambda v: f"{v:.1f}%"
+        )
+        st.subheader("\u5bbf\u6cca\u65e5\u6570\u30b7\u30a7\u30a2\uff08\u63a8\u5b9a\u4ef6\u6570\u30d9\u30fc\u30b9\uff09")
+        st.dataframe(share_display, use_container_width=True, hide_index=True)
+        st.caption(
+            "\u8a08\u7b97\u5f0f: \u30b7\u30a7\u30a2 \u2248 "
+            "\u03a3(\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024) / "
+            "\u03a3(\u5168\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
         )
 
     chart = build_tcd_chart(filtered).properties(height=500)
