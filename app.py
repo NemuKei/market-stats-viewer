@@ -788,6 +788,9 @@ def render_stay_stats_view() -> None:
 
     st.divider()
     st.caption("出典：観光庁『宿泊旅行統計調査』（推移表Excelを取得して整形）")
+    st.caption(
+        "データは毎週自動更新です。取得元サイトの構造変更等により更新が遅れる場合があります。"
+    )
 
 
 
@@ -1192,6 +1195,11 @@ def render_tcd_view() -> None:
 
     st.subheader("\u8868")
     st.dataframe(table_pivot, use_container_width=True, hide_index=True)
+    st.caption(
+        "\u30c7\u30fc\u30bf\u306f\u6bce\u9031\u81ea\u52d5\u66f4\u65b0\u3067\u3059\u3002"
+        "\u53d6\u5f97\u5143\u30b5\u30a4\u30c8\u306e\u69cb\u9020\u5909\u66f4\u7b49\u306b\u3088\u308a"
+        "\u66f4\u65b0\u304c\u9045\u308c\u308b\u5834\u5408\u304c\u3042\u308a\u307e\u3059\u3002"
+    )
 
 
 def main() -> None:

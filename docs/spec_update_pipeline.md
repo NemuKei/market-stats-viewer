@@ -44,3 +44,8 @@
 5. `data/market_stats.sqlite` の `tcd_stay_nights` テーブルを再構築する。
 6. `data/meta_tcd.json` に `processed_files(url, sha256, title_a1, fetched_at)` を保存する。
 7. 取得元hashに差分がない場合は no-op とする。
+
+## 追記: 自動更新スケジュール（2026-02-13）
+- GitHub Actions `update_data.yml` の定期実行は `cron: 0 3 * * 1`。
+- 実行時刻は毎週月曜 03:00 UTC（日本時間 月曜 12:00）。
+- 手動実行は `workflow_dispatch` を使う。
