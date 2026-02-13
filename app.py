@@ -512,6 +512,13 @@ def main() -> None:
     st.set_page_config(page_title="宿泊旅行統計（延べ宿泊者数）", page_icon="assets/logo_header.svg", layout="wide")
 
     st.title("宿泊旅行統計調査：延べ宿泊者数（全体 / 国内 / 海外）")
+
+    lp_url = "https://deltahelmlab.com/?utm_source=market_stats_viewer&utm_medium=app&utm_campaign=cross_link"
+    with st.sidebar:
+        st.markdown("### 運営元")
+        st.link_button("DeltaHelm Lab（公式サイト）", lp_url, use_container_width=True)
+        st.caption("サービス詳細・お問い合わせはこちら")
+
     meta = load_meta()
     if meta:
         st.caption(
