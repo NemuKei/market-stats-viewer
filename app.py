@@ -508,16 +508,8 @@ def build_yearly_month_compare_chart(
     )
 
 
-def main() -> None:
-    st.set_page_config(page_title="宿泊旅行統計（延べ宿泊者数）", page_icon="assets/logo_header.svg", layout="wide")
-
+def render_stay_stats_view() -> None:
     st.title("宿泊旅行統計調査：延べ宿泊者数（全体 / 国内 / 海外）")
-
-    lp_url = "https://deltahelmlab.com/?utm_source=market_stats_viewer&utm_medium=app&utm_campaign=cross_link"
-    with st.sidebar:
-        st.markdown("### 運営元")
-        st.link_button("DeltaHelm Lab（公式サイト）", lp_url, use_container_width=True)
-        st.caption("サービス詳細・お問い合わせはこちら")
 
     meta = load_meta()
     if meta:
@@ -797,6 +789,330 @@ def main() -> None:
     st.divider()
     st.caption("出典：観光庁『宿泊旅行統計調査』（推移表Excelを取得して整形）")
 
+
+
+
+TCD_META_PATH = DATA_DIR / "meta_tcd.json"
+TCD_TABLE_NAME = "tcd_stay_nights"
+
+RELEASE_FINAL = "確報"
+RELEASE_SECOND_PRELIM = "2次速報"
+
+TCD_SEGMENT_LABELS = {
+    "domestic_total": "\u56fd\u5185\u65c5\u884c\uff08\u5408\u8a08\uff09",
+    "domestic_business": "\u56fd\u5185\u65c5\u884c\uff08\u51fa\u5f35\u30fb\u696d\u52d9\uff09",
+}
+TCD_PERIOD_TYPE_LABELS = {
+    "annual": "\u5e74\u6b21",
+    "quarter": "\u56db\u534a\u671f",
+}
+TCD_PERIOD_TYPE_KEYS = {v: k for k, v in TCD_PERIOD_TYPE_LABELS.items()}
+TCD_RELEASE_FILTERS = {
+    "\u6700\u65b0\uff08\u78ba\u5831\u512a\u5148\uff09": "latest",
+    "\u78ba\u5831": RELEASE_FINAL,
+    "2\u6b21\u901f\u5831": RELEASE_SECOND_PRELIM,
+}
+TCD_NIGHTS_BIN_ORDER = [
+    "1泊",
+    "2泊",
+    "3泊",
+    "4泊",
+    "5泊",
+    "6泊",
+    "7泊",
+    "8泊以上",
+]
+
+
+def load_tcd_meta() -> dict:
+    if not TCD_META_PATH.exists():
+        return {}
+    return json.loads(TCD_META_PATH.read_text(encoding="utf-8"))
+
+
+@st.cache_data(show_spinner=False)
+def load_tcd_data() -> pd.DataFrame:
+    if not SQLITE_PATH.exists():
+        return pd.DataFrame()
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query(f"SELECT * FROM {TCD_TABLE_NAME}", conn)
+    except Exception:
+        return pd.DataFrame()
+
+    if df.empty:
+        return df
+
+    str_cols = [
+        "period_type",
+        "period_key",
+        "period_label",
+        "release_type",
+        "segment",
+        "nights_bin",
+        "source_url",
+        "source_title",
+    ]
+    for col in str_cols:
+        if col in df.columns:
+            df[col] = df[col].astype(str)
+
+    if "value" in df.columns:
+        df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    return df
+
+
+def parse_tcd_period_sort_key(period_key: str) -> tuple[int, int]:
+    m_quarter = re.fullmatch(r"(\d{4})Q([1-4])", str(period_key))
+    if m_quarter:
+        return int(m_quarter.group(1)), int(m_quarter.group(2))
+
+    m_annual = re.fullmatch(r"(\d{4})", str(period_key))
+    if m_annual:
+        return int(m_annual.group(1)), 0
+
+    return 0, 0
+
+
+def get_tcd_period_label_map(df: pd.DataFrame) -> dict[str, str]:
+    if df.empty:
+        return {}
+
+    label_map: dict[str, str] = {}
+    for _, row in df[["period_key", "period_label"]].drop_duplicates().iterrows():
+        key = str(row["period_key"])
+        label = str(row["period_label"]) if pd.notna(row["period_label"]) else key
+        label_map[key] = label
+    return label_map
+
+
+def resolve_tcd_latest_period_rows(
+    df_for_period_type: pd.DataFrame,
+) -> tuple[pd.DataFrame, str | None, str | None]:
+    if df_for_period_type.empty:
+        return pd.DataFrame(), None, None
+
+    period_keys = sorted(
+        df_for_period_type["period_key"].dropna().astype(str).unique().tolist(),
+        key=parse_tcd_period_sort_key,
+    )
+    if not period_keys:
+        return pd.DataFrame(), None, None
+
+    latest_period_key = period_keys[-1]
+    latest_rows = df_for_period_type[
+        df_for_period_type["period_key"] == latest_period_key
+    ].copy()
+
+    if latest_rows.empty:
+        return pd.DataFrame(), None, None
+
+    if (latest_rows["release_type"] == RELEASE_FINAL).any():
+        return (
+            latest_rows[latest_rows["release_type"] == RELEASE_FINAL].copy(),
+            latest_period_key,
+            RELEASE_FINAL,
+        )
+
+    if (latest_rows["release_type"] == RELEASE_SECOND_PRELIM).any():
+        return (
+            latest_rows[latest_rows["release_type"] == RELEASE_SECOND_PRELIM].copy(),
+            latest_period_key,
+            RELEASE_SECOND_PRELIM,
+        )
+
+    release_type = str(latest_rows["release_type"].iloc[0])
+    return latest_rows, latest_period_key, release_type
+
+
+def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
+    chart_df = (
+        df_period.groupby(["nights_bin", "segment"], as_index=False)["value"]
+        .sum()
+        .copy()
+    )
+    chart_df["segment_label"] = chart_df["segment"].map(TCD_SEGMENT_LABELS)
+
+    available_bins = [
+        b for b in TCD_NIGHTS_BIN_ORDER if b in chart_df["nights_bin"].astype(str).tolist()
+    ]
+
+    return (
+        alt.Chart(chart_df)
+        .mark_bar()
+        .encode(
+            x=alt.X(
+                "nights_bin:N",
+                title="\u6cca\u6570\u30d3\u30f3",
+                sort=available_bins,
+            ),
+            xOffset=alt.XOffset(
+                "segment_label:N", sort=list(TCD_SEGMENT_LABELS.values())
+            ),
+            y=alt.Y("value:Q", title="\u5ef6\u3079\u6cca\u6570"),
+            color=alt.Color(
+                "segment_label:N",
+                title="\u7cfb\u5217",
+                sort=list(TCD_SEGMENT_LABELS.values()),
+            ),
+            tooltip=[
+                alt.Tooltip("nights_bin:N", title="\u5bbf\u6cca\u6570"),
+                alt.Tooltip("segment_label:N", title="\u7cfb\u5217"),
+                alt.Tooltip("value:Q", title="\u5ef6\u3079\u6cca\u6570", format=",.0f"),
+            ],
+        )
+    )
+
+
+def render_tcd_view() -> None:
+    st.title(
+        "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb\uff1a"
+        "\u5bbf\u6cca\u6570(8\u533a\u5206)\u5225 \u5ef6\u3079\u6cca\u6570\uff08\u5168\u56fd\uff09"
+    )
+
+    meta = load_tcd_meta()
+    if meta:
+        st.caption(
+            f"\u6700\u7d42\u78ba\u8a8d\uff08UTC\uff09: {meta.get('last_checked_at')} / "
+            f"\u51e6\u7406\u6e08\u307f\u30d5\u30a1\u30a4\u30eb\u6570: {len(meta.get('processed_files', []))}"
+        )
+
+    df = load_tcd_data()
+    if df.empty:
+        st.error(
+            "TCD\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+            "\u5148\u306b `python -m scripts.update_tcd_data` \u3092\u5b9f\u884c\u3057\u3066"
+            " data/ \u3092\u751f\u6210\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+        )
+        return
+
+    work = df[df["segment"].isin(TCD_SEGMENT_LABELS.keys())].copy()
+    if work.empty:
+        st.error(
+            "\u8868\u793a\u306b\u5fc5\u8981\u306a\u7cfb\u5217"
+            "\uFF08domestic_total / domestic_business\uFF09\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002"
+        )
+        return
+
+    col1, col2, col3 = st.columns([2, 2, 4])
+    with col1:
+        period_type_label = st.radio(
+            "\u671f\u9593\u7a2e\u5225",
+            list(TCD_PERIOD_TYPE_KEYS.keys()),
+            horizontal=True,
+            key="tcd_period_type",
+        )
+    period_type = TCD_PERIOD_TYPE_KEYS[period_type_label]
+    work = work[work["period_type"] == period_type].copy()
+
+    if work.empty:
+        st.warning("\u9078\u629e\u3057\u305f\u671f\u9593\u7a2e\u5225\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    with col2:
+        release_filter_label = st.radio(
+            "\u30ea\u30ea\u30fc\u30b9\u7a2e\u5225",
+            list(TCD_RELEASE_FILTERS.keys()),
+            key="tcd_release_filter",
+        )
+    release_filter = TCD_RELEASE_FILTERS[release_filter_label]
+
+    selected_period_key: str | None = None
+    selected_release_type: str | None = None
+
+    if release_filter == "latest":
+        filtered, selected_period_key, selected_release_type = resolve_tcd_latest_period_rows(
+            work
+        )
+    else:
+        filtered_by_release = work[work["release_type"] == release_filter].copy()
+        if filtered_by_release.empty:
+            st.warning("\u9078\u629e\u3057\u305f\u30ea\u30ea\u30fc\u30b9\u7a2e\u5225\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+            return
+
+        period_options = sorted(
+            filtered_by_release["period_key"].dropna().astype(str).unique().tolist(),
+            key=parse_tcd_period_sort_key,
+            reverse=True,
+        )
+        period_label_map = get_tcd_period_label_map(filtered_by_release)
+
+        with col3:
+            selected_period_key = st.selectbox(
+                "\u8868\u793a\u671f\u9593",
+                period_options,
+                format_func=lambda k: f"{period_label_map.get(k, k)} ({k})",
+                key=f"tcd_period_key_{period_type}_{release_filter}",
+            )
+
+        filtered = filtered_by_release[
+            filtered_by_release["period_key"] == selected_period_key
+        ].copy()
+        selected_release_type = release_filter
+
+    if filtered.empty or selected_period_key is None or selected_release_type is None:
+        st.warning("\u8868\u793a\u5bfe\u8c61\u306e\u30c7\u30fc\u30bf\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002")
+        return
+
+    period_label_map = get_tcd_period_label_map(filtered)
+    period_label = period_label_map.get(selected_period_key, selected_period_key)
+    st.caption(f"\u8868\u793a\u4e2d: {period_label} / {selected_release_type}")
+
+    chart = build_tcd_chart(filtered).properties(height=500)
+    st.altair_chart(chart, use_container_width=True)
+
+    table_df = (
+        filtered.groupby(["nights_bin", "segment"], as_index=False)["value"]
+        .sum()
+        .copy()
+    )
+    table_df["segment_label"] = table_df["segment"].map(TCD_SEGMENT_LABELS)
+    table_pivot = (
+        table_df.pivot(index="nights_bin", columns="segment_label", values="value")
+        .reindex(TCD_NIGHTS_BIN_ORDER)
+        .reset_index()
+    )
+    table_pivot = table_pivot.rename(
+        columns={"nights_bin": "\u5bbf\u6cca\u6570"}
+    )
+
+    st.subheader("\u8868")
+    st.dataframe(table_pivot, use_container_width=True, hide_index=True)
+
+
+def main() -> None:
+    st.set_page_config(
+        page_title="\u5e02\u5834\u7d71\u8a08\u30d3\u30e5\u30fc\u30a2",
+        page_icon="assets/logo_header.svg",
+        layout="wide",
+    )
+
+    lp_url = "https://deltahelmlab.com/?utm_source=market_stats_viewer&utm_medium=app&utm_campaign=cross_link"
+    with st.sidebar:
+        st.markdown("### \u904b\u55b6\u5143")
+        st.link_button(
+            "DeltaHelm Lab\uff08\u516c\u5f0f\u30b5\u30a4\u30c8\uff09",
+            lp_url,
+            use_container_width=True,
+        )
+        st.caption(
+            "\u30b5\u30fc\u30d3\u30b9\u8a73\u7d30\u30fb\u304a\u554f\u3044\u5408\u308f\u305b\u306f\u3053\u3061\u3089"
+        )
+        dataset_type = st.radio(
+            "\u7d71\u8a08\u306e\u7a2e\u985e",
+            [
+                "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb",
+                "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb",
+            ],
+            key="dataset_selector",
+        )
+
+    if dataset_type == "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb":
+        render_stay_stats_view()
+        return
+
+    render_tcd_view()
 
 if __name__ == "__main__":
     main()
