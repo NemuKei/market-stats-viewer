@@ -44,3 +44,13 @@ ZIPには必ず `VERSION.txt` と `MANIFEST.txt` が入る。
 ## スレッド移行（最小ルール）
 - 次スレ開始時は必ず「アンカーZIP（packages/の最新）」＋「handover」を添付して開始する
 - 推測で進めない（不足があれば要求して止まる）
+
+## 自動更新スケジュール（明記）
+- Workflow: `.github/workflows/update_data.yml`
+- 実行時刻:
+  - 毎週月曜 03:00 UTC（日本時間: 月曜 12:00）
+  - cron: `0 3 * * 1`
+- 手動実行: `workflow_dispatch`（Actions画面の Run workflow）
+- 更新ジョブ実行順:
+  1. `python -m scripts.update_data`
+  2. `python -m scripts.update_tcd_data`

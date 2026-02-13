@@ -42,3 +42,15 @@ streamlit run app.py
   - `python -m scripts.update_tcd_data`
 - TCDメタ:
   - `data/meta_tcd.json`
+
+## 自動更新スケジュール
+- Workflow: `.github/workflows/update_data.yml`
+- Trigger:
+  - `schedule`: `0 3 * * 1`（毎週月曜 03:00 UTC / 日本時間 月曜 12:00）
+  - `workflow_dispatch`: 手動実行可
+- 実行順:
+  1. `python -m scripts.update_data`
+  2. `python -m scripts.update_tcd_data`
+- 注記:
+  - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
+  - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
