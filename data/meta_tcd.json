@@ -1,7 +1,565 @@
 {
   "source_page_url": "https://www.mlit.go.jp/kankocho/siryou/toukei/shouhidoukou.html",
-  "last_checked_at": null,
-  "processed_files": [],
-  "available_periods": [],
+  "last_checked_at": "2026-02-13T08:26:00.345106+00:00",
+  "processed_files": [
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001979240.xlsx",
+      "sha256": "79a33f669f7006d272cfae502621c4865d0d7e41d8d3ab64f5ad1801bb920976",
+      "title_a1": "旅行・観光消費動向調査　2025年7～9月期（２次速報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001966422.xlsx",
+      "sha256": "ab286de3d29e132f4320e3533f9bdcf5cfc08d530cfdb6621b51bb3bca9e35ec",
+      "title_a1": "旅行・観光消費動向調査　2025年4～6月期（２次速報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001902158.xlsx",
+      "sha256": "916ac8ccfa819b6ad6d84d329dbe037f351e6533bbe66bdabe4adaca2e74e8dc",
+      "title_a1": "旅行・観光消費動向調査　2025年1～3月期（２次速報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001886014.xlsx",
+      "sha256": "5098bf9deafe8a4f6b0b990ca4de6638a3c5ecb42869ed12df6823e53a2c916d",
+      "title_a1": "旅行・観光消費動向調査　2024年（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001864690.xlsx",
+      "sha256": "4fc13de55dbf1467891e3245e46cd9798e91803bc3836205e1406fde1c62e5b7",
+      "title_a1": "旅行・観光消費動向調査　2024年10～12月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001858884.xlsx",
+      "sha256": "ca35fa992bcd492ce91d881b7fd53fb327319c788d9a67e780873d6ba41fabe7",
+      "title_a1": "旅行・観光消費動向調査　2024年7～9月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001840601.xlsx",
+      "sha256": "a44a993c28bac17918e62c20c803ec76c69766dda86e2b67a550937dc7cd65b3",
+      "title_a1": "旅行・観光消費動向調査　2024年4～6月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001742892.xlsx",
+      "sha256": "daf85c3b0b41c0d925ec0bfd66219c6de194c3d8ea1174fa6825f544cefaa427",
+      "title_a1": "旅行・観光消費動向調査　2024年1～3月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001740849.xlsx",
+      "sha256": "c883943db262ced4fe50ec3b653b9a888afca652cef442c6fa2eda6f231d61db",
+      "title_a1": "旅行・観光消費動向調査　2023年（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001740850.xlsx",
+      "sha256": "6bef036888e24b8be83af93443620341621afdb84b8e45a18684930b4e160f01",
+      "title_a1": "旅行・観光消費動向調査　2023年10～12月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001720363.xlsx",
+      "sha256": "8e3e1abfefffc2621602fe27a263f2259bd32c6e2ca47d484521e29915d86abf",
+      "title_a1": "旅行・観光消費動向調査　2023年7～9月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001706337.xlsx",
+      "sha256": "0799b4ef33246a14579ab7369ebe9c742c4afe0cbc5f19dc1977da1581ff85d7",
+      "title_a1": "旅行・観光消費動向調査　2023年4～6月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001708054.xlsx",
+      "sha256": "921e0714a9c7c36074bc509b209005e999cdfcaf6e3915fed24a04856ad42b91",
+      "title_a1": "旅行・観光消費動向調査　2023年1～3月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001708053.xlsx",
+      "sha256": "e71bed084054489c898ec1c5dbd481b04f7cb5718fc2605b8f78a0ad36b36781",
+      "title_a1": "旅行・観光消費動向調査　2022年（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724883.xlsx",
+      "sha256": "747b73d05467207df5dbe6b3f6b8737f8d505e0c71b8d5fc72215f504805c6eb",
+      "title_a1": "旅行・観光消費動向調査　2022年10～12月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724882.xlsx",
+      "sha256": "085b09a0b8a738f88806436be41d0e3020239c812e085f3ab9a5aad69abdd945",
+      "title_a1": "旅行・観光消費動向調査　2022年7～9月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724881.xlsx",
+      "sha256": "69f893ef59d238e55f7e14ad0cf04e434f064da3a060287b3a92687d9a78641f",
+      "title_a1": "旅行・観光消費動向調査　2022年4～6月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724880.xlsx",
+      "sha256": "f75e4300c2b55b2b4de5f979a7d5f611fd1a5451431817449b926556af12ea59",
+      "title_a1": "旅行・観光消費動向調査　2022年1～3月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001708052.xlsx",
+      "sha256": "c9bc369519c396645eee1c8391734cf2b9555d71fe40b2740cf51f119c5c724b",
+      "title_a1": "旅行・観光消費動向調査　2021年（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724879.xlsx",
+      "sha256": "af2839bb4c5adc8b40f860d0e926195de694e2ce3fd6061c3306939f684492f2",
+      "title_a1": "旅行・観光消費動向調査　2021年10～12月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724878.xlsx",
+      "sha256": "e72d9ac39c199c55f9f01be5f254588ec73afc4c562ff2d5e770eda4da33c2e6",
+      "title_a1": "旅行・観光消費動向調査　2021年7～9月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724877.xlsx",
+      "sha256": "620335a820da3a55c3f9d6304141594f732d3bba68c297ea48e669972bdc9459",
+      "title_a1": "旅行・観光消費動向調査　2021年4～6月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724876.xlsx",
+      "sha256": "6ebdd25d867417b119bdb92000f23bd679ffed4b6c04df9e123ba0a5f9fcb258",
+      "title_a1": "旅行・観光消費動向調査　2021年1～3月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001708051.xlsx",
+      "sha256": "e57d0b4fdb4fc0a7d71e3ca63c1191c3e044b144418c1b4832856adff09a7b71",
+      "title_a1": "2020年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724875.xlsx",
+      "sha256": "c3d93d4a313a6e3b4d3fcf56f7d55d4833ae252eac78ca716ea06a4225ae6fb8",
+      "title_a1": "旅行・観光消費動向調査　2020年10～12月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001724874.xlsx",
+      "sha256": "cf69fb9ca536aa7f676e8c0ed002d30b096658dd6320729d12be272577710cf3",
+      "title_a1": "旅行・観光消費動向調査　2020年7～9月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001372285.xlsx",
+      "sha256": "20b591245d1091d25508503a23f3c38e64f7ffd427776fa0e6c3fb6b338f3b5f",
+      "title_a1": "旅行・観光消費動向調査　2020年4～6月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001363289.xlsx",
+      "sha256": "b7668bf90ac9b2d33a139159c9c3ef9d7636cd644b83a9a24e3696c4048735f5",
+      "title_a1": "旅行・観光消費動向調査　2020年1～3月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001342718.xlsx",
+      "sha256": "a466d6e55be4a27797cba337f2c4cc91f06e184085b54883c71996e308c2c119",
+      "title_a1": "2019年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/content/001342436.xlsx",
+      "sha256": "32e53f5f686c7f54c2cf014a3e958113e67695d2567c7f114f704e8819450745",
+      "title_a1": "旅行・観光消費動向調査　2019年10～12月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001329258.xlsx",
+      "sha256": "eeb1024bb39b2388f1ae18edbd0f06642a8d3254db0b8f2aadc86d9a9fb4706b",
+      "title_a1": "旅行・観光消費動向調査　2019年7～9月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001314713.xlsx",
+      "sha256": "f5232830efea38369bae9224461ad244f6603b00fb60b5ba004b33515b64cd9a",
+      "title_a1": "旅行・観光消費動向調査　2019年4～6月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001301362.xlsx",
+      "sha256": "e83e42ebb8b536686be0340dc880cb84d054d399d9e5f4d672b3c5a6132fddb6",
+      "title_a1": "旅行・観光消費動向調査　2019年1～3月期（確報）　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001342717.xlsx",
+      "sha256": "2fa13018f73e34b5108b65f80ca4ab6656ffadff7e62d7094b7f9d051f891ad0",
+      "title_a1": "2018年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001287450.xlsx",
+      "sha256": "1e468bd16fa207168e42a0dd616feb08f72f4d9e33fe1424be3043fc3219d7e8",
+      "title_a1": "第1表",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001271117.xlsx",
+      "sha256": "ba133abb0c97a5a9642f41fd9579b382bdc820d966cf2c5be3bcad33d1a65996",
+      "title_a1": "第1表",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001259245.xlsx",
+      "sha256": "85e1b4bc61c94c460e8ad3ca56a14d3602432337334b88eaf02833accf9e09d2",
+      "title_a1": "第1表",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001247705.xlsx",
+      "sha256": "a74a7d1a1a9a516b6a209c681de734ec6b17e3d7221399a7b6a42b5cb73ecdbc",
+      "title_a1": "第1表",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001233121.xlsx",
+      "sha256": "a44cecd24229ba1f920a976560bdc52a6d927175c77c3835cfe9f67196fc8c96",
+      "title_a1": "2017年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001233119.xlsx",
+      "sha256": "f07a4c56066996c3f91b7a2a7ea15868a8c11349431dfc074c02c7177821980e",
+      "title_a1": "2016年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001222175.xlsx",
+      "sha256": "4d9f002d5b59f7fe25b0e55c15eb2d8e55b439278f2d973f2eb32fbc6714a675",
+      "title_a1": "2015年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    },
+    {
+      "url": "https://www.mlit.go.jp/kankocho/content/001134857.xlsx",
+      "sha256": "be2ce3801c389efa7792e324d7776a0989c33f6560b984885108804e565bb862",
+      "title_a1": "2014年旅行・観光消費動向調査　年報　集計事項一覧",
+      "fetched_at": "2026-02-13T08:26:00.345106+00:00"
+    }
+  ],
+  "available_periods": [
+    {
+      "period_type": "quarter",
+      "period_key": "2025Q3",
+      "period_label": "2025年Q3",
+      "releases": [
+        "2次速報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2025Q2",
+      "period_label": "2025年Q2",
+      "releases": [
+        "2次速報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2025Q1",
+      "period_label": "2025年Q1",
+      "releases": [
+        "2次速報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2024Q4",
+      "period_label": "2024年Q4",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2024Q3",
+      "period_label": "2024年Q3",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2024Q2",
+      "period_label": "2024年Q2",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2024Q1",
+      "period_label": "2024年Q1",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2024",
+      "period_label": "2024年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2023Q4",
+      "period_label": "2023年Q4",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2023Q3",
+      "period_label": "2023年Q3",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2023Q2",
+      "period_label": "2023年Q2",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2023Q1",
+      "period_label": "2023年Q1",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2023",
+      "period_label": "2023年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2022Q4",
+      "period_label": "2022年Q4",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2022Q3",
+      "period_label": "2022年Q3",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2022Q2",
+      "period_label": "2022年Q2",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2022Q1",
+      "period_label": "2022年Q1",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2022",
+      "period_label": "2022年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2021Q4",
+      "period_label": "2021年Q4",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2021Q3",
+      "period_label": "2021年Q3",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2021Q2",
+      "period_label": "2021年Q2",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2021Q1",
+      "period_label": "2021年Q1",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2021",
+      "period_label": "2021年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2020Q4",
+      "period_label": "2020年Q4",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2020Q3",
+      "period_label": "2020年Q3",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2020Q2",
+      "period_label": "2020年Q2",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2020Q1",
+      "period_label": "2020年Q1",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2020",
+      "period_label": "2020年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2019Q4",
+      "period_label": "2019年Q4",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2019Q3",
+      "period_label": "2019年Q3",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2019Q2",
+      "period_label": "2019年Q2",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "quarter",
+      "period_key": "2019Q1",
+      "period_label": "2019年Q1",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2019",
+      "period_label": "2019年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2018",
+      "period_label": "2018年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2017",
+      "period_label": "2017年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2016",
+      "period_label": "2016年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2015",
+      "period_label": "2015年",
+      "releases": [
+        "確報"
+      ]
+    },
+    {
+      "period_type": "annual",
+      "period_key": "2014",
+      "period_label": "2014年",
+      "releases": [
+        "確報"
+      ]
+    }
+  ],
   "note": "最新（確報優先）は同一period_type内で最新period_keyを選び、同一期に確報と2次速報がある場合は確報を優先する。"
 }
