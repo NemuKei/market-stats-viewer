@@ -22,3 +22,7 @@
 - D-20260209-007 | Excel出力の2チャートで軸IDを分離し、軸表示が不安定にならないようにする | status: spec_done | spec_link: docs/spec_app.md
 - D-20260209-008 | Excel出力チャートの可読性向上として凡例配置・軸表示/目盛り・グリッド・レイアウト調整を行う | status: spec_done | spec_link: docs/spec_app.md
 - D-20260210-001 | グラフに「値の種類（月次 / 年計推移=表記月起点の直近12か月ローリング）」切替を追加し、時系列・年別同月比較・Excelグラフに同一反映する。年計推移では先頭11か月を非表示とする | status: spec_done | spec_link: docs/spec_app.md
+- D-20260211-001 | 統計種類セレクタを追加し、宿泊旅行統計調査と旅行・観光消費動向調査をUIで切替可能にする | status: spec_done | spec_link: docs/spec_app.md
+- D-20260211-002 | 旅行・観光消費動向調査は観光庁ページの集計表Excelを取得し、T06の宿泊数(8区分)別延べ泊数を全国で可視化する | status: spec_done | spec_link: docs/spec_tcd_data.md
+- D-20260211-003 | `meta_tcd.json` で処理済みURL/hashを保持し、差分なし時は更新処理をno-opにする | status: spec_done | spec_link: docs/spec_tcd_update_pipeline.md
+- D-20260211-004 | GitHub Actionsの更新ジョブは `python -m scripts.update_data` の後に `python -m scripts.update_tcd_data` を順次実行する | status: spec_done | spec_link: docs/spec_update_pipeline.md

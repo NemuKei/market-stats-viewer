@@ -22,12 +22,14 @@ python -m venv .venv
 pip install -r requirements.txt
 
 python -m scripts.update_data
+python -m scripts.update_tcd_data
 streamlit run app.py
 ```
 
 ## データ更新（自動）
 - `.github/workflows/update_data.yml` が週1で実行
-- 更新があれば `data/meta.json` と `data/market_stats.sqlite` を更新して commit/push
+- `python -m scripts.update_data` と `python -m scripts.update_tcd_data` を順に実行
+- 更新があれば `data/meta.json` / `data/meta_tcd.json` / `data/market_stats.sqlite` を更新して commit/push
 
 ## 共有（アンカーZIP）
 共有は `make_release_zip.py` で作ったZIPを「唯一の正」として扱う。

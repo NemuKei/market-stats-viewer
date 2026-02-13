@@ -33,3 +33,12 @@ pip install -r requirements.txt
 python -m scripts.update_data
 streamlit run app.py
 ```
+
+## 旅行・観光消費動向調査（TCD）拡張
+- サイドバーの `統計の種類` で以下を切替:
+  - `宿泊旅行統計調査`（既存）
+  - `旅行・観光消費動向調査`（新規）
+- TCDデータ更新コマンド:
+  - `python -m scripts.update_tcd_data`
+- TCDメタ:
+  - `data/meta_tcd.json`

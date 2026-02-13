@@ -26,6 +26,7 @@ jobs:
       - name: Update data
         run: |
           python -m scripts.update_data
+          python -m scripts.update_tcd_data
 
       - name: Commit changes (if any)
         run: |
