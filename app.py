@@ -926,6 +926,55 @@ def resolve_tcd_latest_period_rows(
     return latest_rows, latest_period_key, release_type
 
 
+def estimate_tcd_los_by_segment(
+    df_period: pd.DataFrame, upper_open_bin_nights: float = 8.5
+) -> pd.DataFrame:
+    """
+    Approximate LOS (average length of stay) from nights-bin total nights.
+    8泊以上 is treated as `upper_open_bin_nights`.
+    """
+    representative_nights = {
+        "1\u6cca": 1.0,
+        "2\u6cca": 2.0,
+        "3\u6cca": 3.0,
+        "4\u6cca": 4.0,
+        "5\u6cca": 5.0,
+        "6\u6cca": 6.0,
+        "7\u6cca": 7.0,
+        "8\u6cca\u4ee5\u4e0a": float(upper_open_bin_nights),
+    }
+
+    work = (
+        df_period.groupby(["segment", "nights_bin"], as_index=False)["value"]
+        .sum()
+        .copy()
+    )
+    work["rep_nights"] = work["nights_bin"].map(representative_nights)
+    work = work.dropna(subset=["rep_nights"]).copy()
+    if work.empty:
+        return pd.DataFrame()
+
+    work["estimated_stays"] = work["value"] / work["rep_nights"]
+    summary = (
+        work.groupby("segment", as_index=False)
+        .agg(total_nights=("value", "sum"), estimated_stays=("estimated_stays", "sum"))
+        .copy()
+    )
+    summary = summary[summary["estimated_stays"] > 0].copy()
+    if summary.empty:
+        return pd.DataFrame()
+
+    summary["estimated_los"] = summary["total_nights"] / summary["estimated_stays"]
+    summary["segment_label"] = summary["segment"].map(TCD_SEGMENT_LABELS)
+
+    segment_order = list(TCD_SEGMENT_LABELS.keys())
+    summary["segment_order"] = summary["segment"].map(
+        {segment: idx for idx, segment in enumerate(segment_order)}
+    )
+    summary = summary.sort_values("segment_order").drop(columns=["segment_order"])
+    return summary.reset_index(drop=True)
+
+
 def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
     chart_df = (
         df_period.groupby(["nights_bin", "segment"], as_index=False)["value"]
@@ -944,7 +993,7 @@ def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
         .encode(
             x=alt.X(
                 "nights_bin:N",
-                title="\u6cca\u6570\u30d3\u30f3",
+                title="\u5bbf\u6cca\u6570\u533a\u5206",
                 sort=available_bins,
             ),
             xOffset=alt.XOffset(
@@ -957,7 +1006,7 @@ def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
                 sort=list(TCD_SEGMENT_LABELS.values()),
             ),
             tooltip=[
-                alt.Tooltip("nights_bin:N", title="\u5bbf\u6cca\u6570"),
+                alt.Tooltip("nights_bin:N", title="\u5bbf\u6cca\u6570\u533a\u5206"),
                 alt.Tooltip("segment_label:N", title="\u7cfb\u5217"),
                 alt.Tooltip("value:Q", title="\u5ef6\u3079\u6cca\u6570", format=",.0f"),
             ],
@@ -1059,6 +1108,25 @@ def render_tcd_view() -> None:
     period_label = period_label_map.get(selected_period_key, selected_period_key)
     st.caption(f"\u8868\u793a\u4e2d: {period_label} / {selected_release_type}")
 
+    los_open_bin = st.number_input(
+        "LOS\u6982\u7b97: 8\u6cca\u4ee5\u4e0a\u306e\u4ee3\u8868\u5024\uff08\u6cca\uff09",
+        min_value=8.0,
+        max_value=15.0,
+        value=8.5,
+        step=0.5,
+        key="tcd_los_open_bin",
+    )
+    los_summary = estimate_tcd_los_by_segment(filtered, upper_open_bin_nights=los_open_bin)
+    if not los_summary.empty:
+        st.subheader("LOS\uff08\u5e73\u5747\u6cca\u6570\uff09\u6982\u7b97")
+        metric_cols = st.columns(len(los_summary))
+        for col, row in zip(metric_cols, los_summary.itertuples(index=False)):
+            col.metric(row.segment_label, f"{row.estimated_los:.2f} \u6cca")
+        st.caption(
+            "\u8a08\u7b97\u5f0f: LOS \u2248 \u03a3(\u5ef6\u3079\u6cca\u6570) / "
+            "\u03a3(\u5404\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
+        )
+
     chart = build_tcd_chart(filtered).properties(height=500)
     st.altair_chart(chart, use_container_width=True)
 
@@ -1074,7 +1142,7 @@ def render_tcd_view() -> None:
         .reset_index()
     )
     table_pivot = table_pivot.rename(
-        columns={"nights_bin": "\u5bbf\u6cca\u6570"}
+        columns={"nights_bin": "\u5bbf\u6cca\u6570\u533a\u5206"}
     )
 
     st.subheader("\u8868")
