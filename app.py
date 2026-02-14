@@ -43,51 +43,6 @@ CHART_VALUE_MODES = {
 }
 
 
-def _coerce_query_param_value(value: object) -> str:
-    if value is None:
-        return ""
-    if isinstance(value, (list, tuple)):
-        if not value:
-            return ""
-        return str(value[0]).strip()
-    return str(value).strip()
-
-
-def get_acquisition_context() -> dict[str, str]:
-    utm_source = ""
-    utm_medium = ""
-    utm_campaign = ""
-
-    try:
-        query_params = st.query_params
-        utm_source = _coerce_query_param_value(query_params.get("utm_source"))
-        utm_medium = _coerce_query_param_value(query_params.get("utm_medium"))
-        utm_campaign = _coerce_query_param_value(query_params.get("utm_campaign"))
-    except Exception:
-        try:
-            query_params = st.experimental_get_query_params()
-            utm_source = _coerce_query_param_value(query_params.get("utm_source"))
-            utm_medium = _coerce_query_param_value(query_params.get("utm_medium"))
-            utm_campaign = _coerce_query_param_value(query_params.get("utm_campaign"))
-        except Exception:
-            pass
-
-    source_normalized = utm_source.lower()
-    if source_normalized in {"deltahelmlab_lp", "deltahelmlab", "deltahelmlab.com"}:
-        channel = "LP経由"
-    elif utm_source:
-        channel = f"UTM経由 ({utm_source})"
-    else:
-        channel = "直接アクセス"
-
-    return {
-        "channel": channel,
-        "utm_source": utm_source,
-        "utm_medium": utm_medium,
-        "utm_campaign": utm_campaign,
-    }
-
-
 @st.cache_data(show_spinner=False)
 def load_data() -> pd.DataFrame:
     if not SQLITE_PATH.exists():
@@ -1254,7 +1209,6 @@ def main() -> None:
         layout="wide",
     )
 
-    acquisition = get_acquisition_context()
     lp_url = "https://deltahelmlab.com/?utm_source=market_stats_viewer&utm_medium=app&utm_campaign=cross_link"
     with st.sidebar:
         st.markdown("### \u904b\u55b6\u5143")
@@ -1266,14 +1220,6 @@ def main() -> None:
         st.caption(
             "\u30b5\u30fc\u30d3\u30b9\u8a73\u7d30\u30fb\u304a\u554f\u3044\u5408\u308f\u305b\u306f\u3053\u3061\u3089"
         )
-        st.markdown("### \u6d41\u5165\u60c5\u5831")
-        st.caption(f"\u5224\u5b9a: {acquisition['channel']}")
-        if acquisition["utm_source"]:
-            st.caption(f"utm_source={acquisition['utm_source']}")
-        if acquisition["utm_medium"]:
-            st.caption(f"utm_medium={acquisition['utm_medium']}")
-        if acquisition["utm_campaign"]:
-            st.caption(f"utm_campaign={acquisition['utm_campaign']}")
         dataset_type = st.radio(
             "\u7d71\u8a08\u306e\u7a2e\u985e",
             [
