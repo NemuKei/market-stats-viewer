@@ -54,3 +54,7 @@ streamlit run app.py
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
+
+## ワークスペース索引
+- ワークスペース横断の正本: c:/Users/n-kei/dev/SideBiz_HotelRM/00_Admin/workspace_index.md
+- 本READMEは当リポジトリ固有情報を主に記載し、横断マッピングは正本を参照してください。
