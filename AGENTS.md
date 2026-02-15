@@ -30,7 +30,7 @@
 ## Source Priority
 1. セキュリティ/法令/公開制約
 2. 仕様書（`spec_*.md` など）
-3. 現況/意思決定ログ（`status` / `DECISIONS`）
+3. 現況/意思決定ログ（`STATUS` / `DECISIONS`）
 4. `AGENTS.md`
 5. Archive
 
@@ -72,5 +72,6 @@
 
 ## Update Policy
 - 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
-- 既存仕様の変更時は `docs/DECISIONS.md` を更新し、`docs/spec_*.md` に反映する。
+- 既存仕様の変更時は `docs/context/DECISIONS.md` を更新し、`docs/spec_*.md` に反映する。
 - 変更は最小差分で行い、ロールバック可能性を維持する。
+
