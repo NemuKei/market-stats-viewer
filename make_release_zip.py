@@ -16,7 +16,6 @@ JST = timezone(timedelta(hours=9))
 #   Use "scripts/**" (or "scripts/*.py") instead.
 INCLUDE_GLOBS = [
     # Entry points / governance
-    "START_HERE.md",
     "AGENTS.md",
     # App / scripts
     "README.md",
