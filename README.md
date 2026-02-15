@@ -58,3 +58,8 @@ streamlit run app.py
 ## ワークスペース索引
 - ワークスペース横断の正本: c:/Users/n-kei/dev/SideBiz_HotelRM/00_Admin/workspace_index.md
 - 本READMEは当リポジトリ固有情報を主に記載し、横断マッピングは正本を参照してください。
+
+## 常設コンテキスト
+- `docs/context/STATUS.md`: 現在地（最新スナップショット）
+- `docs/context/DECISIONS.md`: 意思決定ログ
+
