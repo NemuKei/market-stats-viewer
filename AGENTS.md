@@ -19,9 +19,9 @@
 ## Task Read (Only When Needed)
 - 仕様変更/挙動確認: 対象領域の `spec_*.md` または仕様ドキュメント
 - 現在地の確認: `STATUS.md` 相当
-- 判断理由の確認: `DECISIONS.md` / `decision_log.md` 相当
-- 運用計画/タスク確認: `tasks_backlog.md` / `ops_plan.md` 相当
-- 実装規約の確認: `dev_style.md` / `README` 相当
+- 判断理由の確認: `DECISIONS.md` 相当
+- 運用計画/タスク確認: `tasks_backlog.md` 相当
+- 実装規約の確認: `README.md` 相当
 
 ## Archive
 - `archive/**`, `thread_logs/**`, `handovers/**` は参照専用
@@ -30,12 +30,12 @@
 ## Source Priority
 1. セキュリティ/法令/公開制約
 2. 仕様書（`spec_*.md` など）
-3. 現況/意思決定ログ（`status` / `decision_log` / `DECISIONS`）
+3. 現況/意思決定ログ（`status` / `DECISIONS`）
 4. `AGENTS.md`
 5. Archive
 
 同順位で矛盾した場合は、より新しい決定を優先する。
-未解決なら `decision_log` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
+未解決なら `DECISIONS` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
 
 ## Constant Context Rules
 常設コンテキストへ追加する条件は次の4つをすべて満たす場合のみ。
@@ -52,6 +52,16 @@
 - 同一ルールの重複記載を禁止する。重複候補は短いリダイレクト文へ置換する。
 - 壁打ち会話は非正本。正本反映は必ずファイル更新で確定する。
 
+## Directory Guideline
+- ディレクトリは「読む順序」ではなく「責務」で分ける（順序で階層を増やさない）。
+- 入口は常にルート `AGENTS.md` とし、`START_HERE.md` / `THREAD_START.md` は常設しない。
+- 推奨最小構成:
+  - `AGENTS.md`（運用ルール）
+  - `README.md`（実行/利用手順）
+  - `docs/spec_*.md`（仕様）
+  - `docs/context/STATUS.md` / `docs/context/DECISIONS.md` / `docs/tasks_backlog.md` 相当（現在地/判断/タスク）
+  - `docs/archive/**`（過去資産）
+
 ## Local Extension (Optional)
 この節はリポジトリ固有ルールを置く任意領域。未記載でも運用可能。
 
@@ -62,5 +72,5 @@
 
 ## Update Policy
 - 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
-- 既存仕様の変更時は `docs/decision_log.md` を更新し、`docs/spec_*.md` に反映する。
+- 既存仕様の変更時は `docs/DECISIONS.md` を更新し、`docs/spec_*.md` に反映する。
 - 変更は最小差分で行い、ロールバック可能性を維持する。
