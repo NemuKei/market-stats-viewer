@@ -23,6 +23,11 @@
 - 運用計画/タスク確認: `tasks_backlog.md` 相当
 - 実装規約の確認: `README.md` 相当
 
+## Skills (Only When Needed)
+- `context_writeback`: 常設コンテキストへの反映が必要なときだけ使う。条件判定と反映手順は `.agents/skills/context_writeback/SKILL.md` を参照。
+- `docs_governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。手順は `.agents/skills/docs_governance/SKILL.md` を参照。
+- `repo_bootstrap`: 新規リポジトリの最小構成を責務ベースで整備するときだけ使う。手順は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
+
 ## Archive
 - `archive/**`, `thread_logs/**`, `handovers/**` は参照専用
 - 新規ルールは archive に追加しない
@@ -38,19 +43,12 @@
 未解決なら `DECISIONS` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
 
 ## Constant Context Rules
-常設コンテキストへ追加する条件は次の4つをすべて満たす場合のみ。
-1. 今後2回以上の再利用が見込める
-2. 将来の意思決定に影響する
-3. 1〜3行で要点化できる
-4. 保存先を1ファイルに特定できる
+常設コンテキストの反映条件と更新手順は `.agents/skills/context_writeback/SKILL.md` を参照。
+この節では「推測禁止」「条件を満たすときのみ反映」の方針を維持する。
 
 ## Docs Governance
-- 新規ドキュメント作成は次の3条件を満たす場合のみ:
-  - 既存ドキュメントに責務分離できない
-  - 今後2回以上参照する見込みがある
-  - 所有者と更新トリガーを定義できる
-- 同一ルールの重複記載を禁止する。重複候補は短いリダイレクト文へ置換する。
-- 壁打ち会話は非正本。正本反映は必ずファイル更新で確定する。
+ドキュメント新設可否、重複排除、正本反映の確定手順は `.agents/skills/docs_governance/SKILL.md` を参照。
+この節では「重複記載禁止」「会話は非正本」の方針を維持する。
 
 ## Engineering Defaults
 - デフォルトは単純さを優先する（YAGNI / KISS / DRY）。
@@ -58,14 +56,8 @@
 - 互換ロジックを追加する場合は、目的・適用範囲・廃止条件を必ず記載する。
 
 ## Directory Guideline
-- ディレクトリは「読む順序」ではなく「責務」で分ける（順序で階層を増やさない）。
-- 入口は常にルート `AGENTS.md` とし、`START_HERE.md` / `THREAD_START.md` は常設しない。
-- 推奨最小構成:
-  - `AGENTS.md`（運用ルール）
-  - `README.md`（実行/利用手順）
-  - `docs/spec_*.md`（仕様）
-  - `docs/context/STATUS.md` / `docs/context/DECISIONS.md` / `docs/tasks_backlog.md` 相当（現在地/判断/タスク）
-  - `docs/archive/**`（過去資産）
+責務ベースのディレクトリ設計と最小構成の作成手順は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
+この節では「入口はルート `AGENTS.md`」「`START_HERE.md` / `THREAD_START.md` を常設しない」方針を維持する。
 
 ## Local Extension (Optional)
 この節はリポジトリ固有ルールを置く任意領域。未記載でも運用可能。
