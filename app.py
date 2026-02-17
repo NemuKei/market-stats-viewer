@@ -1202,6 +1202,670 @@ def render_tcd_view() -> None:
     )
 
 
+ICD_META_PATH = DATA_DIR / "meta_icd.json"
+ICD_SPEND_TABLE_NAME = "icd_spend_items"
+ICD_ENTRY_TABLE_NAME = "icd_entry_port_summary"
+
+TA_META_PATH = DATA_DIR / "meta_ta.json"
+TA_TABLE_NAME = "ta_company_amounts"
+
+DATASET_LABEL_STAY = "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb"
+DATASET_LABEL_TCD = "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
+DATASET_LABEL_ICD = "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
+DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
+
+ICD_PURPOSE_LABELS = {
+    "all": "\u5168\u76ee\u7684",
+    "leisure": "\u89b3\u5149\u30fb\u30ec\u30b8\u30e3\u30fc",
+}
+ICD_PURPOSE_KEYS = {v: k for k, v in ICD_PURPOSE_LABELS.items()}
+
+TA_SEGMENT_LABELS = {
+    "overseas": "\u6d77\u5916\u65c5\u884c",
+    "foreign": "\u5916\u56fd\u4eba\u65c5\u884c",
+    "domestic": "\u56fd\u5185\u65c5\u884c",
+    "total": "\u5408\u8a08",
+}
+TA_SEGMENT_KEYS = {v: k for k, v in TA_SEGMENT_LABELS.items()}
+
+
+def parse_period_sort_key(period_key: str) -> tuple[int, int, int]:
+    m_quarter = re.fullmatch(r"(\d{4})Q([1-4])", str(period_key))
+    if m_quarter:
+        return int(m_quarter.group(1)), int(m_quarter.group(2)), 0
+
+    m_month = re.fullmatch(r"(\d{4})-(\d{2})", str(period_key))
+    if m_month:
+        return int(m_month.group(1)), 9, int(m_month.group(2))
+
+    m_annual = re.fullmatch(r"(\d{4})", str(period_key))
+    if m_annual:
+        return int(m_annual.group(1)), 0, 0
+
+    if str(period_key) == "total":
+        return 9999, 99, 99
+
+    return 0, 0, 0
+
+
+def format_metric_value(value: float | None, digits: int = 0, suffix: str = "") -> str:
+    if value is None or pd.isna(value):
+        return "\u2014"
+    return f"{float(value):,.{digits}f}{suffix}"
+
+
+def first_numeric_value(df: pd.DataFrame, column: str) -> float | None:
+    if df.empty or column not in df.columns:
+        return None
+    series = pd.to_numeric(df[column], errors="coerce").dropna()
+    if series.empty:
+        return None
+    return float(series.iloc[0])
+
+
+def load_icd_meta() -> dict:
+    if not ICD_META_PATH.exists():
+        return {}
+    return json.loads(ICD_META_PATH.read_text(encoding="utf-8"))
+
+
+@st.cache_data(show_spinner=False)
+def load_icd_spend_data() -> pd.DataFrame:
+    if not SQLITE_PATH.exists():
+        return pd.DataFrame()
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query(f"SELECT * FROM {ICD_SPEND_TABLE_NAME}", conn)
+    except Exception:
+        return pd.DataFrame()
+
+    if df.empty:
+        return df
+
+    str_cols = [
+        "period_label",
+        "period_key",
+        "release_type",
+        "purpose",
+        "nationality",
+        "item_group",
+        "item",
+    ]
+    for col in str_cols:
+        if col in df.columns:
+            df[col] = df[col].astype(str)
+
+    for col in ["spend_yen", "share_pct"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    return df
+
+
+@st.cache_data(show_spinner=False)
+def load_icd_entry_data() -> pd.DataFrame:
+    if not SQLITE_PATH.exists():
+        return pd.DataFrame()
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query(f"SELECT * FROM {ICD_ENTRY_TABLE_NAME}", conn)
+    except Exception:
+        return pd.DataFrame()
+
+    if df.empty:
+        return df
+
+    str_cols = [
+        "period_label",
+        "period_key",
+        "release_type",
+        "purpose",
+        "entry_port",
+        "nationality",
+    ]
+    for col in str_cols:
+        if col in df.columns:
+            df[col] = df[col].astype(str)
+
+    for col in ["respondents", "spend_yen", "avg_nights", "spend_per_night_yen"]:
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    return df
+
+
+def map_icd_item_bucket(item_name: str) -> str:
+    item = str(item_name or "")
+    if "\u5bbf\u6cca" in item:
+        return "\u5bbf\u6cca"
+    if "\u98f2\u98df" in item:
+        return "\u98f2\u98df"
+    if any(
+        keyword in item
+        for keyword in [
+            "\u4ea4\u901a",
+            "\u9244\u9053",
+            "\u30d0\u30b9",
+            "\u30bf\u30af\u30b7\u30fc",
+            "\u30ec\u30f3\u30bf\u30ab\u30fc",
+            "\u822a\u7a7a",
+            "\u8239\u8236",
+            "Rail Pass",
+        ]
+    ):
+        return "\u4ea4\u901a"
+    if any(
+        keyword in item
+        for keyword in [
+            "\u8cb7\u7269",
+            "\u83d3\u5b50",
+            "\u9152",
+            "\u98df\u6599",
+            "\u5316\u7ca7",
+            "\u533b\u85ac",
+            "\u5065\u5eb7",
+            "\u8863\u985e",
+            "\u9774",
+            "\u304b\u3070\u3093",
+            "\u9769\u88fd\u54c1",
+            "\u96fb\u6c17\u88fd\u54c1",
+            "\u6642\u8a08",
+            "\u5b9d\u77f3",
+            "\u6c11\u82b8\u54c1",
+        ]
+    ):
+        return "\u8cb7\u7269"
+    if any(
+        keyword in item
+        for keyword in [
+            "\u5a2f\u697d",
+            "\u30c4\u30a2\u30fc",
+            "\u30c6\u30fc\u30de\u30d1\u30fc\u30af",
+            "\u821e\u53f0",
+            "\u97f3\u697d",
+            "\u30b9\u30dd\u30fc\u30c4",
+            "\u7f8e\u8853\u9928",
+            "\u535a\u7269\u9928",
+            "\u6e29\u6cc9",
+            "\u30de\u30c3\u30b5\u30fc\u30b8",
+            "\u30b3\u30f3\u30d9\u30f3\u30b7\u30e7\u30f3",
+        ]
+    ):
+        return "\u5a2f\u697d"
+    return "\u305d\u306e\u4ed6"
+
+
+def render_icd_view() -> None:
+    st.title(
+        "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb\uff1a"
+        "\u56fd\u7c4d\u5225\u8cbb\u76ee\u69cb\u6210\u3068\u5165\u56fd\u7a7a\u6e2f\u5225\u6982\u6cc1"
+    )
+
+    meta = load_icd_meta()
+    if meta:
+        st.caption(
+            f"\u6700\u7d42\u78ba\u8a8d\uff08UTC\uff09: {meta.get('fetched_at_utc')} / "
+            f"\u5bfe\u8c61: {meta.get('period_label', '-')}"
+            f" {meta.get('release_type', '')}"
+        )
+
+    spend_df = load_icd_spend_data()
+    entry_df = load_icd_entry_data()
+    if spend_df.empty and entry_df.empty:
+        st.error(
+            "ICD\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+            "\u5148\u306b `python -m scripts.update_icd_data` \u3092\u5b9f\u884c\u3057\u3066"
+            " data/ \u3092\u751f\u6210\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+        )
+        return
+
+    period_records: list[pd.DataFrame] = []
+    for df in [spend_df, entry_df]:
+        if not df.empty and {"period_key", "period_label"}.issubset(df.columns):
+            period_records.append(df[["period_key", "period_label"]].drop_duplicates())
+
+    if not period_records:
+        st.warning("\u671f\u9593\u9078\u629e\u7528\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    periods = pd.concat(period_records, ignore_index=True).drop_duplicates()
+    period_label_map = {
+        str(row["period_key"]): str(row["period_label"])
+        for _, row in periods.iterrows()
+    }
+    period_options = sorted(
+        periods["period_key"].astype(str).unique().tolist(),
+        key=parse_period_sort_key,
+        reverse=True,
+    )
+    if not period_options:
+        st.warning("\u8868\u793a\u53ef\u80fd\u306a\u671f\u9593\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    col1, col2, col3 = st.columns([3, 2, 3])
+    with col1:
+        selected_period_key = st.selectbox(
+            "\u671f\u9593",
+            options=period_options,
+            index=0,
+            format_func=lambda k: f"{period_label_map.get(k, k)} ({k})",
+            key="icd_period_key",
+        )
+
+    available_purposes = sorted(
+        {
+            *spend_df.get("purpose", pd.Series(dtype=str)).astype(str).unique().tolist(),
+            *entry_df.get("purpose", pd.Series(dtype=str)).astype(str).unique().tolist(),
+        }
+    )
+    available_purpose_keys = [p for p in ICD_PURPOSE_LABELS if p in available_purposes]
+    if not available_purpose_keys:
+        available_purpose_keys = ["all"]
+
+    with col2:
+        purpose_label = st.radio(
+            "\u76ee\u7684",
+            [ICD_PURPOSE_LABELS[p] for p in available_purpose_keys],
+            horizontal=True,
+            key="icd_purpose",
+        )
+    selected_purpose = ICD_PURPOSE_KEYS[purpose_label]
+
+    spend_filtered = spend_df[
+        (spend_df["period_key"] == selected_period_key)
+        & (spend_df["purpose"] == selected_purpose)
+    ].copy()
+    entry_filtered = entry_df[
+        (entry_df["period_key"] == selected_period_key)
+        & (entry_df["purpose"] == selected_purpose)
+    ].copy()
+
+    nationality_options = sorted(
+        {
+            *spend_filtered.get("nationality", pd.Series(dtype=str)).astype(str).unique().tolist(),
+            *entry_filtered.get("nationality", pd.Series(dtype=str)).astype(str).unique().tolist(),
+        }
+    )
+    if "\u5168\u56fd\u7c4d\uff65\u5730\u57df" in nationality_options:
+        nationality_options = [
+            "\u5168\u56fd\u7c4d\uff65\u5730\u57df",
+            *[n for n in nationality_options if n != "\u5168\u56fd\u7c4d\uff65\u5730\u57df"],
+        ]
+    if not nationality_options:
+        st.warning("\u9078\u629e\u6761\u4ef6\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    with col3:
+        selected_nationality = st.selectbox(
+            "\u56fd\u7c4d\u30fb\u5730\u57df",
+            options=nationality_options,
+            key="icd_nationality",
+        )
+
+    total_row = entry_filtered[
+        (entry_filtered["entry_port"] == "\u5168\u4f53")
+        & (entry_filtered["nationality"] == selected_nationality)
+    ].copy()
+    total_spend = first_numeric_value(total_row, "spend_yen")
+    avg_nights = first_numeric_value(total_row, "avg_nights")
+
+    lodging_row = spend_filtered[
+        (spend_filtered["nationality"] == selected_nationality)
+        & (spend_filtered["item"] == "\u5bbf\u6cca\u8cbb")
+    ].copy()
+    lodging_spend = first_numeric_value(lodging_row, "spend_yen")
+    lodging_per_night = (
+        lodging_spend / avg_nights
+        if lodging_spend is not None and avg_nights is not None and avg_nights > 0
+        else None
+    )
+
+    kpi_cols = st.columns(4)
+    kpi_cols[0].metric("\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09", format_metric_value(total_spend))
+    kpi_cols[1].metric("\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09", format_metric_value(avg_nights, 2))
+    kpi_cols[2].metric("\u5bbf\u6cca\u8cbb\uff08\u5186/\u4eba\uff09", format_metric_value(lodging_spend))
+    kpi_cols[3].metric(
+        "\u5bbf\u6cca\u8cbb/\u6cca\uff08\u5186\uff09", format_metric_value(lodging_per_night)
+    )
+
+    st.subheader("\u56fd\u7c4d\u5225 TopN")
+    top_n = st.slider("TopN", min_value=5, max_value=20, value=10, key="icd_top_n")
+    nationality_totals = entry_filtered[entry_filtered["entry_port"] == "\u5168\u4f53"].copy()
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        top_spend = (
+            nationality_totals.dropna(subset=["spend_yen"])
+            .sort_values("spend_yen", ascending=False)
+            .head(top_n)
+        )
+        if top_spend.empty:
+            st.info("\u7dcf\u652f\u51faTopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        else:
+            chart_spend = (
+                alt.Chart(top_spend)
+                .mark_bar()
+                .encode(
+                    x=alt.X("spend_yen:Q", title="\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09"),
+                    y=alt.Y("nationality:N", sort="-x", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                    tooltip=[
+                        alt.Tooltip("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                        alt.Tooltip("spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"),
+                    ],
+                )
+                .properties(height=380)
+            )
+            st.altair_chart(chart_spend, use_container_width=True)
+
+    with col_b:
+        top_nights = (
+            nationality_totals.dropna(subset=["avg_nights"])
+            .sort_values("avg_nights", ascending=False)
+            .head(top_n)
+        )
+        if top_nights.empty:
+            st.info("\u5e73\u5747\u6cca\u6570TopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        else:
+            chart_nights = (
+                alt.Chart(top_nights)
+                .mark_bar(color="#4C78A8")
+                .encode(
+                    x=alt.X("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09"),
+                    y=alt.Y("nationality:N", sort="-x", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                    tooltip=[
+                        alt.Tooltip("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                        alt.Tooltip("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570", format=".2f"),
+                    ],
+                )
+                .properties(height=380)
+            )
+            st.altair_chart(chart_nights, use_container_width=True)
+
+    st.subheader("\u56fd\u7c4d\u5225 \u8cbb\u76ee\u69cb\u6210")
+    if spend_filtered.empty:
+        st.info("\u8cbb\u76ee\u69cb\u6210\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+    else:
+        top_nat_list = top_spend["nationality"].astype(str).tolist() if not top_spend.empty else []
+        comp_source = spend_filtered.copy()
+        if top_nat_list:
+            comp_source = comp_source[comp_source["nationality"].isin(top_nat_list)].copy()
+        comp_source["bucket"] = comp_source["item"].map(map_icd_item_bucket)
+        comp_summary = (
+            comp_source.groupby(["nationality", "bucket"], as_index=False)["spend_yen"]
+            .sum(min_count=1)
+            .dropna(subset=["spend_yen"])
+        )
+        if comp_summary.empty:
+            st.info("\u8cbb\u76ee\u69cb\u6210\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        else:
+            bucket_order = [
+                "\u5bbf\u6cca",
+                "\u98f2\u98df",
+                "\u4ea4\u901a",
+                "\u8cb7\u7269",
+                "\u5a2f\u697d",
+                "\u305d\u306e\u4ed6",
+            ]
+            chart_comp = (
+                alt.Chart(comp_summary)
+                .mark_bar()
+                .encode(
+                    x=alt.X("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                    y=alt.Y("spend_yen:Q", title="\u8cbb\u76ee\u5225\u652f\u51fa\uff08\u5186/\u4eba\uff09"),
+                    color=alt.Color("bucket:N", title="\u8cbb\u76ee", sort=bucket_order),
+                    tooltip=[
+                        alt.Tooltip("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                        alt.Tooltip("bucket:N", title="\u8cbb\u76ee"),
+                        alt.Tooltip("spend_yen:Q", title="\u652f\u51fa", format=",.0f"),
+                    ],
+                )
+                .properties(height=420)
+            )
+            st.altair_chart(chart_comp, use_container_width=True)
+
+    st.subheader("\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225")
+    entry_nat = entry_filtered[
+        (entry_filtered["nationality"] == selected_nationality)
+        & (entry_filtered["entry_port"] != "\u5168\u4f53")
+    ].copy()
+    if entry_nat.empty:
+        st.info("\u5165\u56fd\u7a7a\u6e2f\u5225\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+    else:
+        col_c, col_d = st.columns(2)
+        with col_c:
+            top_ports = (
+                entry_nat.dropna(subset=["respondents"])
+                .sort_values("respondents", ascending=False)
+                .head(top_n)
+            )
+            if top_ports.empty:
+                st.info("\u56de\u7b54\u8005\u6570TopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+            else:
+                chart_ports = (
+                    alt.Chart(top_ports)
+                    .mark_bar(color="#72B7B2")
+                    .encode(
+                        x=alt.X("respondents:Q", title="\u56de\u7b54\u8005\u6570"),
+                        y=alt.Y("entry_port:N", sort="-x", title="\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f"),
+                        tooltip=[
+                            alt.Tooltip("entry_port:N", title="\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f"),
+                            alt.Tooltip("respondents:Q", title="\u56de\u7b54\u8005\u6570", format=",.0f"),
+                        ],
+                    )
+                    .properties(height=420)
+                )
+                st.altair_chart(chart_ports, use_container_width=True)
+
+        with col_d:
+            scatter_base = entry_nat.dropna(subset=["spend_yen", "avg_nights"]).copy()
+            if scatter_base.empty:
+                st.info("\u7dcf\u652f\u51fa/\u5e73\u5747\u6cca\u6570\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+            else:
+                chart_scatter = (
+                    alt.Chart(scatter_base)
+                    .mark_circle(opacity=0.8)
+                    .encode(
+                        x=alt.X("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09"),
+                        y=alt.Y("spend_yen:Q", title="\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09"),
+                        size=alt.Size("respondents:Q", title="\u56de\u7b54\u8005\u6570"),
+                        color=alt.value("#F58518"),
+                        tooltip=[
+                            alt.Tooltip("entry_port:N", title="\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f"),
+                            alt.Tooltip("respondents:Q", title="\u56de\u7b54\u8005\u6570", format=",.0f"),
+                            alt.Tooltip("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570", format=".2f"),
+                            alt.Tooltip("spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"),
+                        ],
+                    )
+                    .properties(height=420)
+                )
+                st.altair_chart(chart_scatter, use_container_width=True)
+
+    st.caption(
+        "\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u306e\u9805\u76ee\u306f\u201c\u2014\u201d\u3067\u8868\u793a\u3057\u307e\u3059\u3002"
+        " \u6700\u65b0\u53d6\u5f97\u306f `python -m scripts.update_icd_data` \u3092\u5b9f\u884c\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+    )
+
+
+def load_ta_meta() -> dict:
+    if not TA_META_PATH.exists():
+        return {}
+    return json.loads(TA_META_PATH.read_text(encoding="utf-8"))
+
+
+@st.cache_data(show_spinner=False)
+def load_ta_data() -> pd.DataFrame:
+    if not SQLITE_PATH.exists():
+        return pd.DataFrame()
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query(f"SELECT * FROM {TA_TABLE_NAME}", conn)
+    except Exception:
+        return pd.DataFrame()
+
+    if df.empty:
+        return df
+
+    for col in ["fiscal_year", "period", "company", "segment"]:
+        if col in df.columns:
+            df[col] = df[col].astype(str)
+    if "amount" in df.columns:
+        df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
+
+    return df
+
+
+def render_ta_view() -> None:
+    st.title("\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d\uff1a\u5404\u793e\u5225\u5185\u8a33")
+
+    meta = load_ta_meta()
+    if meta:
+        st.caption(
+            f"\u6700\u7d42\u78ba\u8a8d\uff08UTC\uff09: {meta.get('last_checked_at')} / "
+            f"\u51e6\u7406\u6e08\u307f\u30d5\u30a1\u30a4\u30eb\u6570: {len(meta.get('processed_files', []))}"
+        )
+
+    df = load_ta_data()
+    if df.empty:
+        st.error(
+            "TA\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+            "\u5148\u306b `python -m scripts.update_ta_data` \u3092\u5b9f\u884c\u3057\u3066"
+            " data/ \u3092\u751f\u6210\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+        )
+        return
+
+    fiscal_year_options = sorted(
+        df["fiscal_year"].dropna().astype(str).unique().tolist(),
+        reverse=True,
+    )
+    if not fiscal_year_options:
+        st.warning("\u5e74\u5ea6\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    col1, col2, col3 = st.columns([2, 2, 2])
+    with col1:
+        fiscal_year = st.selectbox(
+            "\u5e74\u5ea6",
+            options=fiscal_year_options,
+            index=0,
+            key="ta_fiscal_year",
+        )
+
+    fy_data = df[df["fiscal_year"] == fiscal_year].copy()
+    period_options_raw = fy_data["period"].dropna().astype(str).unique().tolist()
+    period_options = sorted(period_options_raw, key=parse_period_sort_key, reverse=True)
+    if "total" in period_options:
+        period_options = ["total", *[p for p in period_options if p != "total"]]
+
+    with col2:
+        period = st.selectbox(
+            "\u671f\u9593",
+            options=period_options,
+            format_func=lambda p: "\u5e74\u5ea6\u7dcf\u8a08" if p == "total" else p,
+            key="ta_period",
+        )
+
+    with col3:
+        segment_label = st.selectbox(
+            "\u30bb\u30b0\u30e1\u30f3\u30c8",
+            options=["\u5168\u30bb\u30b0\u30e1\u30f3\u30c8", *TA_SEGMENT_LABELS.values()],
+            key="ta_segment",
+        )
+
+    period_data = fy_data[fy_data["period"] == period].copy()
+    if segment_label != "\u5168\u30bb\u30b0\u30e1\u30f3\u30c8":
+        segment_key = TA_SEGMENT_KEYS[segment_label]
+        period_data = period_data[period_data["segment"] == segment_key].copy()
+
+    total_amount = float(period_data["amount"].sum()) if not period_data.empty else 0.0
+    st.metric(
+        "\u7dcf\u8a08\uff08\u5343\u5186\uff09",
+        format_metric_value(total_amount),
+    )
+
+    st.subheader("\u4f1a\u793e\u5225\u30e9\u30f3\u30ad\u30f3\u30b0")
+    top_n = st.slider("TopN", min_value=5, max_value=30, value=15, key="ta_top_n")
+    ranking = (
+        period_data.groupby("company", as_index=False)["amount"]
+        .sum()
+        .sort_values("amount", ascending=False)
+        .head(top_n)
+    )
+    if ranking.empty:
+        st.info("\u30e9\u30f3\u30ad\u30f3\u30b0\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+    else:
+        ranking_chart = (
+            alt.Chart(ranking)
+            .mark_bar()
+            .encode(
+                x=alt.X("amount:Q", title="\u53d6\u6271\u984d\uff08\u5343\u5186\uff09"),
+                y=alt.Y("company:N", sort="-x", title="\u4f1a\u793e"),
+                tooltip=[
+                    alt.Tooltip("company:N", title="\u4f1a\u793e"),
+                    alt.Tooltip("amount:Q", title="\u53d6\u6271\u984d", format=",.0f"),
+                ],
+            )
+            .properties(height=520)
+        )
+        st.altair_chart(ranking_chart, use_container_width=True)
+
+    st.subheader("\u30bb\u30b0\u30e1\u30f3\u30c8\u5225\u63a8\u79fb\uff08\u6708\u6b21\uff09")
+    monthly = fy_data[fy_data["period"].str.match(r"\d{4}-\d{2}$", na=False)].copy()
+    if monthly.empty:
+        st.info("\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+    else:
+        monthly_summary = (
+            monthly.groupby(["period", "segment"], as_index=False)["amount"].sum().copy()
+        )
+        monthly_summary["segment_label"] = monthly_summary["segment"].map(TA_SEGMENT_LABELS)
+        if segment_label != "\u5168\u30bb\u30b0\u30e1\u30f3\u30c8":
+            monthly_summary = monthly_summary[
+                monthly_summary["segment_label"] == segment_label
+            ].copy()
+
+        if monthly_summary.empty:
+            st.info("\u9078\u629e\u30bb\u30b0\u30e1\u30f3\u30c8\u306e\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        else:
+            month_order = sorted(
+                monthly_summary["period"].unique().tolist(),
+                key=parse_period_sort_key,
+            )
+            trend_chart = (
+                alt.Chart(monthly_summary)
+                .mark_line(point=True)
+                .encode(
+                    x=alt.X("period:N", sort=month_order, title="\u6708"),
+                    y=alt.Y("amount:Q", title="\u53d6\u6271\u984d\uff08\u5343\u5186\uff09"),
+                    color=alt.Color("segment_label:N", title="\u30bb\u30b0\u30e1\u30f3\u30c8"),
+                    tooltip=[
+                        alt.Tooltip("period:N", title="\u6708"),
+                        alt.Tooltip("segment_label:N", title="\u30bb\u30b0\u30e1\u30f3\u30c8"),
+                        alt.Tooltip("amount:Q", title="\u53d6\u6271\u984d", format=",.0f"),
+                    ],
+                )
+                .properties(height=360)
+            )
+            st.altair_chart(trend_chart, use_container_width=True)
+
+    st.subheader("\u8868")
+    table = period_data.copy()
+    if not table.empty:
+        table["segment"] = table["segment"].map(TA_SEGMENT_LABELS)
+    table = table.rename(
+        columns={
+            "fiscal_year": "\u5e74\u5ea6",
+            "period": "\u671f\u9593",
+            "company": "\u4f1a\u793e",
+            "segment": "\u30bb\u30b0\u30e1\u30f3\u30c8",
+            "amount": "\u53d6\u6271\u984d\uff08\u5343\u5186\uff09",
+        }
+    )
+    st.dataframe(table, use_container_width=True, hide_index=True)
+    st.caption(
+        "\u91d1\u984d\u5358\u4f4d\u306f\u300c\u5343\u5186\u300d\u3067\u7d71\u4e00\u3057\u3066\u3044\u307e\u3059\u3002"
+        " \u6700\u65b0\u53d6\u5f97\u306f `python -m scripts.update_ta_data` \u3092\u5b9f\u884c\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+    )
+
+
 def main() -> None:
     st.set_page_config(
         page_title="\u5e02\u5834\u7d71\u8a08\u30d3\u30e5\u30fc\u30a2",
@@ -1223,17 +1887,27 @@ def main() -> None:
         dataset_type = st.radio(
             "\u7d71\u8a08\u306e\u7a2e\u985e",
             [
-                "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb",
-                "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb",
+                DATASET_LABEL_STAY,
+                DATASET_LABEL_TCD,
+                DATASET_LABEL_ICD,
+                DATASET_LABEL_TA,
             ],
             key="dataset_selector",
         )
 
-    if dataset_type == "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb":
+    if dataset_type == DATASET_LABEL_STAY:
         render_stay_stats_view()
         return
 
-    render_tcd_view()
+    if dataset_type == DATASET_LABEL_TCD:
+        render_tcd_view()
+        return
+
+    if dataset_type == DATASET_LABEL_ICD:
+        render_icd_view()
+        return
+
+    render_ta_view()
 
 if __name__ == "__main__":
     main()
