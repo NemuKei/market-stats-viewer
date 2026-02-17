@@ -49,3 +49,10 @@
 - GitHub Actions `update_data.yml` の定期実行は `cron: 0 3 * * 1`。
 - 実行時刻は毎週月曜 03:00 UTC（日本時間 月曜 12:00）。
 - 手動実行は `workflow_dispatch` を使う。
+
+## ICD/TA Additions
+- Add: python -m scripts.update_icd_data
+- Add: python -m scripts.update_ta_data
+- ICD updates icd_spend_items / icd_entry_port_summary and data/meta_icd.json.
+- TA updates ta_company_amounts and data/meta_ta.json.
+
