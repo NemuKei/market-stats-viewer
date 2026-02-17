@@ -1522,13 +1522,12 @@ def render_icd_view() -> None:
     )
     if not available_port_type_keys:
         available_port_type_keys = ["entry"]
-    selected_port_type_label = st.radio(
-        "\u6e2f\u533a\u5206",
-        [ICD_PORT_TYPE_LABELS[k] for k in available_port_type_keys],
-        horizontal=True,
-        key="icd_port_type",
-    )
-    selected_port_type = ICD_PORT_TYPE_KEYS[selected_port_type_label]
+    selected_port_type = available_port_type_keys[0]
+    stored_port_type_label = st.session_state.get("icd_port_type")
+    if stored_port_type_label in ICD_PORT_TYPE_KEYS:
+        stored_port_type_key = ICD_PORT_TYPE_KEYS[stored_port_type_label]
+        if stored_port_type_key in available_port_type_keys:
+            selected_port_type = stored_port_type_key
 
     total_row = entry_filtered[
         (entry_filtered["port_type"] == selected_port_type)
@@ -1655,6 +1654,19 @@ def render_icd_view() -> None:
             )
             st.altair_chart(chart_comp, use_container_width=True)
 
+    port_section_label = (
+        "\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225"
+        if selected_port_type == "entry"
+        else "\u51fa\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225"
+    )
+    selected_port_type_label = st.radio(
+        "\u6e2f\u533a\u5206",
+        [ICD_PORT_TYPE_LABELS[k] for k in available_port_type_keys],
+        index=available_port_type_keys.index(selected_port_type),
+        horizontal=True,
+        key="icd_port_type",
+    )
+    selected_port_type = ICD_PORT_TYPE_KEYS[selected_port_type_label]
     port_section_label = (
         "\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225"
         if selected_port_type == "entry"
