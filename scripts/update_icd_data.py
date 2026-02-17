@@ -304,46 +304,55 @@ def parse_entry_metric_sheet(
     )
 
     records: list[dict] = []
-    in_entry_section = False
+    current_port_type: str | None = None
+    skip_labels = {"【A1】", "（単一回答）", "（複数回答）"}
 
     for r in range(header_row + 2, len(df)):
         col1 = normalize_text(df.iat[r, 1]) if df.shape[1] > 1 else ""
         col2 = normalize_text(df.iat[r, 2]) if df.shape[1] > 2 else ""
 
-        entry_port: str | None = None
-        if "全体" in col1 and "【A1】" in col1 and not in_entry_section:
-            entry_port = "全体"
-
         if "入国空港" in col1:
-            in_entry_section = True
-        if "出国空港" in col1 and in_entry_section:
-            break
+            current_port_type = "entry"
+        if "出国空港" in col1:
+            current_port_type = "exit"
+        if "滞在日数" in col1:
+            current_port_type = None
 
-        if in_entry_section:
-            if col2 and col2 not in {"【A1】", "（単一回答）", "（複数回答）"}:
-                entry_port = col2
+        port_labels: list[tuple[str, str]] = []
+        if "全体" in col1 and "【A1】" in col1:
+            # 全体行は入国/出国どちらの集計にも使えるため両方に展開する。
+            port_labels = [("entry", "全体"), ("exit", "全体")]
+        elif (
+            current_port_type in {"entry", "exit"}
+            and col2
+            and col2 not in skip_labels
+            and ("空港" in col2 or "港" in col2 or col2 == "その他")
+        ):
+            port_labels = [(str(current_port_type), col2)]
 
-        if not entry_port:
+        if not port_labels:
             continue
 
-        for nationality, respondents_col, metric_col in pairs:
-            respondents = to_float(df.iat[r, respondents_col])
-            metric_value = to_float(df.iat[r, metric_col])
-            if respondents is None and metric_value is None:
-                continue
+        for port_type, entry_port in port_labels:
+            for nationality, respondents_col, metric_col in pairs:
+                respondents = to_float(df.iat[r, respondents_col])
+                metric_value = to_float(df.iat[r, metric_col])
+                if respondents is None and metric_value is None:
+                    continue
 
-            records.append(
-                {
-                    "period_label": period_label,
-                    "period_key": period_key,
-                    "release_type": release_type,
-                    "purpose": purpose,
-                    "entry_port": entry_port,
-                    "nationality": nationality,
-                    "respondents": respondents,
-                    metric_name: metric_value,
-                }
-            )
+                records.append(
+                    {
+                        "period_label": period_label,
+                        "period_key": period_key,
+                        "release_type": release_type,
+                        "purpose": purpose,
+                        "port_type": port_type,
+                        "entry_port": entry_port,
+                        "nationality": nationality,
+                        "respondents": respondents,
+                        metric_name: metric_value,
+                    }
+                )
 
     return pd.DataFrame(records)
 
@@ -354,6 +363,7 @@ def merge_entry_metrics(df_avg: pd.DataFrame, df_spend: pd.DataFrame) -> pd.Data
         "period_key",
         "release_type",
         "purpose",
+        "port_type",
         "entry_port",
         "nationality",
     ]
@@ -406,7 +416,7 @@ def build_sqlite(spend_df: pd.DataFrame, entry_df: pd.DataFrame, sqlite_path: Pa
         )
         conn.execute(
             f"CREATE INDEX IF NOT EXISTS idx_{ENTRY_TABLE_NAME}_port "
-            f"ON {ENTRY_TABLE_NAME}(entry_port, nationality)"
+            f"ON {ENTRY_TABLE_NAME}(port_type, entry_port, nationality)"
         )
 
 

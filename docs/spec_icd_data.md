@@ -4,7 +4,7 @@
 - インバウンド消費動向調査（ICD）のMVPデータを、既存の `data/market_stats.sqlite` に同居させて提供する。
 - 対象は次の2系統。
   - 国籍別: 費目別旅行支出（単価 + 構成比）
-  - 入国空港/港別: 平均泊数 + 総旅行支出（回答者数付き）
+  - 入国/出国空港・港別: 平均泊数 + 総旅行支出（回答者数付き）
 
 ## 取得元
 - ページ: `https://www.mlit.go.jp/kankocho/tokei_hakusyo/gaikokujinshohidoko.html`
@@ -38,6 +38,7 @@
 - `period_key`
 - `release_type`
 - `purpose` (`all` / `leisure`)
+- `port_type` (`entry` / `exit`)
 - `entry_port`（`全体` を含む）
 - `nationality`
 - `respondents`
@@ -58,4 +59,3 @@
   - `release_type`
   - `sheets_used`
   - `row_counts`
-
