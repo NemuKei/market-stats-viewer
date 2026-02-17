@@ -35,3 +35,6 @@
   - `segments`
   - `unit`（`thousand_yen`）
 
+
+## UI Note Policy
+- 一般向け注釈の共通仕様は `docs/spec_app.md` の `Common Footnote Policy (General Users)` に従う。
