@@ -1219,6 +1219,11 @@ ICD_PURPOSE_LABELS = {
     "leisure": "\u89b3\u5149\u30fb\u30ec\u30b8\u30e3\u30fc",
 }
 ICD_PURPOSE_KEYS = {v: k for k, v in ICD_PURPOSE_LABELS.items()}
+ICD_PORT_TYPE_LABELS = {
+    "entry": "\u5165\u56fd",
+    "exit": "\u51fa\u56fd",
+}
+ICD_PORT_TYPE_KEYS = {v: k for k, v in ICD_PORT_TYPE_LABELS.items()}
 
 TA_SEGMENT_LABELS = {
     "overseas": "\u6d77\u5916\u65c5\u884c",
@@ -1320,6 +1325,7 @@ def load_icd_entry_data() -> pd.DataFrame:
         "period_key",
         "release_type",
         "purpose",
+        "port_type",
         "entry_port",
         "nationality",
     ]
@@ -1479,6 +1485,8 @@ def render_icd_view() -> None:
         (entry_df["period_key"] == selected_period_key)
         & (entry_df["purpose"] == selected_purpose)
     ].copy()
+    if not entry_filtered.empty and "port_type" not in entry_filtered.columns:
+        entry_filtered["port_type"] = "entry"
 
     nationality_options = sorted(
         {
@@ -1502,8 +1510,29 @@ def render_icd_view() -> None:
             key="icd_nationality",
         )
 
+    available_port_type_keys = (
+        [
+            k
+            for k in ICD_PORT_TYPE_LABELS
+            if not entry_filtered.empty
+            and k in entry_filtered["port_type"].astype(str).unique().tolist()
+        ]
+        if not entry_filtered.empty
+        else []
+    )
+    if not available_port_type_keys:
+        available_port_type_keys = ["entry"]
+    selected_port_type_label = st.radio(
+        "\u6e2f\u533a\u5206",
+        [ICD_PORT_TYPE_LABELS[k] for k in available_port_type_keys],
+        horizontal=True,
+        key="icd_port_type",
+    )
+    selected_port_type = ICD_PORT_TYPE_KEYS[selected_port_type_label]
+
     total_row = entry_filtered[
-        (entry_filtered["entry_port"] == "\u5168\u4f53")
+        (entry_filtered["port_type"] == selected_port_type)
+        & (entry_filtered["entry_port"] == "\u5168\u4f53")
         & (entry_filtered["nationality"] == selected_nationality)
     ].copy()
     total_spend = first_numeric_value(total_row, "spend_yen")
@@ -1530,7 +1559,10 @@ def render_icd_view() -> None:
 
     st.subheader("\u56fd\u7c4d\u5225 TopN")
     top_n = st.slider("TopN", min_value=5, max_value=20, value=10, key="icd_top_n")
-    nationality_totals = entry_filtered[entry_filtered["entry_port"] == "\u5168\u4f53"].copy()
+    nationality_totals = entry_filtered[
+        (entry_filtered["port_type"] == selected_port_type)
+        & (entry_filtered["entry_port"] == "\u5168\u4f53")
+    ].copy()
 
     col_a, col_b = st.columns(2)
     with col_a:
@@ -1623,13 +1655,21 @@ def render_icd_view() -> None:
             )
             st.altair_chart(chart_comp, use_container_width=True)
 
-    st.subheader("\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225")
+    port_section_label = (
+        "\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225"
+        if selected_port_type == "entry"
+        else "\u51fa\u56fd\u7a7a\u6e2f\u30fb\u6e2f\u5225"
+    )
+    st.subheader(port_section_label)
     entry_nat = entry_filtered[
-        (entry_filtered["nationality"] == selected_nationality)
+        (entry_filtered["port_type"] == selected_port_type)
+        & (entry_filtered["nationality"] == selected_nationality)
         & (entry_filtered["entry_port"] != "\u5168\u4f53")
     ].copy()
     if entry_nat.empty:
-        st.info("\u5165\u56fd\u7a7a\u6e2f\u5225\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        st.info(
+            f"{port_section_label}\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
     else:
         col_c, col_d = st.columns(2)
         with col_c:
@@ -1646,9 +1686,9 @@ def render_icd_view() -> None:
                     .mark_bar(color="#72B7B2")
                     .encode(
                         x=alt.X("respondents:Q", title="\u56de\u7b54\u8005\u6570"),
-                        y=alt.Y("entry_port:N", sort="-x", title="\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f"),
+                        y=alt.Y("entry_port:N", sort="-x", title=port_section_label),
                         tooltip=[
-                            alt.Tooltip("entry_port:N", title="\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f"),
+                            alt.Tooltip("entry_port:N", title=port_section_label),
                             alt.Tooltip("respondents:Q", title="\u56de\u7b54\u8005\u6570", format=",.0f"),
                         ],
                     )
@@ -1670,7 +1710,7 @@ def render_icd_view() -> None:
                         size=alt.Size("respondents:Q", title="\u56de\u7b54\u8005\u6570"),
                         color=alt.value("#F58518"),
                         tooltip=[
-                            alt.Tooltip("entry_port:N", title="\u5165\u56fd\u7a7a\u6e2f\u30fb\u6e2f"),
+                            alt.Tooltip("entry_port:N", title=port_section_label),
                             alt.Tooltip("respondents:Q", title="\u56de\u7b54\u8005\u6570", format=",.0f"),
                             alt.Tooltip("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570", format=".2f"),
                             alt.Tooltip("spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"),
