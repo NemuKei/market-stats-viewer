@@ -20,18 +20,19 @@
   - 現在表示中の表データを `data` シートへ出力
   - `charts` シートに時系列・年別同月比較のExcelネイティブグラフを出力
 - データ更新
-  - ローカル更新: `python -m scripts.update_data`
+- ローカル更新: `uv run python -m scripts.update_data`
   - GitHub Actionsによる更新実行（public repo前提）
 
 ## ローカル実行（VS Code）
 ```bash
-python -m venv .venv
+uv venv
+# Optional (manual activate)
 # Windows: .venv\Scripts\activate
 # macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
+uv sync
 
-python -m scripts.update_data
-streamlit run app.py
+uv run python -m scripts.update_data
+uv run streamlit run app.py
 ```
 
 ## 旅行・観光消費動向調査（TCD）拡張
@@ -39,7 +40,7 @@ streamlit run app.py
   - `宿泊旅行統計調査`（既存）
   - `旅行・観光消費動向調査`（新規）
 - TCDデータ更新コマンド:
-  - `python -m scripts.update_tcd_data`
+  - `uv run python -m scripts.update_tcd_data`
 - TCDメタ:
   - `data/meta_tcd.json`
 
@@ -49,8 +50,8 @@ streamlit run app.py
   - `schedule`: `0 3 * * 1`（毎週月曜 03:00 UTC / 日本時間 月曜 12:00）
   - `workflow_dispatch`: 手動実行可
 - 実行順:
-  1. `python -m scripts.update_data`
-  2. `python -m scripts.update_tcd_data`
+  1. `uv run python -m scripts.update_data`
+  2. `uv run python -m scripts.update_tcd_data`
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
