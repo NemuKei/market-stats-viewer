@@ -186,6 +186,113 @@ def parse_sheet_long(ws: Worksheet, metric: str) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _normalize_compact_text(value: object) -> str:
+    if value is None:
+        return ""
+    text = str(value).replace("\u3000", " ").replace("\n", "")
+    text = re.sub(r"\s+", "", text)
+    return text.strip()
+
+
+def _to_float_or_none(value: object) -> Optional[float]:
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+
+    text = str(value).strip().replace(",", "")
+    if text in {"", "-", "－", "―", "‐", "…"}:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def _parse_pref_cell(value: object) -> Optional[Tuple[str, str]]:
+    s = _normalize_compact_text(value)
+    if not s:
+        return None
+    if s.startswith("全"):
+        return "00", "全国"
+    m = re.match(r"^(\d{2})(.+)$", s)
+    if not m:
+        return None
+    return m.group(1), m.group(2)
+
+
+def parse_facility_occupancy_monthly_sheet(
+    ws: Worksheet, max_rows: int = 500, max_cols: int = 200
+) -> pd.DataFrame:
+    """
+    Parse sheet 4-2 style monthly occupancy table (national + prefectures).
+
+    Output columns: ym, pref_code, pref_name, facility_type, occupancy_rate
+    """
+    layout = detect_layout(ws)
+    ym_cols = build_ym_by_col(ws, layout, max_cols=max_cols)
+
+    pref_start_row = layout.month_row + 1
+    rows = []
+    current_pref_code = ""
+    current_pref_name = ""
+    blank_streak = 0
+
+    for r in range(pref_start_row, pref_start_row + max_rows):
+        pref_raw = ws.cell(r, 1).value
+        facility_raw = ws.cell(r, 2).value
+
+        if pref_raw is None and facility_raw is None:
+            blank_streak += 1
+            if blank_streak >= 6 and rows:
+                break
+            continue
+        blank_streak = 0
+
+        parsed_pref = _parse_pref_cell(pref_raw)
+        if parsed_pref is not None:
+            current_pref_code, current_pref_name = parsed_pref
+
+        facility_type = _normalize_compact_text(facility_raw)
+        if not facility_type:
+            continue
+        if not current_pref_code or not current_pref_name:
+            continue
+
+        for c, ym in ym_cols:
+            value = _to_float_or_none(ws.cell(r, c).value)
+            if value is None:
+                continue
+            rows.append(
+                {
+                    "ym": ym,
+                    "pref_code": current_pref_code,
+                    "pref_name": current_pref_name,
+                    "facility_type": facility_type,
+                    "occupancy_rate": value,
+                }
+            )
+
+    if not rows:
+        raise ValueError("No facility occupancy rows were parsed.")
+
+    out = pd.DataFrame(rows)
+    out = out.drop_duplicates(subset=["ym", "pref_code", "facility_type"])
+    out = out.sort_values(["ym", "pref_code", "facility_type"]).reset_index(drop=True)
+    return out
+
+
+def parse_national_facility_occupancy_monthly_sheet(
+    ws: Worksheet, max_rows: int = 500, max_cols: int = 200
+) -> pd.DataFrame:
+    out = parse_facility_occupancy_monthly_sheet(
+        ws, max_rows=max_rows, max_cols=max_cols
+    )
+    out = out[out["pref_code"] == "00"].copy()
+    out = out[["ym", "facility_type", "occupancy_rate"]]
+    return out.reset_index(drop=True)
+
+
 def build_raw_from_three_sheets(
     ws_total: Worksheet,
     ws_jp: Worksheet,
