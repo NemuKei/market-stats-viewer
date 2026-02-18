@@ -27,6 +27,7 @@
 - `context_writeback`: 常設コンテキストへの反映が必要なときだけ使う。条件判定と反映手順は `.agents/skills/context_writeback/SKILL.md` を参照。
 - `docs_governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。手順は `.agents/skills/docs_governance/SKILL.md` を参照。
 - `repo_bootstrap`: 新規リポジトリの最小構成を責務ベースで整備するときだけ使う。手順は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
+- `sidebiz_sync`: 実装方針や確定事項を SideBiz ハブへ要約同期するときだけ使う。手順は `.agents/skills/sidebiz_sync/SKILL.md` を参照。
 
 ## Archive
 - `archive/**`, `thread_logs/**`, `handovers/**` は参照専用
