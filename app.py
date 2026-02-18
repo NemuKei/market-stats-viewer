@@ -692,9 +692,7 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
 
     filter_col1, filter_col2, filter_col3 = st.columns([3, 2, 2])
     with filter_col1:
-        default_timeseries_types = (
-            ["計"] if "計" in facility_options else facility_options[:1]
-        )
+        default_timeseries_types = facility_options
         selected_facility_types = st.multiselect(
             "宿泊施設種別",
             options=facility_options,
