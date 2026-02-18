@@ -692,14 +692,23 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
 
     filter_col1, filter_col2, filter_col3 = st.columns([3, 2, 2])
     with filter_col1:
-        facility_type = st.selectbox(
+        default_timeseries_types = (
+            ["計"] if "計" in facility_options else facility_options[:1]
+        )
+        selected_facility_types = st.multiselect(
             "宿泊施設種別",
             options=facility_options,
-            index=0,
-            key="facility_occ_type_single",
+            default=default_timeseries_types,
+            key="facility_occ_types_multi",
         )
 
-    target_df_all = scope_df[scope_df["facility_type"] == facility_type].copy()
+    if not selected_facility_types:
+        st.info("宿泊施設種別を1つ以上選択してください。")
+        return
+
+    target_df_all = scope_df[
+        scope_df["facility_type"].isin(selected_facility_types)
+    ].copy()
     ym_options = sorted(target_df_all["ym"].astype(str).unique().tolist())
     if not ym_options:
         st.info("選択した条件のデータがありません。")
@@ -775,13 +784,18 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
         st.info("指定した期間にデータがありません。")
         return
 
-    latest_row = ranged_df.sort_values("ym").iloc[-1]
+    latest_ym = ranged_df["ym"].max()
+    latest_mean = (
+        ranged_df.loc[ranged_df["ym"] == latest_ym, "occupancy_rate"]
+        .astype(float)
+        .mean()
+    )
     metric_col1, metric_col2, metric_col3 = st.columns(3)
     metric_col1.metric("対象", scope_name)
     metric_col2.metric("表示期間", f"{ym_from} ～ {ym_to}")
     metric_col3.metric(
-        f"最新月（{latest_row['ym']}）",
-        f"{float(latest_row['occupancy_rate']):.1f}%",
+        f"最新月平均（{latest_ym}）",
+        f"{latest_mean:.1f}%",
     )
 
     st.subheader("時系列")
@@ -790,7 +804,22 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
     )
     st.altair_chart(line_chart, use_container_width=True)
 
-    fiscal_all = add_year_month_columns(target_df_all[["ym", "occupancy_rate"]])
+    fiscal_default_type = "計" if "計" in facility_options else facility_options[0]
+
+    st.subheader("年度比較（4月～翌3月）")
+    fiscal_filter_col1, fiscal_filter_col2 = st.columns([3, 4])
+    with fiscal_filter_col1:
+        fiscal_facility_type = st.selectbox(
+            "宿泊施設種別（年度比較）",
+            options=facility_options,
+            index=facility_options.index(fiscal_default_type),
+            key="facility_occ_fiscal_type",
+        )
+
+    fiscal_target_df_all = scope_df[
+        scope_df["facility_type"] == fiscal_facility_type
+    ].copy()
+    fiscal_all = add_year_month_columns(fiscal_target_df_all[["ym", "occupancy_rate"]])
     fiscal_all["fiscal_year"] = fiscal_all.apply(
         lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
         axis=1,
@@ -800,18 +829,18 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
         fiscal_year_options[-4:] if len(fiscal_year_options) > 4 else fiscal_year_options
     )
 
-    st.subheader("年度比較（4月～翌3月）")
-    selected_fiscal_years = st.multiselect(
-        "年度",
-        options=fiscal_year_options,
-        default=default_fiscal_years,
-        key="facility_occ_fiscal_years",
-    )
+    with fiscal_filter_col2:
+        selected_fiscal_years = st.multiselect(
+            "年度",
+            options=fiscal_year_options,
+            default=default_fiscal_years,
+            key="facility_occ_fiscal_years",
+        )
     if not selected_fiscal_years:
         st.info("年度を1つ以上選択してください。")
     else:
         fiscal_chart = build_facility_occupancy_fiscal_compare_chart(
-            target_df_all, selected_fiscal_years
+            fiscal_target_df_all, selected_fiscal_years
         ).properties(height=380)
         st.altair_chart(fiscal_chart, use_container_width=True)
 
@@ -819,7 +848,7 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
     table_df = ranged_df[
         ["ym", "pref_code", "pref_name", "facility_type", "occupancy_rate"]
     ].copy()
-    table_df = table_df.sort_values(["ym"]).reset_index(drop=True)
+    table_df = table_df.sort_values(["ym", "facility_type"]).reset_index(drop=True)
     table_df["occupancy_rate"] = table_df["occupancy_rate"].round(1)
     table_df = table_df.rename(
         columns={
