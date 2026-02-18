@@ -39,6 +39,36 @@ FACILITY_OCCUPANCY_MONTHLY_SHEET_NAME = "4-2"
 PIPELINE_VERSION = 3
 
 
+def has_required_facility_occupancy_schema(sqlite_path: Path) -> bool:
+    import sqlite3
+
+    if not sqlite_path.exists():
+        return False
+    try:
+        with sqlite3.connect(str(sqlite_path)) as conn:
+            cur = conn.cursor()
+            cur.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+                (STAY_FACILITY_OCCUPANCY_TABLE_NAME,),
+            )
+            if cur.fetchone() is None:
+                return False
+            cur.execute(
+                f"PRAGMA table_info({STAY_FACILITY_OCCUPANCY_TABLE_NAME})"
+            )
+            cols = {str(row[1]) for row in cur.fetchall()}
+            required_cols = {
+                "ym",
+                "pref_code",
+                "pref_name",
+                "facility_type",
+                "occupancy_rate",
+            }
+            return required_cols.issubset(cols)
+    except Exception:
+        return False
+
+
 def sha256_file(p: Path) -> str:
     h = hashlib.sha256()
     with p.open("rb") as f:
@@ -150,6 +180,7 @@ def main() -> int:
         if (
             meta.get("source_sha256") == fetched_sha
             and int(meta.get("pipeline_version", 0)) == PIPELINE_VERSION
+            and has_required_facility_occupancy_schema(SQLITE_PATH)
         ):
             print("No change: source file hash unchanged.")
             return 0
