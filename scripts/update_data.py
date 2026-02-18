@@ -13,9 +13,15 @@ from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
 try:
-    from .parse_ts_table import build_raw_from_three_sheets
+    from .parse_ts_table import (
+        build_raw_from_three_sheets,
+        parse_facility_occupancy_monthly_sheet,
+    )
 except ImportError:  # pragma: no cover - fallback for direct script execution
-    from parse_ts_table import build_raw_from_three_sheets
+    from parse_ts_table import (
+        build_raw_from_three_sheets,
+        parse_facility_occupancy_monthly_sheet,
+    )
 
 # 取得元（観光庁：宿泊旅行統計調査）
 SOURCE_PAGE_URL = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html"
@@ -27,6 +33,10 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 META_PATH = DATA_DIR / "meta.json"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
+MARKET_STATS_TABLE_NAME = "market_stats"
+STAY_FACILITY_OCCUPANCY_TABLE_NAME = "stay_facility_occupancy"
+FACILITY_OCCUPANCY_MONTHLY_SHEET_NAME = "4-2"
+PIPELINE_VERSION = 3
 
 
 def sha256_file(p: Path) -> str:
@@ -90,17 +100,38 @@ def download_file(url: str, dst: Path, timeout_sec: int = 60) -> None:
                     f.write(chunk)
 
 
-def build_sqlite(df: pd.DataFrame, sqlite_path: Path) -> None:
+def build_sqlite(
+    df_market_stats: pd.DataFrame,
+    df_stay_facility_occupancy: pd.DataFrame,
+    sqlite_path: Path,
+) -> None:
     import sqlite3
 
     sqlite_path.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(str(sqlite_path)) as conn:
-        df.to_sql("market_stats", conn, if_exists="replace", index=False)
-        conn.execute(
-            "CREATE INDEX IF NOT EXISTS idx_market_stats_ym ON market_stats(ym)"
+        df_market_stats.to_sql(
+            MARKET_STATS_TABLE_NAME, conn, if_exists="replace", index=False
         )
         conn.execute(
-            "CREATE INDEX IF NOT EXISTS idx_market_stats_pref ON market_stats(pref_code)"
+            f"CREATE INDEX IF NOT EXISTS idx_market_stats_ym ON {MARKET_STATS_TABLE_NAME}(ym)"
+        )
+        conn.execute(
+            f"CREATE INDEX IF NOT EXISTS idx_market_stats_pref ON {MARKET_STATS_TABLE_NAME}(pref_code)"
+        )
+        df_stay_facility_occupancy.to_sql(
+            STAY_FACILITY_OCCUPANCY_TABLE_NAME, conn, if_exists="replace", index=False
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_stay_facility_occupancy_ym "
+            f"ON {STAY_FACILITY_OCCUPANCY_TABLE_NAME}(ym)"
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_stay_facility_occupancy_pref "
+            f"ON {STAY_FACILITY_OCCUPANCY_TABLE_NAME}(pref_code)"
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_stay_facility_occupancy_type "
+            f"ON {STAY_FACILITY_OCCUPANCY_TABLE_NAME}(facility_type)"
         )
 
 
@@ -116,43 +147,78 @@ def main() -> int:
 
         fetched_sha = sha256_file(tmp_xlsx)
         meta = load_meta()
-        if meta.get("source_sha256") == fetched_sha:
+        if (
+            meta.get("source_sha256") == fetched_sha
+            and int(meta.get("pipeline_version", 0)) == PIPELINE_VERSION
+        ):
             print("No change: source file hash unchanged.")
             return 0
 
         wb = load_workbook(tmp_xlsx, read_only=False, data_only=True)
-        # 推移表の想定シート（今回MVPはこの3つに固定）
-        ws_total = wb["1-2"]
-        ws_jp = wb["2-2"]
-        ws_foreign = wb["3-2"]
+        try:
+            # 推移表の想定シート（今回MVPはこの3つに固定）
+            ws_total = wb["1-2"]
+            ws_jp = wb["2-2"]
+            ws_foreign = wb["3-2"]
 
-        df = build_raw_from_three_sheets(
-            ws_total=ws_total,
-            ws_jp=ws_jp,
-            ws_foreign=ws_foreign,
-            make_national_sum=True,
-        )
+            df = build_raw_from_three_sheets(
+                ws_total=ws_total,
+                ws_jp=ws_jp,
+                ws_foreign=ws_foreign,
+                make_national_sum=True,
+            )
+            ws_facility_occupancy = wb[FACILITY_OCCUPANCY_MONTHLY_SHEET_NAME]
+            df_facility_occupancy = parse_facility_occupancy_monthly_sheet(
+                ws_facility_occupancy
+            )
+        finally:
+            wb.close()
 
         # 型整形
         df["ym"] = df["ym"].astype(str)
         df["pref_code"] = df["pref_code"].astype(str)
         df["pref_name"] = df["pref_name"].astype(str)
+        df_facility_occupancy["ym"] = df_facility_occupancy["ym"].astype(str)
+        df_facility_occupancy["pref_code"] = (
+            df_facility_occupancy["pref_code"].astype(str).str.zfill(2)
+        )
+        df_facility_occupancy["pref_name"] = df_facility_occupancy["pref_name"].astype(
+            str
+        )
+        df_facility_occupancy["facility_type"] = df_facility_occupancy[
+            "facility_type"
+        ].astype(str)
+        df_facility_occupancy["occupancy_rate"] = pd.to_numeric(
+            df_facility_occupancy["occupancy_rate"], errors="coerce"
+        )
+        df_facility_occupancy = df_facility_occupancy.dropna(
+            subset=["occupancy_rate"]
+        ).copy()
 
-        build_sqlite(df, SQLITE_PATH)
+        build_sqlite(df, df_facility_occupancy, SQLITE_PATH)
 
         now = datetime.now(timezone.utc).isoformat()
         new_meta = {
             "source_page_url": SOURCE_PAGE_URL,
             "source_xlsx_url": xlsx_url,
             "source_sha256": fetched_sha,
+            "pipeline_version": PIPELINE_VERSION,
             "fetched_at_utc": now,
             "rows": int(len(df)),
             "min_ym": str(df["ym"].min()),
             "max_ym": str(df["ym"].max()),
+            "facility_occupancy_rows": int(len(df_facility_occupancy)),
+            "facility_occupancy_min_ym": str(df_facility_occupancy["ym"].min()),
+            "facility_occupancy_max_ym": str(df_facility_occupancy["ym"].max()),
         }
         save_meta(new_meta)
 
-        print(f"Updated: rows={len(df)} ym={new_meta['min_ym']}..{new_meta['max_ym']}")
+        print(
+            "Updated: "
+            f"rows={len(df)} ym={new_meta['min_ym']}..{new_meta['max_ym']} "
+            f"facility_rows={len(df_facility_occupancy)} "
+            f"facility_ym={new_meta['facility_occupancy_min_ym']}..{new_meta['facility_occupancy_max_ym']}"
+        )
         return 0
 
 

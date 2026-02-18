@@ -19,6 +19,19 @@ REPO_ROOT = Path(__file__).resolve().parent
 DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta.json"
+STAY_FACILITY_OCCUPANCY_TABLE_NAME = "stay_facility_occupancy"
+
+STAY_VIEW_MODE_NIGHTS = "都道府県別 延べ宿泊者数"
+STAY_VIEW_MODE_FACILITY_OCCUPANCY = "全国 宿泊施設種別 客室稼働率"
+FACILITY_TYPE_DISPLAY_ORDER = [
+    "計",
+    "旅館",
+    "リゾートホテル",
+    "ビジネスホテル",
+    "シティホテル",
+    "簡易宿所",
+    "会社・団体の宿泊所",
+]
 
 REGION_PREF_CODES = {
     "北海道": ["01"],
@@ -55,6 +68,41 @@ def load_data() -> pd.DataFrame:
         return df
     except Exception:
         return pd.DataFrame()
+
+
+@st.cache_data(show_spinner=False)
+def load_stay_facility_occupancy_data() -> pd.DataFrame:
+    if not SQLITE_PATH.exists():
+        return pd.DataFrame()
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query(
+                f"SELECT * FROM {STAY_FACILITY_OCCUPANCY_TABLE_NAME}", conn
+            )
+    except Exception:
+        return pd.DataFrame()
+
+    if df.empty:
+        return df
+
+    df["ym"] = df["ym"].astype(str)
+    if "pref_code" in df.columns:
+        df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
+    else:
+        df["pref_code"] = "00"
+    if "pref_name" in df.columns:
+        df["pref_name"] = df["pref_name"].astype(str)
+    else:
+        df["pref_name"] = "全国"
+    df["facility_type"] = (
+        df["facility_type"]
+        .astype(str)
+        .str.replace(r"\s+", "", regex=True)
+        .str.replace("\u3000", "", regex=False)
+    )
+    df["occupancy_rate"] = pd.to_numeric(df["occupancy_rate"], errors="coerce")
+    df = df.dropna(subset=["occupancy_rate"]).copy()
+    return df.sort_values(["ym", "facility_type"]).reset_index(drop=True)
 
 
 def load_meta() -> dict:
@@ -508,8 +556,285 @@ def build_yearly_month_compare_chart(
     )
 
 
+def get_ordered_facility_types(facility_types: list[str]) -> list[str]:
+    unique = sorted({str(v).strip() for v in facility_types if str(v).strip()})
+    order_map = {name: idx for idx, name in enumerate(FACILITY_TYPE_DISPLAY_ORDER)}
+    return sorted(unique, key=lambda x: (order_map.get(x, 999), x))
+
+
+def build_facility_occupancy_timeseries_chart(df_filtered: pd.DataFrame) -> alt.Chart:
+    ym_sort = sorted(df_filtered["ym"].astype(str).unique().tolist())
+    return (
+        alt.Chart(df_filtered)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X("ym:N", title="年月", sort=ym_sort),
+            y=alt.Y(
+                "occupancy_rate:Q",
+                title="客室稼働率（%）",
+                scale=alt.Scale(domain=[0, 100]),
+            ),
+            color=alt.Color("facility_type:N", title="宿泊施設種別"),
+            tooltip=[
+                alt.Tooltip("ym:N", title="年月"),
+                alt.Tooltip("facility_type:N", title="宿泊施設種別"),
+                alt.Tooltip("occupancy_rate:Q", title="稼働率（%）", format=".1f"),
+            ],
+        )
+    )
+
+
+def build_facility_occupancy_fiscal_compare_chart(
+    df: pd.DataFrame, fiscal_years: list[int]
+) -> alt.Chart:
+    if df.empty:
+        return alt.Chart(pd.DataFrame(columns=["fiscal_month_label", "occupancy_rate"]))
+
+    work = add_year_month_columns(df[["ym", "occupancy_rate"]])
+    work["fiscal_year"] = work.apply(
+        lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
+        axis=1,
+    )
+    work["fiscal_month"] = work["month"].astype(int)
+    month_order = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3]
+    month_order_labels = [f"{m:02d}" for m in month_order]
+    work["fiscal_month_label"] = work["fiscal_month"].map(lambda m: f"{m:02d}")
+    work = work[work["fiscal_year"].isin(fiscal_years)].copy()
+
+    grouped = (
+        work.groupby(["fiscal_year", "fiscal_month_label"], as_index=False)[
+            "occupancy_rate"
+        ]
+        .mean()
+        .copy()
+    )
+
+    return (
+        alt.Chart(grouped)
+        .mark_bar()
+        .encode(
+            x=alt.X("fiscal_month_label:N", title="月（年度）", sort=month_order_labels),
+            xOffset=alt.XOffset("fiscal_year:N", sort=fiscal_years),
+            y=alt.Y(
+                "occupancy_rate:Q",
+                title="客室稼働率（%）",
+                scale=alt.Scale(domain=[0, 100]),
+            ),
+            color=alt.Color("fiscal_year:N", title="年度", sort=fiscal_years),
+            tooltip=[
+                alt.Tooltip("fiscal_year:N", title="年度"),
+                alt.Tooltip("fiscal_month_label:N", title="月"),
+                alt.Tooltip("occupancy_rate:Q", title="稼働率（%）", format=".1f"),
+            ],
+        )
+    )
+
+
+def render_stay_facility_occupancy_view(meta: dict) -> None:
+    st.subheader("宿泊施設種別 客室稼働率")
+    if meta and meta.get("facility_occupancy_rows"):
+        st.caption(
+            f"客室稼働率データ範囲: {meta.get('facility_occupancy_min_ym')}～"
+            f"{meta.get('facility_occupancy_max_ym')} / rows: {meta.get('facility_occupancy_rows')}"
+        )
+
+    df = load_stay_facility_occupancy_data()
+    if df.empty:
+        st.error(
+            "客室稼働率データがありません。先に python -m scripts.update_data を実行してください。"
+        )
+        return
+
+    top_col1, top_col2 = st.columns([2, 3])
+    with top_col1:
+        scope_label = st.radio(
+            "地域区分",
+            ["全国", "都道府県"],
+            horizontal=True,
+            key="facility_occ_scope_label",
+        )
+    scope_df = df[df["pref_code"] == "00"].copy()
+    scope_name = "全国"
+    if scope_label == "都道府県":
+        prefs = (
+            df[df["pref_code"] != "00"][["pref_code", "pref_name"]]
+            .drop_duplicates()
+            .sort_values("pref_code")
+        )
+        pref_labels = prefs.apply(
+            lambda r: f"{r['pref_code']} {r['pref_name']}", axis=1
+        ).tolist()
+        pref_map = dict(zip(pref_labels, prefs["pref_code"].tolist()))
+        with top_col2:
+            pref_sel = st.selectbox(
+                "都道府県",
+                pref_labels,
+                index=0,
+                key="facility_occ_pref",
+            )
+        pref_code = pref_map[pref_sel]
+        scope_df = df[df["pref_code"] == pref_code].copy()
+        scope_name = pref_sel
+    else:
+        with top_col2:
+            st.caption("対象: 全国")
+
+    if scope_df.empty:
+        st.info("選択した地域に客室稼働率データがありません。")
+        return
+
+    facility_options = get_ordered_facility_types(
+        scope_df["facility_type"].astype(str).tolist()
+    )
+    if not facility_options:
+        st.info("宿泊施設種別データがありません。")
+        return
+
+    filter_col1, filter_col2, filter_col3 = st.columns([3, 2, 2])
+    with filter_col1:
+        facility_type = st.selectbox(
+            "宿泊施設種別",
+            options=facility_options,
+            index=0,
+            key="facility_occ_type_single",
+        )
+
+    target_df_all = scope_df[scope_df["facility_type"] == facility_type].copy()
+    ym_options = sorted(target_df_all["ym"].astype(str).unique().tolist())
+    if not ym_options:
+        st.info("選択した条件のデータがありません。")
+        return
+
+    min_ym = ym_options[0]
+    max_ym = ym_options[-1]
+    default_ym_from = ym_options[max(0, len(ym_options) - 36)]
+    default_ym_to = ym_options[-1]
+    year_options = sorted(target_df_all["ym"].str.slice(0, 4).astype(int).unique().tolist())
+    month_options = list(range(1, 13))
+
+    def _fmt_month(v: int) -> str:
+        return f"{v:02d}"
+
+    default_from_year = int(default_ym_from[:4])
+    default_from_month = int(default_ym_from[5:7])
+    default_to_year = int(default_ym_to[:4])
+    default_to_month = int(default_ym_to[5:7])
+
+    with filter_col2:
+        sy_col, sm_col = st.columns(2)
+        with sy_col:
+            start_year = st.selectbox(
+                "開始（年）",
+                year_options,
+                index=year_options.index(default_from_year),
+                key="facility_occ_start_year",
+            )
+        with sm_col:
+            start_month = st.selectbox(
+                "開始（月）",
+                month_options,
+                index=month_options.index(default_from_month),
+                format_func=_fmt_month,
+                key="facility_occ_start_month",
+            )
+
+    with filter_col3:
+        ey_col, em_col = st.columns(2)
+        with ey_col:
+            end_year = st.selectbox(
+                "終了（年）",
+                year_options,
+                index=year_options.index(default_to_year),
+                key="facility_occ_end_year",
+            )
+        with em_col:
+            end_month = st.selectbox(
+                "終了（月）",
+                month_options,
+                index=month_options.index(default_to_month),
+                format_func=_fmt_month,
+                key="facility_occ_end_month",
+            )
+
+    ym_from = build_ym(start_year, start_month)
+    ym_to = build_ym(end_year, end_month)
+    ym_from, from_clamped = clamp_ym_to_available_range(ym_from, min_ym, max_ym)
+    ym_to, to_clamped = clamp_ym_to_available_range(ym_to, min_ym, max_ym)
+    if from_clamped:
+        st.warning(f"開始年月をデータ範囲に合わせて {ym_from} に補正しました。")
+    if to_clamped:
+        st.warning(f"終了年月をデータ範囲に合わせて {ym_to} に補正しました。")
+    if ym_to_int(ym_from) > ym_to_int(ym_to):
+        ym_from, ym_to = ym_to, ym_from
+        st.warning(f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。")
+
+    ranged_df = target_df_all[
+        (target_df_all["ym"] >= ym_from) & (target_df_all["ym"] <= ym_to)
+    ].copy()
+    if ranged_df.empty:
+        st.info("指定した期間にデータがありません。")
+        return
+
+    latest_row = ranged_df.sort_values("ym").iloc[-1]
+    metric_col1, metric_col2, metric_col3 = st.columns(3)
+    metric_col1.metric("対象", scope_name)
+    metric_col2.metric("表示期間", f"{ym_from} ～ {ym_to}")
+    metric_col3.metric(
+        f"最新月（{latest_row['ym']}）",
+        f"{float(latest_row['occupancy_rate']):.1f}%",
+    )
+
+    st.subheader("時系列")
+    line_chart = build_facility_occupancy_timeseries_chart(ranged_df).properties(
+        height=380
+    )
+    st.altair_chart(line_chart, use_container_width=True)
+
+    fiscal_all = add_year_month_columns(target_df_all[["ym", "occupancy_rate"]])
+    fiscal_all["fiscal_year"] = fiscal_all.apply(
+        lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
+        axis=1,
+    )
+    fiscal_year_options = sorted(fiscal_all["fiscal_year"].astype(int).unique().tolist())
+    default_fiscal_years = (
+        fiscal_year_options[-4:] if len(fiscal_year_options) > 4 else fiscal_year_options
+    )
+
+    st.subheader("年度比較（4月～翌3月）")
+    selected_fiscal_years = st.multiselect(
+        "年度",
+        options=fiscal_year_options,
+        default=default_fiscal_years,
+        key="facility_occ_fiscal_years",
+    )
+    if not selected_fiscal_years:
+        st.info("年度を1つ以上選択してください。")
+    else:
+        fiscal_chart = build_facility_occupancy_fiscal_compare_chart(
+            target_df_all, selected_fiscal_years
+        ).properties(height=380)
+        st.altair_chart(fiscal_chart, use_container_width=True)
+
+    st.subheader("表")
+    table_df = ranged_df[
+        ["ym", "pref_code", "pref_name", "facility_type", "occupancy_rate"]
+    ].copy()
+    table_df = table_df.sort_values(["ym"]).reset_index(drop=True)
+    table_df["occupancy_rate"] = table_df["occupancy_rate"].round(1)
+    table_df = table_df.rename(
+        columns={
+            "ym": "年月",
+            "pref_code": "都道府県コード",
+            "pref_name": "都道府県",
+            "facility_type": "宿泊施設種別",
+            "occupancy_rate": "客室稼働率（%）",
+        }
+    )
+    st.dataframe(table_df, use_container_width=True, hide_index=True, height=520)
+
+
 def render_stay_stats_view() -> None:
-    st.title("宿泊旅行統計調査：延べ宿泊者数（全体 / 国内 / 海外）")
+    st.title("宿泊旅行統計調査")
 
     meta = load_meta()
     if meta:
@@ -518,6 +843,23 @@ def render_stay_stats_view() -> None:
             f"範囲: {meta.get('min_ym')}〜{meta.get('max_ym')} / "
             f"rows: {meta.get('rows')}"
         )
+
+    view_mode = st.radio(
+        "表示軸",
+        [STAY_VIEW_MODE_NIGHTS, STAY_VIEW_MODE_FACILITY_OCCUPANCY],
+        horizontal=True,
+        key="stay_view_mode",
+    )
+    if view_mode == STAY_VIEW_MODE_FACILITY_OCCUPANCY:
+        render_stay_facility_occupancy_view(meta)
+        st.divider()
+        st.caption("出典：観光庁『宿泊旅行統計調査』（4-2 客室稼働率（月別）を整形）")
+        st.caption(
+            "データは毎週自動更新です。取得元サイトの構造変更等により更新が遅れる場合があります。"
+        )
+        return
+
+    st.subheader("延べ宿泊者数（全体 / 国内 / 海外）")
 
     df = load_data()
     if df.empty:

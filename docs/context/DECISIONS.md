@@ -32,3 +32,5 @@
 
 - D-20260215-004 | 常設コンテキストの正本を `docs/context/` に統一し、`docs/DECISIONS.md` は互換リダイレクトとして維持する | status: spec_done | spec_link: docs/context/DECISIONS.md
 
+- D-20260218-001 | 宿泊統計に全国・宿泊施設種別の客室稼働率（4-2 月別）を追加し、延べ宿泊者数と切替表示する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260218-002 | 宿泊施設種別稼働率ビューに都道府県切替・年/月分離フィルタ・年度比較グラフを追加する | status: spec_done | spec_link: docs/spec_app.md

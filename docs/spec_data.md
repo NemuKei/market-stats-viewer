@@ -48,3 +48,32 @@
   - rows
   - min_ym
   - max_ym
+
+## 追補（2026-02-18）宿泊施設種別 客室稼働率
+### 追加データセット
+- source sheet: `4-2`（都道府県別、宿泊施設タイプ別 客室稼働率 推移表（月別））
+- scope: 全国（`全 国`）のみを採用
+- grain: `ym x facility_type`
+- value: `occupancy_rate`（%）
+
+### SQLite 追加テーブル
+- table: `stay_facility_occupancy`
+- columns:
+  - `ym` TEXT
+  - `facility_type` TEXT
+  - `occupancy_rate` REAL
+- index:
+  - `ym`
+  - `facility_type`
+
+### meta.json 追加フィールド
+- `pipeline_version`
+- `facility_occupancy_rows`
+- `facility_occupancy_min_ym`
+- `facility_occupancy_max_ym`
+
+## 追補（2026-02-18）宿泊施設種別 客室稼働率（改）
+- 対象は全国（00）に加えて都道府県（01-47）を保持する。
+- `stay_facility_occupancy` テーブル列:
+  - `ym`, `pref_code`, `pref_name`, `facility_type`, `occupancy_rate`
+- UI では全国/都道府県を切替できる前提データとする。

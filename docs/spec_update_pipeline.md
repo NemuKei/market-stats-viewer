@@ -62,3 +62,13 @@
 - Updates meta: `data/meta_airport_volume.json`
 - No-op rule: if downloaded source `signature` is unchanged, sqlite/meta are not updated.
 
+
+## Addendum (2026-02-18) Stay Facility Occupancy
+- `python -m scripts.update_data` now also parses sheet `4-2` (monthly facility-type occupancy).
+- A new sqlite table `stay_facility_occupancy` is rebuilt on each successful update.
+- No-op condition is `source_sha256` + `pipeline_version` match.
+- `meta.json` stores occupancy row count and min/max ym.
+
+## Addendum (2026-02-18) Stay Facility Occupancy Scope Expansion
+- Sheet `4-2` parsing now keeps both nationwide (`00`) and prefecture rows (`01-47`).
+- Output table `stay_facility_occupancy` stores `pref_code` and `pref_name`.
