@@ -1,0 +1,17 @@
+[project]
+name = "market-stats-viewer"
+version = "0.1.0"
+description = "Streamlit app for viewing Japanese market and travel statistics"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "streamlit==1.41.1",
+    "pandas==2.2.3",
+    "openpyxl==3.1.5",
+    "requests==2.32.3",
+    "beautifulsoup4==4.12.3",
+    "xlrd==2.0.2",
+]
+
+[tool.uv]
+package = false
