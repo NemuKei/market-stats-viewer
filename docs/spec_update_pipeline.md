@@ -56,3 +56,9 @@
 - ICD updates icd_spend_items / icd_entry_port_summary and data/meta_icd.json.
 - TA updates ta_company_amounts and data/meta_ta.json.
 
+## Airport Volume Addition
+- Add: `python -m scripts.update_airport_volume_data`
+- Updates table: `airport_arrivals_monthly` in `data/market_stats.sqlite`
+- Updates meta: `data/meta_airport_volume.json`
+- No-op rule: if downloaded source `signature` is unchanged, sqlite/meta are not updated.
+

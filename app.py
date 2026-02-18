@@ -1209,10 +1209,14 @@ ICD_ENTRY_TABLE_NAME = "icd_entry_port_summary"
 TA_META_PATH = DATA_DIR / "meta_ta.json"
 TA_TABLE_NAME = "ta_company_amounts"
 
+AIRPORT_VOLUME_META_PATH = DATA_DIR / "meta_airport_volume.json"
+AIRPORT_VOLUME_TABLE_NAME = "airport_arrivals_monthly"
+
 DATASET_LABEL_STAY = "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb"
 DATASET_LABEL_TCD = "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
 DATASET_LABEL_ICD = "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
 DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
+DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09"
 
 ICD_PURPOSE_LABELS = {
     "all": "\u5168\u76ee\u7684",
@@ -1930,6 +1934,267 @@ def render_ta_view() -> None:
     )
 
 
+def load_airport_volume_meta() -> dict:
+    if not AIRPORT_VOLUME_META_PATH.exists():
+        return {}
+    return json.loads(AIRPORT_VOLUME_META_PATH.read_text(encoding="utf-8"))
+
+
+@st.cache_data(show_spinner=False)
+def load_airport_volume_data() -> pd.DataFrame:
+    if not SQLITE_PATH.exists():
+        return pd.DataFrame()
+    try:
+        with sqlite3.connect(str(SQLITE_PATH)) as conn:
+            df = pd.read_sql_query(f"SELECT * FROM {AIRPORT_VOLUME_TABLE_NAME}", conn)
+    except Exception:
+        return pd.DataFrame()
+
+    if df.empty:
+        return df
+
+    for col in [
+        "period_key",
+        "airport_name_raw",
+        "airport_name",
+        "airport_code",
+        "unit",
+        "source_name",
+        "source_url",
+        "updated_at_utc",
+    ]:
+        if col in df.columns:
+            df[col] = df[col].astype(str)
+    if "arrivals" in df.columns:
+        df["arrivals"] = pd.to_numeric(df["arrivals"], errors="coerce")
+
+    return df
+
+
+def month_to_quarter_period_key(period_key: str) -> str:
+    m = re.fullmatch(r"(\d{4})-(\d{2})", str(period_key))
+    if not m:
+        return str(period_key)
+    year = int(m.group(1))
+    month = int(m.group(2))
+    quarter = (month - 1) // 3 + 1
+    return f"{year}Q{quarter}"
+
+
+def render_airport_volume_view() -> None:
+    st.title("\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09")
+
+    meta = load_airport_volume_meta()
+    if meta:
+        period_min = meta.get("period_min", "-")
+        period_max = meta.get("period_max", "-")
+        st.caption(
+            f"\u6700\u7d42\u78ba\u8a8d\uff08UTC\uff09: {meta.get('fetched_at_utc')} / "
+            f"\u5bfe\u8c61: {period_min} - {period_max}"
+        )
+
+    df = load_airport_volume_data()
+    if df.empty:
+        st.info(
+            "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\u30c7\u30fc\u30bf\u306f\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
+        return
+
+    period_options = sorted(
+        df["period_key"].dropna().astype(str).unique().tolist(),
+        key=parse_period_sort_key,
+    )
+    if not period_options:
+        st.warning("\u671f\u9593\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    default_from_index = max(0, len(period_options) - 12)
+    default_to_index = len(period_options) - 1
+
+    col1, col2, col3 = st.columns([2, 2, 3])
+    with col1:
+        period_from = st.selectbox(
+            "\u671f\u9593 From\uff08\u6708\u6b21\uff09",
+            options=period_options,
+            index=default_from_index,
+            key="airport_volume_period_from",
+        )
+    with col2:
+        period_to = st.selectbox(
+            "\u671f\u9593 To\uff08\u6708\u6b21\uff09",
+            options=period_options,
+            index=default_to_index,
+            key="airport_volume_period_to",
+        )
+    with col3:
+        aggregate_mode = st.radio(
+            "\u96c6\u8a08",
+            options=["\u6708\u6b21", "\u56db\u534a\u671f"],
+            horizontal=True,
+            key="airport_volume_aggregate_mode",
+        )
+
+    if parse_period_sort_key(period_from) > parse_period_sort_key(period_to):
+        period_from, period_to = period_to, period_from
+        st.info("From/To \u306e\u9806\u5e8f\u304c\u9006\u306e\u305f\u3081\u3001\u5165\u308c\u66ff\u3048\u3066\u8868\u793a\u3057\u3066\u3044\u307e\u3059\u3002")
+
+    range_df = df[(df["period_key"] >= period_from) & (df["period_key"] <= period_to)].copy()
+    if range_df.empty:
+        st.info("\u9078\u629e\u671f\u9593\u306b\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    airport_totals = (
+        range_df.groupby(["airport_code", "airport_name"], as_index=False)["arrivals"]
+        .sum()
+        .sort_values("arrivals", ascending=False)
+    )
+    airport_options = airport_totals["airport_name"].astype(str).tolist()
+    default_airports = airport_options[: min(6, len(airport_options))]
+    selected_airports = st.multiselect(
+        "\u7a7a\u6e2f",
+        options=airport_options,
+        default=default_airports,
+        key="airport_volume_airports",
+    )
+    if not selected_airports:
+        st.info("\u7a7a\u6e2f\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002")
+        return
+
+    selected_df = range_df[range_df["airport_name"].isin(selected_airports)].copy()
+    if selected_df.empty:
+        st.info("\u9078\u629e\u3057\u305f\u7a7a\u6e2f\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        return
+
+    selected_df["period_key"] = selected_df["period_key"].astype(str)
+    if aggregate_mode == "\u56db\u534a\u671f":
+        selected_df["period_key"] = selected_df["period_key"].map(month_to_quarter_period_key)
+
+    chart_df = (
+        selected_df.groupby(["period_key", "airport_name"], as_index=False)["arrivals"]
+        .sum()
+        .copy()
+    )
+    ranking_df = (
+        selected_df.groupby(["airport_name"], as_index=False)["arrivals"]
+        .sum()
+        .sort_values("arrivals", ascending=False)
+    )
+
+    months_count = range_df["period_key"].nunique()
+    total_arrivals = float(selected_df["arrivals"].sum())
+    monthly_avg = total_arrivals / months_count if months_count > 0 else None
+
+    kpi_col1, kpi_col2 = st.columns(2)
+    kpi_col1.metric(
+        "\u671f\u9593\u5408\u8a08\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09",
+        format_metric_value(total_arrivals),
+    )
+    kpi_col2.metric(
+        "\u671f\u9593\u5e73\u5747\uff08\u6708\u6b21\uff09",
+        format_metric_value(monthly_avg, 1),
+    )
+
+    st.subheader(
+        "\u63a8\u79fb\uff08" + ("\u56db\u534a\u671f" if aggregate_mode == "\u56db\u534a\u671f" else "\u6708\u6b21") + "\uff09"
+    )
+    top_n = st.slider(
+        "TopN\uff08\u30c1\u30e3\u30fc\u30c8\u8868\u793a\u7a7a\u6e2f\u6570\uff09",
+        min_value=3,
+        max_value=12,
+        value=min(6, len(selected_airports)),
+        key="airport_volume_top_n",
+    )
+    chart_airports = set(ranking_df.head(top_n)["airport_name"].astype(str).tolist())
+    chart_view = chart_df[chart_df["airport_name"].isin(chart_airports)].copy()
+
+    if len(selected_airports) > top_n:
+        st.caption(
+            f"\u8868\u793a\u8ca0\u8377\u6291\u5236\u306e\u305f\u3081\u3001\u63a8\u79fb\u30c1\u30e3\u30fc\u30c8\u306f\u4e0a\u4f4d{top_n}\u7a7a\u6e2f\u306b\u9650\u5b9a\u3057\u3066\u3044\u307e\u3059\u3002"
+        )
+
+    if chart_view.empty:
+        st.info("\u63a8\u79fb\u30c1\u30e3\u30fc\u30c8\u7528\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+    else:
+        period_order = sorted(
+            chart_view["period_key"].astype(str).unique().tolist(),
+            key=parse_period_sort_key,
+        )
+        trend_chart = (
+            alt.Chart(chart_view)
+            .mark_line(point=True)
+            .encode(
+                x=alt.X(
+                    "period_key:N",
+                    sort=period_order,
+                    title="\u671f\u9593\uff08\u56db\u534a\u671f\uff09"
+                    if aggregate_mode == "\u56db\u534a\u671f"
+                    else "\u671f\u9593\uff08\u6708\u6b21\uff09",
+                ),
+                y=alt.Y("arrivals:Q", title="\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09"),
+                color=alt.Color("airport_name:N", title="\u7a7a\u6e2f"),
+                tooltip=[
+                    alt.Tooltip("period_key:N", title="\u671f\u9593"),
+                    alt.Tooltip("airport_name:N", title="\u7a7a\u6e2f"),
+                    alt.Tooltip("arrivals:Q", title="\u5165\u56fd\u8005\u6570", format=",.0f"),
+                ],
+            )
+            .properties(height=360)
+        )
+        st.altair_chart(trend_chart, use_container_width=True)
+
+    st.subheader("\u7a7a\u6e2f\u5225\u30e9\u30f3\u30ad\u30f3\u30b0")
+    ranking_top = ranking_df.head(top_n).copy()
+    if ranking_top.empty:
+        st.info("\u30e9\u30f3\u30ad\u30f3\u30b0\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+    else:
+        ranking_chart = (
+            alt.Chart(ranking_top)
+            .mark_bar()
+            .encode(
+                x=alt.X("arrivals:Q", title="\u671f\u9593\u5408\u8a08\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09"),
+                y=alt.Y("airport_name:N", sort="-x", title="\u7a7a\u6e2f"),
+                tooltip=[
+                    alt.Tooltip("airport_name:N", title="\u7a7a\u6e2f"),
+                    alt.Tooltip("arrivals:Q", title="\u5165\u56fd\u8005\u6570", format=",.0f"),
+                ],
+            )
+            .properties(height=360)
+        )
+        st.altair_chart(ranking_chart, use_container_width=True)
+
+    st.subheader("\u8868")
+    table_df = chart_df.copy()
+    table_df["_period_sort"] = table_df["period_key"].map(parse_period_sort_key)
+    table_df = (
+        table_df.sort_values(["_period_sort", "airport_name"], ascending=[True, True])
+        .drop(columns=["_period_sort"])
+        .reset_index(drop=True)
+    )
+    st.dataframe(
+        table_df[["period_key", "airport_name", "arrivals"]],
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    csv_data = table_df[["period_key", "airport_name", "arrivals"]].to_csv(index=False)
+    st.download_button(
+        "\u8868\u3092CSV\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9",
+        data=csv_data.encode("utf-8-sig"),
+        file_name=f"airport_arrivals_{period_from}_{period_to}.csv",
+        mime="text/csv",
+        key="airport_volume_csv_download",
+    )
+    st.caption(
+        "\u51fa\u5178\uff1ae-Stat\u300e\u51fa\u5165\u56fd\u7ba1\u7406\u7d71\u8a08\u300f\u7dcf\u62ec\uff08\u6e2f\u5225 \u51fa\u5165\u56fd\u8005\uff09"
+        "\uff08\u6708\u6b21Excel\u3092\u53d6\u5f97\u3057\u3066\u6574\u5f62\uff09"
+    )
+    st.caption(
+        "\u30c7\u30fc\u30bf\u306f\u6bce\u9031\u81ea\u52d5\u66f4\u65b0\u3067\u3059\u3002"
+        "\u53d6\u5f97\u5143\u30b5\u30a4\u30c8\u306e\u69cb\u9020\u5909\u66f4\u7b49\u306b\u3088\u308a"
+        "\u66f4\u65b0\u304c\u9045\u308c\u308b\u5834\u5408\u304c\u3042\u308a\u307e\u3059\u3002"
+    )
+
+
 def main() -> None:
     st.set_page_config(
         page_title="\u5e02\u5834\u7d71\u8a08\u30d3\u30e5\u30fc\u30a2",
@@ -1955,6 +2220,7 @@ def main() -> None:
                 DATASET_LABEL_TCD,
                 DATASET_LABEL_ICD,
                 DATASET_LABEL_TA,
+                DATASET_LABEL_AIRPORT_VOLUME,
             ],
             key="dataset_selector",
         )
@@ -1971,7 +2237,11 @@ def main() -> None:
         render_icd_view()
         return
 
-    render_ta_view()
+    if dataset_type == DATASET_LABEL_TA:
+        render_ta_view()
+        return
+
+    render_airport_volume_view()
 
 if __name__ == "__main__":
     main()

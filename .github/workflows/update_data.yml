@@ -29,6 +29,7 @@ jobs:
           python -m scripts.update_tcd_data
           python -m scripts.update_icd_data
           python -m scripts.update_ta_data
+          python -m scripts.update_airport_volume_data
 
       - name: Commit changes (if any)
         run: |

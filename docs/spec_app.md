@@ -144,3 +144,13 @@
   - 出典: 取得元統計名を明記する（例: 観光庁「○○調査」）。
   - 更新注記: `データは毎週自動更新です。取得元サイトの構造変更等により更新が遅れる場合があります。`
 - 一般向け画面には、`python -m ...` のような手動更新コマンドを表示しない。
+
+## Airport Volume View (MVP)
+- Sidebar option: `空港別入国者数（ボリューム）`
+- Main output:
+  - KPI: period total arrivals / monthly average
+  - Trend chart: monthly or quarterly aggregate
+  - Ranking chart: period total TopN airports
+  - Table: `period_key`, `airport_name`, `arrivals` + CSV download
+- Empty state:
+  - If `airport_arrivals_monthly` is missing, show a no-data message and keep app running.
