@@ -630,6 +630,61 @@ def build_facility_occupancy_fiscal_compare_chart(
     )
 
 
+def build_facility_occupancy_fiscal_type_compare_chart(
+    df: pd.DataFrame, fiscal_year: int, facility_types: list[str]
+) -> alt.Chart:
+    if df.empty or not facility_types:
+        return alt.Chart(
+            pd.DataFrame(columns=["fiscal_month_label", "facility_type", "occupancy_rate"])
+        )
+
+    work = add_year_month_columns(df[["ym", "facility_type", "occupancy_rate"]])
+    work["fiscal_year"] = work.apply(
+        lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
+        axis=1,
+    )
+    work["fiscal_month"] = work["month"].astype(int)
+    month_order = [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3]
+    month_order_labels = [f"{m:02d}" for m in month_order]
+    work["fiscal_month_label"] = work["fiscal_month"].map(lambda m: f"{m:02d}")
+    work = work[
+        (work["fiscal_year"] == int(fiscal_year))
+        & (work["facility_type"].isin(facility_types))
+    ].copy()
+
+    grouped = (
+        work.groupby(["facility_type", "fiscal_month_label"], as_index=False)[
+            "occupancy_rate"
+        ]
+        .mean()
+        .copy()
+    )
+    grouped["fiscal_year"] = int(fiscal_year)
+
+    return (
+        alt.Chart(grouped)
+        .mark_bar()
+        .encode(
+            x=alt.X("fiscal_month_label:N", title="月（年度）", sort=month_order_labels),
+            xOffset=alt.XOffset("facility_type:N", sort=facility_types),
+            y=alt.Y(
+                "occupancy_rate:Q",
+                title="客室稼働率（%）",
+                scale=alt.Scale(domain=[0, 100]),
+            ),
+            color=alt.Color(
+                "facility_type:N", title="宿泊施設種別", sort=facility_types
+            ),
+            tooltip=[
+                alt.Tooltip("fiscal_year:N", title="年度"),
+                alt.Tooltip("facility_type:N", title="宿泊施設種別"),
+                alt.Tooltip("fiscal_month_label:N", title="月"),
+                alt.Tooltip("occupancy_rate:Q", title="稼働率（%）", format=".1f"),
+            ],
+        )
+    )
+
+
 def render_stay_facility_occupancy_view(meta: dict) -> None:
     st.subheader("宿泊施設種別 客室稼働率")
     if meta and meta.get("facility_occupancy_rows"):
@@ -802,45 +857,87 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
     )
     st.altair_chart(line_chart, use_container_width=True)
 
-    fiscal_default_type = "計" if "計" in facility_options else facility_options[0]
-
     st.subheader("年度比較（4月～翌3月）")
-    fiscal_filter_col1, fiscal_filter_col2 = st.columns([3, 4])
-    with fiscal_filter_col1:
-        fiscal_facility_type = st.selectbox(
-            "宿泊施設種別（年度比較）",
-            options=facility_options,
-            index=facility_options.index(fiscal_default_type),
-            key="facility_occ_fiscal_type",
-        )
+    fiscal_compare_mode = st.radio(
+        "比較軸",
+        ["年度比較（種別固定）", "種別比較（年度固定）"],
+        horizontal=True,
+        key="facility_occ_fiscal_compare_mode",
+    )
 
-    fiscal_target_df_all = scope_df[
-        scope_df["facility_type"] == fiscal_facility_type
-    ].copy()
-    fiscal_all = add_year_month_columns(fiscal_target_df_all[["ym", "occupancy_rate"]])
-    fiscal_all["fiscal_year"] = fiscal_all.apply(
+    fiscal_all_scope = add_year_month_columns(scope_df[["ym"]].drop_duplicates().copy())
+    fiscal_all_scope["fiscal_year"] = fiscal_all_scope.apply(
         lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
         axis=1,
     )
-    fiscal_year_options = sorted(fiscal_all["fiscal_year"].astype(int).unique().tolist())
-    default_fiscal_years = (
-        fiscal_year_options[-4:] if len(fiscal_year_options) > 4 else fiscal_year_options
+    fiscal_year_options_scope = sorted(
+        fiscal_all_scope["fiscal_year"].astype(int).unique().tolist()
     )
 
-    with fiscal_filter_col2:
-        selected_fiscal_years = st.multiselect(
-            "年度",
-            options=fiscal_year_options,
-            default=default_fiscal_years,
-            key="facility_occ_fiscal_years",
+    if fiscal_compare_mode == "年度比較（種別固定）":
+        fiscal_default_type = "計" if "計" in facility_options else facility_options[0]
+        fiscal_filter_col1, fiscal_filter_col2 = st.columns([3, 4])
+        with fiscal_filter_col1:
+            fiscal_facility_type = st.selectbox(
+                "宿泊施設種別（年度比較）",
+                options=facility_options,
+                index=facility_options.index(fiscal_default_type),
+                key="facility_occ_fiscal_type",
+            )
+
+        fiscal_target_df_all = scope_df[
+            scope_df["facility_type"] == fiscal_facility_type
+        ].copy()
+        fiscal_all = add_year_month_columns(fiscal_target_df_all[["ym", "occupancy_rate"]])
+        fiscal_all["fiscal_year"] = fiscal_all.apply(
+            lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
+            axis=1,
         )
-    if not selected_fiscal_years:
-        st.info("年度を1つ以上選択してください。")
+        fiscal_year_options = sorted(
+            fiscal_all["fiscal_year"].astype(int).unique().tolist()
+        )
+        default_fiscal_years = (
+            fiscal_year_options[-4:] if len(fiscal_year_options) > 4 else fiscal_year_options
+        )
+
+        with fiscal_filter_col2:
+            selected_fiscal_years = st.multiselect(
+                "年度",
+                options=fiscal_year_options,
+                default=default_fiscal_years,
+                key="facility_occ_fiscal_years",
+            )
+        if not selected_fiscal_years:
+            st.info("年度を1つ以上選択してください。")
+        else:
+            fiscal_chart = build_facility_occupancy_fiscal_compare_chart(
+                fiscal_target_df_all, selected_fiscal_years
+            ).properties(height=380)
+            st.altair_chart(fiscal_chart, use_container_width=True)
     else:
-        fiscal_chart = build_facility_occupancy_fiscal_compare_chart(
-            fiscal_target_df_all, selected_fiscal_years
-        ).properties(height=380)
-        st.altair_chart(fiscal_chart, use_container_width=True)
+        fiscal_filter_col1, fiscal_filter_col2 = st.columns([3, 4])
+        with fiscal_filter_col1:
+            selected_fiscal_year = st.selectbox(
+                "年度（種別比較）",
+                options=fiscal_year_options_scope,
+                index=len(fiscal_year_options_scope) - 1,
+                key="facility_occ_fiscal_year_single",
+            )
+        with fiscal_filter_col2:
+            selected_compare_types = st.multiselect(
+                "宿泊施設種別（種別比較）",
+                options=facility_options,
+                default=facility_options,
+                key="facility_occ_fiscal_types_multi",
+            )
+
+        if not selected_compare_types:
+            st.info("宿泊施設種別を1つ以上選択してください。")
+        else:
+            fiscal_chart = build_facility_occupancy_fiscal_type_compare_chart(
+                scope_df, int(selected_fiscal_year), selected_compare_types
+            ).properties(height=380)
+            st.altair_chart(fiscal_chart, use_container_width=True)
 
     st.subheader("表")
     table_df = ranged_df[
