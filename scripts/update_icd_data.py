@@ -81,6 +81,12 @@ def save_meta(meta: dict) -> None:
     )
 
 
+def load_meta() -> dict:
+    if not META_PATH.exists():
+        return {}
+    return json.loads(META_PATH.read_text(encoding="utf-8"))
+
+
 def download_file(url: str, dst: Path) -> None:
     with requests.get(url, stream=True, timeout=120) as res:
         res.raise_for_status()
@@ -431,6 +437,10 @@ def main() -> int:
         tmp_excel = Path(td) / filename
         download_file(excel_url, tmp_excel)
         source_sha256 = sha256_file(tmp_excel)
+        old_meta = load_meta()
+        if old_meta.get("source_excel_sha256") == source_sha256:
+            print("No change: source Excel hash unchanged.")
+            return 0
 
         period_label = ""
         period_key = ""
