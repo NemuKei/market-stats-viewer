@@ -63,6 +63,12 @@ def save_meta(meta: dict) -> None:
     )
 
 
+def load_meta() -> dict:
+    if not META_PATH.exists():
+        return {}
+    return json.loads(META_PATH.read_text(encoding="utf-8"))
+
+
 def fetch_html(url: str) -> str:
     res = requests.get(url, timeout=60)
     res.raise_for_status()
@@ -267,11 +273,18 @@ def build_sqlite(df: pd.DataFrame, sqlite_path: Path) -> None:
         )
 
 
+def build_signature(excel_hashes: list[dict[str, str]]) -> str:
+    by_url = {item["excel_url"]: item["sha256"] for item in excel_hashes}
+    payload = "\n".join(f"{url}|{by_url[url]}" for url in sorted(by_url))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 def main() -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     index_html = fetch_html(TA_SOURCE_INDEX_URL)
     fiscal_pages = extract_fiscal_page_links(index_html, TA_SOURCE_INDEX_URL)
+    old_meta = load_meta()
 
     all_records: list[dict] = []
     processed_files: list[dict] = []
@@ -279,6 +292,8 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as td:
         tmp_dir = Path(td)
         file_counter = 0
+        fetched_excel_hashes: list[dict[str, str]] = []
+        fetched_excel_files: list[dict[str, str]] = []
 
         for page in fiscal_pages:
             page_url = page["url"]
@@ -295,44 +310,24 @@ def main() -> int:
                 or parse_fiscal_year(page_title)
                 or ""
             )
-            if not fiscal_year:
-                print(f"Skipped page (fiscal year unknown): {page_url}")
-                continue
 
             excel_links = extract_ta_excel_links(page_html, page_url)
             for link in excel_links:
-                period = parse_period_from_link_text(link["link_text"])
-                if period is None:
-                    print(f"Skipped link (period unknown): {link['link_text']}")
-                    continue
-
                 ext = Path(urlparse(link["url"]).path).suffix.lower() or ".xlsx"
                 local_path = tmp_dir / f"ta_{file_counter:04d}{ext}"
                 file_counter += 1
 
                 download_file(link["url"], local_path)
                 source_sha256 = sha256_file(local_path)
+                period = parse_period_from_link_text(link["link_text"]) or ""
 
-                if ext == ".xls":
-                    print(f"Skipped .xls file (unsupported for TA parser): {link['url']}")
-                    continue
-
-                try:
-                    parsed = parse_ta_excel_rows(
-                        path=local_path,
-                        fiscal_year=fiscal_year,
-                        period=period,
-                    )
-                except Exception as e:
-                    print(f"Skipped (parse failed): {link['url']} ({e})")
-                    continue
-
-                if not parsed:
-                    print(f"Skipped (no rows): {link['url']}")
-                    continue
-
-                all_records.extend(parsed)
-                processed_files.append(
+                fetched_excel_hashes.append(
+                    {
+                        "excel_url": link["url"],
+                        "sha256": source_sha256,
+                    }
+                )
+                fetched_excel_files.append(
                     {
                         "page_url": page_url,
                         "excel_url": link["url"],
@@ -340,13 +335,68 @@ def main() -> int:
                         "sha256": source_sha256,
                         "fiscal_year": fiscal_year,
                         "period": period,
-                        "rows": len(parsed),
+                        "ext": ext,
+                        "local_path": str(local_path),
                     }
                 )
-                print(
-                    f"Parsed TA file: fiscal_year={fiscal_year} period={period} "
-                    f"rows={len(parsed)}"
+
+        if not fetched_excel_hashes:
+            raise RuntimeError("No TA source Excel files were downloaded.")
+
+        signature = build_signature(fetched_excel_hashes)
+        if old_meta.get("signature") == signature:
+            print("No change: source Excel signature unchanged.")
+            return 0
+
+        for item in fetched_excel_files:
+            fiscal_year = item["fiscal_year"]
+            period = item["period"]
+            link_url = item["excel_url"]
+            ext = item["ext"]
+            local_path = Path(item["local_path"])
+            source_sha256 = item["sha256"]
+
+            if not fiscal_year:
+                print(f"Skipped page (fiscal year unknown): {item['page_url']}")
+                continue
+            if not period:
+                print(f"Skipped link (period unknown): {item['excel_link_text']}")
+                continue
+
+            if ext == ".xls":
+                print(f"Skipped .xls file (unsupported for TA parser): {link_url}")
+                continue
+
+            try:
+                parsed = parse_ta_excel_rows(
+                    path=local_path,
+                    fiscal_year=fiscal_year,
+                    period=period,
                 )
+            except Exception as e:
+                print(f"Skipped (parse failed): {link_url} ({e})")
+                continue
+
+            if not parsed:
+                print(f"Skipped (no rows): {link_url}")
+                continue
+
+            all_records.extend(parsed)
+            processed_files.append(
+                {
+                    "page_url": item["page_url"],
+                    "excel_url": link_url,
+                    "excel_link_text": item["excel_link_text"],
+                    "sha256": source_sha256,
+                    "fiscal_year": fiscal_year,
+                    "period": period,
+                    "rows": len(parsed),
+                }
+            )
+            print(
+                f"Parsed TA file: fiscal_year={fiscal_year} period={period} "
+                f"rows={len(parsed)}"
+            )
 
     if not all_records:
         raise RuntimeError("No TA rows were parsed from source pages.")
@@ -381,6 +431,7 @@ def main() -> int:
 
     meta = {
         "source_index_url": TA_SOURCE_INDEX_URL,
+        "signature": signature,
         "last_checked_at": now_utc_iso(),
         "processed_files": processed_files,
         "row_count": int(len(df)),
