@@ -20,8 +20,8 @@
 - 仕様変更/挙動確認: 対象領域の `spec_*.md` または仕様ドキュメント
 - 現在地の確認: `STATUS.md` 相当
 - 判断理由の確認: `DECISIONS.md` 相当
-- 運用計画/タスク確認: `tasks_backlog.md` 相当
 - 実装規約の確認: `README.md` 相当
+- リポジトリ固有の運用計画: `Local Extension` で定義されたドキュメントのみ参照
 
 ## Skills (Only When Needed)
 - `context_writeback`: 常設コンテキストへの反映が必要なときだけ使う。条件判定と反映手順は `.agents/skills/context_writeback/SKILL.md` を参照。
@@ -44,7 +44,7 @@
 未解決なら `DECISIONS` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
 
 ## Constant Context Rules
-常設コンテキストの反映条件と更新手順は `.agents/skills/context_writeback/SKILL.md` を参照。
+常設コンテキストの追記手順と更新先の選択は `.agents/skills/context_writeback/SKILL.md` を参照。
 この節では「推測禁止」「条件を満たすときのみ反映」の方針を維持する。
 
 ## Docs Governance
@@ -62,6 +62,27 @@
 
 ## Local Extension (Optional)
 この節はリポジトリ固有ルールを置く任意領域。未記載でも運用可能。
+
+### 運用計画の参照先
+- 運用計画や次アクションの確認は `docs/context/STATUS.md` を参照する。
+
+## Owner Profile (Stable Context)
+- Language: 日本語
+- Domain baseline: 対象ドメインの実務知識あり
+- Technical baseline: 非エンジニア。コード全文より「何を/なぜ/影響範囲」を先に把握したい
+- Communication preference: 結論先出し + 次アクション明確 + 専門語は必要最小限
+- Explanation depth: 実装意図と変更点の説明を重視
+
+更新ルール:
+- 本人が明示した内容のみ更新する（推測禁止）
+- 同傾向が複数セッションで再現したときに固定化する
+- 更新時は `DECISIONS.md` 相当に `D-YYYYMM-xxx` で1件記録する
+
+## Delivery Rule
+- GUI/UXに影響する実装を行った場合、最終回答に `GUIで確認してほしい箇所` を必ず明示する。
+- `GUIで確認してほしい箇所` には、画面名・操作手順・期待結果を最低1件以上含める。
+- GUI確認が不要な変更（内部処理/ドキュメントのみ等）の場合は、最終回答に `GUI確認不要` と理由を明記する。
+- ユーザーが停止を明示しない限り、変更作業は `commit` と `git push origin <current-branch>` までを原則セットで完了する（認証/権限エラー時は失敗理由と再実行コマンドを共有する）。
 
 ## Security Baseline
 - APIキー、token、cookie、資格情報、個人情報をコミットしない。
