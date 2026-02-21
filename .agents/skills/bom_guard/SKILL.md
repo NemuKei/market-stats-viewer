@@ -1,46 +1,36 @@
 ---
 name: bom-guard
-description: Prevent UTF-8 BOM issues on Windows PowerShell 5.1. Use when writing or rewriting text files via shell commands and you need guaranteed UTF-8 without BOM.
+description: UTF-8 BOM の混入を防止・除去する。Windows 環境でのファイル書込時に使う。
 ---
 
 # Purpose
-Prevent accidental UTF-8 BOM insertion and provide a deterministic no-BOM write workflow.
+UTF-8 BOM (`EF BB BF`) の混入を防止し、BOM 起因のパースエラーを回避する。
 
 # When to use / When NOT to use
 - When to use:
-  - Writing text files from PowerShell commands
-  - Repairing files that may start with BOM (`EF BB BF`)
-  - Avoiding parser failures caused by BOM in config/rule files
+  - シェルコマンドでテキストファイルを書き込むとき
+  - BOM 混入の疑いがあるファイルを修復するとき
 - When NOT to use:
-  - Binary files
-  - Files that explicitly require BOM
-
-# Inputs
-- Target file path
-- Text content or existing file to normalize
-
-# Outputs
-- UTF-8 (no BOM) file
-- Optional BOM-removal result message
+  - Claude Code の Edit / Write ツールで書き込むとき（BOM は付かない）
+  - バイナリファイル、または BOM が明示的に必要なファイル
 
 # Procedure
-1. Prefer `apply_patch` for in-repo edits.
-2. If shell write is required, use `scripts/write_utf8_nobom.ps1`.
-3. Verify header bytes via `Format-Hex | Select-Object -First 1` when needed.
-4. If BOM exists (`EF BB BF`), run `scripts/strip_utf8_bom.ps1`.
+1. ファイル編集は Edit / Write ツールを優先する（BOM 問題を回避できる）。
+2. シェル経由の書込が必要な場合は `scripts/write_utf8_nobom.ps1` を使う。
+3. BOM 混入の確認が必要なら `Format-Hex -Path <file> | Select-Object -First 1` で先頭バイトを検査。
+4. BOM が検出された場合は `scripts/strip_utf8_bom.ps1` で除去する。
 
 # Commands
 ```powershell
-# Write text as UTF-8 without BOM
-powershell -ExecutionPolicy Bypass -File scripts/write_utf8_nobom.ps1 -Path docs/example.md -Content "hello"
+# UTF-8 (no BOM) で書込
+powershell -ExecutionPolicy Bypass -File scripts/write_utf8_nobom.ps1 -Path <file> -Content "<text>"
 
-# Strip BOM if present
-powershell -ExecutionPolicy Bypass -File scripts/strip_utf8_bom.ps1 -Path docs/example.md
+# BOM 除去
+powershell -ExecutionPolicy Bypass -File scripts/strip_utf8_bom.ps1 -Path <file>
 
-# Check first bytes
-Format-Hex -Path docs/example.md | Select-Object -First 1
+# 先頭バイト確認
+Format-Hex -Path <file> | Select-Object -First 1
 ```
 
 # Validation
-- `Format-Hex | Select-Object -First 1` does not show `EF BB BF`.
-- File content is preserved after normalization.
+- 先頭バイトに `EF BB BF` がないこと。
