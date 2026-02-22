@@ -123,9 +123,17 @@ def get_source(source_type: str, session: requests.Session) -> EventSource | Non
 # Signature for no-op detection
 # ---------------------------------------------------------------------------
 def compute_venue_signature(events: list[EventRecord]) -> str:
-    """Compute a SHA-256 signature from sorted event data hashes."""
-    hashes = sorted(e.data_hash for e in events)
-    payload = json.dumps(hashes, ensure_ascii=False)
+    """Compute a SHA-256 signature from unique event_uid → data_hash pairs.
+
+    Using a uid-keyed dict makes the signature immune to duplicate records
+    whose count may fluctuate between fetches (e.g. Kyocera Dome month
+    boundary overlap).  The signature still changes when the actual event
+    set changes (uid added/removed or data_hash updated).
+    """
+    uid_hash: dict[str, str] = {}
+    for e in events:
+        uid_hash[e.event_uid] = e.data_hash
+    payload = json.dumps(sorted(uid_hash.items()), ensure_ascii=False)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
@@ -322,7 +330,8 @@ def main() -> None:
                 continue
 
             events = source.fetch_events(venue)
-            logger.info("  fetched %d event(s)", len(events))
+            unique_uids = len({e.event_uid for e in events})
+            logger.info("  fetched %d event(s) (%d unique)", len(events), unique_uids)
 
             # Apply date window filter
             events = filter_events_by_date(events)
