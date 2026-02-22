@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from abc import ABC, abstractmethod
 
 import requests
@@ -44,10 +45,24 @@ def compute_data_hash(rec: EventRecord) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
-def compute_event_uid(venue_id: str, key: str | None, title: str, start_date: str) -> str:
-    """Generate a stable event UID."""
+def compute_event_uid(
+    venue_id: str, key: str | None, title: str, start_date: str,
+    *, start_time: str | None = None, url: str | None = None,
+) -> str:
+    """Generate a stable event UID.
+
+    When *key* (source_event_key / href / guid) is available, it takes priority.
+    Fallback hashes include start_time and url to avoid collisions on
+    same-day, same-title events (e.g. matinee / evening shows).
+    Backward-compatible: when both start_time and url are empty the hash
+    matches the legacy format.
+    """
     if key:
         return f"{venue_id}:{key}"
-    raw = f"{venue_id}:{title}:{start_date}"
+    if start_time or url:
+        title_norm = re.sub(r"\s+", " ", title).strip()
+        raw = f"{venue_id}|{title_norm}|{start_date}|{start_time or ''}|{url or ''}"
+    else:
+        raw = f"{venue_id}:{title}:{start_date}"
     h = hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16]
     return f"{venue_id}:h:{h}"
