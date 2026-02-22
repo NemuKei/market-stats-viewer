@@ -72,3 +72,17 @@
 ## Addendum (2026-02-18) Stay Facility Occupancy Scope Expansion
 - Sheet `4-2` parsing now keeps both nationwide (`00`) and prefecture rows (`01-47`).
 - Output table `stay_facility_occupancy` stores `pref_code` and `pref_name`.
+
+## Addendum (2026-02-22) Event Hub
+- Script: `python -m scripts.update_events_data`
+- Flow:
+  1. `data/venue_registry.csv` を読み、`is_enabled=1` の会場を処理
+  2. 会場ごとに `source_type` に対応するプラグインでイベント取得
+  3. 会場署名（sha256）で no-op 判定 → 変化なしの会場は DB 更新スキップ
+  4. 変化ありの場合のみ events UPSERT（`data_hash` 差分のみ更新）
+  5. `data/events.sqlite` に出力
+- Rate limit: 会場間 1〜3 秒 sleep
+- 失敗隔離: 会場単位 try/except、1会場失敗で全体を落とさない
+- 全 enabled 会場が全滅した場合のみ exit code 1
+- 会場追加手順: `data/venue_registry.csv` に1行追加 → 対応する source strategy を実装
+- CLI options: `--limit N`, `--only venue1,venue2`, `--verbose`

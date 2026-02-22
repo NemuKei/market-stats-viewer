@@ -1683,6 +1683,9 @@ DATASET_LABEL_TCD = "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8ab
 DATASET_LABEL_ICD = "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
 DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
 DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09"
+DATASET_LABEL_EVENTS = "全国イベント情報（ハブ）"
+
+EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 
 ICD_PURPOSE_LABELS = {
     "all": "\u5168\u76ee\u7684",
@@ -2661,6 +2664,195 @@ def render_airport_volume_view() -> None:
     )
 
 
+# ---------------------------------------------------------------------------
+# Events Hub
+# ---------------------------------------------------------------------------
+@st.cache_data(show_spinner=False)
+def load_events_data() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Load events + venues from events.sqlite. Returns (df_events, df_venues)."""
+    if not EVENTS_DB_PATH.exists():
+        return pd.DataFrame(), pd.DataFrame()
+    try:
+        with sqlite3.connect(str(EVENTS_DB_PATH)) as conn:
+            df_events = pd.read_sql_query("SELECT * FROM events", conn)
+            df_venues = pd.read_sql_query("SELECT * FROM venues", conn)
+        return df_events, df_venues
+    except Exception:
+        return pd.DataFrame(), pd.DataFrame()
+
+
+def render_events_view() -> None:
+    st.title("全国イベント情報（ハブ）")
+
+    df_events, df_venues = load_events_data()
+    if df_events.empty:
+        st.error(
+            "イベントデータがありません。"
+            "`uv run python -m scripts.update_events_data` を実行してください。"
+        )
+        return
+
+    # Merge venue info
+    df = df_events.merge(
+        df_venues[["venue_id", "venue_name", "pref_code", "pref_name", "capacity"]].rename(
+            columns={"capacity": "venue_capacity"}
+        ),
+        on="venue_id",
+        how="left",
+    )
+    df["display_capacity"] = df["capacity"].fillna(df["venue_capacity"])
+    df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
+
+    # --- Filters ---
+    from datetime import date as dt_date, timedelta
+
+    today = dt_date.today()
+    col_f1, col_f2 = st.columns(2)
+    with col_f1:
+        date_from = st.date_input(
+            "開始日", value=today, key="events_date_from"
+        )
+    with col_f2:
+        date_to = st.date_input(
+            "終了日", value=today + timedelta(days=180), key="events_date_to"
+        )
+    date_from_str = str(date_from)
+    date_to_str = str(date_to)
+
+    # Pref filter
+    pref_options = sorted(df["pref_name"].dropna().unique().tolist())
+    selected_prefs = st.multiselect("都道府県", pref_options, key="events_pref")
+
+    # Venue filter (narrowed by pref)
+    venue_pool = df.copy()
+    if selected_prefs:
+        venue_pool = venue_pool[venue_pool["pref_name"].isin(selected_prefs)]
+    venue_options = sorted(venue_pool["venue_name"].dropna().unique().tolist())
+    selected_venues = st.multiselect("会場", venue_options, key="events_venue")
+
+    # Keyword
+    keyword = st.text_input("キーワード（タイトル/出演者/説明）", key="events_keyword")
+
+    # Status
+    include_cancelled = st.checkbox("cancelled/postponed を含む", value=False, key="events_incl_cancel")
+
+    # --- Apply filters ---
+    mask = (df["start_date"] >= date_from_str) & (df["start_date"] <= date_to_str)
+    if selected_prefs:
+        mask &= df["pref_name"].isin(selected_prefs)
+    if selected_venues:
+        mask &= df["venue_name"].isin(selected_venues)
+    if keyword:
+        kw_lower = keyword.lower()
+        kw_mask = (
+            df["title"].str.lower().str.contains(kw_lower, na=False)
+            | df["performers"].fillna("").str.lower().str.contains(kw_lower, na=False)
+            | df["description"].fillna("").str.lower().str.contains(kw_lower, na=False)
+        )
+        mask &= kw_mask
+    if not include_cancelled:
+        mask &= df["status"].isin(["scheduled", "unknown"])
+    filtered = df[mask].copy().sort_values("start_date").reset_index(drop=True)
+
+    st.markdown(f"**{len(filtered)}** 件のイベント")
+
+    # --- Table ---
+    display_cols = [
+        "start_date", "start_time", "venue_name", "pref_name",
+        "title", "status", "display_capacity", "url",
+    ]
+    display_rename = {
+        "start_date": "日付",
+        "start_time": "開始時間",
+        "venue_name": "会場",
+        "pref_name": "都道府県",
+        "title": "タイトル",
+        "status": "ステータス",
+        "display_capacity": "キャパシティ",
+        "url": "URL",
+    }
+    table_df = filtered[display_cols].rename(columns=display_rename)
+    st.dataframe(
+        table_df,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "URL": st.column_config.LinkColumn("URL", display_text="リンク"),
+        },
+    )
+
+    # --- Chart: Event intensity ---
+    st.subheader("イベント強度（日別）")
+    if not filtered.empty:
+        chart_df = filtered.copy()
+        chart_df["display_capacity"] = pd.to_numeric(
+            chart_df["display_capacity"], errors="coerce"
+        ).fillna(0).astype(int)
+        daily = (
+            chart_df.groupby("start_date")
+            .agg(event_count=("event_uid", "count"), total_capacity=("display_capacity", "sum"))
+            .reset_index()
+        )
+        daily.columns = ["日付", "イベント件数", "合計キャパシティ"]
+
+        base = alt.Chart(daily).encode(
+            x=alt.X("日付:T", title="日付"),
+        )
+        bars = base.mark_bar(opacity=0.6).encode(
+            y=alt.Y("合計キャパシティ:Q", title="合計キャパシティ"),
+            tooltip=["日付:T", "イベント件数:Q", "合計キャパシティ:Q"],
+        )
+        line = base.mark_line(color="red", strokeWidth=2).encode(
+            y=alt.Y("イベント件数:Q", title="イベント件数"),
+        )
+        chart = alt.layer(bars, line).resolve_scale(y="independent").properties(height=400)
+        st.altair_chart(chart, use_container_width=True)
+    else:
+        st.info("表示できるイベントがありません。")
+
+    # --- Export ---
+    st.subheader("エクスポート")
+    export_cols = [
+        "event_uid", "venue_id", "venue_name", "pref_code", "pref_name",
+        "start_date", "start_time", "end_date", "end_time", "all_day",
+        "title", "status", "display_capacity", "url", "source_type",
+        "source_url", "updated_at_utc",
+    ]
+    export_rename = {"display_capacity": "capacity"}
+    export_df = filtered[[c for c in export_cols if c in filtered.columns]].rename(
+        columns=export_rename
+    )
+
+    col_dl1, col_dl2 = st.columns(2)
+    with col_dl1:
+        csv_data = export_df.to_csv(index=False)
+        st.download_button(
+            "CSVダウンロード",
+            data=csv_data.encode("utf-8-sig"),
+            file_name=f"events_{date_from_str}_{date_to_str}.csv",
+            mime="text/csv",
+            key="events_csv_dl",
+            use_container_width=True,
+        )
+    with col_dl2:
+        buf = io.BytesIO()
+        with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+            export_df.to_excel(writer, index=False, sheet_name="events")
+        st.download_button(
+            "Excelダウンロード",
+            data=buf.getvalue(),
+            file_name=f"events_{date_from_str}_{date_to_str}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key="events_excel_dl",
+            use_container_width=True,
+        )
+
+    st.caption(
+        "データは毎週自動更新です。"
+        "取得元サイトの構造変更等により更新が遅れる場合があります。"
+    )
+
+
 def main() -> None:
     st.set_page_config(
         page_title="\u5e02\u5834\u7d71\u8a08\u30d3\u30e5\u30fc\u30a2",
@@ -2687,6 +2879,7 @@ def main() -> None:
                 DATASET_LABEL_ICD,
                 DATASET_LABEL_TA,
                 DATASET_LABEL_AIRPORT_VOLUME,
+                DATASET_LABEL_EVENTS,
             ],
             key="dataset_selector",
         )
@@ -2705,6 +2898,10 @@ def main() -> None:
 
     if dataset_type == DATASET_LABEL_TA:
         render_ta_view()
+        return
+
+    if dataset_type == DATASET_LABEL_EVENTS:
+        render_events_view()
         return
 
     render_airport_volume_view()

@@ -32,6 +32,7 @@ jobs:
           uv run python -m scripts.update_icd_data
           uv run python -m scripts.update_ta_data
           uv run python -m scripts.update_airport_volume_data
+          uv run python -m scripts.update_events_data
 
       - name: Commit changes (if any)
         run: |

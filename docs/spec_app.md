@@ -174,3 +174,19 @@
 - グラフを追加:
   - 時系列（指定期間）
   - 年度比較（4月～翌3月、年度マルチ選択）
+
+## 追補（2026-02-22）全国イベント情報（ハブ）
+- 統計の種類セレクタに「全国イベント情報（ハブ）」を追加
+- 入力データ: `data/events.sqlite`（venues + events テーブル）
+- フィルタ:
+  - 期間（開始日/終了日、デフォルト: 今日〜+180日）
+  - 都道府県（複数選択）
+  - 会場（複数選択、都道府県フィルタ後に候補を絞る）
+  - キーワード（title/performers/description 部分一致）
+  - ステータス（cancelled/postponed 含むかのトグル）
+- 一覧テーブル: 日付, 開始時間, 会場, 都道府県, タイトル, ステータス, キャパシティ, URL
+- 集計チャート: 日別のイベント件数 + 合計キャパシティ（Altair、棒+折れ線の2軸）
+- エクスポート: CSV（UTF-8-SIG）/ Excel
+  - 固定スキーマ: event_uid, venue_id, venue_name, pref_code, pref_name,
+    start_date, start_time, end_date, end_time, all_day, title, status,
+    capacity, url, source_type, source_url, updated_at_utc
