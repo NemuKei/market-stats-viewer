@@ -15,8 +15,9 @@ import logging
 import sqlite3
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 
@@ -126,6 +127,42 @@ def compute_venue_signature(events: list[EventRecord]) -> str:
     hashes = sorted(e.data_hash for e in events)
     payload = json.dumps(hashes, ensure_ascii=False)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+# Date window for filtering fetched events
+DATE_WINDOW_PAST_DAYS = 30
+DATE_WINDOW_FUTURE_DAYS = 365
+
+
+def filter_events_by_date(events: list[EventRecord]) -> list[EventRecord]:
+    """Filter events to date window: today-30 to today+365."""
+    today = date.today()
+    earliest = (today - timedelta(days=DATE_WINDOW_PAST_DAYS)).isoformat()
+    latest = (today + timedelta(days=DATE_WINDOW_FUTURE_DAYS)).isoformat()
+    return [e for e in events if earliest <= e.start_date <= latest]
+
+
+class DomainThrottle:
+    """Per-domain rate limiter: minimum interval between requests to same netloc."""
+
+    def __init__(self, min_interval: float = 3.0, default_interval: float = 1.0):
+        self._last_ts: dict[str, float] = {}
+        self._min_interval = min_interval
+        self._default_interval = default_interval
+
+    def wait(self, url: str) -> None:
+        domain = urlparse(url).netloc
+        now = time.monotonic()
+        last = self._last_ts.get(domain)
+        if last is not None:
+            elapsed = now - last
+            if elapsed < self._min_interval:
+                time.sleep(self._min_interval - elapsed)
+        else:
+            # Different domain: short pause
+            if self._last_ts:
+                time.sleep(self._default_interval)
+        self._last_ts[domain] = time.monotonic()
 
 
 # ---------------------------------------------------------------------------
@@ -257,19 +294,12 @@ def main() -> None:
     fail_count = 0
     total_events = 0
     total_changed = 0
-    prev_domain = ""
+    throttle = DomainThrottle(min_interval=3.0, default_interval=1.0)
 
     for venue in targets:
         logger.info("--- %s (%s) ---", venue.venue_id, venue.venue_name)
         try:
-            # Rate limit: extra sleep for same domain
-            from urllib.parse import urlparse
-            domain = urlparse(venue.source_url).netloc
-            if domain == prev_domain:
-                time.sleep(3)
-            else:
-                time.sleep(1)
-            prev_domain = domain
+            throttle.wait(venue.source_url)
 
             source = get_source(venue.source_type, session)
             if source is None:
@@ -279,6 +309,10 @@ def main() -> None:
 
             events = source.fetch_events(venue)
             logger.info("  fetched %d event(s)", len(events))
+
+            # Apply date window filter
+            events = filter_events_by_date(events)
+            logger.info("  after date filter: %d event(s)", len(events))
             total_events += len(events)
 
             if not events:
