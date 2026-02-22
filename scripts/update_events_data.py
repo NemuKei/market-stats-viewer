@@ -165,6 +165,21 @@ class DomainThrottle:
         self._last_ts[domain] = time.monotonic()
 
 
+class ThrottledSession:
+    """Wraps requests.Session to apply DomainThrottle on every .get() call."""
+
+    def __init__(self, session: requests.Session, throttle: DomainThrottle):
+        self._session = session
+        self._throttle = throttle
+
+    def get(self, url: str, **kwargs):
+        self._throttle.wait(url)
+        return self._session.get(url, **kwargs)
+
+    def __getattr__(self, name):
+        return getattr(self._session, name)
+
+
 # ---------------------------------------------------------------------------
 # DB operations
 # ---------------------------------------------------------------------------
@@ -285,8 +300,10 @@ def main() -> None:
 
     logger.info("Processing %d venue(s)...", len(targets))
 
-    session = requests.Session()
-    session.headers.update({"User-Agent": USER_AGENT})
+    raw_session = requests.Session()
+    raw_session.headers.update({"User-Agent": USER_AGENT})
+    throttle = DomainThrottle(min_interval=3.0, default_interval=1.0)
+    session = ThrottledSession(raw_session, throttle)
 
     conn = init_db(EVENTS_DB_PATH)
 
@@ -294,13 +311,10 @@ def main() -> None:
     fail_count = 0
     total_events = 0
     total_changed = 0
-    throttle = DomainThrottle(min_interval=3.0, default_interval=1.0)
 
     for venue in targets:
         logger.info("--- %s (%s) ---", venue.venue_id, venue.venue_name)
         try:
-            throttle.wait(venue.source_url)
-
             source = get_source(venue.source_type, session)
             if source is None:
                 logger.warning("No plugin for source_type=%s", venue.source_type)
@@ -316,7 +330,16 @@ def main() -> None:
             total_events += len(events)
 
             if not events:
-                # Still upsert venue record (to keep registry in sync)
+                # Skip DB write if signature is already empty (no-op)
+                cur = conn.execute(
+                    "SELECT last_signature FROM venues WHERE venue_id = ?",
+                    (venue.venue_id,),
+                )
+                row = cur.fetchone()
+                if row and row[0] == "":
+                    logger.info("  no-op: still empty")
+                    success_count += 1
+                    continue
                 upsert_venue(conn, venue, "")
                 conn.commit()
                 success_count += 1

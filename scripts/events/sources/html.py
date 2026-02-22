@@ -105,7 +105,8 @@ class _YokohamaArenaJson(_BaseStrategy):
                     source_event_key=source_key,
                 )
                 rec.event_uid = compute_event_uid(
-                    venue.venue_id, source_key, title, start_date
+                    venue.venue_id, source_key, title, start_date,
+                    start_time=start_time, url=event_url,
                 )
                 rec.data_hash = compute_data_hash(rec)
                 events.append(rec)
@@ -171,7 +172,8 @@ class _TifCalendar(_BaseStrategy):
                     source_event_key=source_key,
                 )
                 rec.event_uid = compute_event_uid(
-                    venue.venue_id, source_key, title, current_date
+                    venue.venue_id, source_key, title, current_date,
+                    url=event_url,
                 )
                 rec.data_hash = compute_data_hash(rec)
                 events.append(rec)
@@ -248,7 +250,10 @@ class _ZeppSchedule(_BaseStrategy):
             if not event_url.startswith("http"):
                 event_url = f"https://www.zepp.co.jp{href}"
             source_key = href
-            uid = compute_event_uid(venue.venue_id, source_key, title, date_str)
+            uid = compute_event_uid(
+                venue.venue_id, source_key, title, date_str,
+                start_time=start_time, url=event_url,
+            )
             if uid in seen_uids:
                 continue
             seen_uids.add(uid)
@@ -342,7 +347,10 @@ class _SaitamaArenaSchedule(_BaseStrategy):
             if not event_url.startswith("http"):
                 event_url = f"https://www.saitama-arena.co.jp{href}"
             source_key = href
-            uid = compute_event_uid(venue.venue_id, source_key, title, start_date)
+            uid = compute_event_uid(
+                venue.venue_id, source_key, title, start_date,
+                start_time=start_time, url=event_url,
+            )
             if uid in seen_uids:
                 continue
             seen_uids.add(uid)
@@ -432,7 +440,10 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     # Extract times from surrounding text
                     row_text = detail_td.get_text(" ", strip=True)
                     start_time = self._extract_time(row_text)
-                    uid = compute_event_uid(venue.venue_id, source_key, title, start_date)
+                    uid = compute_event_uid(
+                        venue.venue_id, source_key, title, start_date,
+                        start_time=start_time, url=event_url,
+                    )
                     if uid in seen_uids:
                         continue
                     seen_uids.add(uid)
@@ -463,7 +474,10 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     continue
                 title = re.sub(r"\s+", " ", text).strip()
                 start_time = self._extract_time(title)
-                uid = compute_event_uid(venue.venue_id, None, title, start_date)
+                uid = compute_event_uid(
+                    venue.venue_id, None, title, start_date,
+                    start_time=start_time,
+                )
                 if uid in seen_uids:
                     continue
                 seen_uids.add(uid)
@@ -559,7 +573,10 @@ class _VantelinDomeSchedule(_BaseStrategy):
                     if not event_url.startswith("http"):
                         event_url = f"https://www.nagoya-dome.co.jp{href}"
                     source_key = href
-                uid = compute_event_uid(venue.venue_id, source_key, title, start_date)
+                uid = compute_event_uid(
+                    venue.venue_id, source_key, title, start_date,
+                    start_time=start_time, url=event_url,
+                )
                 if uid in seen_uids:
                     continue
                 seen_uids.add(uid)
@@ -699,7 +716,10 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 tm = re.search(r"(?:開場時間|開場)[：:]\s*(\d{1,2}:\d{2})", section_text)
                 if tm:
                     start_time = _normalise_time(tm.group(1))
-            uid = compute_event_uid(venue.venue_id, source_key, title, start_date)
+            uid = compute_event_uid(
+                venue.venue_id, source_key, title, start_date,
+                start_time=start_time, url=event_url,
+            )
             if uid in seen_uids:
                 continue
             seen_uids.add(uid)
@@ -776,7 +796,10 @@ class _BellunaDomeSchedule(_BaseStrategy):
                 tm = re.search(r"(\d{1,2}:\d{2})\s*(?:開始|試合)", context)
                 if tm:
                     start_time = _normalise_time(tm.group(1))
-            uid = compute_event_uid(venue.venue_id, source_key, title, start_date)
+            uid = compute_event_uid(
+                venue.venue_id, source_key, title, start_date,
+                start_time=start_time, url=event_url,
+            )
             if uid in seen_uids:
                 continue
             seen_uids.add(uid)
