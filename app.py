@@ -2871,18 +2871,49 @@ def main() -> None:
         st.caption(
             "\u30b5\u30fc\u30d3\u30b9\u8a73\u7d30\u30fb\u304a\u554f\u3044\u5408\u308f\u305b\u306f\u3053\u3061\u3089"
         )
-        dataset_type = st.radio(
-            "\u7d71\u8a08\u306e\u7a2e\u985e",
-            [
-                DATASET_LABEL_STAY,
-                DATASET_LABEL_TCD,
-                DATASET_LABEL_ICD,
-                DATASET_LABEL_TA,
-                DATASET_LABEL_AIRPORT_VOLUME,
-                DATASET_LABEL_EVENTS,
-            ],
-            key="dataset_selector",
+        # --- 統計データ / 参考情報 の排他 radio ---
+        _STATS_OPTIONS = [
+            DATASET_LABEL_STAY,
+            DATASET_LABEL_TCD,
+            DATASET_LABEL_ICD,
+            DATASET_LABEL_TA,
+            DATASET_LABEL_AIRPORT_VOLUME,
+        ]
+        _REF_OPTIONS = [
+            DATASET_LABEL_EVENTS,
+        ]
+
+        if "_active_dataset" not in st.session_state:
+            st.session_state["_active_dataset"] = _STATS_OPTIONS[0]
+
+        active = st.session_state["_active_dataset"]
+        _is_ref = active in _REF_OPTIONS
+
+        def _on_stats_change():
+            st.session_state["_active_dataset"] = st.session_state["_stats_sel"]
+            st.session_state.pop("_ref_sel", None)
+
+        def _on_ref_change():
+            st.session_state["_active_dataset"] = st.session_state["_ref_sel"]
+            st.session_state.pop("_stats_sel", None)
+
+        st.radio(
+            "統計データ",
+            _STATS_OPTIONS,
+            index=None if _is_ref else _STATS_OPTIONS.index(active),
+            key="_stats_sel",
+            on_change=_on_stats_change,
         )
+        st.markdown("---")
+        st.radio(
+            "参考情報",
+            _REF_OPTIONS,
+            index=_REF_OPTIONS.index(active) if _is_ref else None,
+            key="_ref_sel",
+            on_change=_on_ref_change,
+        )
+
+        dataset_type = st.session_state["_active_dataset"]
 
     if dataset_type == DATASET_LABEL_STAY:
         render_stay_stats_view()
