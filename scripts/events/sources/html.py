@@ -591,40 +591,77 @@ class _VantelinDomeSchedule(_BaseStrategy):
 # ---------------------------------------------------------------------------
 @_register("kyocera_dome_schedule")
 class _KyoceraDomeSchedule(_BaseStrategy):
-    """Parse Kyocera Dome Osaka event schedule sections."""
+    """Parse Kyocera Dome Osaka event schedule.
+
+    Fetches current month + months_ahead pages via query params:
+        /schedule/?monthId=MM&yearId=YYYY
+    Each page has nested <section> blocks; wrapper sections (h2 = "イベント詳細"
+    or "イベントスケジュール") are skipped. Individual event sections contain
+    h2/h3 title + date in YYYY年MM月DD日 format + optional times.
+    """
+
+    # Wrapper section titles to skip (these contain all events, not one event)
+    _SKIP_TITLES = {"イベント詳細", "イベントスケジュール", "SCHEDULE", "DETAIL"}
 
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
-        resp = session.get(venue.source_url, timeout=30)
-        resp.raise_for_status()
-        resp.encoding = resp.apparent_encoding or "utf-8"
-        soup = BeautifulSoup(resp.text, "html.parser")
+        months_ahead = int(config.get("months_ahead", 4))
+        today = date.today()
         events: list[EventRecord] = []
         seen_uids: set[str] = set()
-        # Structure: <section> > <h2>Title</h2> + <li class="date">日時 2026年02月01日（日）...</li>
-        for section in soup.find_all("section"):
-            h2 = section.find("h2")
-            if not h2:
+
+        for offset in range(months_ahead + 1):
+            d = today.replace(day=1) + timedelta(days=32 * offset)
+            d = d.replace(day=1)
+            month_url = (
+                f"{venue.source_url}?monthId={d.month:02d}&yearId={d.year}"
+            )
+            try:
+                resp = session.get(month_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning(
+                        "kyocera_dome: %s returned %s", month_url, resp.status_code
+                    )
+                    continue
+            except Exception:
+                logger.warning("kyocera_dome: failed to fetch %s", month_url)
                 continue
-            title = h2.get_text(strip=True)
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            events.extend(
+                self._parse_page(venue, soup, month_url, seen_uids)
+            )
+
+        if not events:
+            logger.warning(
+                "kyocera_dome: 0 events from %s (months 0..%d). "
+                "HTML structure may have changed.",
+                venue.source_url, months_ahead,
+            )
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        for section in soup.find_all("section"):
+            heading = section.find(["h2", "h3"])
+            if not heading:
+                continue
+            title = heading.get_text(strip=True)
             if not title:
                 continue
-            # Link in h2
-            event_url = None
-            source_key = None
-            a_tag = h2.find("a", href=True)
-            if a_tag:
-                href = a_tag["href"]
-                event_url = href
-                if not event_url.startswith("http"):
-                    event_url = f"https://www.kyoceradome-osaka.jp{href}"
-                source_key = href
-                title = a_tag.get_text(strip=True) or title
-            # Find date in <li class="date"> or text containing 年月日
+            # Skip wrapper sections
+            if title in self._SKIP_TITLES:
+                continue
+            # Must contain a date to be a real event
             section_text = section.get_text(" ", strip=True)
             dates = re.findall(r"(\d{4})年(\d{1,2})月(\d{1,2})日", section_text)
             if not dates:
                 continue
-            # First date is start
             y, m, d = dates[0]
             start_date = f"{y}-{int(m):02d}-{int(d):02d}"
             end_date = None
@@ -633,7 +670,27 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 ed = f"{y2}-{int(m2):02d}-{int(d2):02d}"
                 if ed != start_date:
                     end_date = ed
-            # Times: 開場時間：15:00 開始時間：17:00
+            # URL: prefer link in heading, else "詳細を見る" link
+            event_url = None
+            source_key = None
+            a_tag = heading.find("a", href=True)
+            if not a_tag:
+                # Look for "詳細を見る" or any detail link
+                for a in section.find_all("a", href=True):
+                    link_text = a.get_text(strip=True)
+                    if "詳細" in link_text:
+                        a_tag = a
+                        break
+            if a_tag:
+                href = a_tag["href"]
+                event_url = href
+                if not event_url.startswith("http"):
+                    event_url = f"https://www.kyoceradome-osaka.jp{href}"
+                source_key = href
+                # Use heading text for title (not link text from 詳細を見る)
+                if heading.find("a"):
+                    title = heading.find("a").get_text(strip=True) or title
+            # Times: 開始時間：17:00 or 開場時間：15:00
             start_time = None
             tm = re.search(r"(?:開始時間|開演)[：:]\s*(\d{1,2}:\d{2})", section_text)
             if tm:
@@ -661,7 +718,7 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 performers=None,
                 capacity=None,
                 source_type=venue.source_type,
-                source_url=venue.source_url,
+                source_url=source_url,
                 source_event_key=source_key,
             )
             rec.data_hash = compute_data_hash(rec)

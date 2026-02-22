@@ -5,7 +5,7 @@ zepp_sapporo,Zepp札幌,01,北海道,2009,https://www.zepp.co.jp/hall/sapporo/,h
 nippon_budokan,日本武道館,13,東京都,14471,https://www.nipponbudokan.or.jp/,html,https://www.nipponbudokan.or.jp/schedule,"{""strategy"":""budokan_schedule""}",0
 tokyo_dome,東京ドーム,13,東京都,55000,https://www.tokyo-dome.co.jp/,html,https://www.tokyo-dome.co.jp/dome/event/schedule.html,"{""strategy"":""tokyo_dome_calendar""}",1
 saitama_super_arena,さいたまスーパーアリーナ,11,埼玉県,37000,https://www.saitama-arena.co.jp/,html,https://www.saitama-arena.co.jp/schedule/,"{""strategy"":""saitama_arena_schedule""}",1
-kyocera_dome_osaka,京セラドーム大阪,27,大阪府,55000,https://www.kyoceradome-osaka.jp/,html,https://www.kyoceradome-osaka.jp/schedule/,"{""strategy"":""kyocera_dome_schedule""}",1
+kyocera_dome_osaka,京セラドーム大阪,27,大阪府,55000,https://www.kyoceradome-osaka.jp/,html,https://www.kyoceradome-osaka.jp/schedule/,"{""strategy"":""kyocera_dome_schedule"",""months_ahead"":4}",1
 osaka_jo_hall,大阪城ホール,27,大阪府,16000,https://www.osakajohall.com/,html,https://www.osakajohall.com/schedule/,"{""strategy"":""generic""}",0
 vantelin_dome_nagoya,バンテリンドームナゴヤ,23,愛知県,49427,https://www.nagoya-dome.co.jp/,html,https://www.nagoya-dome.co.jp/enjoy/index.php,"{""strategy"":""vantelin_dome_schedule""}",1
 fukuoka_paypay_dome,福岡PayPayドーム,40,福岡県,52500,https://www.softbankhawks.co.jp/,html,https://www.softbankhawks.co.jp/stadium/,"{""strategy"":""generic""}",0
