@@ -32,8 +32,18 @@ uv venv
 uv sync
 
 uv run python -m scripts.update_data
+uv run python -m scripts.update_events_data
 uv run streamlit run app.py
 ```
+
+## 全国イベント情報（ハブ）
+- サイドバーの `統計の種類` → `全国イベント情報（ハブ）` で表示
+- 主要コンサート/イベント会場の公式サイトからイベント日程を定期収集
+- データ: `data/events.sqlite`（venues + events テーブル）
+- 会場定義: `data/venue_registry.csv`（1行追加で会場追加可能）
+- イベント更新コマンド:
+  - `uv run python -m scripts.update_events_data`
+  - オプション: `--limit N`, `--only venue_id1,venue_id2`, `--verbose`
 
 ## 旅行・観光消費動向調査（TCD）拡張
 - サイドバーの `統計の種類` で以下を切替:
@@ -52,6 +62,7 @@ uv run streamlit run app.py
 - 実行順:
   1. `uv run python -m scripts.update_data`
   2. `uv run python -m scripts.update_tcd_data`
+  3. `uv run python -m scripts.update_events_data`
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。

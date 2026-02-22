@@ -17,6 +17,7 @@ uv sync                                    # 依存インストール
 uv run streamlit run app.py                # アプリ起動
 uv run python -m scripts.update_data       # 宿泊統計データ更新
 uv run python -m scripts.update_tcd_data   # 旅行・観光消費動向調査データ更新
+uv run python -m scripts.update_events_data  # イベント情報データ更新
 ```
 
 ## Structure

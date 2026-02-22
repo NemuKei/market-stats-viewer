@@ -77,3 +77,18 @@
 - `stay_facility_occupancy` テーブル列:
   - `ym`, `pref_code`, `pref_name`, `facility_type`, `occupancy_rate`
 - UI では全国/都道府県を切替できる前提データとする。
+
+## 追補（2026-02-22）イベントハブ
+- SSOT: `data/events.sqlite`（既存の market_stats.sqlite とは分離）
+- テーブル `venues`（会場マスタ）:
+  - `venue_id` TEXT PK, `venue_name`, `pref_code`, `pref_name`, `capacity`,
+    `official_url`, `source_type`, `source_url`, `config_json`, `is_enabled`,
+    `last_signature`, `created_at_utc`, `updated_at_utc`
+- テーブル `events`（イベント本体）:
+  - `event_uid` TEXT PK, `venue_id` FK, `title`, `start_date`, `start_time`,
+    `end_date`, `end_time`, `all_day`, `status`, `url`, `description`,
+    `performers`, `capacity`, `source_type`, `source_url`, `source_event_key`,
+    `data_hash`, `first_seen_at_utc`, `updated_at_utc`
+- `event_uid` 規約: `{venue_id}:{source_event_key}` or `{venue_id}:h:{sha256[:16]}`
+- `capacity`: イベント固有があればそれ、なければ会場キャパを COALESCE で利用
+- 会場定義: `data/venue_registry.csv`（1行=1会場、追加は1行追加のみ）
