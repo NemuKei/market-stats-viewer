@@ -146,7 +146,7 @@
 - 一般向け画面には、`python -m ...` のような手動更新コマンドを表示しない。
 
 ## Airport Volume View (MVP)
-- Sidebar option: `空港別入国者数（ボリューム）`
+- Sidebar option: `空港別入国者数`
 - Main output:
   - KPI: period total arrivals / monthly average
   - Trend chart: monthly or quarterly aggregate
