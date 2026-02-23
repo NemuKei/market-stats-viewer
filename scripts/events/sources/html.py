@@ -1,10 +1,11 @@
 """HTML-based event source plugin with per-venue strategies."""
+
 from __future__ import annotations
 
 import json
 import logging
 import re
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 from bs4 import BeautifulSoup
 
@@ -23,6 +24,7 @@ def _register(name: str):
     def decorator(cls):
         _STRATEGIES[name] = cls
         return cls
+
     return decorator
 
 
@@ -105,8 +107,12 @@ class _YokohamaArenaJson(_BaseStrategy):
                     source_event_key=source_key,
                 )
                 rec.event_uid = compute_event_uid(
-                    venue.venue_id, source_key, title, start_date,
-                    start_time=start_time, url=event_url,
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
                 )
                 rec.data_hash = compute_data_hash(rec)
                 events.append(rec)
@@ -134,7 +140,9 @@ class _TifCalendar(_BaseStrategy):
                 raw = tag.get_text(strip=True)
                 m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", raw)
                 if m:
-                    current_date = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+                    current_date = (
+                        f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+                    )
                     break
             inner_links = li.find_all("a")
             for a in inner_links:
@@ -172,7 +180,10 @@ class _TifCalendar(_BaseStrategy):
                     source_event_key=source_key,
                 )
                 rec.event_uid = compute_event_uid(
-                    venue.venue_id, source_key, title, current_date,
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    current_date,
                     url=event_url,
                 )
                 rec.data_hash = compute_data_hash(rec)
@@ -251,8 +262,12 @@ class _ZeppSchedule(_BaseStrategy):
                 event_url = f"https://www.zepp.co.jp{href}"
             source_key = href
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, date_str,
-                start_time=start_time, url=event_url,
+                venue.venue_id,
+                source_key,
+                title,
+                date_str,
+                start_time=start_time,
+                url=event_url,
             )
             if uid in seen_uids:
                 continue
@@ -331,16 +346,22 @@ class _SaitamaArenaSchedule(_BaseStrategy):
             end_date = None
             m2 = re.search(r"～\s*(\d{4})[/年](\d{1,2})[/月](\d{1,2})", parent_text)
             if m2:
-                end_date = f"{m2.group(1)}-{int(m2.group(2)):02d}-{int(m2.group(3)):02d}"
+                end_date = (
+                    f"{m2.group(1)}-{int(m2.group(2)):02d}-{int(m2.group(3)):02d}"
+                )
                 if end_date == start_date:
                     end_date = None
             # Extract times: 開場 HH:MM or OPEN HH:MM
             start_time = None
-            tm = re.search(r"(?:開演|START|start)\s*(\d{1,2}:\d{2})", parent_text, re.IGNORECASE)
+            tm = re.search(
+                r"(?:開演|START|start)\s*(\d{1,2}:\d{2})", parent_text, re.IGNORECASE
+            )
             if tm:
                 start_time = _normalise_time(tm.group(1))
             if not start_time:
-                tm = re.search(r"(?:開場|OPEN|open)\s*(\d{1,2}:\d{2})", parent_text, re.IGNORECASE)
+                tm = re.search(
+                    r"(?:開場|OPEN|open)\s*(\d{1,2}:\d{2})", parent_text, re.IGNORECASE
+                )
                 if tm:
                     start_time = _normalise_time(tm.group(1))
             event_url = href
@@ -348,8 +369,12 @@ class _SaitamaArenaSchedule(_BaseStrategy):
                 event_url = f"https://www.saitama-arena.co.jp{href}"
             source_key = href
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
-                start_time=start_time, url=event_url,
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
             )
             if uid in seen_uids:
                 continue
@@ -396,7 +421,9 @@ class _TokyoDomeCalendar(_BaseStrategy):
         current_month = None
         for elem in soup.find_all(True):
             # Check for year-month header
-            if elem.name == "p" and "c-ttl-set-calender" in " ".join(elem.get("class", [])):
+            if elem.name == "p" and "c-ttl-set-calender" in " ".join(
+                elem.get("class", [])
+            ):
                 text = elem.get_text(strip=True)
                 m = re.search(r"(\d{4})年(\d{1,2})月", text)
                 if m:
@@ -441,8 +468,12 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     row_text = detail_td.get_text(" ", strip=True)
                     start_time = self._extract_time(row_text)
                     uid = compute_event_uid(
-                        venue.venue_id, source_key, title, start_date,
-                        start_time=start_time, url=event_url,
+                        venue.venue_id,
+                        source_key,
+                        title,
+                        start_date,
+                        start_time=start_time,
+                        url=event_url,
                     )
                     if uid in seen_uids:
                         continue
@@ -475,7 +506,10 @@ class _TokyoDomeCalendar(_BaseStrategy):
                 title = re.sub(r"\s+", " ", text).strip()
                 start_time = self._extract_time(title)
                 uid = compute_event_uid(
-                    venue.venue_id, None, title, start_date,
+                    venue.venue_id,
+                    None,
+                    title,
+                    start_date,
                     start_time=start_time,
                 )
                 if uid in seen_uids:
@@ -574,8 +608,12 @@ class _VantelinDomeSchedule(_BaseStrategy):
                         event_url = f"https://www.nagoya-dome.co.jp{href}"
                     source_key = href
                 uid = compute_event_uid(
-                    venue.venue_id, source_key, title, start_date,
-                    start_time=start_time, url=event_url,
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
                 )
                 if uid in seen_uids:
                     continue
@@ -629,9 +667,7 @@ class _KyoceraDomeSchedule(_BaseStrategy):
         for offset in range(months_ahead + 1):
             d = today.replace(day=1) + timedelta(days=32 * offset)
             d = d.replace(day=1)
-            month_url = (
-                f"{venue.source_url}?monthId={d.month:02d}&yearId={d.year}"
-            )
+            month_url = f"{venue.source_url}?monthId={d.month:02d}&yearId={d.year}"
             try:
                 resp = session.get(month_url, timeout=30)
                 if resp.status_code != 200:
@@ -644,15 +680,14 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 continue
             resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
-            events.extend(
-                self._parse_page(venue, soup, month_url, seen_uids)
-            )
+            events.extend(self._parse_page(venue, soup, month_url, seen_uids))
 
         if not events:
             logger.warning(
                 "kyocera_dome: 0 events from %s (months 0..%d). "
                 "HTML structure may have changed.",
-                venue.source_url, months_ahead,
+                venue.source_url,
+                months_ahead,
             )
         return events
 
@@ -713,12 +748,18 @@ class _KyoceraDomeSchedule(_BaseStrategy):
             if tm:
                 start_time = _normalise_time(tm.group(1))
             if not start_time:
-                tm = re.search(r"(?:開場時間|開場)[：:]\s*(\d{1,2}:\d{2})", section_text)
+                tm = re.search(
+                    r"(?:開場時間|開場)[：:]\s*(\d{1,2}:\d{2})", section_text
+                )
                 if tm:
                     start_time = _normalise_time(tm.group(1))
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
-                start_time=start_time, url=event_url,
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
             )
             if uid in seen_uids:
                 continue
@@ -763,12 +804,16 @@ class _BellunaDomeSchedule(_BaseStrategy):
             month_date = today.replace(day=1) + timedelta(days=32 * offset)
             month_date = month_date.replace(day=1)
             ym = month_date.strftime("%Y%m")
-            month_url = f"https://bellunadome.seibulions.co.jp/schedule/{ym}/all/index.html"
+            month_url = (
+                f"https://bellunadome.seibulions.co.jp/schedule/{ym}/all/index.html"
+            )
 
             try:
                 resp = session.get(month_url, timeout=30)
                 if resp.status_code != 200:
-                    logger.warning("belluna_dome: %s returned %s", month_url, resp.status_code)
+                    logger.warning(
+                        "belluna_dome: %s returned %s", month_url, resp.status_code
+                    )
                     continue
             except Exception:
                 logger.warning("belluna_dome: failed to fetch %s", month_url)
@@ -782,7 +827,9 @@ class _BellunaDomeSchedule(_BaseStrategy):
                 if not context:
                     continue
 
-                m = re.search(r"^[A-Z]{3}\s+(\d{2})\.(\d{2})\s+(\d{4})\s+(.+)$", context)
+                m = re.search(
+                    r"^[A-Z]{3}\s+(\d{2})\.(\d{2})\s+(\d{4})\s+(.+)$", context
+                )
                 if not m:
                     continue
 
@@ -803,7 +850,11 @@ class _BellunaDomeSchedule(_BaseStrategy):
                     start_time = _normalise_time(tm.group(1))
                     body = re.sub(r"[\(（]\s*\d{1,2}:\d{2}\s*[\)）]", "", body).strip()
 
-                start_time_inline = re.search(r"(?:開演|試合開始|START|開始)\s*(\d{1,2}:\d{2})", body, re.IGNORECASE)
+                start_time_inline = re.search(
+                    r"(?:開演|試合開始|START|開始)\s*(\d{1,2}:\d{2})",
+                    body,
+                    re.IGNORECASE,
+                )
                 if start_time is None and start_time_inline:
                     start_time = _normalise_time(start_time_inline.group(1))
 
@@ -823,8 +874,12 @@ class _BellunaDomeSchedule(_BaseStrategy):
                             event_url = f"https://bellunadome.seibulions.co.jp{href}"
 
                 uid = compute_event_uid(
-                    venue.venue_id, source_key, title, start_date,
-                    start_time=start_time, url=event_url,
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
                 )
                 if uid in seen_uids:
                     continue
@@ -855,6 +910,154 @@ class _BellunaDomeSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# Makuhari Messe schedule
+# ---------------------------------------------------------------------------
+@_register("makuhari_messe_schedule")
+class _MakuhariMesseSchedule(_BaseStrategy):
+    """Parse Makuhari Messe event calendar pages."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        months_ahead = int(config.get("months_ahead", 6))
+        max_pages = int(config.get("max_pages", 8))
+        today = date.today()
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for offset in range(months_ahead + 1):
+            month_date = today.replace(day=1) + timedelta(days=32 * offset)
+            month_date = month_date.replace(day=1)
+            ym = month_date.strftime("%Y%m")
+
+            for page in range(1, max_pages + 1):
+                month_url = f"{venue.source_url}?month={ym}&page={page}"
+                try:
+                    resp = session.get(month_url, timeout=30)
+                    if resp.status_code != 200:
+                        logger.warning(
+                            "makuhari_messe: %s returned %s",
+                            month_url,
+                            resp.status_code,
+                        )
+                        break
+                except Exception:
+                    logger.warning("makuhari_messe: failed to fetch %s", month_url)
+                    break
+
+                resp.encoding = resp.apparent_encoding or "utf-8"
+                soup = BeautifulSoup(resp.text, "html.parser")
+                page_events = self._parse_page(
+                    venue=venue,
+                    soup=soup,
+                    source_url=month_url,
+                    seen_uids=seen_uids,
+                )
+                if not page_events:
+                    break
+                events.extend(page_events)
+
+                pagination = soup.find("div", class_=re.compile("pager|pagination"))
+                if pagination is None or str(page + 1) not in pagination.get_text(" ", strip=True):
+                    break
+
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+
+        for li in soup.select("li.eventInr"):
+            link = li.find("a", href=True)
+            if not link:
+                continue
+
+            right_cont = li.select_one(".rightCont")
+            context = " ".join(
+                (right_cont.get_text(" ", strip=True) if right_cont else li.get_text(" ", strip=True)).split()
+            )
+            if not context:
+                continue
+
+            date_text = ""
+            date_node = li.find(class_=re.compile("date"))
+            if date_node:
+                date_text = " ".join(date_node.get_text(" ", strip=True).split())
+            if not date_text:
+                m_date = re.search(r"\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?(?:\s*[〜~\-－]\s*\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?)?", context)
+                if m_date:
+                    date_text = m_date.group(0)
+            if not date_text:
+                continue
+
+            date_parts = re.findall(r"(\d{4})\.(\d{1,2})\.(\d{1,2})", date_text)
+            if not date_parts:
+                continue
+            y, m, d = date_parts[0]
+            start_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
+            end_date = None
+            if len(date_parts) > 1:
+                y2, m2, d2 = date_parts[-1]
+                ed = f"{int(y2):04d}-{int(m2):02d}-{int(d2):02d}"
+                if ed != start_date:
+                    end_date = ed
+
+            text_wo_date = context.replace(date_text, " ")
+            text_wo_date = re.sub(r"\s*対象\s*.*$", "", text_wo_date)
+            text_wo_date = re.sub(r"\s+", " ", text_wo_date).strip()
+            if not text_wo_date:
+                continue
+
+            start_time = None
+            tm = re.search(r"(?:開演|開始|OPEN|START)\s*[:：]?\s*(\d{1,2}:\d{2})", context, re.IGNORECASE)
+            if tm:
+                start_time = _normalise_time(tm.group(1))
+
+            event_url = link["href"]
+            if not event_url.startswith("http"):
+                event_url = f"https://www.m-messe.co.jp{event_url}"
+            source_key = link["href"]
+
+            uid = compute_event_uid(
+                venue.venue_id,
+                source_key,
+                text_wo_date,
+                start_date,
+                start_time=start_time,
+                url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=text_wo_date,
+                start_date=start_date,
+                start_time=start_time,
+                end_date=end_date,
+                end_time=None,
+                all_day=not bool(start_time),
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=source_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+
+        return events
+
+
+# ---------------------------------------------------------------------------
 # Osaka-jo Hall schedule
 # ---------------------------------------------------------------------------
 @_register("osaka_jo_hall_schedule")
@@ -880,14 +1083,18 @@ class _OsakaJoHallSchedule(_BaseStrategy):
             try:
                 resp = session.get(month_url, timeout=30)
                 if resp.status_code != 200:
-                    logger.warning("osaka_jo_hall: %s returned %s", month_url, resp.status_code)
+                    logger.warning(
+                        "osaka_jo_hall: %s returned %s", month_url, resp.status_code
+                    )
                     continue
             except Exception:
                 logger.warning("osaka_jo_hall: failed to fetch %s", month_url)
                 continue
             resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
-            events.extend(self._parse_page(venue, soup, month_url, d.year, d.month, seen_uids))
+            events.extend(
+                self._parse_page(venue, soup, month_url, d.year, d.month, seen_uids)
+            )
 
         return events
 
@@ -955,8 +1162,12 @@ class _OsakaJoHallSchedule(_BaseStrategy):
                             start_time = _normalise_time(iv.get_text(strip=True))
 
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
-                start_time=start_time, url=event_url,
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
             )
             if uid in seen_uids:
                 continue
@@ -1005,18 +1216,24 @@ class _FestivalHallSchedule(_BaseStrategy):
         for offset in range(months_ahead + 1):
             d = today.replace(day=1) + timedelta(days=32 * offset)
             d = d.replace(day=1)
-            month_url = f"https://www.festivalhall.jp/events/list/{d.year}/{d.month:02d}/"
+            month_url = (
+                f"https://www.festivalhall.jp/events/list/{d.year}/{d.month:02d}/"
+            )
             try:
                 resp = session.get(month_url, timeout=30)
                 if resp.status_code != 200:
-                    logger.warning("festival_hall: %s returned %s", month_url, resp.status_code)
+                    logger.warning(
+                        "festival_hall: %s returned %s", month_url, resp.status_code
+                    )
                     continue
             except Exception:
                 logger.warning("festival_hall: failed to fetch %s", month_url)
                 continue
             resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
-            events.extend(self._parse_page(venue, soup, month_url, d.year, d.month, seen_uids))
+            events.extend(
+                self._parse_page(venue, soup, month_url, d.year, d.month, seen_uids)
+            )
 
         return events
 
@@ -1084,8 +1301,12 @@ class _FestivalHallSchedule(_BaseStrategy):
                                 start_time = _normalise_time(tm.group(1))
 
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
-                start_time=start_time, url=event_url,
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
             )
             if uid in seen_uids:
                 continue
@@ -1145,15 +1366,19 @@ class _AriakeArenaSchedule(_BaseStrategy):
 
             # Determine year+month from tab navigation
             year, month = self._detect_year_month(soup, slug)
-            if not year:
+            if not year or not month:
                 continue
 
-            events.extend(self._parse_page(venue, soup, page_url, year, month, seen_uids))
+            events.extend(
+                self._parse_page(venue, soup, page_url, year, month, seen_uids)
+            )
 
         return events
 
     @staticmethod
-    def _detect_year_month(soup: BeautifulSoup, slug: str) -> tuple[int | None, int | None]:
+    def _detect_year_month(
+        soup: BeautifulSoup, slug: str
+    ) -> tuple[int | None, int | None]:
         """Detect year and month from the active tab or page content."""
         # Look for the active tab's year/month spans
         for li in soup.find_all("li"):
@@ -1172,7 +1397,9 @@ class _AriakeArenaSchedule(_BaseStrategy):
             month_span = a_tag.find("span", class_="month_number")
             if year_span and month_span:
                 try:
-                    return int(year_span.get_text(strip=True)), int(month_span.get_text(strip=True))
+                    return int(year_span.get_text(strip=True)), int(
+                        month_span.get_text(strip=True)
+                    )
                 except ValueError:
                     pass
         # Fallback: search for active class
@@ -1184,7 +1411,9 @@ class _AriakeArenaSchedule(_BaseStrategy):
                 month_span = a_tag.find("span", class_="month_number")
                 if year_span and month_span:
                     try:
-                        return int(year_span.get_text(strip=True)), int(month_span.get_text(strip=True))
+                        return int(year_span.get_text(strip=True)), int(
+                            month_span.get_text(strip=True)
+                        )
                     except ValueError:
                         pass
         return None, None
@@ -1266,8 +1495,12 @@ class _AriakeArenaSchedule(_BaseStrategy):
                             start_time = _normalise_time(tm.group(1))
 
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
-                start_time=start_time, url=event_url,
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
             )
             if uid in seen_uids:
                 continue
@@ -1325,7 +1558,9 @@ class _YoyogiGymnasiumSchedule(_BaseStrategy):
                 dm = re.match(r"(\d{4})/(\d{1,2})/(\d{1,2})", date_text)
                 if not dm:
                     continue
-                start_date = f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+                start_date = (
+                    f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+                )
 
                 # Title + URL
                 a_tag = cells[1].find("a", href=True)
@@ -1343,7 +1578,10 @@ class _YoyogiGymnasiumSchedule(_BaseStrategy):
                     continue
 
                 uid = compute_event_uid(
-                    venue.venue_id, source_key, title, start_date,
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
                     url=event_url,
                 )
                 if uid in seen_uids:
@@ -1447,7 +1685,10 @@ class _GardenTheaterSchedule(_BaseStrategy):
                 ed = last_ymd.find("div", class_="d")
                 if em and ed:
                     try:
-                        end_m, end_d = int(em.get_text(strip=True)), int(ed.get_text(strip=True))
+                        end_m, end_d = (
+                            int(em.get_text(strip=True)),
+                            int(ed.get_text(strip=True)),
+                        )
                         end_y = year if end_m >= ev_month else year + 1
                         ed_str = f"{end_y}-{end_m:02d}-{end_d:02d}"
                         if ed_str != start_date:
@@ -1462,13 +1703,20 @@ class _GardenTheaterSchedule(_BaseStrategy):
             performer = player_div.get_text(strip=True) if player_div else ""
             if not title and not performer:
                 continue
-            display_title = f"{performer} {title}".strip() if performer and title else (title or performer)
+            display_title = (
+                f"{performer} {title}".strip()
+                if performer and title
+                else (title or performer)
+            )
 
             event_url = a_tag["href"]
             source_key = event_url
 
             uid = compute_event_uid(
-                venue.venue_id, source_key, display_title, start_date,
+                venue.venue_id,
+                source_key,
+                display_title,
+                start_date,
                 url=event_url,
             )
             if uid in seen_uids:
@@ -1520,7 +1768,9 @@ class _TdcHallSchedule(_BaseStrategy):
 
         for elem in soup.find_all(True):
             # Year-month header: <p class="c-ttl-set-calender">2026年02月</p>
-            if elem.name == "p" and "c-ttl-set-calender" in " ".join(elem.get("class", [])):
+            if elem.name == "p" and "c-ttl-set-calender" in " ".join(
+                elem.get("class", [])
+            ):
                 text = elem.get_text(strip=True)
                 m = re.search(r"(\d{4})年(\d{1,2})月", text)
                 if m:
@@ -1582,8 +1832,12 @@ class _TdcHallSchedule(_BaseStrategy):
                         break
 
                 uid = compute_event_uid(
-                    venue.venue_id, source_key, title, start_date,
-                    start_time=start_time, url=event_url,
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
                 )
                 if uid in seen_uids:
                     continue
@@ -1685,7 +1939,11 @@ class _ToyosuPitSchedule(_BaseStrategy):
             subtitle_p = title_div.find("p")
             artist = h3.get_text(strip=True) if h3 else ""
             subtitle = subtitle_p.get_text(strip=True) if subtitle_p else ""
-            title = f"{artist} {subtitle}".strip() if artist and subtitle else (artist or subtitle)
+            title = (
+                f"{artist} {subtitle}".strip()
+                if artist and subtitle
+                else (artist or subtitle)
+            )
             if not title:
                 continue
 
@@ -1705,7 +1963,10 @@ class _ToyosuPitSchedule(_BaseStrategy):
                 source_key = None
 
             uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
                 url=event_url,
             )
             if uid in seen_uids:

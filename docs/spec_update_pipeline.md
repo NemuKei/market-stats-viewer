@@ -88,4 +88,4 @@
 - 全 enabled 会場が全滅した場合のみ exit code 1
 - 会場追加手順: `data/venue_registry.csv` に1行追加 → 対応する source strategy を実装
 - CLI options: `--limit N`, `--only venue1,venue2`, `--verbose`
-- 対応ストラテジー: yokohama_arena_json, zepp_schedule, saitama_arena_schedule, tokyo_dome_calendar, vantelin_dome_schedule, kyocera_dome_schedule, belluna_dome_schedule
+- 対応ストラテジー: yokohama_arena_json, zepp_schedule, saitama_arena_schedule, tokyo_dome_calendar, vantelin_dome_schedule, kyocera_dome_schedule, belluna_dome_schedule, makuhari_messe_schedule
