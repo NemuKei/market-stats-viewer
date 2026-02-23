@@ -3035,7 +3035,14 @@ def render_event_signals_view() -> None:
 
     min_date = df["published_dt_jst"].dt.date.min()
     max_date = df["published_dt_jst"].dt.date.max()
-    default_start = max(min_date, max_date - timedelta(days=30))
+    today_jst = pd.Timestamp.now(tz="Asia/Tokyo").date()
+    if today_jst < min_date:
+        default_end = min_date
+    elif today_jst > max_date:
+        default_end = max_date
+    else:
+        default_end = today_jst
+    default_start = max(min_date, default_end - timedelta(days=30))
 
     col_f1, col_f2 = st.columns(2)
     with col_f1:
@@ -3049,7 +3056,7 @@ def render_event_signals_view() -> None:
     with col_f2:
         date_to = st.date_input(
             "掲載日（終了）",
-            value=max_date,
+            value=default_end,
             min_value=min_date,
             max_value=max_date,
             key="signals_date_to",
