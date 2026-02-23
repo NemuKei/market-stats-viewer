@@ -1,9 +1,9 @@
 name: Update event signals data
 
-on:
+'on':
   workflow_dispatch:
   schedule:
-    - cron: "0 */12 * * *" # 12時間ごと（UTC）
+    - cron: "0 */12 * * *" # every 12 hours (UTC)
 
 permissions:
   contents: write
