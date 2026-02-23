@@ -2257,7 +2257,9 @@ class _NissanStadiumCalendar(_BaseStrategy):
             dm = re.search(r"(\d{4})[./](\d{1,2})[./](\d{1,2})", date_text)
         if not dm:
             return None
-        start_date = f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+        start_date = (
+            f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+        )
 
         start_time = None
         time_text = fields.get("開始", "")
@@ -2375,9 +2377,10 @@ class _MufgStadiumSchedule(_BaseStrategy):
                 session, event_url
             )
 
-            title = detail_title or re.sub(
-                r"^\d{1,2}\.\d{1,2}\s*\S*\s*", "", raw_text
-            ).strip()
+            title = (
+                detail_title
+                or re.sub(r"^\d{1,2}\.\d{1,2}\s*\S*\s*", "", raw_text).strip()
+            )
             if not title or title == "詳細はこちら":
                 continue
 
@@ -2424,7 +2427,9 @@ class _MufgStadiumSchedule(_BaseStrategy):
         return events
 
     @staticmethod
-    def _extract_detail_fields(session, event_url: str) -> tuple[str | None, str | None]:
+    def _extract_detail_fields(
+        session, event_url: str
+    ) -> tuple[str | None, str | None]:
         try:
             resp = session.get(event_url, timeout=30)
             if resp.status_code != 200:
