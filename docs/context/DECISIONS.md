@@ -46,3 +46,4 @@
 - D-20260223-010 | ZOZOマリンスタジアムを新規追加し、zozo_marine_stadium_schedule を実装する。/event/schedule/ から日別ページ（/event/daily/YYYYMMDD.html）を巡回して日付・タイトル・開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-011 | ぴあアリーナMMを新規追加し、pia_arena_mm_schedule を実装する。月別一覧（/event@p1=YYYY&p2=MM.html）から日付・タイトル・詳細URLを取得し、詳細ページの「公演時間」から開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-012 | ポートメッセなごやを新規追加し、portmesse_nagoya_events を実装する。/events/ のイベント一覧（mc-events）から開始日・終了日・タイトル・URLを抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-013 | Asueアリーナ大阪を新規追加し、asue_arena_osaka_events を実装する。/osaka_arena/events/index.html から arena_events 詳細URLを収集し、詳細ページから日付・タイトルを抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
