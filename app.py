@@ -3009,8 +3009,6 @@ def load_event_signals_data() -> tuple[pd.DataFrame, pd.DataFrame]:
 def render_event_signals_view() -> None:
     st.title("全国イベント速報（ニュース）")
 
-    from datetime import timedelta
-
     df_signals, df_sources = load_event_signals_data()
     if df_signals.empty:
         st.error(
@@ -3042,19 +3040,29 @@ def render_event_signals_view() -> None:
         except Exception:
             return {}
 
-    labels_series = df.get("labels_json", pd.Series(index=df.index, dtype=object)).apply(_load_labels)
+    labels_series = df.get(
+        "labels_json", pd.Series(index=df.index, dtype=object)
+    ).apply(_load_labels)
 
     def _parse_iso_date(value: object):
         if not isinstance(value, str) or not value.strip():
             return pd.NaT
         return pd.to_datetime(value, format="%Y-%m-%d", errors="coerce")
 
-    event_start_parsed = labels_series.apply(lambda d: _parse_iso_date(d.get("event_start_date")))
-    event_end_parsed = labels_series.apply(lambda d: _parse_iso_date(d.get("event_end_date")))
+    event_start_parsed = labels_series.apply(
+        lambda d: _parse_iso_date(d.get("event_start_date"))
+    )
+    event_end_parsed = labels_series.apply(
+        lambda d: _parse_iso_date(d.get("event_end_date"))
+    )
     published_date_naive = df["published_dt_jst"].dt.tz_localize(None).dt.normalize()
 
-    df["event_start_dt"] = event_start_parsed.where(event_start_parsed.notna(), published_date_naive)
-    df["event_end_dt"] = event_end_parsed.where(event_end_parsed.notna(), df["event_start_dt"])
+    df["event_start_dt"] = event_start_parsed.where(
+        event_start_parsed.notna(), published_date_naive
+    )
+    df["event_end_dt"] = event_end_parsed.where(
+        event_end_parsed.notna(), df["event_start_dt"]
+    )
     df["event_start_date"] = df["event_start_dt"].dt.date
     df["event_end_date"] = df["event_end_dt"].dt.date
     df["event_date_jst"] = df.apply(
@@ -3069,13 +3077,8 @@ def render_event_signals_view() -> None:
     min_date = df["event_start_date"].min()
     max_date = df["event_end_date"].max()
     today_jst = pd.Timestamp.now(tz="Asia/Tokyo").date()
-    if today_jst < min_date:
-        default_end = min_date
-    elif today_jst > max_date:
-        default_end = max_date
-    else:
-        default_end = today_jst
-    default_start = max(min_date, default_end - timedelta(days=30))
+    default_start = min(max(today_jst, min_date), max_date)
+    default_end = max_date
 
     col_f1, col_f2 = st.columns(2)
     with col_f1:
@@ -3119,10 +3122,7 @@ def render_event_signals_view() -> None:
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
 
-    mask = (
-        (df["event_end_date"] >= date_from)
-        & (df["event_start_date"] <= date_to)
-    )
+    mask = (df["event_end_date"] >= date_from) & (df["event_start_date"] <= date_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
     if keyword:
