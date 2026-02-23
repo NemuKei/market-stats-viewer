@@ -42,3 +42,4 @@
 - D-20260223-006 | 幕張メッセを有効化し、makuhari_messe_schedule を実装する。月別ページ（month=YYYYMM）とページング（page=N）を巡回してイベント取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-007 | 福岡PayPayドームを有効化し、fukuoka_paypay_dome_schedule を実装する。年次イベントページ（/stadium/event_schedule/{year}/）の dt/dd 構造から日付・タイトル・時刻を抽出する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-008 | Kアリーナ横浜を新規追加し、k_arena_yokohama_schedule を実装する。/schedule/ と /schedule/page/{n}/ の一覧から日付・タイトル・時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-009 | 札幌ドームを新規追加し、sapporo_dome_schedule を実装する。/schedule/ のピックアップイベント要素から日付・タイトル・時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
