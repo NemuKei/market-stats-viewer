@@ -3202,8 +3202,12 @@ def render_event_signals_view() -> None:
             "event_info"
         ].fillna("").str.lower().str.contains(keyword_lower)
 
-    filtered = df[mask].copy().sort_values(
-        ["event_start_dt", "event_end_dt", "title"], ascending=[True, True, True]
+    filtered = (
+        df[mask]
+        .copy()
+        .sort_values(
+            ["event_start_dt", "event_end_dt", "title"], ascending=[True, True, True]
+        )
     )
     st.markdown(f"**{len(filtered)}** 件の速報")
 
