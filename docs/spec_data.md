@@ -92,3 +92,37 @@
 - `event_uid` 規約: `{venue_id}:{source_event_key}` or `{venue_id}:h:{sha256[:16]}`
 - `capacity`: イベント固有があればそれ、なければ会場キャパを COALESCE で利用
 - 会場定義: `data/venue_registry.csv`（1行=1会場、追加は1行追加のみ）
+
+## 追補（2026-02-23）イベント速報（ニュースシグナル）
+- SSOT: `data/event_signals.sqlite`（`events.sqlite` とは分離）
+- 保存方針:
+  - 本文は保存しない（ニュース全文のDB保存禁止）
+  - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
+
+### テーブル: `signal_sources`
+- `source_id` TEXT PRIMARY KEY
+- `source_name` TEXT NOT NULL
+- `source_url` TEXT NOT NULL
+- `source_type` TEXT NOT NULL
+- `config_json` TEXT
+- `is_enabled` INTEGER NOT NULL DEFAULT 1
+- `last_signature` TEXT
+- `created_at_utc` TEXT NOT NULL
+- `updated_at_utc` TEXT NOT NULL
+
+### テーブル: `signals`
+- `signal_uid` TEXT PRIMARY KEY（`sha256(source_id + url)`）
+- `source_id` TEXT NOT NULL
+- `published_at_utc` TEXT NOT NULL（ISO8601 Z）
+- `title` TEXT NOT NULL
+- `url` TEXT NOT NULL
+- `snippet` TEXT
+- `score` INTEGER NOT NULL DEFAULT 0
+- `labels_json` TEXT
+- `content_hash` TEXT NOT NULL
+- `first_seen_at_utc` TEXT NOT NULL
+- `updated_at_utc` TEXT NOT NULL
+
+### Index
+- `signals(published_at_utc)`
+- `signals(source_id)`
