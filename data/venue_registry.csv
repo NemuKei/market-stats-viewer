@@ -1,5 +1,6 @@
 venue_id,venue_name,pref_code,pref_name,capacity,official_url,source_type,source_url,config_json,is_enabled
 yokohama_arena,横浜アリーナ,14,神奈川県,17000,https://www.yokohama-arena.co.jp/,html,https://www.yokohama-arena.co.jp/event/{ym}?_format=json,"{""strategy"":""yokohama_arena_json""}",1
+k_arena_yokohama,Kアリーナ横浜,14,神奈川県,20033,https://k-arena.com/,html,https://k-arena.com/schedule/,"{""strategy"":""k_arena_yokohama_schedule"",""max_pages"":4}",1
 tokyo_international_forum,東京国際フォーラム,13,東京都,5012,https://www.t-i-forum.co.jp/,html,https://www.t-i-forum.co.jp/calendar/,"{""strategy"":""tif_calendar""}",0
 zepp_sapporo,Zepp札幌,01,北海道,2009,https://www.zepp.co.jp/hall/sapporo/,html,https://www.zepp.co.jp/hall/sapporo/schedule/,"{""strategy"":""zepp_schedule""}",1
 nippon_budokan,日本武道館,13,東京都,14471,https://www.nipponbudokan.or.jp/,html,https://www.nipponbudokan.or.jp/schedule,"{""strategy"":""budokan_schedule""}",0
