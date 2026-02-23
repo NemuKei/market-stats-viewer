@@ -838,11 +838,12 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
         return
 
     latest_ym = ranged_df["ym"].max()
-    latest_mean = (
-        ranged_df.loc[ranged_df["ym"] == latest_ym, "occupancy_rate"]
-        .astype(float)
-        .mean()
+    latest_series = cast(
+        pd.Series,
+        ranged_df.loc[ranged_df["ym"] == latest_ym, "occupancy_rate"],
     )
+    latest_values = pd.to_numeric(latest_series, errors="coerce").dropna()
+    latest_mean = float(latest_values.mean()) if not latest_values.empty else 0.0
     metric_col1, metric_col2, metric_col3 = st.columns(3)
     metric_col1.metric("対象", scope_name)
     metric_col2.metric("表示期間", f"{ym_from} ～ {ym_to}")
@@ -1418,8 +1419,10 @@ def estimate_tcd_los_by_segment(
         .sum()
         .copy()
     )
-    work["rep_nights"] = work["nights_bin"].map(representative_nights)
-    work = work.dropna(subset=["rep_nights"]).copy()
+    work["rep_nights"] = pd.to_numeric(
+        work["nights_bin"].map(representative_nights), errors="coerce"
+    )
+    work = work[work["rep_nights"].notna()].copy()
     if work.empty:
         return pd.DataFrame()
 
@@ -1608,7 +1611,7 @@ def render_tcd_view() -> None:
         st.subheader("LOS\uff08\u5e73\u5747\u6cca\u6570\uff09\u6982\u7b97")
         metric_cols = st.columns(len(los_summary))
         for col, row in zip(metric_cols, los_summary.itertuples(index=False)):
-            col.metric(row.segment_label, f"{row.estimated_los:.2f} \u6cca")
+            col.metric(str(row.segment_label), f"{row.estimated_los:.2f} \u6cca")
         st.caption(
             "\u8a08\u7b97\u5f0f: LOS \u2248 \u03a3(\u5ef6\u3079\u6cca\u6570) / "
             "\u03a3(\u5404\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
@@ -2833,7 +2836,7 @@ def render_events_view() -> None:
             y=alt.Y("イベント件数:Q", title="イベント件数"),
         )
         chart = alt.layer(bars, line).resolve_scale(y="independent").properties(height=400)
-        st.altair_chart(chart, use_container_width=True)
+        st.altair_chart(cast(alt.Chart, chart), use_container_width=True)
     else:
         st.info("表示できるイベントがありません。")
 
