@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 class KstyleMusicSource(SignalSource):
-    """Fetch Kstyle category list pages and score event-like signals."""
+    """Fetch Kstyle category pages and keep JP concert announcement articles."""
 
     DATETIME_RE = re.compile(r"(\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2})")
     INCLUDE_TERMS = [
@@ -41,6 +41,7 @@ class KstyleMusicSource(SignalSource):
         "ファンミ",
         "ライブ",
         "ツアー",
+        "公演情報",
     ]
     EXCLUDE_TERMS = [
         "カムバック",
@@ -65,6 +66,71 @@ class KstyleMusicSource(SignalSource):
         "千葉",
         "京都",
     ]
+    ARTICLE_TEXT_SELECTORS = [
+        "div#articleBody",
+        "div.articleBody",
+        "div.newsView",
+        "div.article_view",
+        "article",
+    ]
+    CONCERT_INFO_MARKERS = ("■公演情報", "■ 公演情報", "■開催概要", "■ 開催概要")
+    SECTION_STOP_MARKERS = ("■", "【関連", "元記事配信日時", "記者")
+    JAPAN_TERMS = [
+        "日本",
+        "北海道",
+        "青森",
+        "岩手",
+        "宮城",
+        "秋田",
+        "山形",
+        "福島",
+        "茨城",
+        "栃木",
+        "群馬",
+        "埼玉",
+        "千葉",
+        "東京",
+        "神奈川",
+        "新潟",
+        "富山",
+        "石川",
+        "福井",
+        "山梨",
+        "長野",
+        "岐阜",
+        "静岡",
+        "愛知",
+        "三重",
+        "滋賀",
+        "京都",
+        "大阪",
+        "兵庫",
+        "奈良",
+        "和歌山",
+        "鳥取",
+        "島根",
+        "岡山",
+        "広島",
+        "山口",
+        "徳島",
+        "香川",
+        "愛媛",
+        "高知",
+        "福岡",
+        "佐賀",
+        "長崎",
+        "熊本",
+        "大分",
+        "宮崎",
+        "鹿児島",
+        "沖縄",
+        "ドーム",
+        "アリーナ",
+        "ホール",
+        "会場",
+    ]
+    VENUE_RE = re.compile(r"(?:会場|開催場所|場所)】?[:：]\s*([^\n]+)")
+    DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
@@ -107,7 +173,8 @@ class KstyleMusicSource(SignalSource):
     def _parse_page(
         self, soup: BeautifulSoup, page_url: str, source_id: str
     ) -> list[SignalRecord]:
-        records: list[SignalRecord] = []
+        candidates: list[tuple[str, str, str]] = []
+        seen_urls: set[str] = set()
         for a in soup.select('a[href*="article.ksn?articleNo="]'):
             href = (a.get("href") or "").strip()
             if not href:
@@ -115,6 +182,10 @@ class KstyleMusicSource(SignalSource):
             title = " ".join(a.get_text(" ", strip=True).split())
             if not title:
                 continue
+            abs_url = urljoin(page_url, href)
+            if abs_url in seen_urls:
+                continue
+            seen_urls.add(abs_url)
 
             container = self._find_container(a)
             context = (
@@ -129,9 +200,23 @@ class KstyleMusicSource(SignalSource):
             if not published_at_utc:
                 continue
 
-            snippet = self._extract_snippet(container, title)
-            abs_url = urljoin(page_url, href)
-            score, labels = self._score_and_labels(title, snippet)
+            candidates.append((title, abs_url, published_at_utc))
+
+        records: list[SignalRecord] = []
+        for title, abs_url, published_at_utc in candidates:
+            detail = self._fetch_article_detail(abs_url)
+            if detail is None:
+                continue
+            section_text, venue_text, date_text = detail
+            score, labels = self._score_and_labels(title, section_text)
+
+            snippet_parts: list[str] = []
+            if venue_text:
+                snippet_parts.append(f"会場: {venue_text}")
+            if date_text:
+                snippet_parts.append(f"日時: {date_text}")
+            snippet_parts.append(section_text)
+            snippet = trim_snippet(" / ".join(part for part in snippet_parts if part))
 
             rec = SignalRecord(
                 signal_uid=compute_signal_uid(source_id, abs_url),
@@ -147,6 +232,90 @@ class KstyleMusicSource(SignalSource):
             records.append(rec)
 
         return records
+
+    def _fetch_article_detail(
+        self, article_url: str
+    ) -> tuple[str, str | None, str | None] | None:
+        try:
+            resp = self.session.get(article_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "kstyle: detail %s returned %s", article_url, resp.status_code
+                )
+                return None
+            resp.encoding = resp.apparent_encoding or "utf-8"
+        except Exception as exc:
+            logger.warning("kstyle: detail fetch failed %s (%s)", article_url, exc)
+            return None
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+        lines = self._extract_article_lines(soup)
+        if not lines:
+            return None
+
+        section_text = self._extract_concert_info_section(lines)
+        if not section_text:
+            return None
+        if not self._is_japan_show(section_text):
+            return None
+
+        venue_text = self._extract_venue(section_text)
+        date_text = self._extract_date_line(section_text)
+        return section_text, venue_text, date_text
+
+    def _extract_article_lines(self, soup: BeautifulSoup) -> list[str]:
+        for selector in self.ARTICLE_TEXT_SELECTORS:
+            node = soup.select_one(selector)
+            if node is None:
+                continue
+            lines = [
+                " ".join(text.split())
+                for text in node.stripped_strings
+                if text and " ".join(text.split())
+            ]
+            if lines:
+                return lines
+        return []
+
+    def _extract_concert_info_section(self, lines: list[str]) -> str | None:
+        start_idx: int | None = None
+        for idx, line in enumerate(lines):
+            if any(marker in line for marker in self.CONCERT_INFO_MARKERS):
+                start_idx = idx
+                break
+        if start_idx is None:
+            return None
+
+        section_lines: list[str] = []
+        for idx in range(start_idx, len(lines)):
+            line = lines[idx].strip()
+            if not line:
+                continue
+            if idx > start_idx and any(
+                line.startswith(marker) for marker in self.SECTION_STOP_MARKERS
+            ):
+                break
+            section_lines.append(line)
+
+        if not section_lines:
+            return None
+        return " ".join(section_lines)
+
+    def _extract_venue(self, text: str) -> str | None:
+        match = self.VENUE_RE.search(text)
+        if not match:
+            return None
+        return " ".join(match.group(1).split())
+
+    def _extract_date_line(self, text: str) -> str | None:
+        tokens = re.split(r"(?=【)|(?=■)", text)
+        for token in tokens:
+            if self.DATE_LINE_RE.search(token):
+                return " ".join(token.split())
+        return None
+
+    def _is_japan_show(self, text: str) -> bool:
+        return any(term in text for term in self.JAPAN_TERMS)
 
     def _extract_pagination_urls(
         self, soup: BeautifulSoup, base_url: str, max_count: int
@@ -201,7 +370,7 @@ class KstyleMusicSource(SignalSource):
         self, title: str, snippet: str | None
     ) -> tuple[int, dict[str, object]]:
         blob = f"{title} {snippet or ''}"
-        score = 30
+        score = 70
         include_hits = sum(1 for t in self.INCLUDE_TERMS if t in blob)
         exclude_hits = sum(1 for t in self.EXCLUDE_TERMS if t.lower() in blob.lower())
         location_hits = sum(1 for t in self.LOCATION_TERMS if t in blob)
@@ -220,6 +389,9 @@ class KstyleMusicSource(SignalSource):
             "noise_penalty": exclude_hits > 0,
             "include_hits": include_hits,
             "exclude_hits": exclude_hits,
+            "has_concert_info": any(
+                marker in blob for marker in self.CONCERT_INFO_MARKERS
+            ),
         }
         return score, labels
 

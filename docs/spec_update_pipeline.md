@@ -94,8 +94,12 @@
 - Script: `python -m scripts.update_event_signals_data`
 - Update target DB: `data/event_signals.sqlite`
 - Sources (MVP):
-  - `starto_concert`（STARTO NEWS / CONCERT）
+  - `starto_concert`（STARTO 公演情報 / CONCERT）
   - `kstyle_music`（Kstyle MUSIC）
+- Source-specific extraction policy:
+  - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
+  - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
+  - 両sourceとも日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
 - No-op:
