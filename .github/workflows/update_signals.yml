@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -37,7 +39,16 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add data/ scripts/ app.py docs/ README.md
             git commit -m "chore: update event signals data"
-            git push
+            branch="${GITHUB_REF_NAME:-main}"
+            for i in 1 2 3; do
+              git pull --rebase origin "$branch" && git push origin "HEAD:$branch" && break
+              if [ "$i" -eq 3 ]; then
+                echo "Push failed after 3 retries"
+                exit 1
+              fi
+              echo "Push retry $i failed. Retrying..."
+              sleep 3
+            done
           else
             echo "No changes to commit."
           fi
