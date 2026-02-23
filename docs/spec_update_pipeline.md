@@ -89,3 +89,28 @@
 - 会場追加手順: `data/venue_registry.csv` に1行追加 → 対応する source strategy を実装
 - CLI options: `--limit N`, `--only venue1,venue2`, `--verbose`
 - 対応ストラテジー: yokohama_arena_json, zepp_schedule, saitama_arena_schedule, tokyo_dome_calendar, vantelin_dome_schedule, kyocera_dome_schedule, belluna_dome_schedule, makuhari_messe_schedule, fukuoka_paypay_dome_schedule, k_arena_yokohama_schedule, sapporo_dome_schedule, zozo_marine_stadium_schedule, pia_arena_mm_schedule, portmesse_nagoya_events, asue_arena_osaka_events, nissan_stadium_calendar, mufg_stadium_schedule, marine_messe_fukuoka_event
+
+## Addendum (2026-02-23) Event Signals (News)
+- Script: `python -m scripts.update_event_signals_data`
+- Update target DB: `data/event_signals.sqlite`
+- Sources (MVP):
+  - `starto_concert`（STARTO NEWS / CONCERT）
+  - `kstyle_music`（Kstyle MUSIC）
+- Source failure isolation:
+  - source単位で例外隔離（片方失敗でも片方は継続）
+- No-op:
+  - sourceごとに `signal_uid -> content_hash` から signature を算出
+  - `signal_sources.last_signature` と一致する場合、当該sourceのDB更新をスキップ
+  - `signals` は `content_hash` が変わった行のみ UPSERT
+  - `signal_sources.updated_at_utc/last_signature` は変化がある場合のみ更新
+- Access policy:
+  - `requests.Session` + UA明示
+  - User-Agent: `market-stats-viewer-signals-bot/1.0 (+https://deltahelmlab.com/)`
+  - ドメイン単位レート制限（全GETに適用）
+- CLI:
+  - `--only starto_concert,kstyle_music`
+  - `--verbose`
+- Workflow:
+  - `.github/workflows/update_signals.yml`
+  - `workflow_dispatch` + 定期実行（12時間ごと）
+  - 差分がある場合のみ commit

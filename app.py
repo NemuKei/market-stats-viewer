@@ -1724,9 +1724,12 @@ DATASET_LABEL_ICD = (
 )
 DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
 DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570"
-DATASET_LABEL_EVENTS = "全国イベント情報（ハブ）"
+DATASET_LABEL_EVENTS_OFFICIAL = "全国イベント情報（会場公式）"
+DATASET_LABEL_EVENTS_SIGNALS = "全国イベント速報（ニュース）"
+DATASET_LABEL_EVENTS = DATASET_LABEL_EVENTS_OFFICIAL
 
 EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
+EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
 
 ICD_PURPOSE_LABELS = {
     "all": "\u5168\u76ee\u7684",
@@ -2989,8 +2992,191 @@ def load_events_data() -> tuple[pd.DataFrame, pd.DataFrame]:
         return pd.DataFrame(), pd.DataFrame()
 
 
+@st.cache_data(show_spinner=False)
+def load_event_signals_data() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Load signals + signal_sources from event_signals.sqlite."""
+    if not EVENT_SIGNALS_DB_PATH.exists():
+        return pd.DataFrame(), pd.DataFrame()
+    try:
+        with sqlite3.connect(str(EVENT_SIGNALS_DB_PATH)) as conn:
+            df_signals = pd.read_sql_query("SELECT * FROM signals", conn)
+            df_sources = pd.read_sql_query("SELECT * FROM signal_sources", conn)
+        return df_signals, df_sources
+    except Exception:
+        return pd.DataFrame(), pd.DataFrame()
+
+
+def render_event_signals_view() -> None:
+    st.title("全国イベント速報（ニュース）")
+
+    from datetime import timedelta
+
+    df_signals, df_sources = load_event_signals_data()
+    if df_signals.empty:
+        st.error(
+            "イベント速報データがありません。"
+            "`uv run python -m scripts.update_event_signals_data` を実行してください。"
+        )
+        return
+
+    source_master = df_sources[["source_id", "source_name"]].drop_duplicates()
+    df = df_signals.merge(source_master, on="source_id", how="left")
+
+    published_utc = pd.to_datetime(df["published_at_utc"], utc=True, errors="coerce")
+    df = df[published_utc.notna()].copy()
+    if df.empty:
+        st.warning("表示可能な速報データがありません。")
+        return
+
+    df["published_dt_utc"] = published_utc[published_utc.notna()]
+    df["published_dt_jst"] = df["published_dt_utc"].dt.tz_convert("Asia/Tokyo")
+    df["published_jst"] = df["published_dt_jst"].dt.strftime("%Y-%m-%d %H:%M")
+    df["score"] = pd.to_numeric(df.get("score"), errors="coerce").fillna(0).astype(int)
+
+    min_date = df["published_dt_jst"].dt.date.min()
+    max_date = df["published_dt_jst"].dt.date.max()
+    default_start = max(min_date, max_date - timedelta(days=30))
+
+    col_f1, col_f2 = st.columns(2)
+    with col_f1:
+        date_from = st.date_input(
+            "掲載日（開始）",
+            value=default_start,
+            min_value=min_date,
+            max_value=max_date,
+            key="signals_date_from",
+        )
+    with col_f2:
+        date_to = st.date_input(
+            "掲載日（終了）",
+            value=max_date,
+            min_value=min_date,
+            max_value=max_date,
+            key="signals_date_to",
+        )
+    if date_from > date_to:
+        date_from, date_to = date_to, date_from
+        st.warning(f"掲載日が逆順だったため、{date_from} ～ {date_to} に入れ替えました。")
+
+    source_options = (
+        df[["source_id", "source_name"]]
+        .drop_duplicates()
+        .sort_values("source_name")
+        .to_dict("records")
+    )
+    source_name_to_id = {str(row["source_name"]): str(row["source_id"]) for row in source_options}
+    selected_source_names = st.multiselect(
+        "ソース",
+        options=list(source_name_to_id.keys()),
+        default=list(source_name_to_id.keys()),
+        key="signals_sources",
+    )
+    selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
+
+    keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
+
+    score_min = int(df["score"].min())
+    score_max = int(df["score"].max())
+    default_score = min(score_max, max(score_min, 60))
+    score_threshold = st.slider(
+        "score閾値",
+        min_value=score_min,
+        max_value=score_max,
+        value=default_score,
+        key="signals_score_threshold",
+    )
+
+    mask = (
+        (df["published_dt_jst"].dt.date >= date_from)
+        & (df["published_dt_jst"].dt.date <= date_to)
+        & (df["score"] >= score_threshold)
+    )
+    if selected_source_ids:
+        mask &= df["source_id"].isin(selected_source_ids)
+    if keyword:
+        keyword_lower = keyword.lower()
+        mask &= (
+            df["title"].fillna("").str.lower().str.contains(keyword_lower)
+            | df["snippet"].fillna("").str.lower().str.contains(keyword_lower)
+        )
+
+    filtered = df[mask].copy().sort_values("published_dt_utc", ascending=False)
+    st.markdown(f"**{len(filtered)}** 件の速報")
+
+    table_df = filtered[
+        [
+            "published_jst",
+            "source_name",
+            "score",
+            "title",
+            "url",
+            "snippet",
+        ]
+    ].rename(
+        columns={
+            "published_jst": "掲載日時（JST）",
+            "source_name": "ソース",
+            "score": "score",
+            "title": "タイトル",
+            "url": "URL",
+            "snippet": "抜粋",
+        }
+    )
+    st.dataframe(
+        table_df,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "URL": st.column_config.LinkColumn("URL", display_text="リンク"),
+        },
+    )
+
+    st.subheader("エクスポート")
+    export_cols = [
+        "signal_uid",
+        "source_id",
+        "source_name",
+        "published_at_utc",
+        "score",
+        "title",
+        "url",
+        "snippet",
+        "labels_json",
+        "updated_at_utc",
+    ]
+    export_df = filtered[export_cols].copy()
+
+    dl_col1, dl_col2 = st.columns(2)
+    with dl_col1:
+        csv_data = export_df.to_csv(index=False)
+        st.download_button(
+            "CSVダウンロード",
+            data=csv_data.encode("utf-8-sig"),
+            file_name=f"event_signals_{date_from}_{date_to}.csv",
+            mime="text/csv",
+            key="signals_csv_dl",
+            use_container_width=True,
+        )
+    with dl_col2:
+        buf = io.BytesIO()
+        with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+            export_df.to_excel(writer, index=False, sheet_name="event_signals")
+        st.download_button(
+            "Excelダウンロード",
+            data=buf.getvalue(),
+            file_name=f"event_signals_{date_from}_{date_to}.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key="signals_excel_dl",
+            use_container_width=True,
+        )
+
+    st.caption(
+        "速報データは本文を保存せず、掲載日時・タイトル・URL・短い抜粋のみ保持します。"
+    )
+
+
 def render_events_view() -> None:
-    st.title("全国イベント情報（ハブ）")
+    st.title("全国イベント情報（会場公式）")
 
     df_events, df_venues = load_events_data()
     if df_events.empty:
@@ -3328,7 +3514,8 @@ def main() -> None:
             DATASET_LABEL_TA,
         ]
         _REF_OPTIONS = [
-            DATASET_LABEL_EVENTS,
+            DATASET_LABEL_EVENTS_OFFICIAL,
+            DATASET_LABEL_EVENTS_SIGNALS,
         ]
 
         if "_active_dataset" not in st.session_state:
@@ -3379,8 +3566,12 @@ def main() -> None:
         render_ta_view()
         return
 
-    if dataset_type == DATASET_LABEL_EVENTS:
+    if dataset_type == DATASET_LABEL_EVENTS_OFFICIAL:
         render_events_view()
+        return
+
+    if dataset_type == DATASET_LABEL_EVENTS_SIGNALS:
+        render_event_signals_view()
         return
 
     render_airport_volume_view()

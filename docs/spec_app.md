@@ -191,3 +191,29 @@
   - 固定スキーマ: event_uid, venue_id, venue_name, pref_code, pref_name,
     start_date, start_time, end_date, end_time, all_day, title, status,
     capacity, url, source_type, source_url, updated_at_utc
+
+## 追補（2026-02-23）全国イベント情報の入口分離
+- サイドバー `参考情報` に以下を並列表示する（タブ化しない）。
+  - `全国イベント情報（会場公式）`
+  - `全国イベント速報（ニュース）`
+
+### 全国イベント情報（会場公式）
+- 既存 `render_events_view()` を継続利用する。
+
+### 全国イベント速報（ニュース）
+- 新規 `render_event_signals_view()` を追加する。
+- 入力データ: `data/event_signals.sqlite`（`signals` + `signal_sources`）
+- フィルタ:
+  - 期間（掲載日: 開始/終了）
+  - ソース（複数選択）
+  - キーワード（title/snippet）
+  - `score` 閾値スライダー（既定は高め）
+- 一覧:
+  - 掲載日時（JST表示）
+  - source_name
+  - score
+  - title
+  - url（リンク）
+  - snippet
+- エクスポート（固定スキーマ）:
+  - `signal_uid, source_id, source_name, published_at_utc, score, title, url, snippet, labels_json, updated_at_utc`
