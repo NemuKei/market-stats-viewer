@@ -118,6 +118,112 @@ class _YokohamaArenaJson(_BaseStrategy):
                 events.append(rec)
         return events
 
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+
+        for li in soup.select("li.eventInr"):
+            link = li.find("a", href=True)
+            if not link:
+                continue
+
+            right_cont = li.select_one(".rightCont")
+            context = " ".join(
+                (
+                    right_cont.get_text(" ", strip=True)
+                    if right_cont
+                    else li.get_text(" ", strip=True)
+                ).split()
+            )
+            if not context:
+                continue
+
+            date_text = ""
+            date_node = li.find(class_=re.compile("date"))
+            if date_node:
+                date_text = " ".join(date_node.get_text(" ", strip=True).split())
+            if not date_text:
+                m_date = re.search(
+                    r"\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?(?:\s*[〜~\-－]\s*\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?)?",
+                    context,
+                )
+                if m_date:
+                    date_text = m_date.group(0)
+            if not date_text:
+                continue
+
+            date_parts = re.findall(r"(\d{4})\.(\d{1,2})\.(\d{1,2})", date_text)
+            if not date_parts:
+                continue
+            y, m, d = date_parts[0]
+            start_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
+            end_date = None
+            if len(date_parts) > 1:
+                y2, m2, d2 = date_parts[-1]
+                ed = f"{int(y2):04d}-{int(m2):02d}-{int(d2):02d}"
+                if ed != start_date:
+                    end_date = ed
+
+            text_wo_date = context.replace(date_text, " ")
+            text_wo_date = re.sub(r"\s*対象\s*.*$", "", text_wo_date)
+            text_wo_date = re.sub(r"\s+", " ", text_wo_date).strip()
+            if not text_wo_date:
+                continue
+
+            start_time = None
+            tm = re.search(
+                r"(?:開演|開始|OPEN|START)\s*[:：]?\s*(\d{1,2}:\d{2})",
+                context,
+                re.IGNORECASE,
+            )
+            if tm:
+                start_time = _normalise_time(tm.group(1))
+
+            event_url = link["href"]
+            if not event_url.startswith("http"):
+                event_url = f"https://www.m-messe.co.jp{event_url}"
+            source_key = link["href"]
+
+            uid = compute_event_uid(
+                venue.venue_id,
+                source_key,
+                text_wo_date,
+                start_date,
+                start_time=start_time,
+                url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=text_wo_date,
+                start_date=start_date,
+                start_time=start_time,
+                end_date=end_date,
+                end_time=None,
+                all_day=not bool(start_time),
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=source_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+
+        return events
+
 
 # ---------------------------------------------------------------------------
 # Tokyo International Forum calendar
@@ -1071,6 +1177,133 @@ class _MakuhariMesseSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# K-Arena Yokohama schedule
+# ---------------------------------------------------------------------------
+@_register("k_arena_yokohama_schedule")
+class _KArenaYokohamaSchedule(_BaseStrategy):
+    """Parse K-Arena Yokohama schedule pages."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        max_pages = int(config.get("max_pages", 4))
+        base = venue.source_url.rstrip("/") + "/"
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for page in range(1, max_pages + 1):
+            page_url = base if page == 1 else f"{base}page/{page}/"
+            try:
+                resp = session.get(page_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning(
+                        "k_arena_yokohama: %s returned %s", page_url, resp.status_code
+                    )
+                    break
+            except Exception:
+                logger.warning("k_arena_yokohama: failed to fetch %s", page_url)
+                break
+
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            before_count = len(seen_uids)
+            page_events = self._parse_page(venue, soup, page_url, seen_uids)
+            if not page_events:
+                break
+            events.extend(page_events)
+            if len(seen_uids) == before_count:
+                break
+
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+
+        for li in soup.select("li.schedule-list-item"):
+            date_node = li.select_one("p.schedule-list-item__date")
+            if not date_node:
+                continue
+            date_text = " ".join(date_node.get_text(" ", strip=True).split())
+            dm = re.search(r"(\d{4})\.(\d{1,2})\.(\d{1,2})", date_text)
+            if not dm:
+                continue
+            start_date = f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+
+            link_tag = li.find("a", href=True)
+            content_text = " ".join(li.get_text(" ", strip=True).split())
+            if link_tag is not None:
+                content_text = " ".join(link_tag.get_text(" ", strip=True).split())
+
+            title = re.sub(r"^\d{4}\.\d{1,2}\.\d{1,2}\.[A-Za-z]{3}\.\s*", "", content_text)
+            title = re.sub(r"^取扱公演\s*", "", title)
+            title = re.sub(r"\s+(?:OPEN|開場)\s*\d{1,2}:\d{2}.*$", "", title, flags=re.IGNORECASE)
+            title = re.sub(r"\s+(?:START|開演|開始)\s*\d{1,2}:\d{2}.*$", "", title, flags=re.IGNORECASE)
+            title = re.sub(r"\s+", " ", title).strip()
+            if not title:
+                continue
+
+            start_time = None
+            for pattern in [
+                r"(?:START|開演|開始)\s*(\d{1,2}:\d{2})",
+                r"(?:OPEN|開場)\s*(\d{1,2}:\d{2})",
+            ]:
+                tm = re.search(pattern, content_text, re.IGNORECASE)
+                if tm:
+                    start_time = _normalise_time(tm.group(1))
+                    if start_time:
+                        break
+
+            event_url = source_url
+            source_key = f"{start_date}:{title}"
+            if link_tag is not None:
+                href = link_tag["href"]
+                if href:
+                    source_key = href
+                    event_url = href
+                    if not event_url.startswith("http"):
+                        event_url = f"https://k-arena.com{href}"
+
+            uid = compute_event_uid(
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=title,
+                start_date=start_date,
+                start_time=start_time,
+                end_date=None,
+                end_time=None,
+                all_day=not bool(start_time),
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=source_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+
+        return events
+
+
+# ---------------------------------------------------------------------------
 # Fukuoka PayPay Dome schedule
 # ---------------------------------------------------------------------------
 @_register("fukuoka_paypay_dome_schedule")
@@ -1079,7 +1312,12 @@ class _FukuokaPayPayDomeSchedule(_BaseStrategy):
 
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
         years_ahead = int(config.get("years_ahead", 1))
-        base_url = str(config.get("yearly_base_url", "https://www.softbankhawks.co.jp/stadium/event_schedule/{year}/"))
+        base_url = str(
+            config.get(
+                "yearly_base_url",
+                "https://www.softbankhawks.co.jp/stadium/event_schedule/{year}/",
+            )
+        )
         current_year = date.today().year
 
         events: list[EventRecord] = []
