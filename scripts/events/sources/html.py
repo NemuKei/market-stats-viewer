@@ -1342,7 +1342,11 @@ class _SapporoDomeSchedule(_BaseStrategy):
         for item in soup.select("li.un_pickupEvent_item"):
             detail = item.select_one("div.un_pickupEvent_detailInner")
             detail_text = " ".join(
-                (detail.get_text(" ", strip=True) if detail else item.get_text(" ", strip=True)).split()
+                (
+                    detail.get_text(" ", strip=True)
+                    if detail
+                    else item.get_text(" ", strip=True)
+                ).split()
             )
             if not detail_text:
                 continue
@@ -1357,7 +1361,11 @@ class _SapporoDomeSchedule(_BaseStrategy):
             title = detail_text
             title = re.sub(r"^.*?(?=\d{4}/\d{1,2}/\d{1,2})", "", title)
             title = re.sub(r"^\d{4}/\d{1,2}/\d{1,2}\([^)]*\)\s*", "", title)
-            title = re.sub(r"\s*(開場時刻|開始時刻|終了時刻|駐車場|お問い合わせ)[:：].*$", "", title)
+            title = re.sub(
+                r"\s*(開場時刻|開始時刻|終了時刻|駐車場|お問い合わせ)[:：].*$",
+                "",
+                title,
+            )
             title = re.sub(r"\s+", " ", title).strip()
             if not title:
                 continue
@@ -1419,6 +1427,7 @@ class _SapporoDomeSchedule(_BaseStrategy):
             events.append(rec)
 
         return events
+
 
 # ---------------------------------------------------------------------------
 # Fukuoka PayPay Dome schedule
@@ -1565,6 +1574,158 @@ class _FukuokaPayPayDomeSchedule(_BaseStrategy):
         text = re.sub(r"\s*TEL[:：].*$", "", text)
         text = re.sub(r"\s+", " ", text).strip()
         return text
+
+
+# ---------------------------------------------------------------------------
+# ZOZO Marine Stadium schedule
+# ---------------------------------------------------------------------------
+@_register("zozo_marine_stadium_schedule")
+class _ZozoMarineStadiumSchedule(_BaseStrategy):
+    """Parse ZOZO Marine Stadium event schedule and daily pages."""
+
+    _BASE_URL = "https://www.marines.co.jp"
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        page_url = venue.source_url
+        try:
+            resp = session.get(page_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "zozo_marine_stadium: %s returned %s", page_url, resp.status_code
+                )
+                return []
+        except Exception:
+            logger.warning("zozo_marine_stadium: failed to fetch %s", page_url)
+            return []
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        daily_paths: list[str] = []
+        seen_paths: set[str] = set()
+        for a_tag in soup.find_all("a", href=True):
+            href = a_tag["href"]
+            if not re.search(r"/event/daily/\d{8}\.html$", href):
+                continue
+            if href in seen_paths:
+                continue
+            seen_paths.add(href)
+            daily_paths.append(href)
+
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        for daily_path in daily_paths:
+            event_url = (
+                daily_path
+                if daily_path.startswith("http")
+                else f"{self._BASE_URL}{daily_path}"
+            )
+            rec = self._parse_daily_page(
+                venue,
+                session,
+                event_url,
+                daily_path,
+                page_url,
+                seen_uids,
+            )
+            if rec is not None:
+                events.append(rec)
+
+        return events
+
+    def _parse_daily_page(
+        self,
+        venue: VenueRecord,
+        session,
+        event_url: str,
+        source_key: str,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> EventRecord | None:
+        dm = re.search(r"(\d{4})(\d{2})(\d{2})\.html$", source_key)
+        if not dm:
+            return None
+        start_date = f"{dm.group(1)}-{dm.group(2)}-{dm.group(3)}"
+
+        try:
+            resp = session.get(event_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "zozo_marine_stadium: %s returned %s", event_url, resp.status_code
+                )
+                return None
+        except Exception:
+            logger.warning("zozo_marine_stadium: failed to fetch %s", event_url)
+            return None
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        title = self._extract_title(soup)
+        if not title:
+            title = "千葉ロッテマリーンズ公式戦"
+
+        start_time = self._extract_start_time(soup)
+
+        uid = compute_event_uid(
+            venue.venue_id,
+            source_key,
+            title,
+            start_date,
+            start_time=start_time,
+            url=event_url,
+        )
+        if uid in seen_uids:
+            return None
+        seen_uids.add(uid)
+
+        rec = EventRecord(
+            event_uid=uid,
+            venue_id=venue.venue_id,
+            title=title,
+            start_date=start_date,
+            start_time=start_time,
+            end_date=None,
+            end_time=None,
+            all_day=not bool(start_time),
+            status="scheduled",
+            url=event_url,
+            description=None,
+            performers=None,
+            capacity=None,
+            source_type=venue.source_type,
+            source_url=source_url,
+            source_event_key=source_key,
+        )
+        rec.data_hash = compute_data_hash(rec)
+        return rec
+
+    @staticmethod
+    def _extract_title(soup: BeautifulSoup) -> str:
+        for dt_tag in soup.select(".c-dailyevent-content dt"):
+            text = " ".join(dt_tag.get_text(" ", strip=True).split())
+            m = re.search(r"vs\s*(.+)$", text, re.IGNORECASE)
+            if m:
+                opponent = re.sub(r"\s+", " ", m.group(1)).strip()
+                if opponent:
+                    return f"千葉ロッテマリーンズ公式戦 vs {opponent}"
+        return ""
+
+    @staticmethod
+    def _extract_start_time(soup: BeautifulSoup) -> str | None:
+        time_text = ""
+        node = soup.select_one(".c-dailyevent-kv .time") or soup.select_one(".time")
+        if node is not None:
+            time_text = " ".join(node.get_text(" ", strip=True).split())
+        if not time_text:
+            return None
+
+        matches = re.findall(r"(\d{1,2}:\d{2})", time_text)
+        if not matches:
+            return None
+        if len(matches) >= 2:
+            return _normalise_time(matches[1])
+        return _normalise_time(matches[0])
 
 
 # ---------------------------------------------------------------------------
