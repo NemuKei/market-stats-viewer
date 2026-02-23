@@ -76,7 +76,9 @@ class KstyleMusicSource(SignalSource):
 
         urls = [first_resp.url]
         soup_first = BeautifulSoup(first_resp.text, "html.parser")
-        urls.extend(self._extract_pagination_urls(soup_first, first_resp.url, pages - 1))
+        urls.extend(
+            self._extract_pagination_urls(soup_first, first_resp.url, pages - 1)
+        )
 
         page_num = 2
         while len(urls) < pages:
@@ -86,7 +88,11 @@ class KstyleMusicSource(SignalSource):
 
         signals: dict[str, SignalRecord] = {}
         for page_url in urls[:pages]:
-            resp = first_resp if page_url == first_resp.url else self.session.get(page_url, timeout=30)
+            resp = (
+                first_resp
+                if page_url == first_resp.url
+                else self.session.get(page_url, timeout=30)
+            )
             if resp.status_code != 200:
                 logger.warning("kstyle: %s returned %s", page_url, resp.status_code)
                 continue
@@ -111,7 +117,11 @@ class KstyleMusicSource(SignalSource):
                 continue
 
             container = self._find_container(a)
-            context = " ".join(container.get_text(" ", strip=True).split()) if container else ""
+            context = (
+                " ".join(container.get_text(" ", strip=True).split())
+                if container
+                else ""
+            )
             dt_match = self.DATETIME_RE.search(context)
             if not dt_match:
                 continue
@@ -187,7 +197,9 @@ class KstyleMusicSource(SignalSource):
             return trim_snippet(text)
         return None
 
-    def _score_and_labels(self, title: str, snippet: str | None) -> tuple[int, dict[str, object]]:
+    def _score_and_labels(
+        self, title: str, snippet: str | None
+    ) -> tuple[int, dict[str, object]]:
         blob = f"{title} {snippet or ''}"
         score = 30
         include_hits = sum(1 for t in self.INCLUDE_TERMS if t in blob)
@@ -201,7 +213,9 @@ class KstyleMusicSource(SignalSource):
 
         labels = {
             "jp_show": include_hits > 0,
-            "announce": any(term in blob for term in ["決定", "開催", "公演", "チケット", "先行"]),
+            "announce": any(
+                term in blob for term in ["決定", "開催", "公演", "チケット", "先行"]
+            ),
             "location_hit": location_hits > 0,
             "noise_penalty": exclude_hits > 0,
             "include_hits": include_hits,

@@ -36,7 +36,9 @@ class StartoConcertSource(SignalSource):
 
         urls = [first_resp.url]
         soup_first = BeautifulSoup(first_resp.text, "html.parser")
-        urls.extend(self._extract_pagination_urls(soup_first, first_resp.url, pages - 1))
+        urls.extend(
+            self._extract_pagination_urls(soup_first, first_resp.url, pages - 1)
+        )
 
         fallback_page = 2
         while len(urls) < pages:
@@ -46,7 +48,11 @@ class StartoConcertSource(SignalSource):
 
         signals: dict[str, SignalRecord] = {}
         for page_url in urls[:pages]:
-            resp = first_resp if page_url == first_resp.url else self.session.get(page_url, timeout=30)
+            resp = (
+                first_resp
+                if page_url == first_resp.url
+                else self.session.get(page_url, timeout=30)
+            )
             if resp.status_code != 200:
                 logger.warning("starto: %s returned %s", page_url, resp.status_code)
                 continue
@@ -89,8 +95,12 @@ class StartoConcertSource(SignalSource):
 
             abs_url = urljoin(page_url, href)
             labels = {
-                "announce": any(word in title for word in ["決定", "開催", "追加", "先行"]),
-                "jp_show": any(word in title for word in ["公演", "来日", "ツアー", "ライブ"]),
+                "announce": any(
+                    word in title for word in ["決定", "開催", "追加", "先行"]
+                ),
+                "jp_show": any(
+                    word in title for word in ["公演", "来日", "ツアー", "ライブ"]
+                ),
                 "category": "concert",
             }
             rec = SignalRecord(

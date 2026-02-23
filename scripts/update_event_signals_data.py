@@ -84,7 +84,9 @@ DEFAULT_SOURCES = [
         "source_name": "Kstyle MUSIC",
         "source_url": "https://kstyle.com/category.ksn?categoryCode=KP",
         "source_type": "html_list",
-        "config_json": json.dumps({"pages": 2, "category": "music"}, ensure_ascii=False),
+        "config_json": json.dumps(
+            {"pages": 2, "category": "music"}, ensure_ascii=False
+        ),
     },
 ]
 
@@ -302,7 +304,9 @@ def main() -> None:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
 
-    only_ids = {s.strip() for s in args.only.split(",") if s.strip()} if args.only else set()
+    only_ids = (
+        {s.strip() for s in args.only.split(",") if s.strip()} if args.only else set()
+    )
 
     raw_session = requests.Session()
     raw_session.headers.update({"User-Agent": USER_AGENT})
