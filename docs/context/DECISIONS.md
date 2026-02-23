@@ -34,3 +34,4 @@
 
 - D-20260218-001 | 宿泊統計に全国・宿泊施設種別の客室稼働率（4-2 月別）を追加し、延べ宿泊者数と切替表示する | status: spec_done | spec_link: docs/spec_app.md
 - D-20260218-002 | 宿泊施設種別稼働率ビューに都道府県切替・年/月分離フィルタ・年度比較グラフを追加する | status: spec_done | spec_link: docs/spec_app.md
+- D-20260223-001 | イベント情報の都道府県フィルタを横並びトグル（複数選択）へ変更し、会場候補の連動時に候補外選択を自動解除する。未選択時は従来どおり全件対象とする | status: spec_done | spec_link: docs/spec_app.md
