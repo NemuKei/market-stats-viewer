@@ -2719,15 +2719,42 @@ def render_events_view() -> None:
     date_from_str = str(date_from)
     date_to_str = str(date_to)
 
-    # Pref filter
+    # Pref filter (横並びトグル・複数選択)
     pref_options = sorted(df["pref_name"].dropna().unique().tolist())
-    selected_prefs = st.multiselect("都道府県", pref_options, key="events_pref")
+    st.markdown("**都道府県（複数選択）**")
+    st.caption("未選択時は全都道府県を対象にします。")
+
+    if "events_pref" not in st.session_state:
+        st.session_state["events_pref"] = []
+
+    selected_pref_seed = {
+        str(v) for v in st.session_state.get("events_pref", []) if str(v) in pref_options
+    }
+    pref_toggle_columns = st.columns(8)
+    selected_prefs: list[str] = []
+    for idx, pref in enumerate(pref_options):
+        pref_key = f"events_pref_toggle_{pref}"
+        if pref_key not in st.session_state:
+            st.session_state[pref_key] = pref in selected_pref_seed
+        with pref_toggle_columns[idx % len(pref_toggle_columns)]:
+            is_selected = st.toggle(pref, key=pref_key)
+        if is_selected:
+            selected_prefs.append(pref)
+
+    st.session_state["events_pref"] = selected_prefs
 
     # Venue filter (narrowed by pref)
     venue_pool = df.copy()
     if selected_prefs:
         venue_pool = venue_pool[venue_pool["pref_name"].isin(selected_prefs)]
     venue_options = sorted(venue_pool["venue_name"].dropna().unique().tolist())
+    current_selected_venues = [
+        str(v)
+        for v in st.session_state.get("events_venue", [])
+        if str(v) in venue_options
+    ]
+    if current_selected_venues != st.session_state.get("events_venue", []):
+        st.session_state["events_venue"] = current_selected_venues
     selected_venues = st.multiselect("会場", venue_options, key="events_venue")
 
     # Keyword
