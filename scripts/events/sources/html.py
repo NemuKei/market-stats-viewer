@@ -1231,17 +1231,28 @@ class _KArenaYokohamaSchedule(_BaseStrategy):
             dm = re.search(r"(\d{4})\.(\d{1,2})\.(\d{1,2})", date_text)
             if not dm:
                 continue
-            start_date = f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+            start_date = (
+                f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+            )
 
             link_tag = li.find("a", href=True)
             content_text = " ".join(li.get_text(" ", strip=True).split())
             if link_tag is not None:
                 content_text = " ".join(link_tag.get_text(" ", strip=True).split())
 
-            title = re.sub(r"^\d{4}\.\d{1,2}\.\d{1,2}\.[A-Za-z]{3}\.\s*", "", content_text)
+            title = re.sub(
+                r"^\d{4}\.\d{1,2}\.\d{1,2}\.[A-Za-z]{3}\.\s*", "", content_text
+            )
             title = re.sub(r"^取扱公演\s*", "", title)
-            title = re.sub(r"\s+(?:OPEN|開場)\s*\d{1,2}:\d{2}.*$", "", title, flags=re.IGNORECASE)
-            title = re.sub(r"\s+(?:START|開演|開始)\s*\d{1,2}:\d{2}.*$", "", title, flags=re.IGNORECASE)
+            title = re.sub(
+                r"\s+(?:OPEN|開場)\s*\d{1,2}:\d{2}.*$", "", title, flags=re.IGNORECASE
+            )
+            title = re.sub(
+                r"\s+(?:START|開演|開始)\s*\d{1,2}:\d{2}.*$",
+                "",
+                title,
+                flags=re.IGNORECASE,
+            )
             title = re.sub(r"\s+", " ", title).strip()
             if not title:
                 continue
@@ -1302,6 +1313,112 @@ class _KArenaYokohamaSchedule(_BaseStrategy):
 
         return events
 
+
+# ---------------------------------------------------------------------------
+# Sapporo Dome schedule
+# ---------------------------------------------------------------------------
+@_register("sapporo_dome_schedule")
+class _SapporoDomeSchedule(_BaseStrategy):
+    """Parse Sapporo Dome (Daiwa House PREMIST DOME) schedule page."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        page_url = venue.source_url
+        try:
+            resp = session.get(page_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "sapporo_dome: %s returned %s", page_url, resp.status_code
+                )
+                return []
+        except Exception:
+            logger.warning("sapporo_dome: failed to fetch %s", page_url)
+            return []
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        for item in soup.select("li.un_pickupEvent_item"):
+            detail = item.select_one("div.un_pickupEvent_detailInner")
+            detail_text = " ".join(
+                (detail.get_text(" ", strip=True) if detail else item.get_text(" ", strip=True)).split()
+            )
+            if not detail_text:
+                continue
+
+            dm = re.search(r"(\d{4})/(\d{1,2})/(\d{1,2})", detail_text)
+            if not dm:
+                continue
+            start_date = (
+                f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+            )
+
+            title = detail_text
+            title = re.sub(r"^.*?(?=\d{4}/\d{1,2}/\d{1,2})", "", title)
+            title = re.sub(r"^\d{4}/\d{1,2}/\d{1,2}\([^)]*\)\s*", "", title)
+            title = re.sub(r"\s*(開場時刻|開始時刻|終了時刻|駐車場|お問い合わせ)[:：].*$", "", title)
+            title = re.sub(r"\s+", " ", title).strip()
+            if not title:
+                continue
+
+            start_time = None
+            for pattern in [
+                r"開始時刻\s*(\d{1,2}:\d{2})",
+                r"開演\s*(\d{1,2}:\d{2})",
+                r"開場\s*(\d{1,2}:\d{2})",
+            ]:
+                tm = re.search(pattern, detail_text)
+                if tm:
+                    start_time = _normalise_time(tm.group(1))
+                    if start_time:
+                        break
+
+            event_url = page_url
+            source_key = f"{start_date}:{title}"
+            link_tag = item.find("a", href=True)
+            if link_tag is not None:
+                href = link_tag["href"]
+                if href:
+                    source_key = href
+                    event_url = href
+                    if not event_url.startswith("http"):
+                        event_url = f"https://www.sapporo-dome.co.jp{href}"
+
+            uid = compute_event_uid(
+                venue.venue_id,
+                source_key,
+                title,
+                start_date,
+                start_time=start_time,
+                url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=title,
+                start_date=start_date,
+                start_time=start_time,
+                end_date=None,
+                end_time=None,
+                all_day=not bool(start_time),
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=page_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+
+        return events
 
 # ---------------------------------------------------------------------------
 # Fukuoka PayPay Dome schedule
