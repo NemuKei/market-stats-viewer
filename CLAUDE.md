@@ -80,6 +80,7 @@ docs/
 |---|---|---|
 | context_writeback | 常設コンテキストへの反映（4 条件ゲート） | `.agents/skills/context_writeback/SKILL.md` |
 | docs_governance | ドキュメント新設 vs 統合判断（3 条件ゲート） | `.agents/skills/docs_governance/SKILL.md` |
+| gitignore_guard | 新規ファイルの `.gitignore` 判定と追記 | `.agents/skills/gitignore_guard/SKILL.md` |
 | repo_bootstrap | 責務ベースの最小構成整備 | `.agents/skills/repo_bootstrap/SKILL.md` |
 | sidebiz_sync | 確定事項の SideBiz ハブ同期 | `.agents/skills/sidebiz_sync/SKILL.md` |
 | bom_guard | UTF-8 BOM 問題の防止 | `.agents/skills/bom_guard/SKILL.md` |
