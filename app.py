@@ -1723,7 +1723,7 @@ DATASET_LABEL_ICD = (
     "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
 )
 DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
-DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09"
+DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570"
 DATASET_LABEL_EVENTS = "全国イベント情報（ハブ）"
 
 EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
@@ -3324,8 +3324,8 @@ def main() -> None:
             DATASET_LABEL_STAY,
             DATASET_LABEL_TCD,
             DATASET_LABEL_ICD,
-            DATASET_LABEL_TA,
             DATASET_LABEL_AIRPORT_VOLUME,
+            DATASET_LABEL_TA,
         ]
         _REF_OPTIONS = [
             DATASET_LABEL_EVENTS,
