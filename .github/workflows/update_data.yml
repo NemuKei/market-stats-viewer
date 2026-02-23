@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "0 3 * * 1" # 毎週月曜 03:00 UTC（日本時間だと月曜12:00）
 
+concurrency:
+  group: repo-write-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 

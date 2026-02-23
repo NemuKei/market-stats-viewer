@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "0 */12 * * *" # every 12 hours (UTC)
 
+concurrency:
+  group: repo-write-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
