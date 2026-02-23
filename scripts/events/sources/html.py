@@ -956,7 +956,9 @@ class _MakuhariMesseSchedule(_BaseStrategy):
                 events.extend(page_events)
 
                 pagination = soup.find("div", class_=re.compile("pager|pagination"))
-                if pagination is None or str(page + 1) not in pagination.get_text(" ", strip=True):
+                if pagination is None or str(page + 1) not in pagination.get_text(
+                    " ", strip=True
+                ):
                     break
 
         return events
@@ -977,7 +979,11 @@ class _MakuhariMesseSchedule(_BaseStrategy):
 
             right_cont = li.select_one(".rightCont")
             context = " ".join(
-                (right_cont.get_text(" ", strip=True) if right_cont else li.get_text(" ", strip=True)).split()
+                (
+                    right_cont.get_text(" ", strip=True)
+                    if right_cont
+                    else li.get_text(" ", strip=True)
+                ).split()
             )
             if not context:
                 continue
@@ -987,7 +993,10 @@ class _MakuhariMesseSchedule(_BaseStrategy):
             if date_node:
                 date_text = " ".join(date_node.get_text(" ", strip=True).split())
             if not date_text:
-                m_date = re.search(r"\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?(?:\s*[〜~\-－]\s*\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?)?", context)
+                m_date = re.search(
+                    r"\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?(?:\s*[〜~\-－]\s*\d{4}\.\d{1,2}\.\d{1,2}(?:\([^)]*\))?)?",
+                    context,
+                )
                 if m_date:
                     date_text = m_date.group(0)
             if not date_text:
@@ -1012,7 +1021,11 @@ class _MakuhariMesseSchedule(_BaseStrategy):
                 continue
 
             start_time = None
-            tm = re.search(r"(?:開演|開始|OPEN|START)\s*[:：]?\s*(\d{1,2}:\d{2})", context, re.IGNORECASE)
+            tm = re.search(
+                r"(?:開演|開始|OPEN|START)\s*[:：]?\s*(\d{1,2}:\d{2})",
+                context,
+                re.IGNORECASE,
+            )
             if tm:
                 start_time = _normalise_time(tm.group(1))
 
@@ -1055,6 +1068,148 @@ class _MakuhariMesseSchedule(_BaseStrategy):
             events.append(rec)
 
         return events
+
+
+# ---------------------------------------------------------------------------
+# Fukuoka PayPay Dome schedule
+# ---------------------------------------------------------------------------
+@_register("fukuoka_paypay_dome_schedule")
+class _FukuokaPayPayDomeSchedule(_BaseStrategy):
+    """Parse Fukuoka PayPay Dome yearly event schedule pages."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        years_ahead = int(config.get("years_ahead", 1))
+        base_url = str(config.get("yearly_base_url", "https://www.softbankhawks.co.jp/stadium/event_schedule/{year}/"))
+        current_year = date.today().year
+
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        for year in range(current_year, current_year + years_ahead + 1):
+            page_url = base_url.format(year=year)
+            try:
+                resp = session.get(page_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning(
+                        "fukuoka_paypay_dome: %s returned %s",
+                        page_url,
+                        resp.status_code,
+                    )
+                    continue
+            except Exception:
+                logger.warning("fukuoka_paypay_dome: failed to fetch %s", page_url)
+                continue
+
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            events.extend(self._parse_page(venue, soup, page_url, seen_uids))
+
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        schedule_panels = soup.find_all("div", class_=re.compile("temp_tabPanel"))
+        if not schedule_panels:
+            return events
+
+        for panel in schedule_panels:
+            for dt_tag in panel.find_all("dt"):
+                date_text = " ".join(dt_tag.get_text(" ", strip=True).split())
+                dm = re.search(r"(\d{4})/(\d{1,2})/(\d{1,2})", date_text)
+                if not dm:
+                    continue
+                start_date = f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+
+                dd_tag = dt_tag.find_next_sibling("dd")
+                if dd_tag is None:
+                    continue
+                dd_text = " ".join(dd_tag.get_text(" ", strip=True).split())
+                if not dd_text or "決定次第掲載" in dd_text:
+                    continue
+
+                title = self._extract_title(dd_text)
+                if not title:
+                    continue
+
+                start_time = None
+                time_patterns = [
+                    r"(?:開演|試合開始|開始)\s*[:：]?\s*(\d{1,2}:\d{2})",
+                    r"(?:開場)\s*[:：]?\s*(\d{1,2}:\d{2})",
+                    r"(?:開催時間)\s*(\d{1,2}:\d{2})",
+                ]
+                for pattern in time_patterns:
+                    tm = re.search(pattern, dd_text, re.IGNORECASE)
+                    if tm:
+                        start_time = _normalise_time(tm.group(1))
+                        if start_time:
+                            break
+
+                link_tag = dd_tag.find("a", href=True)
+                event_url = source_url
+                source_key = f"{start_date}:{title}"
+                if link_tag is not None:
+                    href = link_tag["href"]
+                    if href:
+                        source_key = href
+                        event_url = href
+                        if not event_url.startswith("http"):
+                            event_url = f"https://www.softbankhawks.co.jp{href}"
+
+                uid = compute_event_uid(
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
+                )
+                if uid in seen_uids:
+                    continue
+                seen_uids.add(uid)
+
+                rec = EventRecord(
+                    event_uid=uid,
+                    venue_id=venue.venue_id,
+                    title=title,
+                    start_date=start_date,
+                    start_time=start_time,
+                    end_date=None,
+                    end_time=None,
+                    all_day=not bool(start_time),
+                    status="scheduled",
+                    url=event_url,
+                    description=None,
+                    performers=None,
+                    capacity=None,
+                    source_type=venue.source_type,
+                    source_url=source_url,
+                    source_event_key=source_key,
+                )
+                rec.data_hash = compute_data_hash(rec)
+                events.append(rec)
+
+        return events
+
+    @staticmethod
+    def _extract_title(dd_text: str) -> str:
+        text = re.sub(r"\s+", " ", dd_text).strip()
+        if not text:
+            return ""
+
+        text = re.sub(r"^(イベント|野球|コンサート)\s*", "", text)
+        for marker in ["開演時間", "開催時間", "開場", "お問い合わせ"]:
+            if marker in text:
+                text = text.split(marker, 1)[0].strip()
+                break
+
+        text = re.sub(r"\s*TEL[:：].*$", "", text)
+        text = re.sub(r"\s+", " ", text).strip()
+        return text
 
 
 # ---------------------------------------------------------------------------
