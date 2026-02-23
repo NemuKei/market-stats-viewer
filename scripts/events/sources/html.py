@@ -754,75 +754,103 @@ class _BellunaDomeSchedule(_BaseStrategy):
     """Parse Belluna Dome (Seibu Lions) event schedule."""
 
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
-        resp = session.get(venue.source_url, timeout=30)
-        resp.raise_for_status()
-        resp.encoding = resp.apparent_encoding or "utf-8"
-        soup = BeautifulSoup(resp.text, "html.parser")
+        months_ahead = int(config.get("months_ahead", 8))
+        today = date.today()
         events: list[EventRecord] = []
         seen_uids: set[str] = set()
-        # Look for event entries with date patterns
-        # Try multiple selectors: links with schedule paths, date containers
-        for a_tag in soup.find_all("a", href=True):
-            href = a_tag["href"]
-            # Skip navigation/non-event links
-            if not re.search(r"(?:schedule|game|event|detail)", href):
+
+        for offset in range(months_ahead + 1):
+            month_date = today.replace(day=1) + timedelta(days=32 * offset)
+            month_date = month_date.replace(day=1)
+            ym = month_date.strftime("%Y%m")
+            month_url = f"https://bellunadome.seibulions.co.jp/schedule/{ym}/all/index.html"
+
+            try:
+                resp = session.get(month_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning("belluna_dome: %s returned %s", month_url, resp.status_code)
+                    continue
+            except Exception:
+                logger.warning("belluna_dome: failed to fetch %s", month_url)
                 continue
-            parent = a_tag.parent
-            if not parent:
-                continue
-            context = parent.get_text(" ", strip=True)
-            # Look for date: YYYY/MM/DD, YYYY年MM月DD日, or MM/DD with year context
-            m = re.search(r"(\d{4})[/年.](\d{1,2})[/月.](\d{1,2})", context)
-            if not m:
-                # Try MM/DD format with page-level year
-                continue
-            start_date = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
-            title = a_tag.get_text(strip=True)
-            if not title or len(title) < 2:
-                # Try parent text minus date
-                title = re.sub(r"\d{4}[/年.]\d{1,2}[/月.]\d{1,2}[日]?\s*[(（].[)）]?\s*", "", context).strip()
-            if not title:
-                continue
-            event_url = href
-            if not event_url.startswith("http"):
-                event_url = f"https://bellunadome.seibulions.co.jp{href}"
-            source_key = href
-            # Times
-            start_time = None
-            tm = re.search(r"(?:開演|試合開始|START|開始)\s*(\d{1,2}:\d{2})", context, re.IGNORECASE)
-            if tm:
-                start_time = _normalise_time(tm.group(1))
-            if not start_time:
-                tm = re.search(r"(\d{1,2}:\d{2})\s*(?:開始|試合)", context)
+
+            resp.encoding = "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+
+            for item in soup.select("div.event-item"):
+                context = " ".join(item.get_text(" ", strip=True).split())
+                if not context:
+                    continue
+
+                m = re.search(r"^[A-Z]{3}\s+(\d{2})\.(\d{2})\s+(\d{4})\s+(.+)$", context)
+                if not m:
+                    continue
+
+                month = int(m.group(1))
+                day = int(m.group(2))
+                year = int(m.group(3))
+                body = m.group(4).strip()
+                if not body:
+                    continue
+                if body in {"調整中", "メンテナンス"}:
+                    continue
+
+                start_date = f"{year:04d}-{month:02d}-{day:02d}"
+
+                tm = re.search(r"[\(（]\s*(\d{1,2}:\d{2})\s*[\)）]", body)
+                start_time = None
                 if tm:
                     start_time = _normalise_time(tm.group(1))
-            uid = compute_event_uid(
-                venue.venue_id, source_key, title, start_date,
-                start_time=start_time, url=event_url,
-            )
-            if uid in seen_uids:
-                continue
-            seen_uids.add(uid)
-            rec = EventRecord(
-                event_uid=uid,
-                venue_id=venue.venue_id,
-                title=title,
-                start_date=start_date,
-                start_time=start_time,
-                end_date=None,
-                end_time=None,
-                all_day=not bool(start_time),
-                status="scheduled",
-                url=event_url,
-                description=None,
-                performers=None,
-                capacity=None,
-                source_type=venue.source_type,
-                source_url=venue.source_url,
-                source_event_key=source_key,
-            )
-            rec.data_hash = compute_data_hash(rec)
-            events.append(rec)
+                    body = re.sub(r"[\(（]\s*\d{1,2}:\d{2}\s*[\)）]", "", body).strip()
+
+                start_time_inline = re.search(r"(?:開演|試合開始|START|開始)\s*(\d{1,2}:\d{2})", body, re.IGNORECASE)
+                if start_time is None and start_time_inline:
+                    start_time = _normalise_time(start_time_inline.group(1))
+
+                title = re.sub(r"\s+", " ", body).strip()
+                if not title:
+                    continue
+
+                detail_link = item.find("a", href=True)
+                event_url = month_url
+                source_key = f"{ym}:{start_date}:{title}"
+                if detail_link:
+                    href = detail_link["href"]
+                    if href:
+                        source_key = href
+                        event_url = href
+                        if not event_url.startswith("http"):
+                            event_url = f"https://bellunadome.seibulions.co.jp{href}"
+
+                uid = compute_event_uid(
+                    venue.venue_id, source_key, title, start_date,
+                    start_time=start_time, url=event_url,
+                )
+                if uid in seen_uids:
+                    continue
+                seen_uids.add(uid)
+
+                rec = EventRecord(
+                    event_uid=uid,
+                    venue_id=venue.venue_id,
+                    title=title,
+                    start_date=start_date,
+                    start_time=start_time,
+                    end_date=None,
+                    end_time=None,
+                    all_day=not bool(start_time),
+                    status="scheduled",
+                    url=event_url,
+                    description=None,
+                    performers=None,
+                    capacity=None,
+                    source_type=venue.source_type,
+                    source_url=month_url,
+                    source_event_key=source_key,
+                )
+                rec.data_hash = compute_data_hash(rec)
+                events.append(rec)
+
         return events
 
 
