@@ -1882,6 +1882,145 @@ class _PiaArenaMmSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# Port Messe Nagoya events
+# ---------------------------------------------------------------------------
+@_register("portmesse_nagoya_events")
+class _PortMesseNagoyaEvents(_BaseStrategy):
+    """Parse Port Messe Nagoya event listing page."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        page_url = venue.source_url
+        try:
+            resp = session.get(page_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "portmesse_nagoya: %s returned %s", page_url, resp.status_code
+                )
+                return []
+        except Exception:
+            logger.warning("portmesse_nagoya: failed to fetch %s", page_url)
+            return []
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        for li_tag in soup.select("li.mc-events"):
+            event = self._parse_item(venue, li_tag, page_url, seen_uids)
+            if event is not None:
+                events.append(event)
+
+        return events
+
+    def _parse_item(
+        self,
+        venue: VenueRecord,
+        li_tag,
+        source_url: str,
+        seen_uids: set[str],
+    ) -> EventRecord | None:
+        text = " ".join(li_tag.get_text(" ", strip=True).split())
+        if not text:
+            return None
+
+        date_text = ""
+        date_node = li_tag.select_one(".event-dp, .event-date")
+        if date_node is not None:
+            date_text = " ".join(date_node.get_text(" ", strip=True).split())
+        if not date_text:
+            return None
+
+        date_parts = re.findall(r"(\d{4})年(\d{1,2})月(\d{1,2})日", date_text)
+        if not date_parts:
+            return None
+
+        y, m, d = date_parts[0]
+        start_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
+        end_date = None
+        if len(date_parts) > 1:
+            y2, m2, d2 = date_parts[-1]
+            ed = f"{int(y2):04d}-{int(m2):02d}-{int(d2):02d}"
+            if ed != start_date:
+                end_date = ed
+
+        title = self._extract_title(text, date_text)
+        if not title:
+            return None
+
+        start_time = None
+        for pattern in [
+            r"(?:開演|開始|OPEN|START)\s*[:：/]?\s*(\d{1,2}:\d{2})",
+            r"(\d{1,2}:\d{2})",
+        ]:
+            tm = re.search(pattern, text, re.IGNORECASE)
+            if tm:
+                start_time = _normalise_time(tm.group(1))
+                if start_time:
+                    break
+
+        link = li_tag.find("a", href=True)
+        event_url = source_url
+        source_key = f"{start_date}:{title}"
+        if link is not None:
+            href = link["href"]
+            if href:
+                source_key = href
+                event_url = href
+                if not event_url.startswith("http"):
+                    if event_url.startswith("/"):
+                        event_url = f"https://portmesse.com{event_url}"
+                    else:
+                        event_url = f"https://portmesse.com/{event_url}"
+
+        uid = compute_event_uid(
+            venue.venue_id,
+            source_key,
+            title,
+            start_date,
+            start_time=start_time,
+            url=event_url,
+        )
+        if uid in seen_uids:
+            return None
+        seen_uids.add(uid)
+
+        rec = EventRecord(
+            event_uid=uid,
+            venue_id=venue.venue_id,
+            title=title,
+            start_date=start_date,
+            start_time=start_time,
+            end_date=end_date,
+            end_time=None,
+            all_day=not bool(start_time),
+            status="scheduled",
+            url=event_url,
+            description=None,
+            performers=None,
+            capacity=None,
+            source_type=venue.source_type,
+            source_url=source_url,
+            source_event_key=source_key,
+        )
+        rec.data_hash = compute_data_hash(rec)
+        return rec
+
+    @staticmethod
+    def _extract_title(full_text: str, date_text: str) -> str:
+        title = full_text.replace(date_text, " ")
+        title = re.sub(r"会場[:：].*?\s", " ", title)
+        for marker in ["お問い合わせ", "お問合せ", "連絡先"]:
+            if marker in title:
+                title = title.split(marker, 1)[0]
+                break
+        title = re.sub(r"(無料|招待)\s+https?://\S+", "", title)
+        title = re.sub(r"https?://\S+", "", title)
+        title = re.sub(r"\s+", " ", title).strip()
+        return title
+
+
+# ---------------------------------------------------------------------------
 # Osaka-jo Hall schedule
 # ---------------------------------------------------------------------------
 @_register("osaka_jo_hall_schedule")
