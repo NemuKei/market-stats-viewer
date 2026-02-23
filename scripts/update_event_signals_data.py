@@ -74,8 +74,8 @@ DDL_INDEXES = [
 DEFAULT_SOURCES = [
     {
         "source_id": "starto_concert",
-        "source_name": "STARTO NEWS (CONCERT)",
-        "source_url": "https://starto.jp/s/p/news/list?category=CONCERT",
+        "source_name": "STARTO LIVE (CONCERT)",
+        "source_url": "https://starto.jp/s/p/live?ima=4745&ct=concert",
         "source_type": "html_list",
         "config_json": json.dumps({"pages": 3}, ensure_ascii=False),
     },
@@ -85,7 +85,7 @@ DEFAULT_SOURCES = [
         "source_url": "https://kstyle.com/category.ksn?categoryCode=KP",
         "source_type": "html_list",
         "config_json": json.dumps(
-            {"pages": 2, "category": "music"}, ensure_ascii=False
+            {"pages": 2, "category": "music", "max_articles": 40}, ensure_ascii=False
         ),
     },
 ]
