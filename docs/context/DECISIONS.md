@@ -39,3 +39,4 @@
 - D-20260223-003 | イベント情報に種別フィルタ（すべて/コンサート/野球/その他）を追加し、title・performers・description のキーワードで自動分類して絞り込めるようにする | status: spec_done | spec_link: docs/spec_app.md
 - D-20260223-004 | イベント情報の種別を実質2カテゴリ（野球 / コンサート（その他含む））に再編し、野球以外はコンサートへ分類する。フィルタUIは「すべて」を含む3択とする | status: spec_done | spec_link: docs/spec_app.md
 - D-20260223-005 | 追加候補会場の第一段としてベルーナドームを有効化する。あわせて belluna_dome_schedule を現行HTML構造（月別 event-item）対応へ修正し、取得0件を解消する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-006 | 幕張メッセを有効化し、makuhari_messe_schedule を実装する。月別ページ（month=YYYYMM）とページング（page=N）を巡回してイベント取得する | status: applied | spec_link: docs/spec_update_pipeline.md
