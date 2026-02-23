@@ -3033,8 +3033,41 @@ def render_event_signals_view() -> None:
     df["published_jst"] = df["published_dt_jst"].dt.strftime("%Y-%m-%d %H:%M")
     df["score"] = pd.to_numeric(df.get("score"), errors="coerce").fillna(0).astype(int)
 
-    min_date = df["published_dt_jst"].dt.date.min()
-    max_date = df["published_dt_jst"].dt.date.max()
+    def _load_labels(labels_json: object) -> dict[str, object]:
+        if not isinstance(labels_json, str) or not labels_json.strip():
+            return {}
+        try:
+            parsed = json.loads(labels_json)
+            return parsed if isinstance(parsed, dict) else {}
+        except Exception:
+            return {}
+
+    labels_series = df.get("labels_json", pd.Series(index=df.index, dtype=object)).apply(_load_labels)
+
+    def _parse_iso_date(value: object):
+        if not isinstance(value, str) or not value.strip():
+            return pd.NaT
+        return pd.to_datetime(value, format="%Y-%m-%d", errors="coerce")
+
+    event_start_parsed = labels_series.apply(lambda d: _parse_iso_date(d.get("event_start_date")))
+    event_end_parsed = labels_series.apply(lambda d: _parse_iso_date(d.get("event_end_date")))
+    published_date_naive = df["published_dt_jst"].dt.tz_localize(None).dt.normalize()
+
+    df["event_start_dt"] = event_start_parsed.where(event_start_parsed.notna(), published_date_naive)
+    df["event_end_dt"] = event_end_parsed.where(event_end_parsed.notna(), df["event_start_dt"])
+    df["event_start_date"] = df["event_start_dt"].dt.date
+    df["event_end_date"] = df["event_end_dt"].dt.date
+    df["event_date_jst"] = df.apply(
+        lambda row: (
+            row["event_start_date"].strftime("%Y-%m-%d")
+            if row["event_start_date"] == row["event_end_date"]
+            else f"{row['event_start_date'].strftime('%Y-%m-%d')} ～ {row['event_end_date'].strftime('%Y-%m-%d')}"
+        ),
+        axis=1,
+    )
+
+    min_date = df["event_start_date"].min()
+    max_date = df["event_end_date"].max()
     today_jst = pd.Timestamp.now(tz="Asia/Tokyo").date()
     if today_jst < min_date:
         default_end = min_date
@@ -3047,7 +3080,7 @@ def render_event_signals_view() -> None:
     col_f1, col_f2 = st.columns(2)
     with col_f1:
         date_from = st.date_input(
-            "掲載日（開始）",
+            "イベント日（開始）",
             value=default_start,
             min_value=min_date,
             max_value=max_date,
@@ -3055,7 +3088,7 @@ def render_event_signals_view() -> None:
         )
     with col_f2:
         date_to = st.date_input(
-            "掲載日（終了）",
+            "イベント日（終了）",
             value=default_end,
             min_value=min_date,
             max_value=max_date,
@@ -3064,7 +3097,7 @@ def render_event_signals_view() -> None:
     if date_from > date_to:
         date_from, date_to = date_to, date_from
         st.warning(
-            f"掲載日が逆順だったため、{date_from} ～ {date_to} に入れ替えました。"
+            f"イベント日が逆順だったため、{date_from} ～ {date_to} に入れ替えました。"
         )
 
     source_options = (
@@ -3086,21 +3119,9 @@ def render_event_signals_view() -> None:
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
 
-    score_min = int(df["score"].min())
-    score_max = int(df["score"].max())
-    default_score = min(score_max, max(score_min, 60))
-    score_threshold = st.slider(
-        "score閾値",
-        min_value=score_min,
-        max_value=score_max,
-        value=default_score,
-        key="signals_score_threshold",
-    )
-
     mask = (
-        (df["published_dt_jst"].dt.date >= date_from)
-        & (df["published_dt_jst"].dt.date <= date_to)
-        & (df["score"] >= score_threshold)
+        (df["event_end_date"] >= date_from)
+        & (df["event_start_date"] <= date_to)
     )
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
@@ -3115,18 +3136,16 @@ def render_event_signals_view() -> None:
 
     table_df = filtered[
         [
-            "published_jst",
+            "event_date_jst",
             "source_name",
-            "score",
             "title",
             "url",
             "snippet",
         ]
     ].rename(
         columns={
-            "published_jst": "掲載日時（JST）",
+            "event_date_jst": "イベント日（JST）",
             "source_name": "ソース",
-            "score": "score",
             "title": "タイトル",
             "url": "URL",
             "snippet": "抜粋",

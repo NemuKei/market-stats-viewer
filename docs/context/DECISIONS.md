@@ -51,3 +51,4 @@
 - D-20260223-015 | MUFGスタジアムを新規追加し、mufg_stadium_schedule を実装する。月別スケジュール（/schedule/YYYY/MM/）から詳細ページを巡回し、日付・タイトル・開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-016 | マリンメッセ福岡を新規追加し、marine_messe_fukuoka_event を実装する。/messe/event/ のイベント表から開始日・終了日・タイトル・開始時刻・URLを抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-017 | event_signals のノイズ低減として、starto_concert は `live?ct=concert` 一覧＋公演詳細SCHEDULE抽出へ切替、kstyle_music は本文 `■公演情報`（`■開催概要` 含む）セクション抽出へ切替し、日本公演のみ採用する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-018 | 全国イベント速報（ニュース）は掲載日ではなくイベント日で期間フィルタする。event_signals 取得時に `labels_json` へ `event_start_date/event_end_date` を格納し、UIの `score` 閾値フィルタは撤去して会場公式ビューに寄せる | status: applied | spec_link: docs/spec_app.md
