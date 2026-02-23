@@ -1086,6 +1086,627 @@ class _FestivalHallSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# Ariake Arena schedule
+# ---------------------------------------------------------------------------
+@_register("ariake_arena_schedule")
+class _AriakeArenaSchedule(_BaseStrategy):
+    """Parse Ariake Arena event schedule.
+
+    Pages use fixed slug paths: /event/, /event/next/, /event/two/,
+    /event/three/, /event/last/ for upcoming months.
+    Each event is <li id="detail-..."> inside <ul class="event_detail_list">.
+    """
+
+    _SLUGS = ["", "next/", "two/", "three/", "last/"]
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        base = venue.source_url.rstrip("/")
+
+        for slug in self._SLUGS:
+            page_url = f"{base}/{slug}" if slug else f"{base}/"
+            try:
+                resp = session.get(page_url, timeout=30)
+                if resp.status_code != 200:
+                    continue
+            except Exception:
+                continue
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+
+            # Determine year+month from tab navigation
+            year, month = self._detect_year_month(soup, slug)
+            if not year:
+                continue
+
+            events.extend(self._parse_page(venue, soup, page_url, year, month, seen_uids))
+
+        return events
+
+    @staticmethod
+    def _detect_year_month(soup: BeautifulSoup, slug: str) -> tuple[int | None, int | None]:
+        """Detect year and month from the active tab or page content."""
+        # Look for the active tab's year/month spans
+        for li in soup.find_all("li"):
+            a_tag = li.find("a", href=True)
+            if not a_tag:
+                continue
+            href = a_tag.get("href", "")
+            # Match current slug
+            if slug and slug.rstrip("/") in href:
+                pass
+            elif not slug and href.rstrip("/").endswith("/event"):
+                pass
+            else:
+                continue
+            year_span = a_tag.find("span", class_="year")
+            month_span = a_tag.find("span", class_="month_number")
+            if year_span and month_span:
+                try:
+                    return int(year_span.get_text(strip=True)), int(month_span.get_text(strip=True))
+                except ValueError:
+                    pass
+        # Fallback: search for active class
+        active = soup.find("li", class_="active")
+        if active:
+            a_tag = active.find("a")
+            if a_tag:
+                year_span = a_tag.find("span", class_="year")
+                month_span = a_tag.find("span", class_="month_number")
+                if year_span and month_span:
+                    try:
+                        return int(year_span.get_text(strip=True)), int(month_span.get_text(strip=True))
+                    except ValueError:
+                        pass
+        return None, None
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        year: int,
+        month: int,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        event_list = soup.find("ul", class_="event_detail_list")
+        if not event_list:
+            return events
+
+        for li in event_list.find_all("li", id=re.compile(r"^detail-")):
+            # Date from div.event_day spans: "M.D DOW"
+            day_div = li.find("div", class_="event_day")
+            if not day_div:
+                continue
+            spans = day_div.find_all("span")
+            if not spans:
+                continue
+            first_span_text = spans[0].get_text(strip=True)
+            dm = re.match(r"(\d{1,2})\.(\d{1,2})", first_span_text)
+            if not dm:
+                continue
+            ev_month = int(dm.group(1))
+            ev_day = int(dm.group(2))
+            # Year: if event month < page month, it might be next year
+            ev_year = year
+            if ev_month < month and (month - ev_month) > 6:
+                ev_year = year + 1
+            start_date = f"{ev_year}-{ev_month:02d}-{ev_day:02d}"
+
+            # End date from second span
+            end_date = None
+            if len(spans) > 1:
+                end_text = spans[1].get_text(strip=True)
+                edm = re.match(r"(\d{1,2})\.(\d{1,2})", end_text)
+                if edm:
+                    ed_m, ed_d = int(edm.group(1)), int(edm.group(2))
+                    ed_y = ev_year if ed_m >= ev_month else ev_year + 1
+                    ed = f"{ed_y}-{ed_m:02d}-{ed_d:02d}"
+                    if ed != start_date:
+                        end_date = ed
+
+            # Title
+            name_div = li.find("div", class_="event_name")
+            if not name_div:
+                continue
+            title = name_div.get_text(strip=True)
+            if not title:
+                continue
+
+            # External URL from detail table
+            event_url = None
+            source_key = li.get("id")
+            url_a = li.find("a", class_="other_link")
+            if url_a:
+                event_url = url_a.get("href")
+
+            # Start time from detail table
+            start_time = None
+            detail_table = li.find("table", class_="detail_table")
+            if detail_table:
+                first_td = detail_table.find("td")
+                if first_td:
+                    td_text = first_td.get_text(" ", strip=True)
+                    tm = re.search(r"開演\s*(\d{1,2}:\d{2})", td_text)
+                    if tm:
+                        start_time = _normalise_time(tm.group(1))
+                    if not start_time:
+                        tm = re.search(r"開場\s*(\d{1,2}:\d{2})", td_text)
+                        if tm:
+                            start_time = _normalise_time(tm.group(1))
+
+            uid = compute_event_uid(
+                venue.venue_id, source_key, title, start_date,
+                start_time=start_time, url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=title,
+                start_date=start_date,
+                start_time=start_time,
+                end_date=end_date,
+                end_time=None,
+                all_day=not bool(start_time),
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=source_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+        return events
+
+
+# ---------------------------------------------------------------------------
+# Yoyogi National Gymnasium schedule
+# ---------------------------------------------------------------------------
+@_register("yoyogi_gymnasium_schedule")
+class _YoyogiGymnasiumSchedule(_BaseStrategy):
+    """Parse Yoyogi National Gymnasium First Arena event schedule.
+
+    Single page with 2-3 tables (current month, next month, month after next).
+    Each table has class="event-calendar" with simple date/title rows.
+    """
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        resp = session.get(venue.source_url, timeout=30)
+        resp.raise_for_status()
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for table in soup.find_all("table", class_="event-calendar"):
+            rows = table.find_all("tr")
+            for row in rows:
+                cells = row.find_all("td")
+                if len(cells) < 2:
+                    continue
+                # Date: "YYYY/MM/DD(曜)"
+                date_text = cells[0].get_text(strip=True)
+                dm = re.match(r"(\d{4})/(\d{1,2})/(\d{1,2})", date_text)
+                if not dm:
+                    continue
+                start_date = f"{dm.group(1)}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+
+                # Title + URL
+                a_tag = cells[1].find("a", href=True)
+                if a_tag:
+                    title = a_tag.get_text(strip=True)
+                    event_url = a_tag["href"]
+                    if not event_url.startswith("http"):
+                        event_url = f"https://www.jpnsport.go.jp{event_url}"
+                    source_key = a_tag["href"]
+                else:
+                    title = cells[1].get_text(strip=True)
+                    event_url = None
+                    source_key = None
+                if not title:
+                    continue
+
+                uid = compute_event_uid(
+                    venue.venue_id, source_key, title, start_date,
+                    url=event_url,
+                )
+                if uid in seen_uids:
+                    continue
+                seen_uids.add(uid)
+                rec = EventRecord(
+                    event_uid=uid,
+                    venue_id=venue.venue_id,
+                    title=title,
+                    start_date=start_date,
+                    start_time=None,
+                    end_date=None,
+                    end_time=None,
+                    all_day=True,
+                    status="scheduled",
+                    url=event_url,
+                    description=None,
+                    performers=None,
+                    capacity=None,
+                    source_type=venue.source_type,
+                    source_url=venue.source_url,
+                    source_event_key=source_key,
+                )
+                rec.data_hash = compute_data_hash(rec)
+                events.append(rec)
+        return events
+
+
+# ---------------------------------------------------------------------------
+# Tokyo Garden Theater schedule
+# ---------------------------------------------------------------------------
+@_register("garden_theater_schedule")
+class _GardenTheaterSchedule(_BaseStrategy):
+    """Parse Tokyo Garden Theater event schedule.
+
+    Month pages via ?date=YYYY-MM query param.
+    Each event is <li class="event_all"> inside <ul class="list_schedule">.
+    """
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        months_ahead = int(config.get("months_ahead", 3))
+        today = date.today()
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for offset in range(months_ahead + 1):
+            d = today.replace(day=1) + timedelta(days=32 * offset)
+            d = d.replace(day=1)
+            month_url = f"{venue.source_url}?date={d.year}-{d.month:02d}"
+            try:
+                resp = session.get(month_url, timeout=30)
+                if resp.status_code != 200:
+                    continue
+            except Exception:
+                continue
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            events.extend(self._parse_page(venue, soup, month_url, d.year, seen_uids))
+
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        year: int,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        schedule_list = soup.find("ul", class_="list_schedule")
+        if not schedule_list:
+            return events
+
+        for li in schedule_list.find_all("li", class_="event_all"):
+            a_tag = li.find("a", href=True)
+            if not a_tag:
+                continue
+
+            # Date from div.ymd blocks
+            ymd_divs = li.find_all("div", class_="ymd")
+            if not ymd_divs:
+                continue
+            first_ymd = ymd_divs[0]
+            m_div = first_ymd.find("div", class_="m")
+            d_div = first_ymd.find("div", class_="d")
+            if not m_div or not d_div:
+                continue
+            try:
+                ev_month = int(m_div.get_text(strip=True))
+                ev_day = int(d_div.get_text(strip=True))
+            except ValueError:
+                continue
+            start_date = f"{year}-{ev_month:02d}-{ev_day:02d}"
+
+            # End date from last ymd block
+            end_date = None
+            if len(ymd_divs) > 1:
+                last_ymd = ymd_divs[-1]
+                em = last_ymd.find("div", class_="m")
+                ed = last_ymd.find("div", class_="d")
+                if em and ed:
+                    try:
+                        end_m, end_d = int(em.get_text(strip=True)), int(ed.get_text(strip=True))
+                        end_y = year if end_m >= ev_month else year + 1
+                        ed_str = f"{end_y}-{end_m:02d}-{end_d:02d}"
+                        if ed_str != start_date:
+                            end_date = ed_str
+                    except ValueError:
+                        pass
+
+            # Title: div.title text, performer: div.player text
+            title_div = li.find("div", class_="title")
+            player_div = li.find("div", class_="player")
+            title = title_div.get_text(strip=True) if title_div else ""
+            performer = player_div.get_text(strip=True) if player_div else ""
+            if not title and not performer:
+                continue
+            display_title = f"{performer} {title}".strip() if performer and title else (title or performer)
+
+            event_url = a_tag["href"]
+            source_key = event_url
+
+            uid = compute_event_uid(
+                venue.venue_id, source_key, display_title, start_date,
+                url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=display_title,
+                start_date=start_date,
+                start_time=None,
+                end_date=end_date,
+                end_time=None,
+                all_day=True,
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=performer or None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=source_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+        return events
+
+
+# ---------------------------------------------------------------------------
+# TOKYO DOME CITY HALL (Kanadevia Hall) schedule
+# ---------------------------------------------------------------------------
+@_register("tdc_hall_schedule")
+class _TdcHallSchedule(_BaseStrategy):
+    """Parse TOKYO DOME CITY HALL event schedule.
+
+    Single page at /tdc-hall/event/ contains two months in tab sections.
+    Structure is similar to Tokyo Dome calendar but with different detail layout.
+    """
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        resp = session.get(venue.source_url, timeout=30)
+        resp.raise_for_status()
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        current_year = None
+        current_month = None
+
+        for elem in soup.find_all(True):
+            # Year-month header: <p class="c-ttl-set-calender">2026年02月</p>
+            if elem.name == "p" and "c-ttl-set-calender" in " ".join(elem.get("class", [])):
+                text = elem.get_text(strip=True)
+                m = re.search(r"(\d{4})年(\d{1,2})月", text)
+                if m:
+                    current_year = int(m.group(1))
+                    current_month = int(m.group(2))
+                continue
+
+            if elem.name != "tr":
+                continue
+            classes = " ".join(elem.get("class", []))
+            if "c-mod-calender__item" not in classes:
+                continue
+            if current_year is None or current_month is None:
+                continue
+
+            # Day
+            day_span = elem.find("span", class_="c-mod-calender__day")
+            if not day_span:
+                continue
+            day_text = day_span.get_text(strip=True)
+            if not day_text.isdigit():
+                continue
+            day = int(day_text)
+            start_date = f"{current_year}-{current_month:02d}-{day:02d}"
+
+            # Detail cell
+            detail_td = elem.find("td", class_="c-mod-calender__detail")
+            if not detail_td:
+                continue
+            detail_in = detail_td.find("div", class_="c-mod-calender__detail-in")
+            if not detail_in:
+                continue
+
+            # Multiple events possible: each pair of detail-col divs
+            links_p = detail_in.find_all("p", class_="c-mod-calender__links")
+            captions = detail_in.find_all("p", class_="c-txt-caption-01")
+
+            for link_p in links_p:
+                a_tag = link_p.find("a", href=True)
+                if not a_tag:
+                    continue
+                title = a_tag.get_text(strip=True)
+                if not title:
+                    continue
+                event_url = a_tag["href"]
+                source_key = event_url
+
+                # Try to extract time from adjacent caption
+                start_time = None
+                for cap in captions:
+                    cap_text = cap.get_text(" ", strip=True)
+                    tm = re.search(r"開演\s*(\d{1,2}:\d{2})", cap_text)
+                    if tm:
+                        start_time = _normalise_time(tm.group(1))
+                        break
+                    tm = re.search(r"開場\s*(\d{1,2}:\d{2})", cap_text)
+                    if tm:
+                        start_time = _normalise_time(tm.group(1))
+                        break
+
+                uid = compute_event_uid(
+                    venue.venue_id, source_key, title, start_date,
+                    start_time=start_time, url=event_url,
+                )
+                if uid in seen_uids:
+                    continue
+                seen_uids.add(uid)
+                rec = EventRecord(
+                    event_uid=uid,
+                    venue_id=venue.venue_id,
+                    title=title,
+                    start_date=start_date,
+                    start_time=start_time,
+                    end_date=None,
+                    end_time=None,
+                    all_day=not bool(start_time),
+                    status="scheduled",
+                    url=event_url,
+                    description=None,
+                    performers=None,
+                    capacity=None,
+                    source_type=venue.source_type,
+                    source_url=venue.source_url,
+                    source_event_key=source_key,
+                )
+                rec.data_hash = compute_data_hash(rec)
+                events.append(rec)
+        return events
+
+
+# ---------------------------------------------------------------------------
+# Toyosu PIT schedule
+# ---------------------------------------------------------------------------
+@_register("toyosu_pit_schedule")
+class _ToyosuPitSchedule(_BaseStrategy):
+    """Parse Toyosu PIT event schedule.
+
+    Monthly pages at /schedule-list/YYYY/MM/index.html.
+    Each event is <a class="schedule_list"> inside <ul class="schedule_block">.
+    """
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        months_ahead = int(config.get("months_ahead", 3))
+        today = date.today()
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for offset in range(months_ahead + 1):
+            d = today.replace(day=1) + timedelta(days=32 * offset)
+            d = d.replace(day=1)
+            month_url = f"https://toyosu.pia-pit.jp/schedule-list/{d.year}/{d.month:02d}/index.html"
+            try:
+                resp = session.get(month_url, timeout=30)
+                if resp.status_code != 200:
+                    continue
+            except Exception:
+                continue
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            events.extend(self._parse_page(venue, soup, month_url, d.year, seen_uids))
+
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        year: int,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        schedule_block = soup.find("ul", class_="schedule_block")
+        if not schedule_block:
+            return events
+
+        for li in schedule_block.find_all("li", recursive=False):
+            a_tag = li.find("a", class_="schedule_list")
+            if not a_tag:
+                continue
+
+            # Date: div.schedule_list__date > p = "MM.DD"
+            date_div = a_tag.find("div", class_="schedule_list__date")
+            if not date_div:
+                continue
+            date_p = date_div.find("p")
+            if not date_p:
+                continue
+            date_text = date_p.get_text(strip=True)
+            dm = re.match(r"(\d{2})\.(\d{2})", date_text)
+            if not dm:
+                continue
+            ev_month = int(dm.group(1))
+            ev_day = int(dm.group(2))
+            start_date = f"{year}-{ev_month:02d}-{ev_day:02d}"
+
+            # Title: h3 inside div.title
+            title_div = a_tag.find("div", class_="title")
+            if not title_div:
+                continue
+            h3 = title_div.find("h3")
+            subtitle_p = title_div.find("p")
+            artist = h3.get_text(strip=True) if h3 else ""
+            subtitle = subtitle_p.get_text(strip=True) if subtitle_p else ""
+            title = f"{artist} {subtitle}".strip() if artist and subtitle else (artist or subtitle)
+            if not title:
+                continue
+
+            # URL
+            href = a_tag.get("href", "")
+            if href:
+                # Resolve relative URL
+                if href.startswith("../"):
+                    event_url = f"https://toyosu.pia-pit.jp/{href.lstrip('./')}"
+                elif not href.startswith("http"):
+                    event_url = f"https://toyosu.pia-pit.jp{href}"
+                else:
+                    event_url = href
+                source_key = href
+            else:
+                event_url = None
+                source_key = None
+
+            uid = compute_event_uid(
+                venue.venue_id, source_key, title, start_date,
+                url=event_url,
+            )
+            if uid in seen_uids:
+                continue
+            seen_uids.add(uid)
+            rec = EventRecord(
+                event_uid=uid,
+                venue_id=venue.venue_id,
+                title=title,
+                start_date=start_date,
+                start_time=None,
+                end_date=None,
+                end_time=None,
+                all_day=True,
+                status="scheduled",
+                url=event_url,
+                description=None,
+                performers=artist or None,
+                capacity=None,
+                source_type=venue.source_type,
+                source_url=source_url,
+                source_event_key=source_key,
+            )
+            rec.data_hash = compute_data_hash(rec)
+            events.append(rec)
+        return events
+
+
+# ---------------------------------------------------------------------------
 # Budokan schedule (disabled by default, placeholder)
 # ---------------------------------------------------------------------------
 @_register("budokan_schedule")
