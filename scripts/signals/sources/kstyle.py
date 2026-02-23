@@ -131,6 +131,7 @@ class KstyleMusicSource(SignalSource):
     ]
     VENUE_RE = re.compile(r"(?:会場|開催場所|場所)】?[:：]\s*([^\n]+)")
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
+    DATE_TOKEN_RE = re.compile(r"(?:(\d{4})[./年-]\s*(\d{1,2})[./月-]\s*(\d{1,2})日?)")
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
@@ -208,7 +209,12 @@ class KstyleMusicSource(SignalSource):
             if detail is None:
                 continue
             section_text, venue_text, date_text = detail
+            event_start_date, event_end_date = self._extract_event_date_range(section_text)
             score, labels = self._score_and_labels(title, section_text)
+            if event_start_date:
+                labels["event_start_date"] = event_start_date
+            if event_end_date:
+                labels["event_end_date"] = event_end_date
 
             snippet_parts: list[str] = []
             if venue_text:
@@ -316,6 +322,23 @@ class KstyleMusicSource(SignalSource):
 
     def _is_japan_show(self, text: str) -> bool:
         return any(term in text for term in self.JAPAN_TERMS)
+
+    def _extract_event_date_range(self, text: str) -> tuple[str | None, str | None]:
+        dates: list[str] = []
+        for match in self.DATE_TOKEN_RE.finditer(text):
+            year = int(match.group(1))
+            month = int(match.group(2))
+            day = int(match.group(3))
+            try:
+                date_text = datetime(year, month, day).strftime("%Y-%m-%d")
+            except ValueError:
+                continue
+            dates.append(date_text)
+
+        if not dates:
+            return None, None
+        dates_sorted = sorted(set(dates))
+        return dates_sorted[0], dates_sorted[-1]
 
     def _extract_pagination_urls(
         self, soup: BeautifulSoup, base_url: str, max_count: int

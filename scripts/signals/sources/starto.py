@@ -157,6 +157,7 @@ class StartoConcertSource(SignalSource):
 
             venue_names = sorted({venue for _, _, venue, _ in schedules})
             snippet = trim_snippet(self._build_snippet(schedules))
+            event_start_date, event_end_date = self._extract_event_date_range(schedules)
             labels = {
                 "announce": True,
                 "jp_show": True,
@@ -164,6 +165,10 @@ class StartoConcertSource(SignalSource):
                 "venue_count": len(venue_names),
                 "date_count": len(schedules),
             }
+            if event_start_date:
+                labels["event_start_date"] = event_start_date
+            if event_end_date:
+                labels["event_end_date"] = event_end_date
             rec = SignalRecord(
                 signal_uid=compute_signal_uid(source_id, abs_url),
                 source_id=source_id,
@@ -302,6 +307,18 @@ class StartoConcertSource(SignalSource):
         if len(schedules) > len(preview):
             lines.append(f"ほか {len(schedules) - len(preview)} 件")
         return " | ".join(lines)
+
+    def _extract_event_date_range(
+        self, schedules: list[tuple[str, str | None, str, str | None]]
+    ) -> tuple[str | None, str | None]:
+        if not schedules:
+            return None, None
+        dates = sorted(row[0] for row in schedules if row[0])
+        if not dates:
+            return None, None
+        start_date = dates[0].replace(".", "-")
+        end_date = dates[-1].replace(".", "-")
+        return start_date, end_date
 
     def _find_context_node(self, tag: Tag) -> Tag | None:
         node: Tag | None = tag

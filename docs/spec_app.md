@@ -204,14 +204,12 @@
 - 新規 `render_event_signals_view()` を追加する。
 - 入力データ: `data/event_signals.sqlite`（`signals` + `signal_sources`）
 - フィルタ:
-  - 期間（掲載日: 開始/終了）
+  - 期間（イベント日: 開始/終了、データ内イベント期間で絞り込み）
   - ソース（複数選択）
   - キーワード（title/snippet）
-  - `score` 閾値スライダー（既定は高め）
 - 一覧:
-  - 掲載日時（JST表示）
+  - イベント日（JST表示）
   - source_name
-  - score
   - title
   - url（リンク）
   - snippet
