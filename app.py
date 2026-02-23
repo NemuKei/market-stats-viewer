@@ -2709,21 +2709,90 @@ def render_events_view() -> None:
     # --- Filters ---
     from datetime import date as dt_date, timedelta
 
+    df["event_ym"] = df["start_date"].astype(str).str.slice(0, 7)
+    ym_options = sorted(
+        [
+            ym
+            for ym in df["event_ym"].dropna().astype(str).unique().tolist()
+            if re.fullmatch(r"\d{4}-\d{2}", ym)
+        ]
+    )
+    if not ym_options:
+        st.info("期間選択に使える年月データがありません。")
+        return
+
+    min_ym = ym_options[0]
+    max_ym = ym_options[-1]
     today = dt_date.today()
-    col_f1, col_f2 = st.columns(2)
+    default_from_ym = build_ym(today.year, today.month)
+    default_to_date = today + timedelta(days=180)
+    default_to_ym = build_ym(default_to_date.year, default_to_date.month)
+    default_from_ym, _ = clamp_ym_to_available_range(default_from_ym, min_ym, max_ym)
+    default_to_ym, _ = clamp_ym_to_available_range(default_to_ym, min_ym, max_ym)
+
+    year_options = sorted({int(ym[:4]) for ym in ym_options})
+    month_options = list(range(1, 13))
+
+    def _fmt_month(month: int) -> str:
+        return f"{month:02d}"
+
+    default_from_year = int(default_from_ym[:4])
+    default_from_month = int(default_from_ym[5:7])
+    default_to_year = int(default_to_ym[:4])
+    default_to_month = int(default_to_ym[5:7])
+
+    col_f1, col_f2, col_f3, col_f4 = st.columns([2, 1, 2, 1])
     with col_f1:
-        date_from = st.date_input(
-            "開始日", value=today, key="events_date_from"
+        start_year = st.selectbox(
+            "開始（年）",
+            options=year_options,
+            index=year_options.index(default_from_year),
+            key="events_start_year",
         )
     with col_f2:
-        date_to = st.date_input(
-            "終了日", value=today + timedelta(days=180), key="events_date_to"
+        start_month = st.selectbox(
+            "開始（月）",
+            options=month_options,
+            index=month_options.index(default_from_month),
+            format_func=_fmt_month,
+            key="events_start_month",
         )
-    date_from_str = str(date_from)
-    date_to_str = str(date_to)
+    with col_f3:
+        end_year = st.selectbox(
+            "終了（年）",
+            options=year_options,
+            index=year_options.index(default_to_year),
+            key="events_end_year",
+        )
+    with col_f4:
+        end_month = st.selectbox(
+            "終了（月）",
+            options=month_options,
+            index=month_options.index(default_to_month),
+            format_func=_fmt_month,
+            key="events_end_month",
+        )
+
+    ym_from = build_ym(int(start_year), int(start_month))
+    ym_to = build_ym(int(end_year), int(end_month))
+    ym_from, from_clamped = clamp_ym_to_available_range(ym_from, min_ym, max_ym)
+    ym_to, to_clamped = clamp_ym_to_available_range(ym_to, min_ym, max_ym)
+    if from_clamped:
+        st.warning(f"開始年月をデータ範囲に合わせて {ym_from} に補正しました。")
+    if to_clamped:
+        st.warning(f"終了年月をデータ範囲に合わせて {ym_to} に補正しました。")
+    if ym_to_int(ym_from) > ym_to_int(ym_to):
+        ym_from, ym_to = ym_to, ym_from
+        st.warning(f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。")
 
     # Pref filter (横並びトグル・複数選択)
-    pref_options = sorted(df["pref_name"].dropna().unique().tolist())
+    pref_master = (
+        df[["pref_code", "pref_name"]]
+        .dropna(subset=["pref_code", "pref_name"])
+        .drop_duplicates()
+        .sort_values("pref_code")
+    )
+    pref_options = pref_master["pref_name"].astype(str).tolist()
     st.markdown("**都道府県（複数選択）**")
     st.caption("未選択時は全都道府県を対象にします。")
 
@@ -2767,7 +2836,7 @@ def render_events_view() -> None:
     include_cancelled = st.checkbox("cancelled/postponed を含む", value=False, key="events_incl_cancel")
 
     # --- Apply filters ---
-    mask = (df["start_date"] >= date_from_str) & (df["start_date"] <= date_to_str)
+    mask = (df["event_ym"] >= ym_from) & (df["event_ym"] <= ym_to)
     if selected_prefs:
         mask &= df["pref_name"].isin(selected_prefs)
     if selected_venues:
@@ -2859,7 +2928,7 @@ def render_events_view() -> None:
         st.download_button(
             "CSVダウンロード",
             data=csv_data.encode("utf-8-sig"),
-            file_name=f"events_{date_from_str}_{date_to_str}.csv",
+            file_name=f"events_{ym_from}_{ym_to}.csv",
             mime="text/csv",
             key="events_csv_dl",
             use_container_width=True,
@@ -2871,7 +2940,7 @@ def render_events_view() -> None:
         st.download_button(
             "Excelダウンロード",
             data=buf.getvalue(),
-            file_name=f"events_{date_from_str}_{date_to_str}.xlsx",
+            file_name=f"events_{ym_from}_{ym_to}.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             key="events_excel_dl",
             use_container_width=True,
