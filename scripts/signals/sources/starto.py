@@ -1,4 +1,4 @@
-"""STARTO CONCERT news source plugin."""
+"""STARTO live-concert listing source plugin."""
 
 from __future__ import annotations
 
@@ -16,15 +16,60 @@ from .base import (
     canonical_labels_json,
     compute_content_hash,
     compute_signal_uid,
+    trim_snippet,
 )
 
 logger = logging.getLogger(__name__)
 
 
 class StartoConcertSource(SignalSource):
-    """Fetch STARTO CONCERT category list pages."""
+    """Fetch STARTO live-concert listing page (Japan concerts only)."""
 
-    DATE_RE = re.compile(r"(\d{4}\.\d{2}\.\d{2})")
+    # YYYY.MM.DD or YYYY年MM月DD日
+    DATE_RE = re.compile(
+        r"(\d{4})\.(\d{2})\.(\d{2})|(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日"
+    )
+
+    JAPAN_KEYWORDS = [
+        "東京",
+        "大阪",
+        "名古屋",
+        "福岡",
+        "札幌",
+        "横浜",
+        "神戸",
+        "埼玉",
+        "千葉",
+        "京都",
+        "仙台",
+        "広島",
+        "岡山",
+        "新潟",
+        "静岡",
+        "宮城",
+        "ドーム",
+        "武道館",
+        "アリーナ",
+        "ホール",
+        "スタジアム",
+        "日本",
+    ]
+    OVERSEAS_KEYWORDS = [
+        "ソウル",
+        "釜山",
+        "バンコク",
+        "シンガポール",
+        "ニューヨーク",
+        "ロサンゼルス",
+        "ロンドン",
+        "パリ",
+        "上海",
+        "北京",
+        "台北",
+        "マニラ",
+        "ジャカルタ",
+        "バンクーバー",
+    ]
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
@@ -72,7 +117,8 @@ class StartoConcertSource(SignalSource):
     ) -> list[SignalRecord]:
         records: list[SignalRecord] = []
 
-        for a in soup.select("a[href]"):
+        # Target links to individual live event pages
+        for a in soup.select('a[href*="/s/p/live/"]'):
             href = (a.get("href") or "").strip()
             if not href or href.startswith("#") or href.startswith("javascript:"):
                 continue
@@ -85,23 +131,24 @@ class StartoConcertSource(SignalSource):
             if context_node is None:
                 continue
             context = " ".join(context_node.get_text(" ", strip=True).split())
-            match = self.DATE_RE.search(context)
-            if not match:
+            date_str = self._extract_date_str(context)
+            if date_str is None:
                 continue
 
-            published_at_utc = self._to_utc_date(match.group(1))
+            published_at_utc = self._to_utc_date(date_str)
             if not published_at_utc:
                 continue
 
+            # Japan-only filter
+            if not self._is_japan_concert(context, title):
+                continue
+
             abs_url = urljoin(page_url, href)
-            labels = {
-                "announce": any(
-                    word in title for word in ["決定", "開催", "追加", "先行"]
-                ),
-                "jp_show": any(
-                    word in title for word in ["公演", "来日", "ツアー", "ライブ"]
-                ),
+            venue_snippet = self._extract_venue_snippet(context)
+            labels: dict[str, object] = {
                 "category": "concert",
+                "jp_concert": True,
+                "venue_found": venue_snippet is not None,
             }
             rec = SignalRecord(
                 signal_uid=compute_signal_uid(source_id, abs_url),
@@ -109,8 +156,8 @@ class StartoConcertSource(SignalSource):
                 published_at_utc=published_at_utc,
                 title=title,
                 url=abs_url,
-                snippet=None,
-                score=85,
+                snippet=trim_snippet(venue_snippet),
+                score=90,
                 labels_json=canonical_labels_json(labels),
             )
             rec.content_hash = compute_content_hash(rec)
@@ -118,7 +165,12 @@ class StartoConcertSource(SignalSource):
 
         return records
 
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+
     def _find_context_node(self, tag: Tag) -> Tag | None:
+        """Walk up the DOM to find a node that contains a recognisable date."""
         node: Tag | None = tag
         for _ in range(6):
             if node is None:
@@ -128,6 +180,42 @@ class StartoConcertSource(SignalSource):
                 return node
             parent = node.parent
             node = parent if isinstance(parent, Tag) else None
+        return None
+
+    def _extract_date_str(self, text: str) -> str | None:
+        """Return the first date found in text as a canonical 'YYYY.MM.DD' string."""
+        m = self.DATE_RE.search(text)
+        if not m:
+            return None
+        if m.group(1):  # YYYY.MM.DD branch
+            return f"{m.group(1)}.{m.group(2)}.{m.group(3)}"
+        # YYYY年MM月DD日 branch
+        try:
+            return f"{m.group(4)}.{int(m.group(5)):02d}.{int(m.group(6)):02d}"
+        except (TypeError, ValueError):
+            return None
+
+    def _is_japan_concert(self, context: str, title: str) -> bool:
+        """Return True when the context/title looks like a Japan concert."""
+        blob = f"{context} {title}"
+        # Explicit overseas reference → exclude
+        if any(kw in blob for kw in self.OVERSEAS_KEYWORDS):
+            return False
+        # Any Japan keyword → include
+        if any(kw in blob for kw in self.JAPAN_KEYWORDS):
+            return True
+        # No location info at all → assume Japan (STARTO artists are Japan-based)
+        return True
+
+    def _extract_venue_snippet(self, context: str) -> str | None:
+        """Extract a venue-relevant substring from the context text."""
+        for kw in self.JAPAN_KEYWORDS:
+            idx = context.find(kw)
+            if idx == -1:
+                continue
+            start = max(0, idx - 5)
+            end = min(len(context), idx + 30)
+            return context[start:end].strip()
         return None
 
     def _extract_pagination_urls(
