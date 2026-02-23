@@ -2670,6 +2670,52 @@ def render_airport_volume_view() -> None:
 # ---------------------------------------------------------------------------
 # Events Hub
 # ---------------------------------------------------------------------------
+EVENT_CATEGORY_ALL = "すべて"
+EVENT_CATEGORY_CONCERT = "コンサート"
+EVENT_CATEGORY_BASEBALL = "野球"
+EVENT_CATEGORY_OTHER = "その他"
+EVENT_CATEGORY_OPTIONS = [
+    EVENT_CATEGORY_ALL,
+    EVENT_CATEGORY_CONCERT,
+    EVENT_CATEGORY_BASEBALL,
+    EVENT_CATEGORY_OTHER,
+]
+
+
+def classify_event_category(title: str, performers: str, description: str) -> str:
+    text = " ".join([str(title or ""), str(performers or ""), str(description or "")])
+    normalized_text = text.lower()
+
+    baseball_keywords = [
+        "野球",
+        "ベースボール",
+        "baseball",
+        "npb",
+        "プロ野球",
+        "甲子園",
+        "侍ジャパン",
+    ]
+    concert_keywords = [
+        "ライブ",
+        "コンサート",
+        "公演",
+        "ツアー",
+        "フェス",
+        "リサイタル",
+        "オーケストラ",
+        "music",
+        "concert",
+        "festival",
+        "band",
+        "gig",
+    ]
+    if any(keyword in normalized_text for keyword in baseball_keywords):
+        return EVENT_CATEGORY_BASEBALL
+    if any(keyword in normalized_text for keyword in concert_keywords):
+        return EVENT_CATEGORY_CONCERT
+    return EVENT_CATEGORY_OTHER
+
+
 @st.cache_data(show_spinner=False)
 def load_events_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load events + venues from events.sqlite. Returns (df_events, df_venues)."""
@@ -2705,6 +2751,12 @@ def render_events_view() -> None:
     )
     df["display_capacity"] = df["capacity"].fillna(df["venue_capacity"])
     df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
+    df["event_category"] = df.apply(
+        lambda row: classify_event_category(
+            row.get("title"), row.get("performers"), row.get("description")
+        ),
+        axis=1,
+    )
 
     # --- Filters ---
     from datetime import date as dt_date, timedelta
@@ -2831,6 +2883,9 @@ def render_events_view() -> None:
 
     # Keyword
     keyword = st.text_input("キーワード（タイトル/出演者/説明）", key="events_keyword")
+    selected_category = st.radio(
+        "種別", EVENT_CATEGORY_OPTIONS, horizontal=True, key="events_category"
+    )
 
     # Status
     include_cancelled = st.checkbox("cancelled/postponed を含む", value=False, key="events_incl_cancel")
@@ -2849,6 +2904,8 @@ def render_events_view() -> None:
             | df["description"].fillna("").str.lower().str.contains(kw_lower, na=False)
         )
         mask &= kw_mask
+    if selected_category != EVENT_CATEGORY_ALL:
+        mask &= df["event_category"] == selected_category
     if not include_cancelled:
         mask &= df["status"].isin(["scheduled", "unknown"])
     filtered = df[mask].copy().sort_values("start_date").reset_index(drop=True)
