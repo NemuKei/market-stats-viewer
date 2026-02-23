@@ -209,7 +209,9 @@ class KstyleMusicSource(SignalSource):
             if detail is None:
                 continue
             section_text, venue_text, date_text = detail
-            event_start_date, event_end_date = self._extract_event_date_range(section_text)
+            event_start_date, event_end_date = self._extract_event_date_range(
+                section_text
+            )
             score, labels = self._score_and_labels(title, section_text)
             if event_start_date:
                 labels["event_start_date"] = event_start_date
