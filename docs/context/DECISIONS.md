@@ -47,3 +47,6 @@
 - D-20260223-011 | ぴあアリーナMMを新規追加し、pia_arena_mm_schedule を実装する。月別一覧（/event@p1=YYYY&p2=MM.html）から日付・タイトル・詳細URLを取得し、詳細ページの「公演時間」から開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-012 | ポートメッセなごやを新規追加し、portmesse_nagoya_events を実装する。/events/ のイベント一覧（mc-events）から開始日・終了日・タイトル・URLを抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-013 | Asueアリーナ大阪を新規追加し、asue_arena_osaka_events を実装する。/osaka_arena/events/index.html から arena_events 詳細URLを収集し、詳細ページから日付・タイトルを抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-014 | 日産スタジアムを新規追加し、nissan_stadium_calendar を実装する。/calendar/ から detail.php を収集し、詳細ページの表（行事名・期日・開始）を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-015 | MUFGスタジアムを新規追加し、mufg_stadium_schedule を実装する。月別スケジュール（/schedule/YYYY/MM/）から詳細ページを巡回し、日付・タイトル・開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-016 | マリンメッセ福岡を新規追加し、marine_messe_fukuoka_event を実装する。/messe/event/ のイベント表から開始日・終了日・タイトル・開始時刻・URLを抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
