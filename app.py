@@ -201,7 +201,9 @@ def get_chart_source_dataframes(
     else:
         chart_all = df_scope_all.sort_values("ym").reset_index(drop=True)
 
-    chart_filtered = chart_all[(chart_all["ym"] >= ym_from) & (chart_all["ym"] <= ym_to)]
+    chart_filtered = chart_all[
+        (chart_all["ym"] >= ym_from) & (chart_all["ym"] <= ym_to)
+    ]
     return chart_filtered.reset_index(drop=True), chart_all
 
 
@@ -347,7 +349,9 @@ def build_excel_report_bytes(
 
         annual_pivot = (
             annual_base[annual_base["year"].isin(years_for_chart)]
-            .pivot_table(index="month", columns="year", values=annual_col, aggfunc="sum")
+            .pivot_table(
+                index="month", columns="year", values=annual_col, aggfunc="sum"
+            )
             .reindex(range(1, 13))
         )
         for y in years_for_chart:
@@ -384,7 +388,9 @@ def build_excel_report_bytes(
             annual_chart.type = "col"
             annual_chart.grouping = "clustered"
             assign_axis_ids(annual_chart, 20, 200)
-            annual_chart.title = f"年別同月比較（{annual_metric_label}{rolling_suffix}）"
+            annual_chart.title = (
+                f"年別同月比較（{annual_metric_label}{rolling_suffix}）"
+            )
             annual_chart.y_axis.title = "延べ宿泊者数"
             annual_chart.x_axis.title = None
             annual_chart.legend.position = "r"
@@ -444,9 +450,11 @@ def build_time_series_chart(
         long_df["metric"] = long_df["metric_key"].map(metric_labels)
         long_df["stack_order"] = long_df["metric_key"].map({"foreign": 0, "jp": 1})
         long_df["share_label"] = long_df.apply(
-            lambda r: f"{int(round((r['value'] / r['total']) * 100))}%"
-            if r["total"] > 0
-            else "",
+            lambda r: (
+                f"{int(round((r['value'] / r['total']) * 100))}%"
+                if r["total"] > 0
+                else ""
+            ),
             axis=1,
         )
 
@@ -455,18 +463,20 @@ def build_time_series_chart(
         jp_label_df["metric"] = metric_labels["jp"]
         jp_label_df["y_center"] = jp_label_df["foreign"] + (jp_label_df["jp"] / 2)
         jp_label_df["share_label"] = jp_label_df.apply(
-            lambda r: f"{int(round((r['jp'] / r['total']) * 100))}%"
-            if r["total"] > 0
-            else "",
+            lambda r: (
+                f"{int(round((r['jp'] / r['total']) * 100))}%" if r["total"] > 0 else ""
+            ),
             axis=1,
         )
         foreign_label_df = label_base.copy()
         foreign_label_df["metric"] = metric_labels["foreign"]
         foreign_label_df["y_center"] = foreign_label_df["foreign"] / 2
         foreign_label_df["share_label"] = foreign_label_df.apply(
-            lambda r: f"{int(round((r['foreign'] / r['total']) * 100))}%"
-            if r["total"] > 0
-            else "",
+            lambda r: (
+                f"{int(round((r['foreign'] / r['total']) * 100))}%"
+                if r["total"] > 0
+                else ""
+            ),
             axis=1,
         )
         share_df = pd.concat([jp_label_df, foreign_label_df], ignore_index=True)
@@ -613,7 +623,9 @@ def build_facility_occupancy_fiscal_compare_chart(
         alt.Chart(grouped)
         .mark_bar()
         .encode(
-            x=alt.X("fiscal_month_label:N", title="月（年度）", sort=month_order_labels),
+            x=alt.X(
+                "fiscal_month_label:N", title="月（年度）", sort=month_order_labels
+            ),
             xOffset=alt.XOffset("fiscal_year:N", sort=fiscal_years),
             y=alt.Y(
                 "occupancy_rate:Q",
@@ -635,7 +647,9 @@ def build_facility_occupancy_fiscal_type_compare_chart(
 ) -> alt.Chart:
     if df.empty or not facility_types:
         return alt.Chart(
-            pd.DataFrame(columns=["fiscal_month_label", "facility_type", "occupancy_rate"])
+            pd.DataFrame(
+                columns=["fiscal_month_label", "facility_type", "occupancy_rate"]
+            )
         )
 
     work = add_year_month_columns(df[["ym", "facility_type", "occupancy_rate"]])
@@ -665,7 +679,9 @@ def build_facility_occupancy_fiscal_type_compare_chart(
         alt.Chart(grouped)
         .mark_bar()
         .encode(
-            x=alt.X("fiscal_month_label:N", title="月（年度）", sort=month_order_labels),
+            x=alt.X(
+                "fiscal_month_label:N", title="月（年度）", sort=month_order_labels
+            ),
             xOffset=alt.XOffset("facility_type:N", sort=facility_types),
             y=alt.Y(
                 "occupancy_rate:Q",
@@ -771,7 +787,9 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
     max_ym = ym_options[-1]
     default_ym_from = ym_options[max(0, len(ym_options) - 36)]
     default_ym_to = ym_options[-1]
-    year_options = sorted(target_df_all["ym"].str.slice(0, 4).astype(int).unique().tolist())
+    year_options = sorted(
+        target_df_all["ym"].str.slice(0, 4).astype(int).unique().tolist()
+    )
     month_options = list(range(1, 13))
 
     def _fmt_month(v: int) -> str:
@@ -828,7 +846,9 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
         st.warning(f"終了年月をデータ範囲に合わせて {ym_to} に補正しました。")
     if ym_to_int(ym_from) > ym_to_int(ym_to):
         ym_from, ym_to = ym_to, ym_from
-        st.warning(f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。")
+        st.warning(
+            f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。"
+        )
 
     ranged_df = target_df_all[
         (target_df_all["ym"] >= ym_from) & (target_df_all["ym"] <= ym_to)
@@ -889,7 +909,9 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
         fiscal_target_df_all = scope_df[
             scope_df["facility_type"] == fiscal_facility_type
         ].copy()
-        fiscal_all = add_year_month_columns(fiscal_target_df_all[["ym", "occupancy_rate"]])
+        fiscal_all = add_year_month_columns(
+            fiscal_target_df_all[["ym", "occupancy_rate"]]
+        )
         fiscal_all["fiscal_year"] = fiscal_all.apply(
             lambda r: int(r["year"]) if int(r["month"]) >= 4 else int(r["year"]) - 1,
             axis=1,
@@ -898,7 +920,9 @@ def render_stay_facility_occupancy_view(meta: dict) -> None:
             fiscal_all["fiscal_year"].astype(int).unique().tolist()
         )
         default_fiscal_years = (
-            fiscal_year_options[-4:] if len(fiscal_year_options) > 4 else fiscal_year_options
+            fiscal_year_options[-4:]
+            if len(fiscal_year_options) > 4
+            else fiscal_year_options
         )
 
         with fiscal_filter_col2:
@@ -1163,7 +1187,9 @@ def render_stay_stats_view() -> None:
             else []
         )
         default_chart_years = (
-            chart_year_options[-4:] if len(chart_year_options) > 4 else chart_year_options
+            chart_year_options[-4:]
+            if len(chart_year_options) > 4
+            else chart_year_options
         )
         selected_years_for_export = normalize_selected_years(
             st.session_state.get("annual_years_export", default_chart_years),
@@ -1200,7 +1226,9 @@ def render_stay_stats_view() -> None:
             )
             selected_years_ui: list[int] = []
             if not chart_year_options:
-                st.info("選択中の値の種類では、年別同月比較に使えるデータがありません。")
+                st.info(
+                    "選択中の値の種類では、年別同月比較に使えるデータがありません。"
+                )
             else:
                 selected_years_ui = st.multiselect(
                     "年（同月比較に使う年）",
@@ -1258,8 +1286,6 @@ def render_stay_stats_view() -> None:
     st.caption(
         "データは毎週自動更新です。取得元サイトの構造変更等により更新が遅れる場合があります。"
     )
-
-
 
 
 TCD_META_PATH = DATA_DIR / "meta_tcd.json"
@@ -1444,9 +1470,9 @@ def estimate_tcd_los_by_segment(
     )
     summary = summary.merge(one_night, on="segment", how="left")
     summary["one_night_stays"] = summary["one_night_stays"].fillna(0.0)
-    summary["two_plus_stays"] = (summary["estimated_stays"] - summary["one_night_stays"]).clip(
-        lower=0.0
-    )
+    summary["two_plus_stays"] = (
+        summary["estimated_stays"] - summary["one_night_stays"]
+    ).clip(lower=0.0)
 
     summary["estimated_los"] = summary["total_nights"] / summary["estimated_stays"]
     summary["one_night_share_pct"] = (
@@ -1474,7 +1500,9 @@ def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
     chart_df["segment_label"] = chart_df["segment"].map(TCD_SEGMENT_LABELS)
 
     available_bins = [
-        b for b in TCD_NIGHTS_BIN_ORDER if b in chart_df["nights_bin"].astype(str).tolist()
+        b
+        for b in TCD_NIGHTS_BIN_ORDER
+        if b in chart_df["nights_bin"].astype(str).tolist()
     ]
 
     return (
@@ -1530,7 +1558,7 @@ def render_tcd_view() -> None:
     if work.empty:
         st.error(
             "\u8868\u793a\u306b\u5fc5\u8981\u306a\u7cfb\u5217"
-            "\uFF08domestic_total / domestic_business\uFF09\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002"
+            "\uff08domestic_total / domestic_business\uff09\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002"
         )
         return
 
@@ -1546,7 +1574,9 @@ def render_tcd_view() -> None:
     work = work[work["period_type"] == period_type].copy()
 
     if work.empty:
-        st.warning("\u9078\u629e\u3057\u305f\u671f\u9593\u7a2e\u5225\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.warning(
+            "\u9078\u629e\u3057\u305f\u671f\u9593\u7a2e\u5225\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     with col2:
@@ -1561,13 +1591,15 @@ def render_tcd_view() -> None:
     selected_release_type: str | None = None
 
     if release_filter == "latest":
-        filtered, selected_period_key, selected_release_type = resolve_tcd_latest_period_rows(
-            work
+        filtered, selected_period_key, selected_release_type = (
+            resolve_tcd_latest_period_rows(work)
         )
     else:
         filtered_by_release = work[work["release_type"] == release_filter].copy()
         if filtered_by_release.empty:
-            st.warning("\u9078\u629e\u3057\u305f\u30ea\u30ea\u30fc\u30b9\u7a2e\u5225\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+            st.warning(
+                "\u9078\u629e\u3057\u305f\u30ea\u30ea\u30fc\u30b9\u7a2e\u5225\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+            )
             return
 
         period_options = sorted(
@@ -1591,7 +1623,9 @@ def render_tcd_view() -> None:
         selected_release_type = release_filter
 
     if filtered.empty or selected_period_key is None or selected_release_type is None:
-        st.warning("\u8868\u793a\u5bfe\u8c61\u306e\u30c7\u30fc\u30bf\u304C\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3002")
+        st.warning(
+            "\u8868\u793a\u5bfe\u8c61\u306e\u30c7\u30fc\u30bf\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     period_label_map = get_tcd_period_label_map(filtered)
@@ -1606,7 +1640,9 @@ def render_tcd_view() -> None:
         step=0.5,
         key="tcd_los_open_bin",
     )
-    los_summary = estimate_tcd_los_by_segment(filtered, upper_open_bin_nights=los_open_bin)
+    los_summary = estimate_tcd_los_by_segment(
+        filtered, upper_open_bin_nights=los_open_bin
+    )
     if not los_summary.empty:
         st.subheader("LOS\uff08\u5e73\u5747\u6cca\u6570\uff09\u6982\u7b97")
         metric_cols = st.columns(len(los_summary))
@@ -1628,15 +1664,15 @@ def render_tcd_view() -> None:
             )
             .copy()
         )
-        share_display["1\u6cca\u30b7\u30a7\u30a2"] = share_display["1\u6cca\u30b7\u30a7\u30a2"].map(
-            lambda v: f"{v:.1f}%"
-        )
-        share_display[
+        share_display["1\u6cca\u30b7\u30a7\u30a2"] = share_display[
+            "1\u6cca\u30b7\u30a7\u30a2"
+        ].map(lambda v: f"{v:.1f}%")
+        share_display["2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"] = share_display[
             "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"
-        ] = share_display["2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"].map(
-            lambda v: f"{v:.1f}%"
+        ].map(lambda v: f"{v:.1f}%")
+        st.subheader(
+            "\u5bbf\u6cca\u65e5\u6570\u30b7\u30a7\u30a2\uff08\u63a8\u5b9a\u4ef6\u6570\u30d9\u30fc\u30b9\uff09"
         )
-        st.subheader("\u5bbf\u6cca\u65e5\u6570\u30b7\u30a7\u30a2\uff08\u63a8\u5b9a\u4ef6\u6570\u30d9\u30fc\u30b9\uff09")
         st.dataframe(share_display, use_container_width=True, hide_index=True)
         st.caption(
             "\u8a08\u7b97\u5f0f: \u30b7\u30a7\u30a2 \u2248 "
@@ -1683,7 +1719,9 @@ AIRPORT_VOLUME_TABLE_NAME = "airport_arrivals_monthly"
 
 DATASET_LABEL_STAY = "\u5bbf\u6cca\u65c5\u884c\u7d71\u8a08\u8abf\u67fb"
 DATASET_LABEL_TCD = "\u65c5\u884c\u30fb\u89b3\u5149\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
-DATASET_LABEL_ICD = "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
+DATASET_LABEL_ICD = (
+    "\u30a4\u30f3\u30d0\u30a6\u30f3\u30c9\u6d88\u8cbb\u52d5\u5411\u8abf\u67fb"
+)
 DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
 DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09"
 DATASET_LABEL_EVENTS = "全国イベント情報（ハブ）"
@@ -1907,7 +1945,9 @@ def render_icd_view() -> None:
             period_records.append(df[["period_key", "period_label"]].drop_duplicates())
 
     if not period_records:
-        st.warning("\u671f\u9593\u9078\u629e\u7528\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.warning(
+            "\u671f\u9593\u9078\u629e\u7528\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     periods = pd.concat(period_records, ignore_index=True).drop_duplicates()
@@ -1921,7 +1961,9 @@ def render_icd_view() -> None:
         reverse=True,
     )
     if not period_options:
-        st.warning("\u8868\u793a\u53ef\u80fd\u306a\u671f\u9593\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.warning(
+            "\u8868\u793a\u53ef\u80fd\u306a\u671f\u9593\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     col1, col2, col3 = st.columns([3, 2, 3])
@@ -1936,8 +1978,14 @@ def render_icd_view() -> None:
 
     available_purposes = sorted(
         {
-            *spend_df.get("purpose", pd.Series(dtype=str)).astype(str).unique().tolist(),
-            *entry_df.get("purpose", pd.Series(dtype=str)).astype(str).unique().tolist(),
+            *spend_df.get("purpose", pd.Series(dtype=str))
+            .astype(str)
+            .unique()
+            .tolist(),
+            *entry_df.get("purpose", pd.Series(dtype=str))
+            .astype(str)
+            .unique()
+            .tolist(),
         }
     )
     available_purpose_keys = [p for p in ICD_PURPOSE_LABELS if p in available_purposes]
@@ -1966,17 +2014,29 @@ def render_icd_view() -> None:
 
     nationality_options = sorted(
         {
-            *spend_filtered.get("nationality", pd.Series(dtype=str)).astype(str).unique().tolist(),
-            *entry_filtered.get("nationality", pd.Series(dtype=str)).astype(str).unique().tolist(),
+            *spend_filtered.get("nationality", pd.Series(dtype=str))
+            .astype(str)
+            .unique()
+            .tolist(),
+            *entry_filtered.get("nationality", pd.Series(dtype=str))
+            .astype(str)
+            .unique()
+            .tolist(),
         }
     )
     if "\u5168\u56fd\u7c4d\uff65\u5730\u57df" in nationality_options:
         nationality_options = [
             "\u5168\u56fd\u7c4d\uff65\u5730\u57df",
-            *[n for n in nationality_options if n != "\u5168\u56fd\u7c4d\uff65\u5730\u57df"],
+            *[
+                n
+                for n in nationality_options
+                if n != "\u5168\u56fd\u7c4d\uff65\u5730\u57df"
+            ],
         ]
     if not nationality_options:
-        st.warning("\u9078\u629e\u6761\u4ef6\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.warning(
+            "\u9078\u629e\u6761\u4ef6\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     with col3:
@@ -2025,11 +2085,19 @@ def render_icd_view() -> None:
     )
 
     kpi_cols = st.columns(4)
-    kpi_cols[0].metric("\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09", format_metric_value(total_spend))
-    kpi_cols[1].metric("\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09", format_metric_value(avg_nights, 2))
-    kpi_cols[2].metric("\u5bbf\u6cca\u8cbb\uff08\u5186/\u4eba\uff09", format_metric_value(lodging_spend))
+    kpi_cols[0].metric(
+        "\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09", format_metric_value(total_spend)
+    )
+    kpi_cols[1].metric(
+        "\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09", format_metric_value(avg_nights, 2)
+    )
+    kpi_cols[2].metric(
+        "\u5bbf\u6cca\u8cbb\uff08\u5186/\u4eba\uff09",
+        format_metric_value(lodging_spend),
+    )
     kpi_cols[3].metric(
-        "\u5bbf\u6cca\u8cbb/\u6cca\uff08\u5186\uff09", format_metric_value(lodging_per_night)
+        "\u5bbf\u6cca\u8cbb/\u6cca\uff08\u5186\uff09",
+        format_metric_value(lodging_per_night),
     )
 
     st.subheader("\u56fd\u7c4d\u5225 TopN")
@@ -2047,17 +2115,30 @@ def render_icd_view() -> None:
             .head(top_n)
         )
         if top_spend.empty:
-            st.info("\u7dcf\u652f\u51faTopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+            st.info(
+                "\u7dcf\u652f\u51faTopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+            )
         else:
             chart_spend = (
                 alt.Chart(top_spend)
                 .mark_bar()
                 .encode(
-                    x=alt.X("spend_yen:Q", title="\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09"),
-                    y=alt.Y("nationality:N", sort="-x", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                    x=alt.X(
+                        "spend_yen:Q",
+                        title="\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09",
+                    ),
+                    y=alt.Y(
+                        "nationality:N",
+                        sort="-x",
+                        title="\u56fd\u7c4d\u30fb\u5730\u57df",
+                    ),
                     tooltip=[
-                        alt.Tooltip("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
-                        alt.Tooltip("spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"),
+                        alt.Tooltip(
+                            "nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"
+                        ),
+                        alt.Tooltip(
+                            "spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"
+                        ),
                     ],
                 )
                 .properties(height=380)
@@ -2071,17 +2152,32 @@ def render_icd_view() -> None:
             .head(top_n)
         )
         if top_nights.empty:
-            st.info("\u5e73\u5747\u6cca\u6570TopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+            st.info(
+                "\u5e73\u5747\u6cca\u6570TopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+            )
         else:
             chart_nights = (
                 alt.Chart(top_nights)
                 .mark_bar(color="#4C78A8")
                 .encode(
-                    x=alt.X("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09"),
-                    y=alt.Y("nationality:N", sort="-x", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                    x=alt.X(
+                        "avg_nights:Q",
+                        title="\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09",
+                    ),
+                    y=alt.Y(
+                        "nationality:N",
+                        sort="-x",
+                        title="\u56fd\u7c4d\u30fb\u5730\u57df",
+                    ),
                     tooltip=[
-                        alt.Tooltip("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
-                        alt.Tooltip("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570", format=".2f"),
+                        alt.Tooltip(
+                            "nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"
+                        ),
+                        alt.Tooltip(
+                            "avg_nights:Q",
+                            title="\u5e73\u5747\u6cca\u6570",
+                            format=".2f",
+                        ),
                     ],
                 )
                 .properties(height=380)
@@ -2090,12 +2186,18 @@ def render_icd_view() -> None:
 
     st.subheader("\u56fd\u7c4d\u5225 \u8cbb\u76ee\u69cb\u6210")
     if spend_filtered.empty:
-        st.info("\u8cbb\u76ee\u69cb\u6210\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        st.info(
+            "\u8cbb\u76ee\u69cb\u6210\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
     else:
-        top_nat_list = top_spend["nationality"].astype(str).tolist() if not top_spend.empty else []
+        top_nat_list = (
+            top_spend["nationality"].astype(str).tolist() if not top_spend.empty else []
+        )
         comp_source = spend_filtered.copy()
         if top_nat_list:
-            comp_source = comp_source[comp_source["nationality"].isin(top_nat_list)].copy()
+            comp_source = comp_source[
+                comp_source["nationality"].isin(top_nat_list)
+            ].copy()
         comp_source["bucket"] = comp_source["item"].map(map_icd_item_bucket)
         comp_summary = (
             comp_source.groupby(["nationality", "bucket"], as_index=False)["spend_yen"]
@@ -2103,7 +2205,9 @@ def render_icd_view() -> None:
             .dropna(subset=["spend_yen"])
         )
         if comp_summary.empty:
-            st.info("\u8cbb\u76ee\u69cb\u6210\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+            st.info(
+                "\u8cbb\u76ee\u69cb\u6210\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+            )
         else:
             bucket_order = [
                 "\u5bbf\u6cca",
@@ -2118,10 +2222,17 @@ def render_icd_view() -> None:
                 .mark_bar()
                 .encode(
                     x=alt.X("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
-                    y=alt.Y("spend_yen:Q", title="\u8cbb\u76ee\u5225\u652f\u51fa\uff08\u5186/\u4eba\uff09"),
-                    color=alt.Color("bucket:N", title="\u8cbb\u76ee", sort=bucket_order),
+                    y=alt.Y(
+                        "spend_yen:Q",
+                        title="\u8cbb\u76ee\u5225\u652f\u51fa\uff08\u5186/\u4eba\uff09",
+                    ),
+                    color=alt.Color(
+                        "bucket:N", title="\u8cbb\u76ee", sort=bucket_order
+                    ),
                     tooltip=[
-                        alt.Tooltip("nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"),
+                        alt.Tooltip(
+                            "nationality:N", title="\u56fd\u7c4d\u30fb\u5730\u57df"
+                        ),
                         alt.Tooltip("bucket:N", title="\u8cbb\u76ee"),
                         alt.Tooltip("spend_yen:Q", title="\u652f\u51fa", format=",.0f"),
                     ],
@@ -2167,7 +2278,9 @@ def render_icd_view() -> None:
                 .head(top_n)
             )
             if top_ports.empty:
-                st.info("\u56de\u7b54\u8005\u6570TopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+                st.info(
+                    "\u56de\u7b54\u8005\u6570TopN\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+                )
             else:
                 chart_ports = (
                     alt.Chart(top_ports)
@@ -2177,7 +2290,11 @@ def render_icd_view() -> None:
                         y=alt.Y("entry_port:N", sort="-x", title=port_section_label),
                         tooltip=[
                             alt.Tooltip("entry_port:N", title=port_section_label),
-                            alt.Tooltip("respondents:Q", title="\u56de\u7b54\u8005\u6570", format=",.0f"),
+                            alt.Tooltip(
+                                "respondents:Q",
+                                title="\u56de\u7b54\u8005\u6570",
+                                format=",.0f",
+                            ),
                         ],
                     )
                     .properties(height=420)
@@ -2187,21 +2304,41 @@ def render_icd_view() -> None:
         with col_d:
             scatter_base = entry_nat.dropna(subset=["spend_yen", "avg_nights"]).copy()
             if scatter_base.empty:
-                st.info("\u7dcf\u652f\u51fa/\u5e73\u5747\u6cca\u6570\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+                st.info(
+                    "\u7dcf\u652f\u51fa/\u5e73\u5747\u6cca\u6570\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+                )
             else:
                 chart_scatter = (
                     alt.Chart(scatter_base)
                     .mark_circle(opacity=0.8)
                     .encode(
-                        x=alt.X("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09"),
-                        y=alt.Y("spend_yen:Q", title="\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09"),
-                        size=alt.Size("respondents:Q", title="\u56de\u7b54\u8005\u6570"),
+                        x=alt.X(
+                            "avg_nights:Q",
+                            title="\u5e73\u5747\u6cca\u6570\uff08\u6cca\uff09",
+                        ),
+                        y=alt.Y(
+                            "spend_yen:Q",
+                            title="\u7dcf\u652f\u51fa\uff08\u5186/\u4eba\uff09",
+                        ),
+                        size=alt.Size(
+                            "respondents:Q", title="\u56de\u7b54\u8005\u6570"
+                        ),
                         color=alt.value("#F58518"),
                         tooltip=[
                             alt.Tooltip("entry_port:N", title=port_section_label),
-                            alt.Tooltip("respondents:Q", title="\u56de\u7b54\u8005\u6570", format=",.0f"),
-                            alt.Tooltip("avg_nights:Q", title="\u5e73\u5747\u6cca\u6570", format=".2f"),
-                            alt.Tooltip("spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"),
+                            alt.Tooltip(
+                                "respondents:Q",
+                                title="\u56de\u7b54\u8005\u6570",
+                                format=",.0f",
+                            ),
+                            alt.Tooltip(
+                                "avg_nights:Q",
+                                title="\u5e73\u5747\u6cca\u6570",
+                                format=".2f",
+                            ),
+                            alt.Tooltip(
+                                "spend_yen:Q", title="\u7dcf\u652f\u51fa", format=",.0f"
+                            ),
                         ],
                     )
                     .properties(height=420)
@@ -2249,7 +2386,9 @@ def load_ta_data() -> pd.DataFrame:
 
 
 def render_ta_view() -> None:
-    st.title("\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d\uff1a\u5404\u793e\u5225\u5185\u8a33")
+    st.title(
+        "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d\uff1a\u5404\u793e\u5225\u5185\u8a33"
+    )
 
     meta = load_ta_meta()
     if meta:
@@ -2272,7 +2411,9 @@ def render_ta_view() -> None:
         reverse=True,
     )
     if not fiscal_year_options:
-        st.warning("\u5e74\u5ea6\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.warning(
+            "\u5e74\u5ea6\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     col1, col2, col3 = st.columns([2, 2, 2])
@@ -2301,7 +2442,10 @@ def render_ta_view() -> None:
     with col3:
         segment_label = st.selectbox(
             "\u30bb\u30b0\u30e1\u30f3\u30c8",
-            options=["\u5168\u30bb\u30b0\u30e1\u30f3\u30c8", *TA_SEGMENT_LABELS.values()],
+            options=[
+                "\u5168\u30bb\u30b0\u30e1\u30f3\u30c8",
+                *TA_SEGMENT_LABELS.values(),
+            ],
             key="ta_segment",
         )
 
@@ -2325,7 +2469,9 @@ def render_ta_view() -> None:
         .head(top_n)
     )
     if ranking.empty:
-        st.info("\u30e9\u30f3\u30ad\u30f3\u30b0\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        st.info(
+            "\u30e9\u30f3\u30ad\u30f3\u30b0\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
     else:
         ranking_chart = (
             alt.Chart(ranking)
@@ -2342,22 +2488,32 @@ def render_ta_view() -> None:
         )
         st.altair_chart(ranking_chart, use_container_width=True)
 
-    st.subheader("\u30bb\u30b0\u30e1\u30f3\u30c8\u5225\u63a8\u79fb\uff08\u6708\u6b21\uff09")
+    st.subheader(
+        "\u30bb\u30b0\u30e1\u30f3\u30c8\u5225\u63a8\u79fb\uff08\u6708\u6b21\uff09"
+    )
     monthly = fy_data[fy_data["period"].str.match(r"\d{4}-\d{2}$", na=False)].copy()
     if monthly.empty:
-        st.info("\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        st.info(
+            "\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
     else:
         monthly_summary = (
-            monthly.groupby(["period", "segment"], as_index=False)["amount"].sum().copy()
+            monthly.groupby(["period", "segment"], as_index=False)["amount"]
+            .sum()
+            .copy()
         )
-        monthly_summary["segment_label"] = monthly_summary["segment"].map(TA_SEGMENT_LABELS)
+        monthly_summary["segment_label"] = monthly_summary["segment"].map(
+            TA_SEGMENT_LABELS
+        )
         if segment_label != "\u5168\u30bb\u30b0\u30e1\u30f3\u30c8":
             monthly_summary = monthly_summary[
                 monthly_summary["segment_label"] == segment_label
             ].copy()
 
         if monthly_summary.empty:
-            st.info("\u9078\u629e\u30bb\u30b0\u30e1\u30f3\u30c8\u306e\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+            st.info(
+                "\u9078\u629e\u30bb\u30b0\u30e1\u30f3\u30c8\u306e\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+            )
         else:
             month_order = sorted(
                 monthly_summary["period"].unique().tolist(),
@@ -2368,12 +2524,20 @@ def render_ta_view() -> None:
                 .mark_line(point=True)
                 .encode(
                     x=alt.X("period:N", sort=month_order, title="\u6708"),
-                    y=alt.Y("amount:Q", title="\u53d6\u6271\u984d\uff08\u5343\u5186\uff09"),
-                    color=alt.Color("segment_label:N", title="\u30bb\u30b0\u30e1\u30f3\u30c8"),
+                    y=alt.Y(
+                        "amount:Q", title="\u53d6\u6271\u984d\uff08\u5343\u5186\uff09"
+                    ),
+                    color=alt.Color(
+                        "segment_label:N", title="\u30bb\u30b0\u30e1\u30f3\u30c8"
+                    ),
                     tooltip=[
                         alt.Tooltip("period:N", title="\u6708"),
-                        alt.Tooltip("segment_label:N", title="\u30bb\u30b0\u30e1\u30f3\u30c8"),
-                        alt.Tooltip("amount:Q", title="\u53d6\u6271\u984d", format=",.0f"),
+                        alt.Tooltip(
+                            "segment_label:N", title="\u30bb\u30b0\u30e1\u30f3\u30c8"
+                        ),
+                        alt.Tooltip(
+                            "amount:Q", title="\u53d6\u6271\u984d", format=",.0f"
+                        ),
                     ],
                 )
                 .properties(height=360)
@@ -2394,7 +2558,9 @@ def render_ta_view() -> None:
         }
     )
     st.dataframe(table, use_container_width=True, hide_index=True)
-    st.caption("\u91d1\u984d\u5358\u4f4d\u306f\u300c\u5343\u5186\u300d\u3067\u7d71\u4e00\u3057\u3066\u3044\u307e\u3059\u3002")
+    st.caption(
+        "\u91d1\u984d\u5358\u4f4d\u306f\u300c\u5343\u5186\u300d\u3067\u7d71\u4e00\u3057\u3066\u3044\u307e\u3059\u3002"
+    )
     st.caption(
         "\u51fa\u5178\uff1a\u89b3\u5149\u5e81\u300e\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d\u300f"
         "\uff08\u5404\u793e\u5225\u5185\u8a33Excel\u3092\u53d6\u5f97\u3057\u3066\u6574\u5f62\uff09"
@@ -2454,7 +2620,9 @@ def month_to_quarter_period_key(period_key: str) -> str:
 
 
 def render_airport_volume_view() -> None:
-    st.title("\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09")
+    st.title(
+        "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570\uff08\u30dc\u30ea\u30e5\u30fc\u30e0\uff09"
+    )
 
     meta = load_airport_volume_meta()
     if meta:
@@ -2477,7 +2645,9 @@ def render_airport_volume_view() -> None:
         key=parse_period_sort_key,
     )
     if not period_options:
-        st.warning("\u671f\u9593\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.warning(
+            "\u671f\u9593\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     default_from_index = max(0, len(period_options) - 12)
@@ -2508,11 +2678,17 @@ def render_airport_volume_view() -> None:
 
     if parse_period_sort_key(period_from) > parse_period_sort_key(period_to):
         period_from, period_to = period_to, period_from
-        st.info("From/To \u306e\u9806\u5e8f\u304c\u9006\u306e\u305f\u3081\u3001\u5165\u308c\u66ff\u3048\u3066\u8868\u793a\u3057\u3066\u3044\u307e\u3059\u3002")
+        st.info(
+            "From/To \u306e\u9806\u5e8f\u304c\u9006\u306e\u305f\u3081\u3001\u5165\u308c\u66ff\u3048\u3066\u8868\u793a\u3057\u3066\u3044\u307e\u3059\u3002"
+        )
 
-    range_df = df[(df["period_key"] >= period_from) & (df["period_key"] <= period_to)].copy()
+    range_df = df[
+        (df["period_key"] >= period_from) & (df["period_key"] <= period_to)
+    ].copy()
     if range_df.empty:
-        st.info("\u9078\u629e\u671f\u9593\u306b\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.info(
+            "\u9078\u629e\u671f\u9593\u306b\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     airport_totals = (
@@ -2529,17 +2705,23 @@ def render_airport_volume_view() -> None:
         key="airport_volume_airports",
     )
     if not selected_airports:
-        st.info("\u7a7a\u6e2f\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002")
+        st.info(
+            "\u7a7a\u6e2f\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002"
+        )
         return
 
     selected_df = range_df[range_df["airport_name"].isin(selected_airports)].copy()
     if selected_df.empty:
-        st.info("\u9078\u629e\u3057\u305f\u7a7a\u6e2f\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002")
+        st.info(
+            "\u9078\u629e\u3057\u305f\u7a7a\u6e2f\u306e\u30c7\u30fc\u30bf\u304c\u3042\u308a\u307e\u305b\u3093\u3002"
+        )
         return
 
     selected_df["period_key"] = selected_df["period_key"].astype(str)
     if aggregate_mode == "\u56db\u534a\u671f":
-        selected_df["period_key"] = selected_df["period_key"].map(month_to_quarter_period_key)
+        selected_df["period_key"] = selected_df["period_key"].map(
+            month_to_quarter_period_key
+        )
 
     chart_df = (
         selected_df.groupby(["period_key", "airport_name"], as_index=False)["arrivals"]
@@ -2567,7 +2749,13 @@ def render_airport_volume_view() -> None:
     )
 
     st.subheader(
-        "\u63a8\u79fb\uff08" + ("\u56db\u534a\u671f" if aggregate_mode == "\u56db\u534a\u671f" else "\u6708\u6b21") + "\uff09"
+        "\u63a8\u79fb\uff08"
+        + (
+            "\u56db\u534a\u671f"
+            if aggregate_mode == "\u56db\u534a\u671f"
+            else "\u6708\u6b21"
+        )
+        + "\uff09"
     )
     top_n = st.slider(
         "TopN\uff08\u30c1\u30e3\u30fc\u30c8\u8868\u793a\u7a7a\u6e2f\u6570\uff09",
@@ -2585,7 +2773,9 @@ def render_airport_volume_view() -> None:
         )
 
     if chart_view.empty:
-        st.info("\u63a8\u79fb\u30c1\u30e3\u30fc\u30c8\u7528\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        st.info(
+            "\u63a8\u79fb\u30c1\u30e3\u30fc\u30c8\u7528\u306e\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
     else:
         period_order = sorted(
             chart_view["period_key"].astype(str).unique().tolist(),
@@ -2602,12 +2792,16 @@ def render_airport_volume_view() -> None:
                     if aggregate_mode == "\u56db\u534a\u671f"
                     else "\u671f\u9593\uff08\u6708\u6b21\uff09",
                 ),
-                y=alt.Y("arrivals:Q", title="\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09"),
+                y=alt.Y(
+                    "arrivals:Q", title="\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09"
+                ),
                 color=alt.Color("airport_name:N", title="\u7a7a\u6e2f"),
                 tooltip=[
                     alt.Tooltip("period_key:N", title="\u671f\u9593"),
                     alt.Tooltip("airport_name:N", title="\u7a7a\u6e2f"),
-                    alt.Tooltip("arrivals:Q", title="\u5165\u56fd\u8005\u6570", format=",.0f"),
+                    alt.Tooltip(
+                        "arrivals:Q", title="\u5165\u56fd\u8005\u6570", format=",.0f"
+                    ),
                 ],
             )
             .properties(height=360)
@@ -2617,17 +2811,24 @@ def render_airport_volume_view() -> None:
     st.subheader("\u7a7a\u6e2f\u5225\u30e9\u30f3\u30ad\u30f3\u30b0")
     ranking_top = ranking_df.head(top_n).copy()
     if ranking_top.empty:
-        st.info("\u30e9\u30f3\u30ad\u30f3\u30b0\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002")
+        st.info(
+            "\u30e9\u30f3\u30ad\u30f3\u30b0\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
+        )
     else:
         ranking_chart = (
             alt.Chart(ranking_top)
             .mark_bar()
             .encode(
-                x=alt.X("arrivals:Q", title="\u671f\u9593\u5408\u8a08\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09"),
+                x=alt.X(
+                    "arrivals:Q",
+                    title="\u671f\u9593\u5408\u8a08\u5165\u56fd\u8005\u6570\uff08\u4eba\uff09",
+                ),
                 y=alt.Y("airport_name:N", sort="-x", title="\u7a7a\u6e2f"),
                 tooltip=[
                     alt.Tooltip("airport_name:N", title="\u7a7a\u6e2f"),
-                    alt.Tooltip("arrivals:Q", title="\u5165\u56fd\u8005\u6570", format=",.0f"),
+                    alt.Tooltip(
+                        "arrivals:Q", title="\u5165\u56fd\u8005\u6570", format=",.0f"
+                    ),
                 ],
             )
             .properties(height=360)
@@ -2671,14 +2872,12 @@ def render_airport_volume_view() -> None:
 # Events Hub
 # ---------------------------------------------------------------------------
 EVENT_CATEGORY_ALL = "すべて"
-EVENT_CATEGORY_CONCERT = "コンサート"
+EVENT_CATEGORY_CONCERT = "コンサート（その他含む）"
 EVENT_CATEGORY_BASEBALL = "野球"
-EVENT_CATEGORY_OTHER = "その他"
 EVENT_CATEGORY_OPTIONS = [
     EVENT_CATEGORY_ALL,
     EVENT_CATEGORY_CONCERT,
     EVENT_CATEGORY_BASEBALL,
-    EVENT_CATEGORY_OTHER,
 ]
 
 
@@ -2734,7 +2933,9 @@ def classify_event_category(title: str, performers: str, description: str) -> st
     versus_keywords = ["vs", "ｖｓ", "対", " 対戦 "]
     if any(keyword in normalized_text for keyword in baseball_keywords):
         return EVENT_CATEGORY_BASEBALL
-    has_team_keyword = any(keyword in normalized_text for keyword in baseball_team_keywords)
+    has_team_keyword = any(
+        keyword in normalized_text for keyword in baseball_team_keywords
+    )
     has_versus = any(keyword in normalized_text for keyword in versus_keywords)
     if has_team_keyword and has_versus:
         return EVENT_CATEGORY_BASEBALL
@@ -2771,7 +2972,7 @@ def classify_event_category(title: str, performers: str, description: str) -> st
     ]
     if any(keyword in normalized_text for keyword in concert_keywords):
         return EVENT_CATEGORY_CONCERT
-    return EVENT_CATEGORY_OTHER
+    return EVENT_CATEGORY_CONCERT
 
 
 @st.cache_data(show_spinner=False)
@@ -2801,9 +3002,9 @@ def render_events_view() -> None:
 
     # Merge venue info
     df = df_events.merge(
-        df_venues[["venue_id", "venue_name", "pref_code", "pref_name", "capacity"]].rename(
-            columns={"capacity": "venue_capacity"}
-        ),
+        df_venues[
+            ["venue_id", "venue_name", "pref_code", "pref_name", "capacity"]
+        ].rename(columns={"capacity": "venue_capacity"}),
         on="venue_id",
         how="left",
     )
@@ -2817,7 +3018,8 @@ def render_events_view() -> None:
     )
 
     # --- Filters ---
-    from datetime import date as dt_date, timedelta
+    from datetime import date as dt_date
+    from datetime import timedelta
 
     df["event_ym"] = df["start_date"].astype(str).str.slice(0, 7)
     ym_options = sorted(
@@ -2893,7 +3095,9 @@ def render_events_view() -> None:
         st.warning(f"終了年月をデータ範囲に合わせて {ym_to} に補正しました。")
     if ym_to_int(ym_from) > ym_to_int(ym_to):
         ym_from, ym_to = ym_to, ym_from
-        st.warning(f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。")
+        st.warning(
+            f"開始年月と終了年月が逆だったため、{ym_from} ～ {ym_to} に入れ替えました。"
+        )
 
     # Pref filter (横並びトグル・複数選択)
     pref_master = (
@@ -2910,7 +3114,9 @@ def render_events_view() -> None:
         st.session_state["events_pref"] = []
 
     selected_pref_seed = {
-        str(v) for v in st.session_state.get("events_pref", []) if str(v) in pref_options
+        str(v)
+        for v in st.session_state.get("events_pref", [])
+        if str(v) in pref_options
     }
     pref_toggle_columns = st.columns(8)
     selected_prefs: list[str] = []
@@ -2946,7 +3152,9 @@ def render_events_view() -> None:
     )
 
     # Status
-    include_cancelled = st.checkbox("cancelled/postponed を含む", value=False, key="events_incl_cancel")
+    include_cancelled = st.checkbox(
+        "cancelled/postponed を含む", value=False, key="events_incl_cancel"
+    )
 
     # --- Apply filters ---
     mask = (df["event_ym"] >= ym_from) & (df["event_ym"] <= ym_to)
@@ -2972,8 +3180,14 @@ def render_events_view() -> None:
 
     # --- Table ---
     display_cols = [
-        "start_date", "start_time", "venue_name", "pref_name",
-        "title", "status", "display_capacity", "url",
+        "start_date",
+        "start_time",
+        "venue_name",
+        "pref_name",
+        "title",
+        "status",
+        "display_capacity",
+        "url",
     ]
     display_rename = {
         "start_date": "日付",
@@ -2999,12 +3213,17 @@ def render_events_view() -> None:
     st.subheader("イベント強度（日別）")
     if not filtered.empty:
         chart_df = filtered.copy()
-        chart_df["display_capacity"] = pd.to_numeric(
-            chart_df["display_capacity"], errors="coerce"
-        ).fillna(0).astype(int)
+        chart_df["display_capacity"] = (
+            pd.to_numeric(chart_df["display_capacity"], errors="coerce")
+            .fillna(0)
+            .astype(int)
+        )
         daily = (
             chart_df.groupby("start_date")
-            .agg(event_count=("event_uid", "count"), total_capacity=("display_capacity", "sum"))
+            .agg(
+                event_count=("event_uid", "count"),
+                total_capacity=("display_capacity", "sum"),
+            )
             .reset_index()
         )
         daily.columns = ["日付", "イベント件数", "合計キャパシティ"]
@@ -3019,7 +3238,9 @@ def render_events_view() -> None:
         line = base.mark_line(color="red", strokeWidth=2).encode(
             y=alt.Y("イベント件数:Q", title="イベント件数"),
         )
-        chart = alt.layer(bars, line).resolve_scale(y="independent").properties(height=400)
+        chart = (
+            alt.layer(bars, line).resolve_scale(y="independent").properties(height=400)
+        )
         st.altair_chart(cast(alt.Chart, chart), use_container_width=True)
     else:
         st.info("表示できるイベントがありません。")
@@ -3027,10 +3248,23 @@ def render_events_view() -> None:
     # --- Export ---
     st.subheader("エクスポート")
     export_cols = [
-        "event_uid", "venue_id", "venue_name", "pref_code", "pref_name",
-        "start_date", "start_time", "end_date", "end_time", "all_day",
-        "title", "status", "display_capacity", "url", "source_type",
-        "source_url", "updated_at_utc",
+        "event_uid",
+        "venue_id",
+        "venue_name",
+        "pref_code",
+        "pref_name",
+        "start_date",
+        "start_time",
+        "end_date",
+        "end_time",
+        "all_day",
+        "title",
+        "status",
+        "display_capacity",
+        "url",
+        "source_type",
+        "source_url",
+        "updated_at_utc",
     ]
     export_rename = {"display_capacity": "capacity"}
     export_df = filtered[[c for c in export_cols if c in filtered.columns]].rename(
@@ -3150,6 +3384,7 @@ def main() -> None:
         return
 
     render_airport_volume_view()
+
 
 if __name__ == "__main__":
     main()
