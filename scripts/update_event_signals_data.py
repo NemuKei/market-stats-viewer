@@ -75,9 +75,9 @@ DEFAULT_SOURCES = [
     {
         "source_id": "starto_concert",
         "source_name": "STARTO NEWS (CONCERT)",
-        "source_url": "https://starto.jp/s/p/news/list?category=CONCERT",
+        "source_url": "https://starto.jp/s/p/live?ct=concert",
         "source_type": "html_list",
-        "config_json": json.dumps({"pages": 3}, ensure_ascii=False),
+        "config_json": json.dumps({"pages": 1}, ensure_ascii=False),
     },
     {
         "source_id": "kstyle_music",
