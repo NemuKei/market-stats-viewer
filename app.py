@@ -3056,7 +3056,9 @@ def render_event_signals_view() -> None:
         )
     if date_from > date_to:
         date_from, date_to = date_to, date_from
-        st.warning(f"掲載日が逆順だったため、{date_from} ～ {date_to} に入れ替えました。")
+        st.warning(
+            f"掲載日が逆順だったため、{date_from} ～ {date_to} に入れ替えました。"
+        )
 
     source_options = (
         df[["source_id", "source_name"]]
@@ -3064,7 +3066,9 @@ def render_event_signals_view() -> None:
         .sort_values("source_name")
         .to_dict("records")
     )
-    source_name_to_id = {str(row["source_name"]): str(row["source_id"]) for row in source_options}
+    source_name_to_id = {
+        str(row["source_name"]): str(row["source_id"]) for row in source_options
+    }
     selected_source_names = st.multiselect(
         "ソース",
         options=list(source_name_to_id.keys()),
@@ -3095,10 +3099,9 @@ def render_event_signals_view() -> None:
         mask &= df["source_id"].isin(selected_source_ids)
     if keyword:
         keyword_lower = keyword.lower()
-        mask &= (
-            df["title"].fillna("").str.lower().str.contains(keyword_lower)
-            | df["snippet"].fillna("").str.lower().str.contains(keyword_lower)
-        )
+        mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[
+            "snippet"
+        ].fillna("").str.lower().str.contains(keyword_lower)
 
     filtered = df[mask].copy().sort_values("published_dt_utc", ascending=False)
     st.markdown(f"**{len(filtered)}** 件の速報")
