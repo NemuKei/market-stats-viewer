@@ -204,14 +204,16 @@
 - 新規 `render_event_signals_view()` を追加する。
 - 入力データ: `data/event_signals.sqlite`（`signals` + `signal_sources`）
 - フィルタ:
-  - 期間（イベント日: 開始/終了、データ内イベント期間で絞り込み）
+  - 期間（イベント日: 開始/終了の年・月を分離して選択、月単位で絞り込み）
   - ソース（複数選択）
   - キーワード（title/snippet）
 - 一覧:
-  - イベント日（JST表示）
+  - イベント日（JST表示、昇順）
+  - アーティスト
+  - 会場
   - source_name
   - title
   - url（リンク）
-  - snippet
+  - イベント情報（日時/会場要約）
 - エクスポート（固定スキーマ）:
   - `signal_uid, source_id, source_name, published_at_utc, score, title, url, snippet, labels_json, updated_at_utc`

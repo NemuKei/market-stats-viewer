@@ -213,6 +213,9 @@ class KstyleMusicSource(SignalSource):
                 section_text
             )
             score, labels = self._score_and_labels(title, section_text)
+            labels["artist_name"] = self._infer_artist_name(title)
+            labels["venue_name"] = venue_text or ""
+            labels["event_info"] = date_text or ""
             if event_start_date:
                 labels["event_start_date"] = event_start_date
             if event_end_date:
@@ -341,6 +344,15 @@ class KstyleMusicSource(SignalSource):
             return None, None
         dates_sorted = sorted(set(dates))
         return dates_sorted[0], dates_sorted[-1]
+
+    def _infer_artist_name(self, title: str) -> str:
+        normalized = " ".join(title.split())
+        for splitter in ["、", "「", "（", "("]:
+            if splitter in normalized:
+                head = normalized.split(splitter, 1)[0].strip()
+                if head:
+                    return head
+        return normalized
 
     def _extract_pagination_urls(
         self, soup: BeautifulSoup, base_url: str, max_count: int

@@ -156,7 +156,9 @@ class StartoConcertSource(SignalSource):
                 continue
 
             venue_names = sorted({venue for _, _, venue, _ in schedules})
-            snippet = trim_snippet(self._build_snippet(schedules))
+            event_info = self._build_snippet(schedules)
+            snippet = trim_snippet(event_info)
+            artist_name = self._infer_artist_name(detail_title or title)
             event_start_date, event_end_date = self._extract_event_date_range(schedules)
             labels = {
                 "announce": True,
@@ -164,6 +166,9 @@ class StartoConcertSource(SignalSource):
                 "category": "concert",
                 "venue_count": len(venue_names),
                 "date_count": len(schedules),
+                "artist_name": artist_name,
+                "venue_name": " / ".join(venue_names[:3]) if venue_names else "",
+                "event_info": event_info,
             }
             if event_start_date:
                 labels["event_start_date"] = event_start_date
@@ -319,6 +324,22 @@ class StartoConcertSource(SignalSource):
         start_date = dates[0].replace(".", "-")
         end_date = dates[-1].replace(".", "-")
         return start_date, end_date
+
+    def _infer_artist_name(self, title: str) -> str:
+        normalized = " ".join(title.split())
+        for marker in [
+            " LIVE TOUR",
+            " CONCERT TOUR",
+            " DOME TOUR",
+            " ARENA TOUR",
+            " STAGE",
+            " CONCERT",
+            " LIVE",
+        ]:
+            pos = normalized.find(marker)
+            if pos > 0:
+                return normalized[:pos].strip()
+        return normalized
 
     def _find_context_node(self, tag: Tag) -> Tag | None:
         node: Tag | None = tag

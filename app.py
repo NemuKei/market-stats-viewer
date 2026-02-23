@@ -3044,6 +3044,16 @@ def render_event_signals_view() -> None:
         "labels_json", pd.Series(index=df.index, dtype=object)
     ).apply(_load_labels)
 
+    df["artist_name"] = labels_series.apply(
+        lambda d: str(d.get("artist_name", "")).strip() if isinstance(d, dict) else ""
+    )
+    df["venue_name"] = labels_series.apply(
+        lambda d: str(d.get("venue_name", "")).strip() if isinstance(d, dict) else ""
+    )
+    df["event_info"] = labels_series.apply(
+        lambda d: str(d.get("event_info", "")).strip() if isinstance(d, dict) else ""
+    )
+
     def _parse_iso_date(value: object):
         if not isinstance(value, str) or not value.strip():
             return pd.NaT
@@ -3065,6 +3075,8 @@ def render_event_signals_view() -> None:
     )
     df["event_start_date"] = df["event_start_dt"].dt.date
     df["event_end_date"] = df["event_end_dt"].dt.date
+    df["event_start_ym"] = df["event_start_dt"].dt.strftime("%Y-%m")
+    df["event_end_ym"] = df["event_end_dt"].dt.strftime("%Y-%m")
     df["event_date_jst"] = df.apply(
         lambda row: (
             row["event_start_date"].strftime("%Y-%m-%d")
@@ -3074,33 +3086,92 @@ def render_event_signals_view() -> None:
         axis=1,
     )
 
-    min_date = df["event_start_date"].min()
-    max_date = df["event_end_date"].max()
-    today_jst = pd.Timestamp.now(tz="Asia/Tokyo").date()
-    default_start = min(max(today_jst, min_date), max_date)
-    default_end = max_date
+    df["artist_name"] = df.apply(
+        lambda row: row["artist_name"] if row["artist_name"] else row["source_name"],
+        axis=1,
+    )
+    df["venue_name"] = df.apply(
+        lambda row: row["venue_name"] if row["venue_name"] else "-",
+        axis=1,
+    )
+    df["event_info"] = df.apply(
+        lambda row: row["event_info"] if row["event_info"] else row["snippet"],
+        axis=1,
+    )
 
-    col_f1, col_f2 = st.columns(2)
+    ym_options = sorted(
+        {
+            *df["event_start_ym"].dropna().astype(str).tolist(),
+            *df["event_end_ym"].dropna().astype(str).tolist(),
+        }
+    )
+    if not ym_options:
+        st.warning("表示可能な速報データがありません。")
+        return
+
+    min_ym = ym_options[0]
+    max_ym = ym_options[-1]
+    today_jst = pd.Timestamp.now(tz="Asia/Tokyo").date()
+    default_start_ym = build_ym(today_jst.year, today_jst.month)
+    default_end_ym = max_ym
+    default_start_ym, _ = clamp_ym_to_available_range(default_start_ym, min_ym, max_ym)
+    default_end_ym, _ = clamp_ym_to_available_range(default_end_ym, min_ym, max_ym)
+
+    year_options = sorted({int(ym[:4]) for ym in ym_options})
+    month_options = list(range(1, 13))
+
+    def _fmt_month(month: int) -> str:
+        return f"{month:02d}"
+
+    default_start_year = int(default_start_ym[:4])
+    default_start_month = int(default_start_ym[5:7])
+    default_end_year = int(default_end_ym[:4])
+    default_end_month = int(default_end_ym[5:7])
+
+    col_f1, col_f2, col_f3, col_f4 = st.columns([2, 1, 2, 1])
     with col_f1:
-        date_from = st.date_input(
-            "イベント日（開始）",
-            value=default_start,
-            min_value=min_date,
-            max_value=max_date,
-            key="signals_date_from",
+        start_year = st.selectbox(
+            "開始（年）",
+            options=year_options,
+            index=year_options.index(default_start_year),
+            key="signals_start_year",
         )
     with col_f2:
-        date_to = st.date_input(
-            "イベント日（終了）",
-            value=default_end,
-            min_value=min_date,
-            max_value=max_date,
-            key="signals_date_to",
+        start_month = st.selectbox(
+            "開始（月）",
+            options=month_options,
+            index=month_options.index(default_start_month),
+            format_func=_fmt_month,
+            key="signals_start_month",
         )
-    if date_from > date_to:
-        date_from, date_to = date_to, date_from
+    with col_f3:
+        end_year = st.selectbox(
+            "終了（年）",
+            options=year_options,
+            index=year_options.index(default_end_year),
+            key="signals_end_year",
+        )
+    with col_f4:
+        end_month = st.selectbox(
+            "終了（月）",
+            options=month_options,
+            index=month_options.index(default_end_month),
+            format_func=_fmt_month,
+            key="signals_end_month",
+        )
+
+    ym_from = build_ym(int(start_year), int(start_month))
+    ym_to = build_ym(int(end_year), int(end_month))
+    ym_from, from_clamped = clamp_ym_to_available_range(ym_from, min_ym, max_ym)
+    ym_to, to_clamped = clamp_ym_to_available_range(ym_to, min_ym, max_ym)
+    if from_clamped:
+        st.warning(f"開始年月をデータ範囲に合わせて {ym_from} に補正しました。")
+    if to_clamped:
+        st.warning(f"終了年月をデータ範囲に合わせて {ym_to} に補正しました。")
+    if ym_to_int(ym_from) > ym_to_int(ym_to):
+        ym_from, ym_to = ym_to, ym_from
         st.warning(
-            f"イベント日が逆順だったため、{date_from} ～ {date_to} に入れ替えました。"
+            f"イベント年月が逆順だったため、{ym_from} ～ {ym_to} に入れ替えました。"
         )
 
     source_options = (
@@ -3122,33 +3193,39 @@ def render_event_signals_view() -> None:
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
 
-    mask = (df["event_end_date"] >= date_from) & (df["event_start_date"] <= date_to)
+    mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
     if keyword:
         keyword_lower = keyword.lower()
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[
-            "snippet"
+            "event_info"
         ].fillna("").str.lower().str.contains(keyword_lower)
 
-    filtered = df[mask].copy().sort_values("published_dt_utc", ascending=False)
+    filtered = df[mask].copy().sort_values(
+        ["event_start_dt", "event_end_dt", "title"], ascending=[True, True, True]
+    )
     st.markdown(f"**{len(filtered)}** 件の速報")
 
     table_df = filtered[
         [
             "event_date_jst",
+            "artist_name",
+            "venue_name",
             "source_name",
             "title",
             "url",
-            "snippet",
+            "event_info",
         ]
     ].rename(
         columns={
             "event_date_jst": "イベント日（JST）",
+            "artist_name": "アーティスト",
+            "venue_name": "会場",
             "source_name": "ソース",
             "title": "タイトル",
             "url": "URL",
-            "snippet": "抜粋",
+            "event_info": "イベント情報",
         }
     )
     st.dataframe(
@@ -3165,10 +3242,14 @@ def render_event_signals_view() -> None:
         "signal_uid",
         "source_id",
         "source_name",
+        "artist_name",
+        "venue_name",
+        "event_date_jst",
         "published_at_utc",
         "score",
         "title",
         "url",
+        "event_info",
         "snippet",
         "labels_json",
         "updated_at_utc",
@@ -3181,7 +3262,7 @@ def render_event_signals_view() -> None:
         st.download_button(
             "CSVダウンロード",
             data=csv_data.encode("utf-8-sig"),
-            file_name=f"event_signals_{date_from}_{date_to}.csv",
+            file_name=f"event_signals_{ym_from}_{ym_to}.csv",
             mime="text/csv",
             key="signals_csv_dl",
             use_container_width=True,
@@ -3193,7 +3274,7 @@ def render_event_signals_view() -> None:
         st.download_button(
             "Excelダウンロード",
             data=buf.getvalue(),
-            file_name=f"event_signals_{date_from}_{date_to}.xlsx",
+            file_name=f"event_signals_{ym_from}_{ym_to}.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             key="signals_excel_dl",
             use_container_width=True,
