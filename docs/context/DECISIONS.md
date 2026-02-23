@@ -44,3 +44,4 @@
 - D-20260223-008 | Kアリーナ横浜を新規追加し、k_arena_yokohama_schedule を実装する。/schedule/ と /schedule/page/{n}/ の一覧から日付・タイトル・時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-009 | 札幌ドームを新規追加し、sapporo_dome_schedule を実装する。/schedule/ のピックアップイベント要素から日付・タイトル・時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260223-010 | ZOZOマリンスタジアムを新規追加し、zozo_marine_stadium_schedule を実装する。/event/schedule/ から日別ページ（/event/daily/YYYYMMDD.html）を巡回して日付・タイトル・開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260223-011 | ぴあアリーナMMを新規追加し、pia_arena_mm_schedule を実装する。月別一覧（/event@p1=YYYY&p2=MM.html）から日付・タイトル・詳細URLを取得し、詳細ページの「公演時間」から開始時刻を抽出して取得する | status: applied | spec_link: docs/spec_update_pipeline.md
