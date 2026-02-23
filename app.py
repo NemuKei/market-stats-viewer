@@ -2694,7 +2694,51 @@ def classify_event_category(title: str, performers: str, description: str) -> st
         "プロ野球",
         "甲子園",
         "侍ジャパン",
+        "オープン戦",
+        "公式戦",
+        "ファーム",
+        "クライマックスシリーズ",
+        "日本シリーズ",
+        "セ・リーグ",
+        "パ・リーグ",
+        "交流戦",
     ]
+    baseball_team_keywords = [
+        "オリックス",
+        "バファローズ",
+        "阪神",
+        "タイガース",
+        "巨人",
+        "ジャイアンツ",
+        "ヤクルト",
+        "スワローズ",
+        "広島",
+        "カープ",
+        "中日",
+        "ドラゴンズ",
+        "dena",
+        "ベイスターズ",
+        "ベイス",
+        "ソフトバンク",
+        "ホークス",
+        "日本ハム",
+        "日ハム",
+        "ファイターズ",
+        "楽天",
+        "イーグルス",
+        "西武",
+        "ライオンズ",
+        "ロッテ",
+        "マリーンズ",
+    ]
+    versus_keywords = ["vs", "ｖｓ", "対", " 対戦 "]
+    if any(keyword in normalized_text for keyword in baseball_keywords):
+        return EVENT_CATEGORY_BASEBALL
+    has_team_keyword = any(keyword in normalized_text for keyword in baseball_team_keywords)
+    has_versus = any(keyword in normalized_text for keyword in versus_keywords)
+    if has_team_keyword and has_versus:
+        return EVENT_CATEGORY_BASEBALL
+
     concert_keywords = [
         "ライブ",
         "コンサート",
@@ -2708,9 +2752,23 @@ def classify_event_category(title: str, performers: str, description: str) -> st
         "festival",
         "band",
         "gig",
+        "live",
+        "tour",
+        "dome",
+        "arena",
+        "hall",
+        "zepp",
+        "oneman",
+        "one man",
+        "world tour",
+        "fan meeting",
+        "showcase",
+        "弾き語り",
+        "ワンマン",
+        "ワールドツアー",
+        "ドームツアー",
+        "アリーナツアー",
     ]
-    if any(keyword in normalized_text for keyword in baseball_keywords):
-        return EVENT_CATEGORY_BASEBALL
     if any(keyword in normalized_text for keyword in concert_keywords):
         return EVENT_CATEGORY_CONCERT
     return EVENT_CATEGORY_OTHER
