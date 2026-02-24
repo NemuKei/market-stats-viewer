@@ -515,6 +515,34 @@ class _SaitamaArenaSchedule(_BaseStrategy):
 class _TokyoDomeCalendar(_BaseStrategy):
     """Parse Tokyo Dome event schedule (calendar table, all months on single page)."""
 
+    _NOISE_TITLE_TERMS = (
+        "お問い合わせ",
+        "お問合せ",
+        "お問合わせ",
+        "よくあるご質問",
+        "faq",
+        "help",
+        "チケットぴあ",
+        "ticket board",
+        "チケプラ",
+        "sogo tokyo",
+        "disk garage",
+    )
+    _NOISE_URL_TERMS = (
+        "/help",
+        "/faq",
+        "/contact",
+        "faq.",
+        "help.",
+        "support.",
+        "sogotokyo.com",
+        "pia.jp/help",
+        "tixplus.jp",
+        "tickebo.jp",
+        "diskgarage.com",
+        "msgs.jp/webapp/form",
+    )
+
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
         resp = session.get(venue.source_url, timeout=30)
         resp.raise_for_status()
@@ -566,6 +594,8 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     if not title:
                         continue
                     href = a_tag["href"]
+                    if self._is_noise_link(title, href):
+                        continue
                     event_url = href
                     if not event_url.startswith("http"):
                         event_url = f"https://www.tokyo-dome.co.jp{href}"
@@ -642,6 +672,17 @@ class _TokyoDomeCalendar(_BaseStrategy):
                 rec.data_hash = compute_data_hash(rec)
                 events.append(rec)
         return events
+
+    def _is_noise_link(self, title: str, href: str) -> bool:
+        title_l = " ".join(title.split()).strip().lower()
+        href_l = str(href or "").strip().lower()
+        if not title_l:
+            return True
+        if any(term in title_l for term in self._NOISE_TITLE_TERMS):
+            return True
+        if any(term in href_l for term in self._NOISE_URL_TERMS):
+            return True
+        return False
 
     @staticmethod
     def _extract_time(text: str) -> str | None:

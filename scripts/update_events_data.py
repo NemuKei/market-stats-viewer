@@ -273,6 +273,33 @@ def upsert_events(conn: sqlite3.Connection, events: list[EventRecord]) -> int:
     return changed
 
 
+def prune_missing_events(
+    conn: sqlite3.Connection, venue_id: str, events: list[EventRecord]
+) -> int:
+    """Delete stale rows for venue_id that are not present in current fetch."""
+    keep_uids = sorted({e.event_uid for e in events if e.event_uid})
+    if not keep_uids:
+        cur = conn.execute("DELETE FROM events WHERE venue_id = ?", (venue_id,))
+        return max(cur.rowcount, 0)
+
+    conn.execute("DROP TABLE IF EXISTS tmp_keep_event_uids")
+    conn.execute("CREATE TEMP TABLE tmp_keep_event_uids (event_uid TEXT PRIMARY KEY)")
+    conn.executemany(
+        "INSERT INTO tmp_keep_event_uids(event_uid) VALUES (?)",
+        [(uid,) for uid in keep_uids],
+    )
+    cur = conn.execute(
+        """
+        DELETE FROM events
+        WHERE venue_id = ?
+          AND event_uid NOT IN (SELECT event_uid FROM tmp_keep_event_uids)
+        """,
+        (venue_id,),
+    )
+    conn.execute("DROP TABLE IF EXISTS tmp_keep_event_uids")
+    return max(cur.rowcount, 0)
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -339,6 +366,9 @@ def main() -> None:
             total_events += len(events)
 
             if not events:
+                pruned = prune_missing_events(conn, venue.venue_id, events)
+                if pruned > 0:
+                    logger.info("  pruned %d stale event(s)", pruned)
                 # Skip DB write if signature is already empty (no-op)
                 cur = conn.execute(
                     "SELECT last_signature FROM venues WHERE venue_id = ?",
@@ -346,22 +376,32 @@ def main() -> None:
                 )
                 row = cur.fetchone()
                 if row and row[0] == "":
+                    if pruned > 0:
+                        conn.commit()
+                        total_changed += pruned
                     logger.info("  no-op: still empty")
                     success_count += 1
                     continue
                 upsert_venue(conn, venue, "")
                 conn.commit()
+                total_changed += pruned
                 success_count += 1
                 continue
 
             # Compute venue signature for no-op detection
             sig = compute_venue_signature(events)
+            pruned = prune_missing_events(conn, venue.venue_id, events)
+            if pruned > 0:
+                logger.info("  pruned %d stale event(s)", pruned)
             cur = conn.execute(
                 "SELECT last_signature FROM venues WHERE venue_id = ?",
                 (venue.venue_id,),
             )
             row = cur.fetchone()
             if row and row[0] == sig:
+                if pruned > 0:
+                    conn.commit()
+                    total_changed += pruned
                 logger.info("  no-op: signature unchanged")
                 success_count += 1
                 continue
@@ -370,8 +410,12 @@ def main() -> None:
             changed = upsert_events(conn, events)
             upsert_venue(conn, venue, sig)
             conn.commit()
-            total_changed += changed
-            logger.info("  upserted %d changed event(s)", changed)
+            total_changed += changed + pruned
+            logger.info(
+                "  upserted %d changed event(s), pruned %d stale event(s)",
+                changed,
+                pruned,
+            )
             success_count += 1
 
         except Exception:
