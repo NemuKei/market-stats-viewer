@@ -82,7 +82,7 @@ DEFAULT_SOURCES = [
     {
         "source_id": "kstyle_music",
         "source_name": "Kstyle MUSIC",
-        "source_url": "https://kstyle.com/category.ksn?categoryCode=KP",
+        "source_url": "https://kstyle.com/search.ksn?searchWord=%E2%96%A0%E5%85%AC%E6%BC%94%E6%83%85%E5%A0%B1",
         "source_type": "html_list",
         "config_json": json.dumps(
             {"pages": 2, "category": "music"}, ensure_ascii=False
