@@ -3538,6 +3538,10 @@ def render_event_signals_view() -> None:
     st.caption(
         "速報データは本文を保存せず、掲載日時・タイトル・URL・短い抜粋のみ保持します。"
     )
+    st.caption(
+        "データは1日2回（12時間ごと）自動更新です。"
+        "取得元サイトの構造変更等により更新が遅れる場合があります。"
+    )
 
 
 def render_events_view() -> None:
