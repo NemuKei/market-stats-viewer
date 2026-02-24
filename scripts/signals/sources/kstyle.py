@@ -148,15 +148,39 @@ class KstyleMusicSource(SignalSource):
         r"(?:会場|開催場所|場所)\s*[:：]\s*(.+?)(?=【|■|$)", re.S
     )
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
-    DATE_TOKEN_RE = re.compile(r"(?:(\d{4})[./年-]\s*(\d{1,2})[./月-]\s*(\d{1,2})日?)")
+    DATE_TOKEN_RE = re.compile(
+        r"(?:(?P<year>\d{4})\s*[./年-]\s*)?"
+        r"(?P<month>\d{1,2})\s*[./月-]\s*(?P<day>\d{1,2})\s*日?"
+    )
+    DAY_ONLY_RE = re.compile(r"(?<!\d)(?P<day>\d{1,2})\s*日")
     PREF_VENUE_LINE_RE = re.compile(
         r"^[\[［]\s*(?P<pref>[^\]］]+?)\s*[\]］]\s*(?P<venue>.+)$"
+    )
+    NON_EVENT_DATE_TERMS = (
+        "申込期間",
+        "受付期間",
+        "当選発表",
+        "入金期限",
+        "先着受付",
+        "先行",
+        "販売期間",
+        "発売",
+        "実施期間",
+        "締切",
+        "終演まで",
+        "インバウンド受付",
+        "会員先行",
+        "オフィシャル先行",
+        "先行受付",
+        "当日引換券",
     )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
-        pages = max(1, int(cfg.get("pages", 2)))
+        # Keep wider lookback so future event announcements on older articles are retained.
+        pages = max(1, int(cfg.get("pages", 20)))
+        pages = max(pages, 20)
 
         first_resp = self.session.get(source.source_url, timeout=30)
         first_resp.raise_for_status()
@@ -175,6 +199,7 @@ class KstyleMusicSource(SignalSource):
             page_num += 1
 
         signals: dict[str, SignalRecord] = {}
+        seen_article_urls: set[str] = set()
         for page_url in urls[:pages]:
             resp = (
                 first_resp
@@ -187,13 +212,19 @@ class KstyleMusicSource(SignalSource):
             if resp is not first_resp:
                 resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
-            for rec in self._parse_page(soup, resp.url, source.source_id):
+            for rec in self._parse_page(
+                soup, resp.url, source.source_id, seen_article_urls
+            ):
                 signals[rec.signal_uid] = rec
 
         return sorted(signals.values(), key=lambda r: r.published_at_utc, reverse=True)
 
     def _parse_page(
-        self, soup: BeautifulSoup, page_url: str, source_id: str
+        self,
+        soup: BeautifulSoup,
+        page_url: str,
+        source_id: str,
+        seen_article_urls: set[str] | None = None,
     ) -> list[SignalRecord]:
         candidates: list[tuple[str, str, str]] = []
         seen_urls: set[str] = set()
@@ -207,6 +238,8 @@ class KstyleMusicSource(SignalSource):
             abs_url = urljoin(page_url, href)
             if abs_url in seen_urls:
                 continue
+            if seen_article_urls is not None and abs_url in seen_article_urls:
+                continue
             seen_urls.add(abs_url)
 
             container = self._find_container(a)
@@ -215,6 +248,8 @@ class KstyleMusicSource(SignalSource):
                 if container
                 else ""
             )
+            if not self._is_event_candidate(title, context):
+                continue
             dt_match = self.DATETIME_RE.search(context)
             if not dt_match:
                 continue
@@ -223,6 +258,8 @@ class KstyleMusicSource(SignalSource):
                 continue
 
             candidates.append((title, abs_url, published_at_utc))
+            if seen_article_urls is not None:
+                seen_article_urls.add(abs_url)
 
         records: list[SignalRecord] = []
         for title, abs_url, published_at_utc in candidates:
@@ -230,7 +267,10 @@ class KstyleMusicSource(SignalSource):
             if detail is None:
                 continue
             section_lines, title_raw = detail
-            occurrences = self._extract_occurrences(section_lines)
+            default_year = self._default_year_from_utc(published_at_utc)
+            occurrences = self._extract_occurrences(
+                section_lines, default_year=default_year
+            )
             if not occurrences:
                 continue
 
@@ -296,7 +336,7 @@ class KstyleMusicSource(SignalSource):
 
         section_lines = self._extract_concert_info_section(lines)
         if not section_lines:
-            return None
+            section_lines = lines
         if not self._is_japan_show(" ".join(section_lines)):
             return None
         title_raw = self._extract_article_title(soup, fallback_title)
@@ -410,13 +450,30 @@ class KstyleMusicSource(SignalSource):
         return None
 
     def _extract_occurrences(
-        self, section_lines: list[str]
+        self, section_lines: list[str], default_year: int | None = None
     ) -> list[tuple[str, str, str, str]]:
         occurrences: list[tuple[str, str, str, str]] = []
-        current_venue = ""
+        current_venue = self._extract_default_venue(section_lines)
         current_pref = ""
+        expect_venue_next = False
         for line in section_lines:
             normalized_line = " ".join(line.split())
+            if any(marker in normalized_line for marker in ("元記事配信日時", "記者")):
+                continue
+            if re.fullmatch(r"\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2}", normalized_line):
+                continue
+            if normalized_line in ("【会場】", "【開催場所】", "【場所】"):
+                expect_venue_next = True
+                continue
+
+            if expect_venue_next:
+                venue_candidate = self._normalize_venue_name(normalized_line)
+                if venue_candidate and not any(
+                    marker in venue_candidate for marker in ["【", "■", "DAY", "日時"]
+                ):
+                    current_venue = venue_candidate
+                expect_venue_next = False
+
             pref_venue_match = self.PREF_VENUE_LINE_RE.match(normalized_line)
             if pref_venue_match:
                 current_venue = self._normalize_venue_name(
@@ -430,8 +487,12 @@ class KstyleMusicSource(SignalSource):
                 if not pref_venue_match:
                     current_pref = ""
 
-            event_dates = self._extract_event_dates_from_line(normalized_line)
+            event_dates = self._extract_event_dates_from_line(
+                normalized_line, default_year=default_year
+            )
             if not event_dates:
+                continue
+            if any(term in normalized_line for term in self.NON_EVENT_DATE_TERMS):
                 continue
             if not current_venue:
                 continue
@@ -451,30 +512,71 @@ class KstyleMusicSource(SignalSource):
             )
         return sorted(deduped.values(), key=lambda row: (row[0], row[1]))
 
-    def _extract_event_dates_from_line(self, line: str) -> list[str]:
+    def _extract_default_venue(self, section_lines: list[str]) -> str:
+        for idx, line in enumerate(section_lines):
+            normalized = " ".join(line.split())
+            venue_on_line = self._extract_venue(normalized)
+            if venue_on_line:
+                return self._normalize_venue_name(venue_on_line)
+            if normalized in ("【会場】", "【開催場所】", "【場所】"):
+                for next_line in section_lines[idx + 1 :]:
+                    candidate = self._normalize_venue_name(" ".join(next_line.split()))
+                    if not candidate:
+                        continue
+                    if any(marker in candidate for marker in ["【", "■", "DAY", "日時"]):
+                        continue
+                    return candidate
+        return ""
+
+    def _extract_event_dates_from_line(
+        self, line: str, default_year: int | None = None
+    ) -> list[str]:
         matches = list(self.DATE_TOKEN_RE.finditer(line))
         if not matches:
             return []
 
-        if len(matches) >= 2 and re.search(r"[〜～\-−ー]", line):
-            start = self._match_to_date(matches[0])
-            end = self._match_to_date(matches[1])
-            if start and end and start <= end:
-                return self._expand_date_range(start, end)
-
         out: list[str] = []
+        last_year = default_year
+        last_month: int | None = None
+        spans = [(m.start(), m.end()) for m in matches]
+
         for match in matches:
-            date_text = self._match_to_date(match)
+            year_text = match.group("year")
+            month = int(match.group("month"))
+            day = int(match.group("day"))
+            if year_text:
+                last_year = int(year_text)
+            if last_year is None:
+                continue
+            date_text = self._to_date_text(last_year, month, day)
             if date_text:
                 out.append(date_text)
+                last_month = month
+
+        if out and last_month is not None:
+            for day_match in self.DAY_ONLY_RE.finditer(line):
+                span = (day_match.start(), day_match.end())
+                if any(span[0] >= s and span[1] <= e for s, e in spans):
+                    continue
+                if last_year is None:
+                    break
+                day = int(day_match.group("day"))
+                date_text = self._to_date_text(last_year, last_month, day)
+                if date_text:
+                    out.append(date_text)
+
         return sorted(set(out))
 
-    def _match_to_date(self, match: re.Match[str]) -> str | None:
-        year = int(match.group(1))
-        month = int(match.group(2))
-        day = int(match.group(3))
+    def _to_date_text(self, year: int, month: int, day: int) -> str | None:
         try:
             return datetime(year, month, day).strftime("%Y-%m-%d")
+        except ValueError:
+            return None
+
+    @staticmethod
+    def _default_year_from_utc(value: str) -> int | None:
+        try:
+            return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").year
         except ValueError:
             return None
 
@@ -620,6 +722,14 @@ class KstyleMusicSource(SignalSource):
             ),
         }
         return score, labels
+
+    def _is_event_candidate(self, title: str, context: str) -> bool:
+        blob = f"{title} {context}"
+        include_hits = sum(1 for t in self.INCLUDE_TERMS if t in blob)
+        if include_hits == 0:
+            return False
+        exclude_hits = sum(1 for t in self.EXCLUDE_TERMS if t.lower() in blob.lower())
+        return include_hits > exclude_hits
 
     @staticmethod
     def _load_config(config_json: str | None) -> dict:
