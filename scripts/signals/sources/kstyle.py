@@ -149,6 +149,9 @@ class KstyleMusicSource(SignalSource):
     )
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
     DATE_TOKEN_RE = re.compile(r"(?:(\d{4})[./年-]\s*(\d{1,2})[./月-]\s*(\d{1,2})日?)")
+    PREF_VENUE_LINE_RE = re.compile(
+        r"^[\[［]\s*(?P<pref>[^\]］]+?)\s*[\]］]\s*(?P<venue>.+)$"
+    )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
@@ -234,7 +237,7 @@ class KstyleMusicSource(SignalSource):
             section_text = " ".join(section_lines)
             score, base_labels = self._score_and_labels(title, section_text)
             artist_name, artist_labels = self._resolve_artist_from_title(title_raw)
-            for event_date, venue_name, event_info in occurrences:
+            for event_date, venue_name, event_info, pref_name in occurrences:
                 labels = dict(base_labels)
                 labels["artist_name"] = artist_name
                 labels.update(artist_labels)
@@ -242,6 +245,8 @@ class KstyleMusicSource(SignalSource):
                 labels["event_info"] = event_info
                 labels["event_start_date"] = event_date
                 labels["event_end_date"] = event_date
+                if pref_name:
+                    labels["pref_name"] = pref_name
 
                 snippet = trim_snippet(
                     " / ".join(
@@ -406,28 +411,44 @@ class KstyleMusicSource(SignalSource):
 
     def _extract_occurrences(
         self, section_lines: list[str]
-    ) -> list[tuple[str, str, str]]:
-        occurrences: list[tuple[str, str, str]] = []
+    ) -> list[tuple[str, str, str, str]]:
+        occurrences: list[tuple[str, str, str, str]] = []
         current_venue = ""
+        current_pref = ""
         for line in section_lines:
-            venue_on_line = self._extract_venue(line)
+            normalized_line = " ".join(line.split())
+            pref_venue_match = self.PREF_VENUE_LINE_RE.match(normalized_line)
+            if pref_venue_match:
+                current_venue = self._normalize_venue_name(
+                    pref_venue_match.group("venue")
+                )
+                current_pref = self._normalize_pref_name(pref_venue_match.group("pref"))
+
+            venue_on_line = self._extract_venue(normalized_line)
             if venue_on_line:
                 current_venue = venue_on_line
+                if not pref_venue_match:
+                    current_pref = ""
 
-            event_dates = self._extract_event_dates_from_line(line)
+            event_dates = self._extract_event_dates_from_line(normalized_line)
             if not event_dates:
                 continue
             if not current_venue:
                 continue
 
-            event_info = " ".join(line.split())
+            event_info = normalized_line
             venue_name = self._normalize_venue_name(current_venue)
             for event_date in event_dates:
-                occurrences.append((event_date, venue_name, event_info))
+                occurrences.append((event_date, venue_name, event_info, current_pref))
 
-        deduped: dict[tuple[str, str], tuple[str, str, str]] = {}
-        for event_date, venue_name, event_info in occurrences:
-            deduped[(event_date, venue_name)] = (event_date, venue_name, event_info)
+        deduped: dict[tuple[str, str], tuple[str, str, str, str]] = {}
+        for event_date, venue_name, event_info, pref_name in occurrences:
+            deduped[(event_date, venue_name)] = (
+                event_date,
+                venue_name,
+                event_info,
+                pref_name,
+            )
         return sorted(deduped.values(), key=lambda row: (row[0], row[1]))
 
     def _extract_event_dates_from_line(self, line: str) -> list[str]:
@@ -472,6 +493,23 @@ class KstyleMusicSource(SignalSource):
 
     def _normalize_venue_name(self, venue_name: str) -> str:
         return " ".join(str(venue_name).split())
+
+    @staticmethod
+    def _normalize_pref_name(value: str | None) -> str:
+        pref = str(value or "").strip()
+        if not pref:
+            return ""
+        if pref in ("東京", "東京都"):
+            return "東京都"
+        if pref in ("大阪", "大阪府"):
+            return "大阪府"
+        if pref in ("京都", "京都府"):
+            return "京都府"
+        if pref == "北海道":
+            return "北海道"
+        if pref.endswith(("都", "道", "府", "県")):
+            return pref
+        return f"{pref}県"
 
     def _is_japan_show(self, text: str) -> bool:
         has_japan_word = "日本" in text

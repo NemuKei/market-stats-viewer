@@ -3050,6 +3050,13 @@ def render_event_signals_view() -> None:
     df["raw_venue_name"] = labels_series.apply(
         lambda d: str(d.get("venue_name", "")).strip() if isinstance(d, dict) else ""
     )
+    df["raw_pref_name"] = labels_series.apply(
+        lambda d: (
+            str(d.get("pref_name", d.get("raw_pref_name", ""))).strip()
+            if isinstance(d, dict)
+            else ""
+        )
+    )
     df["event_info"] = labels_series.apply(
         lambda d: str(d.get("event_info", "")).strip() if isinstance(d, dict) else ""
     )
@@ -3110,6 +3117,39 @@ def render_event_signals_view() -> None:
         lambda row: row["event_info"] if row["event_info"] else row["snippet"],
         axis=1,
     )
+
+    def _normalize_pref_name(value: object) -> str:
+        pref = str(value).strip() if value is not None else ""
+        if not pref:
+            return ""
+        if pref in ("東京", "東京都"):
+            return "東京都"
+        if pref in ("大阪", "大阪府"):
+            return "大阪府"
+        if pref in ("京都", "京都府"):
+            return "京都府"
+        if pref == "北海道":
+            return "北海道"
+        if pref.endswith(("都", "道", "府", "県")):
+            return pref
+        return f"{pref}県"
+
+    def _extract_pref_from_event_info(value: object) -> str:
+        if not isinstance(value, str):
+            return ""
+        match = re.match(r"^\s*[\[［]\s*([^\]］]+?)\s*[\]］]", value.strip())
+        if not match:
+            return ""
+        return match.group(1).strip()
+
+    df["pref_name"] = df["raw_pref_name"].apply(_normalize_pref_name)
+    missing_pref_mask = df["pref_name"].eq("")
+    if missing_pref_mask.any():
+        df.loc[missing_pref_mask, "pref_name"] = (
+            df.loc[missing_pref_mask, "event_info"]
+            .apply(_extract_pref_from_event_info)
+            .apply(_normalize_pref_name)
+        )
 
     ym_options = sorted(
         {
@@ -3203,28 +3243,51 @@ def render_event_signals_view() -> None:
     )
     selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
 
-    keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
-    raw_event_date_only = st.checkbox(
-        "event_start_date がある行のみ表示",
-        value=True,
-        key="signals_require_raw_event_start_date",
+    pref_options = sorted(
+        [
+            pref
+            for pref in df["pref_name"].dropna().astype(str).unique().tolist()
+            if pref.strip()
+        ]
     )
+    st.markdown("**都道府県（複数選択）**")
+    st.caption("未選択時は全都道府県を対象にします。")
+    if "signals_pref" not in st.session_state:
+        st.session_state["signals_pref"] = []
+    selected_pref_seed = {
+        str(v)
+        for v in st.session_state.get("signals_pref", [])
+        if str(v) in pref_options
+    }
+    pref_toggle_columns = st.columns(8)
+    selected_prefs: list[str] = []
+    for idx, pref in enumerate(pref_options):
+        pref_key = f"signals_pref_toggle_{pref}"
+        if pref_key not in st.session_state:
+            st.session_state[pref_key] = pref in selected_pref_seed
+        with pref_toggle_columns[idx % len(pref_toggle_columns)]:
+            is_selected = st.toggle(pref, key=pref_key)
+        if is_selected:
+            selected_prefs.append(pref)
+    st.session_state["signals_pref"] = selected_prefs
+
+    keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
     strict_required_only = st.checkbox(
-        "必須3点（イベント日/会場/アーティスト）がある行のみ表示",
+        "構造化（イベント日/会場/アーティスト）済みのみ表示",
         value=True,
         key="signals_require_3fields",
     )
     include_low_confidence = st.checkbox(
         "アーティスト信頼度 low も表示",
-        value=False,
+        value=True,
         key="signals_include_low_confidence",
     )
 
     mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
-    if raw_event_date_only:
-        mask &= df["raw_event_start_dt"].notna()
+    if selected_prefs:
+        mask &= df["pref_name"].isin(selected_prefs)
     if strict_required_only:
         mask &= (
             df["raw_artist_name"].str.len().gt(0)
@@ -3253,6 +3316,7 @@ def render_event_signals_view() -> None:
             "event_date_jst",
             "artist_name",
             "venue_name",
+            "pref_name",
             "source_name",
             "title",
             "url",
@@ -3263,6 +3327,7 @@ def render_event_signals_view() -> None:
             "event_date_jst": "イベント日（JST）",
             "artist_name": "アーティスト",
             "venue_name": "会場",
+            "pref_name": "都道府県",
             "source_name": "ソース",
             "title": "タイトル",
             "url": "URL",
@@ -3285,6 +3350,7 @@ def render_event_signals_view() -> None:
         "source_name",
         "artist_name",
         "venue_name",
+        "pref_name",
         "event_date_jst",
         "published_at_utc",
         "score",

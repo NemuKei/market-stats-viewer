@@ -171,6 +171,9 @@ class StartoConcertSource(SignalSource):
                     "event_start_date": event_date,
                     "event_end_date": event_date,
                 }
+                pref_name = self._pick_pref_name(rows)
+                if pref_name:
+                    labels["pref_name"] = pref_name
                 extra_key = f"{event_date}|{venue_name}"
                 rec = SignalRecord(
                     signal_uid=compute_signal_uid(source_id, abs_url, extra_key),
@@ -344,6 +347,32 @@ class StartoConcertSource(SignalSource):
             else:
                 parts.append(f"{event_date} / {place}")
         return " | ".join(parts)
+
+    def _pick_pref_name(
+        self, rows: list[tuple[str, str | None, str, str | None]]
+    ) -> str:
+        for _, _, _, prefecture in rows:
+            normalized = self._normalize_pref_name(prefecture)
+            if normalized:
+                return normalized
+        return ""
+
+    @staticmethod
+    def _normalize_pref_name(value: str | None) -> str:
+        pref = str(value or "").strip()
+        if not pref:
+            return ""
+        if pref in ("東京", "東京都"):
+            return "東京都"
+        if pref in ("大阪", "大阪府"):
+            return "大阪府"
+        if pref in ("京都", "京都府"):
+            return "京都府"
+        if pref == "北海道":
+            return "北海道"
+        if pref.endswith(("都", "道", "府", "県")):
+            return pref
+        return f"{pref}県"
 
     def _extract_event_date_range(
         self, schedules: list[tuple[str, str | None, str, str | None]]
