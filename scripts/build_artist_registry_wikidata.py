@@ -55,9 +55,17 @@ def fetch_sparql_with_retry(
             resp.raise_for_status()
         except Exception as exc:
             if attempt >= max_attempts:
-                raise RuntimeError(f"Wikidata fetch failed after {attempt} attempts") from exc
+                raise RuntimeError(
+                    f"Wikidata fetch failed after {attempt} attempts"
+                ) from exc
             wait = base_wait * (2 ** (attempt - 1)) + random.uniform(0.0, 0.6)
-            logger.warning("Retry %d/%d after error: %s (wait %.1fs)", attempt, max_attempts, exc, wait)
+            logger.warning(
+                "Retry %d/%d after error: %s (wait %.1fs)",
+                attempt,
+                max_attempts,
+                exc,
+                wait,
+            )
             time.sleep(wait)
 
     raise RuntimeError("Wikidata fetch failed")
@@ -85,7 +93,9 @@ def build_seed_rows(payload: dict) -> list[dict[str, object]]:
 
         alias_items = []
         if aliases_raw:
-            alias_items = [part.strip() for part in aliases_raw.split("|") if part.strip()]
+            alias_items = [
+                part.strip() for part in aliases_raw.split("|") if part.strip()
+            ]
         aliases = [alias for alias in alias_items if alias and alias != canonical_name]
         aliases = list(dict.fromkeys(aliases))
 
@@ -168,7 +178,9 @@ def _qid_from_uri(uri: str) -> str:
 
 
 def main() -> None:
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
+    )
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     payload = fetch_sparql_with_retry(SPARQL_ENDPOINT, SPARQL_QUERY)

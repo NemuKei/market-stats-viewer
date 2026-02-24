@@ -3054,9 +3054,11 @@ def render_event_signals_view() -> None:
         lambda d: str(d.get("event_info", "")).strip() if isinstance(d, dict) else ""
     )
     df["artist_confidence"] = labels_series.apply(
-        lambda d: str(d.get("artist_confidence", "")).strip().lower()
-        if isinstance(d, dict)
-        else ""
+        lambda d: (
+            str(d.get("artist_confidence", "")).strip().lower()
+            if isinstance(d, dict)
+            else ""
+        )
     )
     df["artist_confidence"] = df["artist_confidence"].replace("", "low")
 
