@@ -10,13 +10,13 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup, Tag
 
-from ..types import SignalRecord, SignalSourceRecord
 from ..artist_registry import (
     build_artist_index,
     choose_primary_match,
     load_registry,
     match_artists_in_title,
 )
+from ..types import SignalRecord, SignalSourceRecord
 from .base import (
     SignalSource,
     canonical_labels_json,
@@ -325,7 +325,9 @@ class KstyleMusicSource(SignalSource):
             out = next_out
         return out.strip()
 
-    def _resolve_artist_from_title(self, title_raw: str) -> tuple[str, dict[str, object]]:
+    def _resolve_artist_from_title(
+        self, title_raw: str
+    ) -> tuple[str, dict[str, object]]:
         index = self._get_artist_index()
         matches = match_artists_in_title(title_raw, index)
         primary, confidence = choose_primary_match(matches)

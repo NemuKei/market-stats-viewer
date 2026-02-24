@@ -87,7 +87,9 @@ def build_artist_index(registry: list[ArtistEntry]) -> dict[str, object]:
     }
 
 
-def match_artists_in_title(title_raw: str, index: dict[str, object]) -> list[dict[str, object]]:
+def match_artists_in_title(
+    title_raw: str, index: dict[str, object]
+) -> list[dict[str, object]]:
     title_keep = normalize_text(title_raw, mode="keep")
     title_compact = normalize_text(title_raw, mode="compact")
 
@@ -215,7 +217,9 @@ def _match_with_mode(
         return []
 
     out: list[dict[str, object]] = []
-    keys = sorted((k for k in index_map.keys() if isinstance(k, str)), key=len, reverse=True)
+    keys = sorted(
+        (k for k in index_map.keys() if isinstance(k, str)), key=len, reverse=True
+    )
     for key in keys:
         if not key:
             continue
