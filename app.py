@@ -3044,10 +3044,10 @@ def render_event_signals_view() -> None:
         "labels_json", pd.Series(index=df.index, dtype=object)
     ).apply(_load_labels)
 
-    df["artist_name"] = labels_series.apply(
+    df["raw_artist_name"] = labels_series.apply(
         lambda d: str(d.get("artist_name", "")).strip() if isinstance(d, dict) else ""
     )
-    df["venue_name"] = labels_series.apply(
+    df["raw_venue_name"] = labels_series.apply(
         lambda d: str(d.get("venue_name", "")).strip() if isinstance(d, dict) else ""
     )
     df["event_info"] = labels_series.apply(
@@ -3065,6 +3065,7 @@ def render_event_signals_view() -> None:
     event_end_parsed = labels_series.apply(
         lambda d: _parse_iso_date(d.get("event_end_date"))
     )
+    df["raw_event_start_dt"] = event_start_parsed
     published_date_naive = df["published_dt_jst"].dt.tz_localize(None).dt.normalize()
 
     df["event_start_dt"] = event_start_parsed.where(
@@ -3085,6 +3086,9 @@ def render_event_signals_view() -> None:
         ),
         axis=1,
     )
+
+    df["artist_name"] = df["raw_artist_name"]
+    df["venue_name"] = df["raw_venue_name"]
 
     df["artist_name"] = df.apply(
         lambda row: row["artist_name"] if row["artist_name"] else row["source_name"],
@@ -3192,10 +3196,21 @@ def render_event_signals_view() -> None:
     selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
+    strict_required_only = st.checkbox(
+        "必須3点（イベント日/会場/アーティスト）がある行のみ表示",
+        value=True,
+        key="signals_require_3fields",
+    )
 
     mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
+    if strict_required_only:
+        mask &= (
+            df["raw_artist_name"].str.len().gt(0)
+            & df["raw_venue_name"].str.len().gt(0)
+            & df["raw_event_start_dt"].notna()
+        )
     if keyword:
         keyword_lower = keyword.lower()
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[

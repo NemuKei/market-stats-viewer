@@ -75,7 +75,7 @@ class KstyleMusicSource(SignalSource):
     ]
     CONCERT_INFO_MARKERS = ("■公演情報", "■ 公演情報", "■開催概要", "■ 開催概要")
     SECTION_STOP_MARKERS = ("■", "【関連", "元記事配信日時", "記者")
-    JAPAN_TERMS = [
+    PREFECTURE_TERMS = [
         "日本",
         "北海道",
         "青森",
@@ -124,12 +124,23 @@ class KstyleMusicSource(SignalSource):
         "宮崎",
         "鹿児島",
         "沖縄",
-        "ドーム",
-        "アリーナ",
-        "ホール",
-        "会場",
     ]
-    VENUE_RE = re.compile(r"(?:会場|開催場所|場所)】?[:：]\s*([^\n]+)")
+    MAJOR_CITY_TERMS = [
+        "東京",
+        "大阪",
+        "名古屋",
+        "福岡",
+        "札幌",
+        "横浜",
+        "神戸",
+        "仙台",
+    ]
+    VENUE_RE = re.compile(
+        r"【(?:会場|開催場所|場所)】\s*[:：]?\s*(.+?)(?=【|■|$)", re.S
+    )
+    VENUE_FALLBACK_RE = re.compile(
+        r"(?:会場|開催場所|場所)\s*[:：]\s*(.+?)(?=【|■|$)", re.S
+    )
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
     DATE_TOKEN_RE = re.compile(r"(?:(\d{4})[./年-]\s*(\d{1,2})[./月-]\s*(\d{1,2})日?)")
 
@@ -212,14 +223,15 @@ class KstyleMusicSource(SignalSource):
             event_start_date, event_end_date = self._extract_event_date_range(
                 section_text
             )
+            if not event_start_date:
+                continue
+
             score, labels = self._score_and_labels(title, section_text)
             labels["artist_name"] = self._infer_artist_name(title)
             labels["venue_name"] = venue_text or ""
-            labels["event_info"] = date_text or ""
-            if event_start_date:
-                labels["event_start_date"] = event_start_date
-            if event_end_date:
-                labels["event_end_date"] = event_end_date
+            labels["event_info"] = date_text or section_text
+            labels["event_start_date"] = event_start_date
+            labels["event_end_date"] = event_end_date or event_start_date
 
             snippet_parts: list[str] = []
             if venue_text:
@@ -315,6 +327,8 @@ class KstyleMusicSource(SignalSource):
     def _extract_venue(self, text: str) -> str | None:
         match = self.VENUE_RE.search(text)
         if not match:
+            match = self.VENUE_FALLBACK_RE.search(text)
+        if not match:
             return None
         return " ".join(match.group(1).split())
 
@@ -326,7 +340,10 @@ class KstyleMusicSource(SignalSource):
         return None
 
     def _is_japan_show(self, text: str) -> bool:
-        return any(term in text for term in self.JAPAN_TERMS)
+        has_japan_word = "日本" in text
+        has_prefecture = any(term in text for term in self.PREFECTURE_TERMS)
+        has_major_city = any(term in text for term in self.MAJOR_CITY_TERMS)
+        return has_japan_word or has_prefecture or has_major_city
 
     def _extract_event_date_range(self, text: str) -> tuple[str | None, str | None]:
         dates: list[str] = []
