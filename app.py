@@ -3053,6 +3053,12 @@ def render_event_signals_view() -> None:
     df["event_info"] = labels_series.apply(
         lambda d: str(d.get("event_info", "")).strip() if isinstance(d, dict) else ""
     )
+    df["artist_confidence"] = labels_series.apply(
+        lambda d: str(d.get("artist_confidence", "")).strip().lower()
+        if isinstance(d, dict)
+        else ""
+    )
+    df["artist_confidence"] = df["artist_confidence"].replace("", "low")
 
     def _parse_iso_date(value: object):
         if not isinstance(value, str) or not value.strip():
@@ -3206,6 +3212,11 @@ def render_event_signals_view() -> None:
         value=True,
         key="signals_require_3fields",
     )
+    include_low_confidence = st.checkbox(
+        "アーティスト信頼度 low も表示",
+        value=False,
+        key="signals_include_low_confidence",
+    )
 
     mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
@@ -3218,6 +3229,8 @@ def render_event_signals_view() -> None:
             & df["raw_venue_name"].str.len().gt(0)
             & df["raw_event_start_dt"].notna()
         )
+    if not include_low_confidence:
+        mask &= df["artist_confidence"].isin(["high", "medium"])
     if keyword:
         keyword_lower = keyword.lower()
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[

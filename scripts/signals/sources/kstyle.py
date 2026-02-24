@@ -11,6 +11,12 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup, Tag
 
 from ..types import SignalRecord, SignalSourceRecord
+from ..artist_registry import (
+    build_artist_index,
+    choose_primary_match,
+    load_registry,
+    match_artists_in_title,
+)
 from .base import (
     SignalSource,
     canonical_labels_json,
@@ -143,6 +149,7 @@ class KstyleMusicSource(SignalSource):
     )
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
     DATE_TOKEN_RE = re.compile(r"(?:(\d{4})[./年-]\s*(\d{1,2})[./月-]\s*(\d{1,2})日?)")
+    _ARTIST_INDEX_CACHE: dict[str, object] | None = None
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
@@ -216,20 +223,21 @@ class KstyleMusicSource(SignalSource):
 
         records: list[SignalRecord] = []
         for title, abs_url, published_at_utc in candidates:
-            detail = self._fetch_article_detail(abs_url)
+            detail = self._fetch_article_detail(abs_url, title)
             if detail is None:
                 continue
-            section_lines = detail
+            section_lines, title_raw = detail
             occurrences = self._extract_occurrences(section_lines)
             if not occurrences:
                 continue
 
             section_text = " ".join(section_lines)
             score, base_labels = self._score_and_labels(title, section_text)
-            artist_name = self._infer_artist_name(title)
+            artist_name, artist_labels = self._resolve_artist_from_title(title_raw)
             for event_date, venue_name, event_info in occurrences:
                 labels = dict(base_labels)
                 labels["artist_name"] = artist_name
+                labels.update(artist_labels)
                 labels["venue_name"] = venue_name
                 labels["event_info"] = event_info
                 labels["event_start_date"] = event_date
@@ -261,7 +269,9 @@ class KstyleMusicSource(SignalSource):
 
         return records
 
-    def _fetch_article_detail(self, article_url: str) -> list[str] | None:
+    def _fetch_article_detail(
+        self, article_url: str, fallback_title: str
+    ) -> tuple[list[str], str] | None:
         try:
             resp = self.session.get(article_url, timeout=30)
             if resp.status_code != 200:
@@ -284,7 +294,60 @@ class KstyleMusicSource(SignalSource):
             return None
         if not self._is_japan_show(" ".join(section_lines)):
             return None
-        return section_lines
+        title_raw = self._extract_article_title(soup, fallback_title)
+        return section_lines, title_raw
+
+    def _extract_article_title(self, soup: BeautifulSoup, fallback_title: str) -> str:
+        og_title = soup.select_one('meta[property="og:title"]')
+        if og_title is not None:
+            content = str(og_title.get("content", "")).strip()
+            if content:
+                return self._strip_title_decorations(content)
+
+        h1 = soup.select_one("h1")
+        if h1 is not None:
+            text = " ".join(h1.get_text(" ", strip=True).split())
+            if text:
+                return self._strip_title_decorations(text)
+
+        return self._strip_title_decorations(fallback_title)
+
+    def _strip_title_decorations(self, text: str) -> str:
+        out = " ".join(text.split())
+        for _ in range(6):
+            next_out = re.sub(
+                r"^\s*(?:【[^】]*】|\[[^\]]*\]|［[^］]*］|＜[^＞]*＞|<[^>]*>)\s*",
+                "",
+                out,
+            )
+            if next_out == out:
+                break
+            out = next_out
+        return out.strip()
+
+    def _resolve_artist_from_title(self, title_raw: str) -> tuple[str, dict[str, object]]:
+        index = self._get_artist_index()
+        matches = match_artists_in_title(title_raw, index)
+        primary, confidence = choose_primary_match(matches)
+        if primary is not None:
+            return str(primary.get("canonical_name", "")), {
+                "artist_id": str(primary.get("artist_id", "")),
+                "artist_confidence": confidence,
+                "artist_matched_alias": str(primary.get("matched_alias", "")),
+                "artist_raw": title_raw,
+            }
+
+        fallback = self._infer_artist_name(title_raw)
+        return fallback, {
+            "artist_confidence": "low",
+            "artist_raw": title_raw,
+        }
+
+    @classmethod
+    def _get_artist_index(cls) -> dict[str, object]:
+        if cls._ARTIST_INDEX_CACHE is None:
+            cls._ARTIST_INDEX_CACHE = build_artist_index(load_registry())
+        return cls._ARTIST_INDEX_CACHE
 
     def _extract_article_lines(self, soup: BeautifulSoup) -> list[str]:
         for selector in self.ARTICLE_TEXT_SELECTORS:
