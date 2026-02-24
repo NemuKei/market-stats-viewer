@@ -79,7 +79,7 @@ class KstyleMusicSource(SignalSource):
         "div.article_view",
         "article",
     ]
-    CONCERT_INFO_MARKERS = ("■公演情報", "■ 公演情報", "■開催概要", "■ 開催概要")
+    CONCERT_INFO_MARKERS = ("■公演情報", "■ 公演情報")
     SECTION_STOP_MARKERS = ("■", "【関連", "元記事配信日時", "記者")
     PREFECTURE_TERMS = [
         "日本",
@@ -131,6 +131,101 @@ class KstyleMusicSource(SignalSource):
         "鹿児島",
         "沖縄",
     ]
+    JP_PREF_MAP = {
+        "北海道": "北海道",
+        "青森": "青森県",
+        "青森県": "青森県",
+        "岩手": "岩手県",
+        "岩手県": "岩手県",
+        "宮城": "宮城県",
+        "宮城県": "宮城県",
+        "秋田": "秋田県",
+        "秋田県": "秋田県",
+        "山形": "山形県",
+        "山形県": "山形県",
+        "福島": "福島県",
+        "福島県": "福島県",
+        "茨城": "茨城県",
+        "茨城県": "茨城県",
+        "栃木": "栃木県",
+        "栃木県": "栃木県",
+        "群馬": "群馬県",
+        "群馬県": "群馬県",
+        "埼玉": "埼玉県",
+        "埼玉県": "埼玉県",
+        "千葉": "千葉県",
+        "千葉県": "千葉県",
+        "東京": "東京都",
+        "東京都": "東京都",
+        "神奈川": "神奈川県",
+        "神奈川県": "神奈川県",
+        "新潟": "新潟県",
+        "新潟県": "新潟県",
+        "富山": "富山県",
+        "富山県": "富山県",
+        "石川": "石川県",
+        "石川県": "石川県",
+        "福井": "福井県",
+        "福井県": "福井県",
+        "山梨": "山梨県",
+        "山梨県": "山梨県",
+        "長野": "長野県",
+        "長野県": "長野県",
+        "岐阜": "岐阜県",
+        "岐阜県": "岐阜県",
+        "静岡": "静岡県",
+        "静岡県": "静岡県",
+        "愛知": "愛知県",
+        "愛知県": "愛知県",
+        "三重": "三重県",
+        "三重県": "三重県",
+        "滋賀": "滋賀県",
+        "滋賀県": "滋賀県",
+        "京都": "京都府",
+        "京都府": "京都府",
+        "大阪": "大阪府",
+        "大阪府": "大阪府",
+        "兵庫": "兵庫県",
+        "兵庫県": "兵庫県",
+        "奈良": "奈良県",
+        "奈良県": "奈良県",
+        "和歌山": "和歌山県",
+        "和歌山県": "和歌山県",
+        "鳥取": "鳥取県",
+        "鳥取県": "鳥取県",
+        "島根": "島根県",
+        "島根県": "島根県",
+        "岡山": "岡山県",
+        "岡山県": "岡山県",
+        "広島": "広島県",
+        "広島県": "広島県",
+        "山口": "山口県",
+        "山口県": "山口県",
+        "徳島": "徳島県",
+        "徳島県": "徳島県",
+        "香川": "香川県",
+        "香川県": "香川県",
+        "愛媛": "愛媛県",
+        "愛媛県": "愛媛県",
+        "高知": "高知県",
+        "高知県": "高知県",
+        "福岡": "福岡県",
+        "福岡県": "福岡県",
+        "佐賀": "佐賀県",
+        "佐賀県": "佐賀県",
+        "長崎": "長崎県",
+        "長崎県": "長崎県",
+        "熊本": "熊本県",
+        "熊本県": "熊本県",
+        "大分": "大分県",
+        "大分県": "大分県",
+        "宮崎": "宮崎県",
+        "宮崎県": "宮崎県",
+        "鹿児島": "鹿児島県",
+        "鹿児島県": "鹿児島県",
+        "沖縄": "沖縄県",
+        "沖縄県": "沖縄県",
+    }
     MAJOR_CITY_TERMS = [
         "東京",
         "大阪",
@@ -266,7 +361,7 @@ class KstyleMusicSource(SignalSource):
             detail = self._fetch_article_detail(abs_url, title)
             if detail is None:
                 continue
-            section_lines, title_raw = detail
+            section_lines, title_raw, concert_title = detail
             default_year = self._default_year_from_utc(published_at_utc)
             occurrences = self._extract_occurrences(
                 section_lines, default_year=default_year
@@ -274,8 +369,9 @@ class KstyleMusicSource(SignalSource):
             if not occurrences:
                 continue
 
+            display_title = concert_title or title
             section_text = " ".join(section_lines)
-            score, base_labels = self._score_and_labels(title, section_text)
+            score, base_labels = self._score_and_labels(display_title, section_text)
             artist_name, artist_labels = self._resolve_artist_from_title(title_raw)
             for event_date, venue_name, event_info, pref_name in occurrences:
                 labels = dict(base_labels)
@@ -303,7 +399,7 @@ class KstyleMusicSource(SignalSource):
                     signal_uid=compute_signal_uid(source_id, abs_url, extra_key),
                     source_id=source_id,
                     published_at_utc=published_at_utc,
-                    title=title,
+                    title=display_title,
                     url=abs_url,
                     snippet=snippet,
                     score=score,
@@ -316,7 +412,7 @@ class KstyleMusicSource(SignalSource):
 
     def _fetch_article_detail(
         self, article_url: str, fallback_title: str
-    ) -> tuple[list[str], str] | None:
+    ) -> tuple[list[str], str, str] | None:
         try:
             resp = self.session.get(article_url, timeout=30)
             if resp.status_code != 200:
@@ -336,11 +432,12 @@ class KstyleMusicSource(SignalSource):
 
         section_lines = self._extract_concert_info_section(lines)
         if not section_lines:
-            section_lines = lines
+            return None
         if not self._is_japan_show(" ".join(section_lines)):
             return None
         title_raw = self._extract_article_title(soup, fallback_title)
-        return section_lines, title_raw
+        concert_title = self._extract_concert_title_from_section(section_lines)
+        return section_lines, title_raw, concert_title
 
     def _extract_article_title(self, soup: BeautifulSoup, fallback_title: str) -> str:
         og_title = soup.select_one('meta[property="og:title"]')
@@ -433,6 +530,35 @@ class KstyleMusicSource(SignalSource):
         if not section_lines:
             return None
         return section_lines
+
+    def _extract_concert_title_from_section(self, section_lines: list[str]) -> str:
+        if len(section_lines) <= 1:
+            return ""
+        for line in section_lines[1:]:
+            text = self._normalize_concert_title(line)
+            if not text:
+                continue
+            if text.startswith("【") and text.endswith("】"):
+                continue
+            if text.startswith("[") and text.endswith("]"):
+                continue
+            if "日程" in text and "会場" in text:
+                continue
+            return text
+        return ""
+
+    @staticmethod
+    def _normalize_concert_title(value: str) -> str:
+        text = " ".join(str(value or "").split()).strip()
+        if not text:
+            return ""
+        if len(text) >= 2 and (
+            (text.startswith("「") and text.endswith("」"))
+            or (text.startswith("『") and text.endswith("』"))
+            or (text.startswith('"') and text.endswith('"'))
+        ):
+            text = text[1:-1].strip()
+        return text
 
     def _extract_venue(self, text: str) -> str | None:
         match = self.VENUE_RE.search(text)
@@ -601,17 +727,7 @@ class KstyleMusicSource(SignalSource):
         pref = str(value or "").strip()
         if not pref:
             return ""
-        if pref in ("東京", "東京都"):
-            return "東京都"
-        if pref in ("大阪", "大阪府"):
-            return "大阪府"
-        if pref in ("京都", "京都府"):
-            return "京都府"
-        if pref == "北海道":
-            return "北海道"
-        if pref.endswith(("都", "道", "府", "県")):
-            return pref
-        return f"{pref}県"
+        return KstyleMusicSource.JP_PREF_MAP.get(pref, "")
 
     def _is_japan_show(self, text: str) -> bool:
         has_japan_word = "日本" in text
@@ -622,9 +738,12 @@ class KstyleMusicSource(SignalSource):
     def _extract_event_date_range(self, text: str) -> tuple[str | None, str | None]:
         dates: list[str] = []
         for match in self.DATE_TOKEN_RE.finditer(text):
-            year = int(match.group(1))
-            month = int(match.group(2))
-            day = int(match.group(3))
+            year_text = match.group("year")
+            if not year_text:
+                continue
+            year = int(year_text)
+            month = int(match.group("month"))
+            day = int(match.group("day"))
             try:
                 date_text = datetime(year, month, day).strftime("%Y-%m-%d")
             except ValueError:
