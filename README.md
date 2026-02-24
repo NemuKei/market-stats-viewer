@@ -37,6 +37,11 @@ uv run python -m scripts.update_event_signals_data
 uv run streamlit run app.py
 ```
 
+## リリースZIP作成
+- 実行コマンド: `python make_release_zip.py`
+- デフォルトで `data/` フォルダを同梱
+- `data/` を除外したい場合: `python make_release_zip.py --without-data`
+
 ## 全国イベント情報（会場公式）
 - サイドバーの `参考情報` → `全国イベント情報（会場公式）` で表示
 - 主要コンサート/イベント会場の公式サイトからイベント日程を定期収集
