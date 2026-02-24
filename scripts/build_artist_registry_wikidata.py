@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import logging
@@ -20,7 +21,7 @@ MANUAL_PATH = DATA_DIR / "artist_registry.manual.csv"
 SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
 USER_AGENT = "market-stats-viewer/1.0 (+https://github.com/NemuKei/market-stats-viewer)"
 
-SPARQL_QUERY = """
+SPARQL_QUERY_LEGACY = """
 SELECT ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?alias; separator="|") AS ?aliases) WHERE {
   { ?item wdt:P31/wdt:P279* wd:Q215380 . } UNION { ?item wdt:P31 wd:Q5 . }
   ?item wdt:P136 wd:Q213665 .
@@ -30,6 +31,11 @@ SELECT ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?alias; separator="|") AS ?aliase
 GROUP BY ?item ?itemLabel
 """.strip()
 
+COUNTRY_QID_MAP = {
+    "jp": "Q17",  # Japan
+    "kr": "Q884",  # South Korea
+}
+
 logger = logging.getLogger(__name__)
 
 
@@ -38,6 +44,7 @@ def fetch_sparql_with_retry(
     query: str,
     max_attempts: int = 5,
     base_wait: float = 1.5,
+    request_timeout: int = 60,
 ) -> dict:
     headers = {
         "Accept": "application/sparql-results+json",
@@ -47,7 +54,9 @@ def fetch_sparql_with_retry(
 
     for attempt in range(1, max_attempts + 1):
         try:
-            resp = requests.get(endpoint, params=params, headers=headers, timeout=60)
+            resp = requests.get(
+                endpoint, params=params, headers=headers, timeout=request_timeout
+            )
             if resp.status_code == 200:
                 return resp.json()
             if resp.status_code in {429, 500, 502, 503, 504}:
@@ -177,21 +186,82 @@ def _qid_from_uri(uri: str) -> str:
     return qid
 
 
+def build_country_filtered_query(country_codes: list[str]) -> str:
+    country_qids = [
+        COUNTRY_QID_MAP[code] for code in country_codes if code in COUNTRY_QID_MAP
+    ]
+    if not country_qids:
+        return SPARQL_QUERY_LEGACY
+
+    values = " ".join(f"wd:{qid}" for qid in country_qids)
+    return f"""
+SELECT ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?alias; separator="|") AS ?aliases) WHERE {{
+  VALUES ?country {{ {values} }}
+  {{
+    ?item wdt:P31 wd:Q5 ;
+          wdt:P27 ?country ;
+          wdt:P106/wdt:P279* wd:Q639669 .
+  }}
+  UNION
+  {{
+    ?item wdt:P31/wdt:P279* wd:Q215380 ;
+          wdt:P495 ?country .
+  }}
+  OPTIONAL {{ ?item skos:altLabel ?alias . FILTER (lang(?alias) IN ("ja","en","ko")) }}
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "ja,en,ko,[AUTO_LANGUAGE],mul". }}
+}}
+GROUP BY ?item ?itemLabel
+""".strip()
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Build artist registry seed CSV from Wikidata."
+    )
+    parser.add_argument(
+        "--countries",
+        default="",
+        help="Comma-separated country codes (supported: jp,kr). Empty keeps legacy query.",
+    )
+    parser.add_argument(
+        "--output",
+        default=str(SEED_PATH),
+        help="Output CSV path.",
+    )
+    parser.add_argument(
+        "--request-timeout",
+        type=int,
+        default=60,
+        help="SPARQL request timeout seconds.",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
     logging.basicConfig(
         level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s"
     )
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    payload = fetch_sparql_with_retry(SPARQL_ENDPOINT, SPARQL_QUERY)
+    countries = [
+        c.strip().lower()
+        for c in str(args.countries).split(",")
+        if c and c.strip()
+    ]
+    query = build_country_filtered_query(countries)
+    output_path = Path(args.output)
+    payload = fetch_sparql_with_retry(
+        SPARQL_ENDPOINT, query, request_timeout=max(10, int(args.request_timeout))
+    )
     rows = build_seed_rows(payload)
-    changed = write_seed_csv_noop(rows, SEED_PATH)
+    changed = write_seed_csv_noop(rows, output_path)
     ensure_manual_csv(MANUAL_PATH)
 
     if changed:
-        logger.info("Wrote %d rows to %s", len(rows), SEED_PATH)
+        logger.info("Wrote %d rows to %s", len(rows), output_path)
     else:
-        logger.info("No changes in %s", SEED_PATH)
+        logger.info("No changes in %s", output_path)
 
 
 if __name__ == "__main__":

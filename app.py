@@ -1730,6 +1730,7 @@ DATASET_LABEL_EVENTS = DATASET_LABEL_EVENTS_OFFICIAL
 
 EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
+EVENTS_ARTIST_INFERRED_PATH = DATA_DIR / "events_artist_inferred.csv"
 
 ICD_PURPOSE_LABELS = {
     "all": "\u5168\u76ee\u7684",
@@ -3006,6 +3007,26 @@ def load_event_signals_data() -> tuple[pd.DataFrame, pd.DataFrame]:
         return pd.DataFrame(), pd.DataFrame()
 
 
+@st.cache_data(show_spinner=False)
+def load_events_artist_inferred_map(
+) -> dict[str, tuple[str, str]]:
+    if not EVENTS_ARTIST_INFERRED_PATH.exists():
+        return {}
+    try:
+        df = pd.read_csv(EVENTS_ARTIST_INFERRED_PATH, dtype=str).fillna("")
+    except Exception:
+        return {}
+    out: dict[str, tuple[str, str]] = {}
+    for _, row in df.iterrows():
+        title = str(row.get("title", "")).strip()
+        artist_name = str(row.get("artist_name", "")).strip()
+        confidence = str(row.get("artist_confidence", "")).strip().lower() or "high"
+        if not title or not artist_name:
+            continue
+        out[title] = (artist_name, confidence)
+    return out
+
+
 def render_event_signals_view() -> None:
     st.title("全国イベント速報（ニュース）")
 
@@ -3272,6 +3293,12 @@ def render_event_signals_view() -> None:
     st.session_state["signals_pref"] = selected_prefs
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
+    sort_label = st.radio(
+        "並び順",
+        ["掲載日時（新しい順）", "イベント日（早い順）"],
+        horizontal=True,
+        key="signals_sort",
+    )
     mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
@@ -3283,13 +3310,16 @@ def render_event_signals_view() -> None:
             "event_info"
         ].fillna("").str.lower().str.contains(keyword_lower)
 
-    filtered = (
-        df[mask]
-        .copy()
-        .sort_values(
+    filtered = df[mask].copy()
+    if sort_label == "掲載日時（新しい順）":
+        filtered = filtered.sort_values(
+            ["published_dt_jst", "event_start_dt", "title"],
+            ascending=[False, True, True],
+        )
+    else:
+        filtered = filtered.sort_values(
             ["event_start_dt", "event_end_dt", "title"], ascending=[True, True, True]
         )
-    )
     st.markdown(f"**{len(filtered)}** 件の速報")
 
     table_df = filtered[
@@ -3400,7 +3430,6 @@ def render_events_view() -> None:
         ),
         axis=1,
     )
-
     # --- Filters ---
     from datetime import date as dt_date
     from datetime import timedelta
@@ -3559,6 +3588,22 @@ def render_events_view() -> None:
     if not include_cancelled:
         mask &= df["status"].isin(["scheduled", "unknown"])
     filtered = df[mask].copy().sort_values("start_date").reset_index(drop=True)
+    filtered["artist_name"] = filtered["performers"].fillna("").astype(str).str.strip()
+    filtered["artist_confidence"] = filtered["artist_name"].map(
+        lambda v: "source" if v else "low"
+    )
+    missing_artist_mask = filtered["artist_name"].eq("")
+    if missing_artist_mask.any():
+        inferred_map = load_events_artist_inferred_map()
+        inferred = filtered.loc[missing_artist_mask, "title"].map(
+            lambda title: inferred_map.get(str(title).strip(), ("", "low"))
+        )
+        filtered.loc[missing_artist_mask, "artist_name"] = inferred.apply(
+            lambda row: row[0]
+        )
+        filtered.loc[missing_artist_mask, "artist_confidence"] = inferred.apply(
+            lambda row: row[1]
+        )
 
     st.markdown(f"**{len(filtered)}** 件のイベント")
 
@@ -3569,6 +3614,7 @@ def render_events_view() -> None:
         "venue_name",
         "pref_name",
         "title",
+        "artist_name",
         "status",
         "display_capacity",
         "url",
@@ -3579,6 +3625,7 @@ def render_events_view() -> None:
         "venue_name": "会場",
         "pref_name": "都道府県",
         "title": "タイトル",
+        "artist_name": "アーティスト",
         "status": "ステータス",
         "display_capacity": "キャパシティ",
         "url": "URL",
@@ -3643,6 +3690,9 @@ def render_events_view() -> None:
         "end_time",
         "all_day",
         "title",
+        "artist_name",
+        "artist_confidence",
+        "performers",
         "status",
         "display_capacity",
         "url",
