@@ -290,10 +290,29 @@ def upsert_signals(conn: sqlite3.Connection, signals: list[SignalRecord]) -> int
     return changed
 
 
+def clear_source_for_rebuild(conn: sqlite3.Connection, source_id: str) -> None:
+    now = now_utc_z()
+    conn.execute("DELETE FROM signals WHERE source_id = ?", (source_id,))
+    conn.execute(
+        """
+        UPDATE signal_sources
+        SET last_signature = NULL,
+            updated_at_utc = ?
+        WHERE source_id = ?
+        """,
+        (now, source_id),
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Update event signals data")
     parser.add_argument(
         "--only", type=str, default="", help="Comma-separated source_ids to process"
+    )
+    parser.add_argument(
+        "--rebuild",
+        action="store_true",
+        help="Rebuild target source rows (requires --only)",
     )
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
@@ -307,6 +326,9 @@ def main() -> None:
     only_ids = (
         {s.strip() for s in args.only.split(",") if s.strip()} if args.only else set()
     )
+
+    if args.rebuild and not only_ids:
+        parser.error("--rebuild requires --only with one or more source_ids")
 
     raw_session = requests.Session()
     raw_session.headers.update({"User-Agent": USER_AGENT})
@@ -347,8 +369,12 @@ def main() -> None:
                 success_count += 1
                 continue
 
+            if args.rebuild:
+                clear_source_for_rebuild(conn, source.source_id)
+                logger.info("  rebuild: cleared existing rows and reset last_signature")
+
             sig = compute_source_signature(signals)
-            if source.last_signature == sig:
+            if not args.rebuild and source.last_signature == sig:
                 logger.info("  no-op: signature unchanged")
                 success_count += 1
                 continue

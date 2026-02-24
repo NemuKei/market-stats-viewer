@@ -6,7 +6,7 @@ import json
 import logging
 import re
 from datetime import datetime, timedelta, timezone
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup, Tag
 
@@ -138,6 +138,7 @@ class StartoConcertSource(SignalSource):
                 continue
 
             abs_url = urljoin(page_url, href)
+            abs_url = self._canonicalize_detail_url(abs_url)
             if abs_url in seen_urls:
                 continue
             seen_urls.add(abs_url)
@@ -280,6 +281,10 @@ class StartoConcertSource(SignalSource):
         if match:
             return match.group(1), match.group(2)
         return None, heading_text
+
+    def _canonicalize_detail_url(self, url: str) -> str:
+        parts = urlsplit(url)
+        return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
 
     def _extract_date(self, text: str) -> str | None:
         match = self.DATE_RE.search(text)
