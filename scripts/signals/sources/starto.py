@@ -134,7 +134,8 @@ class StartoConcertSource(SignalSource):
             if not self.LIVE_DETAIL_HREF_RE.search(href):
                 continue
 
-            title = " ".join(a.get_text(" ", strip=True).split())
+            card_title, card_artist = self._extract_card_title_artist(a)
+            title = card_title or " ".join(a.get_text(" ", strip=True).split())
             if not title or len(title) < 3:
                 continue
 
@@ -148,10 +149,14 @@ class StartoConcertSource(SignalSource):
             if detail is None:
                 continue
 
-            detail_title, schedules = detail
+            detail_title, detail_artist, schedules = detail
             if not schedules:
                 continue
-            artist_name = self._infer_artist_name(detail_title or title)
+            artist_name = (
+                detail_artist
+                or card_artist
+                or self._infer_artist_name(detail_title or title)
+            )
             grouped = self._group_schedules_by_date_venue(schedules)
             for (event_date, venue_name), rows in grouped.items():
                 published_at_utc = self._to_utc_date(event_date.replace("-", "."))
@@ -179,7 +184,7 @@ class StartoConcertSource(SignalSource):
                     signal_uid=compute_signal_uid(source_id, abs_url, extra_key),
                     source_id=source_id,
                     published_at_utc=published_at_utc,
-                    title=detail_title or title,
+                    title=detail_title or card_title or title,
                     url=abs_url,
                     snippet=snippet,
                     score=92,
@@ -192,7 +197,7 @@ class StartoConcertSource(SignalSource):
 
     def _fetch_live_detail(
         self, detail_url: str
-    ) -> tuple[str, list[tuple[str, str | None, str, str | None]]] | None:
+    ) -> tuple[str, str, list[tuple[str, str | None, str, str | None]]] | None:
         try:
             resp = self.session.get(detail_url, timeout=30)
             if resp.status_code != 200:
@@ -210,13 +215,41 @@ class StartoConcertSource(SignalSource):
         title = (
             " ".join(title_node.get_text(" ", strip=True).split()) if title_node else ""
         )
+        artist_name = self._extract_artist_name_from_soup(soup)
 
         schedules = self._extract_schedules(soup, resp.text)
         if not schedules:
             return None
         if not self._contains_japan_schedule(schedules):
             return None
-        return title, schedules
+        return title, artist_name, schedules
+
+    def _extract_card_title_artist(self, anchor: Tag) -> tuple[str, str]:
+        title_node = anchor.select_one(".c-cs_card__ttl .c-ttl-2")
+        title = (
+            " ".join(title_node.get_text(" ", strip=True).split()) if title_node else ""
+        )
+        artist_names = self._extract_artist_names(anchor)
+        artist = " / ".join(artist_names)
+        return title, artist
+
+    def _extract_artist_name_from_soup(self, soup: BeautifulSoup) -> str:
+        artist_names = self._extract_artist_names(soup)
+        return " / ".join(artist_names)
+
+    def _extract_artist_names(self, node: Tag | BeautifulSoup) -> list[str]:
+        names: list[str] = []
+        for selector in [
+            ".c-cs_card__cast .c-text-3",
+            ".c-cast .c-text-3",
+            ".c-cs_card__cast .c-cast__item",
+            ".c-cast .c-cast__item",
+        ]:
+            for item in node.select(selector):
+                text = " ".join(item.get_text(" ", strip=True).split())
+                if text and text not in names:
+                    names.append(text)
+        return names
 
     def _extract_schedules(
         self, soup: BeautifulSoup, raw_text: str
