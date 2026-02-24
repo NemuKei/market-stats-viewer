@@ -39,6 +39,7 @@ jobs:
           uv run python -m scripts.update_ta_data
           uv run python -m scripts.update_airport_volume_data
           uv run python -m scripts.update_events_data
+          uv run python -m scripts.build_events_artist_inferred
 
       - name: Commit changes (if any)
         run: |
