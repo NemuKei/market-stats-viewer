@@ -261,9 +261,7 @@ class KstyleMusicSource(SignalSource):
 
         return records
 
-    def _fetch_article_detail(
-        self, article_url: str
-    ) -> list[str] | None:
+    def _fetch_article_detail(self, article_url: str) -> list[str] | None:
         try:
             resp = self.session.get(article_url, timeout=30)
             if resp.status_code != 200:
@@ -404,8 +402,7 @@ class KstyleMusicSource(SignalSource):
             return []
         days = (end_dt - start_dt).days
         return [
-            (start_dt + timedelta(days=i)).strftime("%Y-%m-%d")
-            for i in range(days + 1)
+            (start_dt + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(days + 1)
         ]
 
     def _normalize_venue_name(self, venue_name: str) -> str:
