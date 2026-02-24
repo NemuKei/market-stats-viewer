@@ -3272,30 +3272,11 @@ def render_event_signals_view() -> None:
     st.session_state["signals_pref"] = selected_prefs
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
-    strict_required_only = st.checkbox(
-        "構造化（イベント日/会場/アーティスト）済みのみ表示",
-        value=True,
-        key="signals_require_3fields",
-    )
-    include_low_confidence = st.checkbox(
-        "アーティスト信頼度 low も表示",
-        value=True,
-        key="signals_include_low_confidence",
-    )
-
     mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
     if selected_prefs:
         mask &= df["pref_name"].isin(selected_prefs)
-    if strict_required_only:
-        mask &= (
-            df["raw_artist_name"].str.len().gt(0)
-            & df["raw_venue_name"].str.len().gt(0)
-            & df["raw_event_start_dt"].notna()
-        )
-    if not include_low_confidence:
-        mask &= df["artist_confidence"].isin(["high", "medium"])
     if keyword:
         keyword_lower = keyword.lower()
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[
