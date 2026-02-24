@@ -291,7 +291,7 @@ def render_pref_toggles_two_step(
         visible_prefs = pref_options
 
     st.markdown("**都道府県（複数選択）**")
-    st.caption("未選択時は全都道府県を対象にします。")
+    st.caption("未選択時は表示中の都道府県を対象にします。")
 
     if pref_selection_key not in st.session_state:
         st.session_state[pref_selection_key] = []
@@ -313,8 +313,13 @@ def render_pref_toggles_two_step(
             if is_selected:
                 selected_prefs.append(pref)
 
+    effective_prefs = selected_prefs
+    if selected_regions and not selected_prefs:
+        # 地方だけが選択された場合は、その地方に含まれる都道府県を対象にする。
+        effective_prefs = list(visible_prefs)
+
     st.session_state[pref_selection_key] = selected_prefs
-    return selected_prefs
+    return effective_prefs
 
 
 def normalize_selected_years(
