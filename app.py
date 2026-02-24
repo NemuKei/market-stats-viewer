@@ -224,49 +224,97 @@ def sanitize_for_filename(value: str) -> str:
     return f"scope_{suffix}"
 
 
-def build_pref_region_groups(pref_options: list[str]) -> list[tuple[str, list[str]]]:
-    pref_set = {str(pref).strip() for pref in pref_options if str(pref).strip()}
-    groups: list[tuple[str, list[str]]] = []
-    listed: set[str] = set()
-
-    for region, pref_names in REGION_PREF_NAMES.items():
-        row = [pref for pref in pref_names if pref in pref_set]
-        if row:
-            groups.append((region, row))
-            listed.update(row)
-
-    others = sorted(pref_set - listed)
-    if others:
-        groups.append(("その他", others))
-    return groups
+def _ordered_pref_options(pref_options: list[str]) -> list[str]:
+    ordered: list[str] = []
+    seen: set[str] = set()
+    for _, prefs in REGION_PREF_NAMES.items():
+        for pref in prefs:
+            if pref in pref_options and pref not in seen:
+                ordered.append(pref)
+                seen.add(pref)
+    for pref in pref_options:
+        if pref not in seen:
+            ordered.append(pref)
+            seen.add(pref)
+    return ordered
 
 
-def render_pref_toggles_by_region(
-    pref_options: list[str], selection_key: str, toggle_key_prefix: str
+def render_pref_toggles_two_step(
+    pref_options: list[str],
+    pref_selection_key: str,
+    pref_toggle_key_prefix: str,
+    region_selection_key: str,
+    region_toggle_key_prefix: str,
 ) -> list[str]:
-    if selection_key not in st.session_state:
-        st.session_state[selection_key] = []
+    pref_options = _ordered_pref_options(pref_options)
+    pref_set = set(pref_options)
+    available_regions = [
+        region
+        for region, prefs in REGION_PREF_NAMES.items()
+        if any(pref in pref_set for pref in prefs)
+    ]
 
-    selected_seed = {
+    st.markdown("**地方（複数選択）**")
+    st.caption("未選択時は全地方（全都道府県）を表示します。")
+
+    if region_selection_key not in st.session_state:
+        st.session_state[region_selection_key] = []
+    selected_region_seed = {
         str(v)
-        for v in st.session_state.get(selection_key, [])
-        if str(v) in pref_options
+        for v in st.session_state.get(region_selection_key, [])
+        if str(v) in available_regions
     }
-    selected: list[str] = []
-    for region, prefs in build_pref_region_groups(pref_options):
-        st.caption(region)
-        columns = st.columns(8)
-        for idx, pref in enumerate(prefs):
-            pref_key = f"{toggle_key_prefix}_{pref}"
+
+    selected_regions: list[str] = []
+    if available_regions:
+        region_columns = st.columns(min(8, len(available_regions)))
+        for idx, region in enumerate(available_regions):
+            region_key = f"{region_toggle_key_prefix}_{region}"
+            if region_key not in st.session_state:
+                st.session_state[region_key] = region in selected_region_seed
+            with region_columns[idx % len(region_columns)]:
+                is_selected = st.toggle(region, key=region_key)
+            if is_selected:
+                selected_regions.append(region)
+    st.session_state[region_selection_key] = selected_regions
+
+    visible_prefs: list[str]
+    if selected_regions:
+        visible_prefs = []
+        for region in available_regions:
+            if region not in selected_regions:
+                continue
+            visible_prefs.extend(
+                [pref for pref in REGION_PREF_NAMES[region] if pref in pref_set]
+            )
+    else:
+        visible_prefs = pref_options
+
+    st.markdown("**都道府県（複数選択）**")
+    st.caption("未選択時は全都道府県を対象にします。")
+
+    if pref_selection_key not in st.session_state:
+        st.session_state[pref_selection_key] = []
+    selected_pref_seed = {
+        str(v)
+        for v in st.session_state.get(pref_selection_key, [])
+        if str(v) in visible_prefs
+    }
+
+    selected_prefs: list[str] = []
+    if visible_prefs:
+        pref_columns = st.columns(min(8, len(visible_prefs)))
+        for idx, pref in enumerate(visible_prefs):
+            pref_key = f"{pref_toggle_key_prefix}_{pref}"
             if pref_key not in st.session_state:
-                st.session_state[pref_key] = pref in selected_seed
-            with columns[idx % len(columns)]:
+                st.session_state[pref_key] = pref in selected_pref_seed
+            with pref_columns[idx % len(pref_columns)]:
                 is_selected = st.toggle(pref, key=pref_key)
             if is_selected:
-                selected.append(pref)
+                selected_prefs.append(pref)
 
-    st.session_state[selection_key] = selected
-    return selected
+    st.session_state[pref_selection_key] = selected_prefs
+    return selected_prefs
 
 
 def normalize_selected_years(
@@ -3373,12 +3421,12 @@ def render_event_signals_view() -> None:
             if pref.strip()
         ]
     )
-    st.markdown("**都道府県（複数選択）**")
-    st.caption("未選択時は全都道府県を対象にします。")
-    selected_prefs = render_pref_toggles_by_region(
+    selected_prefs = render_pref_toggles_two_step(
         pref_options=pref_options,
-        selection_key="signals_pref",
-        toggle_key_prefix="signals_pref_toggle",
+        pref_selection_key="signals_pref",
+        pref_toggle_key_prefix="signals_pref_toggle",
+        region_selection_key="signals_regions",
+        region_toggle_key_prefix="signals_region_toggle",
     )
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
@@ -3609,12 +3657,12 @@ def render_events_view() -> None:
         .sort_values("pref_code")
     )
     pref_options = pref_master["pref_name"].astype(str).tolist()
-    st.markdown("**都道府県（複数選択）**")
-    st.caption("未選択時は全都道府県を対象にします。")
-    selected_prefs = render_pref_toggles_by_region(
+    selected_prefs = render_pref_toggles_two_step(
         pref_options=pref_options,
-        selection_key="events_pref",
-        toggle_key_prefix="events_pref_toggle",
+        pref_selection_key="events_pref",
+        pref_toggle_key_prefix="events_pref_toggle",
+        region_selection_key="events_regions",
+        region_toggle_key_prefix="events_region_toggle",
     )
 
     # Venue filter (narrowed by pref)
