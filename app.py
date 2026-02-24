@@ -3288,6 +3288,53 @@ def render_event_signals_view() -> None:
         lambda row: row["event_info"] if row["event_info"] else row["snippet"],
         axis=1,
     )
+    df["published_label"] = df["published_jst"]
+
+    def _normalize_hhmm(value: object) -> str:
+        text = str(value or "").strip()
+        if not text:
+            return ""
+        match = re.search(r"(?<!\d)(\d{1,2}:\d{2})(?!\d)", text)
+        if not match:
+            return ""
+        hour = int(match.group(1).split(":")[0])
+        minute = int(match.group(1).split(":")[1])
+        if not (0 <= hour <= 23 and 0 <= minute <= 59):
+            return ""
+        return f"{hour:02d}:{minute:02d}"
+
+    def _extract_start_time_from_event_info(value: object) -> str:
+        if not isinstance(value, str):
+            return ""
+        text = value.strip()
+        if not text:
+            return ""
+        for pattern in [
+            r"(?<!\d)(\d{1,2}:\d{2})(?!\d)\s*開演",
+            r"\d{4}-\d{2}-\d{2}\s+(\d{1,2}:\d{2})",
+            r"(?<!\d)(\d{1,2}:\d{2})(?!\d)",
+        ]:
+            match = re.search(pattern, text)
+            if match:
+                return _normalize_hhmm(match.group(1))
+        return ""
+
+    df["raw_start_time_jst"] = labels_series.apply(
+        lambda d: (
+            _normalize_hhmm(
+                d.get("event_start_time", d.get("start_time", d.get("event_time", "")))
+            )
+            if isinstance(d, dict)
+            else ""
+        )
+    )
+    df["start_time_jst"] = df["raw_start_time_jst"]
+    missing_start_time_mask = df["start_time_jst"].eq("")
+    if missing_start_time_mask.any():
+        df.loc[missing_start_time_mask, "start_time_jst"] = df.loc[
+            missing_start_time_mask, "event_info"
+        ].apply(_extract_start_time_from_event_info)
+    df["start_time_jst"] = df["start_time_jst"].replace("", "-")
 
     def _normalize_pref_name(value: object) -> str:
         pref = str(value).strip() if value is not None else ""
@@ -3457,25 +3504,42 @@ def render_event_signals_view() -> None:
         filtered = filtered.sort_values(
             ["event_start_dt", "event_end_dt", "title"], ascending=[True, True, True]
         )
+    now_jst = pd.Timestamp.now(tz="Asia/Tokyo")
+    filtered["is_new_24h"] = filtered["published_dt_jst"] >= (
+        now_jst - pd.Timedelta(hours=24)
+    )
+    filtered["new_badge"] = filtered["is_new_24h"].map(lambda v: "NEW" if bool(v) else "")
+
+    new_count = int(filtered["is_new_24h"].sum()) if not filtered.empty else 0
     st.markdown(f"**{len(filtered)}** 件の速報")
+    if new_count > 0:
+        st.success(f"新規イベント（直近24時間）: {new_count} 件")
+    else:
+        st.caption("新規イベント（直近24時間）: 0 件")
 
     table_df = filtered[
         [
+            "new_badge",
             "event_date_jst",
-            "artist_name",
+            "start_time_jst",
             "venue_name",
             "pref_name",
-            "source_name",
+            "artist_name",
             "title",
+            "published_label",
+            "source_name",
             "url",
             "event_info",
         ]
     ].rename(
         columns={
-            "event_date_jst": "イベント日（JST）",
+            "new_badge": "新着",
+            "event_date_jst": "イベント日",
+            "start_time_jst": "開始時間",
             "artist_name": "アーティスト",
             "venue_name": "会場",
             "pref_name": "都道府県",
+            "published_label": "掲載日",
             "source_name": "ソース",
             "title": "タイトル",
             "url": "URL",
@@ -3500,6 +3564,9 @@ def render_event_signals_view() -> None:
         "venue_name",
         "pref_name",
         "event_date_jst",
+        "start_time_jst",
+        "published_label",
+        "is_new_24h",
         "published_at_utc",
         "score",
         "title",
@@ -3745,7 +3812,7 @@ def render_events_view() -> None:
         "url",
     ]
     display_rename = {
-        "start_date": "日付",
+        "start_date": "イベント日",
         "start_time": "開始時間",
         "venue_name": "会場",
         "pref_name": "都道府県",
