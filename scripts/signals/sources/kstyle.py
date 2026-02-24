@@ -5,9 +5,12 @@ from __future__ import annotations
 import json
 import logging
 import re
+import sqlite3
 import time
+import unicodedata
 from datetime import datetime, timedelta, timezone
-from urllib.parse import urljoin
+from pathlib import Path
+from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup, Tag
 
@@ -32,6 +35,9 @@ logger = logging.getLogger(__name__)
 class KstyleMusicSource(SignalSource):
     """Fetch Kstyle category pages and keep JP concert announcement articles."""
 
+    SEARCH_WORD = "■公演情報"
+    SEARCH_BASE_URL = "https://kstyle.com/search.ksn"
+    EVENTS_DB_PATH = Path(__file__).resolve().parents[3] / "data" / "events.sqlite"
     DATETIME_RE = re.compile(r"(\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2})")
     INCLUDE_TERMS = [
         "日本公演",
@@ -255,6 +261,7 @@ class KstyleMusicSource(SignalSource):
     NON_EVENT_DATE_TERMS = (
         "申込期間",
         "受付期間",
+        "受付中",
         "当選発表",
         "入金期限",
         "先着受付",
@@ -271,28 +278,28 @@ class KstyleMusicSource(SignalSource):
         "当日引換券",
     )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
+    _OFFICIAL_VENUE_PREF_CACHE: dict[str, str] | None = None
+    OFFICIAL_VENUE_PREF_ALIASES = {
+        "MUFG STADIUM": "東京都",
+        "MUFG STADIUM（国立競技場）": "東京都",
+        "国立競技場": "東京都",
+    }
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
         # Keep enough lookback while avoiding timeout-prone deep pagination.
         pages = max(1, int(cfg.get("pages", 8)))
         pages = max(pages, 8)
-
-        first_resp = self._get_with_retry(source.source_url, timeout=30)
+        search_url = self._resolve_search_url(source.source_url, cfg)
+        first_page_url = self._with_page_param(search_url, 1)
+        first_resp = self._get_with_retry(first_page_url, timeout=30)
         first_resp.raise_for_status()
         first_resp.encoding = first_resp.apparent_encoding or "utf-8"
 
-        urls = [first_resp.url]
-        soup_first = BeautifulSoup(first_resp.text, "html.parser")
-        urls.extend(
-            self._extract_pagination_urls(soup_first, first_resp.url, pages - 1)
-        )
-
-        page_num = 2
-        while len(urls) < pages:
-            sep = "&" if "?" in source.source_url else "?"
-            urls.append(f"{source.source_url}{sep}page={page_num}")
-            page_num += 1
+        urls = [first_resp.url] + [
+            self._with_page_param(search_url, page_num)
+            for page_num in range(2, pages + 1)
+        ]
 
         signals: dict[str, SignalRecord] = {}
         seen_article_urls: set[str] = set()
@@ -308,6 +315,9 @@ class KstyleMusicSource(SignalSource):
             if resp is not first_resp:
                 resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
+            if not soup.select('a[href*="article.ksn?articleNo="]'):
+                logger.info("kstyle: no article cards on %s; stop paging", page_url)
+                break
             for rec in self._parse_page(
                 soup, resp.url, source.source_id, seen_article_urls
             ):
@@ -368,6 +378,8 @@ class KstyleMusicSource(SignalSource):
                 section_lines, default_year=default_year
             )
             if not occurrences:
+                continue
+            if not self._is_japan_occurrence(section_lines, occurrences):
                 continue
 
             display_title = concert_title or title
@@ -433,8 +445,6 @@ class KstyleMusicSource(SignalSource):
 
         section_lines = self._extract_concert_info_section(lines)
         if not section_lines:
-            return None
-        if not self._is_japan_show(" ".join(section_lines)):
             return None
         title_raw = self._extract_article_title(soup, fallback_title)
         concert_title = self._extract_concert_title_from_section(section_lines)
@@ -581,7 +591,9 @@ class KstyleMusicSource(SignalSource):
     ) -> list[tuple[str, str, str, str]]:
         occurrences: list[tuple[str, str, str, str]] = []
         current_venue = self._extract_default_venue(section_lines)
-        current_pref = ""
+        current_pref = self._pref_from_official_venue(
+            current_venue
+        ) or self._pref_from_text(current_venue)
         expect_venue_next = False
         for line in section_lines:
             normalized_line = " ".join(line.split())
@@ -599,20 +611,33 @@ class KstyleMusicSource(SignalSource):
                     marker in venue_candidate for marker in ["【", "■", "DAY", "日時"]
                 ):
                     current_venue = venue_candidate
+                    current_pref = self._pref_from_official_venue(
+                        current_venue
+                    ) or self._pref_from_text(current_venue)
                 expect_venue_next = False
 
             pref_venue_match = self.PREF_VENUE_LINE_RE.match(normalized_line)
+            if pref_venue_match and not self._is_pref_token(
+                pref_venue_match.group("pref")
+            ):
+                pref_venue_match = None
             if pref_venue_match:
                 current_venue = self._normalize_venue_name(
                     pref_venue_match.group("venue")
                 )
-                current_pref = self._normalize_pref_name(pref_venue_match.group("pref"))
+                current_pref = self._normalize_pref_name(
+                    pref_venue_match.group("pref")
+                ) or self._pref_from_official_venue(
+                    current_venue
+                ) or self._pref_from_text(current_venue)
 
             venue_on_line = self._extract_venue(normalized_line)
             if venue_on_line:
                 current_venue = venue_on_line
                 if not pref_venue_match:
-                    current_pref = ""
+                    current_pref = self._pref_from_official_venue(
+                        current_venue
+                    ) or self._pref_from_text(current_venue)
 
             event_dates = self._extract_event_dates_from_line(
                 normalized_line, default_year=default_year
@@ -621,13 +646,29 @@ class KstyleMusicSource(SignalSource):
                 continue
             if any(term in normalized_line for term in self.NON_EVENT_DATE_TERMS):
                 continue
+
+            inline_pref, inline_venue = self._extract_pref_venue_from_date_line(
+                normalized_line
+            )
+            if inline_venue:
+                current_venue = inline_venue
+                current_pref = (
+                    inline_pref
+                    or self._pref_from_official_venue(current_venue)
+                    or self._pref_from_text(current_venue)
+                )
             if not current_venue:
                 continue
 
             event_info = normalized_line
             venue_name = self._normalize_venue_name(current_venue)
+            pref_name = (
+                current_pref
+                or self._pref_from_official_venue(venue_name)
+                or self._pref_from_text(venue_name)
+            )
             for event_date in event_dates:
-                occurrences.append((event_date, venue_name, event_info, current_pref))
+                occurrences.append((event_date, venue_name, event_info, pref_name))
 
         deduped: dict[tuple[str, str], tuple[str, str, str, str]] = {}
         for event_date, venue_name, event_info, pref_name in occurrences:
@@ -638,6 +679,47 @@ class KstyleMusicSource(SignalSource):
                 pref_name,
             )
         return sorted(deduped.values(), key=lambda row: (row[0], row[1]))
+
+    def _extract_pref_venue_from_date_line(self, line: str) -> tuple[str, str]:
+        date_match = self.DATE_TOKEN_RE.search(line)
+        if date_match is None:
+            return "", ""
+
+        rest = line[date_match.end() :].strip()
+        rest = re.sub(r"^[（(][^）)]{1,8}[）)]\s*", "", rest)
+        if not rest:
+            return "", ""
+
+        rest = re.split(
+            r"(?:開場|開演|START|DOOR|チケット|問い合わせ|お問合せ|※)",
+            rest,
+            maxsplit=1,
+        )[0].strip()
+        if not rest:
+            return "", ""
+        rest_nfkc = unicodedata.normalize("NFKC", rest)
+        if re.match(r"^\d{1,2}:\d{2}", rest_nfkc):
+            return "", ""
+
+        pref_venue_match = self.PREF_VENUE_LINE_RE.match(rest)
+        if pref_venue_match:
+            pref_name = self._normalize_pref_name(pref_venue_match.group("pref"))
+            venue_name = self._normalize_venue_name(pref_venue_match.group("venue"))
+            return pref_name, venue_name
+        return "", self._normalize_venue_name(rest)
+
+    def _is_pref_token(self, value: str) -> bool:
+        token = str(value or "").strip()
+        if not token:
+            return False
+        token_nfkc = unicodedata.normalize("NFKC", token)
+        if re.search(r"\d", token_nfkc):
+            return False
+        if token_nfkc.endswith("部") or token_nfkc.startswith("DAY"):
+            return False
+        if token_nfkc in self.JP_PREF_MAP:
+            return True
+        return bool(re.fullmatch(r"[A-Z][A-Z\s\-]{2,20}", token_nfkc))
 
     def _extract_default_venue(self, section_lines: list[str]) -> str:
         for idx, line in enumerate(section_lines):
@@ -724,11 +806,107 @@ class KstyleMusicSource(SignalSource):
         return " ".join(str(venue_name).split())
 
     @staticmethod
+    def _normalize_venue_lookup_key(value: str | None) -> str:
+        text = unicodedata.normalize("NFKC", str(value or "")).lower()
+        text = re.sub(r"\s+", "", text)
+        text = re.sub(r"[()（）\[\]［］{}【】「」『』\"'`~^!?,.:：;／/\\|+-]", "", text)
+        return text
+
+    @classmethod
+    def _load_official_venue_pref_cache(cls) -> dict[str, str]:
+        if cls._OFFICIAL_VENUE_PREF_CACHE is not None:
+            return cls._OFFICIAL_VENUE_PREF_CACHE
+
+        lookup: dict[str, str] = {}
+        if cls.EVENTS_DB_PATH.exists():
+            conn = sqlite3.connect(str(cls.EVENTS_DB_PATH))
+            try:
+                cur = conn.execute(
+                    """
+                    SELECT venue_name, pref_name
+                    FROM venues
+                    WHERE venue_name IS NOT NULL
+                      AND pref_name IS NOT NULL
+                    """
+                )
+                for venue_name, pref_name in cur.fetchall():
+                    key = cls._normalize_venue_lookup_key(str(venue_name))
+                    pref = cls._normalize_pref_name(str(pref_name))
+                    if key and pref and key not in lookup:
+                        lookup[key] = pref
+            except sqlite3.Error as exc:
+                logger.warning("kstyle: failed to load events.sqlite venues (%s)", exc)
+            finally:
+                conn.close()
+
+        for alias, pref_name in cls.OFFICIAL_VENUE_PREF_ALIASES.items():
+            key = cls._normalize_venue_lookup_key(alias)
+            pref = cls._normalize_pref_name(pref_name)
+            if key and pref:
+                lookup[key] = pref
+
+        cls._OFFICIAL_VENUE_PREF_CACHE = lookup
+        return lookup
+
+    def _pref_from_official_venue(self, venue_name: str | None) -> str:
+        key = self._normalize_venue_lookup_key(venue_name)
+        if not key:
+            return ""
+
+        lookup = self._load_official_venue_pref_cache()
+        direct = lookup.get(key)
+        if direct:
+            return direct
+
+        best_pref = ""
+        best_score = 0
+        for venue_key, pref_name in lookup.items():
+            if len(venue_key) < 4:
+                continue
+            if key in venue_key or venue_key in key:
+                score = min(len(key), len(venue_key))
+                if score > best_score:
+                    best_score = score
+                    best_pref = pref_name
+        return best_pref
+
+    @staticmethod
     def _normalize_pref_name(value: str | None) -> str:
         pref = str(value or "").strip()
         if not pref:
             return ""
         return KstyleMusicSource.JP_PREF_MAP.get(pref, "")
+
+    def _pref_from_text(self, value: str | None) -> str:
+        text = str(value or "").strip()
+        if not text:
+            return ""
+        for key in sorted(self.JP_PREF_MAP.keys(), key=len, reverse=True):
+            if key and key in text:
+                pref_name = self.JP_PREF_MAP.get(key, "")
+                if pref_name:
+                    return pref_name
+        return ""
+
+    def _is_japan_occurrence(
+        self,
+        section_lines: list[str],
+        occurrences: list[tuple[str, str, str, str]],
+    ) -> bool:
+        if self._is_japan_show(" ".join(section_lines)):
+            return True
+        for _, venue_name, _, pref_name in occurrences:
+            if self._normalize_pref_name(pref_name):
+                return True
+            if self._pref_from_official_venue(venue_name):
+                return True
+            if self._pref_from_text(venue_name):
+                return True
+            if any(term in venue_name for term in self.PREFECTURE_TERMS):
+                return True
+            if any(term in venue_name for term in self.MAJOR_CITY_TERMS):
+                return True
+        return False
 
     def _is_japan_show(self, text: str) -> bool:
         has_japan_word = "日本" in text
@@ -860,6 +1038,45 @@ class KstyleMusicSource(SignalSource):
             return parsed if isinstance(parsed, dict) else {}
         except json.JSONDecodeError:
             return {}
+
+    def _resolve_search_url(self, source_url: str, cfg: dict) -> str:
+        search_word = str(cfg.get("search_word") or self.SEARCH_WORD).strip()
+        if not search_word:
+            search_word = self.SEARCH_WORD
+
+        source = source_url.strip()
+        if "search.ksn" in source:
+            parts = urlsplit(source)
+            query = dict(parse_qsl(parts.query, keep_blank_values=True))
+            query["searchWord"] = search_word
+            return urlunsplit(
+                (
+                    parts.scheme or "https",
+                    parts.netloc or "kstyle.com",
+                    parts.path or "/search.ksn",
+                    urlencode(query),
+                    "",
+                )
+            )
+
+        return urlunsplit(
+            (
+                "https",
+                "kstyle.com",
+                "/search.ksn",
+                urlencode({"searchWord": search_word}),
+                "",
+            )
+        )
+
+    @staticmethod
+    def _with_page_param(url: str, page_num: int) -> str:
+        parts = urlsplit(url)
+        query = dict(parse_qsl(parts.query, keep_blank_values=True))
+        query["page"] = str(page_num)
+        return urlunsplit(
+            (parts.scheme, parts.netloc, parts.path, urlencode(query), parts.fragment)
+        )
 
     @staticmethod
     def _to_utc_datetime(value: str) -> str | None:
