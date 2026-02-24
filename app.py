@@ -3199,7 +3199,20 @@ def render_event_signals_view() -> None:
 
     df["published_dt_utc"] = published_utc[published_utc.notna()]
     df["published_dt_jst"] = df["published_dt_utc"].dt.tz_convert("Asia/Tokyo")
-    df["published_jst"] = df["published_dt_jst"].dt.strftime("%Y-%m-%d %H:%M")
+    first_seen_utc = pd.to_datetime(df.get("first_seen_at_utc"), utc=True, errors="coerce")
+    df["first_seen_dt_utc"] = first_seen_utc
+    df["first_seen_dt_jst"] = df["first_seen_dt_utc"].dt.tz_convert("Asia/Tokyo")
+
+    df["effective_published_dt_utc"] = df["published_dt_utc"]
+    starto_mask = (df["source_id"] == "starto_concert") & df["first_seen_dt_utc"].notna()
+    if starto_mask.any():
+        df.loc[starto_mask, "effective_published_dt_utc"] = df.loc[
+            starto_mask, "first_seen_dt_utc"
+        ]
+    df["effective_published_dt_jst"] = df["effective_published_dt_utc"].dt.tz_convert(
+        "Asia/Tokyo"
+    )
+    df["published_jst"] = df["effective_published_dt_jst"].dt.strftime("%Y-%m-%d %H:%M")
     df["score"] = pd.to_numeric(df.get("score"), errors="coerce").fillna(0).astype(int)
 
     def _load_labels(labels_json: object) -> dict[str, object]:
@@ -3497,7 +3510,7 @@ def render_event_signals_view() -> None:
     filtered = df[mask].copy()
     if sort_label == "掲載日時（新しい順）":
         filtered = filtered.sort_values(
-            ["published_dt_jst", "event_start_dt", "title"],
+            ["effective_published_dt_jst", "event_start_dt", "title"],
             ascending=[False, True, True],
         )
     else:
@@ -3505,7 +3518,7 @@ def render_event_signals_view() -> None:
             ["event_start_dt", "event_end_dt", "title"], ascending=[True, True, True]
         )
     now_jst = pd.Timestamp.now(tz="Asia/Tokyo")
-    filtered["is_new_24h"] = filtered["published_dt_jst"] >= (
+    filtered["is_new_24h"] = filtered["effective_published_dt_jst"] >= (
         now_jst - pd.Timedelta(hours=24)
     )
     filtered["new_badge"] = filtered["is_new_24h"].map(lambda v: "NEW" if bool(v) else "")
