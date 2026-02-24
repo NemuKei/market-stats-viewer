@@ -219,46 +219,51 @@ class KstyleMusicSource(SignalSource):
             detail = self._fetch_article_detail(abs_url)
             if detail is None:
                 continue
-            section_text, venue_text, date_text = detail
-            event_start_date, event_end_date = self._extract_event_date_range(
-                section_text
-            )
-            if not event_start_date:
+            section_lines = detail
+            occurrences = self._extract_occurrences(section_lines)
+            if not occurrences:
                 continue
 
-            score, labels = self._score_and_labels(title, section_text)
-            labels["artist_name"] = self._infer_artist_name(title)
-            labels["venue_name"] = venue_text or ""
-            labels["event_info"] = date_text or section_text
-            labels["event_start_date"] = event_start_date
-            labels["event_end_date"] = event_end_date or event_start_date
+            section_text = " ".join(section_lines)
+            score, base_labels = self._score_and_labels(title, section_text)
+            artist_name = self._infer_artist_name(title)
+            for event_date, venue_name, event_info in occurrences:
+                labels = dict(base_labels)
+                labels["artist_name"] = artist_name
+                labels["venue_name"] = venue_name
+                labels["event_info"] = event_info
+                labels["event_start_date"] = event_date
+                labels["event_end_date"] = event_date
 
-            snippet_parts: list[str] = []
-            if venue_text:
-                snippet_parts.append(f"会場: {venue_text}")
-            if date_text:
-                snippet_parts.append(f"日時: {date_text}")
-            snippet_parts.append(section_text)
-            snippet = trim_snippet(" / ".join(part for part in snippet_parts if part))
-
-            rec = SignalRecord(
-                signal_uid=compute_signal_uid(source_id, abs_url),
-                source_id=source_id,
-                published_at_utc=published_at_utc,
-                title=title,
-                url=abs_url,
-                snippet=snippet,
-                score=score,
-                labels_json=canonical_labels_json(labels),
-            )
-            rec.content_hash = compute_content_hash(rec)
-            records.append(rec)
+                snippet = trim_snippet(
+                    " / ".join(
+                        [
+                            f"会場: {venue_name}",
+                            f"日時: {event_date}",
+                            event_info,
+                        ]
+                    )
+                )
+                venue_key = self._normalize_venue_name(venue_name)
+                extra_key = f"{event_date}|{venue_key}"
+                rec = SignalRecord(
+                    signal_uid=compute_signal_uid(source_id, abs_url, extra_key),
+                    source_id=source_id,
+                    published_at_utc=published_at_utc,
+                    title=title,
+                    url=abs_url,
+                    snippet=snippet,
+                    score=score,
+                    labels_json=canonical_labels_json(labels),
+                )
+                rec.content_hash = compute_content_hash(rec)
+                records.append(rec)
 
         return records
 
     def _fetch_article_detail(
         self, article_url: str
-    ) -> tuple[str, str | None, str | None] | None:
+    ) -> list[str] | None:
         try:
             resp = self.session.get(article_url, timeout=30)
             if resp.status_code != 200:
@@ -276,15 +281,12 @@ class KstyleMusicSource(SignalSource):
         if not lines:
             return None
 
-        section_text = self._extract_concert_info_section(lines)
-        if not section_text:
+        section_lines = self._extract_concert_info_section(lines)
+        if not section_lines:
             return None
-        if not self._is_japan_show(section_text):
+        if not self._is_japan_show(" ".join(section_lines)):
             return None
-
-        venue_text = self._extract_venue(section_text)
-        date_text = self._extract_date_line(section_text)
-        return section_text, venue_text, date_text
+        return section_lines
 
     def _extract_article_lines(self, soup: BeautifulSoup) -> list[str]:
         for selector in self.ARTICLE_TEXT_SELECTORS:
@@ -300,7 +302,7 @@ class KstyleMusicSource(SignalSource):
                 return lines
         return []
 
-    def _extract_concert_info_section(self, lines: list[str]) -> str | None:
+    def _extract_concert_info_section(self, lines: list[str]) -> list[str] | None:
         start_idx: int | None = None
         for idx, line in enumerate(lines):
             if any(marker in line for marker in self.CONCERT_INFO_MARKERS):
@@ -322,7 +324,7 @@ class KstyleMusicSource(SignalSource):
 
         if not section_lines:
             return None
-        return " ".join(section_lines)
+        return section_lines
 
     def _extract_venue(self, text: str) -> str | None:
         match = self.VENUE_RE.search(text)
@@ -338,6 +340,76 @@ class KstyleMusicSource(SignalSource):
             if self.DATE_LINE_RE.search(token):
                 return " ".join(token.split())
         return None
+
+    def _extract_occurrences(
+        self, section_lines: list[str]
+    ) -> list[tuple[str, str, str]]:
+        occurrences: list[tuple[str, str, str]] = []
+        current_venue = ""
+        for line in section_lines:
+            venue_on_line = self._extract_venue(line)
+            if venue_on_line:
+                current_venue = venue_on_line
+
+            event_dates = self._extract_event_dates_from_line(line)
+            if not event_dates:
+                continue
+            if not current_venue:
+                continue
+
+            event_info = " ".join(line.split())
+            venue_name = self._normalize_venue_name(current_venue)
+            for event_date in event_dates:
+                occurrences.append((event_date, venue_name, event_info))
+
+        deduped: dict[tuple[str, str], tuple[str, str, str]] = {}
+        for event_date, venue_name, event_info in occurrences:
+            deduped[(event_date, venue_name)] = (event_date, venue_name, event_info)
+        return sorted(deduped.values(), key=lambda row: (row[0], row[1]))
+
+    def _extract_event_dates_from_line(self, line: str) -> list[str]:
+        matches = list(self.DATE_TOKEN_RE.finditer(line))
+        if not matches:
+            return []
+
+        if len(matches) >= 2 and re.search(r"[〜～\-−ー]", line):
+            start = self._match_to_date(matches[0])
+            end = self._match_to_date(matches[1])
+            if start and end and start <= end:
+                return self._expand_date_range(start, end)
+
+        out: list[str] = []
+        for match in matches:
+            date_text = self._match_to_date(match)
+            if date_text:
+                out.append(date_text)
+        return sorted(set(out))
+
+    def _match_to_date(self, match: re.Match[str]) -> str | None:
+        year = int(match.group(1))
+        month = int(match.group(2))
+        day = int(match.group(3))
+        try:
+            return datetime(year, month, day).strftime("%Y-%m-%d")
+        except ValueError:
+            return None
+
+    def _expand_date_range(self, start: str, end: str) -> list[str]:
+        try:
+            start_dt = datetime.strptime(start, "%Y-%m-%d")
+            end_dt = datetime.strptime(end, "%Y-%m-%d")
+        except ValueError:
+            return []
+        if end_dt < start_dt:
+            return []
+        days = (end_dt - start_dt).days
+        return [
+            (start_dt + timedelta(days=i)).strftime("%Y-%m-%d")
+            for i in range(days + 1)
+        ]
+
+    def _normalize_venue_name(self, venue_name: str) -> str:
+        return " ".join(str(venue_name).split())
 
     def _is_japan_show(self, text: str) -> bool:
         has_japan_word = "日本" in text
