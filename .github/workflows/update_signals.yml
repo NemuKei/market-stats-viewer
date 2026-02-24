@@ -41,11 +41,13 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
+            git config merge.ours.driver true
             git add data/ scripts/ app.py docs/ README.md
             git commit -m "chore: update event signals data"
             branch="${GITHUB_REF_NAME:-main}"
             for i in 1 2 3; do
-              git pull --rebase origin "$branch" && git push origin "HEAD:$branch" && break
+              git pull --rebase -X ours origin "$branch" && git push origin "HEAD:$branch" && break
+              git rebase --abort || true
               if [ "$i" -eq 3 ]; then
                 echo "Push failed after 3 retries"
                 exit 1
