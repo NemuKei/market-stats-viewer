@@ -290,6 +290,33 @@ def upsert_signals(conn: sqlite3.Connection, signals: list[SignalRecord]) -> int
     return changed
 
 
+def prune_missing_signals(
+    conn: sqlite3.Connection, source_id: str, signals: list[SignalRecord]
+) -> int:
+    keep_uids = sorted({row.signal_uid for row in signals if row.signal_uid})
+    if not keep_uids:
+        return 0
+
+    conn.execute("DROP TABLE IF EXISTS tmp_keep_signal_uids")
+    conn.execute(
+        "CREATE TEMP TABLE tmp_keep_signal_uids (signal_uid TEXT PRIMARY KEY)"
+    )
+    conn.executemany(
+        "INSERT INTO tmp_keep_signal_uids(signal_uid) VALUES (?)",
+        [(uid,) for uid in keep_uids],
+    )
+    cur = conn.execute(
+        """
+        DELETE FROM signals
+        WHERE source_id = ?
+          AND signal_uid NOT IN (SELECT signal_uid FROM tmp_keep_signal_uids)
+        """,
+        (source_id,),
+    )
+    conn.execute("DROP TABLE IF EXISTS tmp_keep_signal_uids")
+    return max(cur.rowcount, 0)
+
+
 def clear_source_for_rebuild(conn: sqlite3.Connection, source_id: str) -> None:
     now = now_utc_z()
     conn.execute("DELETE FROM signals WHERE source_id = ?", (source_id,))
@@ -374,8 +401,14 @@ def main() -> None:
                 logger.info("  rebuild: cleared existing rows and reset last_signature")
 
             sig = compute_source_signature(signals)
+            pruned = prune_missing_signals(conn, source.source_id, signals)
+            if pruned > 0:
+                logger.info("  pruned %d stale signal(s)", pruned)
             if not args.rebuild and source.last_signature == sig:
-                logger.info("  no-op: signature unchanged")
+                if pruned == 0:
+                    logger.info("  no-op: signature unchanged")
+                else:
+                    conn.commit()
                 success_count += 1
                 continue
 
@@ -383,8 +416,12 @@ def main() -> None:
             update_source_signature(conn, source.source_id, sig)
             conn.commit()
 
-            total_changed += changed
-            logger.info("  upserted %d changed signal(s)", changed)
+            total_changed += changed + pruned
+            logger.info(
+                "  upserted %d changed signal(s), pruned %d stale signal(s)",
+                changed,
+                pruned,
+            )
             success_count += 1
 
         except Exception:
