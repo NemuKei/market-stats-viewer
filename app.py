@@ -3611,6 +3611,7 @@ def render_event_signals_view() -> None:
         table_df,
         use_container_width=True,
         hide_index=True,
+        height=620,
         column_config={
             "URL": st.column_config.LinkColumn("URL", display_text="リンク"),
         },
@@ -3888,6 +3889,7 @@ def render_events_view() -> None:
         table_df,
         use_container_width=True,
         hide_index=True,
+        height=620,
         column_config={
             "URL": st.column_config.LinkColumn("URL", display_text="リンク"),
         },
