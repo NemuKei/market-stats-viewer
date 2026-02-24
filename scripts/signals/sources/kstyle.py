@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+import time
 from datetime import datetime, timedelta, timezone
 from urllib.parse import urljoin
 
@@ -273,11 +274,11 @@ class KstyleMusicSource(SignalSource):
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
-        # Keep wider lookback so future event announcements on older articles are retained.
-        pages = max(1, int(cfg.get("pages", 20)))
-        pages = max(pages, 20)
+        # Keep enough lookback while avoiding timeout-prone deep pagination.
+        pages = max(1, int(cfg.get("pages", 8)))
+        pages = max(pages, 8)
 
-        first_resp = self.session.get(source.source_url, timeout=30)
+        first_resp = self._get_with_retry(source.source_url, timeout=30)
         first_resp.raise_for_status()
         first_resp.encoding = first_resp.apparent_encoding or "utf-8"
 
@@ -299,7 +300,7 @@ class KstyleMusicSource(SignalSource):
             resp = (
                 first_resp
                 if page_url == first_resp.url
-                else self.session.get(page_url, timeout=30)
+                else self._get_with_retry(page_url, timeout=30)
             )
             if resp.status_code != 200:
                 logger.warning("kstyle: %s returned %s", page_url, resp.status_code)
@@ -414,7 +415,7 @@ class KstyleMusicSource(SignalSource):
         self, article_url: str, fallback_title: str
     ) -> tuple[list[str], str, str] | None:
         try:
-            resp = self.session.get(article_url, timeout=30)
+            resp = self._get_with_retry(article_url, timeout=30)
             if resp.status_code != 200:
                 logger.warning(
                     "kstyle: detail %s returned %s", article_url, resp.status_code
@@ -869,3 +870,24 @@ class KstyleMusicSource(SignalSource):
         except ValueError:
             return None
         return dt_jst.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    def _get_with_retry(self, url: str, timeout: int = 30, retries: int = 3):
+        last_exc: Exception | None = None
+        for attempt in range(1, retries + 1):
+            try:
+                return self.session.get(url, timeout=timeout)
+            except Exception as exc:  # requests/urllib exceptions
+                last_exc = exc
+                if attempt >= retries:
+                    break
+                wait_sec = 1.5 * attempt
+                logger.warning(
+                    "kstyle: request retry %d/%d for %s after %s",
+                    attempt,
+                    retries,
+                    url,
+                    exc.__class__.__name__,
+                )
+                time.sleep(wait_sec)
+        assert last_exc is not None
+        raise last_exc
