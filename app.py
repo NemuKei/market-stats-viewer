@@ -43,6 +43,63 @@ REGION_PREF_CODES = {
     "四国": ["36", "37", "38", "39"],
     "九州・沖縄": ["40", "41", "42", "43", "44", "45", "46", "47"],
 }
+PREF_CODE_NAME_MAP = {
+    "01": "北海道",
+    "02": "青森県",
+    "03": "岩手県",
+    "04": "宮城県",
+    "05": "秋田県",
+    "06": "山形県",
+    "07": "福島県",
+    "08": "茨城県",
+    "09": "栃木県",
+    "10": "群馬県",
+    "11": "埼玉県",
+    "12": "千葉県",
+    "13": "東京都",
+    "14": "神奈川県",
+    "15": "新潟県",
+    "16": "富山県",
+    "17": "石川県",
+    "18": "福井県",
+    "19": "山梨県",
+    "20": "長野県",
+    "21": "岐阜県",
+    "22": "静岡県",
+    "23": "愛知県",
+    "24": "三重県",
+    "25": "滋賀県",
+    "26": "京都府",
+    "27": "大阪府",
+    "28": "兵庫県",
+    "29": "奈良県",
+    "30": "和歌山県",
+    "31": "鳥取県",
+    "32": "島根県",
+    "33": "岡山県",
+    "34": "広島県",
+    "35": "山口県",
+    "36": "徳島県",
+    "37": "香川県",
+    "38": "愛媛県",
+    "39": "高知県",
+    "40": "福岡県",
+    "41": "佐賀県",
+    "42": "長崎県",
+    "43": "熊本県",
+    "44": "大分県",
+    "45": "宮崎県",
+    "46": "鹿児島県",
+    "47": "沖縄県",
+}
+REGION_PREF_NAMES = {
+    region: [
+        PREF_CODE_NAME_MAP.get(code, "")
+        for code in pref_codes
+        if PREF_CODE_NAME_MAP.get(code, "")
+    ]
+    for region, pref_codes in REGION_PREF_CODES.items()
+}
 TIME_SERIES_METRICS = {
     "国内+海外（積み上げ）": "stacked",
     "全体": "total",
@@ -165,6 +222,51 @@ def sanitize_for_filename(value: str) -> str:
         return safe
     suffix = hashlib.sha1(value.encode("utf-8")).hexdigest()[:8]
     return f"scope_{suffix}"
+
+
+def build_pref_region_groups(pref_options: list[str]) -> list[tuple[str, list[str]]]:
+    pref_set = {str(pref).strip() for pref in pref_options if str(pref).strip()}
+    groups: list[tuple[str, list[str]]] = []
+    listed: set[str] = set()
+
+    for region, pref_names in REGION_PREF_NAMES.items():
+        row = [pref for pref in pref_names if pref in pref_set]
+        if row:
+            groups.append((region, row))
+            listed.update(row)
+
+    others = sorted(pref_set - listed)
+    if others:
+        groups.append(("その他", others))
+    return groups
+
+
+def render_pref_toggles_by_region(
+    pref_options: list[str], selection_key: str, toggle_key_prefix: str
+) -> list[str]:
+    if selection_key not in st.session_state:
+        st.session_state[selection_key] = []
+
+    selected_seed = {
+        str(v)
+        for v in st.session_state.get(selection_key, [])
+        if str(v) in pref_options
+    }
+    selected: list[str] = []
+    for region, prefs in build_pref_region_groups(pref_options):
+        st.caption(region)
+        columns = st.columns(8)
+        for idx, pref in enumerate(prefs):
+            pref_key = f"{toggle_key_prefix}_{pref}"
+            if pref_key not in st.session_state:
+                st.session_state[pref_key] = pref in selected_seed
+            with columns[idx % len(columns)]:
+                is_selected = st.toggle(pref, key=pref_key)
+            if is_selected:
+                selected.append(pref)
+
+    st.session_state[selection_key] = selected
+    return selected
 
 
 def normalize_selected_years(
@@ -3273,24 +3375,11 @@ def render_event_signals_view() -> None:
     )
     st.markdown("**都道府県（複数選択）**")
     st.caption("未選択時は全都道府県を対象にします。")
-    if "signals_pref" not in st.session_state:
-        st.session_state["signals_pref"] = []
-    selected_pref_seed = {
-        str(v)
-        for v in st.session_state.get("signals_pref", [])
-        if str(v) in pref_options
-    }
-    pref_toggle_columns = st.columns(8)
-    selected_prefs: list[str] = []
-    for idx, pref in enumerate(pref_options):
-        pref_key = f"signals_pref_toggle_{pref}"
-        if pref_key not in st.session_state:
-            st.session_state[pref_key] = pref in selected_pref_seed
-        with pref_toggle_columns[idx % len(pref_toggle_columns)]:
-            is_selected = st.toggle(pref, key=pref_key)
-        if is_selected:
-            selected_prefs.append(pref)
-    st.session_state["signals_pref"] = selected_prefs
+    selected_prefs = render_pref_toggles_by_region(
+        pref_options=pref_options,
+        selection_key="signals_pref",
+        toggle_key_prefix="signals_pref_toggle",
+    )
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
     sort_label = st.radio(
@@ -3522,27 +3611,11 @@ def render_events_view() -> None:
     pref_options = pref_master["pref_name"].astype(str).tolist()
     st.markdown("**都道府県（複数選択）**")
     st.caption("未選択時は全都道府県を対象にします。")
-
-    if "events_pref" not in st.session_state:
-        st.session_state["events_pref"] = []
-
-    selected_pref_seed = {
-        str(v)
-        for v in st.session_state.get("events_pref", [])
-        if str(v) in pref_options
-    }
-    pref_toggle_columns = st.columns(8)
-    selected_prefs: list[str] = []
-    for idx, pref in enumerate(pref_options):
-        pref_key = f"events_pref_toggle_{pref}"
-        if pref_key not in st.session_state:
-            st.session_state[pref_key] = pref in selected_pref_seed
-        with pref_toggle_columns[idx % len(pref_toggle_columns)]:
-            is_selected = st.toggle(pref, key=pref_key)
-        if is_selected:
-            selected_prefs.append(pref)
-
-    st.session_state["events_pref"] = selected_prefs
+    selected_prefs = render_pref_toggles_by_region(
+        pref_options=pref_options,
+        selection_key="events_pref",
+        toggle_key_prefix="events_pref_toggle",
+    )
 
     # Venue filter (narrowed by pref)
     venue_pool = df.copy()
