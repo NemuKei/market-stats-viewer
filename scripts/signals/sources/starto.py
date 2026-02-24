@@ -6,6 +6,7 @@ import json
 import logging
 import re
 from datetime import datetime, timedelta, timezone
+from collections import defaultdict
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup, Tag
@@ -150,43 +151,39 @@ class StartoConcertSource(SignalSource):
             detail_title, schedules = detail
             if not schedules:
                 continue
-
-            first_date = schedules[0][0]
-            published_at_utc = self._to_utc_date(first_date)
-            if not published_at_utc:
-                continue
-
-            venue_names = sorted({venue for _, _, venue, _ in schedules})
-            event_info = self._build_snippet(schedules)
-            snippet = trim_snippet(event_info)
             artist_name = self._infer_artist_name(detail_title or title)
-            event_start_date, event_end_date = self._extract_event_date_range(schedules)
-            labels = {
-                "announce": True,
-                "jp_show": True,
-                "category": "concert",
-                "venue_count": len(venue_names),
-                "date_count": len(schedules),
-                "artist_name": artist_name,
-                "venue_name": " / ".join(venue_names[:3]) if venue_names else "",
-                "event_info": event_info,
-            }
-            if event_start_date:
-                labels["event_start_date"] = event_start_date
-            if event_end_date:
-                labels["event_end_date"] = event_end_date
-            rec = SignalRecord(
-                signal_uid=compute_signal_uid(source_id, abs_url),
-                source_id=source_id,
-                published_at_utc=published_at_utc,
-                title=detail_title or title,
-                url=abs_url,
-                snippet=snippet,
-                score=92,
-                labels_json=canonical_labels_json(labels),
-            )
-            rec.content_hash = compute_content_hash(rec)
-            records.append(rec)
+            grouped = self._group_schedules_by_date_venue(schedules)
+            for (event_date, venue_name), rows in grouped.items():
+                published_at_utc = self._to_utc_date(event_date.replace("-", "."))
+                if not published_at_utc:
+                    continue
+                event_info = self._build_occurrence_info(rows)
+                snippet = trim_snippet(event_info)
+                labels = {
+                    "announce": True,
+                    "jp_show": True,
+                    "category": "concert",
+                    "venue_count": 1,
+                    "date_count": len(rows),
+                    "artist_name": artist_name,
+                    "venue_name": venue_name,
+                    "event_info": event_info,
+                    "event_start_date": event_date,
+                    "event_end_date": event_date,
+                }
+                extra_key = f"{event_date}|{venue_name}"
+                rec = SignalRecord(
+                    signal_uid=compute_signal_uid(source_id, abs_url, extra_key),
+                    source_id=source_id,
+                    published_at_utc=published_at_utc,
+                    title=detail_title or title,
+                    url=abs_url,
+                    snippet=snippet,
+                    score=92,
+                    labels_json=canonical_labels_json(labels),
+                )
+                rec.content_hash = compute_content_hash(rec)
+                records.append(rec)
 
         return records
 
@@ -317,6 +314,36 @@ class StartoConcertSource(SignalSource):
         if len(schedules) > len(preview):
             lines.append(f"ほか {len(schedules) - len(preview)} 件")
         return " | ".join(lines)
+
+    def _group_schedules_by_date_venue(
+        self, schedules: list[tuple[str, str | None, str, str | None]]
+    ) -> dict[tuple[str, str], list[tuple[str, str | None, str, str | None]]]:
+        grouped: dict[
+            tuple[str, str], list[tuple[str, str | None, str, str | None]]
+        ] = defaultdict(list)
+        for date_raw, start_time, venue, prefecture in schedules:
+            event_date = date_raw.replace(".", "-")
+            venue_name = " ".join(venue.split())
+            if not event_date or not venue_name:
+                continue
+            grouped[(event_date, venue_name)].append(
+                (event_date, start_time, venue_name, prefecture)
+            )
+        return dict(grouped)
+
+    def _build_occurrence_info(
+        self, rows: list[tuple[str, str | None, str, str | None]]
+    ) -> str:
+        parts: list[str] = []
+        for event_date, start_time, venue_name, prefecture in sorted(
+            rows, key=lambda row: (row[0], row[1] or "")
+        ):
+            place = f"[{prefecture}] {venue_name}" if prefecture else venue_name
+            if start_time:
+                parts.append(f"{event_date} {start_time} / {place}")
+            else:
+                parts.append(f"{event_date} / {place}")
+        return " | ".join(parts)
 
     def _extract_event_date_range(
         self, schedules: list[tuple[str, str | None, str, str | None]]

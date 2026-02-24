@@ -26,9 +26,11 @@ class SignalSource(ABC):
         ...
 
 
-def compute_signal_uid(source_id: str, url: str) -> str:
-    """Generate stable UID from source + URL."""
+def compute_signal_uid(source_id: str, url: str, extra_key: str | None = None) -> str:
+    """Generate stable UID from source + URL (+ optional extra key)."""
     raw = f"{source_id}|{url.strip()}"
+    if extra_key:
+        raw = f"{raw}|{extra_key.strip()}"
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 

@@ -3196,6 +3196,11 @@ def render_event_signals_view() -> None:
     selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
+    raw_event_date_only = st.checkbox(
+        "event_start_date がある行のみ表示",
+        value=True,
+        key="signals_require_raw_event_start_date",
+    )
     strict_required_only = st.checkbox(
         "必須3点（イベント日/会場/アーティスト）がある行のみ表示",
         value=True,
@@ -3205,6 +3210,8 @@ def render_event_signals_view() -> None:
     mask = (df["event_end_ym"] >= ym_from) & (df["event_start_ym"] <= ym_to)
     if selected_source_ids:
         mask &= df["source_id"].isin(selected_source_ids)
+    if raw_event_date_only:
+        mask &= df["raw_event_start_dt"].notna()
     if strict_required_only:
         mask &= (
             df["raw_artist_name"].str.len().gt(0)
