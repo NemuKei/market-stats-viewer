@@ -57,3 +57,4 @@
 - D-20260225-002 | 会場公式イベントの種別を `すべて / コンサート / 野球 / その他` に分離し、カテゴリ判定は「野球優先、次にアーティスト名あり/音楽キーワードでコンサート、それ以外はその他」とする。アーティスト名は辞書 canonical 名へ正規化して判定・検索に利用する | status: applied | spec_link: docs/spec_app.md
 - D-20260225-003 | アーティスト辞書seedのWikidata更新を月次workflowで定期実行する。seed生成は実データ差分がない行の `updated_at` を保持してno-opを担保し、manual辞書は更新対象外のまま優先利用する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260225-004 | GitHub Actions の会場公式イベント更新を `update_data.yml` から分離し、`update_events_official.yml` を新設する。core統計更新と失敗影響範囲を分離し、events側は `update_events_data --skip-artist-inference` と `build_events_artist_inferred` を順次実行する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260225-005 | 会場公式コンサート抽出の精度改善として、短い曖昧alias（例: ベン/たま/ナビ）を補完対象から除外し、`performers == title` は未確定扱いにする。カテゴリ判定は非音楽キーワード（就活/展示会/スポーツフェスティバル等）を優先して `その他` へ振り分ける | status: applied | spec_link: docs/spec_app.md

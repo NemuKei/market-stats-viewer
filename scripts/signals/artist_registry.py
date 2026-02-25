@@ -132,6 +132,8 @@ def choose_primary_match(
     for match in matches:
         score = _to_int(match.get("length"))
         score -= _to_int(match.get("pos"))
+        if _to_int(match.get("pos")) == 0:
+            score += 4
         if match.get("is_canonical_match"):
             score += 12
         if match.get("match_mode") == "keep":
@@ -143,11 +145,16 @@ def choose_primary_match(
     scored.sort(key=lambda item: item[0], reverse=True)
     best_score, best_match = scored[0]
     second_score = scored[1][0] if len(scored) > 1 else -999
+    second_match = scored[1][1] if len(scored) > 1 else None
 
     confidence = "medium"
     if best_match.get("match_mode") == "keep" and best_match.get("word_boundary_ok"):
         confidence = "high"
-    if best_score - second_score <= 2:
+    second_canonical = (
+        str(second_match.get("canonical_name", "")).strip() if second_match else ""
+    )
+    best_canonical = str(best_match.get("canonical_name", "")).strip()
+    if best_score - second_score <= 2 and second_canonical != best_canonical:
         confidence = "medium"
 
     primary = {
