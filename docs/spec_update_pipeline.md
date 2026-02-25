@@ -31,7 +31,7 @@
   - 次対応として scripts側にフォールバック（手動URL指定）を追加する余地はある（P1）
 
 ## 追記: 2系統データ更新（2026-02-11）
-- workflow `update_data.yml` は以下を順次実行する。
+- workflow `update_data.yml`（core data）は以下を順次実行する。
   - `python -m scripts.update_data`
   - `python -m scripts.update_tcd_data`
 - 差分がある場合は `data/` を含めて commit/push する。
@@ -49,6 +49,13 @@
 - GitHub Actions `update_data.yml` の定期実行は `cron: 0 3 * * 1`。
 - 実行時刻は毎週月曜 03:00 UTC（日本時間 月曜 12:00）。
 - 手動実行は `workflow_dispatch` を使う。
+
+## Addendum (2026-02-25) Workflow Split for Event Official Data
+- `update_data.yml` は core統計データ更新のみを担当する（会場公式イベント更新を含めない）。
+- 会場公式イベント更新は `update_events_official.yml` へ分離する。
+  - 実行: `python -m scripts.update_events_data --skip-artist-inference` → `python -m scripts.build_events_artist_inferred`
+  - 定期実行: `cron: 0 4 * * 1`（毎週月曜 04:00 UTC）
+- 目的: 失敗分離（events側の障害でcore統計更新を止めない）と運用負荷の分離。
 
 ## ICD/TA Additions
 - Add: python -m scripts.update_icd_data
