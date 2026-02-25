@@ -13,6 +13,7 @@ import hashlib
 import json
 import logging
 import sqlite3
+import subprocess
 import sys
 import time
 from datetime import date, datetime, timedelta, timezone
@@ -308,6 +309,11 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=0, help="Process first N enabled venues only")
     parser.add_argument("--only", type=str, default="", help="Comma-separated venue_ids to process")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
+    parser.add_argument(
+        "--skip-artist-inference",
+        action="store_true",
+        help="Skip rebuilding data/events_artist_inferred.csv after events update",
+    )
     args = parser.parse_args()
 
     level = logging.DEBUG if args.verbose else logging.INFO
@@ -429,6 +435,30 @@ def main() -> None:
         "Done: %d success, %d failed, %d events fetched, %d changed",
         success_count, fail_count, total_events, total_changed,
     )
+
+    if not args.skip_artist_inference:
+        cmd = [sys.executable, "-m", "scripts.build_events_artist_inferred"]
+        if args.verbose:
+            cmd.append("--verbose")
+        try:
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                check=False,
+                encoding="utf-8",
+                errors="replace",
+            )
+            if result.returncode == 0:
+                logger.info("Artist inference rebuild completed.")
+            else:
+                logger.warning(
+                    "Artist inference rebuild failed (exit=%d): %s",
+                    result.returncode,
+                    (result.stderr or result.stdout).strip(),
+                )
+        except Exception:
+            logger.exception("Artist inference rebuild failed by exception.")
 
     # Exit code 1 if ALL enabled venues failed
     enabled_count = sum(1 for v in targets if v.is_enabled or only_ids)

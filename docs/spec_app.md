@@ -199,6 +199,10 @@
 
 ### 全国イベント情報（会場公式）
 - 既存 `render_events_view()` を継続利用する。
+- アーティスト列は以下の順で決定する。
+  - 1) `events.performers`（ソース値）
+  - 2) `data/events_artist_inferred.csv` による補完（`event_uid` 一致を優先し、後方互換として `title` 一致も許容）
+- `events_artist_inferred.csv` は `title` に加えて `description` も参照して推論した結果を持つ。
 
 ### 全国イベント速報（ニュース）
 - 新規 `render_event_signals_view()` を追加する。

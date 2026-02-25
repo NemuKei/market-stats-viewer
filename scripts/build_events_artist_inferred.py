@@ -1,4 +1,4 @@
-"""Build inferred artist map for venue-official events from title matching.
+"""Build inferred artist map for venue-official events from title/description matching.
 
 Usage:
     uv run python -m scripts.build_events_artist_inferred
@@ -42,6 +42,47 @@ AMBIGUOUS_SINGLE_TOKENS = {
     "中",
 }
 
+GENERIC_ALIAS_TOKENS = {
+    "dome",
+    "arena",
+    "hall",
+    "live",
+    "tour",
+    "concert",
+    "show",
+    "showcase",
+    "festival",
+    "fes",
+    "oneman",
+    "onelive",
+    "fanmeeting",
+    "ticket",
+    "open",
+    "start",
+    "vol",
+    "part",
+    "event",
+    "music",
+    "special",
+    "the",
+    "with",
+    "and",
+    "ライブ",
+    "コンサート",
+    "ツアー",
+    "公演",
+    "イベント",
+    "フェス",
+    "ワンマン",
+    "ドーム",
+    "アリーナ",
+    "ホール",
+}
+GENERIC_ALIAS_COMPACT_TOKENS = {
+    re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", str(token)).lower()
+    for token in GENERIC_ALIAS_TOKENS
+}
+
 MUSIC_HINT_KEYWORDS = [
     "ライブ",
     "コンサート",
@@ -49,6 +90,10 @@ MUSIC_HINT_KEYWORDS = [
     "ツアー",
     "フェス",
     "ファンミ",
+    "リサイタル",
+    "オーケストラ",
+    "弾き語り",
+    "ワンマン",
     "fan meeting",
     "world tour",
     "tour",
@@ -82,6 +127,10 @@ NON_MUSIC_EXCLUDE_KEYWORDS = [
     "ドラゴンズ",
     "タイガース",
     "ベイスターズ",
+    "ホークス",
+    "ファイターズ",
+    "ライオンズ",
+    "マリーンズ",
 ]
 
 
@@ -125,7 +174,7 @@ def _load_artist_entries_from_csv(path: Path) -> list[ArtistEntry]:
 
 
 def _compact_text(text: str) -> str:
-    return re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", str(text or ""))
+    return re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", str(text or "")).lower()
 
 
 def _is_valid_match(canonical_name: str, matched_alias: str) -> bool:
@@ -135,54 +184,77 @@ def _is_valid_match(canonical_name: str, matched_alias: str) -> bool:
         return False
     if alias_compact in AMBIGUOUS_SINGLE_TOKENS:
         return False
-    if re.fullmatch(r"[A-Za-z0-9]+", alias_compact) and len(alias_compact) <= 2:
+    if alias_compact in GENERIC_ALIAS_COMPACT_TOKENS:
+        return False
+    if re.fullmatch(r"[a-z0-9]+", alias_compact) and len(alias_compact) <= 2:
         return False
     return True
 
 
-def _is_music_like_title(title: str) -> bool:
-    text = str(title or "").strip().lower()
-    if not text:
+def _contains_non_music_exclude_keyword(text: str) -> bool:
+    normalized = str(text or "").strip().lower()
+    if not normalized:
         return False
-    if any(keyword in text for keyword in NON_MUSIC_EXCLUDE_KEYWORDS):
-        return False
-    return any(keyword in text for keyword in MUSIC_HINT_KEYWORDS)
+    return any(keyword in normalized for keyword in NON_MUSIC_EXCLUDE_KEYWORDS)
 
 
-def load_merged_registry(jp_seed_path: Path) -> list[ArtistEntry]:
+def _is_music_like_text(text: str) -> bool:
+    normalized = str(text or "").strip().lower()
+    if not normalized:
+        return False
+    if _contains_non_music_exclude_keyword(normalized):
+        return False
+    return any(keyword in normalized for keyword in MUSIC_HINT_KEYWORDS)
+
+
+def load_merged_registry(extra_seed_path: Path | None) -> list[ArtistEntry]:
     merged: dict[str, ArtistEntry] = {}
     for entry in load_registry():
         merged[entry.artist_id] = entry
-    for entry in _load_artist_entries_from_csv(jp_seed_path):
-        merged[entry.artist_id] = entry
+    if extra_seed_path and extra_seed_path.exists():
+        for entry in _load_artist_entries_from_csv(extra_seed_path):
+            merged[entry.artist_id] = entry
     return list(merged.values())
 
 
-def load_target_titles(events_db_path: Path, limit: int = 0) -> list[str]:
+def load_target_events(events_db_path: Path, limit: int = 0) -> list[dict[str, str]]:
     if not events_db_path.exists():
         return []
     with sqlite3.connect(events_db_path) as conn:
-        df = conn.execute(
+        rows = conn.execute(
             """
-            SELECT DISTINCT title
+            SELECT event_uid, title, COALESCE(description, '')
             FROM events
             WHERE COALESCE(TRIM(performers), '') = ''
               AND COALESCE(TRIM(title), '') <> ''
-            ORDER BY title
+            ORDER BY start_date, event_uid
             """
         ).fetchall()
-    titles = [str(row[0]).strip() for row in df if row and str(row[0]).strip()]
+    out = [
+        {
+            "event_uid": str(row[0]).strip(),
+            "title": str(row[1]).strip(),
+            "description": str(row[2]).strip(),
+        }
+        for row in rows
+        if row and str(row[0]).strip() and str(row[1]).strip()
+    ]
     if limit > 0:
-        return titles[:limit]
-    return titles
+        return out[:limit]
+    return out
 
 
-def infer_title_artist(
-    title: str, artist_index: dict[str, object]
+def _infer_from_text(
+    text: str, artist_index: dict[str, object]
 ) -> tuple[str, str, str] | None:
-    if not _is_music_like_title(title):
-        return None
-    matches = match_artists_in_title(title, artist_index)
+    matches = [
+        match
+        for match in match_artists_in_title(text, artist_index)
+        if _is_valid_match(
+            str(match.get("canonical_name", "")).strip(),
+            str(match.get("matched_alias", "")).strip(),
+        )
+    ]
     primary, confidence = choose_primary_match(matches)
     if primary is None or confidence != "high":
         return None
@@ -190,17 +262,51 @@ def infer_title_artist(
     matched_alias = str(primary.get("matched_alias", "")).strip()
     if not canonical_name or not matched_alias:
         return None
-    if not _is_valid_match(canonical_name, matched_alias):
-        return None
     return canonical_name, confidence, matched_alias
+
+
+def infer_event_artist(
+    title: str, description: str, artist_index: dict[str, object]
+) -> tuple[str, str, str, str] | None:
+    title_text = str(title or "").strip()
+    description_text = str(description or "").strip()
+    title_is_music_like = _is_music_like_text(title_text)
+    desc_is_music_like = _is_music_like_text(description_text)
+
+    title_match = _infer_from_text(title_text, artist_index) if title_text else None
+    if title_match is not None:
+        if title_is_music_like:
+            return (*title_match, "title")
+        if (
+            not _contains_non_music_exclude_keyword(title_text)
+            and len(_compact_text(title_text)) <= 30
+        ):
+            return (*title_match, "title")
+
+    if not description_text:
+        return None
+    if not (title_is_music_like or desc_is_music_like):
+        return None
+
+    description_match = _infer_from_text(description_text, artist_index)
+    if description_match is not None:
+        return (*description_match, "description")
+
+    combined_text = f"{title_text} {description_text}".strip()
+    combined_match = _infer_from_text(combined_text, artist_index)
+    if combined_match is not None:
+        return (*combined_match, "title+description")
+    return None
 
 
 def write_csv_noop(rows: list[dict[str, str]], output_path: Path) -> bool:
     columns = [
+        "event_uid",
         "title",
         "artist_name",
         "artist_confidence",
         "matched_alias",
+        "matched_field",
         "updated_at",
     ]
     from io import StringIO
@@ -224,7 +330,11 @@ def write_csv_noop(rows: list[dict[str, str]], output_path: Path) -> bool:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build inferred artist map for events")
     parser.add_argument("--db-path", default=str(EVENTS_DB_PATH))
-    parser.add_argument("--jp-seed-path", default=str(JP_SEED_PATH))
+    parser.add_argument(
+        "--jp-seed-path",
+        default=str(JP_SEED_PATH),
+        help="Optional additional seed CSV path (merged on top of default registry).",
+    )
     parser.add_argument("--output", default=str(OUTPUT_PATH))
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--verbose", action="store_true")
@@ -237,38 +347,44 @@ def main() -> None:
     logging.basicConfig(level=level, format="%(asctime)s %(levelname)s %(message)s")
 
     events_db_path = Path(args.db_path)
-    jp_seed_path = Path(args.jp_seed_path)
+    extra_seed_path = Path(args.jp_seed_path)
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    titles = load_target_titles(events_db_path, limit=max(0, int(args.limit)))
-    if not titles:
-        logger.warning("No target titles found. Skip.")
+    targets = load_target_events(events_db_path, limit=max(0, int(args.limit)))
+    if not targets:
+        logger.warning("No target events found. Skip.")
         return
 
-    registry = load_merged_registry(jp_seed_path)
+    registry = load_merged_registry(extra_seed_path)
     artist_index = build_artist_index(registry)
     updated_at = date.today().isoformat()
 
     rows: list[dict[str, str]] = []
-    for idx, title in enumerate(titles, start=1):
-        inferred = infer_title_artist(title, artist_index)
+    for idx, event in enumerate(targets, start=1):
+        inferred = infer_event_artist(
+            title=event["title"],
+            description=event["description"],
+            artist_index=artist_index,
+        )
         if inferred is None:
             continue
-        artist_name, confidence, matched_alias = inferred
+        artist_name, confidence, matched_alias, matched_field = inferred
         rows.append(
             {
-                "title": title,
+                "event_uid": event["event_uid"],
+                "title": event["title"],
                 "artist_name": artist_name,
                 "artist_confidence": confidence,
                 "matched_alias": matched_alias,
+                "matched_field": matched_field,
                 "updated_at": updated_at,
             }
         )
         if idx % 500 == 0:
-            logger.info("Processed %d/%d titles", idx, len(titles))
+            logger.info("Processed %d/%d events", idx, len(targets))
 
-    rows.sort(key=lambda row: row["title"])
+    rows.sort(key=lambda row: (row["event_uid"], row["title"]))
     changed = write_csv_noop(rows, output_path)
     if changed:
         logger.info("Wrote %d inferred rows to %s", len(rows), output_path)
