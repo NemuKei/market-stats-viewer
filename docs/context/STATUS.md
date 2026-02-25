@@ -3,6 +3,8 @@
 最終更新: 2026-02-25
 
 ## Done（直近完了）
+- 外部連携向けに Release assets 公開workflow（`publish_external_events_assets.yml`）を追加し、`external-events-latest` へ `events.sqlite` / `event_signals.sqlite` / `manifest.json` を自動公開する運用を追加
+- `scripts.build_external_events_manifest` を追加し、assetの `sha256` / `size_bytes` / 生成時刻を `data/manifest.json` へ出力する導線を追加
 - 常設コンテキストの正本パスを `docs/context/STATUS.md` / `docs/context/DECISIONS.md` に統一
 - `docs/DECISIONS.md` は互換リダイレクト化し、既存参照を壊さない構成にした
 - 会場公式イベントのアーティスト補完を `title + description` 参照へ拡張し、補完辞書を `seed + jp.seed + manual` 統合利用へ変更
@@ -17,4 +19,5 @@
 
 ## Next（最大3）
 1. 仕様変更時は `DECISIONS -> spec -> 実装` の順で同期する
-2. UI/データ更新タスクが発生したら本ファイルを最新スナップショットへ更新する
+2. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
+3. UI/データ更新タスクが発生したら本ファイルを最新スナップショットへ更新する

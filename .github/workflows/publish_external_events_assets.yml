@@ -1,0 +1,56 @@
+name: Publish external events assets
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Update events official data
+      - Update event signals data
+    types:
+      - completed
+
+concurrency:
+  group: release-assets-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Build manifest
+        run: |
+          python -m scripts.build_external_events_manifest --release-tag external-events-latest
+
+      - name: Ensure release exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="external-events-latest"
+          title="External Events (latest)"
+          notes="Auto-published sqlite assets for rm-booking-curve-lab."
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release edit "$tag" --title "$title" --notes "$notes"
+          else
+            gh release create "$tag" --title "$title" --notes "$notes"
+          fi
+
+      - name: Upload release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload external-events-latest data/events.sqlite data/event_signals.sqlite data/manifest.json --clobber

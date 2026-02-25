@@ -148,3 +148,18 @@
   - `.github/workflows/update_signals.yml`
   - `workflow_dispatch` + 定期実行（12時間ごと）
   - 差分がある場合のみ commit
+
+## Addendum (2026-02-25) External Events Release Assets
+- Workflow: `.github/workflows/publish_external_events_assets.yml`
+- Trigger:
+  - `workflow_run`（`Update events official data` / `Update event signals data` が `main` で成功したとき）
+  - `workflow_dispatch`（手動再公開）
+- Release:
+  - tag: `external-events-latest`
+  - assets: `events.sqlite`, `event_signals.sqlite`, `manifest.json`
+- Manifest generation:
+  - script: `python -m scripts.build_external_events_manifest --release-tag external-events-latest`
+  - output: `data/manifest.json`
+  - contains: `generated_at_utc`, `source_repository`, `source_commit_sha`, assetごとの `size_bytes` / `sha256`
+- Upload policy:
+  - `gh release upload ... --clobber` を使い、同名assetを上書きして常に最新を保持する
