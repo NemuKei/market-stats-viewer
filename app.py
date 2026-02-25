@@ -15,6 +15,20 @@ from openpyxl.chart import BarChart, Reference
 from openpyxl.chart.axis import ChartLines
 from openpyxl.chart.layout import Layout, ManualLayout
 
+try:
+    from scripts.signals.artist_registry import (
+        load_registry as load_artist_registry,
+        normalize_text as normalize_artist_lookup_text,
+    )
+except Exception:
+    load_artist_registry = None
+
+    def normalize_artist_lookup_text(s: str, mode: str = "keep") -> str:
+        text = str(s or "").strip().lower()
+        if mode == "compact":
+            return re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", text)
+        return text
+
 REPO_ROOT = Path(__file__).resolve().parent
 DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
@@ -3031,17 +3045,19 @@ def render_airport_volume_view() -> None:
 # Events Hub
 # ---------------------------------------------------------------------------
 EVENT_CATEGORY_ALL = "すべて"
-EVENT_CATEGORY_CONCERT = "コンサート（その他含む）"
+EVENT_CATEGORY_CONCERT = "コンサート"
 EVENT_CATEGORY_BASEBALL = "野球"
+EVENT_CATEGORY_OTHER = "その他"
 EVENT_CATEGORY_OPTIONS = [
     EVENT_CATEGORY_ALL,
     EVENT_CATEGORY_CONCERT,
     EVENT_CATEGORY_BASEBALL,
+    EVENT_CATEGORY_OTHER,
 ]
 
 
-def classify_event_category(title: str, performers: str, description: str) -> str:
-    text = " ".join([str(title or ""), str(performers or ""), str(description or "")])
+def classify_event_category(title: str, artist_name: str, description: str) -> str:
+    text = " ".join([str(title or ""), str(artist_name or ""), str(description or "")])
     normalized_text = text.lower()
 
     baseball_keywords = [
@@ -3099,6 +3115,9 @@ def classify_event_category(title: str, performers: str, description: str) -> st
     if has_team_keyword and has_versus:
         return EVENT_CATEGORY_BASEBALL
 
+    if str(artist_name or "").strip():
+        return EVENT_CATEGORY_CONCERT
+
     concert_keywords = [
         "ライブ",
         "コンサート",
@@ -3131,7 +3150,7 @@ def classify_event_category(title: str, performers: str, description: str) -> st
     ]
     if any(keyword in normalized_text for keyword in concert_keywords):
         return EVENT_CATEGORY_CONCERT
-    return EVENT_CATEGORY_CONCERT
+    return EVENT_CATEGORY_OTHER
 
 
 @st.cache_data(show_spinner=False)
@@ -3185,6 +3204,67 @@ def load_events_artist_inferred_map(
         if title:
             out_by_title[title] = (artist_name, confidence)
     return out_by_uid, out_by_title
+
+
+@st.cache_data(show_spinner=False)
+def load_artist_canonical_lookup_maps() -> tuple[dict[str, str], dict[str, str]]:
+    if load_artist_registry is None:
+        return {}, {}
+    try:
+        registry = load_artist_registry()
+    except Exception:
+        return {}, {}
+
+    keep_candidates: dict[str, set[str]] = {}
+    compact_candidates: dict[str, set[str]] = {}
+    for entry in registry:
+        canonical_name = str(getattr(entry, "canonical_name", "") or "").strip()
+        aliases = list(
+            dict.fromkeys([canonical_name, *list(getattr(entry, "aliases", tuple()))])
+        )
+        if not canonical_name:
+            continue
+        for alias in aliases:
+            token = str(alias or "").strip()
+            if not token:
+                continue
+            keep_key = normalize_artist_lookup_text(token, mode="keep")
+            compact_key = normalize_artist_lookup_text(token, mode="compact")
+            if keep_key:
+                keep_candidates.setdefault(keep_key, set()).add(canonical_name)
+            if compact_key:
+                compact_candidates.setdefault(compact_key, set()).add(canonical_name)
+
+    keep_map = {
+        key: next(iter(names))
+        for key, names in keep_candidates.items()
+        if len(names) == 1
+    }
+    compact_map = {
+        key: next(iter(names))
+        for key, names in compact_candidates.items()
+        if len(names) == 1
+    }
+    return keep_map, compact_map
+
+
+def normalize_artist_name_with_lookup(
+    raw_name: object, keep_map: dict[str, str], compact_map: dict[str, str]
+) -> str:
+    text = str(raw_name or "").strip()
+    if not text:
+        return ""
+    keep_key = normalize_artist_lookup_text(text, mode="keep")
+    if keep_key:
+        canonical = keep_map.get(keep_key)
+        if canonical:
+            return canonical
+    compact_key = normalize_artist_lookup_text(text, mode="compact")
+    if compact_key:
+        canonical = compact_map.get(compact_key)
+        if canonical:
+            return canonical
+    return text
 
 
 def render_event_signals_view() -> None:
@@ -3699,9 +3779,43 @@ def render_events_view() -> None:
     )
     df["display_capacity"] = df["capacity"].fillna(df["venue_capacity"])
     df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
+    df["artist_name"] = df["performers"].fillna("").astype(str).str.strip()
+    df["artist_confidence"] = df["artist_name"].map(lambda v: "source" if v else "low")
+
+    missing_artist_mask = df["artist_name"].eq("")
+    if missing_artist_mask.any():
+        inferred_map_by_uid, inferred_map_by_title = load_events_artist_inferred_map()
+        inferred = df.loc[missing_artist_mask].apply(
+            lambda row: inferred_map_by_uid.get(
+                str(row.get("event_uid", "")).strip(),
+                inferred_map_by_title.get(str(row.get("title", "")).strip(), ("", "low")),
+            ),
+            axis=1,
+        )
+        df.loc[missing_artist_mask, "artist_name"] = inferred.apply(lambda row: row[0])
+        df.loc[missing_artist_mask, "artist_confidence"] = inferred.apply(
+            lambda row: row[1]
+        )
+
+    canonical_keep_map, canonical_compact_map = load_artist_canonical_lookup_maps()
+    if canonical_keep_map or canonical_compact_map:
+        normalized_artist_names = df["artist_name"].apply(
+            lambda value: normalize_artist_name_with_lookup(
+                value, canonical_keep_map, canonical_compact_map
+            )
+        )
+        normalized_changed_mask = (
+            df["artist_confidence"].eq("source")
+            & df["artist_name"].ne("")
+            & normalized_artist_names.ne(df["artist_name"])
+        )
+        df["artist_name"] = normalized_artist_names
+        if normalized_changed_mask.any():
+            df.loc[normalized_changed_mask, "artist_confidence"] = "source_normalized"
+
     df["event_category"] = df.apply(
         lambda row: classify_event_category(
-            row.get("title"), row.get("performers"), row.get("description")
+            row.get("title"), row.get("artist_name"), row.get("description")
         ),
         axis=1,
     )
@@ -3838,6 +3952,7 @@ def render_events_view() -> None:
         kw_lower = keyword.lower()
         kw_mask = (
             df["title"].str.lower().str.contains(kw_lower, na=False)
+            | df["artist_name"].fillna("").str.lower().str.contains(kw_lower, na=False)
             | df["performers"].fillna("").str.lower().str.contains(kw_lower, na=False)
             | df["description"].fillna("").str.lower().str.contains(kw_lower, na=False)
         )
@@ -3847,26 +3962,6 @@ def render_events_view() -> None:
     if not include_cancelled:
         mask &= df["status"].isin(["scheduled", "unknown"])
     filtered = df[mask].copy().sort_values("start_date").reset_index(drop=True)
-    filtered["artist_name"] = filtered["performers"].fillna("").astype(str).str.strip()
-    filtered["artist_confidence"] = filtered["artist_name"].map(
-        lambda v: "source" if v else "low"
-    )
-    missing_artist_mask = filtered["artist_name"].eq("")
-    if missing_artist_mask.any():
-        inferred_map_by_uid, inferred_map_by_title = load_events_artist_inferred_map()
-        inferred = filtered.loc[missing_artist_mask].apply(
-            lambda row: inferred_map_by_uid.get(
-                str(row.get("event_uid", "")).strip(),
-                inferred_map_by_title.get(str(row.get("title", "")).strip(), ("", "low")),
-            ),
-            axis=1,
-        )
-        filtered.loc[missing_artist_mask, "artist_name"] = inferred.apply(
-            lambda row: row[0]
-        )
-        filtered.loc[missing_artist_mask, "artist_confidence"] = inferred.apply(
-            lambda row: row[1]
-        )
 
     st.markdown(f"**{len(filtered)}** 件のイベント")
 

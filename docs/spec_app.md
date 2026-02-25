@@ -182,8 +182,11 @@
   - 期間（開始/終了の年・月を分離して選択、月単位で絞り込み。デフォルト: 今月〜+180日相当の月）
   - 都道府県（横並びトグル、複数選択、未選択時は全都道府県、都道府県コード順で表示）
   - 会場（複数選択、都道府県フィルタ後に候補を絞る。候補外は自動解除。未選択時は全会場）
-  - キーワード（title/performers/description 部分一致）
-  - 種別（すべて / コンサート（その他含む） / 野球、title/performers/description のキーワードで自動分類し、野球以外はコンサートに分類）
+  - キーワード（title/artist_name/performers/description 部分一致）
+  - 種別（すべて / コンサート / 野球 / その他）
+    - 野球: 野球キーワード、または球団名 + `vs` パターン
+    - コンサート: アーティスト名が埋まっている、または音楽キーワード一致
+    - その他: 上記以外
   - ステータス（cancelled/postponed 含むかのトグル）
 - 一覧テーブル: 日付, 開始時間, 会場, 都道府県, タイトル, ステータス, キャパシティ, URL
 - 集計チャート: 日別のイベント件数 + 合計キャパシティ（Altair、棒+折れ線の2軸）
@@ -203,6 +206,7 @@
   - 1) `events.performers`（ソース値）
   - 2) `data/events_artist_inferred.csv` による補完（`event_uid` 一致を優先し、後方互換として `title` 一致も許容）
 - `events_artist_inferred.csv` は `title` に加えて `description` も参照して推論した結果を持つ。
+- アーティスト名は辞書（`seed + jp.seed + manual`）により canonical 名へ正規化する。
 
 ### 全国イベント速報（ニュース）
 - 新規 `render_event_signals_view()` を追加する。
