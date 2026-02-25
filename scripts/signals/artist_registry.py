@@ -12,6 +12,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = REPO_ROOT / "data"
 SEED_PATH = DATA_DIR / "artist_registry.seed.csv"
+JP_SEED_PATH = DATA_DIR / "artist_registry.jp.seed.csv"
 MANUAL_PATH = DATA_DIR / "artist_registry.manual.csv"
 
 
@@ -26,7 +27,7 @@ class ArtistEntry:
 
 def load_registry() -> list[ArtistEntry]:
     merged: dict[str, ArtistEntry] = {}
-    for path in (SEED_PATH, MANUAL_PATH):
+    for path in (SEED_PATH, JP_SEED_PATH, MANUAL_PATH):
         if not path.exists():
             continue
         for row in _read_registry_csv(path):
@@ -52,7 +53,7 @@ def build_artist_index(registry: list[ArtistEntry]) -> dict[str, object]:
     compact_map: dict[str, list[dict[str, object]]] = {}
 
     for entry in registry:
-        tokens = [entry.canonical_name, *entry.aliases]
+        tokens = list(dict.fromkeys([entry.canonical_name, *entry.aliases]))
         for token in tokens:
             alias = str(token or "").strip()
             if not alias:
@@ -81,9 +82,15 @@ def build_artist_index(registry: list[ArtistEntry]) -> dict[str, object]:
                     }
                 )
 
+    keep_keys_sorted = sorted(keep_map.keys(), key=len, reverse=True)
+    compact_keys_sorted = sorted(compact_map.keys(), key=len, reverse=True)
     return {
         "keep": keep_map,
         "compact": compact_map,
+        "keep_keys_sorted": keep_keys_sorted,
+        "compact_keys_sorted": compact_keys_sorted,
+        "keep_keys_by_first": _build_keys_by_first(keep_keys_sorted),
+        "compact_keys_by_first": _build_keys_by_first(compact_keys_sorted),
     }
 
 
@@ -94,9 +101,23 @@ def match_artists_in_title(
     title_compact = normalize_text(title_raw, mode="compact")
 
     matches: list[dict[str, object]] = []
-    matches.extend(_match_with_mode(title_keep, index.get("keep", {}), mode="keep"))
     matches.extend(
-        _match_with_mode(title_compact, index.get("compact", {}), mode="compact")
+        _match_with_mode(
+            title_keep,
+            index.get("keep", {}),
+            mode="keep",
+            keys_sorted=index.get("keep_keys_sorted"),
+            keys_by_first=index.get("keep_keys_by_first"),
+        )
+    )
+    matches.extend(
+        _match_with_mode(
+            title_compact,
+            index.get("compact", {}),
+            mode="compact",
+            keys_sorted=index.get("compact_keys_sorted"),
+            keys_by_first=index.get("compact_keys_by_first"),
+        )
     )
     return matches
 
@@ -204,22 +225,42 @@ def _should_index_key(key: str) -> bool:
     return True
 
 
-def _needs_word_boundary(key: str) -> bool:
-    return _is_ascii_alnum_key(key) and len(key) <= 4
+def _needs_word_boundary(key: str, mode: str) -> bool:
+    if not _is_ascii_alnum_key(key):
+        return False
+    if mode == "keep":
+        return True
+    return len(key) <= 4
 
 
 def _match_with_mode(
     normalized_title: str,
     index_map: object,
     mode: str,
+    keys_sorted: object = None,
+    keys_by_first: object = None,
 ) -> list[dict[str, object]]:
     if not isinstance(index_map, dict):
         return []
 
     out: list[dict[str, object]] = []
-    keys = sorted(
-        (k for k in index_map.keys() if isinstance(k, str)), key=len, reverse=True
-    )
+    if isinstance(keys_by_first, dict) and normalized_title:
+        keys = []
+        seen: set[str] = set()
+        for ch in dict.fromkeys(normalized_title):
+            bucket = keys_by_first.get(ch)
+            if not isinstance(bucket, list):
+                continue
+            for key in bucket:
+                if isinstance(key, str) and key not in seen:
+                    seen.add(key)
+                    keys.append(key)
+    elif isinstance(keys_sorted, list):
+        keys = [k for k in keys_sorted if isinstance(k, str)]
+    else:
+        keys = sorted(
+            (k for k in index_map.keys() if isinstance(k, str)), key=len, reverse=True
+        )
     for key in keys:
         if not key:
             continue
@@ -227,7 +268,7 @@ def _match_with_mode(
         if not isinstance(entries, list):
             continue
 
-        if _needs_word_boundary(key):
+        if _needs_word_boundary(key, mode):
             pattern = re.compile(rf"(?<![a-z0-9]){re.escape(key)}(?![a-z0-9])")
             for matched in pattern.finditer(normalized_title):
                 for entry in entries:
@@ -278,3 +319,12 @@ def _to_int(value: object) -> int:
         except Exception:
             return 0
     return 0
+
+
+def _build_keys_by_first(keys_sorted: list[str]) -> dict[str, list[str]]:
+    out: dict[str, list[str]] = {}
+    for key in keys_sorted:
+        if not key:
+            continue
+        out.setdefault(key[0], []).append(key)
+    return out

@@ -90,6 +90,13 @@
 - CLI options: `--limit N`, `--only venue1,venue2`, `--verbose`
 - 対応ストラテジー: yokohama_arena_json, zepp_schedule, saitama_arena_schedule, tokyo_dome_calendar, vantelin_dome_schedule, kyocera_dome_schedule, belluna_dome_schedule, makuhari_messe_schedule, fukuoka_paypay_dome_schedule, k_arena_yokohama_schedule, sapporo_dome_schedule, zozo_marine_stadium_schedule, pia_arena_mm_schedule, portmesse_nagoya_events, asue_arena_osaka_events, nissan_stadium_calendar, mufg_stadium_schedule, marine_messe_fukuoka_event
 
+## Addendum (2026-02-25) Event Artist Inference
+- `python -m scripts.update_events_data` 実行後に、`python -m scripts.build_events_artist_inferred` を自動実行して `data/events_artist_inferred.csv` を更新する。
+- 補完辞書は `artist_registry.seed.csv + artist_registry.jp.seed.csv + artist_registry.manual.csv` を統合して利用する。
+- 推論対象は `performers` が空のイベントで、`title` に加えて `description` も参照する。
+- `events_artist_inferred.csv` は `event_uid` を持ち、アプリ側は `event_uid` 一致を優先して補完する（互換で `title` 一致も許容）。
+- 誤補完低減のため、`DOME` など汎用語エイリアスは補完候補から除外する。
+
 ## Addendum (2026-02-23) Event Signals (News)
 - Script: `python -m scripts.update_event_signals_data`
 - Update target DB: `data/event_signals.sqlite`

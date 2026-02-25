@@ -3164,22 +3164,27 @@ def load_event_signals_data() -> tuple[pd.DataFrame, pd.DataFrame]:
 
 @st.cache_data(show_spinner=False)
 def load_events_artist_inferred_map(
-) -> dict[str, tuple[str, str]]:
+) -> tuple[dict[str, tuple[str, str]], dict[str, tuple[str, str]]]:
     if not EVENTS_ARTIST_INFERRED_PATH.exists():
-        return {}
+        return {}, {}
     try:
         df = pd.read_csv(EVENTS_ARTIST_INFERRED_PATH, dtype=str).fillna("")
     except Exception:
-        return {}
-    out: dict[str, tuple[str, str]] = {}
+        return {}, {}
+    out_by_uid: dict[str, tuple[str, str]] = {}
+    out_by_title: dict[str, tuple[str, str]] = {}
     for _, row in df.iterrows():
+        event_uid = str(row.get("event_uid", "")).strip()
         title = str(row.get("title", "")).strip()
         artist_name = str(row.get("artist_name", "")).strip()
         confidence = str(row.get("artist_confidence", "")).strip().lower() or "high"
-        if not title or not artist_name:
+        if not artist_name:
             continue
-        out[title] = (artist_name, confidence)
-    return out
+        if event_uid:
+            out_by_uid[event_uid] = (artist_name, confidence)
+        if title:
+            out_by_title[title] = (artist_name, confidence)
+    return out_by_uid, out_by_title
 
 
 def render_event_signals_view() -> None:
@@ -3848,9 +3853,13 @@ def render_events_view() -> None:
     )
     missing_artist_mask = filtered["artist_name"].eq("")
     if missing_artist_mask.any():
-        inferred_map = load_events_artist_inferred_map()
-        inferred = filtered.loc[missing_artist_mask, "title"].map(
-            lambda title: inferred_map.get(str(title).strip(), ("", "low"))
+        inferred_map_by_uid, inferred_map_by_title = load_events_artist_inferred_map()
+        inferred = filtered.loc[missing_artist_mask].apply(
+            lambda row: inferred_map_by_uid.get(
+                str(row.get("event_uid", "")).strip(),
+                inferred_map_by_title.get(str(row.get("title", "")).strip(), ("", "low")),
+            ),
+            axis=1,
         )
         filtered.loc[missing_artist_mask, "artist_name"] = inferred.apply(
             lambda row: row[0]
