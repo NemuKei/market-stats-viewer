@@ -3115,9 +3115,6 @@ def classify_event_category(title: str, artist_name: str, description: str) -> s
     if has_team_keyword and has_versus:
         return EVENT_CATEGORY_BASEBALL
 
-    if str(artist_name or "").strip():
-        return EVENT_CATEGORY_CONCERT
-
     concert_keywords = [
         "ライブ",
         "コンサート",
@@ -3148,7 +3145,40 @@ def classify_event_category(title: str, artist_name: str, description: str) -> s
         "ドームツアー",
         "アリーナツアー",
     ]
-    if any(keyword in normalized_text for keyword in concert_keywords):
+    has_concert_keyword = any(keyword in normalized_text for keyword in concert_keywords)
+    non_music_keywords = [
+        "就活",
+        "就職",
+        "説明会",
+        "展示会",
+        "見本市",
+        "expo",
+        "フェア",
+        "学会",
+        "式典",
+        "授与式",
+        "卒業式",
+        "入学式",
+        "サッカー",
+        "フットサル",
+        "マラソン",
+        "グランプリ",
+        "大会",
+        "カップ",
+        "m-1",
+        "スポーツフェスティバル",
+    ]
+    has_non_music_keyword = any(
+        keyword in normalized_text for keyword in non_music_keywords
+    )
+    if has_non_music_keyword and not str(artist_name or "").strip():
+        return EVENT_CATEGORY_OTHER
+    if has_non_music_keyword and not has_concert_keyword:
+        return EVENT_CATEGORY_OTHER
+
+    if str(artist_name or "").strip():
+        return EVENT_CATEGORY_CONCERT
+    if has_concert_keyword:
         return EVENT_CATEGORY_CONCERT
     return EVENT_CATEGORY_OTHER
 
@@ -3781,6 +3811,20 @@ def render_events_view() -> None:
     df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
     df["artist_name"] = df["performers"].fillna("").astype(str).str.strip()
     df["artist_confidence"] = df["artist_name"].map(lambda v: "source" if v else "low")
+    same_as_title_mask = (
+        df["artist_name"].ne("")
+        & (
+            df["artist_name"].apply(
+                lambda value: normalize_artist_lookup_text(str(value or ""), mode="compact")
+            )
+            == df["title"].fillna("").astype(str).apply(
+                lambda value: normalize_artist_lookup_text(str(value or ""), mode="compact")
+            )
+        )
+    )
+    if same_as_title_mask.any():
+        df.loc[same_as_title_mask, "artist_name"] = ""
+        df.loc[same_as_title_mask, "artist_confidence"] = "low"
 
     missing_artist_mask = df["artist_name"].eq("")
     if missing_artist_mask.any():

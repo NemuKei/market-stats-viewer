@@ -102,7 +102,8 @@
 - 補完辞書は `artist_registry.seed.csv + artist_registry.jp.seed.csv + artist_registry.manual.csv` を統合して利用する。
 - 推論対象は `performers` が空のイベントで、`title` に加えて `description` も参照する。
 - `events_artist_inferred.csv` は `event_uid` を持ち、アプリ側は `event_uid` 一致を優先して補完する（互換で `title` 一致も許容）。
-- 誤補完低減のため、`DOME` など汎用語エイリアスは補完候補から除外する。
+- 誤補完低減のため、`DOME` など汎用語エイリアスと、`ベン/たま/ナビ` 等の曖昧短縮aliasを補完候補から除外する。
+- `title` 単体推論は音楽イベントキーワードに一致する場合のみ採用し、就活/展示会/スポーツ系の非音楽キーワードを含むタイトルは除外する。
 
 ## Addendum (2026-02-25) Artist Registry Monthly Refresh
 - Workflow: `.github/workflows/update_artist_registry.yml`

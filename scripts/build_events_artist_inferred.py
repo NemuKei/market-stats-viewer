@@ -42,6 +42,18 @@ AMBIGUOUS_SINGLE_TOKENS = {
     "中",
 }
 
+AMBIGUOUS_ALIAS_TOKENS = {
+    "ベン",
+    "たま",
+    "ナビ",
+    "声",
+    "dream",
+}
+AMBIGUOUS_ALIAS_COMPACT_TOKENS = {
+    re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", str(token)).lower()
+    for token in AMBIGUOUS_ALIAS_TOKENS
+}
+
 GENERIC_ALIAS_TOKENS = {
     "dome",
     "arena",
@@ -67,6 +79,7 @@ GENERIC_ALIAS_TOKENS = {
     "the",
     "with",
     "and",
+    "dream",
     "ライブ",
     "コンサート",
     "ツアー",
@@ -131,6 +144,25 @@ NON_MUSIC_EXCLUDE_KEYWORDS = [
     "ファイターズ",
     "ライオンズ",
     "マリーンズ",
+    "フットサル",
+    "マラソン",
+    "グランプリ",
+    "m-1",
+    "スポーツフェスティバル",
+    "就活",
+    "就職",
+    "説明会",
+    "展示会",
+    "見本市",
+    "expo",
+    "フェア",
+    "学会",
+    "大会",
+    "カップ",
+    "式典",
+    "授与式",
+    "卒業式",
+    "入学式",
 ]
 
 
@@ -184,6 +216,8 @@ def _is_valid_match(canonical_name: str, matched_alias: str) -> bool:
         return False
     if alias_compact in AMBIGUOUS_SINGLE_TOKENS:
         return False
+    if alias_compact in AMBIGUOUS_ALIAS_COMPACT_TOKENS:
+        return False
     if alias_compact in GENERIC_ALIAS_COMPACT_TOKENS:
         return False
     if re.fullmatch(r"[a-z0-9]+", alias_compact) and len(alias_compact) <= 2:
@@ -213,7 +247,8 @@ def load_merged_registry(extra_seed_path: Path | None) -> list[ArtistEntry]:
         merged[entry.artist_id] = entry
     if extra_seed_path and extra_seed_path.exists():
         for entry in _load_artist_entries_from_csv(extra_seed_path):
-            merged[entry.artist_id] = entry
+            if entry.artist_id not in merged:
+                merged[entry.artist_id] = entry
     return list(merged.values())
 
 
@@ -256,12 +291,23 @@ def _infer_from_text(
         )
     ]
     primary, confidence = choose_primary_match(matches)
-    if primary is None or confidence != "high":
+    if primary is None:
         return None
     canonical_name = str(primary.get("canonical_name", "")).strip()
     matched_alias = str(primary.get("matched_alias", "")).strip()
     if not canonical_name or not matched_alias:
         return None
+    if confidence != "high":
+        if confidence != "medium":
+            return None
+        is_strong_medium = any(
+            str(match.get("canonical_name", "")).strip() == canonical_name
+            and int(match.get("pos", -1)) == 0
+            and int(match.get("length", 0)) >= 4
+            for match in matches
+        )
+        if not is_strong_medium:
+            return None
     return canonical_name, confidence, matched_alias
 
 
@@ -276,11 +322,6 @@ def infer_event_artist(
     title_match = _infer_from_text(title_text, artist_index) if title_text else None
     if title_match is not None:
         if title_is_music_like:
-            return (*title_match, "title")
-        if (
-            not _contains_non_music_exclude_keyword(title_text)
-            and len(_compact_text(title_text)) <= 30
-        ):
             return (*title_match, "title")
 
     if not description_text:

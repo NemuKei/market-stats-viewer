@@ -204,6 +204,7 @@
 - 既存 `render_events_view()` を継続利用する。
 - アーティスト列は以下の順で決定する。
   - 1) `events.performers`（ソース値）
+    - ただし `performers` と `title` が実質同一（正規化後一致）の場合は未確定扱いにして補完対象へ回す
   - 2) `data/events_artist_inferred.csv` による補完（`event_uid` 一致を優先し、後方互換として `title` 一致も許容）
 - `events_artist_inferred.csv` は `title` に加えて `description` も参照して推論した結果を持つ。
 - アーティスト名は辞書（`seed + jp.seed + manual`）により canonical 名へ正規化する。
