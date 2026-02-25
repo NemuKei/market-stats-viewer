@@ -1,9 +1,9 @@
-name: Update core market stats data
+name: Update events official data
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * 1" # 毎週月曜 03:00 UTC（日本時間だと月曜12:00）
+    - cron: "0 4 * * 1" # 毎週月曜 04:00 UTC（日本時間 月曜13:00）
 
 concurrency:
   group: repo-write-${{ github.ref }}
@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 jobs:
-  update-core-data:
+  update-events-official:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,13 +31,10 @@ jobs:
         run: |
           uv sync --frozen --no-dev
 
-      - name: Update data
+      - name: Update events official data
         run: |
-          uv run python -m scripts.update_data
-          uv run python -m scripts.update_tcd_data
-          uv run python -m scripts.update_icd_data
-          uv run python -m scripts.update_ta_data
-          uv run python -m scripts.update_airport_volume_data
+          uv run python -m scripts.update_events_data --skip-artist-inference
+          uv run python -m scripts.build_events_artist_inferred
 
       - name: Commit changes (if any)
         run: |
@@ -47,7 +44,7 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git config merge.ours.driver true
             git add data/ scripts/ app.py pyproject.toml uv.lock README.md
-            git commit -m "chore: update core market stats data"
+            git commit -m "chore: update events official data"
             branch="${GITHUB_REF_NAME:-main}"
             for i in 1 2 3; do
               git pull --rebase -X ours origin "$branch" && git push origin "HEAD:$branch" && break

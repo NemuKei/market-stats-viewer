@@ -9,6 +9,7 @@
 - `update_events_data` 実行後に `events_artist_inferred.csv` 自動再生成を追加
 - 会場公式イベントの種別を `コンサート / 野球 / その他` へ分離し、アーティスト名の辞書正規化をカテゴリ判定とキーワード検索に反映
 - アーティスト辞書seedの月次Wikidata更新workflowを追加し、差分なし行の `updated_at` 保持で不要コミットを抑制
+- GitHub Actions の会場公式イベント更新を `update_events_official.yml` として分離し、`update_data.yml` はcore統計更新専用に整理
 
 ## Doing
 - なし（変更発生時に更新）
