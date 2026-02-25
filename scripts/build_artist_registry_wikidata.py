@@ -37,6 +37,14 @@ COUNTRY_QID_MAP = {
 }
 
 logger = logging.getLogger(__name__)
+SEED_COLUMNS = [
+    "artist_id",
+    "canonical_name",
+    "aliases_json",
+    "source",
+    "updated_at",
+    "is_enabled",
+]
 
 
 def fetch_sparql_with_retry(
@@ -88,8 +96,6 @@ def build_seed_rows(payload: dict) -> list[dict[str, object]]:
     )
 
     rows: list[dict[str, object]] = []
-    updated_at = date.today().strftime("%Y-%m-%d")
-
     for item in bindings:
         if not isinstance(item, dict):
             continue
@@ -114,7 +120,7 @@ def build_seed_rows(payload: dict) -> list[dict[str, object]]:
                 "canonical_name": canonical_name,
                 "aliases_json": json.dumps(aliases, ensure_ascii=False),
                 "source": "wikidata",
-                "updated_at": updated_at,
+                "updated_at": "",
                 "is_enabled": 1,
             }
         )
@@ -123,23 +129,59 @@ def build_seed_rows(payload: dict) -> list[dict[str, object]]:
     return rows
 
 
-def write_seed_csv_noop(rows: list[dict[str, object]], path: Path) -> bool:
-    columns = [
-        "artist_id",
-        "canonical_name",
-        "aliases_json",
-        "source",
-        "updated_at",
-        "is_enabled",
-    ]
+def _load_existing_rows(path: Path) -> dict[str, dict[str, str]]:
+    if not path.exists():
+        return {}
+    out: dict[str, dict[str, str]] = {}
+    with path.open("r", encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            artist_id = str(row.get("artist_id", "")).strip()
+            if not artist_id:
+                continue
+            out[artist_id] = {
+                "artist_id": artist_id,
+                "canonical_name": str(row.get("canonical_name", "")).strip(),
+                "aliases_json": str(row.get("aliases_json", "")).strip(),
+                "source": str(row.get("source", "")).strip(),
+                "updated_at": str(row.get("updated_at", "")).strip(),
+                "is_enabled": str(row.get("is_enabled", "")).strip(),
+            }
+    return out
 
+
+def _is_same_seed_payload(new_row: dict[str, object], old_row: dict[str, str]) -> bool:
+    for key in ["canonical_name", "aliases_json", "source", "is_enabled"]:
+        if str(new_row.get(key, "")).strip() != str(old_row.get(key, "")).strip():
+            return False
+    return True
+
+
+def stabilize_updated_at_with_existing(
+    rows: list[dict[str, object]], path: Path, updated_at: str
+) -> list[dict[str, object]]:
+    existing = _load_existing_rows(path)
+    stabilized: list[dict[str, object]] = []
+    for row in rows:
+        artist_id = str(row.get("artist_id", "")).strip()
+        old_row = existing.get(artist_id)
+        row_copy = dict(row)
+        if old_row and _is_same_seed_payload(row_copy, old_row):
+            row_copy["updated_at"] = old_row.get("updated_at", "") or updated_at
+        else:
+            row_copy["updated_at"] = updated_at
+        stabilized.append(row_copy)
+    stabilized.sort(key=lambda item: str(item.get("canonical_name", "")))
+    return stabilized
+
+
+def write_seed_csv_noop(rows: list[dict[str, object]], path: Path) -> bool:
     from io import StringIO
 
     buf = StringIO()
-    writer = csv.DictWriter(buf, fieldnames=columns, lineterminator="\n")
+    writer = csv.DictWriter(buf, fieldnames=SEED_COLUMNS, lineterminator="\n")
     writer.writeheader()
     for row in rows:
-        writer.writerow({key: row.get(key, "") for key in columns})
+        writer.writerow({key: row.get(key, "") for key in SEED_COLUMNS})
     new_content = buf.getvalue()
 
     if path.exists():
@@ -154,16 +196,8 @@ def write_seed_csv_noop(rows: list[dict[str, object]], path: Path) -> bool:
 def ensure_manual_csv(path: Path) -> None:
     if path.exists():
         return
-    columns = [
-        "artist_id",
-        "canonical_name",
-        "aliases_json",
-        "source",
-        "updated_at",
-        "is_enabled",
-    ]
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=columns, lineterminator="\n")
+        writer = csv.DictWriter(f, fieldnames=SEED_COLUMNS, lineterminator="\n")
         writer.writeheader()
 
 
@@ -255,6 +289,11 @@ def main() -> None:
         SPARQL_ENDPOINT, query, request_timeout=max(10, int(args.request_timeout))
     )
     rows = build_seed_rows(payload)
+    rows = stabilize_updated_at_with_existing(
+        rows=rows,
+        path=output_path,
+        updated_at=date.today().strftime("%Y-%m-%d"),
+    )
     changed = write_seed_csv_noop(rows, output_path)
     ensure_manual_csv(MANUAL_PATH)
 

@@ -1,0 +1,62 @@
+name: Update artist registry
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 3 1 * *" # 毎月1日 03:20 UTC（日本時間 12:20）
+
+concurrency:
+  group: repo-write-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-artist-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: python -m pip install --upgrade uv
+
+      - name: Install deps
+        run: |
+          uv sync --frozen --no-dev
+
+      - name: Refresh artist registries and inference
+        run: |
+          uv run python -m scripts.build_artist_registry_wikidata --countries kr --output data/artist_registry.seed.csv
+          uv run python -m scripts.build_artist_registry_wikidata --countries jp --output data/artist_registry.jp.seed.csv
+          uv run python -m scripts.build_events_artist_inferred
+
+      - name: Commit changes (if any)
+        run: |
+          git status --porcelain
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git config merge.ours.driver true
+            git add data/ scripts/ .github/workflows/update_artist_registry.yml docs/ pyproject.toml uv.lock README.md
+            git commit -m "chore: monthly artist registry update"
+            branch="${GITHUB_REF_NAME:-main}"
+            for i in 1 2 3; do
+              git pull --rebase -X ours origin "$branch" && git push origin "HEAD:$branch" && break
+              git rebase --abort || true
+              if [ "$i" -eq 3 ]; then
+                echo "Push failed after 3 retries"
+                exit 1
+              fi
+              echo "Push retry $i failed. Retrying..."
+              sleep 3
+            done
+          else
+            echo "No changes to commit."
+          fi
