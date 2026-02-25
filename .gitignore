@@ -47,6 +47,16 @@ temp/
 # Streamlit cache
 .streamlit/
 
+# AI workflow (internal)
+.agents/
+AGENTS.md
+docs/handovers/
+docs/thread_logs/
+docs/templates/
+
+# Assets (logo etc.)
+assets/
+
 # NOTE:
 # data/market_stats.sqlite と data/meta.json は公開運用でコミットする想定なので除外しない
 # （必要なら data/_local/ のようなローカル用だけ ignore にする）
