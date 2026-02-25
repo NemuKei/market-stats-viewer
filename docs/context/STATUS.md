@@ -7,6 +7,7 @@
 - `docs/DECISIONS.md` は互換リダイレクト化し、既存参照を壊さない構成にした
 - 会場公式イベントのアーティスト補完を `title + description` 参照へ拡張し、補完辞書を `seed + jp.seed + manual` 統合利用へ変更
 - `update_events_data` 実行後に `events_artist_inferred.csv` 自動再生成を追加
+- 会場公式イベントの種別を `コンサート / 野球 / その他` へ分離し、アーティスト名の辞書正規化をカテゴリ判定とキーワード検索に反映
 
 ## Doing
 - なし（変更発生時に更新）
