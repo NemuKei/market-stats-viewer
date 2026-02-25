@@ -55,3 +55,4 @@
 - D-20260224-001 | 全国イベント速報（ニュース）の期間フィルタを会場公式同様に月単位（開始/終了の年・月分離）へ変更し、表示をイベント日昇順に統一する。STARTO/Kstyle は `labels_json` に `artist_name/venue_name/event_info` を保持して表示項目を揃える | status: applied | spec_link: docs/spec_app.md
 - D-20260225-001 | 会場公式イベントのアーティスト補完を強化し、辞書は `seed + jp.seed + manual` を統合利用する。補完は `title` に加えて `description` も参照し、`event_uid` 優先で適用する。`update_events_data` 実行後に `events_artist_inferred.csv` を自動再生成する | status: applied | spec_link: docs/spec_app.md
 - D-20260225-002 | 会場公式イベントの種別を `すべて / コンサート / 野球 / その他` に分離し、カテゴリ判定は「野球優先、次にアーティスト名あり/音楽キーワードでコンサート、それ以外はその他」とする。アーティスト名は辞書 canonical 名へ正規化して判定・検索に利用する | status: applied | spec_link: docs/spec_app.md
+- D-20260225-003 | アーティスト辞書seedのWikidata更新を月次workflowで定期実行する。seed生成は実データ差分がない行の `updated_at` を保持してno-opを担保し、manual辞書は更新対象外のまま優先利用する | status: applied | spec_link: docs/spec_update_pipeline.md

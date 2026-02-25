@@ -97,6 +97,21 @@
 - `events_artist_inferred.csv` は `event_uid` を持ち、アプリ側は `event_uid` 一致を優先して補完する（互換で `title` 一致も許容）。
 - 誤補完低減のため、`DOME` など汎用語エイリアスは補完候補から除外する。
 
+## Addendum (2026-02-25) Artist Registry Monthly Refresh
+- Workflow: `.github/workflows/update_artist_registry.yml`
+- Schedule: monthly (`cron: 20 3 1 * *`) + `workflow_dispatch`
+- Flow:
+  1. `artist_registry.seed.csv` を Wikidata（`--countries kr`）で更新
+  2. `artist_registry.jp.seed.csv` を Wikidata（`--countries jp`）で更新
+  3. `build_events_artist_inferred` を実行して補完CSVを再生成
+- No-op policy:
+  - seed生成時、`artist_id` ごとに実データ（canonical/aliases/source/is_enabled）が不変なら既存 `updated_at` を保持する。
+  - 実データ差分がある行だけ `updated_at` を当日へ更新する。
+  - 生成結果がファイル同一なら commit しない。
+- Manual override policy:
+  - `artist_registry.manual.csv` は workflow で上書きしない。
+  - 同一 `artist_id` が seed と manual にある場合、利用時は manual を優先する（ローダーで後勝ちマージ）。
+
 ## Addendum (2026-02-23) Event Signals (News)
 - Script: `python -m scripts.update_event_signals_data`
 - Update target DB: `data/event_signals.sqlite`
