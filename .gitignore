@@ -56,7 +56,8 @@ docs/thread_logs/
 docs/templates/
 
 # Assets (logo etc.)
-assets/
+assets/*
+!assets/logo_header.svg
 
 # NOTE:
 # data/market_stats.sqlite と data/meta.json は公開運用でコミットする想定なので除外しない
