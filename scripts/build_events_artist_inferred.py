@@ -23,6 +23,7 @@ from .signals.artist_registry import (
     choose_primary_match,
     load_registry,
     match_artists_in_title,
+    normalize_text,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -345,6 +346,47 @@ def infer_event_artist(
     return None
 
 
+def _normalize_cross_venue_title_key(title: object) -> str:
+    text = " ".join(str(title or "").strip().split())
+    if not text:
+        return ""
+    text = re.sub(r"^\s*(?:コンサート|ライブ|公演|イベント|野球)\s*", "", text)
+    text = (
+        text.replace("’", "'")
+        .replace("‘", "'")
+        .replace("“", '"')
+        .replace("”", '"')
+    )
+    text = re.sub(r"[「」『』]", "", text)
+    return normalize_text(text, mode="compact")
+
+
+def _build_cross_venue_title_artist_map(
+    rows: list[tuple[str, str, str, str, str]],
+    artist_keep_map: dict[str, str],
+    artist_compact_map: dict[str, str],
+) -> dict[str, str]:
+    title_candidates: dict[str, set[str]] = {}
+    for _event_uid, title, performers, _current_resolved, _current_confidence in rows:
+        performers_text = str(performers or "").strip()
+        if not performers_text:
+            continue
+        normalized, matched = normalize_with_lookup(
+            performers_text, artist_keep_map, artist_compact_map
+        )
+        artist_name = normalized if matched and normalized else performers_text
+        artist_name = str(artist_name or "").strip()
+        title_key = _normalize_cross_venue_title_key(title)
+        if not artist_name or not title_key:
+            continue
+        title_candidates.setdefault(title_key, set()).add(artist_name)
+    return {
+        key: next(iter(names))
+        for key, names in title_candidates.items()
+        if len(names) == 1
+    }
+
+
 def write_csv_noop(rows: list[dict[str, str]], output_path: Path) -> bool:
     columns = [
         "event_uid",
@@ -410,17 +452,24 @@ def sync_resolved_artists_to_events(
             """
             SELECT
                 event_uid,
+                COALESCE(TRIM(title), ''),
                 COALESCE(TRIM(performers), ''),
                 COALESCE(TRIM(artist_name_resolved), ''),
                 COALESCE(TRIM(artist_confidence), 'low')
             FROM events
             """
         ).fetchall()
+        cross_venue_title_artist_map = _build_cross_venue_title_artist_map(
+            rows,
+            artist_keep_map,
+            artist_compact_map,
+        )
 
         updates: list[tuple[str, str, str]] = []
-        for event_uid, performers, current_resolved, current_confidence in rows:
+        for event_uid, title, performers, current_resolved, current_confidence in rows:
             event_uid = str(event_uid or "").strip()
             performers = str(performers or "").strip()
+            title = str(title or "").strip()
             current_resolved = str(current_resolved or "").strip()
             current_confidence = str(current_confidence or "low").strip().lower() or "low"
 
@@ -441,6 +490,12 @@ def sync_resolved_artists_to_events(
                 if inferred:
                     new_resolved = inferred[0]
                     new_confidence = inferred[1]
+                else:
+                    title_key = _normalize_cross_venue_title_key(title)
+                    cross_venue_artist = cross_venue_title_artist_map.get(title_key, "")
+                    if cross_venue_artist:
+                        new_resolved = cross_venue_artist
+                        new_confidence = "cross_venue_title"
 
             if new_resolved != current_resolved or new_confidence != current_confidence:
                 updates.append((new_resolved, new_confidence, event_uid))

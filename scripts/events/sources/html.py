@@ -6,6 +6,7 @@ import json
 import logging
 import re
 from datetime import date, timedelta
+from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup
 
@@ -610,6 +611,7 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     event_url = href
                     if not event_url.startswith("http"):
                         event_url = f"https://www.tokyo-dome.co.jp{href}"
+                    event_url = self._prefer_venue_official_url(event_url, venue.source_url)
                     # Extract times from surrounding text
                     row_text = detail_td.get_text(" ", strip=True)
                     start_time = self._extract_time(row_text)
@@ -674,7 +676,7 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     end_time=None,
                     all_day=not bool(start_time),
                     status="scheduled",
-                    url=None,
+                    url=venue.source_url,
                     description=None,
                     performers=None,
                     capacity=None,
@@ -685,6 +687,24 @@ class _TokyoDomeCalendar(_BaseStrategy):
                 rec.data_hash = compute_data_hash(rec)
                 events.append(rec)
         return events
+
+    @staticmethod
+    def _prefer_venue_official_url(event_url: str, venue_source_url: str) -> str:
+        url = str(event_url or "").strip()
+        venue_url = str(venue_source_url or "").strip()
+        if not url:
+            return venue_url
+        if not venue_url:
+            return url
+        parsed = urlparse(url)
+        venue_parsed = urlparse(venue_url)
+        event_host = parsed.netloc.lower()
+        venue_host = venue_parsed.netloc.lower()
+        if not event_host or not venue_host:
+            return url
+        if event_host != venue_host:
+            return venue_url
+        return url
 
     def _is_noise_link(self, title: str, href: str) -> bool:
         title_l = " ".join(title.split()).strip().lower()
