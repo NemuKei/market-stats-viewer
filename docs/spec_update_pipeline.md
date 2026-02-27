@@ -127,6 +127,9 @@
 ## Addendum (2026-02-23) Event Signals (News)
 - Script: `python -m scripts.update_event_signals_data`
 - Update target DB: `data/event_signals.sqlite`
+- Scope note (for BCL consumers):
+  - `event_signals.sqlite` is a news-signal feed focused on music live/concert topics.
+  - It is not a complete multi-category events master DB.
 - Sources (MVP):
   - `starto_concert`（STARTO 公演情報 / CONCERT）
   - `kstyle_music`（Kstyle MUSIC）

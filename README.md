@@ -56,6 +56,9 @@ uv run streamlit run app.py
 - 速報ソース（MVP）:
   - STARTO NEWS（CONCERT）
   - Kstyle（MUSIC）
+- 収集対象の前提:
+  - 現状は音楽ライブ/コンサート情報を主対象とする（全ジャンル網羅ではない）
+  - BCL連携時は `event_signals.sqlite` を「ニュース速報（コンサート中心）」として扱う
 - データ: `data/event_signals.sqlite`（signal_sources + signals テーブル）
 - 更新コマンド:
   - `uv run python -m scripts.update_event_signals_data`
@@ -102,4 +105,3 @@ uv run streamlit run app.py
 ## 常設コンテキスト
 - `docs/context/STATUS.md`: 現在地（最新スナップショット）
 - `docs/context/DECISIONS.md`: 意思決定ログ
-
