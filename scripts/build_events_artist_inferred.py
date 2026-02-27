@@ -213,7 +213,11 @@ def _compact_text(text: str) -> str:
 def _is_valid_match(canonical_name: str, matched_alias: str) -> bool:
     canonical_compact = _compact_text(canonical_name)
     alias_compact = _compact_text(matched_alias)
-    if len(canonical_compact) <= 1 or len(alias_compact) <= 1:
+    if len(alias_compact) <= 1:
+        return False
+    # Allow one-character canonical names (e.g. 嵐) when alias token is
+    # sufficiently specific; otherwise keep them filtered out.
+    if len(canonical_compact) <= 1 and len(alias_compact) <= 2:
         return False
     if alias_compact in AMBIGUOUS_SINGLE_TOKENS:
         return False

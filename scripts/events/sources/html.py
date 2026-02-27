@@ -766,7 +766,9 @@ class _VantelinDomeSchedule(_BaseStrategy):
                     event_url = href
                     if not event_url.startswith("http"):
                         event_url = f"https://www.nagoya-dome.co.jp{href}"
-                    source_key = href
+                    source_key = _source_key_with_schedule(
+                        href, start_date, start_time
+                    )
                 uid = compute_event_uid(
                     venue.venue_id,
                     source_key,
@@ -1037,7 +1039,9 @@ class _BellunaDomeSchedule(_BaseStrategy):
                 if detail_link:
                     href = detail_link["href"]
                     if href:
-                        source_key = href
+                        source_key = _source_key_with_schedule(
+                            href, start_date, start_time
+                        )
                         event_url = href
                         if not event_url.startswith("http"):
                             event_url = f"https://bellunadome.seibulions.co.jp{href}"
@@ -1582,7 +1586,9 @@ class _FukuokaPayPayDomeSchedule(_BaseStrategy):
                 if link_tag is not None:
                     href = link_tag["href"]
                     if href:
-                        source_key = href
+                        source_key = _source_key_with_schedule(
+                            href, start_date, start_time
+                        )
                         event_url = href
                         if not event_url.startswith("http"):
                             event_url = f"https://www.softbankhawks.co.jp{href}"
@@ -2730,7 +2736,9 @@ class _OsakaJoHallSchedule(_BaseStrategy):
             if a_tag:
                 title = a_tag.get_text(strip=True)
                 event_url = a_tag["href"]
-                source_key = event_url
+                source_key = _source_key_with_schedule(
+                    event_url, start_date, start_time=None
+                )
             else:
                 title = title_dt.get_text(strip=True)
                 event_url = None
@@ -2760,6 +2768,8 @@ class _OsakaJoHallSchedule(_BaseStrategy):
                         elif il == "開場" and not start_time:
                             start_time = _normalise_time(iv.get_text(strip=True))
 
+            if event_url:
+                source_key = _source_key_with_schedule(event_url, start_date, start_time)
             uid = compute_event_uid(
                 venue.venue_id,
                 source_key,
@@ -3415,7 +3425,6 @@ class _TdcHallSchedule(_BaseStrategy):
                 if not title:
                     continue
                 event_url = a_tag["href"]
-                source_key = event_url
 
                 # Try to extract time from adjacent caption
                 start_time = None
@@ -3430,6 +3439,9 @@ class _TdcHallSchedule(_BaseStrategy):
                         start_time = _normalise_time(tm.group(1))
                         break
 
+                source_key = _source_key_with_schedule(
+                    event_url, start_date, start_time
+                )
                 uid = compute_event_uid(
                     venue.venue_id,
                     source_key,
