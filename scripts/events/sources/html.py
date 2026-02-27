@@ -889,6 +889,12 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 # Use heading text for title (not link text from 詳細を見る)
                 if heading.find("a"):
                     title = heading.find("a").get_text(strip=True) or title
+            performer = None
+            artist_tag = section.select_one("div.top > h1") or section.find("h1")
+            if artist_tag:
+                candidate = " ".join(artist_tag.get_text(" ", strip=True).split())
+                if candidate and candidate not in self._SKIP_TITLES:
+                    performer = candidate
             # Times: 開始時間：17:00 or 開場時間：15:00
             start_time = None
             tm = re.search(r"(?:開始時間|開演)[：:]\s*(\d{1,2}:\d{2})", section_text)
@@ -923,7 +929,7 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 status="scheduled",
                 url=event_url,
                 description=None,
-                performers=None,
+                performers=performer,
                 capacity=None,
                 source_type=venue.source_type,
                 source_url=source_url,
