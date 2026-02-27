@@ -35,6 +35,17 @@ class _BaseStrategy:
         raise NotImplementedError
 
 
+def _source_key_with_schedule(
+    source_key: str | None, start_date: str, start_time: str | None
+) -> str | None:
+    key = str(source_key or "").strip()
+    if not key:
+        return None
+    if start_time:
+        return f"{key}#d={start_date}#t={start_time}"
+    return f"{key}#d={start_date}"
+
+
 # ---------------------------------------------------------------------------
 # Yokohama Arena JSON API
 # ---------------------------------------------------------------------------
@@ -599,10 +610,12 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     event_url = href
                     if not event_url.startswith("http"):
                         event_url = f"https://www.tokyo-dome.co.jp{href}"
-                    source_key = href
                     # Extract times from surrounding text
                     row_text = detail_td.get_text(" ", strip=True)
                     start_time = self._extract_time(row_text)
+                    source_key = _source_key_with_schedule(
+                        href, start_date, start_time
+                    )
                     uid = compute_event_uid(
                         venue.venue_id,
                         source_key,
@@ -871,7 +884,7 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                     end_date = ed
             # URL: prefer link in heading, else "詳細を見る" link
             event_url = None
-            source_key = None
+            raw_source_key = None
             a_tag = heading.find("a", href=True)
             if not a_tag:
                 # Look for "詳細を見る" or any detail link
@@ -885,7 +898,7 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 event_url = href
                 if not event_url.startswith("http"):
                     event_url = f"https://www.kyoceradome-osaka.jp{href}"
-                source_key = href
+                raw_source_key = href
                 # Use heading text for title (not link text from 詳細を見る)
                 if heading.find("a"):
                     title = heading.find("a").get_text(strip=True) or title
@@ -906,6 +919,9 @@ class _KyoceraDomeSchedule(_BaseStrategy):
                 )
                 if tm:
                     start_time = _normalise_time(tm.group(1))
+            source_key = _source_key_with_schedule(
+                raw_source_key, start_date, start_time
+            )
             uid = compute_event_uid(
                 venue.venue_id,
                 source_key,
