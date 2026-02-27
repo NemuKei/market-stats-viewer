@@ -7,6 +7,7 @@ import re
 import sqlite3
 from pathlib import Path
 from typing import cast
+from urllib.parse import urlparse
 
 import altair as alt
 import pandas as pd
@@ -3197,6 +3198,43 @@ def load_events_data() -> tuple[pd.DataFrame, pd.DataFrame]:
         return pd.DataFrame(), pd.DataFrame()
 
 
+def normalize_event_official_url(
+    raw_url: object,
+    event_source_url: object,
+    venue_source_url: object,
+    venue_official_url: object,
+) -> str:
+    def _clean(value: object) -> str:
+        return str(value or "").strip()
+
+    def _host(value: str) -> str:
+        if not value:
+            return ""
+        try:
+            return urlparse(value).netloc.lower()
+        except Exception:
+            return ""
+
+    raw = _clean(raw_url)
+    event_source = _clean(event_source_url)
+    venue_source = _clean(venue_source_url)
+    venue_official = _clean(venue_official_url)
+
+    fallback = event_source or venue_source or venue_official
+    if not raw:
+        return fallback
+
+    raw_host = _host(raw)
+    allowed_hosts = {
+        host
+        for host in (_host(event_source), _host(venue_source), _host(venue_official))
+        if host
+    }
+    if raw_host and raw_host in allowed_hosts:
+        return raw
+    return fallback or raw
+
+
 @st.cache_data(show_spinner=False)
 def load_event_signals_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load signals + signal_sources from event_signals.sqlite."""
@@ -3814,12 +3852,35 @@ def render_events_view() -> None:
     # Merge venue info
     df = df_events.merge(
         df_venues[
-            ["venue_id", "venue_name", "pref_code", "pref_name", "capacity"]
-        ].rename(columns={"capacity": "venue_capacity"}),
+            [
+                "venue_id",
+                "venue_name",
+                "pref_code",
+                "pref_name",
+                "capacity",
+                "official_url",
+                "source_url",
+            ]
+        ].rename(
+            columns={
+                "capacity": "venue_capacity",
+                "official_url": "venue_official_url",
+                "source_url": "venue_source_url",
+            }
+        ),
         on="venue_id",
         how="left",
     )
     df["display_capacity"] = df["capacity"].fillna(df["venue_capacity"])
+    df["display_url"] = df.apply(
+        lambda row: normalize_event_official_url(
+            row.get("url"),
+            row.get("source_url"),
+            row.get("venue_source_url"),
+            row.get("venue_official_url"),
+        ),
+        axis=1,
+    )
     df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
     source_artist_name = df["performers"].fillna("").astype(str).str.strip()
     resolved_artist_name = (
@@ -4050,7 +4111,7 @@ def render_events_view() -> None:
         "artist_name",
         "status",
         "display_capacity",
-        "url",
+        "display_url",
     ]
     display_rename = {
         "start_date": "イベント日",
@@ -4061,7 +4122,7 @@ def render_events_view() -> None:
         "artist_name": "アーティスト",
         "status": "ステータス",
         "display_capacity": "キャパシティ",
-        "url": "URL",
+        "display_url": "URL",
     }
     table_df = filtered[display_cols].rename(columns=display_rename)
     st.dataframe(
@@ -4129,12 +4190,12 @@ def render_events_view() -> None:
         "performers",
         "status",
         "display_capacity",
-        "url",
+        "display_url",
         "source_type",
         "source_url",
         "updated_at_utc",
     ]
-    export_rename = {"display_capacity": "capacity"}
+    export_rename = {"display_capacity": "capacity", "display_url": "url"}
     export_df = filtered[[c for c in export_cols if c in filtered.columns]].rename(
         columns=export_rename
     )
