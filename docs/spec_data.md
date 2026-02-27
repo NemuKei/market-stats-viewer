@@ -126,3 +126,20 @@
 ### Index
 - `signals(published_at_utc)`
 - `signals(source_id)`
+
+## 追補（2026-02-27）イベント名辞書の正規化
+- 目的:
+  - 会場公式（`events.sqlite`）とニュース（`event_signals.sqlite`）で、同一会場/同一アーティストの表記を揃える。
+- 正規化の保存方針（`signals.labels_json`）:
+  - `artist_name` / `venue_name`: 正規化後の表示名を保持
+  - `raw_artist_name` / `raw_venue_name`: 取得元の原文を保持（監査・辞書更新用）
+- アーティスト辞書:
+  - 入力ソース: `artist_registry.seed.csv` + `artist_registry.jp.seed.csv` + `artist_registry.manual.csv`
+  - マージ優先順: `seed -> jp.seed -> manual`（後勝ち）
+- 会場辞書:
+  - 正本: `data/venue_registry.csv`（`venue_id` 固定）
+  - 別名辞書: `data/venue_aliases.csv`
+  - 解決優先順: `venue_registry` の正式名 + `venue_aliases` の別名（`venue_id` 単位で後勝ち）
+- 一意性ルール:
+  - 正規化キー（keep/compact）が複数 canonical に衝突する場合、そのキーは自動適用しない。
+  - 自動適用は一意に解決できるキーのみ。

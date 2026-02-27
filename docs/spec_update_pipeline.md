@@ -149,6 +149,23 @@
   - `workflow_dispatch` + 定期実行（12時間ごと）
   - 差分がある場合のみ commit
 
+## Addendum (2026-02-27) Entity Alias Governance
+- `python -m scripts.update_event_signals_data` 実行時に、`labels_json` の `artist_name` / `venue_name` を辞書正規化する。
+  - 同時に `raw_artist_name` / `raw_venue_name` を保存し、取得元原文を保持する。
+  - 辞書未解決の候補はログへ出力し、辞書メンテ対象として扱う。
+- アーティスト辞書更新ルール:
+  - 定期更新は既存の月次 workflow（`update_artist_registry.yml`）を継続する。
+  - 自動更新対象は seed のみ（manual は自動更新しない）。
+- 会場辞書更新ルール:
+  - 会場は `venue_id` を不変IDとして扱い、正本は `data/venue_registry.csv`。
+  - 別名・表記ゆれ・ニュース由来表記は `data/venue_aliases.csv` で吸収する。
+  - 会場名変更が発生した場合:
+    1. `venue_registry.csv` の `venue_name` を新正式名へ更新
+    2. 旧正式名を `venue_aliases.csv` の `aliases_json` へ追加
+    3. `venue_id` は変更しない
+  - 会場辞書は現時点で Wikidata 自動同期しない（誤マッチ回避のため手動レビュー前提）。
+  - 新規候補の反映タイミングは「`update_signals` ログで未解決候補を検知したとき」または「会場公式名称変更の確認時」。
+
 ## Addendum (2026-02-25) External Events Release Assets
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:

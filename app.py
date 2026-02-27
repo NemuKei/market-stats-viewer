@@ -3349,10 +3349,18 @@ def render_event_signals_view() -> None:
     ).apply(_load_labels)
 
     df["raw_artist_name"] = labels_series.apply(
-        lambda d: str(d.get("artist_name", "")).strip() if isinstance(d, dict) else ""
+        lambda d: (
+            str(d.get("raw_artist_name", d.get("artist_name", ""))).strip()
+            if isinstance(d, dict)
+            else ""
+        )
     )
     df["raw_venue_name"] = labels_series.apply(
-        lambda d: str(d.get("venue_name", "")).strip() if isinstance(d, dict) else ""
+        lambda d: (
+            str(d.get("raw_venue_name", d.get("venue_name", ""))).strip()
+            if isinstance(d, dict)
+            else ""
+        )
     )
     df["raw_pref_name"] = labels_series.apply(
         lambda d: (
@@ -3406,18 +3414,12 @@ def render_event_signals_view() -> None:
         axis=1,
     )
 
-    def _normalize_signal_venue_name(value: object) -> str:
-        venue = " ".join(str(value or "").split())
-        if not venue:
-            return ""
-        if re.fullmatch(r"Zepp\s*Namba\s*[（(].*大阪府大阪市浪速区.*[）)]", venue):
-            return "Zepp Namba(Osaka)"
-        if re.fullmatch(r"Zepp\s*Namba\s*[（(]?\s*Osaka\s*[）)]?", venue, flags=re.I):
-            return "Zepp Namba(Osaka)"
-        return venue
-
-    df["artist_name"] = df["raw_artist_name"]
-    df["venue_name"] = df["raw_venue_name"].apply(_normalize_signal_venue_name)
+    df["artist_name"] = labels_series.apply(
+        lambda d: str(d.get("artist_name", "")).strip() if isinstance(d, dict) else ""
+    )
+    df["venue_name"] = labels_series.apply(
+        lambda d: str(d.get("venue_name", "")).strip() if isinstance(d, dict) else ""
+    )
 
     df["artist_name"] = df.apply(
         lambda row: row["artist_name"] if row["artist_name"] else row["source_name"],

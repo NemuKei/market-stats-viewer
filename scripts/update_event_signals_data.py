@@ -15,13 +15,19 @@ import logging
 import sqlite3
 import sys
 import time
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
 
-from .signals.sources.base import SignalSource
+from .signals.entity_aliases import (
+    load_artist_lookup_maps,
+    load_venue_lookup_maps,
+    normalize_with_lookup,
+)
+from .signals.sources.base import SignalSource, canonical_labels_json, compute_content_hash
 from .signals.sources.kstyle import KstyleMusicSource
 from .signals.sources.starto import StartoConcertSource
 from .signals.types import SignalRecord, SignalSourceRecord
@@ -331,6 +337,90 @@ def clear_source_for_rebuild(conn: sqlite3.Connection, source_id: str) -> None:
     )
 
 
+def normalize_signal_labels(
+    signals: list[SignalRecord],
+    artist_keep_map: dict[str, str],
+    artist_compact_map: dict[str, str],
+    venue_keep_map: dict[str, str],
+    venue_compact_map: dict[str, str],
+) -> dict[str, object]:
+    changed_rows = 0
+    artist_normalized = 0
+    venue_normalized = 0
+    unknown_artists: Counter[str] = Counter()
+    unknown_venues: Counter[str] = Counter()
+
+    for row in signals:
+        if not isinstance(row.labels_json, str) or not row.labels_json.strip():
+            continue
+        try:
+            labels = json.loads(row.labels_json)
+        except Exception:
+            continue
+        if not isinstance(labels, dict):
+            continue
+
+        row_changed = False
+
+        current_artist = str(labels.get("artist_name", "")).strip()
+        raw_artist = str(labels.get("raw_artist_name", current_artist)).strip()
+        if raw_artist and labels.get("raw_artist_name") != raw_artist:
+            labels["raw_artist_name"] = raw_artist
+            row_changed = True
+        if raw_artist:
+            normalized_artist, artist_matched = normalize_with_lookup(
+                raw_artist,
+                artist_keep_map,
+                artist_compact_map,
+            )
+            if normalized_artist and normalized_artist != current_artist:
+                labels["artist_name"] = normalized_artist
+                row_changed = True
+                if normalized_artist != raw_artist:
+                    artist_normalized += 1
+            if not artist_matched:
+                unknown_artists[raw_artist] += 1
+
+        current_venue = str(labels.get("venue_name", "")).strip()
+        raw_venue = str(labels.get("raw_venue_name", current_venue)).strip()
+        if raw_venue and labels.get("raw_venue_name") != raw_venue:
+            labels["raw_venue_name"] = raw_venue
+            row_changed = True
+        if raw_venue:
+            normalized_venue, venue_matched = normalize_with_lookup(
+                raw_venue,
+                venue_keep_map,
+                venue_compact_map,
+            )
+            if normalized_venue and normalized_venue != current_venue:
+                labels["venue_name"] = normalized_venue
+                row_changed = True
+                if normalized_venue != raw_venue:
+                    venue_normalized += 1
+            if not venue_matched:
+                unknown_venues[raw_venue] += 1
+
+        if row_changed:
+            row.labels_json = canonical_labels_json(labels)
+            row.content_hash = compute_content_hash(row)
+            changed_rows += 1
+
+    return {
+        "changed_rows": changed_rows,
+        "artist_normalized": artist_normalized,
+        "venue_normalized": venue_normalized,
+        "unknown_artists": unknown_artists,
+        "unknown_venues": unknown_venues,
+    }
+
+
+def log_unknown_aliases(counter: Counter[str], label: str, top_n: int = 5) -> None:
+    if not counter:
+        return
+    top_items = ", ".join(f"{name}({count})" for name, count in counter.most_common(top_n))
+    logger.info("  unknown %s candidates: %s", label, top_items)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Update event signals data")
     parser.add_argument(
@@ -372,6 +462,15 @@ def main() -> None:
         return
 
     logger.info("Processing %d source(s)...", len(targets))
+    artist_keep_map, artist_compact_map = load_artist_lookup_maps()
+    venue_keep_map, venue_compact_map = load_venue_lookup_maps()
+    logger.info(
+        "Loaded normalization maps: artist keep=%d compact=%d, venue keep=%d compact=%d",
+        len(artist_keep_map),
+        len(artist_compact_map),
+        len(venue_keep_map),
+        len(venue_compact_map),
+    )
 
     success_count = 0
     fail_count = 0
@@ -395,6 +494,28 @@ def main() -> None:
                 logger.warning("  fetched 0 signal(s); skip DB update for this source")
                 success_count += 1
                 continue
+
+            norm_stats = normalize_signal_labels(
+                signals,
+                artist_keep_map,
+                artist_compact_map,
+                venue_keep_map,
+                venue_compact_map,
+            )
+            logger.info(
+                "  normalized labels: rows=%d artist=%d venue=%d",
+                int(norm_stats.get("changed_rows", 0)),
+                int(norm_stats.get("artist_normalized", 0)),
+                int(norm_stats.get("venue_normalized", 0)),
+            )
+            log_unknown_aliases(
+                norm_stats.get("unknown_artists", Counter()),
+                label="artist",
+            )
+            log_unknown_aliases(
+                norm_stats.get("unknown_venues", Counter()),
+                label="venue",
+            )
 
             if args.rebuild:
                 clear_source_for_rebuild(conn, source.source_id)
