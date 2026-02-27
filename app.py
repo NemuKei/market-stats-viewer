@@ -3406,8 +3406,18 @@ def render_event_signals_view() -> None:
         axis=1,
     )
 
+    def _normalize_signal_venue_name(value: object) -> str:
+        venue = " ".join(str(value or "").split())
+        if not venue:
+            return ""
+        if re.fullmatch(r"Zepp\s*Namba\s*[（(].*大阪府大阪市浪速区.*[）)]", venue):
+            return "Zepp Namba(Osaka)"
+        if re.fullmatch(r"Zepp\s*Namba\s*[（(]?\s*Osaka\s*[）)]?", venue, flags=re.I):
+            return "Zepp Namba(Osaka)"
+        return venue
+
     df["artist_name"] = df["raw_artist_name"]
-    df["venue_name"] = df["raw_venue_name"]
+    df["venue_name"] = df["raw_venue_name"].apply(_normalize_signal_venue_name)
 
     df["artist_name"] = df.apply(
         lambda row: row["artist_name"] if row["artist_name"] else row["source_name"],
