@@ -3914,7 +3914,7 @@ def render_events_view() -> None:
     max_ym = ym_options[-1]
     today = dt_date.today()
     default_from_ym = build_ym(today.year, today.month)
-    default_to_date = today + timedelta(days=180)
+    default_to_date = today + timedelta(days=365)
     default_to_ym = build_ym(default_to_date.year, default_to_date.month)
     default_from_ym, _ = clamp_ym_to_available_range(default_from_ym, min_ym, max_ym)
     default_to_ym, _ = clamp_ym_to_available_range(default_to_ym, min_ym, max_ym)
