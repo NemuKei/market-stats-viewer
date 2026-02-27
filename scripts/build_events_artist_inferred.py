@@ -16,6 +16,7 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
+from .events.category import classify_event_category
 from .signals.entity_aliases import load_artist_lookup_maps, normalize_with_lookup
 from .signals.artist_registry import (
     ArtistEntry,
@@ -362,12 +363,12 @@ def _normalize_cross_venue_title_key(title: object) -> str:
 
 
 def _build_cross_venue_title_artist_map(
-    rows: list[tuple[str, str, str, str, str]],
+    rows: list[tuple[str, ...]],
     artist_keep_map: dict[str, str],
     artist_compact_map: dict[str, str],
 ) -> dict[str, str]:
     title_candidates: dict[str, set[str]] = {}
-    for _event_uid, title, performers, _current_resolved, _current_confidence in rows:
+    for _event_uid, title, performers, *_ in rows:
         performers_text = str(performers or "").strip()
         if not performers_text:
             continue
@@ -427,6 +428,10 @@ def ensure_events_artist_columns(conn: sqlite3.Connection) -> None:
         conn.execute(
             "ALTER TABLE events ADD COLUMN artist_confidence TEXT NOT NULL DEFAULT 'low'"
         )
+    if "event_category" not in cols:
+        conn.execute(
+            "ALTER TABLE events ADD COLUMN event_category TEXT NOT NULL DEFAULT 'その他'"
+        )
 
 
 def sync_resolved_artists_to_events(
@@ -453,25 +458,37 @@ def sync_resolved_artists_to_events(
             SELECT
                 event_uid,
                 COALESCE(TRIM(title), ''),
+                COALESCE(TRIM(description), ''),
                 COALESCE(TRIM(performers), ''),
                 COALESCE(TRIM(artist_name_resolved), ''),
-                COALESCE(TRIM(artist_confidence), 'low')
+                COALESCE(TRIM(artist_confidence), 'low'),
+                COALESCE(TRIM(event_category), '')
             FROM events
             """
         ).fetchall()
         cross_venue_title_artist_map = _build_cross_venue_title_artist_map(
-            rows,
+            [(event_uid, title, performers) for event_uid, title, _description, performers, *_ in rows],
             artist_keep_map,
             artist_compact_map,
         )
 
-        updates: list[tuple[str, str, str]] = []
-        for event_uid, title, performers, current_resolved, current_confidence in rows:
+        updates: list[tuple[str, str, str, str]] = []
+        for (
+            event_uid,
+            title,
+            description,
+            performers,
+            current_resolved,
+            current_confidence,
+            current_category,
+        ) in rows:
             event_uid = str(event_uid or "").strip()
             performers = str(performers or "").strip()
             title = str(title or "").strip()
+            description = str(description or "").strip()
             current_resolved = str(current_resolved or "").strip()
             current_confidence = str(current_confidence or "low").strip().lower() or "low"
+            current_category = str(current_category or "").strip() or "その他"
 
             new_resolved = ""
             new_confidence = "low"
@@ -497,15 +514,21 @@ def sync_resolved_artists_to_events(
                         new_resolved = cross_venue_artist
                         new_confidence = "cross_venue_title"
 
-            if new_resolved != current_resolved or new_confidence != current_confidence:
-                updates.append((new_resolved, new_confidence, event_uid))
+            new_category = classify_event_category(title, new_resolved, description)
+            if (
+                new_resolved != current_resolved
+                or new_confidence != current_confidence
+                or new_category != current_category
+            ):
+                updates.append((new_resolved, new_confidence, new_category, event_uid))
 
         if updates:
             conn.executemany(
                 """
                 UPDATE events
                 SET artist_name_resolved = ?,
-                    artist_confidence = ?
+                    artist_confidence = ?,
+                    event_category = ?
                 WHERE event_uid = ?
                 """,
                 updates,

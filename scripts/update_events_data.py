@@ -22,6 +22,7 @@ from urllib.parse import urlparse
 
 import requests
 
+from .events.category import classify_event_category
 from .events.registry import load_registry
 from .events.types import EventRecord, VenueRecord
 from .events.sources.base import EventSource
@@ -76,6 +77,7 @@ CREATE TABLE IF NOT EXISTS events (
     performers TEXT,
     artist_name_resolved TEXT,
     artist_confidence TEXT NOT NULL DEFAULT 'low',
+    event_category TEXT NOT NULL DEFAULT 'その他',
     capacity INTEGER,
     source_type TEXT NOT NULL,
     source_url TEXT NOT NULL,
@@ -117,6 +119,10 @@ def ensure_events_artist_columns(conn: sqlite3.Connection) -> None:
     if "artist_confidence" not in cols:
         conn.execute(
             "ALTER TABLE events ADD COLUMN artist_confidence TEXT NOT NULL DEFAULT 'low'"
+        )
+    if "event_category" not in cols:
+        conn.execute(
+            "ALTER TABLE events ADD COLUMN event_category TEXT NOT NULL DEFAULT 'その他'"
         )
 
 
@@ -259,15 +265,21 @@ def upsert_events(
         row = cur.fetchone()
         if row and row[0] == e.data_hash:
             continue  # no change
+        resolved_artist_name, resolved_artist_confidence = resolve_source_artist(
+            e.performers, artist_keep_map, artist_compact_map
+        )
+        event_category = classify_event_category(
+            e.title, resolved_artist_name, e.description
+        )
         conn.execute(
             """\
             INSERT INTO events (
                 event_uid, venue_id, title, start_date, start_time,
                 end_date, end_time, all_day, status, url,
-                description, performers, artist_name_resolved, artist_confidence,
+                description, performers, artist_name_resolved, artist_confidence, event_category,
                 capacity, source_type, source_url, source_event_key, data_hash,
                 first_seen_at_utc, updated_at_utc
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(event_uid) DO UPDATE SET
                 venue_id = excluded.venue_id,
                 title = excluded.title,
@@ -282,6 +294,7 @@ def upsert_events(
                 performers = excluded.performers,
                 artist_name_resolved = excluded.artist_name_resolved,
                 artist_confidence = excluded.artist_confidence,
+                event_category = excluded.event_category,
                 capacity = excluded.capacity,
                 source_type = excluded.source_type,
                 source_url = excluded.source_url,
@@ -294,9 +307,9 @@ def upsert_events(
                 e.end_date, e.end_time, 1 if e.all_day else 0, e.status, e.url,
                 e.description,
                 e.performers,
-                *resolve_source_artist(
-                    e.performers, artist_keep_map, artist_compact_map
-                ),
+                resolved_artist_name,
+                resolved_artist_confidence,
+                event_category,
                 e.capacity,
                 e.source_type,
                 e.source_url,
