@@ -8,13 +8,13 @@ sapporo_dome,札幌ドーム,01,北海道,53000,https://www.sapporo-dome.co.jp/,
 nippon_budokan,日本武道館,13,東京都,14471,https://www.nipponbudokan.or.jp/,html,https://www.nipponbudokan.or.jp/schedule,"{""strategy"":""budokan_schedule""}",0
 tokyo_dome,東京ドーム,13,東京都,55000,https://www.tokyo-dome.co.jp/,html,https://www.tokyo-dome.co.jp/dome/event/schedule.html,"{""strategy"":""tokyo_dome_calendar""}",1
 saitama_super_arena,さいたまスーパーアリーナ,11,埼玉県,37000,https://www.saitama-arena.co.jp/,html,https://www.saitama-arena.co.jp/schedule/,"{""strategy"":""saitama_arena_schedule""}",1
-kyocera_dome_osaka,京セラドーム大阪,27,大阪府,55000,https://www.kyoceradome-osaka.jp/,html,https://www.kyoceradome-osaka.jp/schedule/,"{""strategy"":""kyocera_dome_schedule"",""months_ahead"":4}",1
-osaka_jo_hall,大阪城ホール,27,大阪府,16000,https://www.osaka-johall.com/,html,https://www.osaka-johall.com/event,"{""strategy"":""osaka_jo_hall_schedule"",""months_ahead"":3}",1
+kyocera_dome_osaka,京セラドーム大阪,27,大阪府,55000,https://www.kyoceradome-osaka.jp/,html,https://www.kyoceradome-osaka.jp/schedule/,"{""strategy"":""kyocera_dome_schedule"",""months_ahead"":12}",1
+osaka_jo_hall,大阪城ホール,27,大阪府,16000,https://www.osaka-johall.com/,html,https://www.osaka-johall.com/event,"{""strategy"":""osaka_jo_hall_schedule"",""months_ahead"":12}",1
 vantelin_dome_nagoya,バンテリンドームナゴヤ,23,愛知県,49427,https://www.nagoya-dome.co.jp/,html,https://www.nagoya-dome.co.jp/enjoy/index.php,"{""strategy"":""vantelin_dome_schedule""}",1
 fukuoka_paypay_dome,福岡PayPayドーム,40,福岡県,52500,https://www.softbankhawks.co.jp/,html,https://www.softbankhawks.co.jp/stadium/,"{""strategy"":""fukuoka_paypay_dome_schedule"",""years_ahead"":1}",1
-makuhari_messe,幕張メッセ,12,千葉県,9000,https://www.m-messe.co.jp/,html,https://www.m-messe.co.jp/event/,"{""strategy"":""makuhari_messe_schedule"",""months_ahead"":6}",1
+makuhari_messe,幕張メッセ,12,千葉県,9000,https://www.m-messe.co.jp/,html,https://www.m-messe.co.jp/event/,"{""strategy"":""makuhari_messe_schedule"",""months_ahead"":12}",1
 zozo_marine_stadium,ZOZOマリンスタジアム,12,千葉県,29635,https://www.marines.co.jp/stadium/,html,https://www.marines.co.jp/event/schedule/,"{""strategy"":""zozo_marine_stadium_schedule""}",1
-pia_arena_mm,ぴあアリーナMM,14,神奈川県,12360,https://pia-arena-mm.jp/,html,https://pia-arena-mm.jp/event/,"{""strategy"":""pia_arena_mm_schedule"",""months_ahead"":3}",1
+pia_arena_mm,ぴあアリーナMM,14,神奈川県,12360,https://pia-arena-mm.jp/,html,https://pia-arena-mm.jp/event/,"{""strategy"":""pia_arena_mm_schedule"",""months_ahead"":12}",1
 portmesse_nagoya,ポートメッセなごや,23,愛知県,15000,https://portmesse.com/,html,https://portmesse.com/events/,"{""strategy"":""portmesse_nagoya_events""}",1
 asue_arena_osaka,Asueアリーナ大阪,27,大阪府,10000,https://www.yahataya-park.jp/osaka_arena/,html,https://www.yahataya-park.jp/osaka_arena/events/index.html,"{""strategy"":""asue_arena_osaka_events"",""max_links"":40}",1
 mufg_stadium,MUFGスタジアム,13,東京都,49970,https://www.ajinomotostadium.com/,html,https://www.ajinomotostadium.com/schedule/,"{""strategy"":""mufg_stadium_schedule"",""months_ahead"":4}",1
@@ -27,9 +27,9 @@ zepp_namba,Zepp Namba(Osaka),27,大阪府,2530,https://www.zepp.co.jp/hall/namba
 zepp_nagoya,Zepp Nagoya,23,愛知県,1796,https://www.zepp.co.jp/hall/nagoya/,html,https://www.zepp.co.jp/hall/nagoya/schedule/,"{""strategy"":""zepp_schedule""}",0
 zepp_fukuoka,Zepp Fukuoka,40,福岡県,1526,https://www.zepp.co.jp/hall/fukuoka/,html,https://www.zepp.co.jp/hall/fukuoka/schedule/,"{""strategy"":""zepp_schedule""}",0
 zepp_osaka_bayside,Zepp Osaka Bayside,27,大阪府,2801,https://www.zepp.co.jp/hall/osakabayside/,html,https://www.zepp.co.jp/hall/osakabayside/schedule/,"{""strategy"":""zepp_schedule""}",1
-festival_hall,フェスティバルホール,27,大阪府,2700,https://www.festivalhall.jp/,html,https://www.festivalhall.jp/events/list/,"{""strategy"":""festival_hall_schedule"",""months_ahead"":3}",1
+festival_hall,フェスティバルホール,27,大阪府,2700,https://www.festivalhall.jp/,html,https://www.festivalhall.jp/events/list/,"{""strategy"":""festival_hall_schedule"",""months_ahead"":12}",1
 ariake_arena,有明アリーナ,13,東京都,15000,https://ariake-arena.tokyo/,html,https://ariake-arena.tokyo/event/,"{""strategy"":""ariake_arena_schedule""}",1
 yoyogi_gymnasium,国立代々木競技場第一体育館,13,東京都,12542,https://www.jpnsport.go.jp/yoyogi/,html,https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx,"{""strategy"":""yoyogi_gymnasium_schedule""}",1
-tokyo_garden_theater,東京ガーデンシアター,13,東京都,8000,https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/,html,https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/,"{""strategy"":""garden_theater_schedule"",""months_ahead"":3}",1
+tokyo_garden_theater,東京ガーデンシアター,13,東京都,8000,https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/,html,https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/,"{""strategy"":""garden_theater_schedule"",""months_ahead"":12}",1
 tdc_hall,TOKYO DOME CITY HALL,13,東京都,3120,https://www.tokyo-dome.co.jp/tdc-hall/,html,https://www.tokyo-dome.co.jp/tdc-hall/event/,"{""strategy"":""tdc_hall_schedule""}",1
 toyosu_pit,豊洲PIT,13,東京都,3103,https://toyosu.pia-pit.jp/,html,https://toyosu.pia-pit.jp/schedule-list/,"{""strategy"":""toyosu_pit_schedule"",""months_ahead"":3}",1
