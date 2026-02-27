@@ -16,6 +16,7 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
+from .signals.entity_aliases import load_artist_lookup_maps, normalize_with_lookup
 from .signals.artist_registry import (
     ArtistEntry,
     build_artist_index,
@@ -368,6 +369,92 @@ def write_csv_noop(rows: list[dict[str, str]], output_path: Path) -> bool:
     return True
 
 
+def ensure_events_artist_columns(conn: sqlite3.Connection) -> None:
+    cols = {
+        str(row[1]).strip()
+        for row in conn.execute("PRAGMA table_info(events)").fetchall()
+        if len(row) >= 2
+    }
+    if "artist_name_resolved" not in cols:
+        conn.execute("ALTER TABLE events ADD COLUMN artist_name_resolved TEXT")
+    if "artist_confidence" not in cols:
+        conn.execute(
+            "ALTER TABLE events ADD COLUMN artist_confidence TEXT NOT NULL DEFAULT 'low'"
+        )
+
+
+def sync_resolved_artists_to_events(
+    events_db_path: Path,
+    inferred_rows: list[dict[str, str]],
+) -> tuple[int, int]:
+    if not events_db_path.exists():
+        return 0, 0
+
+    inferred_map = {
+        str(row.get("event_uid", "")).strip(): (
+            str(row.get("artist_name", "")).strip(),
+            str(row.get("artist_confidence", "")).strip().lower() or "low",
+        )
+        for row in inferred_rows
+        if str(row.get("event_uid", "")).strip() and str(row.get("artist_name", "")).strip()
+    }
+    artist_keep_map, artist_compact_map = load_artist_lookup_maps()
+
+    with sqlite3.connect(events_db_path) as conn:
+        ensure_events_artist_columns(conn)
+        rows = conn.execute(
+            """
+            SELECT
+                event_uid,
+                COALESCE(TRIM(performers), ''),
+                COALESCE(TRIM(artist_name_resolved), ''),
+                COALESCE(TRIM(artist_confidence), 'low')
+            FROM events
+            """
+        ).fetchall()
+
+        updates: list[tuple[str, str, str]] = []
+        for event_uid, performers, current_resolved, current_confidence in rows:
+            event_uid = str(event_uid or "").strip()
+            performers = str(performers or "").strip()
+            current_resolved = str(current_resolved or "").strip()
+            current_confidence = str(current_confidence or "low").strip().lower() or "low"
+
+            new_resolved = ""
+            new_confidence = "low"
+            if performers:
+                normalized, matched = normalize_with_lookup(
+                    performers, artist_keep_map, artist_compact_map
+                )
+                if matched and normalized and normalized != performers:
+                    new_resolved = normalized
+                    new_confidence = "source_normalized"
+                else:
+                    new_resolved = performers
+                    new_confidence = "source"
+            else:
+                inferred = inferred_map.get(event_uid)
+                if inferred:
+                    new_resolved = inferred[0]
+                    new_confidence = inferred[1]
+
+            if new_resolved != current_resolved or new_confidence != current_confidence:
+                updates.append((new_resolved, new_confidence, event_uid))
+
+        if updates:
+            conn.executemany(
+                """
+                UPDATE events
+                SET artist_name_resolved = ?,
+                    artist_confidence = ?
+                WHERE event_uid = ?
+                """,
+                updates,
+            )
+        conn.commit()
+        return len(rows), len(updates)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build inferred artist map for events")
     parser.add_argument("--db-path", default=str(EVENTS_DB_PATH))
@@ -392,38 +479,37 @@ def main() -> None:
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    rows: list[dict[str, str]] = []
     targets = load_target_events(events_db_path, limit=max(0, int(args.limit)))
     if not targets:
-        logger.warning("No target events found. Skip.")
-        return
+        logger.warning("No target events found for inference. Continue with DB sync only.")
+    else:
+        registry = load_merged_registry(extra_seed_path)
+        artist_index = build_artist_index(registry)
+        updated_at = date.today().isoformat()
 
-    registry = load_merged_registry(extra_seed_path)
-    artist_index = build_artist_index(registry)
-    updated_at = date.today().isoformat()
-
-    rows: list[dict[str, str]] = []
-    for idx, event in enumerate(targets, start=1):
-        inferred = infer_event_artist(
-            title=event["title"],
-            description=event["description"],
-            artist_index=artist_index,
-        )
-        if inferred is None:
-            continue
-        artist_name, confidence, matched_alias, matched_field = inferred
-        rows.append(
-            {
-                "event_uid": event["event_uid"],
-                "title": event["title"],
-                "artist_name": artist_name,
-                "artist_confidence": confidence,
-                "matched_alias": matched_alias,
-                "matched_field": matched_field,
-                "updated_at": updated_at,
-            }
-        )
-        if idx % 500 == 0:
-            logger.info("Processed %d/%d events", idx, len(targets))
+        for idx, event in enumerate(targets, start=1):
+            inferred = infer_event_artist(
+                title=event["title"],
+                description=event["description"],
+                artist_index=artist_index,
+            )
+            if inferred is None:
+                continue
+            artist_name, confidence, matched_alias, matched_field = inferred
+            rows.append(
+                {
+                    "event_uid": event["event_uid"],
+                    "title": event["title"],
+                    "artist_name": artist_name,
+                    "artist_confidence": confidence,
+                    "matched_alias": matched_alias,
+                    "matched_field": matched_field,
+                    "updated_at": updated_at,
+                }
+            )
+            if idx % 500 == 0:
+                logger.info("Processed %d/%d events", idx, len(targets))
 
     rows.sort(key=lambda row: (row["event_uid"], row["title"]))
     changed = write_csv_noop(rows, output_path)
@@ -431,6 +517,13 @@ def main() -> None:
         logger.info("Wrote %d inferred rows to %s", len(rows), output_path)
     else:
         logger.info("No changes in %s", output_path)
+
+    total_events, updated_events = sync_resolved_artists_to_events(events_db_path, rows)
+    logger.info(
+        "Synced resolved artists into events.sqlite: updated %d / %d rows",
+        updated_events,
+        total_events,
+    )
 
 
 if __name__ == "__main__":

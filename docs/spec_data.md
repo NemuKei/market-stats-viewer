@@ -87,11 +87,14 @@
 - テーブル `events`（イベント本体）:
   - `event_uid` TEXT PK, `venue_id` FK, `title`, `start_date`, `start_time`,
     `end_date`, `end_time`, `all_day`, `status`, `url`, `description`,
-    `performers`, `capacity`, `source_type`, `source_url`, `source_event_key`,
-    `data_hash`, `first_seen_at_utc`, `updated_at_utc`
+    `performers`, `artist_name_resolved`, `artist_confidence`, `capacity`,
+    `source_type`, `source_url`, `source_event_key`, `data_hash`,
+    `first_seen_at_utc`, `updated_at_utc`
 - `event_uid` 規約: `{venue_id}:{source_event_key}` or `{venue_id}:h:{sha256[:16]}`
 - `capacity`: イベント固有があればそれ、なければ会場キャパを COALESCE で利用
 - 会場定義: `data/venue_registry.csv`（1行=1会場、追加は1行追加のみ）
+- `artist_name_resolved`: BCL/表示向けの解決済みアーティスト名（`performers` は取得元生値を保持）
+- `artist_confidence`: `source` / `source_normalized` / `high` / `medium` / `low`
 
 ## 追補（2026-02-23）イベント速報（ニュースシグナル）
 - SSOT: `data/event_signals.sqlite`（`events.sqlite` とは分離）

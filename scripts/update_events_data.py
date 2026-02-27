@@ -29,6 +29,7 @@ from .events.sources.html import HtmlSource
 from .events.sources.ics import IcsSource
 from .events.sources.rss import RssSource
 from .events.sources.jsonld import JsonLdSource
+from .signals.entity_aliases import load_artist_lookup_maps, normalize_with_lookup
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
@@ -73,6 +74,8 @@ CREATE TABLE IF NOT EXISTS events (
     url TEXT,
     description TEXT,
     performers TEXT,
+    artist_name_resolved TEXT,
+    artist_confidence TEXT NOT NULL DEFAULT 'low',
     capacity INTEGER,
     source_type TEXT NOT NULL,
     source_url TEXT NOT NULL,
@@ -96,10 +99,25 @@ def init_db(db_path: Path) -> sqlite3.Connection:
     conn.execute("PRAGMA journal_mode=WAL;")
     conn.execute(DDL_VENUES)
     conn.execute(DDL_EVENTS)
+    ensure_events_artist_columns(conn)
     for idx_sql in DDL_INDEXES:
         conn.execute(idx_sql)
     conn.commit()
     return conn
+
+
+def ensure_events_artist_columns(conn: sqlite3.Connection) -> None:
+    cols = {
+        str(row[1]).strip()
+        for row in conn.execute("PRAGMA table_info(events)").fetchall()
+        if len(row) >= 2
+    }
+    if "artist_name_resolved" not in cols:
+        conn.execute("ALTER TABLE events ADD COLUMN artist_name_resolved TEXT")
+    if "artist_confidence" not in cols:
+        conn.execute(
+            "ALTER TABLE events ADD COLUMN artist_confidence TEXT NOT NULL DEFAULT 'low'"
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -224,7 +242,12 @@ def upsert_venue(conn: sqlite3.Connection, venue: VenueRecord, signature: str) -
     )
 
 
-def upsert_events(conn: sqlite3.Connection, events: list[EventRecord]) -> int:
+def upsert_events(
+    conn: sqlite3.Connection,
+    events: list[EventRecord],
+    artist_keep_map: dict[str, str],
+    artist_compact_map: dict[str, str],
+) -> int:
     """Upsert events. Returns count of actually changed rows."""
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     changed = 0
@@ -241,9 +264,10 @@ def upsert_events(conn: sqlite3.Connection, events: list[EventRecord]) -> int:
             INSERT INTO events (
                 event_uid, venue_id, title, start_date, start_time,
                 end_date, end_time, all_day, status, url,
-                description, performers, capacity, source_type, source_url,
-                source_event_key, data_hash, first_seen_at_utc, updated_at_utc
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                description, performers, artist_name_resolved, artist_confidence,
+                capacity, source_type, source_url, source_event_key, data_hash,
+                first_seen_at_utc, updated_at_utc
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(event_uid) DO UPDATE SET
                 venue_id = excluded.venue_id,
                 title = excluded.title,
@@ -256,6 +280,8 @@ def upsert_events(conn: sqlite3.Connection, events: list[EventRecord]) -> int:
                 url = excluded.url,
                 description = excluded.description,
                 performers = excluded.performers,
+                artist_name_resolved = excluded.artist_name_resolved,
+                artist_confidence = excluded.artist_confidence,
                 capacity = excluded.capacity,
                 source_type = excluded.source_type,
                 source_url = excluded.source_url,
@@ -266,12 +292,34 @@ def upsert_events(conn: sqlite3.Connection, events: list[EventRecord]) -> int:
             (
                 e.event_uid, e.venue_id, e.title, e.start_date, e.start_time,
                 e.end_date, e.end_time, 1 if e.all_day else 0, e.status, e.url,
-                e.description, e.performers, e.capacity, e.source_type, e.source_url,
-                e.source_event_key, e.data_hash, now, now,
+                e.description,
+                e.performers,
+                *resolve_source_artist(
+                    e.performers, artist_keep_map, artist_compact_map
+                ),
+                e.capacity,
+                e.source_type,
+                e.source_url,
+                e.source_event_key,
+                e.data_hash,
+                now,
+                now,
             ),
         )
         changed += 1
     return changed
+
+
+def resolve_source_artist(
+    performers: object, artist_keep_map: dict[str, str], artist_compact_map: dict[str, str]
+) -> tuple[str, str]:
+    text = str(performers or "").strip()
+    if not text:
+        return "", "low"
+    normalized, matched = normalize_with_lookup(text, artist_keep_map, artist_compact_map)
+    if matched and normalized and normalized != text:
+        return normalized, "source_normalized"
+    return text, "source"
 
 
 def prune_missing_events(
@@ -347,6 +395,12 @@ def main() -> None:
     session = ThrottledSession(raw_session, throttle)
 
     conn = init_db(EVENTS_DB_PATH)
+    artist_keep_map, artist_compact_map = load_artist_lookup_maps()
+    logger.info(
+        "Loaded artist normalization maps: keep=%d compact=%d",
+        len(artist_keep_map),
+        len(artist_compact_map),
+    )
 
     success_count = 0
     fail_count = 0
@@ -413,7 +467,12 @@ def main() -> None:
                 continue
 
             # Signature changed → upsert events + venue
-            changed = upsert_events(conn, events)
+            changed = upsert_events(
+                conn,
+                events,
+                artist_keep_map,
+                artist_compact_map,
+            )
             upsert_venue(conn, venue, sig)
             conn.commit()
             total_changed += changed + pruned

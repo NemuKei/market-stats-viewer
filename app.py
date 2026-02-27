@@ -3821,8 +3821,27 @@ def render_events_view() -> None:
     )
     df["display_capacity"] = df["capacity"].fillna(df["venue_capacity"])
     df["pref_code"] = df["pref_code"].astype(str).str.zfill(2)
-    df["artist_name"] = df["performers"].fillna("").astype(str).str.strip()
-    df["artist_confidence"] = df["artist_name"].map(lambda v: "source" if v else "low")
+    source_artist_name = df["performers"].fillna("").astype(str).str.strip()
+    resolved_artist_name = (
+        df.get("artist_name_resolved", pd.Series(index=df.index, dtype=object))
+        .fillna("")
+        .astype(str)
+        .str.strip()
+    )
+    resolved_artist_confidence = (
+        df.get("artist_confidence", pd.Series(index=df.index, dtype=object))
+        .fillna("")
+        .astype(str)
+        .str.strip()
+        .str.lower()
+    )
+    df["artist_name"] = resolved_artist_name.where(
+        resolved_artist_name.ne(""), source_artist_name
+    )
+    df["artist_confidence"] = resolved_artist_confidence.where(
+        resolved_artist_name.ne(""),
+        source_artist_name.map(lambda v: "source" if v else "low"),
+    )
     same_as_title_mask = (
         df["artist_name"].ne("")
         & (
