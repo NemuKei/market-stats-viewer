@@ -7,12 +7,12 @@ zepp_sapporo,Zepp札幌,01,北海道,2009,https://www.zepp.co.jp/hall/sapporo/,h
 sapporo_dome,札幌ドーム,01,北海道,53000,https://www.sapporo-dome.co.jp/,html,https://www.sapporo-dome.co.jp/schedule/,"{""strategy"":""sapporo_dome_schedule""}",1
 nippon_budokan,日本武道館,13,東京都,14471,https://www.nipponbudokan.or.jp/,html,https://www.nipponbudokan.or.jp/schedule,"{""strategy"":""budokan_schedule""}",0
 tokyo_dome,東京ドーム,13,東京都,55000,https://www.tokyo-dome.co.jp/,html,https://www.tokyo-dome.co.jp/dome/event/schedule.html,"{""strategy"":""tokyo_dome_calendar""}",1
-saitama_super_arena,さいたまスーパーアリーナ,11,埼玉県,37000,https://www.saitama-arena.co.jp/,html,https://www.saitama-arena.co.jp/schedule/,"{""strategy"":""saitama_arena_schedule""}",1
+saitama_super_arena,さいたまスーパーアリーナ,11,埼玉県,37000,https://www.saitama-arena.co.jp/,html,https://www.saitama-arena.co.jp/schedule/,"{""strategy"":""saitama_arena_schedule"",""allowed_categories"":[""concert-show""]}",1
 kyocera_dome_osaka,京セラドーム大阪,27,大阪府,55000,https://www.kyoceradome-osaka.jp/,html,https://www.kyoceradome-osaka.jp/schedule/,"{""strategy"":""kyocera_dome_schedule"",""months_ahead"":12}",1
 osaka_jo_hall,大阪城ホール,27,大阪府,16000,https://www.osaka-johall.com/,html,https://www.osaka-johall.com/event,"{""strategy"":""osaka_jo_hall_schedule"",""months_ahead"":12}",1
 vantelin_dome_nagoya,バンテリンドームナゴヤ,23,愛知県,49427,https://www.nagoya-dome.co.jp/,html,https://www.nagoya-dome.co.jp/enjoy/index.php,"{""strategy"":""vantelin_dome_schedule""}",1
 fukuoka_paypay_dome,福岡PayPayドーム,40,福岡県,52500,https://www.softbankhawks.co.jp/,html,https://www.softbankhawks.co.jp/stadium/,"{""strategy"":""fukuoka_paypay_dome_schedule"",""years_ahead"":1}",1
-makuhari_messe,幕張メッセ,12,千葉県,9000,https://www.m-messe.co.jp/,html,https://www.m-messe.co.jp/event/,"{""strategy"":""makuhari_messe_schedule"",""months_ahead"":12}",1
+makuhari_messe,幕張メッセ,12,千葉県,9000,https://www.m-messe.co.jp/,html,https://www.m-messe.co.jp/event/,"{""strategy"":""makuhari_messe_schedule"",""months_ahead"":12,""allowed_categories"":[""音楽イベント""]}",1
 zozo_marine_stadium,ZOZOマリンスタジアム,12,千葉県,29635,https://www.marines.co.jp/stadium/,html,https://www.marines.co.jp/event/schedule/,"{""strategy"":""zozo_marine_stadium_schedule""}",1
 pia_arena_mm,ぴあアリーナMM,14,神奈川県,12360,https://pia-arena-mm.jp/,html,https://pia-arena-mm.jp/event/,"{""strategy"":""pia_arena_mm_schedule"",""months_ahead"":12}",1
 portmesse_nagoya,ポートメッセなごや,23,愛知県,15000,https://portmesse.com/,html,https://portmesse.com/events/,"{""strategy"":""portmesse_nagoya_events""}",1

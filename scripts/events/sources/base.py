@@ -36,6 +36,7 @@ def compute_data_hash(rec: EventRecord) -> str:
             "all_day": rec.all_day,
             "status": rec.status,
             "url": rec.url,
+            "description": rec.description,
             "performers": rec.performers,
             "capacity": rec.capacity,
         },

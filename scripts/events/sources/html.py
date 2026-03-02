@@ -317,17 +317,17 @@ class _ZeppSchedule(_BaseStrategy):
     """Parse Zepp venue schedule pages."""
 
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        months_ahead = int(config.get("months_ahead", 6))
         events: list[EventRecord] = []
+        seen_uids: set[str] = set()
         today = date.today()
-        # Fetch current + next 2 months
-        for offset in range(3):
+        for offset in range(months_ahead + 1):
             d = today.replace(day=1) + timedelta(days=32 * offset)
             d = d.replace(day=1)
-            ym = d.strftime("%Y%m")
             url = venue.source_url
             if not url.endswith("/"):
                 url += "/"
-            month_url = f"{url}?ym={ym}"
+            month_url = f"{url}?_y={d.year}&_m={d.month}"
             resp = session.get(month_url, timeout=30)
             if resp.status_code != 200:
                 logger.warning("zepp: %s returned %s", month_url, resp.status_code)
@@ -340,14 +340,17 @@ class _ZeppSchedule(_BaseStrategy):
                     continue
             resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
-            events.extend(self._parse_page(venue, soup, month_url))
+            events.extend(self._parse_page(venue, soup, month_url, seen_uids))
         return events
 
     def _parse_page(
-        self, venue: VenueRecord, soup: BeautifulSoup, source_url: str
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
     ) -> list[EventRecord]:
         events: list[EventRecord] = []
-        seen_uids: set[str] = set()
         # Zepp pages: <a class="sch-content" href="...?rid=XXXXX">
         # Text inside: "2026 2.1 SUN [artist] [title] [OPEN] HH:MM [START] HH:MM ..."
         for a_tag in soup.find_all("a", href=True):
@@ -433,59 +436,188 @@ class _ZeppSchedule(_BaseStrategy):
 class _SaitamaArenaSchedule(_BaseStrategy):
     """Parse Saitama Super Arena event schedule page."""
 
+    _CATEGORY_LABEL_BY_SLUG = {
+        "concert-show": "コンサート・ショー",
+        "sports": "スポーツ",
+        "meeting-ceremony": "集会・式典・セミナー",
+        "shopping-exhibition": "物販・展示会",
+        "other": "その他",
+    }
+
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
-        resp = session.get(venue.source_url, timeout=30)
-        resp.raise_for_status()
-        resp.encoding = resp.apparent_encoding or "utf-8"
-        soup = BeautifulSoup(resp.text, "html.parser")
+        allowed_categories = {
+            str(v).strip()
+            for v in config.get("allowed_categories", [])
+            if str(v).strip()
+        }
+        allowed_place_keywords = [
+            str(v).strip()
+            for v in config.get("allowed_place_keywords", [])
+            if str(v).strip()
+        ]
+
+        month_urls = self._collect_month_urls(venue, session)
         events: list[EventRecord] = []
         seen_uids: set[str] = set()
-        # Structure: <h3><a href="...">Title</a></h3>
-        # Date in parent/sibling text: "2026/01/30(金) ～ 2026/02/01(日)"
-        for h3 in soup.find_all("h3"):
-            a_tag = h3.find("a", href=True)
-            if not a_tag:
+        for month_url in month_urls:
+            try:
+                resp = session.get(month_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning(
+                        "saitama_arena: %s returned %s", month_url, resp.status_code
+                    )
+                    continue
+            except Exception:
+                logger.warning("saitama_arena: failed to fetch %s", month_url)
                 continue
-            title = a_tag.get_text(strip=True)
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            events.extend(
+                self._parse_page(
+                    venue=venue,
+                    soup=soup,
+                    source_url=month_url,
+                    seen_uids=seen_uids,
+                    allowed_categories=allowed_categories,
+                    allowed_place_keywords=allowed_place_keywords,
+                )
+            )
+        return events
+
+    def _collect_month_urls(self, venue: VenueRecord, session) -> list[str]:
+        try:
+            resp = session.get(venue.source_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "saitama_arena: %s returned %s", venue.source_url, resp.status_code
+                )
+                return [venue.source_url]
+        except Exception:
+            logger.warning("saitama_arena: failed to fetch %s", venue.source_url)
+            return [venue.source_url]
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        urls: list[str] = [venue.source_url]
+        seen: set[str] = set()
+        for tag in soup.select("a[href], option[value]"):
+            href = ""
+            if tag.name == "a":
+                href = str(tag.get("href", "")).strip()
+            else:
+                href = str(tag.get("value", "")).strip()
+            if not href:
+                continue
+            if not re.search(r"/schedule/\d{4}/\d{2}/$", href):
+                continue
+            if href.startswith("http"):
+                full = href
+            elif href.startswith("/"):
+                full = f"https://www.saitama-arena.co.jp{href}"
+            else:
+                full = f"https://www.saitama-arena.co.jp/{href}"
+            if full in seen:
+                continue
+            seen.add(full)
+            urls.append(full)
+        return urls
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        seen_uids: set[str],
+        allowed_categories: set[str],
+        allowed_place_keywords: list[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+
+        for li in soup.select('li[id^="event"]'):
+            class_names = [str(v).strip() for v in li.get("class", []) if str(v).strip()]
+            category_slug = next(
+                (
+                    slug
+                    for slug in self._CATEGORY_LABEL_BY_SLUG
+                    if slug in class_names
+                ),
+                "",
+            )
+            if allowed_categories and category_slug not in allowed_categories:
+                continue
+
+            title_tag = li.select_one("h3 a")
+            if title_tag is None:
+                continue
+            title = " ".join(title_tag.get_text(" ", strip=True).split())
             if not title:
                 continue
-            href = a_tag["href"]
-            # Look for date in surrounding context
-            parent = h3.parent
-            if not parent:
-                continue
-            parent_text = parent.get_text(" ", strip=True)
-            # Pattern: YYYY/MM/DD or YYYY年MM月DD日
-            m = re.search(r"(\d{4})[/年](\d{1,2})[/月](\d{1,2})", parent_text)
-            if not m:
-                continue
-            start_date = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
-            # Check for end date after ～
-            end_date = None
-            m2 = re.search(r"～\s*(\d{4})[/年](\d{1,2})[/月](\d{1,2})", parent_text)
-            if m2:
-                end_date = (
-                    f"{m2.group(1)}-{int(m2.group(2)):02d}-{int(m2.group(3)):02d}"
-                )
-                if end_date == start_date:
-                    end_date = None
-            # Extract times: 開場 HH:MM or OPEN HH:MM
-            start_time = None
-            tm = re.search(
-                r"(?:開演|START|start)\s*(\d{1,2}:\d{2})", parent_text, re.IGNORECASE
+
+            date_node = li.select_one("dl.date dd")
+            date_text = (
+                " ".join(date_node.get_text(" ", strip=True).split())
+                if date_node is not None
+                else ""
             )
-            if tm:
-                start_time = _normalise_time(tm.group(1))
-            if not start_time:
-                tm = re.search(
-                    r"(?:開場|OPEN|open)\s*(\d{1,2}:\d{2})", parent_text, re.IGNORECASE
-                )
+            date_parts = re.findall(r"(\d{4})/(\d{1,2})/(\d{1,2})", date_text)
+            if not date_parts:
+                continue
+            y, m, d = date_parts[0]
+            start_date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
+            end_date = None
+            if len(date_parts) > 1:
+                y2, m2, d2 = date_parts[-1]
+                ed = f"{int(y2):04d}-{int(m2):02d}-{int(d2):02d}"
+                if ed != start_date:
+                    end_date = ed
+
+            place_type = ""
+            for dl_tag in li.select("div.place dl"):
+                dt_tag = dl_tag.find("dt")
+                dd_tag = dl_tag.find("dd")
+                if dt_tag is None or dd_tag is None:
+                    continue
+                dt_text = " ".join(dt_tag.get_text(" ", strip=True).split())
+                if "会場タイプ" in dt_text:
+                    place_type = " ".join(dd_tag.get_text(" ", strip=True).split())
+                    break
+            if allowed_place_keywords and not any(
+                keyword in place_type for keyword in allowed_place_keywords
+            ):
+                continue
+
+            content_text = " ".join(li.get_text(" ", strip=True).split())
+            start_time = None
+            for pattern in [
+                r"(?:開演|開始|START)\s*[:：]?\s*(\d{1,2}:\d{2})",
+                r"(?:開場|OPEN)\s*[:：]?\s*(\d{1,2}:\d{2})",
+            ]:
+                tm = re.search(pattern, content_text, re.IGNORECASE)
                 if tm:
                     start_time = _normalise_time(tm.group(1))
+                    if start_time:
+                        break
+
+            href = str(title_tag.get("href", "")).strip()
+            if not href:
+                continue
             event_url = href
             if not event_url.startswith("http"):
-                event_url = f"https://www.saitama-arena.co.jp{href}"
+                if event_url.startswith("/"):
+                    event_url = f"https://www.saitama-arena.co.jp{href}"
+                else:
+                    event_url = f"https://www.saitama-arena.co.jp/{href}"
             source_key = href
+
+            details: list[str] = []
+            category_label = self._CATEGORY_LABEL_BY_SLUG.get(category_slug, "")
+            if category_label:
+                details.append(f"カテゴリ:{category_label}")
+            if place_type:
+                details.append(f"会場タイプ:{place_type}")
+            description = " / ".join(details) if details else None
+
             uid = compute_event_uid(
                 venue.venue_id,
                 source_key,
@@ -497,6 +629,7 @@ class _SaitamaArenaSchedule(_BaseStrategy):
             if uid in seen_uids:
                 continue
             seen_uids.add(uid)
+
             rec = EventRecord(
                 event_uid=uid,
                 venue_id=venue.venue_id,
@@ -508,15 +641,16 @@ class _SaitamaArenaSchedule(_BaseStrategy):
                 all_day=not bool(start_time),
                 status="scheduled",
                 url=event_url,
-                description=None,
+                description=description,
                 performers=None,
                 capacity=None,
                 source_type=venue.source_type,
-                source_url=venue.source_url,
+                source_url=source_url,
                 source_event_key=source_key,
             )
             rec.data_hash = compute_data_hash(rec)
             events.append(rec)
+
         return events
 
 
@@ -1030,7 +1164,7 @@ class _BellunaDomeSchedule(_BaseStrategy):
                 body = m.group(4).strip()
                 if not body:
                     continue
-                if body in {"調整中", "メンテナンス"}:
+                if body in {"調整中", "メンテナンス", "貸切", "貸し切り"}:
                     continue
 
                 start_date = f"{year:04d}-{month:02d}-{day:02d}"
@@ -1052,6 +1186,12 @@ class _BellunaDomeSchedule(_BaseStrategy):
                 title = re.sub(r"\s+", " ", body).strip()
                 if not title:
                     continue
+
+                label_node = item.select_one(".news-label")
+                label_text = ""
+                if label_node is not None:
+                    label_text = " ".join(label_node.get_text(" ", strip=True).split())
+                description = f"カテゴリ:{label_text}" if label_text else None
 
                 detail_link = item.find("a", href=True)
                 event_url = month_url
@@ -1089,7 +1229,7 @@ class _BellunaDomeSchedule(_BaseStrategy):
                     all_day=not bool(start_time),
                     status="scheduled",
                     url=event_url,
-                    description=None,
+                    description=description,
                     performers=None,
                     capacity=None,
                     source_type=venue.source_type,
@@ -1112,6 +1252,11 @@ class _MakuhariMesseSchedule(_BaseStrategy):
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
         months_ahead = int(config.get("months_ahead", 6))
         max_pages = int(config.get("max_pages", 8))
+        allowed_categories = {
+            str(v).strip()
+            for v in config.get("allowed_categories", [])
+            if str(v).strip()
+        }
         today = date.today()
         events: list[EventRecord] = []
         seen_uids: set[str] = set()
@@ -1143,6 +1288,7 @@ class _MakuhariMesseSchedule(_BaseStrategy):
                     soup=soup,
                     source_url=month_url,
                     seen_uids=seen_uids,
+                    allowed_categories=allowed_categories,
                 )
                 if not page_events:
                     break
@@ -1162,12 +1308,20 @@ class _MakuhariMesseSchedule(_BaseStrategy):
         soup: BeautifulSoup,
         source_url: str,
         seen_uids: set[str],
+        allowed_categories: set[str],
     ) -> list[EventRecord]:
         events: list[EventRecord] = []
 
         for li in soup.select("li.eventInr"):
             link = li.find("a", href=True)
             if not link:
+                continue
+
+            category_label = ""
+            category_node = li.select_one(".category, .cate")
+            if category_node is not None:
+                category_label = " ".join(category_node.get_text(" ", strip=True).split())
+            if allowed_categories and category_label not in allowed_categories:
                 continue
 
             right_cont = li.select_one(".rightCont")
@@ -1210,6 +1364,9 @@ class _MakuhariMesseSchedule(_BaseStrategy):
             text_wo_date = context.replace(date_text, " ")
             text_wo_date = re.sub(r"\s*対象\s*.*$", "", text_wo_date)
             text_wo_date = re.sub(r"\s+", " ", text_wo_date).strip()
+            if category_label and text_wo_date.startswith(category_label):
+                text_wo_date = text_wo_date[len(category_label) :].strip()
+            text_wo_date = re.sub(r"^(イベント|音楽イベント)\s*", "", text_wo_date)
             if not text_wo_date:
                 continue
 
@@ -1250,7 +1407,7 @@ class _MakuhariMesseSchedule(_BaseStrategy):
                 all_day=not bool(start_time),
                 status="scheduled",
                 url=event_url,
-                description=None,
+                description=f"カテゴリ:{category_label}" if category_label else None,
                 performers=None,
                 capacity=None,
                 source_type=venue.source_type,
@@ -1445,15 +1602,19 @@ class _SapporoDomeSchedule(_BaseStrategy):
                 f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
             )
 
-            title = detail_text
-            title = re.sub(r"^.*?(?=\d{4}/\d{1,2}/\d{1,2})", "", title)
-            title = re.sub(r"^\d{4}/\d{1,2}/\d{1,2}\([^)]*\)\s*", "", title)
-            title = re.sub(
-                r"\s*(開場時刻|開始時刻|終了時刻|駐車場|お問い合わせ)[:：].*$",
-                "",
-                title,
-            )
-            title = re.sub(r"\s+", " ", title).strip()
+            title_node = item.select_one(".un_pickupEvent_ttl")
+            if title_node is not None:
+                title = " ".join(title_node.get_text(" ", strip=True).split())
+            else:
+                title = detail_text
+                title = re.sub(r"^.*?(?=\d{4}/\d{1,2}/\d{1,2})", "", title)
+                title = re.sub(r"^\d{4}/\d{1,2}/\d{1,2}\([^)]*\)\s*", "", title)
+                title = re.sub(
+                    r"\s*(開場時刻|開始時刻|終了時刻|駐車場|お問い合わせ)[:：].*$",
+                    "",
+                    title,
+                )
+                title = re.sub(r"\s+", " ", title).strip()
             if not title:
                 continue
 

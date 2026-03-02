@@ -71,6 +71,7 @@ def classify_event_category(title: object, artist_name: object, description: obj
     concert_keywords = [
         "ライブ",
         "コンサート",
+        "音楽イベント",
         "公演",
         "ツアー",
         "フェス",
@@ -132,4 +133,3 @@ def classify_event_category(title: object, artist_name: object, description: obj
     if has_concert_keyword:
         return EVENT_CATEGORY_CONCERT
     return EVENT_CATEGORY_OTHER
-

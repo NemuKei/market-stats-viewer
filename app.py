@@ -3119,6 +3119,7 @@ def classify_event_category(title: str, artist_name: str, description: str) -> s
     concert_keywords = [
         "ライブ",
         "コンサート",
+        "音楽イベント",
         "公演",
         "ツアー",
         "フェス",
