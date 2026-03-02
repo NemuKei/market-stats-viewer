@@ -3905,6 +3905,7 @@ def render_events_view() -> None:
     )
     same_as_title_mask = (
         df["artist_name"].ne("")
+        & df["artist_confidence"].fillna("").astype(str).str.lower().isin(["", "low"])
         & (
             df["artist_name"].apply(
                 lambda value: normalize_artist_lookup_text(str(value or ""), mode="compact")

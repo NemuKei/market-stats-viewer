@@ -330,6 +330,15 @@ def infer_event_artist(
     if title_match is not None:
         if title_is_music_like:
             return (*title_match, "title")
+        # Accept exact title=artist matches even without music hint words.
+        # This recovers venue pages that list only artist names as event titles.
+        matched_canonical, _confidence, matched_alias = title_match
+        title_compact = normalize_text(title_text, mode="compact")
+        if title_compact:
+            canonical_compact = normalize_text(matched_canonical, mode="compact")
+            alias_compact = normalize_text(matched_alias, mode="compact")
+            if title_compact in {canonical_compact, alias_compact}:
+                return (*title_match, "title")
 
     if not description_text:
         return None
