@@ -6,6 +6,7 @@ import gzip
 import json
 import logging
 import re
+import time
 from datetime import datetime, timedelta
 from urllib.parse import urlsplit, urlunsplit
 from xml.etree import ElementTree as ET
@@ -34,27 +35,58 @@ class TicketjamEventsSource(SignalSource):
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
+        cfg = self._normalize_legacy_config(cfg)
         timeout_sec = max(10, int(cfg.get("timeout_sec", 30)))
+        request_retries = max(1, int(cfg.get("request_retries", 3)))
         max_sitemaps, max_event_urls = self._resolve_limits(source, cfg)
+        max_sitemap_attempts = max(
+            max_sitemaps,
+            int(cfg.get("max_sitemap_attempts", max_sitemaps * 5)),
+        )
         future_only = bool(cfg.get("future_only", True))
         lookback_days = max(0, int(cfg.get("lookback_days", 0)))
         min_event_date = (datetime.now(JST).date() - timedelta(days=lookback_days)).isoformat()
         allowed_event_types = self._resolve_allowed_types(cfg)
 
-        sitemap_items = self._load_sitemap_index(source.source_url, timeout_sec)
+        sitemap_items = self._load_sitemap_index(
+            source.source_url, timeout_sec, request_retries
+        )
         if not sitemap_items:
             logger.warning("ticketjam: no sitemap entries from %s", source.source_url)
             return []
 
-        sitemap_urls = [loc for loc, _ in sitemap_items[:max_sitemaps] if loc]
         event_url_map: dict[str, str] = {}
-        for sitemap_url in sitemap_urls:
-            for event_url, lastmod in self._load_event_urls(sitemap_url, timeout_sec):
+        sitemap_attempts = 0
+        sitemap_successes = 0
+        for sitemap_url, _ in sitemap_items:
+            if sitemap_successes >= max_sitemaps:
+                break
+            if sitemap_attempts >= max_sitemap_attempts:
+                break
+            if not sitemap_url:
+                continue
+
+            sitemap_attempts += 1
+            rows = self._load_event_urls(sitemap_url, timeout_sec, request_retries)
+            if not rows:
+                continue
+            sitemap_successes += 1
+
+            for event_url, lastmod in rows:
                 if not self._EVENT_URL_RE.match(event_url):
                     continue
                 prev_lastmod = event_url_map.get(event_url, "")
                 if lastmod >= prev_lastmod:
                     event_url_map[event_url] = lastmod
+            if len(event_url_map) >= max_event_urls:
+                break
+
+        logger.info(
+            "ticketjam: sitemap attempts=%d successes=%d urls=%d",
+            sitemap_attempts,
+            sitemap_successes,
+            len(event_url_map),
+        )
 
         if not event_url_map:
             logger.warning("ticketjam: no event URLs after sitemap scan")
@@ -73,6 +105,7 @@ class TicketjamEventsSource(SignalSource):
                 source.source_id,
                 event_url,
                 timeout_sec,
+                request_retries=request_retries,
                 min_event_date=min_event_date,
                 future_only=future_only,
                 allowed_event_types=allowed_event_types,
@@ -93,6 +126,32 @@ class TicketjamEventsSource(SignalSource):
             return obj if isinstance(obj, dict) else {}
         except Exception:
             return {}
+
+    def _normalize_legacy_config(self, cfg: dict[str, object]) -> dict[str, object]:
+        """Upgrade old minimal config (max_sitemaps/max_event_urls only) at runtime."""
+        if not cfg:
+            return cfg
+        is_legacy = (
+            "bootstrap_max_sitemaps" not in cfg
+            and "bootstrap_max_event_urls" not in cfg
+            and "allowed_event_types" not in cfg
+            and "future_only" not in cfg
+        )
+        if not is_legacy:
+            return cfg
+
+        upgraded = dict(cfg)
+        upgraded["bootstrap_max_sitemaps"] = int(cfg.get("bootstrap_max_sitemaps", 200))
+        upgraded["bootstrap_max_event_urls"] = int(
+            cfg.get("bootstrap_max_event_urls", 1200)
+        )
+        upgraded["max_sitemaps"] = max(20, int(cfg.get("max_sitemaps", 20)))
+        upgraded["max_event_urls"] = max(120, int(cfg.get("max_event_urls", 120)))
+        upgraded["allowed_event_types"] = ["MusicEvent"]
+        upgraded["future_only"] = True
+        upgraded["lookback_days"] = int(cfg.get("lookback_days", 0))
+        logger.info("ticketjam: upgraded legacy config at runtime")
+        return upgraded
 
     def _resolve_limits(
         self, source: SignalSourceRecord, cfg: dict[str, object]
@@ -116,9 +175,9 @@ class TicketjamEventsSource(SignalSource):
         return {"MusicEvent"}
 
     def _load_sitemap_index(
-        self, index_url: str, timeout_sec: int
+        self, index_url: str, timeout_sec: int, request_retries: int
     ) -> list[tuple[str, str]]:
-        root = self._fetch_xml_root(index_url, timeout_sec)
+        root = self._fetch_xml_root(index_url, timeout_sec, request_retries)
         if root is None:
             return []
         items: list[tuple[str, str]] = []
@@ -131,9 +190,9 @@ class TicketjamEventsSource(SignalSource):
         return items
 
     def _load_event_urls(
-        self, sitemap_url: str, timeout_sec: int
+        self, sitemap_url: str, timeout_sec: int, request_retries: int
     ) -> list[tuple[str, str]]:
-        root = self._fetch_xml_root(sitemap_url, timeout_sec)
+        root = self._fetch_xml_root(sitemap_url, timeout_sec, request_retries)
         if root is None:
             return []
         items: list[tuple[str, str]] = []
@@ -144,11 +203,16 @@ class TicketjamEventsSource(SignalSource):
                 items.append((loc, lastmod))
         return items
 
-    def _fetch_xml_root(self, url: str, timeout_sec: int) -> ET.Element | None:
-        try:
-            resp = self.session.get(url, timeout=timeout_sec)
-        except Exception as exc:
-            logger.warning("ticketjam: sitemap fetch failed %s (%s)", url, exc)
+    def _fetch_xml_root(
+        self, url: str, timeout_sec: int, request_retries: int
+    ) -> ET.Element | None:
+        resp = self._get_with_retry(
+            url,
+            timeout_sec=timeout_sec,
+            request_retries=request_retries,
+            kind="sitemap",
+        )
+        if resp is None:
             return None
         if resp.status_code != 200:
             logger.warning("ticketjam: sitemap %s returned %s", url, resp.status_code)
@@ -175,15 +239,19 @@ class TicketjamEventsSource(SignalSource):
         source_id: str,
         event_url: str,
         timeout_sec: int,
+        request_retries: int,
         *,
         min_event_date: str,
         future_only: bool,
         allowed_event_types: set[str],
     ) -> SignalRecord | None:
-        try:
-            resp = self.session.get(event_url, timeout=timeout_sec)
-        except Exception as exc:
-            logger.warning("ticketjam: event fetch failed %s (%s)", event_url, exc)
+        resp = self._get_with_retry(
+            event_url,
+            timeout_sec=timeout_sec,
+            request_retries=request_retries,
+            kind="event",
+        )
+        if resp is None:
             return None
         if resp.status_code != 200:
             logger.warning("ticketjam: event %s returned %s", event_url, resp.status_code)
@@ -387,3 +455,23 @@ class TicketjamEventsSource(SignalSource):
     def _canonicalize_url(self, value: str) -> str:
         parts = urlsplit(str(value or "").strip())
         return urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
+
+    def _get_with_retry(
+        self,
+        url: str,
+        *,
+        timeout_sec: int,
+        request_retries: int,
+        kind: str,
+    ):
+        last_exc: Exception | None = None
+        for attempt in range(1, request_retries + 1):
+            try:
+                return self.session.get(url, timeout=timeout_sec)
+            except Exception as exc:
+                last_exc = exc
+                if attempt < request_retries:
+                    time.sleep(min(2.0, 0.4 * attempt))
+                    continue
+        logger.warning("ticketjam: %s fetch failed %s (%s)", kind, url, last_exc)
+        return None

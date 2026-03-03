@@ -1,6 +1,6 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-03-03
+最終更新: 2026-03-04
 
 ## Done（直近完了）
 - `events.sqlite` に `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値 + 辞書正規化 + 推論結果を同期するよう更新（BCL側が sqlite 単体で利用可能）
@@ -21,6 +21,8 @@
 - UIに `全国イベント参考（二次流通）` を追加し、ニュースビューとは別枠で表示するよう更新
 - `ticketjam_events` を未来開催の `MusicEvent` 限定へ変更し、初回bootstrap（広め取得）→以後増分巡回（新規+更新）へ運用を変更
 - `ticketjam_events` は `prune_missing=false` とし、差分巡回で未取得行を消さない代わりに、開催終了済みデータを更新時に自動削除するよう更新
+- event_signals 更新workflowを分離し、ニュース（STARTO/Kstyle）と Ticketjam（二次流通）を別ジョブで実行する運用へ変更
+- `publish_external_events_assets.yml` の `workflow_run` トリガーをニュース/ Ticketjam 両workflowに対応させた
 
 ## Doing
 - なし（変更発生時に更新）

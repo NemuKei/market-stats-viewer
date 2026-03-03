@@ -101,12 +101,16 @@ uv run streamlit run app.py
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
 
 ## 速報データ自動更新
-- Workflow: `.github/workflows/update_signals.yml`
+- Workflow:
+  - `.github/workflows/update_signals.yml`（ニュース: STARTO/Kstyle）
+  - `.github/workflows/update_signals_ticketjam.yml`（二次流通: Ticketjam）
 - Trigger:
-  - `schedule`: `0 */12 * * *`（12時間ごと UTC）
+  - ニュース: `schedule` = `0 */12 * * *`（12時間ごと UTC）
+  - Ticketjam: `schedule` = `15 3 * * *`（毎日 UTC）
   - `workflow_dispatch`: 手動実行可
 - 実行コマンド:
-  - `uv run python -m scripts.update_event_signals_data`
+  - ニュース: `uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music`
+  - Ticketjam: `uv run python -m scripts.update_event_signals_data --only ticketjam_events`
 - 差分がある場合のみ commit/push
 
 ## ワークスペース索引

@@ -108,6 +108,7 @@ DEFAULT_SOURCES = [
                 "max_sitemaps": 20,
                 "max_event_urls": 120,
                 "timeout_sec": 30,
+                "request_retries": 3,
                 "allowed_event_types": ["MusicEvent"],
                 "future_only": True,
                 "lookback_days": 0,

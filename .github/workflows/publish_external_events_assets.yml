@@ -5,7 +5,8 @@ on:
   workflow_run:
     workflows:
       - Update events official data
-      - Update event signals data
+      - Update event signals data (News)
+      - Update event signals data (Ticketjam)
     types:
       - completed
 

@@ -159,8 +159,9 @@
   - `--only starto_concert,kstyle_music,ticketjam_events`
   - `--verbose`
 - Workflow:
-  - `.github/workflows/update_signals.yml`
-  - `workflow_dispatch` + 定期実行（12時間ごと）
+  - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
+  - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
+  - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
 
 ## Addendum (2026-02-27) Entity Alias Governance
@@ -183,7 +184,7 @@
 ## Addendum (2026-02-25) External Events Release Assets
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:
-  - `workflow_run`（`Update events official data` / `Update event signals data` が `main` で成功したとき）
+  - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` が `main` で成功したとき）
   - `workflow_dispatch`（手動再公開）
 - Release:
   - tag: `external-events-latest`
