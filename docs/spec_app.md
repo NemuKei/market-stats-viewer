@@ -199,6 +199,7 @@
 - サイドバー `参考情報` に以下を並列表示する（タブ化しない）。
   - `全国イベント情報（会場公式）`
   - `全国イベント速報（ニュース）`
+  - `全国イベント参考（二次流通）`
 
 ### 全国イベント情報（会場公式）
 - 既存 `render_events_view()` を継続利用する。
@@ -210,7 +211,7 @@
 - アーティスト名は辞書（`seed + jp.seed + manual`）により canonical 名へ正規化する。
 
 ### 全国イベント速報（ニュース）
-- 新規 `render_event_signals_view()` を追加する。
+- `render_event_signals_view(view_mode="news")` を利用する。
 - 入力データ: `data/event_signals.sqlite`（`signals` + `signal_sources`）
 - フィルタ:
   - 期間（イベント日: 開始/終了の年・月を分離して選択、月単位で絞り込み）
@@ -226,3 +227,10 @@
   - イベント情報（日時/会場要約）
 - エクスポート（固定スキーマ）:
   - `signal_uid, source_id, source_name, published_at_utc, score, title, url, snippet, labels_json, updated_at_utc`
+
+### 全国イベント参考（二次流通）
+- `render_event_signals_view(view_mode="market")` を利用する。
+- 入力データ: `data/event_signals.sqlite` の `source_id=ticketjam_events` のみ
+- 収集対象は「イベント日・会場・アーティスト・イベント名」が揃うレコードに限定する。
+- 注意文を画面上に固定表示する:
+  - 二次流通サイト由来の参考情報であり、最終確認は公式情報で行う。

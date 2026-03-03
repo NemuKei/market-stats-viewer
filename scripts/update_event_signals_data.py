@@ -30,6 +30,7 @@ from .signals.entity_aliases import (
 from .signals.sources.base import SignalSource, canonical_labels_json, compute_content_hash
 from .signals.sources.kstyle import KstyleMusicSource
 from .signals.sources.starto import StartoConcertSource
+from .signals.sources.ticketjam import TicketjamEventsSource
 from .signals.types import SignalRecord, SignalSourceRecord
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -94,6 +95,16 @@ DEFAULT_SOURCES = [
             {"pages": 2, "category": "music"}, ensure_ascii=False
         ),
     },
+    {
+        "source_id": "ticketjam_events",
+        "source_name": "Ticketjam Events (Secondary)",
+        "source_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
+        "source_type": "sitemap_events",
+        "config_json": json.dumps(
+            {"max_sitemaps": 20, "max_event_urls": 25, "timeout_sec": 30},
+            ensure_ascii=False,
+        ),
+    },
 ]
 
 
@@ -136,6 +147,7 @@ class ThrottledSession:
 SOURCE_MAP: dict[str, type[SignalSource]] = {
     "starto_concert": StartoConcertSource,
     "kstyle_music": KstyleMusicSource,
+    "ticketjam_events": TicketjamEventsSource,
 }
 
 

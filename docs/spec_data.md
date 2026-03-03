@@ -96,14 +96,16 @@
 - `artist_name_resolved`: BCL/表示向けの解決済みアーティスト名（`performers` は取得元生値を保持）
 - `artist_confidence`: `source` / `source_normalized` / `high` / `medium` / `low`
 
-## 追補（2026-02-23）イベント速報（ニュースシグナル）
+## 追補（2026-02-23）イベント速報/参考シグナル
 - SSOT: `data/event_signals.sqlite`（`events.sqlite` とは分離）
 - 対象範囲（BCL向け注記）:
-  - 現状の収集ソースは `starto_concert` / `kstyle_music` のため、音楽ライブ/コンサート中心
+  - 収集ソースは `starto_concert` / `kstyle_music` / `ticketjam_events`
+  - `starto_concert` / `kstyle_music` はニュース由来、`ticketjam_events` は二次流通由来の参考データ
   - 全カテゴリ横断の網羅DBではない（野球/その他イベントの網羅は目的外）
 - 保存方針:
   - 本文は保存しない（ニュース全文のDB保存禁止）
   - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
+  - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
 
 ### テーブル: `signal_sources`
 - `source_id` TEXT PRIMARY KEY

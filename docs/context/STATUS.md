@@ -1,6 +1,6 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-02-27
+最終更新: 2026-03-03
 
 ## Done（直近完了）
 - `events.sqlite` に `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値 + 辞書正規化 + 推論結果を同期するよう更新（BCL側が sqlite 単体で利用可能）
@@ -17,6 +17,8 @@
 - アーティスト辞書seedの月次Wikidata更新workflowを追加し、差分なし行の `updated_at` 保持で不要コミットを抑制
 - GitHub Actions の会場公式イベント更新を `update_events_official.yml` として分離し、`update_data.yml` はcore統計更新専用に整理
 - 会場公式コンサート抽出のQA修正として、曖昧alias誤補完の除外・未確定performers判定・非音楽キーワード優先分類を追加
+- 二次流通由来の参考ソース `ticketjam_events` を event_signals に追加し、必須4項目（イベント日・会場・アーティスト・イベント名）を満たすレコードのみ保存するよう更新
+- UIに `全国イベント参考（二次流通）` を追加し、ニュースビューとは別枠で表示するよう更新
 
 ## Doing
 - なし（変更発生時に更新）

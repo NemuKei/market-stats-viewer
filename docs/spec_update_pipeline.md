@@ -124,19 +124,21 @@
   - `artist_registry.manual.csv` は workflow で上書きしない。
   - 同一 `artist_id` が seed と manual にある場合、利用時は manual を優先する（ローダーで後勝ちマージ）。
 
-## Addendum (2026-02-23) Event Signals (News)
+## Addendum (2026-02-23) Event Signals (News / Secondary Reference)
 - Script: `python -m scripts.update_event_signals_data`
 - Update target DB: `data/event_signals.sqlite`
 - Scope note (for BCL consumers):
-  - `event_signals.sqlite` is a news-signal feed focused on music live/concert topics.
+  - `event_signals.sqlite` stores both news signals and secondary-market reference signals.
   - It is not a complete multi-category events master DB.
 - Sources (MVP):
   - `starto_concert`（STARTO 公演情報 / CONCERT）
   - `kstyle_music`（Kstyle MUSIC）
+  - `ticketjam_events`（Ticketjam 公開sitemap由来、二次流通参考）
 - Source-specific extraction policy:
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
-  - 両sourceとも日本公演のみ採用（都道府県/日本開催キーワードで判定）
+  - `ticketjam_events`: `https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz` からイベントURLを収集し、イベントページの JSON-LD（MusicEvent）から `イベント日 / 会場 / アーティスト / イベント名` が揃うもののみ採用する
+  - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
 - No-op:
@@ -149,7 +151,7 @@
   - User-Agent: `market-stats-viewer-signals-bot/1.0 (+https://deltahelmlab.com/)`
   - ドメイン単位レート制限（全GETに適用）
 - CLI:
-  - `--only starto_concert,kstyle_music`
+  - `--only starto_concert,kstyle_music,ticketjam_events`
   - `--verbose`
 - Workflow:
   - `.github/workflows/update_signals.yml`

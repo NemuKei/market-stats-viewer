@@ -61,3 +61,4 @@
 - D-20260225-006 | 外部連携（BCL）向け配布は GitHub Release assets（tag: `external-events-latest`）を正とし、`events.sqlite` / `event_signals.sqlite` / `manifest.json` を workflow_run で自動上書き公開する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260227-001 | イベント速報（ニュース）の artist/venue は辞書正規化を保存時に適用し、原文は `raw_*` として保持する。会場は `venue_id` 固定で `venue_registry` を正本、別名は `venue_aliases` 管理とし、名称変更時は旧名を alias へ移送する。Wikidata定期更新はアーティストのみ継続し、会場は手動レビュー運用とする | status: applied | spec_link: docs/spec_data.md
 - D-20260227-002 | BCL連携向けに `events.sqlite` 内で解決済みアーティスト名を完結させる。`events` テーブルへ `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値・辞書正規化・推論結果を統合同期する | status: applied | spec_link: docs/spec_data.md
+- D-20260303-001 | 二次流通由来の参考情報を会場公式/ニュースと分離して扱うため、`event_signals` に `ticketjam_events` を追加する。公開sitemap→イベントJSON-LDから `イベント日/会場/アーティスト/イベント名` が揃うレコードのみ採用し、UIは「全国イベント参考（二次流通）」として別枠表示する | status: applied | spec_link: docs/spec_app.md

@@ -1896,7 +1896,9 @@ DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
 DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570"
 DATASET_LABEL_EVENTS_OFFICIAL = "全国イベント情報（会場公式）"
 DATASET_LABEL_EVENTS_SIGNALS = "全国イベント速報（ニュース）"
+DATASET_LABEL_EVENTS_MARKET = "全国イベント参考（二次流通）"
 DATASET_LABEL_EVENTS = DATASET_LABEL_EVENTS_OFFICIAL
+EVENT_SIGNALS_MARKET_SOURCE_IDS = {"ticketjam_events"}
 
 EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
@@ -3336,8 +3338,9 @@ def normalize_artist_name_with_lookup(
     return text
 
 
-def render_event_signals_view() -> None:
-    st.title("全国イベント速報（ニュース）")
+def render_event_signals_view(view_mode: str = "news") -> None:
+    is_market_view = view_mode == "market"
+    st.title("全国イベント参考（二次流通）" if is_market_view else "全国イベント速報（ニュース）")
 
     df_signals, df_sources = load_event_signals_data()
     if df_signals.empty:
@@ -3349,11 +3352,24 @@ def render_event_signals_view() -> None:
 
     source_master = df_sources[["source_id", "source_name"]].drop_duplicates()
     df = df_signals.merge(source_master, on="source_id", how="left")
+    if is_market_view:
+        df = df[df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS)].copy()
+        st.caption(
+            "二次流通サイト由来の参考情報です。公式発表ではないため、最終確認は公式情報で行ってください。"
+        )
+    else:
+        df = df[~df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS)].copy()
 
     published_utc = pd.to_datetime(df["published_at_utc"], utc=True, errors="coerce")
     df = df[published_utc.notna()].copy()
     if df.empty:
-        st.warning("表示可能な速報データがありません。")
+        if is_market_view:
+            st.warning(
+                "表示可能な二次流通データがありません。"
+                "`uv run python -m scripts.update_event_signals_data --only ticketjam_events` を実行してください。"
+            )
+        else:
+            st.warning("表示可能な速報データがありません。")
         return
 
     df["published_dt_utc"] = published_utc[published_utc.notna()]
@@ -3680,13 +3696,16 @@ def render_event_signals_view() -> None:
     source_name_to_id = {
         str(row["source_name"]): str(row["source_id"]) for row in source_options
     }
-    selected_source_names = st.multiselect(
-        "ソース",
-        options=list(source_name_to_id.keys()),
-        default=list(source_name_to_id.keys()),
-        key="signals_sources",
-    )
-    selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
+    if is_market_view:
+        selected_source_ids = list(source_name_to_id.values())
+    else:
+        selected_source_names = st.multiselect(
+            "ソース",
+            options=list(source_name_to_id.keys()),
+            default=list(source_name_to_id.keys()),
+            key="signals_sources",
+        )
+        selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
 
     pref_options = sorted(
         [
@@ -3738,7 +3757,8 @@ def render_event_signals_view() -> None:
     filtered["new_badge"] = filtered["is_new_24h"].map(lambda v: "NEW" if bool(v) else "")
 
     new_count = int(filtered["is_new_24h"].sum()) if not filtered.empty else 0
-    st.markdown(f"**{len(filtered)}** 件の速報")
+    row_label = "イベント候補" if is_market_view else "速報"
+    st.markdown(f"**{len(filtered)}** 件の{row_label}")
     if new_count > 0:
         st.success(f"新規イベント（直近24時間）: {new_count} 件")
     else:
@@ -4261,6 +4281,7 @@ def main() -> None:
         _REF_OPTIONS = [
             DATASET_LABEL_EVENTS_OFFICIAL,
             DATASET_LABEL_EVENTS_SIGNALS,
+            DATASET_LABEL_EVENTS_MARKET,
         ]
 
         if "_active_dataset" not in st.session_state:
@@ -4316,7 +4337,11 @@ def main() -> None:
         return
 
     if dataset_type == DATASET_LABEL_EVENTS_SIGNALS:
-        render_event_signals_view()
+        render_event_signals_view(view_mode="news")
+        return
+
+    if dataset_type == DATASET_LABEL_EVENTS_MARKET:
+        render_event_signals_view(view_mode="market")
         return
 
     render_airport_volume_view()
