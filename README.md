@@ -31,6 +31,8 @@ uv venv
 # macOS/Linux: source .venv/bin/activate
 uv sync
 
+uv run ruff check .
+
 uv run python -m scripts.update_data
 uv run python -m scripts.update_events_data
 uv run python -m scripts.update_event_signals_data
