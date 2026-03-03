@@ -64,10 +64,19 @@ uv run streamlit run app.py
 - データ: `data/event_signals.sqlite`（signal_sources + signals テーブル）
 - 更新コマンド:
   - `uv run python -m scripts.update_event_signals_data`
-  - オプション: `--only starto_concert,kstyle_music`, `--verbose`
+  - オプション: `--only starto_concert,kstyle_music,ticketjam_events`, `--verbose`
 - 保存方針:
   - ニュース本文は保存しない
   - 保存対象は掲載日時・タイトル・URL・短い抜粋（取得できる場合のみ）
+
+## 全国イベント参考（二次流通）
+- サイドバーの `参考情報` → `全国イベント参考（二次流通）` で表示
+- ソース:
+  - `ticketjam_events`（公開sitemap由来）
+- 取得方針:
+  - `MusicEvent` かつ未来開催のみ
+  - 必須4項目（イベント日・会場・アーティスト・イベント名）が揃う行のみ保存
+  - 初回は広め取得（bootstrap）、以後は増分巡回（新規 + 更新）
 
 ## 旅行・観光消費動向調査（TCD）拡張
 - サイドバーの `統計の種類` で以下を切替:

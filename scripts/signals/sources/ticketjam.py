@@ -6,6 +6,7 @@ import gzip
 import json
 import logging
 import re
+from datetime import datetime, timedelta
 from urllib.parse import urlsplit, urlunsplit
 from xml.etree import ElementTree as ET
 
@@ -13,6 +14,7 @@ from bs4 import BeautifulSoup
 
 from ..types import SignalRecord, SignalSourceRecord
 from .base import (
+    JST,
     SignalSource,
     canonical_labels_json,
     compute_content_hash,
@@ -33,8 +35,11 @@ class TicketjamEventsSource(SignalSource):
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
         timeout_sec = max(10, int(cfg.get("timeout_sec", 30)))
-        max_sitemaps = max(1, int(cfg.get("max_sitemaps", 20)))
-        max_event_urls = max(1, int(cfg.get("max_event_urls", 25)))
+        max_sitemaps, max_event_urls = self._resolve_limits(source, cfg)
+        future_only = bool(cfg.get("future_only", True))
+        lookback_days = max(0, int(cfg.get("lookback_days", 0)))
+        min_event_date = (datetime.now(JST).date() - timedelta(days=lookback_days)).isoformat()
+        allowed_event_types = self._resolve_allowed_types(cfg)
 
         sitemap_items = self._load_sitemap_index(source.source_url, timeout_sec)
         if not sitemap_items:
@@ -64,7 +69,14 @@ class TicketjamEventsSource(SignalSource):
 
         records: list[SignalRecord] = []
         for event_url in event_urls:
-            rec = self._fetch_event_signal(source.source_id, event_url, timeout_sec)
+            rec = self._fetch_event_signal(
+                source.source_id,
+                event_url,
+                timeout_sec,
+                min_event_date=min_event_date,
+                future_only=future_only,
+                allowed_event_types=allowed_event_types,
+            )
             if rec:
                 records.append(rec)
 
@@ -81,6 +93,27 @@ class TicketjamEventsSource(SignalSource):
             return obj if isinstance(obj, dict) else {}
         except Exception:
             return {}
+
+    def _resolve_limits(
+        self, source: SignalSourceRecord, cfg: dict[str, object]
+    ) -> tuple[int, int]:
+        if not source.last_signature:
+            max_sitemaps = max(1, int(cfg.get("bootstrap_max_sitemaps", 200)))
+            max_event_urls = max(1, int(cfg.get("bootstrap_max_event_urls", 1200)))
+            return max_sitemaps, max_event_urls
+        max_sitemaps = max(1, int(cfg.get("max_sitemaps", 20)))
+        max_event_urls = max(1, int(cfg.get("max_event_urls", 120)))
+        return max_sitemaps, max_event_urls
+
+    def _resolve_allowed_types(self, cfg: dict[str, object]) -> set[str]:
+        raw = cfg.get("allowed_event_types", ["MusicEvent"])
+        if isinstance(raw, list):
+            values = {str(v).strip() for v in raw if str(v).strip()}
+            if values:
+                return values
+        if isinstance(raw, str) and raw.strip():
+            return {raw.strip()}
+        return {"MusicEvent"}
 
     def _load_sitemap_index(
         self, index_url: str, timeout_sec: int
@@ -138,7 +171,14 @@ class TicketjamEventsSource(SignalSource):
                 return None
 
     def _fetch_event_signal(
-        self, source_id: str, event_url: str, timeout_sec: int
+        self,
+        source_id: str,
+        event_url: str,
+        timeout_sec: int,
+        *,
+        min_event_date: str,
+        future_only: bool,
+        allowed_event_types: set[str],
     ) -> SignalRecord | None:
         try:
             resp = self.session.get(event_url, timeout=timeout_sec)
@@ -151,7 +191,7 @@ class TicketjamEventsSource(SignalSource):
 
         resp.encoding = resp.apparent_encoding or "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
-        event_payload = self._extract_event_payload(soup)
+        event_payload = self._extract_event_payload(soup, allowed_event_types)
         if not event_payload:
             return None
 
@@ -161,6 +201,8 @@ class TicketjamEventsSource(SignalSource):
 
         start_date, start_time = self._parse_start(event_payload.get("startDate"))
         if not start_date:
+            return None
+        if future_only and start_date < min_event_date:
             return None
 
         end_date, _ = self._parse_start(event_payload.get("endDate"))
@@ -216,7 +258,9 @@ class TicketjamEventsSource(SignalSource):
         rec.content_hash = compute_content_hash(rec)
         return rec
 
-    def _extract_event_payload(self, soup: BeautifulSoup) -> dict[str, object]:
+    def _extract_event_payload(
+        self, soup: BeautifulSoup, allowed_event_types: set[str]
+    ) -> dict[str, object]:
         for script in soup.find_all("script", type="application/ld+json"):
             raw = (script.string or script.get_text() or "").strip()
             if not raw:
@@ -225,30 +269,51 @@ class TicketjamEventsSource(SignalSource):
                 data = json.loads(raw)
             except Exception:
                 continue
-            events = self._collect_event_nodes(data)
+            events = self._collect_event_nodes(data, allowed_event_types)
             if events:
                 return events[0]
         return {}
 
-    def _collect_event_nodes(self, node: object) -> list[dict[str, object]]:
+    def _collect_event_nodes(
+        self, node: object, allowed_event_types: set[str] | None = None
+    ) -> list[dict[str, object]]:
         out: list[dict[str, object]] = []
         if isinstance(node, list):
             for item in node:
-                out.extend(self._collect_event_nodes(item))
+                out.extend(self._collect_event_nodes(item, allowed_event_types))
             return out
         if not isinstance(node, dict):
             return out
 
-        raw_type = node.get("@type")
-        if isinstance(raw_type, list):
-            types = [str(t) for t in raw_type]
-        else:
-            types = [str(raw_type or "")]
-        if any(t in ("Event", "MusicEvent", "SportsEvent") for t in types):
+        types = self._parse_event_types(node.get("@type"))
+        if self._is_allowed_event_types(types, allowed_event_types):
             out.append(node)
         if "@graph" in node:
-            out.extend(self._collect_event_nodes(node.get("@graph")))
+            out.extend(self._collect_event_nodes(node.get("@graph"), allowed_event_types))
         return out
+
+    def _parse_event_types(self, raw_type: object) -> set[str]:
+        if isinstance(raw_type, list):
+            raw_values = [str(t).strip() for t in raw_type if str(t).strip()]
+        else:
+            text = str(raw_type or "").strip()
+            raw_values = [text] if text else []
+
+        values: set[str] = set()
+        for value in raw_values:
+            values.add(value)
+            values.add(value.rsplit("/", 1)[-1])
+            values.add(value.rsplit("#", 1)[-1])
+        return {v for v in values if v}
+
+    def _is_allowed_event_types(
+        self, types: set[str], allowed_event_types: set[str] | None
+    ) -> bool:
+        if not types:
+            return False
+        if not allowed_event_types:
+            return any(t in {"Event", "MusicEvent", "SportsEvent"} for t in types)
+        return bool(types.intersection(allowed_event_types))
 
     def _parse_start(self, value: object) -> tuple[str, str | None]:
         if value is None:

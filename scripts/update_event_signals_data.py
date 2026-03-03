@@ -12,11 +12,12 @@ import argparse
 import hashlib
 import json
 import logging
+import re
 import sqlite3
 import sys
 import time
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -101,7 +102,18 @@ DEFAULT_SOURCES = [
         "source_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
         "source_type": "sitemap_events",
         "config_json": json.dumps(
-            {"max_sitemaps": 20, "max_event_urls": 25, "timeout_sec": 30},
+            {
+                "bootstrap_max_sitemaps": 200,
+                "bootstrap_max_event_urls": 1200,
+                "max_sitemaps": 20,
+                "max_event_urls": 120,
+                "timeout_sec": 30,
+                "allowed_event_types": ["MusicEvent"],
+                "future_only": True,
+                "lookback_days": 0,
+                "prune_missing": False,
+                "drop_past_events": True,
+            },
             ensure_ascii=False,
         ),
     },
@@ -349,6 +361,68 @@ def clear_source_for_rebuild(conn: sqlite3.Connection, source_id: str) -> None:
     )
 
 
+def load_source_config(config_json: str | None) -> dict[str, object]:
+    if not isinstance(config_json, str) or not config_json.strip():
+        return {}
+    try:
+        parsed = json.loads(config_json)
+    except Exception:
+        return {}
+    return parsed if isinstance(parsed, dict) else {}
+
+
+def should_prune_missing_for_source(source: SignalSourceRecord) -> bool:
+    cfg = load_source_config(source.config_json)
+    if source.source_id == "ticketjam_events":
+        return bool(cfg.get("prune_missing", False))
+    return bool(cfg.get("prune_missing", True))
+
+
+def should_drop_past_events_for_source(source: SignalSourceRecord) -> bool:
+    cfg = load_source_config(source.config_json)
+    if source.source_id == "ticketjam_events":
+        return bool(cfg.get("drop_past_events", True))
+    return bool(cfg.get("drop_past_events", False))
+
+
+def prune_past_event_signals(
+    conn: sqlite3.Connection,
+    source_id: str,
+    today_iso: str,
+) -> int:
+    cur = conn.execute(
+        "SELECT signal_uid, labels_json FROM signals WHERE source_id = ?",
+        (source_id,),
+    )
+    delete_uids: list[tuple[str]] = []
+    for uid, labels_json in cur.fetchall():
+        if not isinstance(labels_json, str) or not labels_json.strip():
+            continue
+        try:
+            labels = json.loads(labels_json)
+        except Exception:
+            continue
+        if not isinstance(labels, dict):
+            continue
+
+        end_date = str(
+            labels.get("event_end_date") or labels.get("event_start_date") or ""
+        ).strip()
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", end_date):
+            continue
+        if end_date < today_iso:
+            delete_uids.append((str(uid),))
+
+    if not delete_uids:
+        return 0
+
+    conn.executemany(
+        "DELETE FROM signals WHERE signal_uid = ?",
+        delete_uids,
+    )
+    return len(delete_uids)
+
+
 def normalize_signal_labels(
     signals: list[SignalRecord],
     artist_keep_map: dict[str, str],
@@ -534,26 +608,44 @@ def main() -> None:
                 logger.info("  rebuild: cleared existing rows and reset last_signature")
 
             sig = compute_source_signature(signals)
-            pruned = prune_missing_signals(conn, source.source_id, signals)
-            if pruned > 0:
-                logger.info("  pruned %d stale signal(s)", pruned)
+            prune_missing_enabled = should_prune_missing_for_source(source)
+            pruned = 0
+            if prune_missing_enabled:
+                pruned = prune_missing_signals(conn, source.source_id, signals)
+                if pruned > 0:
+                    logger.info("  pruned %d stale signal(s)", pruned)
+            else:
+                logger.info("  prune_missing disabled for this source")
+
+            pruned_past = 0
+            if should_drop_past_events_for_source(source):
+                pruned_past = prune_past_event_signals(
+                    conn,
+                    source.source_id,
+                    today_iso=date.today().isoformat(),
+                )
+                if pruned_past > 0:
+                    logger.info("  pruned %d past signal(s)", pruned_past)
+
             if not args.rebuild and source.last_signature == sig:
-                if pruned == 0:
+                if pruned == 0 and pruned_past == 0:
                     logger.info("  no-op: signature unchanged")
                 else:
                     conn.commit()
                 success_count += 1
+                total_changed += pruned + pruned_past
                 continue
 
             changed = upsert_signals(conn, signals)
             update_source_signature(conn, source.source_id, sig)
             conn.commit()
 
-            total_changed += changed + pruned
+            total_changed += changed + pruned + pruned_past
             logger.info(
-                "  upserted %d changed signal(s), pruned %d stale signal(s)",
+                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s)",
                 changed,
                 pruned,
+                pruned_past,
             )
             success_count += 1
 
