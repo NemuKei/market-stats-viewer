@@ -231,6 +231,7 @@
 ### 全国イベント参考（二次流通）
 - `render_event_signals_view(view_mode="market")` を利用する。
 - 入力データ: `data/event_signals.sqlite` の `source_id=ticketjam_events` のみ
-- 収集対象は「未来開催」かつ「パンくず `categorie_groups` が `live_domestic` / `live_international` のコンサート系」かつ「`Event` / `MusicEvent` で、イベント日・会場・アーティスト・イベント名が揃うレコード」に限定する。
+- 収集対象は「未来開催」かつ「パンくず `categorie_groups` が `live_domestic` / `live_international` のコンサート系」かつ「音楽系 `categories` slug に一致」かつ「`Event` / `MusicEvent` で、イベント日・会場・アーティスト・イベント名が揃うレコード」に限定する。
+- 非ライブ系キーワード（例: 漫才・舞台挨拶・花火・コレクション等）を含む行は保存しない。`male-artist` / `female-artist` 系はライブ系キーワードを含む場合のみ採用する。
 - 注意文を画面上に固定表示する:
   - 二次流通サイト由来の参考情報であり、最終確認は公式情報で行う。

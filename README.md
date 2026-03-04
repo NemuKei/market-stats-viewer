@@ -75,6 +75,8 @@ uv run streamlit run app.py
   - `ticketjam_events`（公開sitemap由来）
 - 取得方針:
   - `Event` / `MusicEvent` を対象にしつつ、`categorie_groups` が `live_domestic` / `live_international` のコンサート系のみ採用
+  - `categories` は音楽系 slug（`idol-music` / `band-music` / `classical-music` など）に限定し、非ライブ系キーワード（例: 漫才・舞台挨拶・花火・コレクション等）を除外
+  - `male-artist` / `female-artist` 系の曖昧カテゴリは、タイトル/アーティストにライブ系キーワード（`live` / `tour` / `concert` など）がある場合のみ採用
   - 未来開催のみ
   - 必須4項目（イベント日・会場・アーティスト・イベント名）が揃う行のみ保存
   - 初回は広め取得（bootstrap）、以後は増分巡回（新規 + 更新, 既定 `max_sitemaps=120`, `max_event_urls=400`）

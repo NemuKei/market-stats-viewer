@@ -114,10 +114,80 @@ DEFAULT_SOURCES = [
                     "live_domestic",
                     "live_international",
                 ],
+                "allowed_category_slugs": [
+                    "idol-music",
+                    "band-music",
+                    "foreign-band-music",
+                    "classical-music",
+                    "foreign-classical-music",
+                    "jazz-and-fusion",
+                    "foreign-jazz-and-fusion",
+                    "anime-music",
+                    "music-event-and-festival",
+                    "male-artist",
+                    "female-artist",
+                    "foreign-male-artist",
+                    "foreign-female-artist",
+                ],
+                "ambiguous_category_slugs": [
+                    "male-artist",
+                    "female-artist",
+                    "foreign-male-artist",
+                    "foreign-female-artist",
+                ],
+                "music_include_keywords": [
+                    "ライブ",
+                    "コンサート",
+                    "公演",
+                    "ツアー",
+                    "フェス",
+                    "festival",
+                    "tour",
+                    "live",
+                    "concert",
+                    "oneman",
+                    "one man",
+                    "showcase",
+                    "band",
+                    "リサイタル",
+                    "オーケストラ",
+                    "音楽",
+                ],
+                "non_live_exclude_keywords": [
+                    "お笑い",
+                    "漫才",
+                    "舞台挨拶",
+                    "試写会",
+                    "トークショー",
+                    "講演会",
+                    "朗読劇",
+                    "演劇",
+                    "ミュージカル",
+                    "歌劇",
+                    "宝塚",
+                    "落語",
+                    "展示",
+                    "展覧",
+                    "博覧",
+                    "コレクション",
+                    "ファッション",
+                    "花火",
+                    "サッカー",
+                    "football",
+                    "dream match",
+                    "格闘技",
+                    "プロレス",
+                    "野球",
+                    "baseball",
+                    "試合",
+                    "対戦",
+                    "グランプリ",
+                ],
                 "future_only": True,
                 "lookback_days": 0,
                 "prune_missing": False,
                 "drop_past_events": True,
+                "prune_nonconforming": True,
             },
             ensure_ascii=False,
         ),
@@ -404,6 +474,13 @@ def should_drop_past_events_for_source(source: SignalSourceRecord) -> bool:
     return bool(cfg.get("drop_past_events", False))
 
 
+def should_prune_nonconforming_for_source(source: SignalSourceRecord) -> bool:
+    cfg = load_source_config(source.config_json)
+    if source.source_id == "ticketjam_events":
+        return bool(cfg.get("prune_nonconforming", True))
+    return bool(cfg.get("prune_nonconforming", False))
+
+
 def prune_past_event_signals(
     conn: sqlite3.Connection,
     source_id: str,
@@ -440,6 +517,196 @@ def prune_past_event_signals(
         delete_uids,
     )
     return len(delete_uids)
+
+
+def _to_str_set(raw: object, default_values: set[str]) -> set[str]:
+    if isinstance(raw, list):
+        values = {str(v).strip().lower() for v in raw if str(v).strip()}
+        if values:
+            return values
+    if isinstance(raw, str) and raw.strip():
+        return {raw.strip().lower()}
+    return {v.lower() for v in default_values}
+
+
+def prune_ticketjam_nonconforming_signals(
+    conn: sqlite3.Connection,
+    source: SignalSourceRecord,
+) -> int:
+    if source.source_id != "ticketjam_events":
+        return 0
+
+    cfg = load_source_config(source.config_json)
+    allowed_groups = _to_str_set(
+        cfg.get("allowed_category_groups"),
+        {"live_domestic", "live_international"},
+    )
+    allowed_slugs = _to_str_set(
+        cfg.get("allowed_category_slugs"),
+        {
+            "idol-music",
+            "band-music",
+            "foreign-band-music",
+            "classical-music",
+            "foreign-classical-music",
+            "jazz-and-fusion",
+            "foreign-jazz-and-fusion",
+            "anime-music",
+            "music-event-and-festival",
+            "male-artist",
+            "female-artist",
+            "foreign-male-artist",
+            "foreign-female-artist",
+        },
+    )
+    ambiguous_slugs = _to_str_set(
+        cfg.get("ambiguous_category_slugs"),
+        {
+            "male-artist",
+            "female-artist",
+            "foreign-male-artist",
+            "foreign-female-artist",
+        },
+    )
+    music_include_keywords = _to_str_set(
+        cfg.get("music_include_keywords"),
+        {
+            "ライブ",
+            "コンサート",
+            "公演",
+            "ツアー",
+            "フェス",
+            "festival",
+            "tour",
+            "live",
+            "concert",
+            "oneman",
+            "one man",
+            "showcase",
+            "band",
+            "リサイタル",
+            "オーケストラ",
+            "音楽",
+        },
+    )
+    non_live_exclude_keywords = _to_str_set(
+        cfg.get("non_live_exclude_keywords"),
+        {
+            "お笑い",
+            "漫才",
+            "舞台挨拶",
+            "試写会",
+            "トークショー",
+            "講演会",
+            "朗読劇",
+            "演劇",
+            "ミュージカル",
+            "歌劇",
+            "宝塚",
+            "落語",
+            "展示",
+            "展覧",
+            "博覧",
+            "コレクション",
+            "ファッション",
+            "花火",
+            "サッカー",
+            "football",
+            "dream match",
+            "格闘技",
+            "プロレス",
+            "野球",
+            "baseball",
+            "試合",
+            "対戦",
+            "グランプリ",
+        },
+    )
+
+    cur = conn.execute(
+        "SELECT signal_uid, title, labels_json FROM signals WHERE source_id = ?",
+        (source.source_id,),
+    )
+    delete_uids: list[tuple[str]] = []
+    for signal_uid, title, labels_json in cur.fetchall():
+        if not isinstance(labels_json, str) or not labels_json.strip():
+            delete_uids.append((str(signal_uid),))
+            continue
+        try:
+            labels = json.loads(labels_json)
+        except Exception:
+            delete_uids.append((str(signal_uid),))
+            continue
+        if not isinstance(labels, dict):
+            delete_uids.append((str(signal_uid),))
+            continue
+
+        group = str(labels.get("ticketjam_category_group") or "").strip().lower()
+        slug = str(labels.get("ticketjam_category_slug") or "").strip().lower()
+        artist = str(labels.get("artist_name") or "").strip()
+        text = f"{str(title or '')} {artist}".lower()
+
+        invalid = False
+        if allowed_groups and group not in allowed_groups:
+            invalid = True
+        if allowed_slugs and slug not in allowed_slugs:
+            invalid = True
+        if any(keyword in text for keyword in non_live_exclude_keywords):
+            invalid = True
+        if slug in ambiguous_slugs and not any(
+            keyword in text for keyword in music_include_keywords
+        ):
+            invalid = True
+        if invalid:
+            delete_uids.append((str(signal_uid),))
+
+    if not delete_uids:
+        return 0
+    conn.executemany("DELETE FROM signals WHERE signal_uid = ?", delete_uids)
+    return len(delete_uids)
+
+
+def prune_ticketjam_duplicate_event_ids(
+    conn: sqlite3.Connection,
+    source_id: str,
+) -> int:
+    if source_id != "ticketjam_events":
+        return 0
+    cur = conn.execute(
+        """
+        SELECT signal_uid, url, published_at_utc, updated_at_utc
+        FROM signals
+        WHERE source_id = ?
+        """,
+        (source_id,),
+    )
+
+    best_by_event_id: dict[str, tuple[str, str, str]] = {}
+    duplicate_uids: list[tuple[str]] = []
+    for signal_uid, url, published_at_utc, updated_at_utc in cur.fetchall():
+        match = re.search(r"/event/(\d+)$", str(url or "").strip())
+        if not match:
+            continue
+        event_id = match.group(1)
+        current = (
+            str(signal_uid),
+            str(published_at_utc or ""),
+            str(updated_at_utc or ""),
+        )
+        prev = best_by_event_id.get(event_id)
+        if prev is None:
+            best_by_event_id[event_id] = current
+            continue
+        if (current[1], current[2], current[0]) > (prev[1], prev[2], prev[0]):
+            duplicate_uids.append((prev[0],))
+            best_by_event_id[event_id] = current
+        else:
+            duplicate_uids.append((current[0],))
+
+    if not duplicate_uids:
+        return 0
+    conn.executemany("DELETE FROM signals WHERE signal_uid = ?", duplicate_uids)
+    return len(duplicate_uids)
 
 
 def normalize_signal_labels(
@@ -650,25 +917,55 @@ def main() -> None:
                 if pruned_past > 0:
                     logger.info("  pruned %d past signal(s)", pruned_past)
 
+            pruned_nonconforming = 0
+            if should_prune_nonconforming_for_source(source):
+                pruned_nonconforming = prune_ticketjam_nonconforming_signals(
+                    conn,
+                    source,
+                )
+                if pruned_nonconforming > 0:
+                    logger.info(
+                        "  pruned %d nonconforming signal(s)",
+                        pruned_nonconforming,
+                    )
+
+            pruned_duplicates = prune_ticketjam_duplicate_event_ids(
+                conn,
+                source.source_id,
+            )
+            if pruned_duplicates > 0:
+                logger.info("  pruned %d duplicate event_id signal(s)", pruned_duplicates)
+
             if not args.rebuild and source.last_signature == sig:
-                if pruned == 0 and pruned_past == 0:
+                if (
+                    pruned == 0
+                    and pruned_past == 0
+                    and pruned_nonconforming == 0
+                    and pruned_duplicates == 0
+                ):
                     logger.info("  no-op: signature unchanged")
                 else:
                     conn.commit()
                 success_count += 1
-                total_changed += pruned + pruned_past
+                total_changed += (
+                    pruned + pruned_past + pruned_nonconforming + pruned_duplicates
+                )
                 continue
 
             changed = upsert_signals(conn, signals)
             update_source_signature(conn, source.source_id, sig)
             conn.commit()
 
-            total_changed += changed + pruned + pruned_past
+            total_changed += (
+                changed + pruned + pruned_past + pruned_nonconforming + pruned_duplicates
+            )
             logger.info(
-                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s)",
+                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s), %d nonconforming signal(s), %d duplicate signal(s)",
                 changed,
                 pruned,
                 pruned_past,
+                pruned_nonconforming,
+                pruned_duplicates,
             )
             success_count += 1
 
