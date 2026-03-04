@@ -74,9 +74,10 @@ uv run streamlit run app.py
 - ソース:
   - `ticketjam_events`（公開sitemap由来）
 - 取得方針:
-  - `MusicEvent` かつ未来開催のみ
+  - `Event` / `MusicEvent` を対象にしつつ、`categorie_groups` が `live_domestic` / `live_international` のコンサート系のみ採用
+  - 未来開催のみ
   - 必須4項目（イベント日・会場・アーティスト・イベント名）が揃う行のみ保存
-  - 初回は広め取得（bootstrap）、以後は増分巡回（新規 + 更新）
+  - 初回は広め取得（bootstrap）、以後は増分巡回（新規 + 更新, 既定 `max_sitemaps=120`, `max_event_urls=400`）
 
 ## 旅行・観光消費動向調査（TCD）拡張
 - サイドバーの `統計の種類` で以下を切替:

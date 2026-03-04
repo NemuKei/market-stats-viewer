@@ -105,11 +105,15 @@ DEFAULT_SOURCES = [
             {
                 "bootstrap_max_sitemaps": 200,
                 "bootstrap_max_event_urls": 1200,
-                "max_sitemaps": 20,
-                "max_event_urls": 120,
+                "max_sitemaps": 120,
+                "max_event_urls": 400,
                 "timeout_sec": 30,
                 "request_retries": 3,
-                "allowed_event_types": ["MusicEvent"],
+                "allowed_event_types": ["Event", "MusicEvent"],
+                "allowed_category_groups": [
+                    "live_domestic",
+                    "live_international",
+                ],
                 "future_only": True,
                 "lookback_days": 0,
                 "prune_missing": False,
@@ -124,19 +128,33 @@ DEFAULT_SOURCES = [
 class DomainThrottle:
     """Per-domain polite rate limiter."""
 
-    def __init__(self, min_interval: float = 4.0, default_interval: float = 1.5):
+    def __init__(
+        self,
+        min_interval: float = 4.0,
+        default_interval: float = 1.5,
+        domain_intervals: dict[str, float] | None = None,
+    ):
         self._last_ts: dict[str, float] = {}
         self._min_interval = min_interval
         self._default_interval = default_interval
+        self._domain_intervals = {
+            str(k).strip().lower(): float(v)
+            for k, v in (domain_intervals or {}).items()
+            if str(k).strip() and float(v) > 0
+        }
+
+    def _resolve_interval(self, domain: str) -> float:
+        return self._domain_intervals.get(domain.lower(), self._min_interval)
 
     def wait(self, url: str) -> None:
         domain = urlparse(url).netloc
+        min_interval = self._resolve_interval(domain)
         now = time.monotonic()
         last = self._last_ts.get(domain)
         if last is not None:
             elapsed = now - last
-            if elapsed < self._min_interval:
-                time.sleep(self._min_interval - elapsed)
+            if elapsed < min_interval:
+                time.sleep(min_interval - elapsed)
         elif self._last_ts:
             time.sleep(self._default_interval)
         self._last_ts[domain] = time.monotonic()
@@ -536,7 +554,11 @@ def main() -> None:
 
     raw_session = requests.Session()
     raw_session.headers.update({"User-Agent": USER_AGENT})
-    throttle = DomainThrottle(min_interval=4.0, default_interval=1.5)
+    throttle = DomainThrottle(
+        min_interval=4.0,
+        default_interval=1.5,
+        domain_intervals={"ticketjam.jp": 1.0},
+    )
     session = ThrottledSession(raw_session, throttle)
 
     conn = init_db(SIGNALS_DB_PATH)

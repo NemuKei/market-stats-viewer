@@ -137,10 +137,11 @@
 - Source-specific extraction policy:
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
-  - `ticketjam_events`: `https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz` からイベントURLを収集し、イベントページの JSON-LD（MusicEvent）から `イベント日 / 会場 / アーティスト / イベント名` が揃うもののみ採用する
+  - `ticketjam_events`: `https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz` からイベントURLを収集し、イベントページの JSON-LD（`Event` / `MusicEvent`）を基に `イベント日 / 会場 / アーティスト / イベント名` が揃うもののみ採用する
+    - コンサート限定: パンくずの `categorie_groups` が `live_domestic` または `live_international` のものだけ採用する
     - 取得範囲: `future_only=true`（`event_start_date >= 今日`）
     - 初回（`last_signature` が空）: `bootstrap_max_*` で広めに取得
-    - 2回目以降: `max_*` で増分巡回（新規 + 更新）
+    - 2回目以降: `max_*`（既定: `max_sitemaps=120`, `max_event_urls=400`）で増分巡回（新規 + 更新）
     - `prune_missing=false`（差分巡回で未取得行を消さない）
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）

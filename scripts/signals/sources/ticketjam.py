@@ -47,6 +47,7 @@ class TicketjamEventsSource(SignalSource):
         lookback_days = max(0, int(cfg.get("lookback_days", 0)))
         min_event_date = (datetime.now(JST).date() - timedelta(days=lookback_days)).isoformat()
         allowed_event_types = self._resolve_allowed_types(cfg)
+        allowed_category_groups = self._resolve_allowed_category_groups(cfg)
 
         sitemap_items = self._load_sitemap_index(
             source.source_url, timeout_sec, request_retries
@@ -109,6 +110,7 @@ class TicketjamEventsSource(SignalSource):
                 min_event_date=min_event_date,
                 future_only=future_only,
                 allowed_event_types=allowed_event_types,
+                allowed_category_groups=allowed_category_groups,
             )
             if rec:
                 records.append(rec)
@@ -128,7 +130,7 @@ class TicketjamEventsSource(SignalSource):
             return {}
 
     def _normalize_legacy_config(self, cfg: dict[str, object]) -> dict[str, object]:
-        """Upgrade old minimal config (max_sitemaps/max_event_urls only) at runtime."""
+        """Upgrade old config variants to current safe defaults at runtime."""
         if not cfg:
             return cfg
         is_legacy = (
@@ -137,6 +139,8 @@ class TicketjamEventsSource(SignalSource):
             and "allowed_event_types" not in cfg
             and "future_only" not in cfg
         )
+        if not is_legacy and "allowed_category_groups" not in cfg:
+            is_legacy = True
         if not is_legacy:
             return cfg
 
@@ -145,9 +149,10 @@ class TicketjamEventsSource(SignalSource):
         upgraded["bootstrap_max_event_urls"] = int(
             cfg.get("bootstrap_max_event_urls", 1200)
         )
-        upgraded["max_sitemaps"] = max(20, int(cfg.get("max_sitemaps", 20)))
-        upgraded["max_event_urls"] = max(120, int(cfg.get("max_event_urls", 120)))
-        upgraded["allowed_event_types"] = ["MusicEvent"]
+        upgraded["max_sitemaps"] = max(120, int(cfg.get("max_sitemaps", 120)))
+        upgraded["max_event_urls"] = max(400, int(cfg.get("max_event_urls", 400)))
+        upgraded["allowed_event_types"] = ["Event", "MusicEvent"]
+        upgraded["allowed_category_groups"] = ["live_domestic", "live_international"]
         upgraded["future_only"] = True
         upgraded["lookback_days"] = int(cfg.get("lookback_days", 0))
         logger.info("ticketjam: upgraded legacy config at runtime")
@@ -160,19 +165,28 @@ class TicketjamEventsSource(SignalSource):
             max_sitemaps = max(1, int(cfg.get("bootstrap_max_sitemaps", 200)))
             max_event_urls = max(1, int(cfg.get("bootstrap_max_event_urls", 1200)))
             return max_sitemaps, max_event_urls
-        max_sitemaps = max(1, int(cfg.get("max_sitemaps", 20)))
-        max_event_urls = max(1, int(cfg.get("max_event_urls", 120)))
+        max_sitemaps = max(1, int(cfg.get("max_sitemaps", 120)))
+        max_event_urls = max(1, int(cfg.get("max_event_urls", 400)))
         return max_sitemaps, max_event_urls
 
     def _resolve_allowed_types(self, cfg: dict[str, object]) -> set[str]:
-        raw = cfg.get("allowed_event_types", ["MusicEvent"])
+        raw = cfg.get("allowed_event_types", ["Event", "MusicEvent"])
         if isinstance(raw, list):
             values = {str(v).strip() for v in raw if str(v).strip()}
             if values:
                 return values
         if isinstance(raw, str) and raw.strip():
             return {raw.strip()}
-        return {"MusicEvent"}
+        return {"Event", "MusicEvent"}
+
+    def _resolve_allowed_category_groups(self, cfg: dict[str, object]) -> set[str]:
+        raw = cfg.get("allowed_category_groups", ["live_domestic", "live_international"])
+        values: set[str] = set()
+        if isinstance(raw, list):
+            values = {str(v).strip().lower() for v in raw if str(v).strip()}
+        elif isinstance(raw, str) and raw.strip():
+            values = {raw.strip().lower()}
+        return values
 
     def _load_sitemap_index(
         self, index_url: str, timeout_sec: int, request_retries: int
@@ -244,6 +258,7 @@ class TicketjamEventsSource(SignalSource):
         min_event_date: str,
         future_only: bool,
         allowed_event_types: set[str],
+        allowed_category_groups: set[str],
     ) -> SignalRecord | None:
         resp = self._get_with_retry(
             event_url,
@@ -259,6 +274,9 @@ class TicketjamEventsSource(SignalSource):
 
         resp.encoding = resp.apparent_encoding or "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
+        category_group = self._extract_category_group(soup)
+        if allowed_category_groups and category_group not in allowed_category_groups:
+            return None
         event_payload = self._extract_event_payload(soup, allowed_event_types)
         if not event_payload:
             return None
@@ -310,6 +328,8 @@ class TicketjamEventsSource(SignalSource):
         }
         if pref_name:
             labels["pref_name"] = pref_name
+        if category_group:
+            labels["ticketjam_category_group"] = category_group
 
         extra_key = f"{start_date}|{venue_name}|{artist_name}"
         canonical_url = self._canonicalize_url(event_url)
@@ -444,6 +464,16 @@ class TicketjamEventsSource(SignalSource):
         if not node:
             return ""
         return " ".join(node.get_text(" ", strip=True).split())
+
+    def _extract_category_group(self, soup: BeautifulSoup) -> str:
+        node = soup.select_one('.breadcrumbs a[href*="/categorie_groups/"]')
+        if not node:
+            return ""
+        href = str(node.get("href") or "").strip().lower()
+        m = re.search(r"/categorie_groups/([^/?#]+)", href)
+        if not m:
+            return ""
+        return m.group(1).strip()
 
     def _build_event_info(
         self, event_date: str, start_time: str | None, pref_name: str, venue_name: str
