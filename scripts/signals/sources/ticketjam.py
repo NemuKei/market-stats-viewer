@@ -32,6 +32,9 @@ class TicketjamEventsSource(SignalSource):
 
     _START_RE = re.compile(r"(\d{4}-\d{2}-\d{2})(?:T(\d{2}:\d{2}))?")
     _EVENT_URL_RE = re.compile(r"^https://ticketjam\.jp/tickets/[^/]+/event/\d+$")
+    _TITLE_OPTION_RE = re.compile(
+        r"(\d{1,2})/(\d{1,2})\([^)]*\)\s+(\d{2}:\d{2})\s+(.+)$"
+    )
     _DEFAULT_ALLOWED_CATEGORY_SLUGS = {
         "idol-music",
         "band-music",
@@ -459,15 +462,15 @@ class TicketjamEventsSource(SignalSource):
         if not title:
             return None
 
-        start_date, start_time = self._parse_start(event_payload.get("startDate"))
-        if not start_date:
-            return None
-        if future_only and start_date < min_event_date:
+        payload_start_date, payload_start_time = self._parse_start(
+            event_payload.get("startDate")
+        )
+        if not payload_start_date:
             return None
 
         end_date, _ = self._parse_start(event_payload.get("endDate"))
         if not end_date:
-            end_date = start_date
+            end_date = payload_start_date
 
         artist_name = self._extract_artist_name(event_payload.get("performer"))
         if not artist_name:
@@ -476,6 +479,25 @@ class TicketjamEventsSource(SignalSource):
         venue_name, pref_name = self._extract_location(event_payload.get("location"))
         if not venue_name:
             venue_name = self._extract_venue_fallback(soup)
+
+        # Ticketjam pages can expose multiple performances in JSON-LD; prefer the
+        # page headline performance for date/time/venue to avoid cross-venue mixups.
+        page_start_date, page_start_time, page_venue_name = self._extract_page_performance(
+            soup,
+            default_year=payload_start_date[:4],
+        )
+
+        start_date = page_start_date or payload_start_date
+        start_time = page_start_time or payload_start_time
+        if page_venue_name:
+            if venue_name and page_venue_name != venue_name:
+                # Drop potentially stale region from JSON-LD if venue changed.
+                pref_name = ""
+            venue_name = page_venue_name
+        if not pref_name:
+            pref_name = self._extract_pref_from_page_text(soup, start_date, start_time, venue_name)
+        if future_only and start_date < min_event_date:
+            return None
 
         # Keep quality bar strict: require the 4 requested fields.
         if not (start_date and venue_name and artist_name and title):
@@ -647,6 +669,80 @@ class TicketjamEventsSource(SignalSource):
         if isinstance(address, dict):
             pref_name = " ".join(str(address.get("addressRegion", "")).split())
         return venue_name, pref_name
+
+    def _extract_page_performance(
+        self,
+        soup: BeautifulSoup,
+        *,
+        default_year: str,
+    ) -> tuple[str, str | None, str]:
+        fallback_year = self._safe_int(default_year) or datetime.now(JST).year
+        for text in self._iter_page_performance_texts(soup):
+            match = self._TITLE_OPTION_RE.search(text)
+            if not match:
+                continue
+            month = self._safe_int(match.group(1))
+            day = self._safe_int(match.group(2))
+            if not month or not day:
+                continue
+            event_date = f"{fallback_year:04d}-{month:02d}-{day:02d}"
+            event_time = str(match.group(3) or "").strip() or None
+            venue_name = " ".join(str(match.group(4) or "").split())
+            if venue_name:
+                return event_date, event_time, venue_name
+        return "", None, ""
+
+    def _iter_page_performance_texts(self, soup: BeautifulSoup) -> list[str]:
+        out: list[str] = []
+        for selector in [".title-option", "h1", "title"]:
+            for node in soup.select(selector):
+                text = " ".join(node.get_text(" ", strip=True).split())
+                if text:
+                    out.append(text)
+        return out
+
+    def _extract_pref_from_page_text(
+        self,
+        soup: BeautifulSoup,
+        event_date: str,
+        start_time: str | None,
+        venue_name: str,
+    ) -> str:
+        if not event_date or not start_time or not venue_name:
+            return ""
+        event_date_slash = event_date.replace("-", "/")
+        full_text = " ".join(soup.get_text(" ", strip=True).split())
+        pref_pattern = re.compile(
+            rf"{re.escape(event_date_slash)}\([^)]*\)\s+{re.escape(start_time)}\s+([^\s]+)\s+{re.escape(venue_name)}"
+        )
+        match = pref_pattern.search(full_text)
+        if not match:
+            return ""
+        return self._normalize_pref_name(match.group(1))
+
+    def _normalize_pref_name(self, value: str) -> str:
+        raw = "".join(str(value or "").split())
+        if not raw:
+            return ""
+        if raw.endswith(("都", "道", "府", "県")):
+            return raw
+        if raw.endswith(("市", "区", "町", "村")):
+            return ""
+        if raw == "東京":
+            return "東京都"
+        if raw == "大阪":
+            return "大阪府"
+        if raw == "京都":
+            return "京都府"
+        if raw == "北海道":
+            return "北海道"
+        return f"{raw}県"
+
+    def _safe_int(self, value: object) -> int:
+        try:
+            return int(str(value).strip())
+        except Exception:
+            return 0
 
     def _extract_venue_fallback(self, soup: BeautifulSoup) -> str:
         node = soup.select_one(".title-option a")
