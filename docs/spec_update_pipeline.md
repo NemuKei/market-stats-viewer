@@ -148,6 +148,7 @@
     - `prune_missing=false`（差分巡回で未取得行を消さない）
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
     - `prune_nonconforming=true`（現行フィルタに合致しない既存行を更新時に削除）
+    - 重複除去: `event_id` 重複に加えて、`event_start_date + event_start_time + venue_name + artist_name + title` が同一の重複行を更新時に1件へ集約
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）

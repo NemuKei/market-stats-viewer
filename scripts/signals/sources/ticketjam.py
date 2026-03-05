@@ -195,10 +195,39 @@ class TicketjamEventsSource(SignalSource):
             if rec:
                 records.append(rec)
 
+        records = self._dedupe_records(records)
         records.sort(key=lambda row: row.published_at_utc, reverse=True)
         if not records:
             logger.warning("ticketjam: parsed 0 valid signals from %s", source.source_id)
         return records
+
+    def _dedupe_records(self, records: list[SignalRecord]) -> list[SignalRecord]:
+        """Collapse duplicate listings for the same performance into one signal."""
+        deduped: dict[tuple[str, str, str, str, str], SignalRecord] = {}
+        for row in records:
+            labels: dict[str, object] = {}
+            if isinstance(row.labels_json, str) and row.labels_json.strip():
+                try:
+                    parsed = json.loads(row.labels_json)
+                    if isinstance(parsed, dict):
+                        labels = parsed
+                except Exception:
+                    labels = {}
+            event_date = str(labels.get("event_start_date") or "").strip()
+            event_time = str(labels.get("event_start_time") or "").strip()
+            venue = str(labels.get("venue_name") or "").strip()
+            artist = str(labels.get("artist_name") or "").strip()
+            title = str(row.title or "").strip()
+            key = (event_date, event_time, venue, artist, title)
+
+            prev = deduped.get(key)
+            if prev is None:
+                deduped[key] = row
+                continue
+            # Deterministic tie-breaker: prefer lexicographically smaller canonical URL.
+            if str(row.url or "") < str(prev.url or ""):
+                deduped[key] = row
+        return list(deduped.values())
 
     def _load_config(self, config_json: str | None) -> dict[str, object]:
         if not config_json:

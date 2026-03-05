@@ -89,6 +89,7 @@ uv run streamlit run app.py
   - 必須4項目（イベント日・会場・アーティスト・イベント名）が揃う行のみ保存
   - 初回は bootstrap full 実行で網羅取得（既定 `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）
   - 以後は増分巡回（既定 `max_sitemaps=120`, `max_event_urls=400`）で新規中心に取り込み（`upsert_existing=false`）
+  - 同一公演（イベント日+開始時間+会場+アーティスト+イベント名）は重複行を1件に集約
 
 ## 旅行・観光消費動向調査（TCD）拡張
 - サイドバーの `統計の種類` で以下を切替:

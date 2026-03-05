@@ -750,6 +750,61 @@ def prune_ticketjam_duplicate_event_ids(
     return len(duplicate_uids)
 
 
+def prune_ticketjam_duplicate_performances(
+    conn: sqlite3.Connection,
+    source_id: str,
+) -> int:
+    """Drop duplicate rows that represent the same performance."""
+    if source_id != "ticketjam_events":
+        return 0
+    cur = conn.execute(
+        """
+        SELECT signal_uid, title, labels_json, published_at_utc, updated_at_utc
+        FROM signals
+        WHERE source_id = ?
+        """,
+        (source_id,),
+    )
+
+    best_by_key: dict[tuple[str, str, str, str, str], tuple[str, str, str]] = {}
+    duplicate_uids: list[tuple[str]] = []
+    for signal_uid, title, labels_json, published_at_utc, updated_at_utc in cur.fetchall():
+        labels: dict[str, object] = {}
+        if isinstance(labels_json, str) and labels_json.strip():
+            try:
+                parsed = json.loads(labels_json)
+                if isinstance(parsed, dict):
+                    labels = parsed
+            except Exception:
+                labels = {}
+        key = (
+            str(labels.get("event_start_date") or "").strip(),
+            str(labels.get("event_start_time") or "").strip(),
+            str(labels.get("venue_name") or "").strip(),
+            str(labels.get("artist_name") or "").strip(),
+            str(title or "").strip(),
+        )
+        current = (
+            str(signal_uid),
+            str(published_at_utc or ""),
+            str(updated_at_utc or ""),
+        )
+        prev = best_by_key.get(key)
+        if prev is None:
+            best_by_key[key] = current
+            continue
+        if (current[1], current[2], current[0]) > (prev[1], prev[2], prev[0]):
+            duplicate_uids.append((prev[0],))
+            best_by_key[key] = current
+        else:
+            duplicate_uids.append((current[0],))
+
+    if not duplicate_uids:
+        return 0
+    conn.executemany("DELETE FROM signals WHERE signal_uid = ?", duplicate_uids)
+    return len(duplicate_uids)
+
+
 def normalize_signal_labels(
     signals: list[SignalRecord],
     artist_keep_map: dict[str, str],
@@ -1016,6 +1071,15 @@ def main() -> None:
             )
             if pruned_duplicates > 0:
                 logger.info("  pruned %d duplicate event_id signal(s)", pruned_duplicates)
+            pruned_performances = prune_ticketjam_duplicate_performances(
+                conn,
+                source.source_id,
+            )
+            if pruned_performances > 0:
+                logger.info(
+                    "  pruned %d duplicate performance signal(s)",
+                    pruned_performances,
+                )
 
             if not args.rebuild and source.last_signature == sig:
                 if (
@@ -1023,13 +1087,18 @@ def main() -> None:
                     and pruned_past == 0
                     and pruned_nonconforming == 0
                     and pruned_duplicates == 0
+                    and pruned_performances == 0
                 ):
                     logger.info("  no-op: signature unchanged")
                 else:
                     conn.commit()
                 success_count += 1
                 total_changed += (
-                    pruned + pruned_past + pruned_nonconforming + pruned_duplicates
+                    pruned
+                    + pruned_past
+                    + pruned_nonconforming
+                    + pruned_duplicates
+                    + pruned_performances
                 )
                 continue
 
@@ -1041,19 +1110,47 @@ def main() -> None:
                 signals,
                 update_existing=update_existing,
             )
+            post_pruned_duplicates = prune_ticketjam_duplicate_event_ids(
+                conn,
+                source.source_id,
+            )
+            post_pruned_performances = prune_ticketjam_duplicate_performances(
+                conn,
+                source.source_id,
+            )
+            if post_pruned_duplicates > 0:
+                logger.info(
+                    "  post-upsert pruned %d duplicate event_id signal(s)",
+                    post_pruned_duplicates,
+                )
+            if post_pruned_performances > 0:
+                logger.info(
+                    "  post-upsert pruned %d duplicate performance signal(s)",
+                    post_pruned_performances,
+                )
             update_source_signature(conn, source.source_id, sig)
             conn.commit()
 
             total_changed += (
-                changed + pruned + pruned_past + pruned_nonconforming + pruned_duplicates
+                changed
+                + pruned
+                + pruned_past
+                + pruned_nonconforming
+                + pruned_duplicates
+                + pruned_performances
+                + post_pruned_duplicates
+                + post_pruned_performances
             )
             logger.info(
-                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s), %d nonconforming signal(s), %d duplicate signal(s)",
+                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s), %d nonconforming signal(s), %d duplicate event_id signal(s), %d duplicate performance signal(s), post-upsert %d duplicate event_id signal(s), %d duplicate performance signal(s)",
                 changed,
                 pruned,
                 pruned_past,
                 pruned_nonconforming,
                 pruned_duplicates,
+                pruned_performances,
+                post_pruned_duplicates,
+                post_pruned_performances,
             )
             success_count += 1
 
