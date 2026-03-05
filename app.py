@@ -3722,6 +3722,25 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         region_toggle_key_prefix="signals_region_toggle",
     )
 
+    venue_pool = df.copy()
+    if selected_prefs:
+        venue_pool = venue_pool[venue_pool["pref_name"].isin(selected_prefs)]
+    venue_options = sorted(
+        [
+            venue
+            for venue in venue_pool["venue_name"].dropna().astype(str).unique().tolist()
+            if str(venue).strip() and str(venue).strip() != "-"
+        ]
+    )
+    current_selected_venues = [
+        str(v)
+        for v in st.session_state.get("signals_venue", [])
+        if str(v) in venue_options
+    ]
+    if current_selected_venues != st.session_state.get("signals_venue", []):
+        st.session_state["signals_venue"] = current_selected_venues
+    selected_venues = st.multiselect("会場", venue_options, key="signals_venue")
+
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
     sort_label = st.radio(
         "並び順",
@@ -3734,6 +3753,8 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         mask &= df["source_id"].isin(selected_source_ids)
     if selected_prefs:
         mask &= df["pref_name"].isin(selected_prefs)
+    if selected_venues:
+        mask &= df["venue_name"].isin(selected_venues)
     if keyword:
         keyword_lower = keyword.lower()
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[
