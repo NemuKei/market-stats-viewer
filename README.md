@@ -24,6 +24,14 @@
   - GitHub Actionsによる更新実行（public repo前提）
 
 ## ローカル実行（VS Code）
+PowerShell でまとめてセットアップする場合:
+```powershell
+.\scripts\setup.ps1
+# 例: lint + 各種データ更新 + アプリ起動
+# .\scripts\setup.ps1 -RunLint -UpdateData -UpdateTcdData -UpdateEventsData -UpdateEventSignalsData -RunApp
+```
+
+手動で順に実行する場合:
 ```bash
 uv venv
 # Optional (manual activate)
