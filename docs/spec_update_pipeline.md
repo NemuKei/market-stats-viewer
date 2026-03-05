@@ -143,8 +143,8 @@
     - 非ライブ除外: タイトル+アーティストに非ライブ系キーワード（例: 漫才・舞台挨拶・花火・コレクション等）を含むものは除外する
     - 曖昧カテゴリ制御: `male-artist` / `female-artist` 系はライブ系キーワード（`live` / `tour` / `concert` 等）がある場合のみ採用する
     - 取得範囲: `future_only=true`（`event_start_date >= 今日`）
-    - 初回（`last_signature` が空）: `bootstrap_max_*` で広めに取得
-    - 2回目以降: `max_*`（既定: `max_sitemaps=120`, `max_event_urls=400`）で増分巡回（新規 + 更新）
+    - 初回（bootstrap full）: `--ticketjam-bootstrap-full` で `last_signature` をリセットし、`bootstrap_max_*`（既定: `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）で網羅取得する
+    - 2回目以降: `max_*`（既定: `max_sitemaps=120`, `max_event_urls=400`）で増分巡回し、新規中心に取り込む（`upsert_existing=false`）
     - `prune_missing=false`（差分巡回で未取得行を消さない）
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
     - `prune_nonconforming=true`（現行フィルタに合致しない既存行を更新時に削除）
@@ -154,7 +154,8 @@
 - No-op:
   - sourceごとに `signal_uid -> content_hash` から signature を算出
   - `signal_sources.last_signature` と一致する場合、当該sourceのDB更新をスキップ
-  - `signals` は `content_hash` が変わった行のみ UPSERT
+  - `signals` は既定で `content_hash` が変わった行のみ UPSERT
+  - ただし `ticketjam_events` は通常運用で `upsert_existing=false` のため、既存行更新は行わず新規行のみ INSERT する
   - `signal_sources.updated_at_utc/last_signature` は変化がある場合のみ更新
 - Access policy:
   - `requests.Session` + UA明示
@@ -162,10 +163,12 @@
   - ドメイン単位レート制限（全GETに適用）
 - CLI:
   - `--only starto_concert,kstyle_music,ticketjam_events`
+  - `--ticketjam-bootstrap-full`
   - `--verbose`
 - Workflow:
   - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
   - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
+    - `workflow_dispatch` 入力 `bootstrap_full=true` で bootstrap full を実行可能（入力上限: `bootstrap_max_sitemaps` / `bootstrap_max_event_urls`）
   - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
 

@@ -2,6 +2,22 @@ name: Update event signals data (Ticketjam)
 
 on:
   workflow_dispatch:
+    inputs:
+      bootstrap_full:
+        description: "初回の全件近似取得を実行する（ticketjamのみ）"
+        type: boolean
+        required: false
+        default: false
+      bootstrap_max_sitemaps:
+        description: "bootstrap時に走査するsitemap数"
+        type: string
+        required: false
+        default: "8000"
+      bootstrap_max_event_urls:
+        description: "bootstrap時に保持するevent URL上限"
+        type: string
+        required: false
+        default: "50000"
   schedule:
     - cron: "15 3 * * *" # daily (UTC)
 
@@ -33,7 +49,15 @@ jobs:
 
       - name: Update event signals (ticketjam only)
         run: |
-          uv run python -m scripts.update_event_signals_data --only ticketjam_events
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.bootstrap_full }}" = "true" ]; then
+            uv run python -m scripts.update_event_signals_data \
+              --only ticketjam_events \
+              --ticketjam-bootstrap-full \
+              --ticketjam-bootstrap-max-sitemaps "${{ inputs.bootstrap_max_sitemaps }}" \
+              --ticketjam-bootstrap-max-event-urls "${{ inputs.bootstrap_max_event_urls }}"
+          else
+            uv run python -m scripts.update_event_signals_data --only ticketjam_events
+          fi
 
       - name: Commit changes (if any)
         run: |

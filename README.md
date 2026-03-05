@@ -72,7 +72,7 @@ uv run streamlit run app.py
 - データ: `data/event_signals.sqlite`（signal_sources + signals テーブル）
 - 更新コマンド:
   - `uv run python -m scripts.update_event_signals_data`
-  - オプション: `--only starto_concert,kstyle_music,ticketjam_events`, `--verbose`
+  - オプション: `--only starto_concert,kstyle_music,ticketjam_events`, `--ticketjam-bootstrap-full`, `--verbose`
 - 保存方針:
   - ニュース本文は保存しない
   - 保存対象は掲載日時・タイトル・URL・短い抜粋（取得できる場合のみ）
@@ -87,7 +87,8 @@ uv run streamlit run app.py
   - `male-artist` / `female-artist` 系の曖昧カテゴリは、タイトル/アーティストにライブ系キーワード（`live` / `tour` / `concert` など）がある場合のみ採用
   - 未来開催のみ
   - 必須4項目（イベント日・会場・アーティスト・イベント名）が揃う行のみ保存
-  - 初回は広め取得（bootstrap）、以後は増分巡回（新規 + 更新, 既定 `max_sitemaps=120`, `max_event_urls=400`）
+  - 初回は bootstrap full 実行で網羅取得（既定 `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）
+  - 以後は増分巡回（既定 `max_sitemaps=120`, `max_event_urls=400`）で新規中心に取り込み（`upsert_existing=false`）
 
 ## 旅行・観光消費動向調査（TCD）拡張
 - サイドバーの `統計の種類` で以下を切替:
@@ -118,10 +119,11 @@ uv run streamlit run app.py
 - Trigger:
   - ニュース: `schedule` = `0 */12 * * *`（12時間ごと UTC）
   - Ticketjam: `schedule` = `15 3 * * *`（毎日 UTC）
-  - `workflow_dispatch`: 手動実行可
+  - `workflow_dispatch`: 手動実行可（Ticketjam は `bootstrap_full=true` で初回全件近似取得モード）
 - 実行コマンド:
   - ニュース: `uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music`
   - Ticketjam: `uv run python -m scripts.update_event_signals_data --only ticketjam_events`
+  - Ticketjam 初回bootstrap: `uv run python -m scripts.update_event_signals_data --only ticketjam_events --ticketjam-bootstrap-full`
 - 差分がある場合のみ commit/push
 
 ## ワークスペース索引

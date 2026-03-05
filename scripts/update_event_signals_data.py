@@ -3,6 +3,7 @@
 Usage:
     uv run python -m scripts.update_event_signals_data
     uv run python -m scripts.update_event_signals_data --only starto_concert
+    uv run python -m scripts.update_event_signals_data --only ticketjam_events --ticketjam-bootstrap-full
     uv run python -m scripts.update_event_signals_data --verbose
 """
 
@@ -103,8 +104,8 @@ DEFAULT_SOURCES = [
         "source_type": "sitemap_events",
         "config_json": json.dumps(
             {
-                "bootstrap_max_sitemaps": 200,
-                "bootstrap_max_event_urls": 1200,
+                "bootstrap_max_sitemaps": 8000,
+                "bootstrap_max_event_urls": 50000,
                 "max_sitemaps": 120,
                 "max_event_urls": 400,
                 "timeout_sec": 30,
@@ -188,6 +189,7 @@ DEFAULT_SOURCES = [
                 "prune_missing": False,
                 "drop_past_events": True,
                 "prune_nonconforming": True,
+                "upsert_existing": False,
             },
             ensure_ascii=False,
         ),
@@ -363,7 +365,12 @@ def update_source_signature(
     )
 
 
-def upsert_signals(conn: sqlite3.Connection, signals: list[SignalRecord]) -> int:
+def upsert_signals(
+    conn: sqlite3.Connection,
+    signals: list[SignalRecord],
+    *,
+    update_existing: bool = True,
+) -> int:
     now = now_utc_z()
     changed = 0
     for row in signals:
@@ -372,8 +379,11 @@ def upsert_signals(conn: sqlite3.Connection, signals: list[SignalRecord]) -> int
             (row.signal_uid,),
         )
         existing = cur.fetchone()
-        if existing and existing[0] == row.content_hash:
-            continue
+        if existing:
+            if existing[0] == row.content_hash:
+                continue
+            if not update_existing:
+                continue
         conn.execute(
             """
             INSERT INTO signals (
@@ -479,6 +489,37 @@ def should_prune_nonconforming_for_source(source: SignalSourceRecord) -> bool:
     if source.source_id == "ticketjam_events":
         return bool(cfg.get("prune_nonconforming", True))
     return bool(cfg.get("prune_nonconforming", False))
+
+
+def should_upsert_existing_for_source(source: SignalSourceRecord) -> bool:
+    cfg = load_source_config(source.config_json)
+    if source.source_id == "ticketjam_events":
+        return bool(cfg.get("upsert_existing", False))
+    return bool(cfg.get("upsert_existing", True))
+
+
+def apply_ticketjam_runtime_overrides(
+    source: SignalSourceRecord,
+    *,
+    bootstrap_full: bool,
+    bootstrap_max_sitemaps: int,
+    bootstrap_max_event_urls: int,
+) -> SignalSourceRecord:
+    if source.source_id != "ticketjam_events":
+        return source
+
+    if not bootstrap_full:
+        return source
+
+    cfg = load_source_config(source.config_json)
+    cfg["bootstrap_max_sitemaps"] = max(1, int(bootstrap_max_sitemaps))
+    cfg["bootstrap_max_event_urls"] = max(1, int(bootstrap_max_event_urls))
+    cfg["max_sitemap_attempts"] = max(
+        int(cfg.get("max_sitemap_attempts", 0)),
+        int(cfg["bootstrap_max_sitemaps"]) * 5,
+    )
+    source.config_json = json.dumps(cfg, ensure_ascii=False)
+    return source
 
 
 def prune_past_event_signals(
@@ -803,6 +844,23 @@ def main() -> None:
         action="store_true",
         help="Rebuild target source rows (requires --only)",
     )
+    parser.add_argument(
+        "--ticketjam-bootstrap-full",
+        action="store_true",
+        help="Force ticketjam full bootstrap scan once (usually with --only ticketjam_events)",
+    )
+    parser.add_argument(
+        "--ticketjam-bootstrap-max-sitemaps",
+        type=int,
+        default=8000,
+        help="When --ticketjam-bootstrap-full is set, scan this many ticketjam sitemaps",
+    )
+    parser.add_argument(
+        "--ticketjam-bootstrap-max-event-urls",
+        type=int,
+        default=50000,
+        help="When --ticketjam-bootstrap-full is set, keep up to this many ticketjam event URLs",
+    )
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
@@ -818,6 +876,14 @@ def main() -> None:
 
     if args.rebuild and not only_ids:
         parser.error("--rebuild requires --only with one or more source_ids")
+    if (
+        args.ticketjam_bootstrap_full
+        and only_ids
+        and "ticketjam_events" not in only_ids
+    ):
+        parser.error(
+            "--ticketjam-bootstrap-full requires --only to include ticketjam_events"
+        )
 
     raw_session = requests.Session()
     raw_session.headers.update({"User-Agent": USER_AGENT})
@@ -856,6 +922,21 @@ def main() -> None:
     for source in targets:
         logger.info("--- %s (%s) ---", source.source_id, source.source_name)
         try:
+            source = apply_ticketjam_runtime_overrides(
+                source,
+                bootstrap_full=args.ticketjam_bootstrap_full,
+                bootstrap_max_sitemaps=args.ticketjam_bootstrap_max_sitemaps,
+                bootstrap_max_event_urls=args.ticketjam_bootstrap_max_event_urls,
+            )
+            if args.ticketjam_bootstrap_full and source.source_id == "ticketjam_events":
+                clear_source_for_rebuild(conn, source.source_id)
+                source.last_signature = None
+                logger.info(
+                    "  ticketjam bootstrap full: force rebuild + max_sitemaps=%d max_event_urls=%d",
+                    args.ticketjam_bootstrap_max_sitemaps,
+                    args.ticketjam_bootstrap_max_event_urls,
+                )
+
             plugin = get_source(source.source_id, session)
             if plugin is None:
                 logger.warning("No plugin for source_id=%s", source.source_id)
@@ -952,7 +1033,14 @@ def main() -> None:
                 )
                 continue
 
-            changed = upsert_signals(conn, signals)
+            update_existing = should_upsert_existing_for_source(source)
+            if not update_existing:
+                logger.info("  upsert mode: new_only (existing rows are not updated)")
+            changed = upsert_signals(
+                conn,
+                signals,
+                update_existing=update_existing,
+            )
             update_source_signature(conn, source.source_id, sig)
             conn.commit()
 

@@ -1,6 +1,6 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-03-04
+最終更新: 2026-03-05
 
 ## Done（直近完了）
 - `events.sqlite` に `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値 + 辞書正規化 + 推論結果を同期するよう更新（BCL側が sqlite 単体で利用可能）
@@ -22,6 +22,8 @@
 - `ticketjam_events` を「未来開催」かつ「`Event` / `MusicEvent` + `categorie_groups` が `live_domestic/live_international`（コンサート系）」へ変更し、増分巡回の既定上限を `max_sitemaps=120` / `max_event_urls=400` に引き上げ
 - `ticketjam_events` に音楽系 `categories` slug 限定・非ライブ系キーワード除外・曖昧カテゴリ（`male/female-artist`）へのライブ語必須を追加し、`prune_nonconforming=true` で既存ノイズを自動削除するよう更新
 - `ticketjam_events` は `prune_missing=false` とし、差分巡回で未取得行を消さない代わりに、開催終了済みデータを更新時に自動削除するよう更新
+- `ticketjam_events` の初回取り込みを `--ticketjam-bootstrap-full` で強制実行できるようにし、既定 `bootstrap_max_sitemaps=8000` / `bootstrap_max_event_urls=50000` の網羅取得モードを追加
+- `ticketjam_events` は通常運用で `upsert_existing=false`（新規中心）を既定化し、日次は増分のみ取り込む運用へ更新
 - event_signals 更新workflowを分離し、ニュース（STARTO/Kstyle）と Ticketjam（二次流通）を別ジョブで実行する運用へ変更
 - `publish_external_events_assets.yml` の `workflow_run` トリガーをニュース/ Ticketjam 両workflowに対応させた
 

@@ -231,9 +231,9 @@ class TicketjamEventsSource(SignalSource):
             return cfg
 
         upgraded = dict(cfg)
-        upgraded["bootstrap_max_sitemaps"] = int(cfg.get("bootstrap_max_sitemaps", 200))
+        upgraded["bootstrap_max_sitemaps"] = int(cfg.get("bootstrap_max_sitemaps", 8000))
         upgraded["bootstrap_max_event_urls"] = int(
-            cfg.get("bootstrap_max_event_urls", 1200)
+            cfg.get("bootstrap_max_event_urls", 50000)
         )
         upgraded["max_sitemaps"] = max(120, int(cfg.get("max_sitemaps", 120)))
         upgraded["max_event_urls"] = max(400, int(cfg.get("max_event_urls", 400)))
@@ -258,8 +258,8 @@ class TicketjamEventsSource(SignalSource):
         self, source: SignalSourceRecord, cfg: dict[str, object]
     ) -> tuple[int, int]:
         if not source.last_signature:
-            max_sitemaps = max(1, int(cfg.get("bootstrap_max_sitemaps", 200)))
-            max_event_urls = max(1, int(cfg.get("bootstrap_max_event_urls", 1200)))
+            max_sitemaps = max(1, int(cfg.get("bootstrap_max_sitemaps", 8000)))
+            max_event_urls = max(1, int(cfg.get("bootstrap_max_event_urls", 50000)))
             return max_sitemaps, max_event_urls
         max_sitemaps = max(1, int(cfg.get("max_sitemaps", 120)))
         max_event_urls = max(1, int(cfg.get("max_event_urls", 400)))
