@@ -3740,6 +3740,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     if current_selected_venues != st.session_state.get("signals_venue", []):
         st.session_state["signals_venue"] = current_selected_venues
     selected_venues = st.multiselect("会場", venue_options, key="signals_venue")
+    st.caption("未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。")
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
     sort_label = st.radio(
@@ -4109,6 +4110,7 @@ def render_events_view() -> None:
     if current_selected_venues != st.session_state.get("events_venue", []):
         st.session_state["events_venue"] = current_selected_venues
     selected_venues = st.multiselect("会場", venue_options, key="events_venue")
+    st.caption("未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。")
 
     # Keyword
     keyword = st.text_input("キーワード（タイトル/出演者/説明）", key="events_keyword")
