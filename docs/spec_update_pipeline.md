@@ -137,17 +137,16 @@
 - Source-specific extraction policy:
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
-  - `ticketjam_events`: `https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz` からイベントURLを収集し、イベントページの JSON-LD（`Event` / `MusicEvent`）を基に `イベント日 / 会場 / アーティスト / イベント名` が揃うもののみ採用する
-    - コンサート限定: パンくずの `categorie_groups` が `live_domestic` または `live_international` のものだけ採用する
-    - 音楽カテゴリ限定: パンくず `categories` が音楽系 slug（`idol-music` / `band-music` / `classical-music` など）に一致するものだけ採用する
-    - 非ライブ除外: タイトル+アーティストに非ライブ系キーワード（例: 漫才・舞台挨拶・花火・コレクション等）を含むものは除外する
-    - 曖昧カテゴリ制御: `male-artist` / `female-artist` 系はライブ系キーワード（`live` / `tour` / `concert` 等）がある場合のみ採用する
+  - `ticketjam_events`: `https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz` からイベントURLを収集し、イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）を基に `イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
+    - 取得時は Ticketjam 側カテゴリ（`categorie_groups` / `categories`）で除外しない
+    - 採用ゲート: 会場辞書（`venue_registry + venue_aliases` 正規化後）に一致し、かつ `venue_registry.capacity >= 1000` の会場のみ保存する（既定 `require_known_venue=true`, `venue_min_capacity=1000`）
+    - 種別付与: `event_category` を `コンサート / 野球 / その他` に付与する（Ticketjamカテゴリを優先し、不足時は既存キーワード分類で補完）
     - 取得範囲: `future_only=true`（`event_start_date >= 今日`）
     - 初回（bootstrap full）: `--ticketjam-bootstrap-full` で `last_signature` をリセットし、`bootstrap_max_*`（既定: `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）で網羅取得する
     - 2回目以降: `max_*`（既定: `max_sitemaps=120`, `max_event_urls=400`）で増分巡回し、新規中心に取り込む（`upsert_existing=false`）
     - `prune_missing=false`（差分巡回で未取得行を消さない）
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
-    - `prune_nonconforming=true`（現行フィルタに合致しない既存行を更新時に削除）
+    - `prune_nonconforming=true`（会場辞書一致 + capacity 閾値を満たさない既存行を更新時に削除）
     - 重複除去: `event_id` 重複に加えて、`event_start_date + event_start_time + venue_name + artist_name + title` が同一の重複行を更新時に1件へ集約
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:

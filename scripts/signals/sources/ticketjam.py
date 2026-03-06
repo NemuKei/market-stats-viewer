@@ -35,75 +35,6 @@ class TicketjamEventsSource(SignalSource):
     _TITLE_OPTION_RE = re.compile(
         r"(\d{1,2})/(\d{1,2})\([^)]*\)\s+(\d{2}:\d{2})\s+(.+)$"
     )
-    _DEFAULT_ALLOWED_CATEGORY_SLUGS = {
-        "idol-music",
-        "band-music",
-        "foreign-band-music",
-        "classical-music",
-        "foreign-classical-music",
-        "jazz-and-fusion",
-        "foreign-jazz-and-fusion",
-        "anime-music",
-        "music-event-and-festival",
-        "male-artist",
-        "female-artist",
-        "foreign-male-artist",
-        "foreign-female-artist",
-    }
-    _DEFAULT_AMBIGUOUS_CATEGORY_SLUGS = {
-        "male-artist",
-        "female-artist",
-        "foreign-male-artist",
-        "foreign-female-artist",
-    }
-    _DEFAULT_MUSIC_INCLUDE_KEYWORDS = {
-        "ライブ",
-        "コンサート",
-        "公演",
-        "ツアー",
-        "フェス",
-        "festival",
-        "tour",
-        "live",
-        "concert",
-        "oneman",
-        "one man",
-        "showcase",
-        "band",
-        "リサイタル",
-        "オーケストラ",
-        "音楽",
-    }
-    _DEFAULT_NON_LIVE_EXCLUDE_KEYWORDS = {
-        "お笑い",
-        "漫才",
-        "舞台挨拶",
-        "試写会",
-        "トークショー",
-        "講演会",
-        "朗読劇",
-        "演劇",
-        "ミュージカル",
-        "歌劇",
-        "宝塚",
-        "落語",
-        "展示",
-        "展覧",
-        "博覧",
-        "コレクション",
-        "ファッション",
-        "花火",
-        "サッカー",
-        "football",
-        "dream match",
-        "格闘技",
-        "プロレス",
-        "野球",
-        "baseball",
-        "試合",
-        "対戦",
-        "グランプリ",
-    }
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
@@ -119,11 +50,6 @@ class TicketjamEventsSource(SignalSource):
         lookback_days = max(0, int(cfg.get("lookback_days", 0)))
         min_event_date = (datetime.now(JST).date() - timedelta(days=lookback_days)).isoformat()
         allowed_event_types = self._resolve_allowed_types(cfg)
-        allowed_category_groups = self._resolve_allowed_category_groups(cfg)
-        allowed_category_slugs = self._resolve_allowed_category_slugs(cfg)
-        ambiguous_category_slugs = self._resolve_ambiguous_category_slugs(cfg)
-        music_include_keywords = self._resolve_music_include_keywords(cfg)
-        non_live_exclude_keywords = self._resolve_non_live_exclude_keywords(cfg)
 
         sitemap_items = self._load_sitemap_index(
             source.source_url, timeout_sec, request_retries
@@ -189,11 +115,6 @@ class TicketjamEventsSource(SignalSource):
                 min_event_date=min_event_date,
                 future_only=future_only,
                 allowed_event_types=allowed_event_types,
-                allowed_category_groups=allowed_category_groups,
-                allowed_category_slugs=allowed_category_slugs,
-                ambiguous_category_slugs=ambiguous_category_slugs,
-                music_include_keywords=music_include_keywords,
-                non_live_exclude_keywords=non_live_exclude_keywords,
             )
             if rec:
                 records.append(rec)
@@ -251,14 +172,6 @@ class TicketjamEventsSource(SignalSource):
             and "allowed_event_types" not in cfg
             and "future_only" not in cfg
         )
-        if not is_legacy and (
-            "allowed_category_groups" not in cfg
-            or "allowed_category_slugs" not in cfg
-            or "ambiguous_category_slugs" not in cfg
-            or "music_include_keywords" not in cfg
-            or "non_live_exclude_keywords" not in cfg
-        ):
-            is_legacy = True
         if not is_legacy:
             return cfg
 
@@ -269,18 +182,7 @@ class TicketjamEventsSource(SignalSource):
         )
         upgraded["max_sitemaps"] = max(120, int(cfg.get("max_sitemaps", 120)))
         upgraded["max_event_urls"] = max(400, int(cfg.get("max_event_urls", 400)))
-        upgraded["allowed_event_types"] = ["Event", "MusicEvent"]
-        upgraded["allowed_category_groups"] = ["live_domestic", "live_international"]
-        upgraded["allowed_category_slugs"] = sorted(self._DEFAULT_ALLOWED_CATEGORY_SLUGS)
-        upgraded["ambiguous_category_slugs"] = sorted(
-            self._DEFAULT_AMBIGUOUS_CATEGORY_SLUGS
-        )
-        upgraded["music_include_keywords"] = sorted(
-            self._DEFAULT_MUSIC_INCLUDE_KEYWORDS
-        )
-        upgraded["non_live_exclude_keywords"] = sorted(
-            self._DEFAULT_NON_LIVE_EXCLUDE_KEYWORDS
-        )
+        upgraded["allowed_event_types"] = ["Event", "MusicEvent", "SportsEvent"]
         upgraded["future_only"] = True
         upgraded["lookback_days"] = int(cfg.get("lookback_days", 0))
         logger.info("ticketjam: upgraded legacy config at runtime")
@@ -306,57 +208,6 @@ class TicketjamEventsSource(SignalSource):
         if isinstance(raw, str) and raw.strip():
             return {raw.strip()}
         return {"Event", "MusicEvent"}
-
-    def _resolve_allowed_category_groups(self, cfg: dict[str, object]) -> set[str]:
-        raw = cfg.get("allowed_category_groups", ["live_domestic", "live_international"])
-        values: set[str] = set()
-        if isinstance(raw, list):
-            values = {str(v).strip().lower() for v in raw if str(v).strip()}
-        elif isinstance(raw, str) and raw.strip():
-            values = {raw.strip().lower()}
-        return values
-
-    def _resolve_allowed_category_slugs(self, cfg: dict[str, object]) -> set[str]:
-        raw = cfg.get("allowed_category_slugs", sorted(self._DEFAULT_ALLOWED_CATEGORY_SLUGS))
-        values: set[str] = set()
-        if isinstance(raw, list):
-            values = {str(v).strip().lower() for v in raw if str(v).strip()}
-        elif isinstance(raw, str) and raw.strip():
-            values = {raw.strip().lower()}
-        return values or set(self._DEFAULT_ALLOWED_CATEGORY_SLUGS)
-
-    def _resolve_ambiguous_category_slugs(self, cfg: dict[str, object]) -> set[str]:
-        raw = cfg.get(
-            "ambiguous_category_slugs", sorted(self._DEFAULT_AMBIGUOUS_CATEGORY_SLUGS)
-        )
-        values: set[str] = set()
-        if isinstance(raw, list):
-            values = {str(v).strip().lower() for v in raw if str(v).strip()}
-        elif isinstance(raw, str) and raw.strip():
-            values = {raw.strip().lower()}
-        return values or set(self._DEFAULT_AMBIGUOUS_CATEGORY_SLUGS)
-
-    def _resolve_music_include_keywords(self, cfg: dict[str, object]) -> set[str]:
-        raw = cfg.get(
-            "music_include_keywords", sorted(self._DEFAULT_MUSIC_INCLUDE_KEYWORDS)
-        )
-        values: set[str] = set()
-        if isinstance(raw, list):
-            values = {str(v).strip().lower() for v in raw if str(v).strip()}
-        elif isinstance(raw, str) and raw.strip():
-            values = {raw.strip().lower()}
-        return values or {k.lower() for k in self._DEFAULT_MUSIC_INCLUDE_KEYWORDS}
-
-    def _resolve_non_live_exclude_keywords(self, cfg: dict[str, object]) -> set[str]:
-        raw = cfg.get(
-            "non_live_exclude_keywords", sorted(self._DEFAULT_NON_LIVE_EXCLUDE_KEYWORDS)
-        )
-        values: set[str] = set()
-        if isinstance(raw, list):
-            values = {str(v).strip().lower() for v in raw if str(v).strip()}
-        elif isinstance(raw, str) and raw.strip():
-            values = {raw.strip().lower()}
-        return values or {k.lower() for k in self._DEFAULT_NON_LIVE_EXCLUDE_KEYWORDS}
 
     def _load_sitemap_index(
         self, index_url: str, timeout_sec: int, request_retries: int
@@ -428,11 +279,6 @@ class TicketjamEventsSource(SignalSource):
         min_event_date: str,
         future_only: bool,
         allowed_event_types: set[str],
-        allowed_category_groups: set[str],
-        allowed_category_slugs: set[str],
-        ambiguous_category_slugs: set[str],
-        music_include_keywords: set[str],
-        non_live_exclude_keywords: set[str],
     ) -> SignalRecord | None:
         resp = self._get_with_retry(
             event_url,
@@ -449,11 +295,7 @@ class TicketjamEventsSource(SignalSource):
         resp.encoding = resp.apparent_encoding or "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
         category_group = self._extract_category_group(soup)
-        if allowed_category_groups and category_group not in allowed_category_groups:
-            return None
         category_slug = self._extract_primary_category_slug(soup)
-        if allowed_category_slugs and category_slug not in allowed_category_slugs:
-            return None
         event_payload = self._extract_event_payload(soup, allowed_event_types)
         if not event_payload:
             return None
@@ -501,19 +343,6 @@ class TicketjamEventsSource(SignalSource):
 
         # Keep quality bar strict: require the 4 requested fields.
         if not (start_date and venue_name and artist_name and title):
-            return None
-        if self._contains_any_keyword(
-            f"{title} {artist_name}",
-            non_live_exclude_keywords,
-        ):
-            return None
-        if (
-            category_slug in ambiguous_category_slugs
-            and not self._contains_any_keyword(
-                f"{title} {artist_name}",
-                music_include_keywords,
-            )
-        ):
             return None
 
         event_info = self._build_event_info(start_date, start_time, pref_name, venue_name)
@@ -775,10 +604,6 @@ class TicketjamEventsSource(SignalSource):
         if not m:
             return ""
         return m.group(1)
-
-    def _contains_any_keyword(self, text: str, keywords: set[str]) -> bool:
-        normalized = str(text or "").lower()
-        return any(keyword in normalized for keyword in keywords if keyword)
 
     def _build_event_info(
         self, event_date: str, start_time: str | None, pref_name: str, venue_name: str

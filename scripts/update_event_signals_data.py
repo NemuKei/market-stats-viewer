@@ -24,6 +24,13 @@ from urllib.parse import urlparse
 
 import requests
 
+from .events.category import (
+    EVENT_CATEGORY_BASEBALL,
+    EVENT_CATEGORY_CONCERT,
+    EVENT_CATEGORY_OTHER,
+    classify_event_category,
+)
+from .events.registry import load_registry as load_venue_registry
 from .signals.entity_aliases import (
     load_artist_lookup_maps,
     load_venue_lookup_maps,
@@ -110,82 +117,11 @@ DEFAULT_SOURCES = [
                 "max_event_urls": 400,
                 "timeout_sec": 30,
                 "request_retries": 3,
-                "allowed_event_types": ["Event", "MusicEvent"],
-                "allowed_category_groups": [
-                    "live_domestic",
-                    "live_international",
-                ],
-                "allowed_category_slugs": [
-                    "idol-music",
-                    "band-music",
-                    "foreign-band-music",
-                    "classical-music",
-                    "foreign-classical-music",
-                    "jazz-and-fusion",
-                    "foreign-jazz-and-fusion",
-                    "anime-music",
-                    "music-event-and-festival",
-                    "male-artist",
-                    "female-artist",
-                    "foreign-male-artist",
-                    "foreign-female-artist",
-                ],
-                "ambiguous_category_slugs": [
-                    "male-artist",
-                    "female-artist",
-                    "foreign-male-artist",
-                    "foreign-female-artist",
-                ],
-                "music_include_keywords": [
-                    "ライブ",
-                    "コンサート",
-                    "公演",
-                    "ツアー",
-                    "フェス",
-                    "festival",
-                    "tour",
-                    "live",
-                    "concert",
-                    "oneman",
-                    "one man",
-                    "showcase",
-                    "band",
-                    "リサイタル",
-                    "オーケストラ",
-                    "音楽",
-                ],
-                "non_live_exclude_keywords": [
-                    "お笑い",
-                    "漫才",
-                    "舞台挨拶",
-                    "試写会",
-                    "トークショー",
-                    "講演会",
-                    "朗読劇",
-                    "演劇",
-                    "ミュージカル",
-                    "歌劇",
-                    "宝塚",
-                    "落語",
-                    "展示",
-                    "展覧",
-                    "博覧",
-                    "コレクション",
-                    "ファッション",
-                    "花火",
-                    "サッカー",
-                    "football",
-                    "dream match",
-                    "格闘技",
-                    "プロレス",
-                    "野球",
-                    "baseball",
-                    "試合",
-                    "対戦",
-                    "グランプリ",
-                ],
+                "allowed_event_types": ["Event", "MusicEvent", "SportsEvent"],
                 "future_only": True,
                 "lookback_days": 0,
+                "venue_min_capacity": 1000,
+                "require_known_venue": True,
                 "prune_missing": False,
                 "drop_past_events": True,
                 "prune_nonconforming": True,
@@ -560,109 +496,163 @@ def prune_past_event_signals(
     return len(delete_uids)
 
 
-def _to_str_set(raw: object, default_values: set[str]) -> set[str]:
-    if isinstance(raw, list):
-        values = {str(v).strip().lower() for v in raw if str(v).strip()}
-        if values:
-            return values
-    if isinstance(raw, str) and raw.strip():
-        return {raw.strip().lower()}
-    return {v.lower() for v in default_values}
+def load_venue_capacity_map() -> dict[str, int]:
+    try:
+        registry = load_venue_registry()
+    except Exception:
+        return {}
+
+    out: dict[str, int] = {}
+    for row in registry:
+        name = str(getattr(row, "venue_name", "") or "").strip()
+        capacity = getattr(row, "capacity", None)
+        if not name:
+            continue
+        if isinstance(capacity, int) and capacity > 0:
+            out[name] = capacity
+    return out
+
+
+def _to_bool(value: object, default: bool) -> bool:
+    if isinstance(value, bool):
+        return value
+    text = str(value or "").strip().lower()
+    if not text:
+        return default
+    if text in {"1", "true", "yes", "on"}:
+        return True
+    if text in {"0", "false", "no", "off"}:
+        return False
+    return default
+
+
+def _resolve_ticketjam_venue_gate(source: SignalSourceRecord) -> tuple[int, bool]:
+    cfg = load_source_config(source.config_json)
+    try:
+        min_capacity = int(cfg.get("venue_min_capacity", 1000))
+    except Exception:
+        min_capacity = 1000
+    min_capacity = max(0, min_capacity)
+    require_known_venue = _to_bool(cfg.get("require_known_venue", True), True)
+    return min_capacity, require_known_venue
+
+
+_TICKETJAM_CONCERT_CATEGORY_GROUPS = {"live_domestic", "live_international"}
+_TICKETJAM_CONCERT_SLUG_HINTS = (
+    "music",
+    "band",
+    "idol",
+    "classical",
+    "jazz",
+    "fusion",
+    "festival",
+    "artist",
+)
+_TICKETJAM_BASEBALL_HINTS = ("baseball", "yakyu", "npb")
+
+
+def classify_ticketjam_category(title: object, labels: dict[str, object]) -> str:
+    group = str(labels.get("ticketjam_category_group") or "").strip().lower()
+    slug = str(labels.get("ticketjam_category_slug") or "").strip().lower()
+    artist_name = str(labels.get("artist_name") or "").strip()
+    event_info = str(labels.get("event_info") or "").strip()
+
+    if any(hint in group for hint in _TICKETJAM_BASEBALL_HINTS) or any(
+        hint in slug for hint in _TICKETJAM_BASEBALL_HINTS
+    ):
+        return EVENT_CATEGORY_BASEBALL
+    if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS:
+        return EVENT_CATEGORY_CONCERT
+    if any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS):
+        return EVENT_CATEGORY_CONCERT
+
+    fallback_artist_name = (
+        artist_name
+        if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS
+        or any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS)
+        else ""
+    )
+    category = classify_event_category(title, fallback_artist_name, event_info)
+    if category not in {
+        EVENT_CATEGORY_CONCERT,
+        EVENT_CATEGORY_BASEBALL,
+        EVENT_CATEGORY_OTHER,
+    }:
+        return EVENT_CATEGORY_OTHER
+    return category
+
+
+def apply_ticketjam_selection_rules(
+    signals: list[SignalRecord],
+    source: SignalSourceRecord,
+    venue_capacity_by_name: dict[str, int],
+) -> tuple[list[SignalRecord], dict[str, object]]:
+    if source.source_id != "ticketjam_events":
+        return signals, {}
+
+    min_capacity, require_known_venue = _resolve_ticketjam_venue_gate(source)
+    kept: list[SignalRecord] = []
+    dropped_missing_fields = 0
+    dropped_unknown_venue = 0
+    dropped_low_capacity = 0
+    category_counts: Counter[str] = Counter()
+
+    for row in signals:
+        labels: dict[str, object] = {}
+        if isinstance(row.labels_json, str) and row.labels_json.strip():
+            try:
+                parsed = json.loads(row.labels_json)
+                if isinstance(parsed, dict):
+                    labels = parsed
+            except Exception:
+                labels = {}
+
+        title = str(row.title or "").strip()
+        start_date = str(labels.get("event_start_date") or "").strip()
+        venue_name = str(labels.get("venue_name") or "").strip()
+        artist_name = str(labels.get("artist_name") or "").strip()
+        if not (title and start_date and venue_name and artist_name):
+            dropped_missing_fields += 1
+            continue
+
+        capacity = venue_capacity_by_name.get(venue_name)
+        if capacity is None:
+            if require_known_venue:
+                dropped_unknown_venue += 1
+                continue
+        elif capacity < min_capacity:
+            dropped_low_capacity += 1
+            continue
+
+        category = classify_ticketjam_category(title, labels)
+        labels["event_category"] = category
+        if capacity is not None:
+            labels["venue_capacity"] = capacity
+        row.labels_json = canonical_labels_json(labels)
+        row.content_hash = compute_content_hash(row)
+        kept.append(row)
+        category_counts[category] += 1
+
+    return kept, {
+        "min_capacity": min_capacity,
+        "require_known_venue": require_known_venue,
+        "kept": len(kept),
+        "dropped_missing_fields": dropped_missing_fields,
+        "dropped_unknown_venue": dropped_unknown_venue,
+        "dropped_low_capacity": dropped_low_capacity,
+        "category_counts": dict(category_counts),
+    }
 
 
 def prune_ticketjam_nonconforming_signals(
     conn: sqlite3.Connection,
     source: SignalSourceRecord,
+    venue_capacity_by_name: dict[str, int],
 ) -> int:
     if source.source_id != "ticketjam_events":
         return 0
 
-    cfg = load_source_config(source.config_json)
-    allowed_groups = _to_str_set(
-        cfg.get("allowed_category_groups"),
-        {"live_domestic", "live_international"},
-    )
-    allowed_slugs = _to_str_set(
-        cfg.get("allowed_category_slugs"),
-        {
-            "idol-music",
-            "band-music",
-            "foreign-band-music",
-            "classical-music",
-            "foreign-classical-music",
-            "jazz-and-fusion",
-            "foreign-jazz-and-fusion",
-            "anime-music",
-            "music-event-and-festival",
-            "male-artist",
-            "female-artist",
-            "foreign-male-artist",
-            "foreign-female-artist",
-        },
-    )
-    ambiguous_slugs = _to_str_set(
-        cfg.get("ambiguous_category_slugs"),
-        {
-            "male-artist",
-            "female-artist",
-            "foreign-male-artist",
-            "foreign-female-artist",
-        },
-    )
-    music_include_keywords = _to_str_set(
-        cfg.get("music_include_keywords"),
-        {
-            "ライブ",
-            "コンサート",
-            "公演",
-            "ツアー",
-            "フェス",
-            "festival",
-            "tour",
-            "live",
-            "concert",
-            "oneman",
-            "one man",
-            "showcase",
-            "band",
-            "リサイタル",
-            "オーケストラ",
-            "音楽",
-        },
-    )
-    non_live_exclude_keywords = _to_str_set(
-        cfg.get("non_live_exclude_keywords"),
-        {
-            "お笑い",
-            "漫才",
-            "舞台挨拶",
-            "試写会",
-            "トークショー",
-            "講演会",
-            "朗読劇",
-            "演劇",
-            "ミュージカル",
-            "歌劇",
-            "宝塚",
-            "落語",
-            "展示",
-            "展覧",
-            "博覧",
-            "コレクション",
-            "ファッション",
-            "花火",
-            "サッカー",
-            "football",
-            "dream match",
-            "格闘技",
-            "プロレス",
-            "野球",
-            "baseball",
-            "試合",
-            "対戦",
-            "グランプリ",
-        },
-    )
+    min_capacity, require_known_venue = _resolve_ticketjam_venue_gate(source)
 
     cur = conn.execute(
         "SELECT signal_uid, title, labels_json FROM signals WHERE source_id = ?",
@@ -682,23 +672,19 @@ def prune_ticketjam_nonconforming_signals(
             delete_uids.append((str(signal_uid),))
             continue
 
-        group = str(labels.get("ticketjam_category_group") or "").strip().lower()
-        slug = str(labels.get("ticketjam_category_slug") or "").strip().lower()
+        title_text = str(title or "").strip()
+        start_date = str(labels.get("event_start_date") or "").strip()
+        venue_name = str(labels.get("venue_name") or "").strip()
         artist = str(labels.get("artist_name") or "").strip()
-        text = f"{str(title or '')} {artist}".lower()
+        if not (title_text and start_date and venue_name and artist):
+            delete_uids.append((str(signal_uid),))
+            continue
 
-        invalid = False
-        if allowed_groups and group not in allowed_groups:
-            invalid = True
-        if allowed_slugs and slug not in allowed_slugs:
-            invalid = True
-        if any(keyword in text for keyword in non_live_exclude_keywords):
-            invalid = True
-        if slug in ambiguous_slugs and not any(
-            keyword in text for keyword in music_include_keywords
-        ):
-            invalid = True
-        if invalid:
+        capacity = venue_capacity_by_name.get(venue_name)
+        if capacity is None and require_known_venue:
+            delete_uids.append((str(signal_uid),))
+            continue
+        if capacity is not None and capacity < min_capacity:
             delete_uids.append((str(signal_uid),))
 
     if not delete_uids:
@@ -961,12 +947,21 @@ def main() -> None:
     logger.info("Processing %d source(s)...", len(targets))
     artist_keep_map, artist_compact_map = load_artist_lookup_maps()
     venue_keep_map, venue_compact_map = load_venue_lookup_maps()
+    venue_capacity_by_name = load_venue_capacity_map()
+    target_venue_count_1000 = sum(
+        1 for cap in venue_capacity_by_name.values() if int(cap) >= 1000
+    )
     logger.info(
         "Loaded normalization maps: artist keep=%d compact=%d, venue keep=%d compact=%d",
         len(artist_keep_map),
         len(artist_compact_map),
         len(venue_keep_map),
         len(venue_compact_map),
+    )
+    logger.info(
+        "Loaded venue capacity map: total=%d, capacity>=1000=%d",
+        len(venue_capacity_by_name),
+        target_venue_count_1000,
     )
 
     success_count = 0
@@ -1028,6 +1023,27 @@ def main() -> None:
                 norm_stats.get("unknown_venues", Counter()),
                 label="venue",
             )
+            selection_stats: dict[str, object] = {}
+            signals, selection_stats = apply_ticketjam_selection_rules(
+                signals,
+                source,
+                venue_capacity_by_name,
+            )
+            if selection_stats:
+                category_counts = selection_stats.get("category_counts", {})
+                category_summary = ", ".join(
+                    f"{k}:{v}" for k, v in sorted(dict(category_counts).items())
+                )
+                logger.info(
+                    "  ticketjam gate: min_capacity=%s require_known_venue=%s kept=%s dropped_missing=%s dropped_unknown_venue=%s dropped_low_capacity=%s categories=%s",
+                    selection_stats.get("min_capacity"),
+                    selection_stats.get("require_known_venue"),
+                    selection_stats.get("kept"),
+                    selection_stats.get("dropped_missing_fields"),
+                    selection_stats.get("dropped_unknown_venue"),
+                    selection_stats.get("dropped_low_capacity"),
+                    category_summary or "-",
+                )
 
             if args.rebuild:
                 clear_source_for_rebuild(conn, source.source_id)
@@ -1058,6 +1074,7 @@ def main() -> None:
                 pruned_nonconforming = prune_ticketjam_nonconforming_signals(
                     conn,
                     source,
+                    venue_capacity_by_name,
                 )
                 if pruned_nonconforming > 0:
                     logger.info(

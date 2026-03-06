@@ -3187,6 +3187,57 @@ def classify_event_category(title: str, artist_name: str, description: str) -> s
     return EVENT_CATEGORY_OTHER
 
 
+_TICKETJAM_CONCERT_CATEGORY_GROUPS = {"live_domestic", "live_international"}
+_TICKETJAM_CONCERT_SLUG_HINTS = (
+    "music",
+    "band",
+    "idol",
+    "classical",
+    "jazz",
+    "fusion",
+    "festival",
+    "artist",
+)
+_TICKETJAM_BASEBALL_HINTS = ("baseball", "yakyu", "npb")
+
+
+def classify_ticketjam_signal_category(
+    *,
+    title: str,
+    artist_name: str,
+    description: str,
+    category_group: str,
+    category_slug: str,
+    explicit_category: str,
+) -> str:
+    explicit = str(explicit_category or "").strip()
+    if explicit in {
+        EVENT_CATEGORY_CONCERT,
+        EVENT_CATEGORY_BASEBALL,
+        EVENT_CATEGORY_OTHER,
+    }:
+        return explicit
+
+    group = str(category_group or "").strip().lower()
+    slug = str(category_slug or "").strip().lower()
+    if any(hint in group for hint in _TICKETJAM_BASEBALL_HINTS) or any(
+        hint in slug for hint in _TICKETJAM_BASEBALL_HINTS
+    ):
+        return EVENT_CATEGORY_BASEBALL
+    if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS:
+        return EVENT_CATEGORY_CONCERT
+    if any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS):
+        return EVENT_CATEGORY_CONCERT
+
+    fallback_artist_name = (
+        artist_name
+        if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS
+        or any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS)
+        else ""
+    )
+    return classify_event_category(title, fallback_artist_name, description)
+
+
 @st.cache_data(show_spinner=False)
 def load_events_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load events + venues from events.sqlite. Returns (df_events, df_venues)."""
@@ -3427,6 +3478,21 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     df["event_info"] = labels_series.apply(
         lambda d: str(d.get("event_info", "")).strip() if isinstance(d, dict) else ""
     )
+    df["ticketjam_category_group"] = labels_series.apply(
+        lambda d: (
+            str(d.get("ticketjam_category_group", "")).strip()
+            if isinstance(d, dict)
+            else ""
+        )
+    )
+    df["ticketjam_category_slug"] = labels_series.apply(
+        lambda d: (
+            str(d.get("ticketjam_category_slug", "")).strip() if isinstance(d, dict) else ""
+        )
+    )
+    df["event_category_label"] = labels_series.apply(
+        lambda d: str(d.get("event_category", "")).strip() if isinstance(d, dict) else ""
+    )
     df["artist_confidence"] = labels_series.apply(
         lambda d: (
             str(d.get("artist_confidence", "")).strip().lower()
@@ -3488,6 +3554,20 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         lambda row: row["event_info"] if row["event_info"] else row["snippet"],
         axis=1,
     )
+    if is_market_view:
+        df["event_category"] = df.apply(
+            lambda row: classify_ticketjam_signal_category(
+                title=str(row.get("title", "") or ""),
+                artist_name=str(row.get("artist_name", "") or ""),
+                description=str(row.get("event_info", "") or ""),
+                category_group=str(row.get("ticketjam_category_group", "") or ""),
+                category_slug=str(row.get("ticketjam_category_slug", "") or ""),
+                explicit_category=str(row.get("event_category_label", "") or ""),
+            ),
+            axis=1,
+        )
+    else:
+        df["event_category"] = EVENT_CATEGORY_OTHER
     df["published_label"] = df["published_jst"]
 
     def _normalize_hhmm(value: object) -> str:
@@ -3743,6 +3823,14 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     st.caption("未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。")
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
+    selected_category = EVENT_CATEGORY_ALL
+    if is_market_view:
+        selected_category = st.radio(
+            "種別",
+            EVENT_CATEGORY_OPTIONS,
+            horizontal=True,
+            key="signals_market_category",
+        )
     sort_label = st.radio(
         "並び順",
         ["掲載日時（新しい順）", "イベント日（早い順）"],
@@ -3761,6 +3849,8 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[
             "event_info"
         ].fillna("").str.lower().str.contains(keyword_lower)
+    if is_market_view and selected_category != EVENT_CATEGORY_ALL:
+        mask &= df["event_category"] == selected_category
 
     filtered = df[mask].copy()
     if sort_label == "掲載日時（新しい順）":
@@ -3786,21 +3876,22 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     else:
         st.caption("新規イベント（直近24時間）: 0 件")
 
-    table_df = filtered[
-        [
-            "new_badge",
-            "event_date_jst",
-            "start_time_jst",
-            "venue_name",
-            "pref_name",
-            "artist_name",
-            "title",
-            "published_label",
-            "source_name",
-            "url",
-            "event_info",
-        ]
-    ].rename(
+    table_columns = [
+        "new_badge",
+        "event_date_jst",
+        "start_time_jst",
+        "venue_name",
+        "pref_name",
+        "artist_name",
+        "title",
+        "published_label",
+        "source_name",
+        "url",
+        "event_info",
+    ]
+    if is_market_view:
+        table_columns.insert(5, "event_category")
+    table_df = filtered[table_columns].rename(
         columns={
             "new_badge": "新着",
             "event_date_jst": "イベント日",
@@ -3808,6 +3899,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
             "artist_name": "アーティスト",
             "venue_name": "会場",
             "pref_name": "都道府県",
+            "event_category": "種別",
             "published_label": "掲載日",
             "source_name": "ソース",
             "title": "タイトル",
@@ -3830,6 +3922,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         "signal_uid",
         "source_id",
         "source_name",
+        "event_category",
         "artist_name",
         "venue_name",
         "pref_name",
