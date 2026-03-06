@@ -29,7 +29,7 @@
 - `publish_external_events_assets.yml` の `workflow_run` トリガーをニュース/ Ticketjam 両workflowに対応させた
 
 ## Doing
-- T-20260306-006: `update_event_signals_data --only ticketjam_events --rebuild` 実行待ち
+- T-20260306-007: UIの二次流通ビューでサンプル会場抽出結果を目視確認する
 
 ## Next（最大3）
 1. 仕様変更時は `DECISIONS -> spec -> 実装` の順で同期する
@@ -42,7 +42,7 @@
 - [x] T-20260306-003: 既存 `venue_registry` への alias 追加を実施する（高頻度上位から）
 - [x] T-20260306-004: 未登録の1万人以上会場を `venue_registry` へ追加する（`is_enabled=0` で辞書用途先行）
 - [x] T-20260306-005: 辞書反映後のマッチ率を計測し、KPIを記録する（全体マッチ率 / 1万人以上マッチ率）
-- [ ] T-20260306-006: `update_event_signals_data --only ticketjam_events --rebuild` を実施し、既存データへ辞書を再適用する
+- [x] T-20260306-006: `update_event_signals_data --only ticketjam_events --rebuild` を実施し、既存データへ辞書を再適用する
 - [ ] T-20260306-007: UIの二次流通ビューでサンプル会場（京セラ/東京ドーム/ヤンマー等）の抽出結果を目視検証する
 - [ ] T-20260306-008: 会場一致のみ採用フラグ（実験モード）を導入し、フィルタON/OFF比較を可能にする
 - [ ] T-20260306-009: 会場一致かつ `capacity >= 10000` の採用ルールを本番既定に切り替える
@@ -50,16 +50,17 @@
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 全体会場マッチ率（registry or alias）: 15.58% -> 32.67%（+17.09pt）
 - 1万人以上会場マッチ率（全体比）: 5.42% -> 5.42%（横ばい）
+- 補足: `--rebuild` 実行時の取得上限（`max_sitemaps=120`, `max_event_urls=400`）では 69件再構築だったため、全量再適用が必要な場合は `--ticketjam-bootstrap-full` を使う
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260306-006
+- T-20260306-007
 
 Next:
-- T-20260306-007, T-20260306-001
+- T-20260306-001, T-20260306-008
 
 After Next:
-- T-20260306-008, T-20260306-009
+- T-20260306-009
 
 Later:
 - なし（必要時に追加）
