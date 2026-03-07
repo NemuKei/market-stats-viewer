@@ -3,6 +3,7 @@
 最終更新: 2026-03-07
 
 ## Done（直近完了）
+- 会場辞書の対象範囲を定義し、`capacity >= 10000` は常設対象、`1000 <= capacity < 10000` は重点会場のみ、`capacity < 1000` / 不明は原則対象外とする運用を `DECISIONS` / spec へ反映
 - `events.sqlite` に `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値 + 辞書正規化 + 推論結果を同期するよう更新（BCL側が sqlite 単体で利用可能）
 - event_signals更新時に artist/venue 辞書正規化を保存時適用し、`labels_json` へ `raw_artist_name` / `raw_venue_name` を保持するよう更新
 - 会場別名辞書 `data/venue_aliases.csv` を追加し、`venue_registry` 正本 + alias吸収の運用に整理
@@ -40,7 +41,7 @@
 3. UI/データ更新タスクが発生したら本ファイルを最新スナップショットへ更新する
 
 ## Task Backlog（Venue Dictionary Completeness）
-- [ ] T-20260306-001: 会場辞書の対象範囲を定義する（運用対象: 1万人以上会場 + 重点会場）
+- [x] T-20260306-001: 会場辞書の対象範囲を定義する（運用対象: 1万人以上会場 + 重点会場）
 - [x] T-20260306-002: `ticketjam_events` 未解決会場候補を頻度順で抽出し、ノイズ語（会場でない文字列）を分離する
 - [x] T-20260306-003: 既存 `venue_registry` への alias 追加を実施する（高頻度上位から）
 - [x] T-20260306-004: 未登録の1万人以上会場を `venue_registry` へ追加する（`is_enabled=0` で辞書用途先行）
@@ -72,7 +73,7 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260306-001
+- （なし）
 
 Next:
 - （なし）

@@ -69,3 +69,4 @@
 - D-20260305-001 | `ticketjam_events` は「初回のみ bootstrap full（網羅取得）」と「以後は日次の増分新規取り込み」を分離運用する。`--ticketjam-bootstrap-full` で `last_signature` をリセットして `bootstrap_max_*`（既定: 8000/50000）を適用し、通常運用は `upsert_existing=false` で新規中心に取り込む | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260305-002 | `ticketjam_events` の重複表示対策として、`event_id` だけでなく `event_start_date + event_start_time + venue_name + artist_name + title` の同一キー重複も更新時に1件へ集約する | status: applied | spec_link: docs/spec_update_pipeline.md
 - D-20260306-001 | `ticketjam_events` の採用方針を「カテゴリ限定」から「会場辞書一致 + `capacity>=1000`」へ切り替える。取得時はカテゴリで除外せず、保存時に会場ゲートを適用し、`event_category` は `コンサート / 野球 / その他` を付与する | status: applied | spec_link: docs/spec_update_pipeline.md
+- D-20260307-001 | 会場辞書の運用対象は「`capacity >= 10000` を基本対象、`1000 <= capacity < 10000` は重点会場のみ、`capacity < 1000` または不明は原則対象外」とする。公式取得未対応の1万人級会場は `is_enabled=0` の辞書用途で先行登録してよい | status: applied | spec_link: docs/spec_data.md

@@ -182,6 +182,10 @@
 - 会場辞書更新ルール:
   - 会場は `venue_id` を不変IDとして扱い、正本は `data/venue_registry.csv`。
   - 別名・表記ゆれ・ニュース由来表記は `data/venue_aliases.csv` で吸収する。
+  - 対象範囲は「`capacity >= 10000` を基本対象、`1000 <= capacity < 10000` は重点会場のみ」とする。
+    - `capacity >= 10000`: 公式ソース未実装でも `is_enabled=0` の辞書用途で保持する。
+    - 重点会場: 会場公式取得対象、または `ticketjam_events` の採用/未解決候補で継続的に影響が出る会場を登録する。
+    - `capacity < 1000` または capacity 不明: 明示要件が出るまで常設対象外。
   - 会場名変更が発生した場合:
     1. `venue_registry.csv` の `venue_name` を新正式名へ更新
     2. 旧正式名を `venue_aliases.csv` の `aliases_json` へ追加
