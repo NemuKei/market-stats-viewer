@@ -1,6 +1,6 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-03-06
+最終更新: 2026-03-07
 
 ## Done（直近完了）
 - `events.sqlite` に `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値 + 辞書正規化 + 推論結果を同期するよう更新（BCL側が sqlite 単体で利用可能）
@@ -29,9 +29,10 @@
 - `publish_external_events_assets.yml` の `workflow_run` トリガーをニュース/ Ticketjam 両workflowに対応させた
 - `ticketjam_events` の採用ゲートを「会場辞書一致 + `capacity>=1000`」へ切替し、取得時カテゴリ縛りを外したうえで `event_category`（コンサート/野球/その他）を付与するよう更新
 - 二次流通ビューに会場公式寄せの種別フィルタ（すべて/コンサート/野球/その他）を追加
+- `ticketjam_events` の `--ticketjam-bootstrap-full` 検証を GitHub Actions で `bootstrap_max_sitemaps=1200` / `bootstrap_max_event_urls=12000` にて完走し、現行ゲート適用後の確定値を記録した（`3242 fetched -> 319 kept`, `event_category=コンサート 304 / その他 15`）
 
 ## Doing
-- T-20260306-015: 継続中。縮小上限（`max_sitemaps=300`, `max_event_urls=5000`）では完走確認済みだが、完了条件は「現行ゲート（会場辞書一致 + `capacity>=1000`）適用後の `--ticketjam-bootstrap-full` を1回完走し、会場別件数と種別件数を記録すること」
+- （なし）
 
 ## Next（最大3）
 1. 仕様変更時は `DECISIONS -> spec -> 実装` の順で同期する
@@ -55,7 +56,7 @@
 - [x] T-20260306-012: 会場辞書一致かつ `capacity >= 1000` の採用ゲートを実装する
 - [x] T-20260306-013: Ticketjamデータの `event_category` を `コンサート / 野球 / その他` に分岐する（Ticketjamカテゴリ優先、不足時は既存ルールで補完）
 - [x] T-20260306-014: 二次流通ビューのGUIを会場公式ビュー寄りに揃える（種別フィルタ、列順、操作導線）
-- [ ] T-20260306-015: `--ticketjam-bootstrap-full` 実行で再構築し、会場別件数と種別件数を検証する（縮小上限 `300/5000` はスモークテスト完了。本完了は `workflow_dispatch` で `1200/12000` 以上、理想は既定 `8000/50000` の bootstrap full 完走を確認してから）
+- [x] T-20260306-015: `--ticketjam-bootstrap-full` 実行で再構築し、会場別件数と種別件数を検証する（2026-03-06: GitHub Actions run `22758325580`, `1200/12000` で完走確認）
 - [x] T-20260306-016: `DECISIONS` / `spec_update_pipeline` / `spec_app` を新方針へ同期する
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
@@ -66,17 +67,18 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 2026-03-06 実測メモ:
 - ローカル縮小 bootstrap（`300/5000`）: `49件`、`event_category=コンサート 46 / その他 3`、会場上位は `豊洲PIT 6` / `GORILLA HALL OSAKA 4` / `サントリーホール 4` / `東京芸術劇場 コンサートホール 4`
 - `origin/main` 現在DB（2026-03-06 04:58 UTC の日次増分後）: `198件`、`event_category=(null) 178 / コンサート 19 / その他 1`。増分更新だけでは旧データが多く残るため、現行ルールの確定値には bootstrap full 再構築が必要
-- GitHub Actions 手動実行: `Update event signals data (Ticketjam)` run `22758325580` を 2026-03-06 09:55 UTC に `bootstrap_full=true`, `bootstrap_max_sitemaps=1200`, `bootstrap_max_event_urls=12000` で起動済み（本ファイル更新時点では in progress）
+- GitHub Actions 手動実行: `Update event signals data (Ticketjam)` run `22758325580` は 2026-03-06 09:55 UTC 開始、2026-03-06 11:17 UTC に success で完了。`sitemap attempts=1210 successes=1200 urls=3691`、`3242 fetched`、ゲート後 `319 kept`（`unknown venue 2855 / low capacity 68`）
+- bootstrap full 完走後の `origin/main` 現在DB: `319件`、`event_category=コンサート 304 / その他 15`、会場上位は `TOKYO DOME CITY HALL 24` / `豊洲PIT 19` / `オリックス劇場 18` / `Zepp DiverCity(Tokyo) 16` / `Kアリーナ横浜 14`
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260306-015
-
-Next:
 - T-20260306-001
 
+Next:
+- （なし）
+
 After Next:
-- T-20260306-010
+- （なし）
 
 Later:
 - （なし）
