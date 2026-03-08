@@ -159,6 +159,16 @@
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
     - `prune_nonconforming=true`（会場辞書一致 + capacity 閾値を満たさない既存行を更新時に削除）
     - 重複除去: `event_id` 重複に加えて、`event_start_date + event_start_time + venue_name + artist_name + title` が同一の重複行を更新時に1件へ集約
+  - 2026-03-09 時点の再定義:
+    - `ticketjam_events` の役割は「会場網羅の正本」ではなく「補完ソース」とする
+    - 補完対象は 2 軸で管理する
+      - `artist-gap`: STARTO / K-POP ニュースソースで拾いにくいアーティストの速報補完
+      - `venue-gap`: 会場公式が弱い・無い・取得困難な会場の補完
+    - 京セラドーム大阪のように会場公式で十分取得できる会場は、Ticketjam で網羅性を追わない
+    - 採用条件の正本は従来どおり会場辞書一致 + capacity gate とし、発見導線が変わっても保存ゲートは維持する
+    - 大阪スパイクでは `https://ticketjam.jp/prefectures/osaka/month` 系の都道府県ページを優先的に検証し、会場ページ / sitemap は補助導線として比較評価する
+    - スパイクの成功条件は「既存ソース（会場公式 / STARTO / Kstyle）に対して追加できたユニーク日程の有意差」で判定する
+      - 指標: `artist-gap additional hits` / `venue-gap additional hits` / `noise rate`
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）

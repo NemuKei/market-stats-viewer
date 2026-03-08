@@ -108,6 +108,7 @@
   - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
   - `ticketjam_events` は 1日程=1データを原則とし、複数日開催のシリーズでも日別ページ単位で保存する
   - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する
+  - `ticketjam_events` は会場網羅の正本DBではなく、`artist-gap` / `venue-gap` を補う参考ソースとして扱う
   - `ticketjam_events` の会場ページ対応は `data/ticketjam_venue_pages.csv` で管理する
     - 1行=1 Ticketjam 会場ページと内部 `venue_id` の対応
     - 初期 scope は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
@@ -150,6 +151,14 @@
 - アーティスト辞書:
   - 入力ソース: `artist_registry.seed.csv` + `artist_registry.jp.seed.csv` + `artist_registry.manual.csv`
   - マージ優先順: `seed -> jp.seed -> manual`（後勝ち）
+  - Ticketjam 補完フラグ（追加予定列）:
+    - `ticketjam_watch`: `0/1`。Ticketjam の `artist-gap` 補完対象として監視するか
+    - `ticketjam_benchmark_tier`: `S / A / B / reference / ""`
+      - `S`: 直近1年で五大ドーム完走級
+      - `A`: 全国ドームツアー級
+      - `B`: 複数ドーム開催級
+      - `reference`: 格としては十分だが、初期監視は後回し
+    - `ticketjam_watch_reason`: 初期値は `artist_gap`
 - 会場辞書:
   - 正本: `data/venue_registry.csv`（`venue_id` 固定）
   - 別名辞書: `data/venue_aliases.csv`
@@ -160,6 +169,11 @@
     - 重点会場: `1000 <= capacity < 10000` の会場は、ユーザー影響が高いものだけを対象にする。判断基準は「会場公式イベントの取得対象である」または「`ticketjam_events` の採用/未解決候補で継続的に出現し、GUI確認や辞書照合KPIに影響する」のいずれか。
     - 原則対象外: `capacity < 1000` または capacity 不明の小規模会場は、明示的な運用要件が出るまで辞書の常設対象にしない。
   - Ticketjam venue-first Phase 1 では、会場辞書へ追加した canonical 会場に対して `ticketjam_venue_pages.csv` の page URL を紐付け、Ticketjam 側 raw 表記は `venue_aliases.csv` で吸収する。
+  - Ticketjam 補完フラグ（追加予定列）:
+    - `ticketjam_watch`: `0/1`。Ticketjam の `venue-gap` 補完対象として監視するか
+    - `official_fetch_candidate`: `0/1`。本来は会場公式ソース追加を検討すべき会場か
+    - `official_gap_reason`: `no_official_site / weak_schedule / hard_to_parse / temporary_fallback / ""`
+      - `ticketjam_watch=1` と `official_fetch_candidate=1` は両立してよい
 - 一意性ルール:
   - 正規化キー（keep/compact）が複数 canonical に衝突する場合、そのキーは自動適用しない。
   - 自動適用は一意に解決できるキーのみ。
