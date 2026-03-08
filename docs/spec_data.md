@@ -106,6 +106,7 @@
   - 本文は保存しない（ニュース全文のDB保存禁止）
   - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
   - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
+  - `ticketjam_events` は 1日程=1データを原則とし、複数日開催のシリーズでも日別ページ単位で保存する
   - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する
   - `ticketjam_events` の会場ページ対応は `data/ticketjam_venue_pages.csv` で管理する
     - 1行=1 Ticketjam 会場ページと内部 `venue_id` の対応

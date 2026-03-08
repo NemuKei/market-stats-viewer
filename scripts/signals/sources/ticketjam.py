@@ -33,10 +33,14 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 class TicketjamEventsSource(SignalSource):
     """Fetch Ticketjam event pages via venue pages (preferred) or legacy sitemaps."""
 
+    _DEFAULT_SITEMAP_INDEX_URL = "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz"
     _START_RE = re.compile(r"(\d{4}-\d{2}-\d{2})(?:T(\d{2}:\d{2}))?")
     _EVENT_URL_RE = re.compile(r"^https://ticketjam\.jp/tickets/[^/]+/event/\d+$")
     _TITLE_OPTION_RE = re.compile(
         r"(\d{1,2})/(\d{1,2})\([^)]*\)\s+(\d{2}:\d{2})\s+(.+)$"
+    )
+    _VENUE_PAGE_EVENT_TEXT_RE = re.compile(
+        r"^(?P<head>.+?)\s+(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})\([^)]*\)\s+(?P<time>\d{2}:\d{2})"
     )
     _VENUE_PAGE_EVENT_LINK_SELECTOR = "a.p-event-min__link[href]"
     _SKIP_EVENT_HINTS = ("駐車場券", "駐車券", "駐車場")
@@ -51,26 +55,40 @@ class TicketjamEventsSource(SignalSource):
         min_event_date = (datetime.now(JST).date() - timedelta(days=lookback_days)).isoformat()
         allowed_event_types = self._resolve_allowed_types(cfg)
         discovery_mode = str(cfg.get("discovery_mode", "sitemap")).strip().lower()
-        if discovery_mode == "venue_pages":
-            event_urls = self._load_event_urls_from_venue_pages(
-                cfg,
-                timeout_sec=timeout_sec,
-                request_retries=request_retries,
+        event_candidates: dict[str, dict[str, str]] = {}
+        if discovery_mode in {"venue_pages", "hybrid"}:
+            event_candidates.update(
+                self._load_event_candidates_from_venue_pages(
+                    cfg,
+                    timeout_sec=timeout_sec,
+                    request_retries=request_retries,
+                )
             )
-        else:
-            event_urls = self._load_event_urls_from_sitemaps(
-                source.source_url,
+        if discovery_mode in {"sitemap", "hybrid"}:
+            sitemap_index_url = str(
+                cfg.get("sitemap_index_url") or self._DEFAULT_SITEMAP_INDEX_URL
+            ).strip()
+            for event_key, event_url in self._load_event_urls_from_sitemaps(
+                sitemap_index_url,
                 cfg,
                 timeout_sec=timeout_sec,
                 request_retries=request_retries,
                 source=source,
-            )
-        if not event_urls:
+            ):
+                existing = event_candidates.get(event_key)
+                if existing is None:
+                    event_candidates[event_key] = {"event_url": event_url}
+                else:
+                    existing.setdefault("event_url", event_url)
+        if not event_candidates:
             logger.warning("ticketjam: no event URLs after discovery")
             return []
 
         records: list[SignalRecord] = []
-        for event_url in event_urls:
+        for candidate in event_candidates.values():
+            event_url = str(candidate.get("event_url") or "").strip()
+            if not event_url:
+                continue
             rec = self._fetch_event_signal(
                 source.source_id,
                 event_url,
@@ -79,6 +97,7 @@ class TicketjamEventsSource(SignalSource):
                 min_event_date=min_event_date,
                 future_only=future_only,
                 allowed_event_types=allowed_event_types,
+                candidate_context=candidate,
             )
             if rec:
                 records.append(rec)
@@ -89,46 +108,50 @@ class TicketjamEventsSource(SignalSource):
             logger.warning("ticketjam: parsed 0 valid signals from %s", source.source_id)
         return records
 
-    def _load_event_urls_from_venue_pages(
+    def _load_event_candidates_from_venue_pages(
         self,
         cfg: dict[str, object],
         *,
         timeout_sec: int,
         request_retries: int,
-    ) -> list[str]:
+    ) -> dict[str, dict[str, str]]:
         venue_pages = self._load_ticketjam_venue_pages(cfg)
         if not venue_pages:
             logger.warning("ticketjam: no ticketjam venue pages configured")
-            return []
+            return {}
         raw_skip_keywords = cfg.get("exclude_title_keywords") or list(self._SKIP_EVENT_HINTS)
         skip_keywords = tuple(
             str(value).strip() for value in raw_skip_keywords if str(value).strip()
         ) or self._SKIP_EVENT_HINTS
 
-        event_url_map: dict[str, str] = {}
+        event_candidates: dict[str, dict[str, str]] = {}
         scanned_venues = 0
         for venue in venue_pages:
             venue_url = str(venue.get("ticketjam_venue_url") or "").strip()
             if not venue_url:
                 continue
             scanned_venues += 1
-            event_links = self._load_event_urls_from_venue_page(
+            event_rows = self._load_event_candidates_from_venue_page(
+                venue,
                 venue_url,
                 timeout_sec=timeout_sec,
                 request_retries=request_retries,
                 skip_keywords=skip_keywords,
             )
-            for event_url in event_links:
+            for candidate in event_rows:
+                event_url = str(candidate.get("event_url") or "").strip()
+                if not event_url:
+                    continue
                 event_id = self._extract_event_id(event_url)
                 event_key = event_id or event_url
-                event_url_map[event_key] = event_url
+                event_candidates[event_key] = candidate
 
         logger.info(
             "ticketjam: venue pages=%d urls=%d",
             scanned_venues,
-            len(event_url_map),
+            len(event_candidates),
         )
-        return list(event_url_map.values())
+        return event_candidates
 
     def _load_ticketjam_venue_pages(
         self, cfg: dict[str, object]
@@ -156,14 +179,15 @@ class TicketjamEventsSource(SignalSource):
                 rows.append({str(k): str(v or "").strip() for k, v in row.items()})
         return rows
 
-    def _load_event_urls_from_venue_page(
+    def _load_event_candidates_from_venue_page(
         self,
+        venue: dict[str, str],
         venue_url: str,
         *,
         timeout_sec: int,
         request_retries: int,
         skip_keywords: tuple[str, ...],
-    ) -> list[str]:
+    ) -> list[dict[str, str]]:
         resp = self._get_with_retry(
             venue_url,
             timeout_sec=timeout_sec,
@@ -179,7 +203,9 @@ class TicketjamEventsSource(SignalSource):
         soup = BeautifulSoup(resp.text, "html.parser")
         sections = self._find_venue_event_sections(soup)
 
-        event_urls: list[str] = []
+        candidates: list[dict[str, str]] = []
+        venue_name = str(venue.get("venue_name") or "").strip()
+        pref_name = str(venue.get("pref_name") or "").strip()
         for section in sections:
             for anchor in section.select(self._VENUE_PAGE_EVENT_LINK_SELECTOR):
                 href = str(anchor.get("href") or "").strip()
@@ -191,9 +217,17 @@ class TicketjamEventsSource(SignalSource):
                 label = " ".join(anchor.get_text(" ", strip=True).split())
                 if self._should_skip_event_link(label, skip_keywords):
                     continue
-                event_urls.append(url)
-        if event_urls:
-            return list(dict.fromkeys(event_urls))
+                candidate = {"event_url": url}
+                candidate.update(
+                    self._parse_venue_page_event_context(
+                        label,
+                        venue_name=venue_name,
+                        pref_name=pref_name,
+                    )
+                )
+                candidates.append(candidate)
+        if candidates:
+            return self._dedupe_event_candidates(candidates)
 
         # Fallback: if section detection failed, scan the whole page.
         for anchor in soup.select(self._VENUE_PAGE_EVENT_LINK_SELECTOR):
@@ -205,8 +239,52 @@ class TicketjamEventsSource(SignalSource):
             if self._EVENT_URL_RE.match(url) and not self._should_skip_event_link(
                 label, skip_keywords
             ):
-                event_urls.append(url)
-        return list(dict.fromkeys(event_urls))
+                candidate = {"event_url": url}
+                candidate.update(
+                    self._parse_venue_page_event_context(
+                        label,
+                        venue_name=venue_name,
+                        pref_name=pref_name,
+                    )
+                )
+                candidates.append(candidate)
+        return self._dedupe_event_candidates(candidates)
+
+    def _parse_venue_page_event_context(
+        self,
+        text: str,
+        *,
+        venue_name: str,
+        pref_name: str,
+    ) -> dict[str, str]:
+        compact = " ".join(str(text or "").split())
+        match = self._VENUE_PAGE_EVENT_TEXT_RE.search(compact)
+        if not match:
+            return {}
+        start_date = (
+            f"{match.group('year')}-{match.group('month')}-{match.group('day')}"
+        )
+        context = {
+            "event_start_date": start_date,
+            "event_end_date": start_date,
+            "event_start_time": str(match.group("time") or "").strip(),
+        }
+        if venue_name:
+            context["venue_name"] = venue_name
+        if pref_name:
+            context["pref_name"] = pref_name
+        return context
+
+    def _dedupe_event_candidates(
+        self, candidates: list[dict[str, str]]
+    ) -> list[dict[str, str]]:
+        out: dict[str, dict[str, str]] = {}
+        for candidate in candidates:
+            event_url = str(candidate.get("event_url") or "").strip()
+            if not event_url:
+                continue
+            out[event_url] = candidate
+        return list(out.values())
 
     def _find_venue_event_sections(self, soup: BeautifulSoup) -> list[BeautifulSoup]:
         sections: list[BeautifulSoup] = []
@@ -232,7 +310,7 @@ class TicketjamEventsSource(SignalSource):
         timeout_sec: int,
         request_retries: int,
         source: SignalSourceRecord,
-    ) -> list[str]:
+    ) -> list[tuple[str, str]]:
         max_sitemaps, max_event_urls = self._resolve_limits(source, cfg)
         max_sitemap_attempts = max(
             max_sitemaps,
@@ -278,11 +356,11 @@ class TicketjamEventsSource(SignalSource):
             sitemap_successes,
             len(event_url_map),
         )
+        sorted_items = sorted(
+            event_url_map.items(), key=lambda kv: kv[1][1] or "", reverse=True
+        )[:max_event_urls]
         return [
-            row[0]
-            for _, row in sorted(
-                event_url_map.items(), key=lambda kv: kv[1][1] or "", reverse=True
-            )[:max_event_urls]
+            (event_key, row[0]) for event_key, row in sorted_items
         ]
 
     def _dedupe_records(self, records: list[SignalRecord]) -> list[SignalRecord]:
@@ -323,25 +401,56 @@ class TicketjamEventsSource(SignalSource):
             return {}
 
     def _normalize_legacy_config(self, cfg: dict[str, object]) -> dict[str, object]:
-        """Upgrade old config variants to current safe defaults at runtime."""
-        if not cfg:
-            return cfg
-        is_legacy = "discovery_mode" not in cfg and "venue_pages_csv" not in cfg
-        if not is_legacy:
-            return cfg
-
         upgraded = dict(cfg)
-        upgraded["discovery_mode"] = "venue_pages"
-        upgraded["venue_pages_csv"] = str(
-            cfg.get("venue_pages_csv") or "data/ticketjam_venue_pages.csv"
+        changed = False
+        discovery_mode = str(upgraded.get("discovery_mode") or "").strip().lower()
+        if not discovery_mode or discovery_mode == "venue_pages":
+            upgraded["discovery_mode"] = "hybrid"
+            changed = True
+        if str(upgraded.get("venue_pages_csv") or "").strip() != "data/ticketjam_venue_pages.csv":
+            upgraded["venue_pages_csv"] = str(
+                upgraded.get("venue_pages_csv") or "data/ticketjam_venue_pages.csv"
+            )
+            changed = True
+        if str(upgraded.get("sitemap_index_url") or "").strip() != self._DEFAULT_SITEMAP_INDEX_URL:
+            upgraded["sitemap_index_url"] = str(
+                upgraded.get("sitemap_index_url") or self._DEFAULT_SITEMAP_INDEX_URL
+            )
+            changed = True
+        if "exclude_title_keywords" not in upgraded:
+            upgraded["exclude_title_keywords"] = list(self._SKIP_EVENT_HINTS)
+            changed = True
+        if "allowed_event_types" not in upgraded:
+            upgraded["allowed_event_types"] = ["Event", "MusicEvent", "SportsEvent"]
+            changed = True
+        if "future_only" not in upgraded:
+            upgraded["future_only"] = True
+            changed = True
+        if "lookback_days" not in upgraded:
+            upgraded["lookback_days"] = int(cfg.get("lookback_days", 0))
+            changed = True
+        max_sitemaps = max(120, int(upgraded.get("max_sitemaps", 120)))
+        max_event_urls = max(400, int(upgraded.get("max_event_urls", 400)))
+        bootstrap_max_sitemaps = max(
+            8000, int(upgraded.get("bootstrap_max_sitemaps", 8000))
         )
-        upgraded["exclude_title_keywords"] = list(
-            cfg.get("exclude_title_keywords") or list(self._SKIP_EVENT_HINTS)
+        bootstrap_max_event_urls = max(
+            50000, int(upgraded.get("bootstrap_max_event_urls", 50000))
         )
-        upgraded["allowed_event_types"] = ["Event", "MusicEvent", "SportsEvent"]
-        upgraded["future_only"] = True
-        upgraded["lookback_days"] = int(cfg.get("lookback_days", 0))
-        logger.info("ticketjam: upgraded legacy config to venue-page mode at runtime")
+        if upgraded.get("max_sitemaps") != max_sitemaps:
+            upgraded["max_sitemaps"] = max_sitemaps
+            changed = True
+        if upgraded.get("max_event_urls") != max_event_urls:
+            upgraded["max_event_urls"] = max_event_urls
+            changed = True
+        if upgraded.get("bootstrap_max_sitemaps") != bootstrap_max_sitemaps:
+            upgraded["bootstrap_max_sitemaps"] = bootstrap_max_sitemaps
+            changed = True
+        if upgraded.get("bootstrap_max_event_urls") != bootstrap_max_event_urls:
+            upgraded["bootstrap_max_event_urls"] = bootstrap_max_event_urls
+            changed = True
+        if changed:
+            logger.info("ticketjam: upgraded runtime config to hybrid mode")
         return upgraded
 
     def _resolve_limits(
@@ -435,6 +544,7 @@ class TicketjamEventsSource(SignalSource):
         min_event_date: str,
         future_only: bool,
         allowed_event_types: set[str],
+        candidate_context: dict[str, str] | None = None,
     ) -> SignalRecord | None:
         resp = self._get_with_retry(
             event_url,
@@ -460,15 +570,17 @@ class TicketjamEventsSource(SignalSource):
         if not title:
             return None
 
+        candidate_context = candidate_context or {}
+        candidate_start_date = str(candidate_context.get("event_start_date") or "").strip()
+        candidate_start_time = str(candidate_context.get("event_start_time") or "").strip()
+        candidate_venue_name = str(candidate_context.get("venue_name") or "").strip()
+        candidate_pref_name = str(candidate_context.get("pref_name") or "").strip()
+
         payload_start_date, payload_start_time = self._parse_start(
             event_payload.get("startDate")
         )
-        if not payload_start_date:
+        if not (payload_start_date or candidate_start_date):
             return None
-
-        end_date, _ = self._parse_start(event_payload.get("endDate"))
-        if not end_date:
-            end_date = payload_start_date
 
         artist_name = self._extract_artist_name(event_payload.get("performer"))
         if not artist_name:
@@ -482,16 +594,22 @@ class TicketjamEventsSource(SignalSource):
         # page headline performance for date/time/venue to avoid cross-venue mixups.
         page_start_date, page_start_time, page_venue_name = self._extract_page_performance(
             soup,
-            default_year=payload_start_date[:4],
+            default_year=(candidate_start_date or payload_start_date)[:4],
         )
 
-        start_date = page_start_date or payload_start_date
-        start_time = page_start_time or payload_start_time
-        if page_venue_name:
+        start_date = candidate_start_date or page_start_date or payload_start_date
+        start_time = candidate_start_time or page_start_time or payload_start_time
+        if candidate_venue_name:
+            venue_name = candidate_venue_name
+            if candidate_pref_name:
+                pref_name = candidate_pref_name
+        elif page_venue_name:
             if venue_name and page_venue_name != venue_name:
                 # Drop potentially stale region from JSON-LD if venue changed.
                 pref_name = ""
             venue_name = page_venue_name
+        if candidate_pref_name:
+            pref_name = candidate_pref_name
         if not pref_name:
             pref_name = self._extract_pref_from_page_text(soup, start_date, start_time, venue_name)
         if future_only and start_date < min_event_date:
@@ -501,6 +619,7 @@ class TicketjamEventsSource(SignalSource):
         if not (start_date and venue_name and artist_name and title):
             return None
 
+        end_date = start_date
         event_info = self._build_event_info(start_date, start_time, pref_name, venue_name)
         published_at_utc = to_utc_z_from_jst_date(start_date, "%Y-%m-%d")
         if not published_at_utc:

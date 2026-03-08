@@ -4,17 +4,17 @@ on:
   workflow_dispatch:
     inputs:
       bootstrap_full:
-        description: "初回の全件近似取得を実行する（ticketjamのみ）"
+        description: "Ticketjam全件再評価を実行する（会場ページ全巡回 + sitemap補完）"
         type: boolean
         required: false
         default: false
       bootstrap_max_sitemaps:
-        description: "bootstrap時に走査するsitemap数"
+        description: "bootstrap時に走査するsitemap数（hybrid補完用）"
         type: string
         required: false
         default: "8000"
       bootstrap_max_event_urls:
-        description: "bootstrap時に保持するevent URL上限"
+        description: "bootstrap時に保持するevent URL上限（hybrid補完用）"
         type: string
         required: false
         default: "50000"

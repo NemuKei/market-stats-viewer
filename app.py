@@ -3522,6 +3522,10 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     df["event_end_dt"] = event_end_parsed.where(
         event_end_parsed.notna(), df["event_start_dt"]
     )
+    invalid_event_range_mask = df["event_end_dt"] < df["event_start_dt"]
+    df.loc[invalid_event_range_mask, "event_end_dt"] = df.loc[
+        invalid_event_range_mask, "event_start_dt"
+    ]
     df["event_start_date"] = df["event_start_dt"].dt.date
     df["event_end_date"] = df["event_end_dt"].dt.date
     df["event_start_ym"] = df["event_start_dt"].dt.strftime("%Y-%m")

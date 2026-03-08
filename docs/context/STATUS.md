@@ -3,6 +3,9 @@
 最終更新: 2026-03-08
 
 ## Done（直近完了）
+- `ticketjam_events` の取得を pure venue-page から hybrid（会場ページ + 公開 sitemap 補完）へ見直した。会場ページは `date/time/venue` の page-specific 情報源として優先し、会場ページだけでは出てこない event URL は sitemap で補完するよう更新
+- Ticketjam の stale JSON-LD により `event_end_date < event_start_date` となるケースを修正した。event page 見出しと会場ページ文脈を優先し、`ticketjam_events` は 1日程=1データとして `event_start_date == event_end_date` で保存するよう更新
+- 二次流通ビューの防御線として、既存DBに逆転した期間が残っていても UI 上は `event_end_date >= event_start_date` へ補正して表示するよう更新
 - Ticketjam を venue page 起点へ切り替え、`data/ticketjam_venue_pages.csv` を追加した。Phase 1 は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県 の `75会場`（`is_enabled=1` は `68会場`）で、`イベント一覧` から event URL を収集し、`駐車場券` などの付随商品を除外するよう更新
 - Phase 1 会場マスタを `venue_registry` / `venue_aliases` へ取り込み、会場辞書を `69 -> 104会場` に拡張した。既存会場は `venue_id` を維持し、Ticketjam 側の別表記は alias へ吸収する運用に整理した
 - 会場辞書の対象範囲を定義し、`capacity >= 10000` は常設対象、`1000 <= capacity < 10000` は重点会場のみ、`capacity < 1000` / 不明は原則対象外とする運用を `DECISIONS` / spec へ反映
@@ -67,6 +70,9 @@
 - [x] T-20260308-002: `data/ticketjam_venue_pages.csv` を追加し、Ticketjam 会場ページ URL と内部 `venue_id` の対応を正本化する
 - [x] T-20260308-003: `ticketjam_events` の event URL 収集を venue page 起点へ切り替え、`イベント一覧` のみ巡回する
 - [x] T-20260308-004: venue page 起点でも既存運用を壊さないよう、legacy sitemap config を runtime 互換として残しつつ `DECISIONS` / spec / STATUS を同期する
+- [x] T-20260308-005: Ticketjam の stale JSON-LD に引きずられる日付逆転を修正し、page-specific 日付/時刻/会場を優先する
+- [x] T-20260308-006: pure venue-page だけでは主要会場の網羅性が足りないため、公開 sitemap を補完導線として再導入する
+- [x] T-20260308-007: `ticketjam_events` を 1日程=1データへ変更し、複数日開催も日別レコードで保持する
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 全体会場マッチ率（registry or alias）: 15.58% -> 32.67%（+17.09pt）
@@ -83,6 +89,8 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - Phase 1 会場 CSV 取り込み後の辞書件数は `104会場`。`ticketjam_venue_pages.csv` は `75行`、うち日次巡回対象 `68行`
 - smoke test: 京セラドーム大阪の venue page 単体取得で `6件 kept`（`Vaundy 2 / オリックス 4`）。`駐車場券` 系は event URL 収集時に除外できることを確認
 - smoke test: `国立競技場` と `MUFGスタジアム` を同時取得しても、alias 衝突なく別会場として正規化できることを確認
+- 原因切り分け: 京セラドーム大阪の会場ページ自体は `Vaundy 2 / オリックス 4` しか露出せず、pure venue-page では網羅不足。`JO1` などは event page の JSON-LD が古い日付・会場を返すケースがあり、page 見出しと venue page 文脈で補正が必要と確認
+- parser smoke: `JO1DER SHOW 2026 'EIEN 永縁'`（2026-04-22 / 2026-04-23）と `Vaundy DOME TOUR 2026`（2026-03-15）で、`event_start_date == event_end_date` の日別レコードとして抽出できることを確認
 
 ## Remaining Task Triage (ASCII)
 Now:

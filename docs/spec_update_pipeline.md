@@ -137,20 +137,24 @@
 - Source-specific extraction policy:
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
-  - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集し、イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）を基に `イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
+  - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集しつつ、公開 sitemap も補完導線として併用する。イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）とページ見出しを組み合わせ、`イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
     - Phase 1 対象: 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
     - 会場ページマスタ: `data/ticketjam_venue_pages.csv`
       - `venue_id` は内部辞書の canonical 会場へ対応付ける
       - `is_enabled=1` の行だけ日次巡回する（初期状態: 75会場中68会場）
     - 会場ページの `イベント一覧` だけを対象にし、`チケット一覧` は巡回しない
     - `駐車場券` / `駐車券` / `駐車場` を含む付随商品は event URL 収集時に除外する
+    - 既定 discovery mode は `hybrid`（会場ページ + sitemap 補完）
+      - 会場ページは date/time/venue の page-specific 情報源として優先する
+      - sitemap は会場ページに出てこない event URL の補完に使う
     - 取得時は Ticketjam 側カテゴリ（`categorie_groups` / `categories`）で除外しない
     - 採用ゲート: 会場辞書（`venue_registry + venue_aliases` 正規化後）に一致し、かつ `venue_registry.capacity >= 1000` の会場のみ保存する（既定 `require_known_venue=true`, `venue_min_capacity=1000`）
+    - 1日程=1データを原則とし、`event_start_date` / `event_end_date` は同一日で保存する
     - 種別付与: `event_category` を `コンサート / 野球 / その他` に付与する（Ticketjamカテゴリを優先し、不足時は既存キーワード分類で補完）
     - 取得範囲: `future_only=true`（`event_start_date >= 今日`）
-    - 既定運用: venue page 全巡回で署名比較し、差分があるときだけ DB 更新する
-    - `--ticketjam-bootstrap-full`: `last_signature` をリセットして会場ページ全件を再評価する（venue-page mode では `bootstrap_max_*` は使わない）
-    - 互換メモ: legacy sitemap mode は runtime 互換として残すが、既定では使わない
+    - 既定運用: enabled 会場ページ全巡回 + 既定上限の sitemap 補完で署名比較し、差分があるときだけ DB 更新する
+    - `--ticketjam-bootstrap-full`: `last_signature` をリセットして会場ページ全件 + bootstrap 上限の sitemap 補完で再評価する
+    - 互換メモ: pure venue-page mode / pure sitemap mode は runtime 互換として残すが、既定では使わない
     - `prune_missing=false`（差分巡回で未取得行を消さない）
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
     - `prune_nonconforming=true`（会場辞書一致 + capacity 閾値を満たさない既存行を更新時に削除）

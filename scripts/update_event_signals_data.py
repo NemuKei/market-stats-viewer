@@ -107,12 +107,17 @@ DEFAULT_SOURCES = [
     {
         "source_id": "ticketjam_events",
         "source_name": "Ticketjam Events (Secondary)",
-        "source_url": "https://ticketjam.jp/venues",
-        "source_type": "venue_pages",
+        "source_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
+        "source_type": "hybrid_events",
         "config_json": json.dumps(
             {
-                "discovery_mode": "venue_pages",
+                "discovery_mode": "hybrid",
                 "venue_pages_csv": "data/ticketjam_venue_pages.csv",
+                "sitemap_index_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
+                "bootstrap_max_sitemaps": 8000,
+                "bootstrap_max_event_urls": 50000,
+                "max_sitemaps": 120,
+                "max_event_urls": 400,
                 "timeout_sec": 30,
                 "request_retries": 3,
                 "allowed_event_types": ["Event", "MusicEvent", "SportsEvent"],
@@ -217,7 +222,11 @@ def ensure_default_sources(conn: sqlite3.Connection) -> None:
                 source_name = excluded.source_name,
                 source_url = excluded.source_url,
                 source_type = excluded.source_type,
-                config_json = COALESCE(signal_sources.config_json, excluded.config_json)
+                config_json = CASE
+                    WHEN signal_sources.source_id = 'ticketjam_events'
+                    THEN excluded.config_json
+                    ELSE COALESCE(signal_sources.config_json, excluded.config_json)
+                END
             """,
             (
                 s["source_id"],
@@ -987,6 +996,10 @@ def main() -> None:
                 if discovery_mode == "venue_pages":
                     logger.info(
                         "  ticketjam bootstrap full: force rebuild (venue-page mode; bootstrap_max_* ignored)"
+                    )
+                elif discovery_mode == "hybrid":
+                    logger.info(
+                        "  ticketjam bootstrap full: force rebuild (hybrid mode; venue pages + sitemap supplement)"
                     )
                 else:
                     logger.info(
