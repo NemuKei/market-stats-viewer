@@ -1,8 +1,10 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-03-07
+最終更新: 2026-03-08
 
 ## Done（直近完了）
+- Ticketjam を venue page 起点へ切り替え、`data/ticketjam_venue_pages.csv` を追加した。Phase 1 は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県 の `75会場`（`is_enabled=1` は `68会場`）で、`イベント一覧` から event URL を収集し、`駐車場券` などの付随商品を除外するよう更新
+- Phase 1 会場マスタを `venue_registry` / `venue_aliases` へ取り込み、会場辞書を `69 -> 104会場` に拡張した。既存会場は `venue_id` を維持し、Ticketjam 側の別表記は alias へ吸収する運用に整理した
 - 会場辞書の対象範囲を定義し、`capacity >= 10000` は常設対象、`1000 <= capacity < 10000` は重点会場のみ、`capacity < 1000` / 不明は原則対象外とする運用を `DECISIONS` / spec へ反映
 - `events.sqlite` に `artist_name_resolved` / `artist_confidence` を追加し、`build_events_artist_inferred` 実行時に source値 + 辞書正規化 + 推論結果を同期するよう更新（BCL側が sqlite 単体で利用可能）
 - event_signals更新時に artist/venue 辞書正規化を保存時適用し、`labels_json` へ `raw_artist_name` / `raw_venue_name` を保持するよう更新
@@ -60,6 +62,12 @@
 - [x] T-20260306-015: `--ticketjam-bootstrap-full` 実行で再構築し、会場別件数と種別件数を検証する（2026-03-06: GitHub Actions run `22758325580`, `1200/12000` で完走確認）
 - [x] T-20260306-016: `DECISIONS` / `spec_update_pipeline` / `spec_app` を新方針へ同期する
 
+## Task Backlog（Ticketjam Venue-First Phase 1）
+- [x] T-20260308-001: Phase 1 会場マスタを取り込み、`venue_registry` / `venue_aliases` を 9都道府県・`capacity >= 1000` 方針へ拡張する
+- [x] T-20260308-002: `data/ticketjam_venue_pages.csv` を追加し、Ticketjam 会場ページ URL と内部 `venue_id` の対応を正本化する
+- [x] T-20260308-003: `ticketjam_events` の event URL 収集を venue page 起点へ切り替え、`イベント一覧` のみ巡回する
+- [x] T-20260308-004: venue page 起点でも既存運用を壊さないよう、legacy sitemap config を runtime 互換として残しつつ `DECISIONS` / spec / STATUS を同期する
+
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 全体会場マッチ率（registry or alias）: 15.58% -> 32.67%（+17.09pt）
 - 1万人以上会場マッチ率（全体比）: 5.42% -> 5.42%（横ばい）
@@ -70,6 +78,11 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - `origin/main` 現在DB（2026-03-06 04:58 UTC の日次増分後）: `198件`、`event_category=(null) 178 / コンサート 19 / その他 1`。増分更新だけでは旧データが多く残るため、現行ルールの確定値には bootstrap full 再構築が必要
 - GitHub Actions 手動実行: `Update event signals data (Ticketjam)` run `22758325580` は 2026-03-06 09:55 UTC 開始、2026-03-06 11:17 UTC に success で完了。`sitemap attempts=1210 successes=1200 urls=3691`、`3242 fetched`、ゲート後 `319 kept`（`unknown venue 2855 / low capacity 68`）
 - bootstrap full 完走後の `origin/main` 現在DB: `319件`、`event_category=コンサート 304 / その他 15`、会場上位は `TOKYO DOME CITY HALL 24` / `豊洲PIT 19` / `オリックス劇場 18` / `Zepp DiverCity(Tokyo) 16` / `Kアリーナ横浜 14`
+
+2026-03-08 実装メモ:
+- Phase 1 会場 CSV 取り込み後の辞書件数は `104会場`。`ticketjam_venue_pages.csv` は `75行`、うち日次巡回対象 `68行`
+- smoke test: 京セラドーム大阪の venue page 単体取得で `6件 kept`（`Vaundy 2 / オリックス 4`）。`駐車場券` 系は event URL 収集時に除外できることを確認
+- smoke test: `国立競技場` と `MUFGスタジアム` を同時取得しても、alias 衝突なく別会場として正規化できることを確認
 
 ## Remaining Task Triage (ASCII)
 Now:

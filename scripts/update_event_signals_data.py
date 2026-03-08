@@ -107,19 +107,18 @@ DEFAULT_SOURCES = [
     {
         "source_id": "ticketjam_events",
         "source_name": "Ticketjam Events (Secondary)",
-        "source_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
-        "source_type": "sitemap_events",
+        "source_url": "https://ticketjam.jp/venues",
+        "source_type": "venue_pages",
         "config_json": json.dumps(
             {
-                "bootstrap_max_sitemaps": 8000,
-                "bootstrap_max_event_urls": 50000,
-                "max_sitemaps": 120,
-                "max_event_urls": 400,
+                "discovery_mode": "venue_pages",
+                "venue_pages_csv": "data/ticketjam_venue_pages.csv",
                 "timeout_sec": 30,
                 "request_retries": 3,
                 "allowed_event_types": ["Event", "MusicEvent", "SportsEvent"],
                 "future_only": True,
                 "lookback_days": 0,
+                "exclude_title_keywords": ["駐車場券", "駐車券", "駐車場"],
                 "venue_min_capacity": 1000,
                 "require_known_venue": True,
                 "prune_missing": False,
@@ -888,19 +887,19 @@ def main() -> None:
     parser.add_argument(
         "--ticketjam-bootstrap-full",
         action="store_true",
-        help="Force ticketjam full bootstrap scan once (usually with --only ticketjam_events)",
+        help="Force ticketjam full rebuild once (usually with --only ticketjam_events)",
     )
     parser.add_argument(
         "--ticketjam-bootstrap-max-sitemaps",
         type=int,
         default=8000,
-        help="When --ticketjam-bootstrap-full is set, scan this many ticketjam sitemaps",
+        help="Legacy sitemap mode only: scan this many ticketjam sitemaps",
     )
     parser.add_argument(
         "--ticketjam-bootstrap-max-event-urls",
         type=int,
         default=50000,
-        help="When --ticketjam-bootstrap-full is set, keep up to this many ticketjam event URLs",
+        help="Legacy sitemap mode only: keep up to this many ticketjam event URLs",
     )
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
@@ -981,11 +980,20 @@ def main() -> None:
             if args.ticketjam_bootstrap_full and source.source_id == "ticketjam_events":
                 clear_source_for_rebuild(conn, source.source_id)
                 source.last_signature = None
-                logger.info(
-                    "  ticketjam bootstrap full: force rebuild + max_sitemaps=%d max_event_urls=%d",
-                    args.ticketjam_bootstrap_max_sitemaps,
-                    args.ticketjam_bootstrap_max_event_urls,
-                )
+                source_cfg = load_source_config(source.config_json)
+                discovery_mode = str(
+                    source_cfg.get("discovery_mode", "sitemap")
+                ).strip() or "sitemap"
+                if discovery_mode == "venue_pages":
+                    logger.info(
+                        "  ticketjam bootstrap full: force rebuild (venue-page mode; bootstrap_max_* ignored)"
+                    )
+                else:
+                    logger.info(
+                        "  ticketjam bootstrap full: force rebuild + max_sitemaps=%d max_event_urls=%d",
+                        args.ticketjam_bootstrap_max_sitemaps,
+                        args.ticketjam_bootstrap_max_event_urls,
+                    )
 
             plugin = get_source(source.source_id, session)
             if plugin is None:

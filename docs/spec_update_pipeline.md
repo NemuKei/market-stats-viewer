@@ -133,17 +133,24 @@
 - Sources (MVP):
   - `starto_concert`（STARTO 公演情報 / CONCERT）
   - `kstyle_music`（Kstyle MUSIC）
-  - `ticketjam_events`（Ticketjam 公開sitemap由来、二次流通参考）
+  - `ticketjam_events`（Ticketjam 会場ページ由来、二次流通参考）
 - Source-specific extraction policy:
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
-  - `ticketjam_events`: `https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz` からイベントURLを収集し、イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）を基に `イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
+  - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集し、イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）を基に `イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
+    - Phase 1 対象: 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
+    - 会場ページマスタ: `data/ticketjam_venue_pages.csv`
+      - `venue_id` は内部辞書の canonical 会場へ対応付ける
+      - `is_enabled=1` の行だけ日次巡回する（初期状態: 75会場中68会場）
+    - 会場ページの `イベント一覧` だけを対象にし、`チケット一覧` は巡回しない
+    - `駐車場券` / `駐車券` / `駐車場` を含む付随商品は event URL 収集時に除外する
     - 取得時は Ticketjam 側カテゴリ（`categorie_groups` / `categories`）で除外しない
     - 採用ゲート: 会場辞書（`venue_registry + venue_aliases` 正規化後）に一致し、かつ `venue_registry.capacity >= 1000` の会場のみ保存する（既定 `require_known_venue=true`, `venue_min_capacity=1000`）
     - 種別付与: `event_category` を `コンサート / 野球 / その他` に付与する（Ticketjamカテゴリを優先し、不足時は既存キーワード分類で補完）
     - 取得範囲: `future_only=true`（`event_start_date >= 今日`）
-    - 初回（bootstrap full）: `--ticketjam-bootstrap-full` で `last_signature` をリセットし、`bootstrap_max_*`（既定: `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）で網羅取得する
-    - 2回目以降: `max_*`（既定: `max_sitemaps=120`, `max_event_urls=400`）で増分巡回し、新規中心に取り込む（`upsert_existing=false`）
+    - 既定運用: venue page 全巡回で署名比較し、差分があるときだけ DB 更新する
+    - `--ticketjam-bootstrap-full`: `last_signature` をリセットして会場ページ全件を再評価する（venue-page mode では `bootstrap_max_*` は使わない）
+    - 互換メモ: legacy sitemap mode は runtime 互換として残すが、既定では使わない
     - `prune_missing=false`（差分巡回で未取得行を消さない）
     - `drop_past_events=true`（開催終了日が今日より前の行を削除）
     - `prune_nonconforming=true`（会場辞書一致 + capacity 閾値を満たさない既存行を更新時に削除）
@@ -163,12 +170,12 @@
   - ドメイン単位レート制限（全GETに適用）
 - CLI:
   - `--only starto_concert,kstyle_music,ticketjam_events`
-  - `--ticketjam-bootstrap-full`
+  - `--ticketjam-bootstrap-full`（Ticketjam 全件再評価）
   - `--verbose`
 - Workflow:
   - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
   - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
-    - `workflow_dispatch` 入力 `bootstrap_full=true` で bootstrap full を実行可能（入力上限: `bootstrap_max_sitemaps` / `bootstrap_max_event_urls`）
+    - `workflow_dispatch` 入力 `bootstrap_full=true` で full rebuild を実行可能（legacy sitemap mode を使う場合のみ `bootstrap_max_*` を参照）
   - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
 

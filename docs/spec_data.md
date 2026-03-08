@@ -107,6 +107,10 @@
   - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
   - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
   - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する
+  - `ticketjam_events` の会場ページ対応は `data/ticketjam_venue_pages.csv` で管理する
+    - 1行=1 Ticketjam 会場ページと内部 `venue_id` の対応
+    - 初期 scope は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
+    - `is_enabled=1` は日次巡回対象、`is_enabled=0` は辞書保持のみ
 
 ### テーブル: `signal_sources`
 - `source_id` TEXT PRIMARY KEY
@@ -148,11 +152,13 @@
 - 会場辞書:
   - 正本: `data/venue_registry.csv`（`venue_id` 固定）
   - 別名辞書: `data/venue_aliases.csv`
+  - Ticketjam 会場ページ対応: `data/ticketjam_venue_pages.csv`
   - 解決優先順: `venue_registry` の正式名 + `venue_aliases` の別名（`venue_id` 単位で後勝ち）
   - 対象範囲:
     - 基本対象: `capacity >= 10000` の会場は、会場公式ソースの実装有無に関わらず辞書へ保持する。公式取得未対応でも `is_enabled=0` の辞書用途で先行登録してよい。
     - 重点会場: `1000 <= capacity < 10000` の会場は、ユーザー影響が高いものだけを対象にする。判断基準は「会場公式イベントの取得対象である」または「`ticketjam_events` の採用/未解決候補で継続的に出現し、GUI確認や辞書照合KPIに影響する」のいずれか。
     - 原則対象外: `capacity < 1000` または capacity 不明の小規模会場は、明示的な運用要件が出るまで辞書の常設対象にしない。
+  - Ticketjam venue-first Phase 1 では、会場辞書へ追加した canonical 会場に対して `ticketjam_venue_pages.csv` の page URL を紐付け、Ticketjam 側 raw 表記は `venue_aliases.csv` で吸収する。
 - 一意性ルール:
   - 正規化キー（keep/compact）が複数 canonical に衝突する場合、そのキーは自動適用しない。
   - 自動適用は一意に解決できるキーのみ。
