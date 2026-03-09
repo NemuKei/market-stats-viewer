@@ -18,6 +18,11 @@ on:
         type: string
         required: false
         default: "50000"
+      discovery_mode:
+        description: "Ticketjam discovery mode（hybrid / prefecture_month / prefecture_month_hybrid / sitemap / venue_pages）"
+        type: string
+        required: false
+        default: "hybrid"
   schedule:
     - cron: "15 3 * * *" # daily (UTC)
 
@@ -49,15 +54,20 @@ jobs:
 
       - name: Update event signals (ticketjam only)
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.bootstrap_full }}" = "true" ]; then
-            uv run python -m scripts.update_event_signals_data \
-              --only ticketjam_events \
-              --ticketjam-bootstrap-full \
-              --ticketjam-bootstrap-max-sitemaps "${{ inputs.bootstrap_max_sitemaps }}" \
-              --ticketjam-bootstrap-max-event-urls "${{ inputs.bootstrap_max_event_urls }}"
-          else
-            uv run python -m scripts.update_event_signals_data --only ticketjam_events
+          args=(--only ticketjam_events)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.discovery_mode }}" ]; then
+            args+=(--ticketjam-discovery-mode "${{ inputs.discovery_mode }}")
           fi
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.bootstrap_full }}" = "true" ]; then
+            args+=(
+              --ticketjam-bootstrap-full
+              --ticketjam-bootstrap-max-sitemaps "${{ inputs.bootstrap_max_sitemaps }}"
+              --ticketjam-bootstrap-max-event-urls "${{ inputs.bootstrap_max_event_urls }}"
+            )
+          else
+            :
+          fi
+          uv run python -m scripts.update_event_signals_data "${args[@]}"
 
       - name: Commit changes (if any)
         run: |

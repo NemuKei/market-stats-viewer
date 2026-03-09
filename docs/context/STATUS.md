@@ -3,6 +3,7 @@
 最終更新: 2026-03-09
 
 ## Done（直近完了）
+- Ticketjam 大阪スパイクの discovery として、`prefecture_month` / `prefecture_month_hybrid` mode を追加した。`https://ticketjam.jp/prefectures/osaka/month?events_page=n` の `p-event-list` と直後の JSON-LD から event URL / 日付 / 会場 / 都道府県を候補抽出し、CLI から `--ticketjam-discovery-mode` で切替できるよう更新した
 - Ticketjam 補完スパイク向けに、アーティスト辞書へ `ticketjam_watch` / `ticketjam_benchmark_tier` / `ticketjam_watch_reason`、会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加した。大阪の初期 `artist-gap` ベンチマーク（S/A/B/reference）と `venue-gap` 候補（ヤンマースタジアム長居 / Panasonic Stadium Suita / エディオンアリーナ大阪）も登録した
 - Ticketjam の目的を再定義し、「会場網羅の代替」ではなく `artist-gap` / `venue-gap` を埋める補完ソースとして扱う方針を spec / DECISIONS へ固定した。大阪府を初期スパイク対象にし、追加ユニーク日程とノイズ率で価値判定する
 - `ticketjam_events` の取得を pure venue-page から hybrid（会場ページ + 公開 sitemap 補完）へ見直した。会場ページは `date/time/venue` の page-specific 情報源として優先し、会場ページだけでは出てこない event URL は sitemap で補完するよう更新
@@ -43,8 +44,8 @@
 - （なし）
 
 ## Next（最大3）
-1. Ticketjam 大阪スパイクを実装し、都道府県 month ページ起点の追加価値を測る
-2. 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
+1. 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
+2. Ticketjam の `prefecture_month` と既存 `hybrid` を bootstrap full で比較し、追加ヒット数とノイズを大阪基準で記録する
 3. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
 
 ## Task Backlog（Venue Dictionary Completeness）
@@ -82,7 +83,7 @@
 - [x] T-20260309-003: 会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加する
 - [x] T-20260309-004: 大阪府の初期 `artist-gap` ベンチマーク対象を登録する（S/A/B と reference を分離）
 - [x] T-20260309-005: 大阪府の初期 `venue-gap` 会場を登録する（例: 公式が弱い・無い・取りづらい会場）
-- [ ] T-20260309-006: Ticketjam 大阪スパイクの discovery 実装を追加する（都道府県 month ページ優先、既存導線と比較可能にする）
+- [x] T-20260309-006: Ticketjam 大阪スパイクの discovery 実装を追加する（都道府県 month ページ優先、既存導線と比較可能にする）
 - [ ] T-20260309-007: 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
@@ -105,10 +106,10 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260309-006: 大阪スパイクの discovery 実装を追加する
+- T-20260309-007: 大阪スパイクを評価し、Go/No-Go を判断する
 
 Next:
-- T-20260309-007: 大阪スパイクを評価し、Go/No-Go を判断する
+- `prefecture_month` と既存 `hybrid` の bootstrap full 比較を実施し、差分を記録する
 
 After Next:
 - Release assets の定期公開監視を継続する

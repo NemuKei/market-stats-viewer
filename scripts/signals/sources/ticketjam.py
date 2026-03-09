@@ -10,7 +10,7 @@ import re
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
-from urllib.parse import urljoin, urlsplit, urlunsplit
+from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 from xml.etree import ElementTree as ET
 
 from bs4 import BeautifulSoup
@@ -42,6 +42,9 @@ class TicketjamEventsSource(SignalSource):
     _VENUE_PAGE_EVENT_TEXT_RE = re.compile(
         r"^(?P<head>.+?)\s+(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})\([^)]*\)\s+(?P<time>\d{2}:\d{2})"
     )
+    _PREFECTURE_MONTH_DATE_RE = re.compile(
+        r"(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})\([^)]*\)\s+(?P<time>\d{2}:\d{2})"
+    )
     _VENUE_PAGE_EVENT_LINK_SELECTOR = "a.p-event-min__link[href]"
     _SKIP_EVENT_HINTS = ("駐車場券", "駐車券", "駐車場")
 
@@ -56,15 +59,27 @@ class TicketjamEventsSource(SignalSource):
         allowed_event_types = self._resolve_allowed_types(cfg)
         discovery_mode = str(cfg.get("discovery_mode", "sitemap")).strip().lower()
         event_candidates: dict[str, dict[str, str]] = {}
-        if discovery_mode in {"venue_pages", "hybrid"}:
-            event_candidates.update(
+        if discovery_mode in {"prefecture_month", "prefecture_month_hybrid"}:
+            self._merge_event_candidate_maps(
+                event_candidates,
+                self._load_event_candidates_from_prefecture_month_pages(
+                    cfg,
+                    timeout_sec=timeout_sec,
+                    request_retries=request_retries,
+                    source=source,
+                    allowed_event_types=allowed_event_types,
+                ),
+            )
+        if discovery_mode in {"venue_pages", "hybrid", "prefecture_month_hybrid"}:
+            self._merge_event_candidate_maps(
+                event_candidates,
                 self._load_event_candidates_from_venue_pages(
                     cfg,
                     timeout_sec=timeout_sec,
                     request_retries=request_retries,
-                )
+                ),
             )
-        if discovery_mode in {"sitemap", "hybrid"}:
+        if discovery_mode in {"sitemap", "hybrid", "prefecture_month_hybrid"}:
             sitemap_index_url = str(
                 cfg.get("sitemap_index_url") or self._DEFAULT_SITEMAP_INDEX_URL
             ).strip()
@@ -149,6 +164,88 @@ class TicketjamEventsSource(SignalSource):
         logger.info(
             "ticketjam: venue pages=%d urls=%d",
             scanned_venues,
+            len(event_candidates),
+        )
+        return event_candidates
+
+    def _load_event_candidates_from_prefecture_month_pages(
+        self,
+        cfg: dict[str, object],
+        *,
+        timeout_sec: int,
+        request_retries: int,
+        source: SignalSourceRecord,
+        allowed_event_types: set[str],
+    ) -> dict[str, dict[str, str]]:
+        base_urls = self._load_prefecture_month_urls(cfg)
+        if not base_urls:
+            logger.warning("ticketjam: no prefecture month URLs configured")
+            return {}
+
+        raw_skip_keywords = cfg.get("exclude_title_keywords") or list(self._SKIP_EVENT_HINTS)
+        skip_keywords = tuple(
+            str(value).strip() for value in raw_skip_keywords if str(value).strip()
+        ) or self._SKIP_EVENT_HINTS
+        page_param = str(cfg.get("prefecture_month_page_param") or "events_page").strip()
+        max_pages = self._resolve_prefecture_month_max_pages(source, cfg)
+
+        event_candidates: dict[str, dict[str, str]] = {}
+        scanned_pages = 0
+        scanned_roots = 0
+        for base_url in base_urls:
+            if not base_url:
+                continue
+            scanned_roots += 1
+            root_total_pages = max_pages
+            for page_number in range(1, max_pages + 1):
+                if page_number > root_total_pages:
+                    break
+                page_url = self._build_prefecture_month_page_url(
+                    base_url,
+                    page_number=page_number,
+                    page_param=page_param,
+                )
+                resp = self._get_with_retry(
+                    page_url,
+                    timeout_sec=timeout_sec,
+                    request_retries=request_retries,
+                    kind="prefecture_month",
+                )
+                if resp is None:
+                    break
+                if resp.status_code == 403:
+                    logger.warning(
+                        "ticketjam: prefecture month page blocked %s", page_url
+                    )
+                    break
+                if resp.status_code != 200:
+                    logger.warning(
+                        "ticketjam: prefecture month page %s returned %s",
+                        page_url,
+                        resp.status_code,
+                    )
+                    break
+
+                scanned_pages += 1
+                resp.encoding = resp.apparent_encoding or "utf-8"
+                page_candidates, discovered_total_pages = (
+                    self._load_event_candidates_from_prefecture_month_html(
+                        resp.text,
+                        skip_keywords=skip_keywords,
+                        allowed_event_types=allowed_event_types,
+                        page_param=page_param,
+                    )
+                )
+                if discovered_total_pages > 0:
+                    root_total_pages = min(max_pages, discovered_total_pages)
+                if not page_candidates:
+                    break
+                self._merge_event_candidate_maps(event_candidates, page_candidates)
+
+        logger.info(
+            "ticketjam: prefecture month roots=%d pages=%d urls=%d",
+            scanned_roots,
+            scanned_pages,
             len(event_candidates),
         )
         return event_candidates
@@ -286,6 +383,36 @@ class TicketjamEventsSource(SignalSource):
             out[event_url] = candidate
         return list(out.values())
 
+    def _merge_event_candidate_maps(
+        self,
+        target: dict[str, dict[str, str]],
+        incoming: dict[str, dict[str, str]],
+    ) -> None:
+        for event_key, candidate in incoming.items():
+            existing = target.get(event_key)
+            if existing is None:
+                target[event_key] = dict(candidate)
+                continue
+            target[event_key] = self._merge_event_candidate(existing, candidate)
+
+    def _merge_event_candidate(
+        self,
+        existing: dict[str, str],
+        incoming: dict[str, str],
+    ) -> dict[str, str]:
+        merged = dict(existing)
+        for key, value in incoming.items():
+            text = str(value or "").strip()
+            if not text:
+                continue
+            if key == "event_url":
+                merged.setdefault("event_url", text)
+                continue
+            if str(merged.get(key) or "").strip():
+                continue
+            merged[key] = text
+        return merged
+
     def _find_venue_event_sections(self, soup: BeautifulSoup) -> list[BeautifulSoup]:
         sections: list[BeautifulSoup] = []
         for section in soup.select(".l-section"):
@@ -301,6 +428,161 @@ class TicketjamEventsSource(SignalSource):
         if not compact:
             return False
         return any(hint in compact for hint in skip_keywords)
+
+    def _load_prefecture_month_urls(self, cfg: dict[str, object]) -> list[str]:
+        raw = cfg.get("prefecture_month_urls")
+        urls: list[str] = []
+        if isinstance(raw, list):
+            urls.extend(str(item or "").strip() for item in raw)
+        elif isinstance(raw, str) and raw.strip():
+            urls.append(raw.strip())
+        if not urls:
+            fallback = str(
+                cfg.get("prefecture_month_url")
+                or "https://ticketjam.jp/prefectures/osaka/month"
+            ).strip()
+            if fallback:
+                urls.append(fallback)
+        return [url for url in urls if url]
+
+    def _resolve_prefecture_month_max_pages(
+        self, source: SignalSourceRecord, cfg: dict[str, object]
+    ) -> int:
+        if not source.last_signature:
+            return max(
+                1, int(cfg.get("bootstrap_prefecture_month_max_pages", 60))
+            )
+        return max(1, int(cfg.get("prefecture_month_max_pages", 8)))
+
+    def _build_prefecture_month_page_url(
+        self,
+        base_url: str,
+        *,
+        page_number: int,
+        page_param: str,
+    ) -> str:
+        parts = urlsplit(str(base_url or "").strip())
+        query_items = dict(parse_qsl(parts.query, keep_blank_values=True))
+        if page_number <= 1:
+            query_items.pop(page_param, None)
+        else:
+            query_items[page_param] = str(page_number)
+        query = urlencode(query_items)
+        return urlunsplit((parts.scheme, parts.netloc, parts.path, query, ""))
+
+    def _load_event_candidates_from_prefecture_month_html(
+        self,
+        html: str,
+        *,
+        skip_keywords: tuple[str, ...],
+        allowed_event_types: set[str],
+        page_param: str,
+    ) -> tuple[dict[str, dict[str, str]], int]:
+        soup = BeautifulSoup(str(html or ""), "html.parser")
+        total_pages = self._extract_prefecture_month_total_pages(soup, page_param)
+        event_candidates: dict[str, dict[str, str]] = {}
+        for item in soup.select("li.p-event-list__item"):
+            title_anchor = item.select_one("a.p-event-list__title[href]")
+            if title_anchor is None:
+                continue
+            href = str(title_anchor.get("href") or "").strip()
+            if not href:
+                continue
+            event_url = self._canonicalize_url(urljoin("https://ticketjam.jp", href))
+            if not self._EVENT_URL_RE.match(event_url):
+                continue
+            title = " ".join(title_anchor.get_text(" ", strip=True).split())
+            if self._should_skip_event_link(title, skip_keywords):
+                continue
+
+            candidate: dict[str, str] = {"event_url": event_url}
+            payload = self._extract_prefecture_month_item_payload(
+                item,
+                allowed_event_types=allowed_event_types,
+            )
+            if payload:
+                start_date, start_time = self._parse_start(payload.get("startDate"))
+                if start_date:
+                    candidate["event_start_date"] = start_date
+                    candidate["event_end_date"] = start_date
+                if start_time:
+                    candidate["event_start_time"] = start_time
+                venue_name, pref_name = self._extract_location(payload.get("location"))
+                if venue_name:
+                    candidate["venue_name"] = venue_name
+                if pref_name:
+                    candidate["pref_name"] = pref_name
+            else:
+                fallback_date, fallback_time = self._extract_prefecture_month_item_start(
+                    item
+                )
+                if fallback_date:
+                    candidate["event_start_date"] = fallback_date
+                    candidate["event_end_date"] = fallback_date
+                if fallback_time:
+                    candidate["event_start_time"] = fallback_time
+
+            event_key = self._extract_event_id(event_url) or event_url
+            event_candidates[event_key] = candidate
+        return event_candidates, total_pages
+
+    def _extract_prefecture_month_total_pages(
+        self, soup: BeautifulSoup, page_param: str
+    ) -> int:
+        max_page = 1
+        for anchor in soup.select(f'.paging__button a[href*="{page_param}="]'):
+            href = str(anchor.get("href") or "").strip()
+            if not href:
+                continue
+            query = dict(parse_qsl(urlsplit(href).query, keep_blank_values=True))
+            page_value = self._safe_int(query.get(page_param, ""))
+            if page_value > max_page:
+                max_page = page_value
+        return max_page
+
+    def _extract_prefecture_month_item_payload(
+        self,
+        item: BeautifulSoup,
+        *,
+        allowed_event_types: set[str],
+    ) -> dict[str, object]:
+        sibling = item.find_next_sibling()
+        while sibling is not None:
+            tag_name = str(getattr(sibling, "name", "") or "").lower()
+            if tag_name == "li":
+                break
+            if (
+                tag_name == "script"
+                and str(sibling.get("type") or "").strip().lower()
+                == "application/ld+json"
+            ):
+                raw = (sibling.string or sibling.get_text() or "").strip()
+                if raw:
+                    try:
+                        data = json.loads(raw)
+                    except Exception:
+                        data = None
+                    if data is not None:
+                        events = self._collect_event_nodes(data, allowed_event_types)
+                        if events:
+                            return events[0]
+            sibling = sibling.find_next_sibling()
+        return {}
+
+    def _extract_prefecture_month_item_start(
+        self, item: BeautifulSoup
+    ) -> tuple[str, str | None]:
+        node = item.select_one(".p-event-list__date span")
+        if node is None:
+            return "", None
+        text = " ".join(node.get_text(" ", strip=True).split())
+        match = self._PREFECTURE_MONTH_DATE_RE.search(text)
+        if not match:
+            return "", None
+        return (
+            f"{match.group('year')}-{match.group('month')}-{match.group('day')}",
+            str(match.group("time") or "").strip() or None,
+        )
 
     def _load_event_urls_from_sitemaps(
         self,
@@ -406,6 +688,33 @@ class TicketjamEventsSource(SignalSource):
         discovery_mode = str(upgraded.get("discovery_mode") or "").strip().lower()
         if not discovery_mode or discovery_mode == "venue_pages":
             upgraded["discovery_mode"] = "hybrid"
+            changed = True
+        if "prefecture_month_urls" not in upgraded:
+            upgraded["prefecture_month_urls"] = [
+                "https://ticketjam.jp/prefectures/osaka/month"
+            ]
+            changed = True
+        if str(upgraded.get("prefecture_month_page_param") or "").strip() != "events_page":
+            upgraded["prefecture_month_page_param"] = str(
+                upgraded.get("prefecture_month_page_param") or "events_page"
+            )
+            changed = True
+        prefecture_month_max_pages = max(
+            1, int(upgraded.get("prefecture_month_max_pages", 8))
+        )
+        bootstrap_prefecture_month_max_pages = max(
+            1, int(upgraded.get("bootstrap_prefecture_month_max_pages", 60))
+        )
+        if upgraded.get("prefecture_month_max_pages") != prefecture_month_max_pages:
+            upgraded["prefecture_month_max_pages"] = prefecture_month_max_pages
+            changed = True
+        if (
+            upgraded.get("bootstrap_prefecture_month_max_pages")
+            != bootstrap_prefecture_month_max_pages
+        ):
+            upgraded["bootstrap_prefecture_month_max_pages"] = (
+                bootstrap_prefecture_month_max_pages
+            )
             changed = True
         if str(upgraded.get("venue_pages_csv") or "").strip() != "data/ticketjam_venue_pages.csv":
             upgraded["venue_pages_csv"] = str(

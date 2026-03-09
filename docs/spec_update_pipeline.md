@@ -167,6 +167,10 @@
     - 京セラドーム大阪のように会場公式で十分取得できる会場は、Ticketjam で網羅性を追わない
     - 採用条件の正本は従来どおり会場辞書一致 + capacity gate とし、発見導線が変わっても保存ゲートは維持する
     - 大阪スパイクでは `https://ticketjam.jp/prefectures/osaka/month` 系の都道府県ページを優先的に検証し、会場ページ / sitemap は補助導線として比較評価する
+      - runtime 互換 mode:
+        - `prefecture_month`: 都道府県 month ページのみ
+        - `prefecture_month_hybrid`: 都道府県 month ページを優先しつつ、既存の会場ページ / sitemap も併用
+      - config 追加: `prefecture_month_urls`, `prefecture_month_page_param`, `prefecture_month_max_pages`, `bootstrap_prefecture_month_max_pages`
     - スパイクの成功条件は「既存ソース（会場公式 / STARTO / Kstyle）に対して追加できたユニーク日程の有意差」で判定する
       - 指標: `artist-gap additional hits` / `venue-gap additional hits` / `noise rate`
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
@@ -185,6 +189,7 @@
 - CLI:
   - `--only starto_concert,kstyle_music,ticketjam_events`
   - `--ticketjam-bootstrap-full`（Ticketjam 全件再評価）
+  - `--ticketjam-discovery-mode prefecture_month|prefecture_month_hybrid|hybrid|...`（Ticketjam discovery route の一時切替）
   - `--verbose`
 - Workflow:
   - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）

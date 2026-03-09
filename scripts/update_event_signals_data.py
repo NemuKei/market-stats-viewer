@@ -113,6 +113,12 @@ DEFAULT_SOURCES = [
             {
                 "discovery_mode": "hybrid",
                 "venue_pages_csv": "data/ticketjam_venue_pages.csv",
+                "prefecture_month_urls": [
+                    "https://ticketjam.jp/prefectures/osaka/month"
+                ],
+                "prefecture_month_page_param": "events_page",
+                "prefecture_month_max_pages": 8,
+                "bootstrap_prefecture_month_max_pages": 60,
                 "sitemap_index_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
                 "bootstrap_max_sitemaps": 8000,
                 "bootstrap_max_event_urls": 50000,
@@ -448,14 +454,20 @@ def apply_ticketjam_runtime_overrides(
     bootstrap_full: bool,
     bootstrap_max_sitemaps: int,
     bootstrap_max_event_urls: int,
+    discovery_mode_override: str | None,
 ) -> SignalSourceRecord:
     if source.source_id != "ticketjam_events":
         return source
 
+    cfg = load_source_config(source.config_json)
+    if discovery_mode_override:
+        cfg["discovery_mode"] = discovery_mode_override
+
     if not bootstrap_full:
+        if discovery_mode_override:
+            source.config_json = json.dumps(cfg, ensure_ascii=False)
         return source
 
-    cfg = load_source_config(source.config_json)
     cfg["bootstrap_max_sitemaps"] = max(1, int(bootstrap_max_sitemaps))
     cfg["bootstrap_max_event_urls"] = max(1, int(bootstrap_max_event_urls))
     cfg["max_sitemap_attempts"] = max(
@@ -910,6 +922,18 @@ def main() -> None:
         default=50000,
         help="Legacy sitemap mode only: keep up to this many ticketjam event URLs",
     )
+    parser.add_argument(
+        "--ticketjam-discovery-mode",
+        choices=[
+            "hybrid",
+            "sitemap",
+            "venue_pages",
+            "prefecture_month",
+            "prefecture_month_hybrid",
+        ],
+        default="",
+        help="Override ticketjam discovery mode for this run",
+    )
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
@@ -985,6 +1009,7 @@ def main() -> None:
                 bootstrap_full=args.ticketjam_bootstrap_full,
                 bootstrap_max_sitemaps=args.ticketjam_bootstrap_max_sitemaps,
                 bootstrap_max_event_urls=args.ticketjam_bootstrap_max_event_urls,
+                discovery_mode_override=args.ticketjam_discovery_mode or None,
             )
             if args.ticketjam_bootstrap_full and source.source_id == "ticketjam_events":
                 clear_source_for_rebuild(conn, source.source_id)
@@ -996,6 +1021,14 @@ def main() -> None:
                 if discovery_mode == "venue_pages":
                     logger.info(
                         "  ticketjam bootstrap full: force rebuild (venue-page mode; bootstrap_max_* ignored)"
+                    )
+                elif discovery_mode == "prefecture_month":
+                    logger.info(
+                        "  ticketjam bootstrap full: force rebuild (prefecture-month mode; Osaka spike route only)"
+                    )
+                elif discovery_mode == "prefecture_month_hybrid":
+                    logger.info(
+                        "  ticketjam bootstrap full: force rebuild (prefecture-month priority + existing routes)"
                     )
                 elif discovery_mode == "hybrid":
                     logger.info(
