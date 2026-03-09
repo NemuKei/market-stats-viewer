@@ -44,6 +44,9 @@ SEED_COLUMNS = [
     "source",
     "updated_at",
     "is_enabled",
+    "ticketjam_watch",
+    "ticketjam_benchmark_tier",
+    "ticketjam_watch_reason",
 ]
 
 
@@ -122,6 +125,9 @@ def build_seed_rows(payload: dict) -> list[dict[str, object]]:
                 "source": "wikidata",
                 "updated_at": "",
                 "is_enabled": 1,
+                "ticketjam_watch": 0,
+                "ticketjam_benchmark_tier": "",
+                "ticketjam_watch_reason": "",
             }
         )
 
@@ -145,6 +151,13 @@ def _load_existing_rows(path: Path) -> dict[str, dict[str, str]]:
                 "source": str(row.get("source", "")).strip(),
                 "updated_at": str(row.get("updated_at", "")).strip(),
                 "is_enabled": str(row.get("is_enabled", "")).strip(),
+                "ticketjam_watch": str(row.get("ticketjam_watch", "") or "").strip(),
+                "ticketjam_benchmark_tier": str(
+                    row.get("ticketjam_benchmark_tier", "") or ""
+                ).strip(),
+                "ticketjam_watch_reason": str(
+                    row.get("ticketjam_watch_reason", "") or ""
+                ).strip(),
             }
     return out
 
@@ -169,6 +182,14 @@ def stabilize_updated_at_with_existing(
             row_copy["updated_at"] = old_row.get("updated_at", "") or updated_at
         else:
             row_copy["updated_at"] = updated_at
+        if old_row:
+            row_copy["ticketjam_watch"] = old_row.get("ticketjam_watch", "") or 0
+            row_copy["ticketjam_benchmark_tier"] = (
+                old_row.get("ticketjam_benchmark_tier", "") or ""
+            )
+            row_copy["ticketjam_watch_reason"] = (
+                old_row.get("ticketjam_watch_reason", "") or ""
+            )
         stabilized.append(row_copy)
     stabilized.sort(key=lambda item: str(item.get("canonical_name", "")))
     return stabilized

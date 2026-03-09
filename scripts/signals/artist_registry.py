@@ -23,6 +23,9 @@ class ArtistEntry:
     aliases: tuple[str, ...]
     source: str
     is_enabled: bool
+    ticketjam_watch: bool = False
+    ticketjam_benchmark_tier: str = ""
+    ticketjam_watch_reason: str = ""
 
 
 def load_registry() -> list[ArtistEntry]:
@@ -185,6 +188,16 @@ def _read_registry_csv(path: Path) -> list[ArtistEntry]:
                     aliases=aliases,
                     source=str(row.get("source", "")).strip(),
                     is_enabled=True,
+                    ticketjam_watch=str(
+                        row.get("ticketjam_watch", "0") or "0"
+                    ).strip()
+                    == "1",
+                    ticketjam_benchmark_tier=str(
+                        row.get("ticketjam_benchmark_tier", "") or ""
+                    ).strip(),
+                    ticketjam_watch_reason=str(
+                        row.get("ticketjam_watch_reason", "") or ""
+                    ).strip(),
                 )
             )
     return rows

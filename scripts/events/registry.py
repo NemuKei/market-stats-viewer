@@ -33,6 +33,18 @@ def load_registry(path: Path | None = None) -> list[VenueRecord]:
                     source_url=row["source_url"].strip(),
                     config_json=config_raw if config_raw else None,
                     is_enabled=is_enabled,
+                    ticketjam_watch=str(
+                        row.get("ticketjam_watch", "0") or "0"
+                    ).strip()
+                    == "1",
+                    official_fetch_candidate=str(
+                        row.get("official_fetch_candidate", "0") or "0"
+                    ).strip()
+                    == "1",
+                    official_gap_reason=str(
+                        row.get("official_gap_reason", "") or ""
+                    ).strip()
+                    or None,
                 )
             )
     return records

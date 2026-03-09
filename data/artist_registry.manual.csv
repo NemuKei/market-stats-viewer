@@ -1,6 +1,16 @@
-artist_id,canonical_name,aliases_json,source,updated_at,is_enabled
-manual:jp:mrs_green_apple,Mrs. GREEN APPLE,"[""Mrs. GREEN APPLE"", ""ミセス"", ""ミセスグリーンアップル""]",manual,2026-02-25,1
-wd:Q626440,嵐,"[""ARASHI"", ""嵐""]",manual,2026-02-27,1
-manual:jp:takenaka_yudai,竹中雄大,"[""竹中雄大""]",manual,2026-02-25,1
-manual:jp:suga_shikao,スガシカオ,"[""スガシカオ"", ""スガ シカオ"", ""SUGA SHIKAO""]",manual,2026-02-25,1
-manual:jp:ito_ran,伊藤蘭,"[""伊藤蘭"", ""伊藤 蘭"", ""Ran Ito""]",manual,2026-02-25,1
+artist_id,canonical_name,aliases_json,source,updated_at,is_enabled,ticketjam_watch,ticketjam_benchmark_tier,ticketjam_watch_reason
+manual:jp:mrs_green_apple,Mrs. GREEN APPLE,"[""Mrs. GREEN APPLE"", ""ミセス"", ""ミセスグリーンアップル""]",manual,2026-02-25,1,1,S,artist_gap
+wd:Q626440,嵐,"[""ARASHI"", ""嵐""]",manual,2026-02-27,1,0,,
+manual:jp:takenaka_yudai,竹中雄大,"[""竹中雄大""]",manual,2026-02-25,1,0,,
+manual:jp:suga_shikao,スガシカオ,"[""スガシカオ"", ""スガ シカオ"", ""SUGA SHIKAO""]",manual,2026-02-25,1,0,,
+manual:jp:ito_ran,伊藤蘭,"[""伊藤蘭"", ""伊藤 蘭"", ""Ran Ito""]",manual,2026-02-25,1,0,,
+wd:Q1378545,サザンオールスターズ,"[""サザン"", ""SAS"", ""Southern All Stars""]",manual,2026-03-09,1,1,S,artist_gap
+wd:Q6139131,三代目 J SOUL BROTHERS from EXILE TRIBE,"[""三代目 J SOUL BROTHERS"", ""三代目 J Soul Brothers"", ""J Soul Brothers III""]",manual,2026-03-09,1,1,A,artist_gap
+wd:Q19567990,三代目 J SOUL BROTHERS from EXILE TRIBE,"[""三代目 J SOUL BROTHERS"", ""三代目 J Soul Brothers"", ""J Soul Brothers III""]",manual,2026-03-09,1,1,A,artist_gap
+wd:Q150186,B'z,"[""B'z"", ""ビーズ"", ""B`z""]",manual,2026-03-09,1,1,A,artist_gap
+wd:Q655239,EXILE,"[""EXILE"", ""エグザイル""]",manual,2026-03-09,1,1,B,artist_gap
+wd:Q104012678,Ado,"[""Ado"", ""アド""]",manual,2026-03-09,1,1,B,artist_gap
+wd:Q1057960,GLAY,"[""GLAY"", ""グレイ"", ""Glay""]",manual,2026-03-09,1,1,B,artist_gap
+wd:Q1141809,福山雅治,"[""福山雅治"", ""Fukuyama Masaharu"", ""ましゃ""]",manual,2026-03-09,1,1,B,artist_gap
+wd:Q1041260,Nissy,"[""Nissy"", ""西島隆弘""]",manual,2026-03-09,1,0,reference,artist_gap
+manual:global:lady_gaga,Lady Gaga,"[""Lady Gaga"", ""レディー・ガガ""]",manual,2026-03-09,1,0,reference,artist_gap

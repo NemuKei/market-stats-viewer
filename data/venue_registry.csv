@@ -1,4 +1,4 @@
-venue_id,venue_name,pref_code,pref_name,capacity,official_url,source_type,source_url,config_json,is_enabled
+venue_id,venue_name,pref_code,pref_name,capacity,official_url,source_type,source_url,config_json,is_enabled,ticketjam_watch,official_fetch_candidate,official_gap_reason
 yokohama_arena,横浜アリーナ,14,神奈川県,17000,https://www.yokohama-arena.co.jp/,html,https://www.yokohama-arena.co.jp/event/{ym}?_format=json,"{""strategy"":""yokohama_arena_json""}",1
 k_arena_yokohama,Kアリーナ横浜,14,神奈川県,20033,https://k-arena.com/,html,https://k-arena.com/schedule/,"{""strategy"":""k_arena_yokohama_schedule"",""max_pages"":4}",1
 nissan_stadium,日産スタジアム,14,神奈川県,72327,https://www.nissan-stadium.jp/,html,https://www.nissan-stadium.jp/calendar/,"{""strategy"":""nissan_stadium_calendar""}",1
@@ -33,7 +33,7 @@ yoyogi_gymnasium,国立代々木競技場第一体育館,13,東京都,12542,http
 tokyo_garden_theater,東京ガーデンシアター,13,東京都,8000,https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/,html,https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/,"{""strategy"":""garden_theater_schedule"",""months_ahead"":12}",1
 tdc_hall,TOKYO DOME CITY HALL,13,東京都,3120,https://www.tokyo-dome.co.jp/tdc-hall/,html,https://www.tokyo-dome.co.jp/tdc-hall/event/,"{""strategy"":""tdc_hall_schedule""}",1
 toyosu_pit,豊洲PIT,13,東京都,3103,https://toyosu.pia-pit.jp/,html,https://toyosu.pia-pit.jp/schedule-list/,"{""strategy"":""toyosu_pit_schedule"",""months_ahead"":3}",1
-yanmar_stadium_nagai,ヤンマースタジアム長居,27,大阪府,47816,https://www.nagai-park.jp/stadium/,html,https://www.nagai-park.jp/stadium/,"{""strategy"":""generic""}",0
+yanmar_stadium_nagai,ヤンマースタジアム長居,27,大阪府,47816,https://www.nagai-park.jp/stadium/,html,https://www.nagai-park.jp/stadium/,"{""strategy"":""generic""}",0,1,1,weak_schedule
 lalaarena_tokyobay,ららアリーナ 東京ベイ,12,千葉県,10000,https://lalaarenatokyo-bay.com/,html,https://lalaarenatokyo-bay.com/,"{""strategy"":""generic""}",0
 ecopa_arena,エコパアリーナ,22,静岡県,10000,https://www.ecopa.jp/,html,https://www.ecopa.jp/,"{""strategy"":""generic""}",0
 makomanai_sekisuiheim_ice_arena,真駒内セキスイハイムアイスアリーナ,01,北海道,10024,https://www.makomanai.com/icearena/,html,https://www.makomanai.com/icearena/,"{""strategy"":""generic""}",0
@@ -88,8 +88,8 @@ kanagawa_kenmin_hall,神奈川県民ホール 大ホール,14,神奈川県,2493,
 toyota_stadium,豊田スタジアム,23,愛知県,44380,https://www.toyota-stadium.co.jp/facility03/,html,https://www.toyota-stadium.co.jp/facility03/,,0
 nihon_gaishi_hall,日本ガイシホール,23,愛知県,10000,https://aichi-sc.jp/facility/nespahall/,html,https://aichi-sc.jp/facility/nespahall/,,0
 nagoya_congress_center_century_hall,名古屋国際会議場 センチュリーホール,23,愛知県,3002,https://www.nagoya-congress-center.jp/wp-content/uploads/2018/02/century_zaseki.pdf,html,https://www.nagoya-congress-center.jp/wp-content/uploads/2018/02/century_zaseki.pdf,,0
-panasonic_stadium_suita,Panasonic Stadium Suita,27,大阪府,40000,https://www2.suitacityfootballstadium.jp/c/stadium/index.html,html,https://www2.suitacityfootballstadium.jp/c/stadium/index.html,,0
-edion_arena_osaka,大阪府立体育会館（エディオンアリーナ大阪）,27,大阪府,8000,https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E5%BA%9C%E7%AB%8B%E4%BD%93%E8%82%B2%E4%BC%9A%E9%A4%A8,html,https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E5%BA%9C%E7%AB%8B%E4%BD%93%E8%82%B2%E4%BC%9A%E9%A4%A8,,0
+panasonic_stadium_suita,Panasonic Stadium Suita,27,大阪府,40000,https://www2.suitacityfootballstadium.jp/c/stadium/index.html,html,https://www2.suitacityfootballstadium.jp/c/stadium/index.html,,0,1,1,weak_schedule
+edion_arena_osaka,大阪府立体育会館（エディオンアリーナ大阪）,27,大阪府,8000,https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E5%BA%9C%E7%AB%8B%E4%BD%93%E8%82%B2%E4%BC%9A%E9%A4%A8,html,https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E5%BA%9C%E7%AB%8B%E4%BD%93%E8%82%B2%E4%BC%9A%E9%A4%A8,,0,1,1,temporary_fallback
 best_denki_stadium,ベスト電器スタジアム,40,福岡県,21546,https://www.jleague.jp/club/fukuoka/stadium/,html,https://www.jleague.jp/club/fukuoka/stadium/,,0
 kitakyushu_media_dome,北九州メディアドーム,40,福岡県,18700,https://www.mediadome.jp/about.html,html,https://www.mediadome.jp/about.html,,0
 fukuoka_kokusai_center,福岡国際センター,40,福岡県,10000,https://www.marinemesse.or.jp/kokusai/organizer/outline/,html,https://www.marinemesse.or.jp/kokusai/organizer/outline/,,0

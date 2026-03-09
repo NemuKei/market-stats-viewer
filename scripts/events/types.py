@@ -18,6 +18,9 @@ class VenueRecord:
     source_url: str
     config_json: str | None
     is_enabled: bool
+    ticketjam_watch: bool = False
+    official_fetch_candidate: bool = False
+    official_gap_reason: str | None = None
 
 
 @dataclass

@@ -3,6 +3,7 @@
 最終更新: 2026-03-09
 
 ## Done（直近完了）
+- Ticketjam 補完スパイク向けに、アーティスト辞書へ `ticketjam_watch` / `ticketjam_benchmark_tier` / `ticketjam_watch_reason`、会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加した。大阪の初期 `artist-gap` ベンチマーク（S/A/B/reference）と `venue-gap` 候補（ヤンマースタジアム長居 / Panasonic Stadium Suita / エディオンアリーナ大阪）も登録した
 - Ticketjam の目的を再定義し、「会場網羅の代替」ではなく `artist-gap` / `venue-gap` を埋める補完ソースとして扱う方針を spec / DECISIONS へ固定した。大阪府を初期スパイク対象にし、追加ユニーク日程とノイズ率で価値判定する
 - `ticketjam_events` の取得を pure venue-page から hybrid（会場ページ + 公開 sitemap 補完）へ見直した。会場ページは `date/time/venue` の page-specific 情報源として優先し、会場ページだけでは出てこない event URL は sitemap で補完するよう更新
 - Ticketjam の stale JSON-LD により `event_end_date < event_start_date` となるケースを修正した。event page 見出しと会場ページ文脈を優先し、`ticketjam_events` は 1日程=1データとして `event_start_date == event_end_date` で保存するよう更新
@@ -42,8 +43,8 @@
 - （なし）
 
 ## Next（最大3）
-1. Ticketjam 補完スパイクの対象辞書フラグ（artist / venue）を追加し、初期対象を大阪基準で整理する
-2. Ticketjam 大阪スパイクを実装し、都道府県 month ページ起点の追加価値を測る
+1. Ticketjam 大阪スパイクを実装し、都道府県 month ページ起点の追加価値を測る
+2. 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
 3. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
 
 ## Task Backlog（Venue Dictionary Completeness）
@@ -77,10 +78,10 @@
 
 ## Task Backlog（Ticketjam Supplement Spike: Osaka）
 - [x] T-20260309-001: Ticketjam の役割を `artist-gap` / `venue-gap` 補完ソースへ再定義し、成功指標を spec / DECISIONS / STATUS へ固定する
-- [ ] T-20260309-002: アーティスト辞書へ `ticketjam_watch` / `ticketjam_benchmark_tier` / `ticketjam_watch_reason` を追加する
-- [ ] T-20260309-003: 会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加する
-- [ ] T-20260309-004: 大阪府の初期 `artist-gap` ベンチマーク対象を登録する（S/A/B と reference を分離）
-- [ ] T-20260309-005: 大阪府の初期 `venue-gap` 会場を登録する（例: 公式が弱い・無い・取りづらい会場）
+- [x] T-20260309-002: アーティスト辞書へ `ticketjam_watch` / `ticketjam_benchmark_tier` / `ticketjam_watch_reason` を追加する
+- [x] T-20260309-003: 会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加する
+- [x] T-20260309-004: 大阪府の初期 `artist-gap` ベンチマーク対象を登録する（S/A/B と reference を分離）
+- [x] T-20260309-005: 大阪府の初期 `venue-gap` 会場を登録する（例: 公式が弱い・無い・取りづらい会場）
 - [ ] T-20260309-006: Ticketjam 大阪スパイクの discovery 実装を追加する（都道府県 month ページ優先、既存導線と比較可能にする）
 - [ ] T-20260309-007: 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
 
@@ -104,18 +105,16 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260309-002: アーティスト辞書フラグを追加する
-- T-20260309-003: 会場辞書フラグを追加する
-
-Next:
-- T-20260309-004: 大阪の `artist-gap` ベンチマーク対象を登録する
-- T-20260309-005: 大阪の `venue-gap` 会場を登録する
-
-After Next:
 - T-20260309-006: 大阪スパイクの discovery 実装を追加する
 
-Later:
+Next:
 - T-20260309-007: 大阪スパイクを評価し、Go/No-Go を判断する
+
+After Next:
+- Release assets の定期公開監視を継続する
+
+Later:
+- （なし）
 
 統合メモ:
 - T-20260306-002〜005 を1エピック「辞書整備バッチ（抽出→反映→計測）」として運用する
