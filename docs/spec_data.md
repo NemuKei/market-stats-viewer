@@ -113,6 +113,10 @@
     - 1行=1 Ticketjam 会場ページと内部 `venue_id` の対応
     - 初期 scope は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
     - `is_enabled=1` は日次巡回対象、`is_enabled=0` は辞書保持のみ
+  - 補完評価レポート:
+    - `data/ticketjam_supplement_report.json`: 機械処理向けサマリ
+    - `data/ticketjam_supplement_report.md`: 目視確認向けサマリ
+    - `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使って自動集計する
 
 ### テーブル: `signal_sources`
 - `source_id` TEXT PRIMARY KEY
@@ -174,6 +178,9 @@
     - `official_fetch_candidate`: `0/1`。本来は会場公式ソース追加を検討すべき会場か
     - `official_gap_reason`: `no_official_site / weak_schedule / hard_to_parse / temporary_fallback / ""`
       - `ticketjam_watch=1` と `official_fetch_candidate=1` は両立してよい
+  - 補完評価レポートの集計キー:
+    - `event_date + canonical venue_name + canonical artist_name`
+    - baseline は `events.sqlite` + `starto_concert` + `kstyle_music`
 - 一意性ルール:
   - 正規化キー（keep/compact）が複数 canonical に衝突する場合、そのキーは自動適用しない。
   - 自動適用は一意に解決できるキーのみ。

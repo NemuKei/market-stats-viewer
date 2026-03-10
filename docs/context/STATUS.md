@@ -3,6 +3,7 @@
 最終更新: 2026-03-11
 
 ## Done（直近完了）
+- `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使った補完評価レポート自動集計を追加した。`python -m scripts.build_ticketjam_supplement_report` で `data/ticketjam_supplement_report.json` / `.md` を生成し、Ticketjam workflow 後段でも自動更新するようにした。baseline は `events.sqlite + starto_concert + kstyle_music`、比較キーは `event_date + canonical venue_name + canonical artist_name`
 - Ticketjam 大阪スパイクの評価を実施し、`hybrid` を既定 discovery のまま維持する判断を確定した。GitHub Actions run `22835162881`（`prefecture_month`, bootstrap full）は `91件`・全件大阪・`artist-gap` ベンチマークヒット `0件`、run `22836011961`（`hybrid`, bootstrap full）は `2561件`・大阪 `380件`・`artist-gap` ベンチマークヒット `福山雅治 9 / 三代目 J SOUL BROTHERS from EXILE TRIBE 2` だった。`prefecture_month` は比較・軽量調査用 mode として残し、本線運用には使わない
 - Ticketjam 大阪スパイクの discovery として、`prefecture_month` / `prefecture_month_hybrid` mode を追加した。`https://ticketjam.jp/prefectures/osaka/month?events_page=n` の `p-event-list` と直後の JSON-LD から event URL / 日付 / 会場 / 都道府県を候補抽出し、CLI から `--ticketjam-discovery-mode` で切替できるよう更新した
 - Ticketjam 補完スパイク向けに、アーティスト辞書へ `ticketjam_watch` / `ticketjam_benchmark_tier` / `ticketjam_watch_reason`、会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加した。大阪の初期 `artist-gap` ベンチマーク（S/A/B/reference）と `venue-gap` 候補（ヤンマースタジアム長居 / Panasonic Stadium Suita / エディオンアリーナ大阪）も登録した
@@ -45,9 +46,9 @@
 - （なし）
 
 ## Next（最大3）
-1. `ticketjam_watch` / `official_fetch_candidate` フラグを使った評価レポート自動集計を追加し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を継続観測できるようにする
-2. `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完を継続するか会場公式ソース追加を優先するかを棚卸しする
-3. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
+1. `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完を継続するか会場公式ソース追加を優先するかを棚卸しする
+2. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
+3. （なし）
 
 ## Task Backlog（Venue Dictionary Completeness）
 - [x] T-20260306-001: 会場辞書の対象範囲を定義する（運用対象: 1万人以上会場 + 重点会場）
@@ -88,7 +89,7 @@
 - [x] T-20260309-007: 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
 
 ## Task Backlog（Ticketjam Supplement Operations）
-- [ ] T-20260311-001: `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使った評価レポート自動集計を追加する
+- [x] T-20260311-001: `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使った評価レポート自動集計を追加する
 - [ ] T-20260311-002: `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完継続か会場公式ソース追加優先かを棚卸しする
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
@@ -117,16 +118,19 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 同 run の `artist-gap` ベンチマークヒットは `福山雅治 9 / 三代目 J SOUL BROTHERS from EXILE TRIBE 2`
 - 同 run の `venue-gap` 候補ヒットは `ヤンマースタジアム長居 3 / Panasonic Stadium Suita 7 / エディオンアリーナ大阪 14`
 - 判断: `prefecture_month` 単体は補完ソース本線としては弱く、`hybrid` を既定運用のまま維持する
+- 補完評価レポート（現行DB）: `ticketjam_unique_schedules 2234`、監視スコープ内 `33`、`additional_unique_schedules 31`、`noise_rate 0.0606`
+- アーティスト補完ヒット: `福山雅治 9件(additional 9)`、`三代目 J SOUL BROTHERS from EXILE TRIBE 2件(overlap 2)`、その他ベンチマークは `0件`
+- 会場補完ヒット: `エディオンアリーナ大阪 13件(additional 13)`、`Panasonic Stadium Suita 6件(additional 6)`、`ヤンマースタジアム長居 3件(additional 3)`
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260311-001: Ticketjam 評価レポート自動集計を追加する
-
-Next:
 - T-20260311-002: `official_fetch_candidate=1` 会場の優先方針を棚卸しする
 
-After Next:
+Next:
 - Release assets の定期公開監視を継続する
+
+After Next:
+- （なし）
 
 Later:
 - （なし）

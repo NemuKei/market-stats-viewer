@@ -1,0 +1,192 @@
+{
+  "report_name": "ticketjam_supplement_report",
+  "report_version": 1,
+  "inputs": {
+    "ticketjam_source_updated_at_utc": "2026-03-10T05:08:49Z",
+    "starto_source_updated_at_utc": "2026-03-08T12:34:32Z",
+    "kstyle_source_updated_at_utc": "2026-03-08T12:33:38Z",
+    "events_db_modified_at_utc": "2026-03-10T23:27:19Z"
+  },
+  "summary": {
+    "ticketjam_unique_schedules": 2234,
+    "baseline_news_unique_schedules": 373,
+    "baseline_official_unique_schedules": 586,
+    "ticketjam_category_counts": {
+      "その他": 162,
+      "コンサート": 1569,
+      "野球": 503
+    },
+    "in_scope_unique_schedules": 33,
+    "artist_scope_unique_schedules": 11,
+    "venue_scope_unique_schedules": 22,
+    "additional_unique_schedules": 31,
+    "overlap_unique_schedules": 2,
+    "noise_rate": 0.0606,
+    "out_of_scope_unique_schedules": 2201,
+    "out_of_scope_rate": 0.9852
+  },
+  "artist_gap": {
+    "watch_count": 9,
+    "rows": [
+      {
+        "artist_name": "Mrs. GREEN APPLE",
+        "tier": "S",
+        "ticketjam_hits": 0,
+        "additional_hits": 0,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [],
+        "category_counts": {}
+      },
+      {
+        "artist_name": "サザンオールスターズ",
+        "tier": "S",
+        "ticketjam_hits": 0,
+        "additional_hits": 0,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [],
+        "category_counts": {}
+      },
+      {
+        "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
+        "tier": "A",
+        "ticketjam_hits": 2,
+        "additional_hits": 0,
+        "overlap_hits": 2,
+        "noise_rate": 1.0,
+        "venues": [
+          "MUFGスタジアム"
+        ],
+        "category_counts": {
+          "コンサート": 2
+        }
+      },
+      {
+        "artist_name": "B'z",
+        "tier": "A",
+        "ticketjam_hits": 0,
+        "additional_hits": 0,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [],
+        "category_counts": {}
+      },
+      {
+        "artist_name": "福山雅治",
+        "tier": "B",
+        "ticketjam_hits": 9,
+        "additional_hits": 9,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [
+          "あなぶきアリーナ香川",
+          "セキスイハイムスーパーアリーナ",
+          "日本武道館",
+          "朱鷺メッセ 新潟コンベンションセンター",
+          "真駒内セキスイハイムアイスアリーナ"
+        ],
+        "category_counts": {
+          "コンサート": 9
+        }
+      },
+      {
+        "artist_name": "Ado",
+        "tier": "B",
+        "ticketjam_hits": 0,
+        "additional_hits": 0,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [],
+        "category_counts": {}
+      },
+      {
+        "artist_name": "EXILE",
+        "tier": "B",
+        "ticketjam_hits": 0,
+        "additional_hits": 0,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [],
+        "category_counts": {}
+      },
+      {
+        "artist_name": "GLAY",
+        "tier": "B",
+        "ticketjam_hits": 0,
+        "additional_hits": 0,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "venues": [],
+        "category_counts": {}
+      }
+    ]
+  },
+  "venue_gap": {
+    "watch_count": 3,
+    "rows": [
+      {
+        "venue_name": "大阪府立体育会館（エディオンアリーナ大阪）",
+        "ticketjam_hits": 13,
+        "additional_hits": 13,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "artists": [
+          "大相撲"
+        ],
+        "category_counts": {
+          "その他": 13
+        },
+        "ticketjam_watch": true,
+        "official_fetch_candidate": true,
+        "official_gap_reason": "temporary_fallback"
+      },
+      {
+        "venue_name": "Panasonic Stadium Suita",
+        "ticketjam_hits": 6,
+        "additional_hits": 6,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "artists": [
+          "ガンバ大阪"
+        ],
+        "category_counts": {
+          "その他": 5,
+          "野球": 1
+        },
+        "ticketjam_watch": true,
+        "official_fetch_candidate": true,
+        "official_gap_reason": "weak_schedule"
+      },
+      {
+        "venue_name": "ヤンマースタジアム長居",
+        "ticketjam_hits": 3,
+        "additional_hits": 3,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
+        "artists": [
+          "back number（バックナンバー）",
+          "レッドハリケーンズ大阪"
+        ],
+        "category_counts": {
+          "その他": 1,
+          "コンサート": 2
+        },
+        "ticketjam_watch": true,
+        "official_fetch_candidate": true,
+        "official_gap_reason": "weak_schedule"
+      }
+    ]
+  },
+  "methodology": {
+    "baseline_sources": [
+      "events.sqlite",
+      "event_signals.sqlite:starto_concert",
+      "event_signals.sqlite:kstyle_music"
+    ],
+    "schedule_key": "event_date + canonical venue_name + canonical artist_name",
+    "additional_hits": "Ticketjam schedule key が既存ソース baseline に存在しない件数",
+    "noise_rate": "監視スコープ内 Ticketjam schedule のうち baseline と重複した比率",
+    "out_of_scope_rate": "Ticketjam schedule のうち監視アーティスト/会場のどちらにも当てはまらない比率"
+  }
+}

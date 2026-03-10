@@ -69,6 +69,10 @@ jobs:
           fi
           uv run python -m scripts.update_event_signals_data "${args[@]}"
 
+      - name: Build ticketjam supplement report
+        run: |
+          uv run python -m scripts.build_ticketjam_supplement_report
+
       - name: Commit changes (if any)
         run: |
           git status --porcelain

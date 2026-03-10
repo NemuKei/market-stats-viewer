@@ -185,6 +185,20 @@
     - 評価結果:
       - `prefecture_month` 単体は大阪限定の軽量調査導線としては有効だが、補完ソース本線としては弱い
       - `hybrid` を既定運用のまま維持し、`prefecture_month` / `prefecture_month_hybrid` は比較・調査用 runtime mode として残す
+  - 2026-03-11 補完評価レポート:
+    - スクリプト: `python -m scripts.build_ticketjam_supplement_report`
+    - 入力:
+      - `data/event_signals.sqlite` の `ticketjam_events` / `starto_concert` / `kstyle_music`
+      - `data/events.sqlite`
+      - アーティスト辞書の `ticketjam_watch` / `ticketjam_benchmark_tier`
+      - 会場辞書の `ticketjam_watch` / `official_fetch_candidate`
+    - schedule key: `event_date + canonical venue_name + canonical artist_name`
+    - `additional_hits`: Ticketjam schedule key が既存ソース baseline（会場公式 + STARTO + Kstyle）に存在しない件数
+    - `noise_rate`: 監視スコープ内 Ticketjam schedule のうち baseline と重複した比率
+    - `out_of_scope_rate`: Ticketjam schedule のうち監視アーティスト/会場のどちらにも当てはまらない比率
+    - 出力:
+      - `data/ticketjam_supplement_report.json`
+      - `data/ticketjam_supplement_report.md`
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
@@ -207,6 +221,7 @@
   - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
   - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
     - `workflow_dispatch` 入力 `bootstrap_full=true` で full rebuild を実行可能（legacy sitemap mode を使う場合のみ `bootstrap_max_*` を参照）
+    - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、補完評価レポートを `data/ticketjam_supplement_report.json` / `.md` へ更新する
   - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
 
