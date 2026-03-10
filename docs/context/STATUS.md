@@ -1,8 +1,9 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-03-09
+最終更新: 2026-03-11
 
 ## Done（直近完了）
+- Ticketjam 大阪スパイクの評価を実施し、`hybrid` を既定 discovery のまま維持する判断を確定した。GitHub Actions run `22835162881`（`prefecture_month`, bootstrap full）は `91件`・全件大阪・`artist-gap` ベンチマークヒット `0件`、run `22836011961`（`hybrid`, bootstrap full）は `2561件`・大阪 `380件`・`artist-gap` ベンチマークヒット `福山雅治 9 / 三代目 J SOUL BROTHERS from EXILE TRIBE 2` だった。`prefecture_month` は比較・軽量調査用 mode として残し、本線運用には使わない
 - Ticketjam 大阪スパイクの discovery として、`prefecture_month` / `prefecture_month_hybrid` mode を追加した。`https://ticketjam.jp/prefectures/osaka/month?events_page=n` の `p-event-list` と直後の JSON-LD から event URL / 日付 / 会場 / 都道府県を候補抽出し、CLI から `--ticketjam-discovery-mode` で切替できるよう更新した
 - Ticketjam 補完スパイク向けに、アーティスト辞書へ `ticketjam_watch` / `ticketjam_benchmark_tier` / `ticketjam_watch_reason`、会場辞書へ `ticketjam_watch` / `official_fetch_candidate` / `official_gap_reason` を追加した。大阪の初期 `artist-gap` ベンチマーク（S/A/B/reference）と `venue-gap` 候補（ヤンマースタジアム長居 / Panasonic Stadium Suita / エディオンアリーナ大阪）も登録した
 - Ticketjam の目的を再定義し、「会場網羅の代替」ではなく `artist-gap` / `venue-gap` を埋める補完ソースとして扱う方針を spec / DECISIONS へ固定した。大阪府を初期スパイク対象にし、追加ユニーク日程とノイズ率で価値判定する
@@ -44,8 +45,8 @@
 - （なし）
 
 ## Next（最大3）
-1. 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
-2. Ticketjam の `prefecture_month` と既存 `hybrid` を bootstrap full で比較し、追加ヒット数とノイズを大阪基準で記録する
+1. `ticketjam_watch` / `official_fetch_candidate` フラグを使った評価レポート自動集計を追加し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を継続観測できるようにする
+2. `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完を継続するか会場公式ソース追加を優先するかを棚卸しする
 3. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
 
 ## Task Backlog（Venue Dictionary Completeness）
@@ -84,7 +85,11 @@
 - [x] T-20260309-004: 大阪府の初期 `artist-gap` ベンチマーク対象を登録する（S/A/B と reference を分離）
 - [x] T-20260309-005: 大阪府の初期 `venue-gap` 会場を登録する（例: 公式が弱い・無い・取りづらい会場）
 - [x] T-20260309-006: Ticketjam 大阪スパイクの discovery 実装を追加する（都道府県 month ページ優先、既存導線と比較可能にする）
-- [ ] T-20260309-007: 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
+- [x] T-20260309-007: 大阪スパイクの評価を実施し、`artist-gap additional hits` / `venue-gap additional hits` / `noise rate` を記録して Go/No-Go を判断する
+
+## Task Backlog（Ticketjam Supplement Operations）
+- [ ] T-20260311-001: `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使った評価レポート自動集計を追加する
+- [ ] T-20260311-002: `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完継続か会場公式ソース追加優先かを棚卸しする
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 全体会場マッチ率（registry or alias）: 15.58% -> 32.67%（+17.09pt）
@@ -104,12 +109,21 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 原因切り分け: 京セラドーム大阪の会場ページ自体は `Vaundy 2 / オリックス 4` しか露出せず、pure venue-page では網羅不足。`JO1` などは event page の JSON-LD が古い日付・会場を返すケースがあり、page 見出しと venue page 文脈で補正が必要と確認
 - parser smoke: `JO1DER SHOW 2026 'EIEN 永縁'`（2026-04-22 / 2026-04-23）と `Vaundy DOME TOUR 2026`（2026-03-15）で、`event_start_date == event_end_date` の日別レコードとして抽出できることを確認
 
+2026-03-11 実測メモ:
+- GitHub Actions run `22835162881`（`prefecture_month`, bootstrap full）: `ticketjam_events 91件`、全件 `大阪府`。上位会場は `オリックス劇場 16 / フェスティバルホール 14 / エディオンアリーナ大阪 14 / 大阪城ホール 12 / 京セラドーム大阪 11`
+- 同 run の `artist-gap` ベンチマークヒットは `0件`
+- 同 run の `venue-gap` 候補ヒットは `ヤンマースタジアム長居 0 / Panasonic Stadium Suita 0 / エディオンアリーナ大阪 14`
+- GitHub Actions run `22836011961`（`hybrid`, bootstrap full）: `ticketjam_events 2561件`、うち `大阪府 380件`
+- 同 run の `artist-gap` ベンチマークヒットは `福山雅治 9 / 三代目 J SOUL BROTHERS from EXILE TRIBE 2`
+- 同 run の `venue-gap` 候補ヒットは `ヤンマースタジアム長居 3 / Panasonic Stadium Suita 7 / エディオンアリーナ大阪 14`
+- 判断: `prefecture_month` 単体は補完ソース本線としては弱く、`hybrid` を既定運用のまま維持する
+
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260309-007: 大阪スパイクを評価し、Go/No-Go を判断する
+- T-20260311-001: Ticketjam 評価レポート自動集計を追加する
 
 Next:
-- `prefecture_month` と既存 `hybrid` の bootstrap full 比較を実施し、差分を記録する
+- T-20260311-002: `official_fetch_candidate=1` 会場の優先方針を棚卸しする
 
 After Next:
 - Release assets の定期公開監視を継続する
@@ -121,3 +135,4 @@ Later:
 - T-20260306-002〜005 を1エピック「辞書整備バッチ（抽出→反映→計測）」として運用する
 - T-20260306-010〜016 を1エピック「Ticketjam 会場基準再設計（1000+ + 種別3区分 + GUI整合）」として段階導入する
 - T-20260309-002〜007 を1エピック「Ticketjam 補完スパイク（大阪）」として運用する
+- T-20260311-001〜002 を1エピック「Ticketjam 補完運用（評価自動化 + 公式候補棚卸し）」として運用する

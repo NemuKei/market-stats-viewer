@@ -173,6 +173,18 @@
       - config 追加: `prefecture_month_urls`, `prefecture_month_page_param`, `prefecture_month_max_pages`, `bootstrap_prefecture_month_max_pages`
     - スパイクの成功条件は「既存ソース（会場公式 / STARTO / Kstyle）に対して追加できたユニーク日程の有意差」で判定する
       - 指標: `artist-gap additional hits` / `venue-gap additional hits` / `noise rate`
+  - 2026-03-11 大阪スパイク評価:
+    - GitHub Actions run `22835162881`（`prefecture_month`, bootstrap full）:
+      - `ticketjam_events=91件`、全件 `大阪府`
+      - `artist-gap` ベンチマークヒット: `0件`
+      - `venue-gap` 候補ヒット: `ヤンマースタジアム長居 0 / Panasonic Stadium Suita 0 / エディオンアリーナ大阪 14`
+    - GitHub Actions run `22836011961`（`hybrid`, bootstrap full）:
+      - `ticketjam_events=2561件`、うち `大阪府 380件`
+      - `artist-gap` ベンチマークヒット: `福山雅治 9 / 三代目 J SOUL BROTHERS from EXILE TRIBE 2`
+      - `venue-gap` 候補ヒット: `ヤンマースタジアム長居 3 / Panasonic Stadium Suita 7 / エディオンアリーナ大阪 14`
+    - 評価結果:
+      - `prefecture_month` 単体は大阪限定の軽量調査導線としては有効だが、補完ソース本線としては弱い
+      - `hybrid` を既定運用のまま維持し、`prefecture_month` / `prefecture_month_hybrid` は比較・調査用 runtime mode として残す
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
