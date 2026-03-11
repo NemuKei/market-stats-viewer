@@ -3,6 +3,7 @@
 最終更新: 2026-03-11
 
 ## Done（直近完了）
+- `ヤンマースタジアム長居` の公式導線を再評価した。2026-03-11 時点で `https://www.nagai-park.jp/stadium/` とトップ `https://www.nagai-park.jp/` はともに HTTP 500 の WordPress fatal error を返し、代替の安定した月次 schedule 導線も確認できなかったため、公式 source 追加は引き続き保留、Ticketjam 補完継続と判断した
 - Release assets 公開workflowの定期監視を実施した。2026-03-11 時点の直近10 run は `success 9 / skipped 1 / failure 0` で、最新成功 run は `22931909506`。Release `external-events-latest` の asset `events.sqlite / event_signals.sqlite / manifest.json` は `2026-03-11T01:15:01Z` 更新を確認し、即時の手動再公開は不要と判断した
 - `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加した。`edion_arena_osaka_pdf_schedule` で公式トップページ上の `monthlyYYMM.pdf` を取得し、第1競技場のみを `events.sqlite` へ反映するよう更新した。ローカル実行では `15件 fetched`（大相撲三月場所 `15日程`）を確認し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた
 - `Panasonic Stadium Suita` の会場公式 source を追加した。`panasonic_stadium_suita_schedule` で公式 `https://suitacityfootballstadium.jp/schedule/index/year/YYYY/month/MM/` の月次HTML表を取得し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた。ローカル実行では `9件 fetched` を確認
@@ -145,13 +146,17 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
   - 最新成功 run: `22931909506`（`workflow_run`, updated at `2026-03-11T01:15:04Z`）
   - Release `external-events-latest` asset 更新時刻: `2026-03-11T01:15:01Z`
   - 再公開が必要な場合は `publish_external_events_assets.yml` を `workflow_dispatch` で実行し、upstream が失敗している場合は先に upstream workflow を復旧する
+- ヤンマースタジアム長居 再評価メモ:
+  - 2026-03-11 再確認時点でも `https://www.nagai-park.jp/` / `https://www.nagai-park.jp/stadium/` は HTTP 500 の WordPress fatal error
+  - `nagai-park.jp` 配下の公開導線では、スタジアム固有の安定した月次イベント一覧や PDF 導線を確認できず
+  - 公式 source は引き続き保留し、`ticketjam_watch=1` の補完運用を継続する
 
 ## Remaining Task Triage (ASCII)
 Now:
-- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+- Release assets の定期公開結果を継続監視する
 
 Next:
-- Release assets の定期公開結果を継続監視する
+- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
 
 After Next:
 - （なし）
