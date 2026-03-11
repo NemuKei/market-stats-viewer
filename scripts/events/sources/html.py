@@ -3800,6 +3800,132 @@ class _BudokanSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# Panasonic Stadium Suita schedule
+# ---------------------------------------------------------------------------
+@_register("panasonic_stadium_suita_schedule")
+class _PanasonicStadiumSuitaSchedule(_BaseStrategy):
+    """Parse Panasonic Stadium Suita monthly schedule table."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        months_ahead = int(config.get("months_ahead", 6))
+        today = date.today()
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for offset in range(months_ahead + 1):
+            d = today.replace(day=1) + timedelta(days=32 * offset)
+            d = d.replace(day=1)
+            month_url = (
+                f"https://suitacityfootballstadium.jp/schedule/index/year/"
+                f"{d.year}/month/{d.month:02d}/"
+            )
+            try:
+                resp = session.get(month_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning(
+                        "panasonic_stadium_suita: %s returned %s",
+                        month_url,
+                        resp.status_code,
+                    )
+                    continue
+            except Exception:
+                logger.warning("panasonic_stadium_suita: failed to fetch %s", month_url)
+                continue
+            resp.encoding = resp.apparent_encoding or "utf-8"
+            soup = BeautifulSoup(resp.text, "html.parser")
+            events.extend(
+                self._parse_page(venue, soup, month_url, d.year, d.month, seen_uids)
+            )
+        return events
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        year: int,
+        month: int,
+        seen_uids: set[str],
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        schedule_table = soup.select_one("table")
+        if not schedule_table:
+            return events
+
+        for row in schedule_table.select("tr"):
+            date_cell = row.find("th")
+            body_cell = row.find("td")
+            if not date_cell or not body_cell:
+                continue
+            day_match = re.match(r"(\d{1,2})", date_cell.get_text(" ", strip=True))
+            if not day_match:
+                continue
+            day = int(day_match.group(1))
+            start_date = f"{year:04d}-{month:02d}-{day:02d}"
+
+            for item in body_cell.select("li"):
+                raw_text = " ".join(item.get_text(" ", strip=True).split())
+                if not raw_text:
+                    continue
+                title = raw_text
+                start_time = None
+                event_url = None
+
+                link = item.find("a", href=True)
+                if link:
+                    href = link["href"].strip()
+                    if href.startswith("http"):
+                        event_url = href
+
+                time_match = re.match(r"(\d{1,2}:\d{2})\s*[~～]\s*(.+)$", raw_text)
+                if time_match:
+                    start_time = _normalise_time(time_match.group(1))
+                    title = time_match.group(2).strip()
+
+                title = re.sub(r"\[お問い合わせ先\].*$", "", title).strip()
+                if not title or title in {"試合前準備", "スタジアムツアー 締切"}:
+                    continue
+
+                source_key = _source_key_with_schedule(
+                    event_url or title, start_date, start_time
+                )
+                uid = compute_event_uid(
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
+                )
+                if uid in seen_uids:
+                    continue
+                seen_uids.add(uid)
+
+                rec = EventRecord(
+                    event_uid=uid,
+                    venue_id=venue.venue_id,
+                    title=title,
+                    start_date=start_date,
+                    start_time=start_time,
+                    end_date=None,
+                    end_time=None,
+                    all_day=not bool(start_time),
+                    status="scheduled",
+                    url=event_url,
+                    description=None,
+                    performers=None,
+                    capacity=None,
+                    source_type=venue.source_type,
+                    source_url=source_url,
+                    source_event_key=source_key,
+                )
+                rec.data_hash = compute_data_hash(rec)
+                events.append(rec)
+
+        return events
+
+
+# ---------------------------------------------------------------------------
 # Generic fallback (returns empty, for disabled venues)
 # ---------------------------------------------------------------------------
 @_register("generic")

@@ -2,10 +2,10 @@
 
 ## Summary
 - ticketjam_unique_schedules: 2234
-- additional_unique_schedules: 31
+- additional_unique_schedules: 25
 - overlap_unique_schedules: 2
-- noise_rate: 0.0606
-- out_of_scope_rate: 0.9852
+- noise_rate: 0.0741
+- out_of_scope_rate: 0.9879
 - ticketjam_category_counts: {"その他": 162, "コンサート": 1569, "野球": 503}
 
 ## Artist Gap
@@ -25,8 +25,7 @@
 
 | venue_name | ticketjam_hits | additional_hits | overlap_hits | noise_rate | official_fetch_candidate | official_gap_reason |
 | --- | ---: | ---: | ---: | ---: | --- | --- |
-| 大阪府立体育会館（エディオンアリーナ大阪） | 13 | 13 | 0 | 0.0000 | 1 | temporary_fallback |
-| Panasonic Stadium Suita | 6 | 6 | 0 | 0.0000 | 1 | weak_schedule |
+| 大阪府立体育会館（エディオンアリーナ大阪） | 13 | 13 | 0 | 0.0000 | 1 | hard_to_parse |
 | ヤンマースタジアム長居 | 3 | 3 | 0 | 0.0000 | 1 | weak_schedule |
 
 ## Inputs
@@ -34,7 +33,7 @@
 - ticketjam_source_updated_at_utc: 2026-03-10T05:08:49Z
 - starto_source_updated_at_utc: 2026-03-08T12:34:32Z
 - kstyle_source_updated_at_utc: 2026-03-08T12:33:38Z
-- events_db_modified_at_utc: 2026-03-10T23:27:19Z
+- events_db_modified_at_utc: 2026-03-11T04:07:05Z
 
 ## Methodology
 

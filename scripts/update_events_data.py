@@ -258,19 +258,29 @@ def upsert_events(
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     changed = 0
     for e in events:
-        # Check existing hash
-        cur = conn.execute(
-            "SELECT data_hash FROM events WHERE event_uid = ?", (e.event_uid,)
-        )
-        row = cur.fetchone()
-        if row and row[0] == e.data_hash:
-            continue  # no change
         resolved_artist_name, resolved_artist_confidence = resolve_source_artist(
             e.performers, artist_keep_map, artist_compact_map
         )
         event_category = classify_event_category(
             e.title, resolved_artist_name, e.description
         )
+        # Check existing stored payload + derived fields
+        cur = conn.execute(
+            """
+            SELECT data_hash, artist_name_resolved, artist_confidence, event_category
+            FROM events
+            WHERE event_uid = ?
+            """,
+            (e.event_uid,),
+        )
+        row = cur.fetchone()
+        if row:
+            same_payload = row[0] == e.data_hash
+            same_artist = (row[1] or "") == resolved_artist_name
+            same_confidence = (row[2] or "") == resolved_artist_confidence
+            same_category = (row[3] or "") == event_category
+            if same_payload and same_artist and same_confidence and same_category:
+                continue
         conn.execute(
             """\
             INSERT INTO events (
@@ -472,10 +482,25 @@ def main() -> None:
             )
             row = cur.fetchone()
             if row and row[0] == sig:
+                changed = upsert_events(
+                    conn,
+                    events,
+                    artist_keep_map,
+                    artist_compact_map,
+                )
                 if pruned > 0:
                     conn.commit()
                     total_changed += pruned
-                logger.info("  no-op: signature unchanged")
+                if changed > 0:
+                    upsert_venue(conn, venue, sig)
+                    conn.commit()
+                    total_changed += changed
+                    logger.info(
+                        "  signature unchanged but refreshed %d derived field change(s)",
+                        changed,
+                    )
+                else:
+                    logger.info("  no-op: signature unchanged")
                 success_count += 1
                 continue
 

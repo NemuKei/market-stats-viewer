@@ -61,10 +61,38 @@ def classify_event_category(title: object, artist_name: object, description: obj
         "マリーンズ",
     ]
     versus_keywords = ["vs", "ｖｓ", "対", " 対戦 "]
+    non_music_keywords = [
+        "就活",
+        "就職",
+        "説明会",
+        "展示会",
+        "見本市",
+        "expo",
+        "フェア",
+        "学会",
+        "式典",
+        "授与式",
+        "卒業式",
+        "入学式",
+        "サッカー",
+        "j1",
+        "acl",
+        "チャンピオンズリーグ",
+        "フットサル",
+        "マラソン",
+        "グランプリ",
+        "大会",
+        "カップ",
+        "m-1",
+        "スポーツフェスティバル",
+    ]
+    has_non_music_keyword = any(keyword in normalized_text for keyword in non_music_keywords)
+    has_versus = any(keyword in normalized_text for keyword in versus_keywords)
+    if has_non_music_keyword and has_versus:
+        return EVENT_CATEGORY_OTHER
     if any(keyword in normalized_text for keyword in baseball_keywords):
         return EVENT_CATEGORY_BASEBALL
     has_team_keyword = any(keyword in normalized_text for keyword in baseball_team_keywords)
-    has_versus = any(keyword in normalized_text for keyword in versus_keywords)
     if has_team_keyword and has_versus:
         return EVENT_CATEGORY_BASEBALL
 
@@ -100,29 +128,6 @@ def classify_event_category(title: object, artist_name: object, description: obj
         "アリーナツアー",
     ]
     has_concert_keyword = any(keyword in normalized_text for keyword in concert_keywords)
-    non_music_keywords = [
-        "就活",
-        "就職",
-        "説明会",
-        "展示会",
-        "見本市",
-        "expo",
-        "フェア",
-        "学会",
-        "式典",
-        "授与式",
-        "卒業式",
-        "入学式",
-        "サッカー",
-        "フットサル",
-        "マラソン",
-        "グランプリ",
-        "大会",
-        "カップ",
-        "m-1",
-        "スポーツフェスティバル",
-    ]
-    has_non_music_keyword = any(keyword in normalized_text for keyword in non_music_keywords)
     if has_non_music_keyword and not str(artist_name or "").strip():
         return EVENT_CATEGORY_OTHER
     if has_non_music_keyword and not has_concert_keyword:

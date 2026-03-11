@@ -96,6 +96,8 @@
 - 会場追加手順: `data/venue_registry.csv` に1行追加 → 対応する source strategy を実装
 - CLI options: `--limit N`, `--only venue1,venue2`, `--verbose`
 - 対応ストラテジー: yokohama_arena_json, zepp_schedule, saitama_arena_schedule, tokyo_dome_calendar, vantelin_dome_schedule, kyocera_dome_schedule, belluna_dome_schedule, makuhari_messe_schedule, fukuoka_paypay_dome_schedule, k_arena_yokohama_schedule, sapporo_dome_schedule, zozo_marine_stadium_schedule, pia_arena_mm_schedule, portmesse_nagoya_events, asue_arena_osaka_events, nissan_stadium_calendar, mufg_stadium_schedule, marine_messe_fukuoka_event
+  - 2026-03-11 追加: `panasonic_stadium_suita_schedule`（`/schedule/index/year/YYYY/month/MM/` の月次HTML表）
+  - 署名 no-op 補足: `data_hash` が同じでも `artist_name_resolved` / `artist_confidence` / `event_category` が変わった場合は導出列だけ再同期する
 
 ## Addendum (2026-02-25) Event Artist Inference
 - `python -m scripts.update_events_data` 実行後に、`python -m scripts.build_events_artist_inferred` を自動実行して `data/events_artist_inferred.csv` を更新する。
@@ -203,6 +205,9 @@
     - `Panasonic Stadium Suita`: 公式 `https://suitacityfootballstadium.jp/schedule/` に月次HTML表と前月/次月導線があり、会場公式ソース追加を優先する。Ticketjam 補完は実装完了までの暫定運用
     - `大阪府立体育会館（エディオンアリーナ大阪）`: 公式 `https://www.furitutaiikukaikan.ne.jp/` に月次 `行事案内` PDF が公開されており、会場公式ソース追加を優先する。PDF抽出が必要なため実装優先度は Panasonic の次
     - `ヤンマースタジアム長居`: 公式 `https://www.nagai-park.jp/stadium/` が 2026-03-11 時点で WordPress fatal error を返し、安定した schedule 導線を確認できない。Ticketjam 補完を継続し、公式追加は保留する
+  - 2026-03-11 Panasonic Stadium Suita 公式移管:
+    - `data/venue_registry.csv` を `is_enabled=1`, `strategy=panasonic_stadium_suita_schedule`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
+    - ローカル `update_events_data --only panasonic_stadium_suita` で `9件 fetched / 9件 kept` を確認
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
