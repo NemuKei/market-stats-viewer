@@ -199,6 +199,10 @@
     - 出力:
       - `data/ticketjam_supplement_report.json`
       - `data/ticketjam_supplement_report.md`
+  - 2026-03-11 `official_fetch_candidate=1` 大阪会場の棚卸し:
+    - `Panasonic Stadium Suita`: 公式 `https://suitacityfootballstadium.jp/schedule/` に月次HTML表と前月/次月導線があり、会場公式ソース追加を優先する。Ticketjam 補完は実装完了までの暫定運用
+    - `大阪府立体育会館（エディオンアリーナ大阪）`: 公式 `https://www.furitutaiikukaikan.ne.jp/` に月次 `行事案内` PDF が公開されており、会場公式ソース追加を優先する。PDF抽出が必要なため実装優先度は Panasonic の次
+    - `ヤンマースタジアム長居`: 公式 `https://www.nagai-park.jp/stadium/` が 2026-03-11 時点で WordPress fatal error を返し、安定した schedule 導線を確認できない。Ticketjam 補完を継続し、公式追加は保留する
   - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
