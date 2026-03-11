@@ -274,3 +274,7 @@
   - contains: `generated_at_utc`, `source_repository`, `source_commit_sha`, assetごとの `size_bytes` / `sha256`
 - Upload policy:
   - `gh release upload ... --clobber` を使い、同名assetを上書きして常に最新を保持する
+- 再実行手順:
+  1. upstream workflow が `main` で `success` なのに release asset が更新されていない場合は、`publish_external_events_assets.yml` を `workflow_dispatch` で手動実行する
+  2. upstream workflow が `failure` / `cancelled` / `skipped` の場合は、先に upstream workflow を復旧または再実行し、その後に `publish_external_events_assets.yml` を手動実行する
+  3. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` を見る

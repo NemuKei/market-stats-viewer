@@ -3,6 +3,7 @@
 最終更新: 2026-03-11
 
 ## Done（直近完了）
+- Release assets 公開workflowの定期監視を実施した。2026-03-11 時点の直近10 run は `success 9 / skipped 1 / failure 0` で、最新成功 run は `22931909506`。Release `external-events-latest` の asset `events.sqlite / event_signals.sqlite / manifest.json` は `2026-03-11T01:15:01Z` 更新を確認し、即時の手動再公開は不要と判断した
 - `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加した。`edion_arena_osaka_pdf_schedule` で公式トップページ上の `monthlyYYMM.pdf` を取得し、第1競技場のみを `events.sqlite` へ反映するよう更新した。ローカル実行では `15件 fetched`（大相撲三月場所 `15日程`）を確認し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた
 - `Panasonic Stadium Suita` の会場公式 source を追加した。`panasonic_stadium_suita_schedule` で公式 `https://suitacityfootballstadium.jp/schedule/index/year/YYYY/month/MM/` の月次HTML表を取得し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた。ローカル実行では `9件 fetched` を確認
 - `events.sqlite` 更新時の no-op 経路を見直し、`data_hash` が同じでも `artist_name_resolved` / `artist_confidence` / `event_category` の導出値が変わった場合は再同期するよう更新した
@@ -50,8 +51,8 @@
 - （なし）
 
 ## Next（最大3）
-1. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
-2. `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+1. `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+2. Release assets の定期公開結果を継続監視する
 3. （なし）
 
 ## Task Backlog（Venue Dictionary Completeness）
@@ -139,13 +140,18 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
   - 2026-03-11 のローカル実行で `15件 fetched`（`大相撲三月場所` 15日程）を確認
   - 公式化に伴い `ticketjam_watch=0`, `official_fetch_candidate=0` へ変更し、補完評価レポートの監視スコープ外へ移行
 - 補完評価レポート再集計後: 監視スコープ内 `14`、`additional_unique_schedules 12`、`noise_rate 0.1429`。会場補完対象は `ヤンマースタジアム長居` のみ
+- Release assets 監視メモ:
+  - 2026-03-11 時点の直近10 run: `success 9 / skipped 1 / failure 0`
+  - 最新成功 run: `22931909506`（`workflow_run`, updated at `2026-03-11T01:15:04Z`）
+  - Release `external-events-latest` asset 更新時刻: `2026-03-11T01:15:01Z`
+  - 再公開が必要な場合は `publish_external_events_assets.yml` を `workflow_dispatch` で実行し、upstream が失敗している場合は先に upstream workflow を復旧する
 
 ## Remaining Task Triage (ASCII)
 Now:
-- Release assets の定期公開監視を継続する
+- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
 
 Next:
-- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+- Release assets の定期公開結果を継続監視する
 
 After Next:
 - （なし）
