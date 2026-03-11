@@ -97,6 +97,7 @@
 - CLI options: `--limit N`, `--only venue1,venue2`, `--verbose`
 - 対応ストラテジー: yokohama_arena_json, zepp_schedule, saitama_arena_schedule, tokyo_dome_calendar, vantelin_dome_schedule, kyocera_dome_schedule, belluna_dome_schedule, makuhari_messe_schedule, fukuoka_paypay_dome_schedule, k_arena_yokohama_schedule, sapporo_dome_schedule, zozo_marine_stadium_schedule, pia_arena_mm_schedule, portmesse_nagoya_events, asue_arena_osaka_events, nissan_stadium_calendar, mufg_stadium_schedule, marine_messe_fukuoka_event
   - 2026-03-11 追加: `panasonic_stadium_suita_schedule`（`/schedule/index/year/YYYY/month/MM/` の月次HTML表）
+  - 2026-03-11 追加: `edion_arena_osaka_pdf_schedule`（トップページに掲載される `monthlyYYMM.pdf` を取得し、第1競技場のみ抽出）
   - 署名 no-op 補足: `data_hash` が同じでも `artist_name_resolved` / `artist_confidence` / `event_category` が変わった場合は導出列だけ再同期する
 
 ## Addendum (2026-02-25) Event Artist Inference
@@ -208,7 +209,11 @@
   - 2026-03-11 Panasonic Stadium Suita 公式移管:
     - `data/venue_registry.csv` を `is_enabled=1`, `strategy=panasonic_stadium_suita_schedule`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
     - ローカル `update_events_data --only panasonic_stadium_suita` で `9件 fetched / 9件 kept` を確認
-  - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
+  - 2026-03-11 大阪府立体育会館（エディオンアリーナ大阪）公式移管:
+    - `data/venue_registry.csv` を `is_enabled=1`, `strategy=edion_arena_osaka_pdf_schedule`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
+    - 公式トップページ上の `monthlyYYMM.pdf` を巡回し、第2競技場の教室系ノイズを避けるため第1競技場のみ取り込む
+    - ローカル `update_events_data --only edion_arena_osaka` で `15件 fetched / 15件 kept` を確認
+- `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
 - No-op:

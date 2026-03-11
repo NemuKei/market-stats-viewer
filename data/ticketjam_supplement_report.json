@@ -5,7 +5,7 @@
     "ticketjam_source_updated_at_utc": "2026-03-10T05:08:49Z",
     "starto_source_updated_at_utc": "2026-03-08T12:34:32Z",
     "kstyle_source_updated_at_utc": "2026-03-08T12:33:38Z",
-    "events_db_modified_at_utc": "2026-03-11T04:07:05Z"
+    "events_db_modified_at_utc": "2026-03-11T04:22:47Z"
   },
   "summary": {
     "ticketjam_unique_schedules": 2234,
@@ -16,14 +16,14 @@
       "コンサート": 1569,
       "野球": 503
     },
-    "in_scope_unique_schedules": 27,
+    "in_scope_unique_schedules": 14,
     "artist_scope_unique_schedules": 11,
-    "venue_scope_unique_schedules": 16,
-    "additional_unique_schedules": 25,
+    "venue_scope_unique_schedules": 3,
+    "additional_unique_schedules": 12,
     "overlap_unique_schedules": 2,
-    "noise_rate": 0.0741,
-    "out_of_scope_unique_schedules": 2207,
-    "out_of_scope_rate": 0.9879
+    "noise_rate": 0.1429,
+    "out_of_scope_unique_schedules": 2220,
+    "out_of_scope_rate": 0.9937
   },
   "artist_gap": {
     "watch_count": 9,
@@ -123,24 +123,8 @@
     ]
   },
   "venue_gap": {
-    "watch_count": 2,
+    "watch_count": 1,
     "rows": [
-      {
-        "venue_name": "大阪府立体育会館（エディオンアリーナ大阪）",
-        "ticketjam_hits": 13,
-        "additional_hits": 13,
-        "overlap_hits": 0,
-        "noise_rate": 0.0,
-        "artists": [
-          "大相撲"
-        ],
-        "category_counts": {
-          "その他": 13
-        },
-        "ticketjam_watch": true,
-        "official_fetch_candidate": true,
-        "official_gap_reason": "hard_to_parse"
-      },
       {
         "venue_name": "ヤンマースタジアム長居",
         "ticketjam_hits": 3,

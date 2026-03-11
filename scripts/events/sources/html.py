@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import io
 import json
 import logging
 import re
+import unicodedata
 from datetime import date, timedelta
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
+from pypdf import PdfReader
 
 from ..types import EventRecord, VenueRecord
 from .base import EventSource, compute_data_hash, compute_event_uid
@@ -3926,6 +3929,78 @@ class _PanasonicStadiumSuitaSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# Edion Arena Osaka monthly PDF guidance
+# ---------------------------------------------------------------------------
+@_register("edion_arena_osaka_pdf_schedule")
+class _EdionArenaOsakaPdfSchedule(_BaseStrategy):
+    """Parse Edion Arena Osaka monthly PDF guidance."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        home_url = str(config.get("home_url") or venue.source_url or venue.official_url)
+        home_url = home_url.strip()
+        if not home_url:
+            return []
+
+        try:
+            resp = session.get(home_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning(
+                    "edion_arena_osaka: %s returned %s", home_url, resp.status_code
+                )
+                return []
+        except Exception:
+            logger.warning("edion_arena_osaka: failed to fetch %s", home_url)
+            return []
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        min_year_month = _to_year_month(date.today())
+        pdf_entries = _extract_edion_monthly_pdf_entries(
+            resp.text,
+            home_url,
+            min_year_month=min_year_month,
+        )
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+
+        for pdf_url, year, month in pdf_entries:
+            try:
+                pdf_resp = session.get(pdf_url, timeout=30)
+                if pdf_resp.status_code != 200:
+                    logger.warning(
+                        "edion_arena_osaka: %s returned %s",
+                        pdf_url,
+                        pdf_resp.status_code,
+                    )
+                    continue
+            except Exception:
+                logger.warning("edion_arena_osaka: failed to fetch %s", pdf_url)
+                continue
+
+            try:
+                reader = PdfReader(io.BytesIO(pdf_resp.content))
+            except Exception:
+                logger.warning("edion_arena_osaka: failed to parse PDF %s", pdf_url)
+                continue
+
+            for page in reader.pages:
+                layout_text = _extract_pdf_layout_text(page)
+                if not layout_text:
+                    continue
+                events.extend(
+                    _parse_edion_main_arena_layout_text(
+                        venue=venue,
+                        layout_text=layout_text,
+                        source_url=pdf_url,
+                        year=year,
+                        month=month,
+                        seen_uids=seen_uids,
+                    )
+                )
+
+        return events
+
+
+# ---------------------------------------------------------------------------
 # Generic fallback (returns empty, for disabled venues)
 # ---------------------------------------------------------------------------
 @_register("generic")
@@ -3971,3 +4046,180 @@ def _normalise_time(t: str | None) -> str | None:
     if m:
         return f"{int(m.group(1)):02d}:{m.group(2)}"
     return None
+
+
+def _to_year_month(d: date) -> int:
+    return d.year * 100 + d.month
+
+
+def _extract_pdf_layout_text(page) -> str:
+    try:
+        return page.extract_text(extraction_mode="layout") or ""
+    except TypeError:
+        return page.extract_text() or ""
+
+
+def _extract_edion_monthly_pdf_entries(
+    html: str,
+    base_url: str,
+    min_year_month: int,
+) -> list[tuple[str, int, int]]:
+    soup = BeautifulSoup(html, "html.parser")
+    found: dict[str, tuple[int, int]] = {}
+    for link in soup.select("a[href]"):
+        href = str(link.get("href") or "").strip()
+        if not href:
+            continue
+        match = re.search(r"monthly(\d{2})(\d{2})\.pdf\b", href, flags=re.IGNORECASE)
+        if not match:
+            continue
+        year = 2000 + int(match.group(1))
+        month = int(match.group(2))
+        if year * 100 + month < min_year_month:
+            continue
+        found[urljoin(base_url, href)] = (year, month)
+    return sorted(
+        ((url, year, month) for url, (year, month) in found.items()),
+        key=lambda item: (item[1], item[2], item[0]),
+    )
+
+
+def _parse_edion_main_arena_layout_text(
+    venue: VenueRecord,
+    layout_text: str,
+    source_url: str,
+    year: int,
+    month: int,
+    seen_uids: set[str],
+) -> list[EventRecord]:
+    events: list[EventRecord] = []
+    current_day: int | None = None
+    current_parts: list[str] = []
+
+    def flush_current() -> None:
+        nonlocal current_day, current_parts
+        if current_day is None:
+            return
+        day_value = current_day
+        title = _clean_edion_title(" ".join(part for part in current_parts if part))
+        current_day = None
+        current_parts = []
+        if _should_skip_edion_title(title):
+            return
+        start_date = f"{year:04d}-{month:02d}-{day_value:02d}"
+        source_key = _source_key_with_schedule(title, start_date, None)
+        uid = compute_event_uid(
+            venue.venue_id,
+            source_key,
+            title,
+            start_date,
+            start_time=None,
+            url=source_url,
+        )
+        if uid in seen_uids:
+            return
+        seen_uids.add(uid)
+        rec = EventRecord(
+            event_uid=uid,
+            venue_id=venue.venue_id,
+            title=title,
+            start_date=start_date,
+            start_time=None,
+            end_date=None,
+            end_time=None,
+            all_day=True,
+            status="scheduled",
+            url=source_url,
+            description=None,
+            performers=None,
+            capacity=None,
+            source_type=venue.source_type,
+            source_url=source_url,
+            source_event_key=source_key,
+        )
+        rec.data_hash = compute_data_hash(rec)
+        events.append(rec)
+
+    for raw_line in layout_text.splitlines():
+        left_segment, day = _extract_edion_left_column(raw_line)
+        if day is not None:
+            flush_current()
+            current_day = day
+            body = re.sub(
+                r"^\s*\d{1,2}\s+[月火水木金土日]\s*",
+                "",
+                left_segment,
+                count=1,
+            ).strip()
+            current_parts = [body] if body else []
+            continue
+        if current_day is None:
+            continue
+        continuation = left_segment.strip()
+        if continuation:
+            current_parts.append(continuation)
+    flush_current()
+    return events
+
+
+def _extract_edion_left_column(line: str) -> tuple[str, int | None]:
+    normalized = unicodedata.normalize("NFKC", line or "").replace("\u3000", " ")
+    if not normalized.strip():
+        return "", None
+    day_matches = list(
+        re.finditer(r"(?<!\d)(\d{1,2})\s+[月火水木金土日]\b", normalized)
+    )
+    day = None
+    if day_matches and day_matches[0].start() <= 4:
+        day = int(day_matches[0].group(1))
+    split_at = None
+    for match in day_matches[1:]:
+        if match.start() >= 100:
+            split_at = match.start()
+            break
+    if split_at is not None:
+        return normalized[:split_at].rstrip(), day
+    return normalized[:130].rstrip(), day
+
+
+def _clean_edion_title(text: str) -> str:
+    cleaned = unicodedata.normalize("NFKC", text or "").replace("\u3000", " ")
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    cleaned = re.sub(
+        r"(?<=[一-龯ぁ-ゖァ-ヺー々〆ヶ])\s+(?=[一-龯ぁ-ゖァ-ヺー々〆ヶ])",
+        "",
+        cleaned,
+    )
+    cleaned = re.sub(
+        r"(?<=[一-龯ぁ-ゖァ-ヺー々〆ヶ])\s+(?=[()（）・])",
+        "",
+        cleaned,
+    )
+    cleaned = re.sub(
+        r"(?<=[()（）・])\s+(?=[一-龯ぁ-ゖァ-ヺー々〆ヶ])",
+        "",
+        cleaned,
+    )
+    cleaned = re.sub(r"\(\s+", "(", cleaned)
+    cleaned = re.sub(r"\s+\)", ")", cleaned)
+    return cleaned.strip(" ・")
+
+
+def _should_skip_edion_title(title: str) -> bool:
+    if not title:
+        return True
+    if any(
+        term in title
+        for term in (
+            "会場準備",
+            "会場後始末",
+            "保守点検",
+            "は有料行事",
+            "(注)",
+            "主催者の都合により",
+        )
+    ):
+        return True
+    if title in {"公益財団法人日本相撲協会"}:
+        return True
+    return False

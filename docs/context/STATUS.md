@@ -3,6 +3,7 @@
 最終更新: 2026-03-11
 
 ## Done（直近完了）
+- `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加した。`edion_arena_osaka_pdf_schedule` で公式トップページ上の `monthlyYYMM.pdf` を取得し、第1競技場のみを `events.sqlite` へ反映するよう更新した。ローカル実行では `15件 fetched`（大相撲三月場所 `15日程`）を確認し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた
 - `Panasonic Stadium Suita` の会場公式 source を追加した。`panasonic_stadium_suita_schedule` で公式 `https://suitacityfootballstadium.jp/schedule/index/year/YYYY/month/MM/` の月次HTML表を取得し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた。ローカル実行では `9件 fetched` を確認
 - `events.sqlite` 更新時の no-op 経路を見直し、`data_hash` が同じでも `artist_name_resolved` / `artist_confidence` / `event_category` の導出値が変わった場合は再同期するよう更新した
 - `official_fetch_candidate=1` の大阪会場を棚卸しし、`Panasonic Stadium Suita` と `大阪府立体育会館（エディオンアリーナ大阪）` は会場公式ソース追加優先、`ヤンマースタジアム長居` は公式サイト障害が解消するまで Ticketjam 補完継続と判断した。`Panasonic` は月次HTML表、`エディオン` は月次PDF導線、`ヤンマー` は 2026-03-11 時点で WordPress fatal error を確認
@@ -49,9 +50,9 @@
 - （なし）
 
 ## Next（最大3）
-1. `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加する（月次PDF行事案内の抽出）
-2. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
-3. `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+1. Release assets の定期公開結果（workflow_run）を監視し、失敗時の再実行手順を運用に反映する
+2. `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+3. （なし）
 
 ## Task Backlog（Venue Dictionary Completeness）
 - [x] T-20260306-001: 会場辞書の対象範囲を定義する（運用対象: 1万人以上会場 + 重点会場）
@@ -95,7 +96,7 @@
 - [x] T-20260311-001: `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使った評価レポート自動集計を追加する
 - [x] T-20260311-002: `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完継続か会場公式ソース追加優先かを棚卸しする
 - [x] T-20260311-003: `Panasonic Stadium Suita` の会場公式 source を追加する（月次HTML表）
-- [ ] T-20260311-004: `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加する（月次PDF行事案内）
+- [x] T-20260311-004: `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加する（月次PDF行事案内）
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 全体会場マッチ率（registry or alias）: 15.58% -> 32.67%（+17.09pt）
@@ -133,17 +134,21 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - Panasonic Stadium Suita 公式 source 実装メモ:
   - `panasonic_stadium_suita_schedule` を追加し、2026-03-11 のローカル実行で `9件 fetched / 1 derived field refreshed`
   - 公式化に伴い `ticketjam_watch=0`, `official_fetch_candidate=0` へ変更し、補完評価レポートの監視スコープ外へ移行
-- 補完評価レポート再集計後: 監視スコープ内 `27`、`additional_unique_schedules 25`、`noise_rate 0.0741`。会場補完対象は `エディオンアリーナ大阪` と `ヤンマースタジアム長居` の2件に縮小
+- エディオンアリーナ大阪 公式 source 実装メモ:
+  - `edion_arena_osaka_pdf_schedule` を追加し、公式トップページから当月以降の `monthlyYYMM.pdf` を収集して第1競技場のみ抽出する
+  - 2026-03-11 のローカル実行で `15件 fetched`（`大相撲三月場所` 15日程）を確認
+  - 公式化に伴い `ticketjam_watch=0`, `official_fetch_candidate=0` へ変更し、補完評価レポートの監視スコープ外へ移行
+- 補完評価レポート再集計後: 監視スコープ内 `14`、`additional_unique_schedules 12`、`noise_rate 0.1429`。会場補完対象は `ヤンマースタジアム長居` のみ
 
 ## Remaining Task Triage (ASCII)
 Now:
-- T-20260311-004: `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加する
-
-Next:
 - Release assets の定期公開監視を継続する
 
-After Next:
+Next:
 - `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+
+After Next:
+- （なし）
 
 Later:
 - （なし）
