@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-03-14T05:09:33Z",
+    "ticketjam_source_updated_at_utc": "2026-03-15T05:32:37Z",
     "starto_source_updated_at_utc": "2026-03-08T12:34:32Z",
     "kstyle_source_updated_at_utc": "2026-03-08T12:33:38Z",
-    "events_db_modified_at_utc": "2026-03-14T04:52:03Z"
+    "events_db_modified_at_utc": "2026-03-15T05:13:54Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 2187,
+    "ticketjam_unique_schedules": 2154,
     "baseline_news_unique_schedules": 373,
     "baseline_official_unique_schedules": 586,
     "ticketjam_category_counts": {
-      "その他": 163,
-      "コンサート": 1532,
-      "野球": 492
+      "その他": 159,
+      "コンサート": 1507,
+      "野球": 488
     },
-    "in_scope_unique_schedules": 14,
-    "artist_scope_unique_schedules": 11,
+    "in_scope_unique_schedules": 13,
+    "artist_scope_unique_schedules": 10,
     "venue_scope_unique_schedules": 3,
-    "additional_unique_schedules": 12,
+    "additional_unique_schedules": 11,
     "overlap_unique_schedules": 2,
-    "noise_rate": 0.1429,
-    "out_of_scope_unique_schedules": 2173,
-    "out_of_scope_rate": 0.9936
+    "noise_rate": 0.1538,
+    "out_of_scope_unique_schedules": 2141,
+    "out_of_scope_rate": 0.994
   },
   "artist_gap": {
     "watch_count": 9,
@@ -75,8 +75,8 @@
       {
         "artist_name": "福山雅治",
         "tier": "B",
-        "ticketjam_hits": 9,
-        "additional_hits": 9,
+        "ticketjam_hits": 8,
+        "additional_hits": 8,
         "overlap_hits": 0,
         "noise_rate": 0.0,
         "venues": [
@@ -87,7 +87,7 @@
           "真駒内セキスイハイムアイスアリーナ"
         ],
         "category_counts": {
-          "コンサート": 9
+          "コンサート": 8
         }
       },
       {
