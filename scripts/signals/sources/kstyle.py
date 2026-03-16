@@ -244,11 +244,15 @@ class KstyleMusicSource(SignalSource):
         "仙台",
     ]
     VENUE_RE = re.compile(
-        r"【(?:会場|開催場所|場所)】\s*[:：]?\s*(.+?)(?=【|■|$)", re.S
+        r"[【＜<](?:会場|開催場所|場所)[】＞>]\s*[:：]?\s*(.+?)(?=[【＜<]|■|$)", re.S
     )
     VENUE_FALLBACK_RE = re.compile(
-        r"(?:会場|開催場所|場所)\s*[:：]\s*(.+?)(?=【|■|$)", re.S
+        r"(?:会場|開催場所|場所)\s*[:：]\s*(.+?)(?=[【＜<]|■|$)", re.S
     )
+    VENUE_HEADER_LABELS = frozenset((
+        "【会場】", "【開催場所】", "【場所】",
+        "＜会場＞", "＜開催場所＞", "＜場所＞",
+    ))
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
     DATE_TOKEN_RE = re.compile(
         r"(?:(?P<year>\d{4})\s*[./年-]\s*)?"
@@ -609,7 +613,7 @@ class KstyleMusicSource(SignalSource):
                 continue
             if re.fullmatch(r"\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2}", normalized_line):
                 continue
-            if normalized_line in ("【会場】", "【開催場所】", "【場所】"):
+            if normalized_line in self.VENUE_HEADER_LABELS:
                 expect_venue_next = True
                 continue
 
@@ -738,7 +742,7 @@ class KstyleMusicSource(SignalSource):
             venue_on_line = self._extract_venue(normalized)
             if venue_on_line:
                 return self._normalize_venue_name(venue_on_line)
-            if normalized in ("【会場】", "【開催場所】", "【場所】"):
+            if normalized in self.VENUE_HEADER_LABELS:
                 for next_line in section_lines[idx + 1 :]:
                     candidate = self._normalize_venue_name(" ".join(next_line.split()))
                     if not candidate:
