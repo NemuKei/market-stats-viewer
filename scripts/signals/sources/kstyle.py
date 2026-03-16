@@ -277,6 +277,14 @@ class KstyleMusicSource(SignalSource):
         "先行受付",
         "当日引換券",
     )
+    NON_VENUE_PATTERNS = (
+        "はこちら",
+        "こちらから",
+        "についてはこちら",
+        "詳細はこちら",
+        "についてはコチラ",
+        "詳細はコチラ",
+    )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
     _OFFICIAL_VENUE_PREF_CACHE: dict[str, str] | None = None
     OFFICIAL_VENUE_PREF_ALIASES = {
@@ -609,7 +617,7 @@ class KstyleMusicSource(SignalSource):
                 venue_candidate = self._normalize_venue_name(normalized_line)
                 if venue_candidate and not any(
                     marker in venue_candidate for marker in ["【", "■", "DAY", "日時"]
-                ):
+                ) and not self._is_non_venue_text(venue_candidate):
                     current_venue = venue_candidate
                     current_pref = self._pref_from_official_venue(
                         current_venue
@@ -701,6 +709,9 @@ class KstyleMusicSource(SignalSource):
         if re.match(r"^\d{1,2}:\d{2}", rest_nfkc):
             return "", ""
 
+        if self._is_non_venue_text(rest):
+            return "", ""
+
         pref_venue_match = self.PREF_VENUE_LINE_RE.match(rest)
         if pref_venue_match:
             pref_name = self._normalize_pref_name(pref_venue_match.group("pref"))
@@ -733,6 +744,8 @@ class KstyleMusicSource(SignalSource):
                     if not candidate:
                         continue
                     if any(marker in candidate for marker in ["【", "■", "DAY", "日時"]):
+                        continue
+                    if self._is_non_venue_text(candidate):
                         continue
                     return candidate
         return ""
@@ -801,6 +814,10 @@ class KstyleMusicSource(SignalSource):
         return [
             (start_dt + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(days + 1)
         ]
+
+    def _is_non_venue_text(self, text: str) -> bool:
+        """Return True if text looks like a link label, not a venue name."""
+        return any(pat in text for pat in self.NON_VENUE_PATTERNS)
 
     def _normalize_venue_name(self, venue_name: str) -> str:
         return " ".join(str(venue_name).split())
