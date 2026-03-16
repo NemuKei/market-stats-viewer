@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-03-15T05:32:37Z",
-    "starto_source_updated_at_utc": "2026-03-08T12:34:32Z",
-    "kstyle_source_updated_at_utc": "2026-03-08T12:33:38Z",
-    "events_db_modified_at_utc": "2026-03-15T05:13:54Z"
+    "ticketjam_source_updated_at_utc": "2026-03-16T05:42:36Z",
+    "starto_source_updated_at_utc": "2026-03-15T12:37:56Z",
+    "kstyle_source_updated_at_utc": "2026-03-15T12:36:58Z",
+    "events_db_modified_at_utc": "2026-03-16T05:24:00Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 2154,
-    "baseline_news_unique_schedules": 373,
+    "ticketjam_unique_schedules": 2121,
+    "baseline_news_unique_schedules": 393,
     "baseline_official_unique_schedules": 586,
     "ticketjam_category_counts": {
-      "その他": 159,
-      "コンサート": 1507,
-      "野球": 488
+      "その他": 153,
+      "コンサート": 1485,
+      "野球": 483
     },
-    "in_scope_unique_schedules": 13,
-    "artist_scope_unique_schedules": 10,
+    "in_scope_unique_schedules": 12,
+    "artist_scope_unique_schedules": 9,
     "venue_scope_unique_schedules": 3,
-    "additional_unique_schedules": 11,
+    "additional_unique_schedules": 10,
     "overlap_unique_schedules": 2,
-    "noise_rate": 0.1538,
-    "out_of_scope_unique_schedules": 2141,
-    "out_of_scope_rate": 0.994
+    "noise_rate": 0.1667,
+    "out_of_scope_unique_schedules": 2109,
+    "out_of_scope_rate": 0.9943
   },
   "artist_gap": {
     "watch_count": 9,
@@ -75,19 +75,18 @@
       {
         "artist_name": "福山雅治",
         "tier": "B",
-        "ticketjam_hits": 8,
-        "additional_hits": 8,
+        "ticketjam_hits": 7,
+        "additional_hits": 7,
         "overlap_hits": 0,
         "noise_rate": 0.0,
         "venues": [
           "あなぶきアリーナ香川",
-          "セキスイハイムスーパーアリーナ",
           "日本武道館",
           "朱鷺メッセ 新潟コンベンションセンター",
           "真駒内セキスイハイムアイスアリーナ"
         ],
         "category_counts": {
-          "コンサート": 8
+          "コンサート": 7
         }
       },
       {
