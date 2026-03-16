@@ -86,7 +86,7 @@ class KstyleMusicSource(SignalSource):
         "div.article_view",
         "article",
     ]
-    CONCERT_INFO_MARKERS = ("■公演情報", "■ 公演情報")
+    CONCERT_INFO_MARKERS = ("■公演情報", "■ 公演情報", "■開催概要", "■ 開催概要")
     SECTION_STOP_MARKERS = ("■", "【関連", "元記事配信日時", "記者")
     PREFECTURE_TERMS = [
         "日本",
@@ -655,6 +655,11 @@ class KstyleMusicSource(SignalSource):
                 normalized_line, default_year=default_year
             )
             if not event_dates:
+                if self._looks_like_venue_line(normalized_line):
+                    current_venue = self._normalize_venue_name(normalized_line)
+                    current_pref = self._pref_from_official_venue(
+                        current_venue
+                    ) or self._pref_from_text(current_venue)
                 continue
             if any(term in normalized_line for term in self.NON_EVENT_DATE_TERMS):
                 continue
@@ -818,6 +823,31 @@ class KstyleMusicSource(SignalSource):
         return [
             (start_dt + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(days + 1)
         ]
+
+    _VENUE_LINE_SKIP_PREFIXES = ("■", "＜", "<", "【", "※", "「", "『", "（", "(", "http")
+    _VENUE_LINE_REJECT_TERMS = (
+        "円", "¥", "￥", "税込", "税別",
+        "席", "枚まで", "枚迄",
+        "チケット", "問い合わせ", "お問合せ",
+        "主催", "協賛", "協力", "制作", "運営", "後援",
+        "出演", "ほか", "アクト",
+    )
+
+    def _looks_like_venue_line(self, line: str) -> bool:
+        """Return True if a non-date line looks like a standalone venue name."""
+        if not line or len(line) > 40:
+            return False
+        if any(line.startswith(p) for p in self._VENUE_LINE_SKIP_PREFIXES):
+            return False
+        if any(marker in line for marker in ["【", "■", "DAY", "日時"]):
+            return False
+        if self._is_non_venue_text(line):
+            return False
+        if any(term in line for term in self.NON_EVENT_DATE_TERMS):
+            return False
+        if any(term in line for term in self._VENUE_LINE_REJECT_TERMS):
+            return False
+        return True
 
     def _is_non_venue_text(self, text: str) -> bool:
         """Return True if text looks like a link label, not a venue name."""
