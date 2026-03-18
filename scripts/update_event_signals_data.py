@@ -34,6 +34,7 @@ from .events.registry import load_registry as load_venue_registry
 from .signals.entity_aliases import (
     load_artist_lookup_maps,
     load_venue_lookup_maps,
+    normalize_venue_with_lookup,
     normalize_with_lookup,
 )
 from .signals.sources.base import SignalSource, canonical_labels_json, compute_content_hash
@@ -861,7 +862,7 @@ def normalize_signal_labels(
             labels["raw_venue_name"] = raw_venue
             row_changed = True
         if raw_venue:
-            normalized_venue, venue_matched = normalize_with_lookup(
+            normalized_venue, venue_matched = normalize_venue_with_lookup(
                 raw_venue,
                 venue_keep_map,
                 venue_compact_map,

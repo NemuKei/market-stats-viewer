@@ -15,6 +15,12 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = REPO_ROOT / "data"
 VENUE_REGISTRY_PATH = DATA_DIR / "venue_registry.csv"
 VENUE_ALIAS_PATH = DATA_DIR / "venue_aliases.csv"
+VENUE_LABEL_PREFIX_RE = re.compile(
+    r"^(?:会場名?|場所|venue)\s*[:：_\-]\s*", re.IGNORECASE
+)
+VENUE_LEADING_MARKERS_RE = re.compile(r"^[\s\u3000○〇●•・◆■□▲△▽▼▶▷►→※＊*]+")
+VENUE_SPLIT_RE = re.compile(r"\s*[・/／|｜]\s*")
+TRAILING_PAREN_SUFFIX_RE = re.compile(r"\s*[（(][^()（）]{1,20}[）)]\s*$")
 
 
 @dataclass(frozen=True)
@@ -73,6 +79,20 @@ def normalize_with_lookup(
     if compact_key:
         canonical = compact_map.get(compact_key)
         if canonical:
+            return canonical, True
+    return sanitized, False
+
+
+def normalize_venue_with_lookup(
+    raw_value: object, keep_map: dict[str, str], compact_map: dict[str, str]
+) -> tuple[str, bool]:
+    text = str(raw_value or "").strip()
+    if not text:
+        return "", False
+    sanitized = _strip_html_tags(text)
+    for candidate in _iter_venue_lookup_candidates(sanitized):
+        canonical, matched = normalize_with_lookup(candidate, keep_map, compact_map)
+        if matched:
             return canonical, True
     return sanitized, False
 
@@ -179,3 +199,54 @@ def _strip_html_tags(text: str) -> str:
     cleaned = re.sub(r"</?[^>]+>", "", str(text or ""))
     return " ".join(cleaned.split())
 
+
+def _iter_venue_lookup_candidates(text: str):
+    queue = [" ".join(str(text or "").split())]
+    seen: set[str] = set()
+
+    while queue:
+        candidate = queue.pop(0).strip()
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        yield candidate
+
+        stripped = VENUE_LEADING_MARKERS_RE.sub("", candidate).strip()
+        stripped = VENUE_LABEL_PREFIX_RE.sub("", stripped).strip()
+        if stripped and stripped != candidate:
+            queue.append(stripped)
+
+        without_suffix = _strip_trailing_parenthetical_suffix(stripped or candidate)
+        if without_suffix and without_suffix != candidate:
+            queue.append(without_suffix)
+
+        for split_candidate in _split_venue_candidate(stripped or candidate):
+            if split_candidate and split_candidate != candidate:
+                queue.append(split_candidate)
+            trimmed_split = _strip_trailing_parenthetical_suffix(split_candidate)
+            if trimmed_split and trimmed_split != split_candidate:
+                queue.append(trimmed_split)
+
+
+def _split_venue_candidate(text: str) -> list[str]:
+    candidate = " ".join(str(text or "").split())
+    if not candidate:
+        return []
+    parts = VENUE_SPLIT_RE.split(candidate, maxsplit=1)
+    if len(parts) != 2:
+        return []
+    _, tail = parts
+    tail = tail.strip()
+    if not tail:
+        return []
+    return [tail]
+
+
+def _strip_trailing_parenthetical_suffix(text: str) -> str:
+    candidate = " ".join(str(text or "").split())
+    while candidate:
+        updated = TRAILING_PAREN_SUFFIX_RE.sub("", candidate).strip()
+        if updated == candidate:
+            break
+        candidate = updated
+    return candidate
