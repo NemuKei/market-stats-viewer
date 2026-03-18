@@ -37,7 +37,11 @@ from .signals.entity_aliases import (
     normalize_venue_with_lookup,
     normalize_with_lookup,
 )
-from .signals.sources.base import SignalSource, canonical_labels_json, compute_content_hash
+from .signals.sources.base import (
+    SignalSource,
+    canonical_labels_json,
+    compute_content_hash,
+)
 from .signals.sources.kstyle import KstyleMusicSource
 from .signals.sources.starto import StartoConcertSource
 from .signals.sources.ticketjam import TicketjamEventsSource
@@ -378,9 +382,7 @@ def prune_missing_signals(
         return 0
 
     conn.execute("DROP TABLE IF EXISTS tmp_keep_signal_uids")
-    conn.execute(
-        "CREATE TEMP TABLE tmp_keep_signal_uids (signal_uid TEXT PRIMARY KEY)"
-    )
+    conn.execute("CREATE TEMP TABLE tmp_keep_signal_uids (signal_uid TEXT PRIMARY KEY)")
     conn.executemany(
         "INSERT INTO tmp_keep_signal_uids(signal_uid) VALUES (?)",
         [(uid,) for uid in keep_uids],
@@ -775,7 +777,13 @@ def prune_ticketjam_duplicate_performances(
 
     best_by_key: dict[tuple[str, str, str, str, str], tuple[str, str, str]] = {}
     duplicate_uids: list[tuple[str]] = []
-    for signal_uid, title, labels_json, published_at_utc, updated_at_utc in cur.fetchall():
+    for (
+        signal_uid,
+        title,
+        labels_json,
+        published_at_utc,
+        updated_at_utc,
+    ) in cur.fetchall():
         labels: dict[str, object] = {}
         if isinstance(labels_json, str) and labels_json.strip():
             try:
@@ -892,7 +900,9 @@ def normalize_signal_labels(
 def log_unknown_aliases(counter: Counter[str], label: str, top_n: int = 5) -> None:
     if not counter:
         return
-    top_items = ", ".join(f"{name}({count})" for name, count in counter.most_common(top_n))
+    top_items = ", ".join(
+        f"{name}({count})" for name, count in counter.most_common(top_n)
+    )
     logger.info("  unknown %s candidates: %s", label, top_items)
 
 
@@ -1016,9 +1026,10 @@ def main() -> None:
                 clear_source_for_rebuild(conn, source.source_id)
                 source.last_signature = None
                 source_cfg = load_source_config(source.config_json)
-                discovery_mode = str(
-                    source_cfg.get("discovery_mode", "sitemap")
-                ).strip() or "sitemap"
+                discovery_mode = (
+                    str(source_cfg.get("discovery_mode", "sitemap")).strip()
+                    or "sitemap"
+                )
                 if discovery_mode == "venue_pages":
                     logger.info(
                         "  ticketjam bootstrap full: force rebuild (venue-page mode; bootstrap_max_* ignored)"
@@ -1142,7 +1153,9 @@ def main() -> None:
                 source.source_id,
             )
             if pruned_duplicates > 0:
-                logger.info("  pruned %d duplicate event_id signal(s)", pruned_duplicates)
+                logger.info(
+                    "  pruned %d duplicate event_id signal(s)", pruned_duplicates
+                )
             pruned_performances = prune_ticketjam_duplicate_performances(
                 conn,
                 source.source_id,
