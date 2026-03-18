@@ -151,6 +151,47 @@ class KstyleMusicSourceTests(unittest.TestCase):
         self.assertEqual("high", artist_labels.get("artist_confidence"))
         self.assertEqual("ASC2NT", artist_labels.get("artist_matched_alias"))
 
+    def test_resolve_artist_handles_descriptive_titles_and_concert_titles(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        cases = [
+            (
+                "日本発インディーロックバンドLET ME KNOW、12月に再び韓国で公演決定...2Days開催 - Kstyle",
+                "LET ME KNOW ONEMAN LIVE - SCENE_2526 -",
+                "LET ME KNOW",
+            ),
+            (
+                "「ボイプラ2」出演の4人が所属...TUNEXX、初来日イベントが4月に開催決定！サイン会&2ショット撮影会も - Kstyle",
+                "1stミニアルバム「SET BY US ONLY」発売記念イベント",
+                "TUNEXX",
+            ),
+            (
+                "新人ボーイズグループADAP、日本プロモーションが大反響！5月東京と大阪でファンミーティング開催決定 - Kstyle",
+                "ADAPファンミーティング",
+                "ADAP",
+            ),
+            (
+                "NINE.i ジホ&イドゥン、3月に東京でファンミーティングを開催決定！ - Kstyle",
+                "JIHO&EDEN FANMEETING IN JAPAN SWEET DATE:WHITE DAY",
+                "JIHO&EDEN",
+            ),
+            (
+                "韓国ミュージカル俳優エノク、2026年2月に日本初の単独コンサート開催決定! - Kstyle",
+                "エノク 1st コンサート in Japan",
+                "エノク",
+            ),
+        ]
+
+        for article_title, concert_title, expected in cases:
+            with self.subTest(expected=expected):
+                artist_name, artist_labels = source._resolve_artist_from_title(
+                    article_title,
+                    concert_title,
+                )
+                self.assertEqual(expected, artist_name)
+                self.assertTrue(
+                    str(artist_labels.get("artist_matched_alias", "")).strip()
+                )
+
     def test_extract_occurrences_handles_pref_block_with_late_venue_line(self) -> None:
         source = KstyleMusicSource(requests.Session())
         section_lines = [

@@ -329,7 +329,7 @@ class KstyleMusicSource(SignalSource):
         "国立競技場": "東京都",
     }
     ARTIST_TITLE_EVENT_SPLITTER_RE = re.compile(
-        r"\s+(?:SPECIAL\s+LIVE\s+EVENT|SPECIAL\s+FANMEETING|FANMEETING|FAN\s+CONCERT|LIVE\s+EVENT|LIVE\s+TOUR|WORLD\s+TOUR|ARENA\s+TOUR|DOME\s+TOUR|JAPAN\s+TOUR|SHOWCASE|CONCERT|LIVE|POP[- ]UP\s+STORE)\b",
+        r"(?:\s+(?:ONEMAN\s+LIVE|SPECIAL\s+LIVE\s+EVENT|SPECIAL\s+FANMEETING|FANMEETING|FAN\s+CONCERT|LIVE\s+EVENT|LIVE\s+TOUR|WORLD\s+TOUR|ARENA\s+TOUR|DOME\s+TOUR|JAPAN\s+TOUR|SHOWCASE|CONCERT|LIVE|POP[- ]UP\s+STORE)\b|(?:発売記念イベント|記念イベント|ファンミーティング|ファンミ|コンサート|ライブイベント|ライブ|イベント))",
         re.IGNORECASE,
     )
 
@@ -698,8 +698,24 @@ class KstyleMusicSource(SignalSource):
                 if head:
                     text = head
                     break
+        ellipsis_tail = self._extract_artist_suffix_after_ellipsis(text)
+        if ellipsis_tail:
+            text = ellipsis_tail
         text = self.ARTIST_TITLE_EVENT_SPLITTER_RE.split(text, maxsplit=1)[0].strip()
+        text = re.sub(r"\s+\d+(?:st|nd|rd|th)$", "", text, flags=re.IGNORECASE).strip()
         return text.rstrip(" :-").strip()
+
+    def _extract_artist_suffix_after_ellipsis(self, text: str) -> str:
+        candidate = str(text or "").strip()
+        if not candidate:
+            return ""
+        for marker in ("...", "…"):
+            if marker not in candidate:
+                continue
+            tail = candidate.rsplit(marker, 1)[-1].strip(" :-")
+            if tail and len(tail) <= 40:
+                return tail
+        return ""
 
     @classmethod
     def _get_artist_index(cls) -> dict[str, object]:
