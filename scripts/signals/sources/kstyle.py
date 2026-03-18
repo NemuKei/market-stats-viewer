@@ -176,6 +176,7 @@ class KstyleMusicSource(SignalSource):
         "千葉県": "千葉県",
         "東京": "東京都",
         "東京都": "東京都",
+        "TOKYO": "東京都",
         "神奈川": "神奈川県",
         "神奈川県": "神奈川県",
         "新潟": "新潟県",
@@ -203,6 +204,7 @@ class KstyleMusicSource(SignalSource):
         "京都": "京都府",
         "京都府": "京都府",
         "大阪": "大阪府",
+        "OSAKA": "大阪府",
         "大阪府": "大阪府",
         "兵庫": "兵庫県",
         "兵庫県": "兵庫県",
@@ -292,7 +294,10 @@ class KstyleMusicSource(SignalSource):
         "受付期間",
         "受付中",
         "当選発表",
+        "結果発表",
         "入金期限",
+        "入金期間",
+        "リセール",
         "先着受付",
         "先行",
         "販売期間",
@@ -313,12 +318,23 @@ class KstyleMusicSource(SignalSource):
         "詳細はこちら",
         "についてはコチラ",
         "詳細はコチラ",
+        "特設サイト",
     )
     NON_EVENT_SECTION_HEADERS = (
         "<チケット",
         "＜チケット",
         "【チケット",
         "[チケット",
+    )
+    NON_EVENT_SECTION_KEYWORDS = (
+        "チケット",
+        "券種",
+        "料金",
+        "特典",
+        "予約",
+        "申込",
+        "受付",
+        "注意事項",
     )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
     _OFFICIAL_VENUE_PREF_CACHE: dict[str, str] | None = None
@@ -821,10 +837,9 @@ class KstyleMusicSource(SignalSource):
                 continue
             if re.fullmatch(r"\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2}", normalized_line):
                 continue
-            if any(
-                normalized_line.startswith(marker)
-                for marker in self.NON_EVENT_SECTION_HEADERS
-            ):
+            if self._is_non_event_section_header(normalized_line):
+                break
+            if self._is_non_event_subsection_line(normalized_line):
                 break
             pref_heading = self._extract_pref_heading(normalized_line)
             if pref_heading:
@@ -964,6 +979,8 @@ class KstyleMusicSource(SignalSource):
         rest = re.sub(r"^[（(][^）)]{1,8}[）)]\s*", "", rest)
         if not rest:
             return "", ""
+        if rest.startswith(("~", "〜", "～", "-", "－", "−")):
+            return "", ""
 
         rest = re.split(
             r"(?:開場|開演|START|DOOR|チケット|問い合わせ|お問合せ|※)",
@@ -980,7 +997,7 @@ class KstyleMusicSource(SignalSource):
         if not rest:
             return "", ""
 
-        if self._is_non_venue_text(rest):
+        if self._is_non_venue_candidate(rest):
             return "", ""
 
         pref_venue_match = self.PREF_VENUE_LINE_RE.match(rest)
@@ -1034,6 +1051,32 @@ class KstyleMusicSource(SignalSource):
                 break
             rest = next_rest
         return rest
+
+    def _is_non_event_section_header(self, line: str) -> bool:
+        if any(line.startswith(marker) for marker in self.NON_EVENT_SECTION_HEADERS):
+            return True
+        if not line.startswith(("<", "＜", "【", "[")):
+            return False
+        return any(keyword in line for keyword in self.NON_EVENT_SECTION_KEYWORDS)
+
+    def _is_non_event_subsection_line(self, line: str) -> bool:
+        if not line.startswith(("○", "〇", "•", "・", "◆", "▶", "▷", "►")):
+            return False
+        candidate = self.PREF_HEADING_PREFIX_RE.sub("", line).strip()
+        return any(
+            keyword in candidate for keyword in self.NON_EVENT_SECTION_KEYWORDS
+        ) or any(keyword in candidate for keyword in self.NON_EVENT_DATE_TERMS)
+
+    def _is_non_venue_candidate(self, text: str) -> bool:
+        if self._is_non_venue_text(text):
+            return True
+        if re.fullmatch(r"[<>＞＜]+", text.strip()):
+            return True
+        if any(term in text for term in self.NON_EVENT_DATE_TERMS):
+            return True
+        if any(term in text for term in self._VENUE_LINE_REJECT_TERMS):
+            return True
+        return False
 
     def _is_pref_token(self, value: str) -> bool:
         token = str(value or "").strip()
@@ -1144,6 +1187,7 @@ class KstyleMusicSource(SignalSource):
         "（",
         "(",
         "http",
+        ">",
     )
     _VENUE_LINE_REJECT_TERMS = (
         "円",
@@ -1166,11 +1210,25 @@ class KstyleMusicSource(SignalSource):
         "出演",
         "ほか",
         "アクト",
+        "先行",
+        "一般",
+        "特典",
+        "予約",
+        "申込",
+        "入金",
+        "抽選",
+        "プレゼント",
+        "限定",
+        "ヘッドライナー",
+        "特設サイト",
+        "両日",
     )
 
     def _looks_like_venue_line(self, line: str) -> bool:
         """Return True if a non-date line looks like a standalone venue name."""
         if not line or len(line) > 40:
+            return False
+        if ("「" in line and "」" in line) or ("『" in line and "』" in line):
             return False
         if re.search(r"(?:\d+部|開場|開演|START|DOOR)", line, re.IGNORECASE):
             return False
@@ -1178,11 +1236,7 @@ class KstyleMusicSource(SignalSource):
             return False
         if any(marker in line for marker in ["【", "■", "DAY", "日時"]):
             return False
-        if self._is_non_venue_text(line):
-            return False
-        if any(term in line for term in self.NON_EVENT_DATE_TERMS):
-            return False
-        if any(term in line for term in self._VENUE_LINE_REJECT_TERMS):
+        if self._is_non_venue_candidate(line):
             return False
         return True
 

@@ -240,6 +240,141 @@ class KstyleMusicSourceTests(unittest.TestCase):
             ],
         )
 
+    def test_extract_occurrences_ignores_headliner_lines_as_venues(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "K-POP音楽祭「Kstyle PARTY 2026」",
+            "【出演アーティスト】",
+            "2026年5月9日(土)ヘッドライナー:BOYNEXTDOOR / TWS、TAEMIN",
+            "2026年5月10日(日)ヘッドライナー:RIIZE / SUPER JUNIOR-D&E、AHOF",
+            "【日時】",
+            "2026年5月9日(土) 16:00開場 / 17:30開演",
+            "2026年5月10日(日) 14:00開場 / 15:30開演",
+            "【場所】",
+            "Kアリーナ横浜",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [
+                ("2026-05-09", "Kアリーナ横浜"),
+                ("2026-05-10", "Kアリーナ横浜"),
+            ],
+        )
+
+    def test_extract_occurrences_stops_before_ticket_sections(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■公演情報",
+            "「2025 CNBLUE Special Fanmeeting in JAPAN - Happy Xmas Memories -」",
+            "<会場・公演日時>",
+            "横浜/パシフィコ横浜国立大ホール",
+            "2025年12月25日(木)",
+            "<券種・料金>",
+            "〇一般",
+            "入金期間:2025年11月13日(木)18:00~11月19日(水)23:59まで",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [("2025-12-25", "横浜/パシフィコ横浜国立大ホール")],
+        )
+
+    def test_extract_occurrences_keeps_explicit_venue_for_date_ranges(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "「BLACKPINK 3rd MINI ALBUM[DEADLINE]POP-UP STORE」",
+            "会期:2026年2月27日(金)~3月8日(日)",
+            "会場:ZeroBase渋谷(東京都渋谷区道玄坂2丁目5-8)",
+            "<豪華購入特典(先着順)>",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [
+                ("2026-02-27", "ZeroBase渋谷(東京都渋谷区道玄坂2丁目5-8)"),
+                ("2026-03-08", "ZeroBase渋谷(東京都渋谷区道玄坂2丁目5-8)"),
+            ],
+        )
+
+    def test_extract_occurrences_ignores_resale_periods(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "「第42回 マイナビ 東京ガールズコレクション 2026 SPRING/SUMMER」",
+            "【場所】",
+            "国立代々木競技場 第一体育館",
+            "【日時】",
+            "2026年3月1日(日) 開場12:00 / 開演14:00",
+            "〇公式リセール",
+            "2026年2月20日(金)10:00~2月23日(月・祝)23:59",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [("2026-03-01", "国立代々木競技場 第一体育館")],
+        )
+
+    def test_extract_pref_venue_from_date_line_ignores_day_markers_and_both_days(
+        self,
+    ) -> None:
+        source = KstyleMusicSource(requests.Session())
+        cases = [
+            "〇DAY1<12/13(土)>",
+            "2025年12月13日(土)、14日(日)両日 開場15:00/開演17:00 (予定)",
+        ]
+
+        for line in cases:
+            with self.subTest(line=line):
+                self.assertEqual(
+                    ("", ""), source._extract_pref_venue_from_date_line(line)
+                )
+
+    def test_extract_occurrences_handles_english_pref_headings(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "ADAPファンミーティング",
+            "<日時・会場>",
+            "〇TOKYO",
+            "2026年5月13日(水)",
+            "会場:FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )",
+            "〇OSAKA",
+            "2026年5月15日(金)",
+            "会場:DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines)
+
+        self.assertEqual(
+            [
+                (event_date, venue_name, pref_name)
+                for event_date, venue_name, _, pref_name in occurrences
+            ],
+            [
+                (
+                    "2026-05-13",
+                    "FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )",
+                    "東京都",
+                ),
+                (
+                    "2026-05-15",
+                    "DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
+                    "大阪府",
+                ),
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
