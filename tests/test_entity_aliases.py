@@ -45,6 +45,10 @@ class VenueAliasNormalizationTests(unittest.TestCase):
                 "DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
                 "DREAM SQUARE HALL",
             ),
+            (
+                "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+                "iBIG HALL",
+            ),
         ]
         for raw_value, expected in cases:
             with self.subTest(raw_value=raw_value):

@@ -148,7 +148,8 @@ class KstyleMusicSourceTests(unittest.TestCase):
         )
 
         self.assertEqual("ASC2NT", artist_name)
-        self.assertEqual("low", artist_labels.get("artist_confidence"))
+        self.assertEqual("high", artist_labels.get("artist_confidence"))
+        self.assertEqual("ASC2NT", artist_labels.get("artist_matched_alias"))
 
     def test_extract_occurrences_handles_pref_block_with_late_venue_line(self) -> None:
         source = KstyleMusicSource(requests.Session())
