@@ -8,6 +8,7 @@ import re
 import sqlite3
 import time
 import unicodedata
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
@@ -36,7 +37,15 @@ class KstyleMusicSource(SignalSource):
     """Fetch Kstyle category pages and keep JP concert announcement articles."""
 
     SEARCH_WORD = "■公演情報"
+    SEARCH_WORDS = (SEARCH_WORD, "■開催概要")
     SEARCH_BASE_URL = "https://kstyle.com/search.ksn"
+    RECENT_NEWS_SITEMAP_URL = (
+        "https://kstyle.com/assets/sitemap/sitemaps/recent_news.xml"
+    )
+    SITEMAP_NS = {
+        "sm": "http://www.sitemaps.org/schemas/sitemap/0.9",
+        "news": "http://www.google.com/schemas/sitemap-news/0.9",
+    }
     EVENTS_DB_PATH = Path(__file__).resolve().parents[3] / "data" / "events.sqlite"
     DATETIME_RE = re.compile(r"(\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2})")
     INCLUDE_TERMS = [
@@ -249,10 +258,16 @@ class KstyleMusicSource(SignalSource):
     VENUE_FALLBACK_RE = re.compile(
         r"(?:会場|開催場所|場所)\s*[:：]\s*(.+?)(?=[【＜<]|■|$)", re.S
     )
-    VENUE_HEADER_LABELS = frozenset((
-        "【会場】", "【開催場所】", "【場所】",
-        "＜会場＞", "＜開催場所＞", "＜場所＞",
-    ))
+    VENUE_HEADER_LABELS = frozenset(
+        (
+            "【会場】",
+            "【開催場所】",
+            "【場所】",
+            "＜会場＞",
+            "＜開催場所＞",
+            "＜場所＞",
+        )
+    )
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
     DATE_TOKEN_RE = re.compile(
         r"(?:(?P<year>\d{4})\s*[./年-]\s*)?"
@@ -291,6 +306,7 @@ class KstyleMusicSource(SignalSource):
     )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
     _OFFICIAL_VENUE_PREF_CACHE: dict[str, str] | None = None
+    TEXT_COMPAT_TRANSLATIONS = str.maketrans({"戶": "戸"})
     OFFICIAL_VENUE_PREF_ALIASES = {
         "MUFG STADIUM": "東京都",
         "MUFG STADIUM（国立競技場）": "東京都",
@@ -301,39 +317,53 @@ class KstyleMusicSource(SignalSource):
         cfg = self._load_config(source.config_json)
         # Keep enough lookback while avoiding timeout-prone deep pagination.
         pages = max(1, int(cfg.get("pages", 8)))
-        pages = max(pages, 8)
-        search_url = self._resolve_search_url(source.source_url, cfg)
-        first_page_url = self._with_page_param(search_url, 1)
-        first_resp = self._get_with_retry(first_page_url, timeout=30)
-        first_resp.raise_for_status()
-        first_resp.encoding = first_resp.apparent_encoding or "utf-8"
-
-        urls = [first_resp.url] + [
-            self._with_page_param(search_url, page_num)
-            for page_num in range(2, pages + 1)
-        ]
-
         signals: dict[str, SignalRecord] = {}
         seen_article_urls: set[str] = set()
-        for page_url in urls[:pages]:
-            resp = (
-                first_resp
-                if page_url == first_resp.url
-                else self._get_with_retry(page_url, timeout=30)
-            )
-            if resp.status_code != 200:
-                logger.warning("kstyle: %s returned %s", page_url, resp.status_code)
+        for rec in self._fetch_recent_sitemap_records(
+            source.source_id, seen_article_urls, cfg
+        ):
+            signals[rec.signal_uid] = rec
+        for search_url in self._resolve_search_urls(source.source_url, cfg):
+            first_page_url = self._with_page_param(search_url, 1)
+            try:
+                first_resp = self._get_with_retry(first_page_url, timeout=30)
+                first_resp.raise_for_status()
+            except Exception as exc:
+                logger.warning(
+                    "kstyle: search fetch failed %s (%s)", first_page_url, exc
+                )
                 continue
-            if resp is not first_resp:
-                resp.encoding = resp.apparent_encoding or "utf-8"
-            soup = BeautifulSoup(resp.text, "html.parser")
-            if not soup.select('a[href*="article.ksn?articleNo="]'):
-                logger.info("kstyle: no article cards on %s; stop paging", page_url)
-                break
-            for rec in self._parse_page(
-                soup, resp.url, source.source_id, seen_article_urls
-            ):
-                signals[rec.signal_uid] = rec
+            first_resp.encoding = first_resp.apparent_encoding or "utf-8"
+
+            urls = [first_resp.url] + [
+                self._with_page_param(search_url, page_num)
+                for page_num in range(2, pages + 1)
+            ]
+            seen_page_urls: set[str] = set()
+
+            for page_url in urls[:pages]:
+                if page_url in seen_page_urls:
+                    continue
+                seen_page_urls.add(page_url)
+
+                resp = (
+                    first_resp
+                    if page_url == first_resp.url
+                    else self._get_with_retry(page_url, timeout=30)
+                )
+                if resp.status_code != 200:
+                    logger.warning("kstyle: %s returned %s", page_url, resp.status_code)
+                    continue
+                if resp is not first_resp:
+                    resp.encoding = resp.apparent_encoding or "utf-8"
+                soup = BeautifulSoup(resp.text, "html.parser")
+                if not soup.select('a[href*="article.ksn?articleNo="]'):
+                    logger.info("kstyle: no article cards on %s; stop paging", page_url)
+                    break
+                for rec in self._parse_page(
+                    soup, resp.url, source.source_id, seen_article_urls
+                ):
+                    signals[rec.signal_uid] = rec
 
         return sorted(signals.values(), key=lambda r: r.published_at_utc, reverse=True)
 
@@ -379,6 +409,79 @@ class KstyleMusicSource(SignalSource):
             if seen_article_urls is not None:
                 seen_article_urls.add(abs_url)
 
+        return self._build_records_from_candidates(candidates, source_id)
+
+    def _fetch_recent_sitemap_records(
+        self,
+        source_id: str,
+        seen_article_urls: set[str],
+        cfg: dict,
+    ) -> list[SignalRecord]:
+        sitemap_url = str(
+            cfg.get("sitemap_url") or self.RECENT_NEWS_SITEMAP_URL
+        ).strip()
+        max_candidates = max(0, int(cfg.get("sitemap_max_candidates", 40)))
+        if not sitemap_url or max_candidates == 0:
+            return []
+
+        try:
+            resp = self._get_with_retry(sitemap_url, timeout=30)
+            resp.raise_for_status()
+        except Exception as exc:
+            logger.warning("kstyle: sitemap fetch failed %s (%s)", sitemap_url, exc)
+            return []
+        resp.encoding = resp.apparent_encoding or "utf-8"
+
+        candidates: list[tuple[str, str, str]] = []
+        for title, abs_url, published_at_utc in self._parse_recent_news_sitemap(
+            resp.text
+        ):
+            if abs_url in seen_article_urls:
+                continue
+            if not self._is_event_candidate(title, title):
+                continue
+            seen_article_urls.add(abs_url)
+            candidates.append((title, abs_url, published_at_utc))
+            if len(candidates) >= max_candidates:
+                break
+
+        return self._build_records_from_candidates(candidates, source_id)
+
+    def _parse_recent_news_sitemap(self, xml_text: str) -> list[tuple[str, str, str]]:
+        try:
+            root = ET.fromstring(xml_text)
+        except ET.ParseError as exc:
+            logger.warning("kstyle: sitemap parse failed (%s)", exc)
+            return []
+
+        candidates: list[tuple[str, str, str]] = []
+        for url_node in root.findall("sm:url", self.SITEMAP_NS):
+            abs_url = url_node.findtext(
+                "sm:loc", default="", namespaces=self.SITEMAP_NS
+            )
+            if not abs_url or "article.ksn?articleNo=" not in abs_url:
+                continue
+            title = url_node.findtext(
+                "news:news/news:title", default="", namespaces=self.SITEMAP_NS
+            )
+            published_value = url_node.findtext(
+                "news:news/news:publication_date",
+                default="",
+                namespaces=self.SITEMAP_NS,
+            ) or url_node.findtext("sm:lastmod", default="", namespaces=self.SITEMAP_NS)
+            published_at_utc = self._to_utc_datetime_from_iso(published_value)
+            if not published_at_utc:
+                continue
+            normalized_title = self._strip_title_decorations(title)
+            if not normalized_title:
+                continue
+            candidates.append((normalized_title, abs_url.strip(), published_at_utc))
+
+        return candidates
+
+    def _build_records_from_candidates(
+        self, candidates: list[tuple[str, str, str]], source_id: str
+    ) -> list[SignalRecord]:
         records: list[SignalRecord] = []
         for title, abs_url, published_at_utc in candidates:
             detail = self._fetch_article_detail(abs_url, title)
@@ -478,7 +581,7 @@ class KstyleMusicSource(SignalSource):
         return self._strip_title_decorations(fallback_title)
 
     def _strip_title_decorations(self, text: str) -> str:
-        out = " ".join(text.split())
+        out = " ".join(self._normalize_text(text).split())
         for _ in range(6):
             next_out = re.sub(
                 r"^\s*(?:【[^】]*】|\[[^\]]*\]|［[^］]*］|＜[^＞]*＞|<[^>]*>)\s*",
@@ -522,9 +625,9 @@ class KstyleMusicSource(SignalSource):
             if node is None:
                 continue
             lines = [
-                " ".join(text.split())
+                " ".join(self._normalize_text(text).split())
                 for text in node.stripped_strings
-                if text and " ".join(text.split())
+                if text and " ".join(self._normalize_text(text).split())
             ]
             if lines:
                 return lines
@@ -572,7 +675,7 @@ class KstyleMusicSource(SignalSource):
 
     @staticmethod
     def _normalize_concert_title(value: str) -> str:
-        text = " ".join(str(value or "").split()).strip()
+        text = " ".join(KstyleMusicSource._normalize_text(value).split()).strip()
         if not text:
             return ""
         if len(text) >= 2 and (
@@ -619,9 +722,14 @@ class KstyleMusicSource(SignalSource):
 
             if expect_venue_next:
                 venue_candidate = self._normalize_venue_name(normalized_line)
-                if venue_candidate and not any(
-                    marker in venue_candidate for marker in ["【", "■", "DAY", "日時"]
-                ) and not self._is_non_venue_text(venue_candidate):
+                if (
+                    venue_candidate
+                    and not any(
+                        marker in venue_candidate
+                        for marker in ["【", "■", "DAY", "日時"]
+                    )
+                    and not self._is_non_venue_text(venue_candidate)
+                ):
                     current_venue = venue_candidate
                     current_pref = self._pref_from_official_venue(
                         current_venue
@@ -637,11 +745,11 @@ class KstyleMusicSource(SignalSource):
                 current_venue = self._normalize_venue_name(
                     pref_venue_match.group("venue")
                 )
-                current_pref = self._normalize_pref_name(
-                    pref_venue_match.group("pref")
-                ) or self._pref_from_official_venue(
-                    current_venue
-                ) or self._pref_from_text(current_venue)
+                current_pref = (
+                    self._normalize_pref_name(pref_venue_match.group("pref"))
+                    or self._pref_from_official_venue(current_venue)
+                    or self._pref_from_text(current_venue)
+                )
 
             venue_on_line = self._extract_venue(normalized_line)
             if venue_on_line:
@@ -752,7 +860,9 @@ class KstyleMusicSource(SignalSource):
                     candidate = self._normalize_venue_name(" ".join(next_line.split()))
                     if not candidate:
                         continue
-                    if any(marker in candidate for marker in ["【", "■", "DAY", "日時"]):
+                    if any(
+                        marker in candidate for marker in ["【", "■", "DAY", "日時"]
+                    ):
                         continue
                     if self._is_non_venue_text(candidate):
                         continue
@@ -824,13 +934,39 @@ class KstyleMusicSource(SignalSource):
             (start_dt + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(days + 1)
         ]
 
-    _VENUE_LINE_SKIP_PREFIXES = ("■", "＜", "<", "【", "※", "「", "『", "（", "(", "http")
+    _VENUE_LINE_SKIP_PREFIXES = (
+        "■",
+        "＜",
+        "<",
+        "【",
+        "※",
+        "「",
+        "『",
+        "（",
+        "(",
+        "http",
+    )
     _VENUE_LINE_REJECT_TERMS = (
-        "円", "¥", "￥", "税込", "税別",
-        "席", "枚まで", "枚迄",
-        "チケット", "問い合わせ", "お問合せ",
-        "主催", "協賛", "協力", "制作", "運営", "後援",
-        "出演", "ほか", "アクト",
+        "円",
+        "¥",
+        "￥",
+        "税込",
+        "税別",
+        "席",
+        "枚まで",
+        "枚迄",
+        "チケット",
+        "問い合わせ",
+        "お問合せ",
+        "主催",
+        "協賛",
+        "協力",
+        "制作",
+        "運営",
+        "後援",
+        "出演",
+        "ほか",
+        "アクト",
     )
 
     def _looks_like_venue_line(self, line: str) -> bool:
@@ -854,14 +990,20 @@ class KstyleMusicSource(SignalSource):
         return any(pat in text for pat in self.NON_VENUE_PATTERNS)
 
     def _normalize_venue_name(self, venue_name: str) -> str:
-        return " ".join(str(venue_name).split())
+        return " ".join(self._normalize_text(venue_name).split())
 
-    @staticmethod
-    def _normalize_venue_lookup_key(value: str | None) -> str:
-        text = unicodedata.normalize("NFKC", str(value or "")).lower()
+    @classmethod
+    def _normalize_venue_lookup_key(cls, value: str | None) -> str:
+        text = cls._normalize_text(value).lower()
         text = re.sub(r"\s+", "", text)
         text = re.sub(r"[()（）\[\]［］{}【】「」『』\"'`~^!?,.:：;／/\\|+-]", "", text)
         return text
+
+    @classmethod
+    def _normalize_text(cls, value: str | None) -> str:
+        return unicodedata.normalize("NFKC", str(value or "")).translate(
+            cls.TEXT_COMPAT_TRANSLATIONS
+        )
 
     @classmethod
     def _load_official_venue_pref_cache(cls) -> dict[str, str]:
@@ -1090,8 +1232,44 @@ class KstyleMusicSource(SignalSource):
         except json.JSONDecodeError:
             return {}
 
+    @staticmethod
+    def _normalize_search_words(value: object) -> list[str]:
+        if value is None:
+            return []
+        if isinstance(value, str):
+            candidates = [value]
+        elif isinstance(value, list):
+            candidates = value
+        else:
+            return []
+
+        search_words: list[str] = []
+        seen: set[str] = set()
+        for candidate in candidates:
+            word = str(candidate).strip()
+            if not word or word in seen:
+                continue
+            seen.add(word)
+            search_words.append(word)
+        return search_words
+
+    def _resolve_search_urls(self, source_url: str, cfg: dict) -> list[str]:
+        if "search_words" in cfg:
+            search_words = self._normalize_search_words(cfg.get("search_words"))
+        else:
+            search_words = self._normalize_search_words(cfg.get("search_word"))
+        if not search_words:
+            search_words = list(self.SEARCH_WORDS)
+        return [
+            self._build_search_url(source_url, search_word)
+            for search_word in search_words
+        ]
+
     def _resolve_search_url(self, source_url: str, cfg: dict) -> str:
-        search_word = str(cfg.get("search_word") or self.SEARCH_WORD).strip()
+        return self._resolve_search_urls(source_url, cfg)[0]
+
+    def _build_search_url(self, source_url: str, search_word: str) -> str:
+        search_word = str(search_word).strip()
         if not search_word:
             search_word = self.SEARCH_WORD
 
@@ -1138,6 +1316,19 @@ class KstyleMusicSource(SignalSource):
         except ValueError:
             return None
         return dt_jst.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    @staticmethod
+    def _to_utc_datetime_from_iso(value: str) -> str | None:
+        text = str(value or "").strip()
+        if not text:
+            return None
+        try:
+            dt_value = datetime.fromisoformat(text.replace("Z", "+00:00"))
+        except ValueError:
+            return None
+        if dt_value.tzinfo is None:
+            dt_value = dt_value.replace(tzinfo=timezone.utc)
+        return dt_value.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     def _get_with_retry(self, url: str, timeout: int = 30, retries: int = 3):
         last_exc: Exception | None = None
