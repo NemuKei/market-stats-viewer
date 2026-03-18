@@ -21,6 +21,9 @@ from ..artist_registry import (
     load_registry,
     match_artists_in_title,
 )
+from ..artist_registry import (
+    normalize_text as normalize_artist_text,
+)
 from ..types import SignalRecord, SignalSourceRecord
 from .base import (
     SignalSource,
@@ -277,6 +280,13 @@ class KstyleMusicSource(SignalSource):
     PREF_VENUE_LINE_RE = re.compile(
         r"^[\[［]\s*(?P<pref>[^\]］]+?)\s*[\]］]\s*(?P<venue>.+)$"
     )
+    EXPLICIT_VENUE_LINE_RE = re.compile(r"^(?:会場|開催場所|場所)\s*[:：]")
+    PREF_HEADING_PREFIX_RE = re.compile(r"^[\s○〇●•・◆■□▲△▽▼▶▷►→※＊*]+")
+    LEADING_DATE_CONTINUATION_RE = re.compile(
+        r"^(?:[、,，/&・\s]*)"
+        r"(?:(?:\d{4}\s*[./年-]\s*)?\d{1,2}\s*[./月-]\s*\d{1,2}\s*日?|\d{1,2}\s*日)"
+        r"(?:\s*[（(][^）)]{1,8}[）)])?"
+    )
     NON_EVENT_DATE_TERMS = (
         "申込期間",
         "受付期間",
@@ -304,6 +314,12 @@ class KstyleMusicSource(SignalSource):
         "についてはコチラ",
         "詳細はコチラ",
     )
+    NON_EVENT_SECTION_HEADERS = (
+        "<チケット",
+        "＜チケット",
+        "【チケット",
+        "[チケット",
+    )
     _ARTIST_INDEX_CACHE: dict[str, object] | None = None
     _OFFICIAL_VENUE_PREF_CACHE: dict[str, str] | None = None
     TEXT_COMPAT_TRANSLATIONS = str.maketrans({"戶": "戸"})
@@ -312,6 +328,10 @@ class KstyleMusicSource(SignalSource):
         "MUFG STADIUM（国立競技場）": "東京都",
         "国立競技場": "東京都",
     }
+    ARTIST_TITLE_EVENT_SPLITTER_RE = re.compile(
+        r"\s+(?:SPECIAL\s+LIVE\s+EVENT|SPECIAL\s+FANMEETING|FANMEETING|FAN\s+CONCERT|LIVE\s+EVENT|LIVE\s+TOUR|WORLD\s+TOUR|ARENA\s+TOUR|DOME\s+TOUR|JAPAN\s+TOUR|SHOWCASE|CONCERT|LIVE|POP[- ]UP\s+STORE)\b",
+        re.IGNORECASE,
+    )
 
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
@@ -500,7 +520,10 @@ class KstyleMusicSource(SignalSource):
             display_title = concert_title or title
             section_text = " ".join(section_lines)
             score, base_labels = self._score_and_labels(display_title, section_text)
-            artist_name, artist_labels = self._resolve_artist_from_title(title_raw)
+            artist_name, artist_labels = self._resolve_artist_from_title(
+                title_raw,
+                concert_title,
+            )
             for event_date, venue_name, event_info, pref_name in occurrences:
                 labels = dict(base_labels)
                 labels["artist_name"] = artist_name
@@ -594,24 +617,89 @@ class KstyleMusicSource(SignalSource):
         return out.strip()
 
     def _resolve_artist_from_title(
-        self, title_raw: str
+        self,
+        title_raw: str,
+        concert_title: str = "",
     ) -> tuple[str, dict[str, object]]:
+        candidate_titles = self._candidate_artist_titles(title_raw, concert_title)
+        for candidate_title in candidate_titles:
+            matched = self._match_artist_from_title(candidate_title)
+            if matched is not None:
+                return matched
+
+        for candidate_title in candidate_titles:
+            fallback = self._infer_artist_name(candidate_title)
+            if fallback:
+                return fallback, {
+                    "artist_confidence": "low",
+                    "artist_raw": candidate_title,
+                }
+
+        return "", {
+            "artist_confidence": "low",
+            "artist_raw": title_raw or concert_title,
+        }
+
+    def _match_artist_from_title(
+        self, title_raw: str
+    ) -> tuple[str, dict[str, object]] | None:
         index = self._get_artist_index()
         matches = match_artists_in_title(title_raw, index)
         primary, confidence = choose_primary_match(matches)
         if primary is not None:
+            matched_alias = str(primary.get("matched_alias", ""))
+            if not self._is_valid_artist_match(title_raw, matched_alias):
+                return None
             return str(primary.get("canonical_name", "")), {
                 "artist_id": str(primary.get("artist_id", "")),
                 "artist_confidence": confidence,
-                "artist_matched_alias": str(primary.get("matched_alias", "")),
+                "artist_matched_alias": matched_alias,
                 "artist_raw": title_raw,
             }
 
-        fallback = self._infer_artist_name(title_raw)
-        return fallback, {
-            "artist_confidence": "low",
-            "artist_raw": title_raw,
-        }
+        return None
+
+    def _candidate_artist_titles(self, title_raw: str, concert_title: str) -> list[str]:
+        candidates: list[str] = []
+        for value in (
+            self._extract_leading_artist_candidate(title_raw),
+            self._extract_leading_artist_candidate(concert_title),
+            title_raw,
+            concert_title,
+        ):
+            text = " ".join(self._normalize_text(value).split()).strip()
+            if text and text not in candidates:
+                candidates.append(text)
+        return candidates
+
+    def _is_valid_artist_match(self, title_raw: str, matched_alias: str) -> bool:
+        alias_keep = normalize_artist_text(matched_alias, mode="keep")
+        alias_compact = normalize_artist_text(matched_alias, mode="compact")
+        title_keep = normalize_artist_text(title_raw, mode="keep")
+        title_compact = normalize_artist_text(title_raw, mode="compact")
+        alias_len = len(alias_compact or alias_keep)
+        if alias_len <= 2:
+            if alias_keep and title_keep.startswith(alias_keep):
+                return True
+            if alias_compact and title_compact.startswith(alias_compact):
+                return True
+            return False
+        return True
+
+    def _extract_leading_artist_candidate(self, title: str) -> str:
+        text = " ".join(self._normalize_text(title).split()).strip()
+        if not text:
+            return ""
+        text = re.sub(r"\s+-\s+Kstyle$", "", text, flags=re.IGNORECASE).strip()
+        text = re.sub(r"^\d{4}(?:-\d{2})?\s+", "", text).strip()
+        for splitter in ["、", "「", "（", "("]:
+            if splitter in text:
+                head = text.split(splitter, 1)[0].strip()
+                if head:
+                    text = head
+                    break
+        text = self.ARTIST_TITLE_EVENT_SPLITTER_RE.split(text, maxsplit=1)[0].strip()
+        return text.rstrip(" :-").strip()
 
     @classmethod
     def _get_artist_index(cls) -> dict[str, object]:
@@ -705,6 +793,7 @@ class KstyleMusicSource(SignalSource):
         self, section_lines: list[str], default_year: int | None = None
     ) -> list[tuple[str, str, str, str]]:
         occurrences: list[tuple[str, str, str, str]] = []
+        pending_dates: list[tuple[str, str, str]] = []
         current_venue = self._extract_default_venue(section_lines)
         current_pref = self._pref_from_official_venue(
             current_venue
@@ -715,6 +804,18 @@ class KstyleMusicSource(SignalSource):
             if any(marker in normalized_line for marker in ("元記事配信日時", "記者")):
                 continue
             if re.fullmatch(r"\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2}", normalized_line):
+                continue
+            if any(
+                normalized_line.startswith(marker)
+                for marker in self.NON_EVENT_SECTION_HEADERS
+            ):
+                break
+            pref_heading = self._extract_pref_heading(normalized_line)
+            if pref_heading:
+                current_pref = pref_heading
+                current_venue = ""
+                expect_venue_next = False
+                pending_dates.clear()
                 continue
             if normalized_line in self.VENUE_HEADER_LABELS:
                 expect_venue_next = True
@@ -734,7 +835,15 @@ class KstyleMusicSource(SignalSource):
                     current_pref = self._pref_from_official_venue(
                         current_venue
                     ) or self._pref_from_text(current_venue)
+                    if pending_dates:
+                        self._flush_pending_dates(
+                            occurrences,
+                            pending_dates,
+                            current_venue,
+                            current_pref,
+                        )
                 expect_venue_next = False
+                continue
 
             pref_venue_match = self.PREF_VENUE_LINE_RE.match(normalized_line)
             if pref_venue_match and not self._is_pref_token(
@@ -750,6 +859,13 @@ class KstyleMusicSource(SignalSource):
                     or self._pref_from_official_venue(current_venue)
                     or self._pref_from_text(current_venue)
                 )
+                if pending_dates:
+                    self._flush_pending_dates(
+                        occurrences,
+                        pending_dates,
+                        current_venue,
+                        current_pref,
+                    )
 
             venue_on_line = self._extract_venue(normalized_line)
             if venue_on_line:
@@ -758,6 +874,15 @@ class KstyleMusicSource(SignalSource):
                     current_pref = self._pref_from_official_venue(
                         current_venue
                     ) or self._pref_from_text(current_venue)
+                if pending_dates:
+                    self._flush_pending_dates(
+                        occurrences,
+                        pending_dates,
+                        current_venue,
+                        current_pref,
+                    )
+                if self.EXPLICIT_VENUE_LINE_RE.match(normalized_line):
+                    continue
 
             event_dates = self._extract_event_dates_from_line(
                 normalized_line, default_year=default_year
@@ -768,6 +893,13 @@ class KstyleMusicSource(SignalSource):
                     current_pref = self._pref_from_official_venue(
                         current_venue
                     ) or self._pref_from_text(current_venue)
+                    if pending_dates:
+                        self._flush_pending_dates(
+                            occurrences,
+                            pending_dates,
+                            current_venue,
+                            current_pref,
+                        )
                 continue
             if any(term in normalized_line for term in self.NON_EVENT_DATE_TERMS):
                 continue
@@ -783,6 +915,8 @@ class KstyleMusicSource(SignalSource):
                     or self._pref_from_text(current_venue)
                 )
             if not current_venue:
+                for event_date in event_dates:
+                    pending_dates.append((event_date, normalized_line, current_pref))
                 continue
 
             event_info = normalized_line
@@ -826,6 +960,10 @@ class KstyleMusicSource(SignalSource):
         if re.match(r"^\d{1,2}:\d{2}", rest_nfkc):
             return "", ""
 
+        rest = self._strip_leading_date_continuations(rest)
+        if not rest:
+            return "", ""
+
         if self._is_non_venue_text(rest):
             return "", ""
 
@@ -835,6 +973,51 @@ class KstyleMusicSource(SignalSource):
             venue_name = self._normalize_venue_name(pref_venue_match.group("venue"))
             return pref_name, venue_name
         return "", self._normalize_venue_name(rest)
+
+    def _flush_pending_dates(
+        self,
+        occurrences: list[tuple[str, str, str, str]],
+        pending_dates: list[tuple[str, str, str]],
+        current_venue: str,
+        current_pref: str,
+    ) -> None:
+        if not pending_dates or not current_venue:
+            return
+        venue_name = self._normalize_venue_name(current_venue)
+        pref_name = (
+            current_pref
+            or self._pref_from_official_venue(venue_name)
+            or self._pref_from_text(venue_name)
+        )
+        for event_date, event_info, pending_pref in pending_dates:
+            occurrences.append(
+                (
+                    event_date,
+                    venue_name,
+                    event_info,
+                    pref_name or pending_pref,
+                )
+            )
+        pending_dates.clear()
+
+    def _extract_pref_heading(self, line: str) -> str:
+        candidate = self.PREF_HEADING_PREFIX_RE.sub("", line).strip()
+        if not candidate:
+            return ""
+        if any(marker in candidate for marker in [":", "：", "(", "（"]):
+            return ""
+        if not self._is_pref_token(candidate):
+            return ""
+        return self._normalize_pref_name(candidate)
+
+    def _strip_leading_date_continuations(self, text: str) -> str:
+        rest = str(text or "").strip()
+        while rest:
+            next_rest = self.LEADING_DATE_CONTINUATION_RE.sub("", rest, count=1).strip()
+            if next_rest == rest:
+                break
+            rest = next_rest
+        return rest
 
     def _is_pref_token(self, value: str) -> bool:
         token = str(value or "").strip()
@@ -972,6 +1155,8 @@ class KstyleMusicSource(SignalSource):
     def _looks_like_venue_line(self, line: str) -> bool:
         """Return True if a non-date line looks like a standalone venue name."""
         if not line or len(line) > 40:
+            return False
+        if re.search(r"(?:\d+部|開場|開演|START|DOOR)", line, re.IGNORECASE):
             return False
         if any(line.startswith(p) for p in self._VENUE_LINE_SKIP_PREFIXES):
             return False
@@ -1128,6 +1313,10 @@ class KstyleMusicSource(SignalSource):
         return dates_sorted[0], dates_sorted[-1]
 
     def _infer_artist_name(self, title: str) -> str:
+        leading = self._extract_leading_artist_candidate(title)
+        if leading:
+            return leading
+
         normalized = " ".join(title.split())
         for splitter in ["、", "「", "（", "("]:
             if splitter in normalized:

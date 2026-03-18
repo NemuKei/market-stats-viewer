@@ -139,6 +139,65 @@ class KstyleMusicSourceTests(unittest.TestCase):
             ],
         )
 
+    def test_resolve_artist_avoids_short_false_positive_inside_city_name(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+
+        artist_name, artist_labels = source._resolve_artist_from_title(
+            "ASC2NT、3月と4月に東京&大阪でライブイベントを開催決定！新曲のステージ披露に期待 - Kstyle",
+            "ASC2NT SPECIAL LIVE EVENT STILL : I",
+        )
+
+        self.assertEqual("ASC2NT", artist_name)
+        self.assertEqual("low", artist_labels.get("artist_confidence"))
+
+    def test_extract_occurrences_handles_pref_block_with_late_venue_line(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "「ASC2NT SPECIAL LIVE EVENT STILL : I」",
+            "<日時・会場>",
+            "●東京",
+            "2026年3月20日(祝・金)、21日(土)、22日(日)",
+            "1部 開演15:00(開場14:30)",
+            "2部 開演19:00(開場18:30)",
+            "会場:FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )",
+            "●大阪",
+            "2026年4月3日(金)",
+            "1部 開演15:00(開場14:30)",
+            "2部 開演19:00(開場18:30)",
+            "2026年4月4日(土)、5日(日)",
+            "1部 開演13:00(開場12:30)",
+            "2部 開演17:00(開場16:30)",
+            "会場:DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
+            "<チケット代金>",
+            "前売:5,500円(税込)/ 全席自由・整理番号順入場",
+            "<チケット販売期間>",
+            "2026年3月2日(月)12:00~各公演4日前23:59まで",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [
+                ("2026-03-20", "FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )"),
+                ("2026-03-21", "FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )"),
+                ("2026-03-22", "FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )"),
+                (
+                    "2026-04-03",
+                    "DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
+                ),
+                (
+                    "2026-04-04",
+                    "DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
+                ),
+                (
+                    "2026-04-05",
+                    "DREAM SQUARE HALL(大阪府吹田市江坂町1-18-8 江坂パークサイドスクエア2F)",
+                ),
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
