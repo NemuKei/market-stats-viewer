@@ -3449,9 +3449,10 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         df.loc[starto_mask, "effective_published_dt_utc"] = df.loc[
             starto_mask, "first_seen_dt_utc"
         ]
-    market_mask = df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS) & df[
-        "first_seen_dt_utc"
-    ].notna()
+    market_mask = (
+        df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS)
+        & df["first_seen_dt_utc"].notna()
+    )
     if market_mask.any():
         df.loc[market_mask, "effective_published_dt_utc"] = df.loc[
             market_mask, "first_seen_dt_utc"
