@@ -78,3 +78,4 @@
 - D-20260311-003 | `official_fetch_candidate=1` の大阪会場棚卸しでは、`Panasonic Stadium Suita` と `大阪府立体育会館（エディオンアリーナ大阪）` は会場公式ソース追加を優先し、`ヤンマースタジアム長居` は公式サイト障害が解消するまで Ticketjam 補完継続とする | status: spec_done | spec_link: docs/spec_update_pipeline.md
 - D-20260311-004 | `events.sqlite` 更新時は venue signature が不変でも、`artist_name_resolved` / `artist_confidence` / `event_category` の導出結果が変わった場合は当該行を再同期する | status: spec_done | spec_link: docs/spec_update_pipeline.md
 - D-20260311-005 | `大阪府立体育会館（エディオンアリーナ大阪）` は公式トップページの月次 PDF（`monthlyYYMM.pdf`）を正本にし、会場辞書は `edion_arena_osaka_pdf_schedule` へ切り替える。教室系ノイズを避けるため抽出対象は第1競技場のみとする | status: spec_done | spec_link: docs/spec_update_pipeline.md
+- D-20260321-001 | `ticketjam_events` は公開ページから安定した掲載日時を取得できないため、全国イベント参考（二次流通）の一覧表示と新着判定は `published_at_utc` ではなく `first_seen_at_utc` を使い、UI文言は `初回検知日` とする | status: applied | spec_link: docs/spec_app.md

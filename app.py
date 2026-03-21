@@ -19,6 +19,8 @@ from openpyxl.chart.layout import Layout, ManualLayout
 try:
     from scripts.signals.artist_registry import (
         load_registry as load_artist_registry,
+    )
+    from scripts.signals.artist_registry import (
         normalize_text as normalize_artist_lookup_text,
     )
 except Exception:
@@ -29,6 +31,7 @@ except Exception:
         if mode == "compact":
             return re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", text)
         return text
+
 
 REPO_ROOT = Path(__file__).resolve().parent
 DATA_DIR = REPO_ROOT / "data"
@@ -3149,7 +3152,9 @@ def classify_event_category(title: str, artist_name: str, description: str) -> s
         "ドームツアー",
         "アリーナツアー",
     ]
-    has_concert_keyword = any(keyword in normalized_text for keyword in concert_keywords)
+    has_concert_keyword = any(
+        keyword in normalized_text for keyword in concert_keywords
+    )
     non_music_keywords = [
         "就活",
         "就職",
@@ -3304,8 +3309,9 @@ def load_event_signals_data() -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 @st.cache_data(show_spinner=False)
-def load_events_artist_inferred_map(
-) -> tuple[dict[str, tuple[str, str]], dict[str, tuple[str, str]]]:
+def load_events_artist_inferred_map() -> tuple[
+    dict[str, tuple[str, str]], dict[str, tuple[str, str]]
+]:
     if not EVENTS_ARTIST_INFERRED_PATH.exists():
         return {}, {}
     try:
@@ -3391,7 +3397,11 @@ def normalize_artist_name_with_lookup(
 
 def render_event_signals_view(view_mode: str = "news") -> None:
     is_market_view = view_mode == "market"
-    st.title("全国イベント参考（二次流通）" if is_market_view else "全国イベント速報（ニュース）")
+    st.title(
+        "全国イベント参考（二次流通）"
+        if is_market_view
+        else "全国イベント速報（ニュース）"
+    )
 
     df_signals, df_sources = load_event_signals_data()
     if df_signals.empty:
@@ -3425,15 +3435,26 @@ def render_event_signals_view(view_mode: str = "news") -> None:
 
     df["published_dt_utc"] = published_utc[published_utc.notna()]
     df["published_dt_jst"] = df["published_dt_utc"].dt.tz_convert("Asia/Tokyo")
-    first_seen_utc = pd.to_datetime(df.get("first_seen_at_utc"), utc=True, errors="coerce")
+    first_seen_utc = pd.to_datetime(
+        df.get("first_seen_at_utc"), utc=True, errors="coerce"
+    )
     df["first_seen_dt_utc"] = first_seen_utc
     df["first_seen_dt_jst"] = df["first_seen_dt_utc"].dt.tz_convert("Asia/Tokyo")
 
     df["effective_published_dt_utc"] = df["published_dt_utc"]
-    starto_mask = (df["source_id"] == "starto_concert") & df["first_seen_dt_utc"].notna()
+    starto_mask = (df["source_id"] == "starto_concert") & df[
+        "first_seen_dt_utc"
+    ].notna()
     if starto_mask.any():
         df.loc[starto_mask, "effective_published_dt_utc"] = df.loc[
             starto_mask, "first_seen_dt_utc"
+        ]
+    market_mask = df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS) & df[
+        "first_seen_dt_utc"
+    ].notna()
+    if market_mask.any():
+        df.loc[market_mask, "effective_published_dt_utc"] = df.loc[
+            market_mask, "first_seen_dt_utc"
         ]
     df["effective_published_dt_jst"] = df["effective_published_dt_utc"].dt.tz_convert(
         "Asia/Tokyo"
@@ -3487,11 +3508,15 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     )
     df["ticketjam_category_slug"] = labels_series.apply(
         lambda d: (
-            str(d.get("ticketjam_category_slug", "")).strip() if isinstance(d, dict) else ""
+            str(d.get("ticketjam_category_slug", "")).strip()
+            if isinstance(d, dict)
+            else ""
         )
     )
     df["event_category_label"] = labels_series.apply(
-        lambda d: str(d.get("event_category", "")).strip() if isinstance(d, dict) else ""
+        lambda d: (
+            str(d.get("event_category", "")).strip() if isinstance(d, dict) else ""
+        )
     )
     df["artist_confidence"] = labels_series.apply(
         lambda d: (
@@ -3789,7 +3814,9 @@ def render_event_signals_view(view_mode: str = "news") -> None:
             default=list(source_name_to_id.keys()),
             key="signals_sources",
         )
-        selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
+        selected_source_ids = [
+            source_name_to_id[name] for name in selected_source_names
+        ]
 
     pref_options = sorted(
         [
@@ -3824,7 +3851,9 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     if current_selected_venues != st.session_state.get("signals_venue", []):
         st.session_state["signals_venue"] = current_selected_venues
     selected_venues = st.multiselect("会場", venue_options, key="signals_venue")
-    st.caption("未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。")
+    st.caption(
+        "未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。"
+    )
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
     selected_category = EVENT_CATEGORY_ALL
@@ -3835,9 +3864,13 @@ def render_event_signals_view(view_mode: str = "news") -> None:
             horizontal=True,
             key="signals_market_category",
         )
+    sort_options = [
+        "初回検知日時（新しい順）" if is_market_view else "掲載日時（新しい順）",
+        "イベント日（早い順）",
+    ]
     sort_label = st.radio(
         "並び順",
-        ["掲載日時（新しい順）", "イベント日（早い順）"],
+        sort_options,
         horizontal=True,
         key="signals_sort",
     )
@@ -3857,7 +3890,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         mask &= df["event_category"] == selected_category
 
     filtered = df[mask].copy()
-    if sort_label == "掲載日時（新しい順）":
+    if sort_label == sort_options[0]:
         filtered = filtered.sort_values(
             ["effective_published_dt_jst", "event_start_dt", "title"],
             ascending=[False, True, True],
@@ -3870,7 +3903,9 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     filtered["is_new_24h"] = filtered["effective_published_dt_jst"] >= (
         now_jst - pd.Timedelta(hours=24)
     )
-    filtered["new_badge"] = filtered["is_new_24h"].map(lambda v: "NEW" if bool(v) else "")
+    filtered["new_badge"] = filtered["is_new_24h"].map(
+        lambda v: "NEW" if bool(v) else ""
+    )
 
     new_count = int(filtered["is_new_24h"].sum()) if not filtered.empty else 0
     row_label = "イベント候補" if is_market_view else "速報"
@@ -3895,6 +3930,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     ]
     if is_market_view:
         table_columns.insert(5, "event_category")
+    published_column_label = "初回検知日" if is_market_view else "掲載日"
     table_df = filtered[table_columns].rename(
         columns={
             "new_badge": "新着",
@@ -3904,7 +3940,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
             "venue_name": "会場",
             "pref_name": "都道府県",
             "event_category": "種別",
-            "published_label": "掲載日",
+            "published_label": published_column_label,
             "source_name": "ソース",
             "title": "タイトル",
             "url": "URL",
@@ -4048,10 +4084,17 @@ def render_events_view() -> None:
         & df["artist_confidence"].fillna("").astype(str).str.lower().isin(["", "low"])
         & (
             df["artist_name"].apply(
-                lambda value: normalize_artist_lookup_text(str(value or ""), mode="compact")
+                lambda value: normalize_artist_lookup_text(
+                    str(value or ""), mode="compact"
+                )
             )
-            == df["title"].fillna("").astype(str).apply(
-                lambda value: normalize_artist_lookup_text(str(value or ""), mode="compact")
+            == df["title"]
+            .fillna("")
+            .astype(str)
+            .apply(
+                lambda value: normalize_artist_lookup_text(
+                    str(value or ""), mode="compact"
+                )
             )
         )
     )
@@ -4065,7 +4108,9 @@ def render_events_view() -> None:
         inferred = df.loc[missing_artist_mask].apply(
             lambda row: inferred_map_by_uid.get(
                 str(row.get("event_uid", "")).strip(),
-                inferred_map_by_title.get(str(row.get("title", "")).strip(), ("", "low")),
+                inferred_map_by_title.get(
+                    str(row.get("title", "")).strip(), ("", "low")
+                ),
             ),
             axis=1,
         )
@@ -4207,7 +4252,9 @@ def render_events_view() -> None:
     if current_selected_venues != st.session_state.get("events_venue", []):
         st.session_state["events_venue"] = current_selected_venues
     selected_venues = st.multiselect("会場", venue_options, key="events_venue")
-    st.caption("未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。")
+    st.caption(
+        "未選択時は表示中の会場を対象にします。都道府県を選ぶと会場候補が絞り込まれます。"
+    )
 
     # Keyword
     keyword = st.text_input("キーワード（タイトル/出演者/説明）", key="events_keyword")
