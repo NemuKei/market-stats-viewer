@@ -50,6 +50,12 @@ temp/
 # AI workflow (internal)
 .agents/
 .codex/
+!.codex/
+.codex/*
+!.codex/config.toml
+!.codex/agents/
+.codex/agents/*
+!.codex/agents/*.toml
 AGENTS.md
 CLAUDE.md
 docs/handovers/
