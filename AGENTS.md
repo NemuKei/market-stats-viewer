@@ -1,0 +1,140 @@
+# AGENTS.md
+
+## Purpose
+
+このファイルは「新規リポジトリにもそのまま流用できる」運用テンプレート。
+正本優先・最小読込・最小差分で、事故を減らしつつ実装とドキュメント更新を進める。
+賢く進めることと、危険な変更を通さないことの両立を優先する。
+
+## Scope
+
+- このファイル単体で運用を開始できることを優先する。
+- 外部リポジトリや親ワークスペースへの参照は任意。存在しなくても止めない。
+
+## Read Budget
+
+- 初手で読むのは `AGENTS.md` のみ。
+- 追加読込は、タスク遂行に必要な最小数に限定する（目安: 追加2ファイルまで）。
+- 不足があれば推測せず、必要ファイルを特定して読む。
+
+## Task Read (Only When Needed)
+
+- 仕様変更/挙動確認: 対象領域の `spec_*.md` など
+- 現在地の確認: `STATUS.md` 相当
+- 判断理由の確認: `DECISIONS.md` 相当
+- 実装規約の確認: `README.md` 相当
+- リポジトリ固有運用: `Local Extension` で定義されたドキュメントのみ参照
+
+## Skills (Only When Needed)
+
+- root `AGENTS.md` は repo-wide の常時ルールを定義し、Skill は必要時に task-specific procedure だけを追加する。
+- 常時ルールや設計原則を Skill へ重複展開しない。Skill 側で不足する repo-wide 判断は root `AGENTS.md` を参照する。
+- 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
+- active bundle の baseline と repo 固有追加 Skill の分類は `.agents/skills/README.md` を参照する。
+- `context_writeback`: 常設コンテキストへの反映が必要なときだけ使う。条件判定と更新先の選択手順は `.agents/skills/context_writeback/SKILL.md` を参照。
+- `design-review`: 設計相談や大きめ変更で、責務境界・依存方向・分割要否を点検したいときだけ使う。手順は `.agents/skills/design-review/SKILL.md` を参照。
+- `docs_governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。手順は `.agents/skills/docs_governance/SKILL.md` を参照。
+- `repo_bootstrap`: 新規リポジトリの最小構成を責務ベースで整備するときだけ使う。手順は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
+- `release_gate`: リリース可否判定、タグ提案、リリースノート作成、タグ付け実行を標準化したいときに使う。手順は `.agents/skills/release_gate/SKILL.md` を参照。
+- `task-add-and-triage`: 新規タスク追加後に実装粒度チェック（必要時は子タスク分割）と棚卸し/統合効率化/順番最適化を同一ターンで行いたいときに使う。手順は `.agents/skills/task-add-and-triage/SKILL.md` を参照。
+- `verification-before-completion`: 成功/完了を主張する前に fresh verification を必ず取りたいときに使う。手順は `.agents/skills/verification-before-completion/SKILL.md` を参照。
+- `search-first`: 実装前に既存解・外部ライブラリ・既存パターンを先に調べたいときに使う。手順は `.agents/skills/search-first/SKILL.md` を参照。
+- `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。手順は `.agents/skills/deep-research/SKILL.md` を参照。
+- `bom_guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。手順は `.agents/skills/bom_guard/SKILL.md` を参照。
+- `dictionary_maintenance`: `event_signals` の artist/venue 辞書をメンテするときだけ使う。手順は `.agents/skills/dictionary_maintenance/SKILL.md` を参照。
+- `generic-skill-template-sync`: repo 固有 skill を汎用化できるか判定し、template へ逆輸入するか整理するときに使う。手順は `.agents/skills/generic-skill-template-sync/SKILL.md` を参照。
+- `gitignore_guard`: 新規作成・生成されたファイルを `.gitignore` へ入れるべきか判定するときだけ使う。手順は `.agents/skills/gitignore_guard/SKILL.md` を参照。
+- `sidebiz_sync`: 確定した実装方針や決定事項を SideBiz ハブへ要約同期するときだけ使う。手順は `.agents/skills/sidebiz_sync/SKILL.md` を参照。
+- `spec-wallbat-to-task`: 仕様追加・修正の相談で壁打ちを先行し、仕様確定後にタスク化してから実装へ進めるときに使う。手順は `.agents/skills/spec-wallbat-to-task/SKILL.md` を参照。
+
+## Archive
+
+- `archive/**`, `thread_logs/**`, `handovers/**` は参照専用
+- 新規ルールは archive に追加しない
+
+## Source Priority
+
+1. セキュリティ/法令/公開制約
+2. 仕様書（`spec_*.md` など）
+3. 現況/意思決定ログ（`STATUS` / `DECISIONS`）
+4. `AGENTS.md`
+5. Archive
+
+同順位で矛盾した場合は、より新しい決定を優先する。
+未解決なら `DECISIONS` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
+
+## Constant Context Rules
+
+- 推測禁止。条件を満たすときだけ `.agents/skills/context_writeback/SKILL.md` の手順で常設コンテキストへ反映する。
+
+## Docs Governance
+
+- 重複記載を避け、会話は正本にしない。正本反映の判断は `.agents/skills/docs_governance/SKILL.md` の手順に従う。
+
+## Engineering Defaults
+
+- デフォルトは単純さを優先する（YAGNI / KISS / DRY）。後方互換の shim・fallback は、明確な運用要件がある場合のみ追加し、目的・適用範囲・廃止条件を記載する。
+- ビジネスルールは UI / CLI / handler / transport 層へ直置きせず、責務が明確な層へ寄せる。
+- 外部 API / DB / file I/O などの副作用は境界に隔離し、ドメイン判断と混在させない。
+- 新規コードは継承より composition を優先し、interface / abstraction は現実の差し替え点またはテスト上の必要がある場合に限る。
+- god file / god class / god function を拡張しない。責務が増える変更は先に分割方針を示す。
+- 既存の密結合構造を無批判に踏襲しない。変更が責務境界をまたぐ場合は、置き場所と依存方向を先に点検する。
+- テストしやすい単位を優先し、副作用は端に寄せる。既存の公開挙動は、タスクが明示的に変更を求めない限り保持する。
+- Git は `main` 一本を既定とし、branch / worktree は前提にしない。AI は rebase / force push / 履歴整理を勝手にしない。
+- 変更は最小差分・1タスク1コミットを原則とする。verify 前の保存が必要なときだけ `WIP:` 一時コミットを許可する。
+- 変更予算を超えて一度に広く触らない。差分が大きい、横断的、または危険操作が混ざる場合は停止し、分割案を先に示す。
+- 明示承認なしで行わない: 依存追加/更新、rename / move / 大量削除、設定変更、DB / migration、認証 / secrets / 権限、sample / raw データ変更。
+- verify 失敗時の自己修正は最大2回。解消しなければ停止し、失敗内容・原因仮説・未解決点・次に見る箇所だけ報告する。
+
+## Directory Guideline
+
+- 責務ベースで構成し、入口はルート `AGENTS.md` とする。`START_HERE.md` / `THREAD_START.md` は常設しない。詳細は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
+
+## Local Extension (Optional)
+
+この節はリポジトリ固有ルールを置く任意領域。未記載でも運用可能。
+
+### 運用計画の参照先
+
+- 運用計画や次アクションの確認は `docs/context/STATUS.md` を参照する。
+
+### Repo-specific Domain Rules
+
+- データ取得元は公的公開統計を原則とする。
+- 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
+- 既存仕様の変更時は `docs/context/DECISIONS.md` を更新し、関連する `docs/spec_*.md` に反映する。
+
+### Subagent Policy
+
+- 会話上、メインスレッドの主担当は `Socrates` と呼ぶ。`Socrates` は全体判断・統合・verify・最終報告を担う。
+- `Socrates` はクリティカルパスの実装を既定で担当する。明確に独立した変更範囲だけをサブエージェントへ委譲する。
+- project-scoped の役割定義ファイルは `.codex/agents/*.toml` を正本とし、この節は呼称と委譲境界のみを定義する。
+- `Plato` は read-only の調査担当。コードパス、関連テスト、影響範囲、関連ドキュメントの特定だけを行い、編集や広い設計変更を既定にしない。
+- `Aristotle` は限定実装担当。割り当てられたファイル/責務だけを編集し、他担当と write set を重ねない。
+- `Descartes` は read-only のレビュー担当。方法的懐疑の立場で、正しさ・回帰・テスト不足・前提崩れを優先して指摘する。
+- `Confucius` は docs 担当。`docs/tasks_backlog.md` / `docs/context/STATUS.md` / `docs/context/DECISIONS.md` / `spec_*.md` の正本配置、重複排除、反映順の判断を担う。
+- タスクに直結する最小 docs 更新は実装担当または `Socrates` が行う。`Confucius` へ引き継ぐのは、正本の置き場判断、`spec_*.md` 反映要否、backlog triage、archive/release 連動判断が必要な場合に限る。
+- project-scoped の `.codex/` はローカル状態を含み得るため丸ごと追跡しない。既定では `.codex/config.toml` と `.codex/agents/*.toml` だけを version 管理する。
+- サブエージェントは、ユーザーが delegation / subagent / parallel work を明示的に求めた場合にのみ使用する。
+
+## Owner Profile (Stable Context)
+
+- Language: 日本語
+- Domain baseline: 対象ドメインの実務知識あり
+- Technical baseline: 非エンジニア。コード全文より「何を/なぜ/影響範囲」を先に把握したい
+- Communication preference: 結論先出し + 次アクション明確 + 専門語は必要最小限
+- Explanation depth: 実装意図と変更点の説明を重視
+
+更新ルール:
+
+- 本人が明示した内容のみ更新する（推測禁止）
+- 同傾向が複数セッションで再現したときに固定化する
+- 更新時は `DECISIONS.md` 相当に `D-YYYYMM-xxx` で1件記録する
+
+## Delivery Rule
+
+- 最終報告はコード詳細より「何を変えたか / なぜ変えたか / 影響範囲 / GUI確認要否」を優先する。
+- GUI/UXに影響する実装を行った場合、最終回答に `GUIで確認してほしい箇所` を必ず明示する。
+- `GUIで確認してほしい箇所` には、画面名・操作手順・期待結果を最低1件以上含める。
+- GUI確認が不要な変更（内部処理/ドキュメントのみ等）の場合は、最終回答に `GUI確認不要` と理由を明記する。
+- verify 未通過では通常の commit / push を行わない。ユーザーが停止を明示しない限り、verify 通過後のみ commit と push まで進める。verify 手段が未整備なら勝手に増やさず、その旨を報告する。

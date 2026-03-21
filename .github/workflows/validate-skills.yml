@@ -1,0 +1,40 @@
+name: Validate Skills
+
+on:
+  pull_request:
+    paths:
+      - ".agents/skills/**"
+      - "scripts/ensure_venv.ps1"
+      - "scripts/validate_skills.ps1"
+      - ".github/workflows/validate-skills.yml"
+  push:
+    paths:
+      - ".agents/skills/**"
+      - "scripts/ensure_venv.ps1"
+      - "scripts/validate_skills.ps1"
+      - ".github/workflows/validate-skills.yml"
+
+jobs:
+  validate-skills:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Create virtual environment
+        shell: pwsh
+        run: ./scripts/ensure_venv.ps1
+
+      - name: Install validator dependency
+        shell: pwsh
+        run: .\.venv\Scripts\python.exe -m pip install PyYAML
+
+      - name: Validate skills
+        shell: pwsh
+        run: ./scripts/validate_skills.ps1
