@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 2037
+- ticketjam_unique_schedules: 1997
 - additional_unique_schedules: 10
 - overlap_unique_schedules: 2
 - noise_rate: 0.1667
-- out_of_scope_rate: 0.9941
-- ticketjam_category_counts: {"その他": 143, "コンサート": 1432, "野球": 462}
+- out_of_scope_rate: 0.994
+- ticketjam_category_counts: {"その他": 142, "コンサート": 1400, "野球": 455}
 
 ## Artist Gap
 
@@ -29,10 +29,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-03-21T05:02:30Z
+- ticketjam_source_updated_at_utc: 2026-03-22T05:17:24Z
 - starto_source_updated_at_utc: 2026-03-16T09:25:31Z
 - kstyle_source_updated_at_utc: 2026-03-21T01:12:44Z
-- events_db_modified_at_utc: 2026-03-21T04:46:00Z
+- events_db_modified_at_utc: 2026-03-22T05:00:42Z
 
 ## Methodology
 
