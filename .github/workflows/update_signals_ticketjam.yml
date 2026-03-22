@@ -80,7 +80,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git config merge.ours.driver true
-            git add data/ scripts/ app.py docs/ README.md
+            git add data/ scripts/ app.py docs/ pyproject.toml uv.lock README.md
             git commit -m "chore: update event signals data (ticketjam)"
             branch="${GITHUB_REF_NAME:-main}"
             for i in 1 2 3; do
