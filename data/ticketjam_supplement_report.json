@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-03-22T05:17:24Z",
+    "ticketjam_source_updated_at_utc": "2026-03-23T05:30:13Z",
     "starto_source_updated_at_utc": "2026-03-16T09:25:31Z",
-    "kstyle_source_updated_at_utc": "2026-03-21T01:12:44Z",
-    "events_db_modified_at_utc": "2026-03-22T05:00:42Z"
+    "kstyle_source_updated_at_utc": "2026-03-23T01:22:02Z",
+    "events_db_modified_at_utc": "2026-03-23T05:13:46Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1997,
-    "baseline_news_unique_schedules": 302,
+    "ticketjam_unique_schedules": 1962,
+    "baseline_news_unique_schedules": 300,
     "baseline_official_unique_schedules": 603,
     "ticketjam_category_counts": {
       "その他": 142,
-      "コンサート": 1400,
-      "野球": 455
+      "コンサート": 1370,
+      "野球": 450
     },
-    "in_scope_unique_schedules": 12,
+    "in_scope_unique_schedules": 13,
     "artist_scope_unique_schedules": 9,
-    "venue_scope_unique_schedules": 3,
-    "additional_unique_schedules": 10,
+    "venue_scope_unique_schedules": 4,
+    "additional_unique_schedules": 11,
     "overlap_unique_schedules": 2,
-    "noise_rate": 0.1667,
-    "out_of_scope_unique_schedules": 1985,
-    "out_of_scope_rate": 0.994
+    "noise_rate": 0.1538,
+    "out_of_scope_unique_schedules": 1949,
+    "out_of_scope_rate": 0.9934
   },
   "artist_gap": {
     "watch_count": 9,
@@ -126,8 +126,8 @@
     "rows": [
       {
         "venue_name": "ヤンマースタジアム長居",
-        "ticketjam_hits": 3,
-        "additional_hits": 3,
+        "ticketjam_hits": 4,
+        "additional_hits": 4,
         "overlap_hits": 0,
         "noise_rate": 0.0,
         "artists": [
@@ -135,7 +135,7 @@
           "レッドハリケーンズ大阪"
         ],
         "category_counts": {
-          "その他": 1,
+          "その他": 2,
           "コンサート": 2
         },
         "ticketjam_watch": true,
