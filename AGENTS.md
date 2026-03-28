@@ -107,13 +107,15 @@
 ### Subagent Policy
 
 - メインスレッド側は全体判断・統合・verify・最終報告を担う。クリティカルパスの実装も既定ではメインスレッド側が担当し、明確に独立した変更範囲だけをサブエージェントへ委譲する。
-- project-scoped の役割定義ファイルは `.codex/agents/*.toml` を正本とし、この節は呼称と委譲境界のみを定義する。
+- 役割定義ファイルの正本は `C:\Users\n-kei\.codex\agents\*.toml` とし、この節は呼称と委譲境界のみを定義する。
+- repo 側の `.codex/agents/*.toml` は、この repo だけで追加設定や上書きが必要な場合に限って使う。
+- `.codex/agents/*.toml` では `name` を識別子の正本とする。`subagent://...` で参照する値と、生成時に Codex が使う役割識別子は `name` を基準に解釈する。
 - `researcher` は read-only の調査担当。コードパス、関連テスト、影響範囲、関連ドキュメントの特定だけを行い、編集や広い設計変更を既定にしない。
 - `implementer` は限定実装担当。割り当てられたファイル/責務だけを編集し、他担当と write set を重ねない。
 - `reviewer` は read-only のレビュー担当。方法的懐疑の立場で、正しさ・回帰・テスト不足・前提崩れを優先して指摘する。
 - `docs_curator` は docs 担当。`docs/tasks_backlog.md` / `docs/context/STATUS.md` / `docs/context/DECISIONS.md` / `spec_*.md` の正本配置、重複排除、反映順の判断を担う。
 - タスクに直結する最小 docs 更新は実装担当またはメインスレッド側が行う。`docs_curator` へ引き継ぐのは、正本の置き場判断、`spec_*.md` 反映要否、backlog triage、archive/release 連動判断が必要な場合に限る。
-- project-scoped の `.codex/` はローカル状態を含み得るため丸ごと追跡しない。既定では `.codex/config.toml` と `.codex/agents/*.toml` だけを version 管理する。
+- project-scoped の `.codex/` はローカル状態を含み得るため丸ごと追跡しない。既定では `.codex/config.toml` だけを version 管理する。
 - サブエージェントは、ユーザーが delegation / subagent / parallel work を明示的に求めた場合にのみ使用する。
 
 ## Owner Profile (Stable Context)
