@@ -1,6 +1,5 @@
-name = "aristotle"
+name = "implementer"
 description = "Bounded implementation worker for disjoint, well-scoped code changes."
-nickname_candidates = ["Aristotle"]
 model = "gpt-5.4"
 model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"

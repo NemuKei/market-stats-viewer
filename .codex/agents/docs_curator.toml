@@ -1,6 +1,5 @@
-name = "confucius"
+name = "docs_curator"
 description = "Documentation curator for SSOT placement, doc updates, and backlog/status alignment."
-nickname_candidates = ["Confucius"]
 model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
 sandbox_mode = "workspace-write"

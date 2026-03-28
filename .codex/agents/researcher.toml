@@ -1,6 +1,5 @@
-name = "plato"
+name = "researcher"
 description = "Read-only repo explorer for mapping code paths, tests, and impacted docs before changes."
-nickname_candidates = ["Plato"]
 model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
 sandbox_mode = "read-only"
