@@ -100,6 +100,14 @@ Skip any step = lying, not verifying
 ❌ "Tests pass, phase complete"
 ```
 
+For bug fixes, prefer evidence tied directly to the original symptom: reproduction step, focused test, relevant log, or before/after output.
+
+**Bug fixes:**
+```
+✅ Name the original symptom or failing evidence → apply fix → run the same evidence again → report what changed
+❌ "Related tests pass, so the bug is fixed"
+```
+
 **Agent delegation:**
 ```
 ✅ Agent reports success → Check VCS diff → Verify changes → Report actual state

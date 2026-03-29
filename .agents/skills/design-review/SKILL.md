@@ -15,6 +15,7 @@ Root `AGENTS.md` defines the repo-wide rules. This skill only adds the task-spec
 1. Frame the change first.
    - Identify the requested behavior, the public behavior that must stay unchanged, and the files or layers likely to move.
    - Identify the minimum verification that would prove the design change is safe.
+   - For non-trivial changes, name the change scope, the public behavior that must stay unchanged, and the minimum verification before judging placement.
 2. Check placement before code shape.
    - Keep business rules out of UI, CLI, handlers, and transport adapters.
    - Keep API, DB, file I/O, and other side effects at boundaries.
@@ -32,6 +33,8 @@ Root `AGENTS.md` defines the repo-wide rules. This skill only adds the task-spec
    - `Move`: logic belongs in a different module or layer.
    - `Extract`: create a smaller testable unit while preserving public behavior.
    - `Split First`: the task crosses too many responsibilities to implement safely in one step.
+   - `Keep` is valid only when the current placement stays understandable for the same kind of future change.
+   - If a small `Move` or `Extract` reduces repeated confusion without widening the blast radius, prefer it over a purely local patch.
 6. Report concretely.
    - Start with the conclusion.
    - State what to change, why, impact range, and required verification.
