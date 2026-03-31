@@ -79,18 +79,18 @@ docs/
 
 | Skill | 用途 | 定義 |
 |---|---|---|
-| context_writeback | 常設コンテキストへの反映（4 条件ゲート） | `.agents/skills/context_writeback/SKILL.md` |
-| design-review | 責務境界・依存方向・分割要否の設計レビュー | `.agents/skills/design-review/SKILL.md` |
-| docs_governance | ドキュメント新設 vs 統合判断（3 条件ゲート） | `.agents/skills/docs_governance/SKILL.md` |
-| release_gate | リリース可否判定、タグ提案、リリースノート整理 | `.agents/skills/release_gate/SKILL.md` |
-| verification-before-completion | 完了主張前の fresh verification | `.agents/skills/verification-before-completion/SKILL.md` |
-| search-first | 実装前の既存解・既存パターン調査 | `.agents/skills/search-first/SKILL.md` |
-| deep-research | 複数ソース比較と出典付き調査 | `.agents/skills/deep-research/SKILL.md` |
+| context-writeback | 常設コンテキストへの反映（4 条件ゲート） | `~/.codex/skills/context-writeback/SKILL.md` |
+| design-review | 責務境界・依存方向・分割要否の設計レビュー | `~/.codex/skills/design-review/SKILL.md` |
+| docs-governance | ドキュメント新設 vs 統合判断（3 条件ゲート） | `~/.codex/skills/docs-governance/SKILL.md` |
+| release-gate | リリース可否判定、タグ提案、リリースノート整理 | `~/.codex/skills/release-gate/SKILL.md` |
+| verification-before-completion | 完了主張前の fresh verification | `~/.codex/skills/verification-before-completion/SKILL.md` |
+| search-first | 実装前の既存解・既存パターン調査 | `~/.codex/skills/search-first/SKILL.md` |
+| deep-research | 複数ソース比較と出典付き調査 | `~/.codex/skills/deep-research/SKILL.md` |
 | dictionary_maintenance | event_signals の artist/venue 辞書の定期メンテ | `.agents/skills/dictionary_maintenance/SKILL.md` |
 | gitignore_guard | 新規ファイルの `.gitignore` 判定と追記 | `.agents/skills/gitignore_guard/SKILL.md` |
-| repo_bootstrap | 責務ベースの最小構成整備 | `.agents/skills/repo_bootstrap/SKILL.md` |
+| repo-bootstrap | 責務ベースの最小構成整備 | `~/.codex/skills/repo-bootstrap/SKILL.md` |
 | sidebiz_sync | 確定事項の SideBiz ハブ同期 | `.agents/skills/sidebiz_sync/SKILL.md` |
-| bom_guard | UTF-8 BOM 問題の防止 | `.agents/skills/bom_guard/SKILL.md` |
+| bom-guard | UTF-8 BOM 問題の防止 | `~/.codex/skills/bom-guard/SKILL.md` |
 | spec-wallbat-to-task | 壁打ち → 仕様確定 → タスク化 | `.agents/skills/spec-wallbat-to-task/SKILL.md` |
-| task-add-and-triage | タスク追加 + バックログ棚卸し | `.agents/skills/task-add-and-triage/SKILL.md` |
+| task-add-and-triage | タスク追加 + バックログ棚卸し | `~/.codex/skills/task-add-and-triage/SKILL.md` |
 | generic-skill-template-sync | 汎用 Skill のテンプレリポ同期 | `.agents/skills/generic-skill-template-sync/SKILL.md` |

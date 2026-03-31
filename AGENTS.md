@@ -31,18 +31,18 @@
 - root `AGENTS.md` は repo-wide の常時ルールを定義し、Skill は必要時に task-specific procedure だけを追加する。
 - 常時ルールや設計原則を Skill へ重複展開しない。Skill 側で不足する repo-wide 判断は root `AGENTS.md` を参照する。
 - 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
-- active bundle の baseline と repo 固有追加 Skill の分類は `.agents/skills/README.md` を参照する。
-- `context_writeback`: 常設コンテキストへの反映が必要なときだけ使う。条件判定と更新先の選択手順は `.agents/skills/context_writeback/SKILL.md` を参照。
-- `design-review`: 設計相談や大きめ変更で、責務境界・依存方向・分割要否を点検したいときだけ使う。手順は `.agents/skills/design-review/SKILL.md` を参照。
-- `docs_governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。手順は `.agents/skills/docs_governance/SKILL.md` を参照。
-- `repo_bootstrap`: 新規リポジトリの最小構成を責務ベースで整備するときだけ使う。手順は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
-- `release_gate`: リリース可否判定、タグ提案、リリースノート作成、タグ付け実行を標準化したいときに使う。手順は `.agents/skills/release_gate/SKILL.md` を参照。
-- `task-add-and-triage`: 新規タスク追加後に実装粒度チェック（必要時は子タスク分割）と棚卸し/統合効率化/順番最適化を同一ターンで行いたいときに使う。手順は `.agents/skills/task-add-and-triage/SKILL.md` を参照。
-- `verification-before-completion`: 成功/完了を主張する前に fresh verification を必ず取りたいときに使う。手順は `.agents/skills/verification-before-completion/SKILL.md` を参照。
-- `search-first`: 実装前に既存解・外部ライブラリ・既存パターンを先に調べたいときに使う。手順は `.agents/skills/search-first/SKILL.md` を参照。
-- `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。手順は `.agents/skills/deep-research/SKILL.md` を参照。
-- `thread-contract-handoff`: スレッド開始時に目的・範囲・終了条件を固定し、終了時に handoff 要否をユーザー確認で決めたいときに使う。手順は `.agents/skills/thread-contract-handoff/SKILL.md` を参照。
-- `bom_guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。手順は `.agents/skills/bom_guard/SKILL.md` を参照。
+- `.agents/skills/README.md` には、この repo 固有 Skill だけを残す。
+- `context-writeback`: 常設コンテキストへの反映が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
+- `design-review`: 設計相談や大きめ変更で、責務境界・依存方向・分割要否を点検したいときだけ使う。共有 Skill として `~/.codex/skills` から使う。
+- `docs-governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
+- `repo-bootstrap`: 新規リポジトリの最小構成を責務ベースで整備するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
+- `release-gate`: リリース可否判定、タグ提案、リリースノート作成、タグ付け実行を標準化したいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `task-add-and-triage`: 新規タスク追加後に実装粒度チェック（必要時は子タスク分割）と棚卸し/統合効率化/順番最適化を同一ターンで行いたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `verification-before-completion`: 成功/完了を主張する前に fresh verification を必ず取りたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `search-first`: 実装前に既存解・外部ライブラリ・既存パターンを先に調べたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `thread-contract-handoff`: スレッド開始時に目的・範囲・終了条件を固定し、終了時に handoff 要否をユーザー確認で決めたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `bom-guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `dictionary_maintenance`: `event_signals` の artist/venue 辞書をメンテするときだけ使う。手順は `.agents/skills/dictionary_maintenance/SKILL.md` を参照。
 - `generic-skill-template-sync`: repo 固有 skill を汎用化できるか判定し、template へ逆輸入するか整理するときに使う。手順は `.agents/skills/generic-skill-template-sync/SKILL.md` を参照。
 - `gitignore_guard`: 新規作成・生成されたファイルを `.gitignore` へ入れるべきか判定するときだけ使う。手順は `.agents/skills/gitignore_guard/SKILL.md` を参照。
@@ -67,11 +67,11 @@
 
 ## Constant Context Rules
 
-- 推測禁止。条件を満たすときだけ `.agents/skills/context_writeback/SKILL.md` の手順で常設コンテキストへ反映する。
+- 推測禁止。条件を満たすときだけ `context-writeback` の手順で常設コンテキストへ反映する。
 
 ## Docs Governance
 
-- 重複記載を避け、会話は正本にしない。正本反映の判断は `.agents/skills/docs_governance/SKILL.md` の手順に従う。
+- 重複記載を避け、会話は正本にしない。正本反映の判断は `docs-governance` の手順に従う。
 
 ## Engineering Defaults
 
@@ -92,7 +92,7 @@
 
 ## Directory Guideline
 
-- 責務ベースで構成し、入口はルート `AGENTS.md` とする。`START_HERE.md` / `THREAD_START.md` は常設しない。詳細は `.agents/skills/repo_bootstrap/SKILL.md` を参照。
+- 責務ベースで構成し、入口はルート `AGENTS.md` とする。`START_HERE.md` / `THREAD_START.md` は常設しない。詳細は `repo-bootstrap` を参照。
 
 ## Local Extension (Optional)
 
@@ -107,6 +107,8 @@
 - データ取得元は公的公開統計を原則とする。
 - 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
 - 既存仕様の変更時は `docs/context/DECISIONS.md` を更新し、関連する `docs/spec_*.md` に反映する。
+- `.agents/skills/` には、この repo 固有の Skill だけを置く。
+- 共有 Skill は `~/.codex/skills` から使い、この repo へ複製しない。
 
 ### Subagent Policy
 

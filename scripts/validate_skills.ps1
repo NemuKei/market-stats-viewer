@@ -39,10 +39,6 @@ if (-not (Test-Path $skillRootPath)) {
 }
 
 $legacyUnderscoreNames = @(
-    "context_writeback",
-    "docs_governance",
-    "release_gate",
-    "repo_bootstrap",
     "sidebiz_sync"
 )
 

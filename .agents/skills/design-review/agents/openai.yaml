@@ -1,4 +1,0 @@
-interface:
-  display_name: "Design Review"
-  short_description: "Check boundaries, dependencies, and split points"
-  default_prompt: "Use $design-review to review this change for responsibility boundaries, side effects, and split points."
