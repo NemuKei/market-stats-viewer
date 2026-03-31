@@ -375,6 +375,41 @@ class KstyleMusicSourceTests(unittest.TestCase):
             ],
         )
 
+    def test_extract_occurrences_skips_foreign_blocks_in_mixed_article(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "アジアツアー開催",
+            "<日時・会場>",
+            "〇東京",
+            "2026年5月1日(金)",
+            "会場:Kアリーナ横浜",
+            "〇ソウル",
+            "2026年5月3日(日)",
+            "会場:KSPO DOME",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [("2026-05-01", "Kアリーナ横浜")],
+        )
+
+    def test_extract_occurrences_does_not_treat_generic_text_as_venue(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "イベント概要",
+            "【日時】",
+            "2026年5月1日(金)",
+            "先着受付",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(occurrences, [])
+
 
 if __name__ == "__main__":
     unittest.main()
