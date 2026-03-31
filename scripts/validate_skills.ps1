@@ -38,9 +38,7 @@ if (-not (Test-Path $skillRootPath)) {
     throw "skill root not found: $skillRootPath"
 }
 
-$legacyUnderscoreNames = @(
-    "sidebiz_sync"
-)
+$legacyUnderscoreNames = @()
 
 $ok = 0
 $warn = 0
