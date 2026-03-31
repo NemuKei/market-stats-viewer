@@ -268,6 +268,9 @@ class KstyleMusicSource(SignalSource):
             "【会場】",
             "【開催場所】",
             "【場所】",
+            "<会場>",
+            "<開催場所>",
+            "<場所>",
             "＜会場＞",
             "＜開催場所＞",
             "＜場所＞",
@@ -947,28 +950,34 @@ class KstyleMusicSource(SignalSource):
             ):
                 pref_venue_match = None
             if pref_venue_match:
-                current_venue = self._normalize_venue_name(
+                venue_candidate = self._normalize_venue_name(
                     pref_venue_match.group("venue")
                 )
-                current_pref = (
-                    self._normalize_pref_name(pref_venue_match.group("pref"))
-                    or self._pref_from_official_venue(current_venue)
-                    or self._pref_from_text(current_venue)
-                )
-                if pending_dates:
-                    self._flush_pending_dates(
-                        occurrences,
-                        pending_dates,
-                        current_venue,
-                        current_pref,
+                if not self._is_non_venue_candidate(venue_candidate):
+                    current_venue = venue_candidate
+                    current_pref = (
+                        self._normalize_pref_name(pref_venue_match.group("pref"))
+                        or self._pref_from_official_venue(current_venue)
+                        or self._pref_from_text(current_venue)
                     )
+                    if pending_dates:
+                        self._flush_pending_dates(
+                            occurrences,
+                            pending_dates,
+                            current_venue,
+                            current_pref,
+                        )
 
             venue_on_line = self._extract_venue(normalized_line)
             if venue_on_line:
-                if not foreign_block and not self._is_overseas_occurrence(
-                    venue_on_line,
-                    current_pref,
-                    normalized_line,
+                if (
+                    not foreign_block
+                    and not self._is_non_venue_candidate(venue_on_line)
+                    and not self._is_overseas_occurrence(
+                        venue_on_line,
+                        current_pref,
+                        normalized_line,
+                    )
                 ):
                     current_venue = venue_on_line
                     if not pref_venue_match:
@@ -1162,6 +1171,8 @@ class KstyleMusicSource(SignalSource):
     def _is_non_venue_candidate(self, text: str) -> bool:
         if self._is_non_venue_text(text):
             return True
+        if self._is_generic_event_label(text):
+            return True
         if re.fullmatch(r"[<>＞＜]+", text.strip()):
             return True
         if any(term in text for term in self.NON_EVENT_DATE_TERMS):
@@ -1169,6 +1180,19 @@ class KstyleMusicSource(SignalSource):
         if any(term in text for term in self._VENUE_LINE_REJECT_TERMS):
             return True
         return False
+
+    def _is_generic_event_label(self, value: str | None) -> bool:
+        token = self._normalize_text(value).upper()
+        token = re.sub(r"^[\s★☆♪○〇●•・◆■□▲△▽▼▶▷►→※＊*]+", "", token)
+        token = re.sub(r"[\s!！?？・/／:：~〜～\-]+", " ", token).strip()
+        if not token:
+            return False
+        return bool(
+            re.fullmatch(
+                r"(?:(?:SPECIAL|ONEMAN|FAN|POP UP|POP-UP|LIVE|WORLD|JAPAN|ARENA|DOME|TOUR|CONCERT|SHOWCASE|EVENT|PARTY|STAGE)\s+)*(?:LIVE|EVENT|CONCERT|SHOWCASE|FANMEETING|PARTY|STAGE)",
+                token,
+            )
+        )
 
     def _has_foreign_location_hint(self, value: str | None) -> bool:
         text = self._normalize_text(value).upper()

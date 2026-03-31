@@ -410,6 +410,50 @@ class KstyleMusicSourceTests(unittest.TestCase):
 
         self.assertEqual(occurrences, [])
 
+    def test_extract_occurrences_does_not_treat_decorated_live_label_as_venue(
+        self,
+    ) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "【日時】",
+            "2026年4月17日",
+            "★LIVE",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(occurrences, [])
+
+    def test_extract_occurrences_uses_later_ascii_venue_section(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "「2026 BXB SPECIAL LIVE IN JAPAN The Last Story」",
+            "<日時>",
+            "★FREE SHOWCASE",
+            "2026年4月17日（金）",
+            "1部 開演15:00（開場14:30）",
+            "★LIVE",
+            "2026年4月17日（金）",
+            "2部 開演19:00（開場18:30）",
+            "2026年4月18日（土）、4月19日（日）",
+            "1部 開演15:00（開場14:30） 2部 開演19:00（開場18:30）",
+            "<会場>",
+            "FCLIVE TOKYO HALL（東京都新宿区大久保2-18-14）",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [
+                ("2026-04-17", "FCLIVE TOKYO HALL(東京都新宿区大久保2-18-14)"),
+                ("2026-04-18", "FCLIVE TOKYO HALL(東京都新宿区大久保2-18-14)"),
+                ("2026-04-19", "FCLIVE TOKYO HALL(東京都新宿区大久保2-18-14)"),
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
