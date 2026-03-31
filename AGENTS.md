@@ -41,6 +41,7 @@
 - `verification-before-completion`: 成功/完了を主張する前に fresh verification を必ず取りたいときに使う。手順は `.agents/skills/verification-before-completion/SKILL.md` を参照。
 - `search-first`: 実装前に既存解・外部ライブラリ・既存パターンを先に調べたいときに使う。手順は `.agents/skills/search-first/SKILL.md` を参照。
 - `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。手順は `.agents/skills/deep-research/SKILL.md` を参照。
+- `thread-contract-handoff`: スレッド開始時に目的・範囲・終了条件を固定し、終了時に handoff 要否をユーザー確認で決めたいときに使う。手順は `.agents/skills/thread-contract-handoff/SKILL.md` を参照。
 - `bom_guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。手順は `.agents/skills/bom_guard/SKILL.md` を参照。
 - `dictionary_maintenance`: `event_signals` の artist/venue 辞書をメンテするときだけ使う。手順は `.agents/skills/dictionary_maintenance/SKILL.md` を参照。
 - `generic-skill-template-sync`: repo 固有 skill を汎用化できるか判定し、template へ逆輸入するか整理するときに使う。手順は `.agents/skills/generic-skill-template-sync/SKILL.md` を参照。
