@@ -101,14 +101,18 @@ uv run streamlit run app.py
   - `data/meta_tcd.json`
 
 ## 自動更新スケジュール
-- Workflow: `.github/workflows/update_data.yml`
-- Trigger:
+- Core統計 Workflow: `.github/workflows/update_data.yml`
   - `schedule`: `0 3 * * 1`（毎週月曜 03:00 UTC / 日本時間 月曜 12:00）
   - `workflow_dispatch`: 手動実行可
-- 実行順:
-  1. `uv run python -m scripts.update_data`
-  2. `uv run python -m scripts.update_tcd_data`
-  3. `uv run python -m scripts.update_events_data`
+  - 実行順:
+    1. `uv run python -m scripts.update_data`
+    2. `uv run python -m scripts.update_tcd_data`
+- 会場公式イベント Workflow: `.github/workflows/update_events_official.yml`
+  - `schedule`: `0 4 */3 * *`（各月1日から3日刻みで 04:00 UTC / 日本時間 13:00）
+  - `workflow_dispatch`: 手動実行可
+  - 実行順:
+    1. `uv run python -m scripts.update_events_data --skip-artist-inference`
+    2. `uv run python -m scripts.build_events_artist_inferred`
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。

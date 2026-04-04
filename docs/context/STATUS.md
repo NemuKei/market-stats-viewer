@@ -1,8 +1,9 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-03-11
+最終更新: 2026-04-04
 
 ## Done（直近完了）
+- 会場公式イベント更新の定期実行を週次から `3日ごと目安` へ変更した。`update_events_official.yml` は `cron: 0 4 */3 * *` に更新し、会場公式ビューの注記も `毎週` から `3日ごとを目安に` へ変更した。GitHub Actions cron では厳密72時間間隔を表現できないため、day-of-month step による運用とした
 - `ヤンマースタジアム長居` の公式導線を再評価した。2026-03-11 時点で `https://www.nagai-park.jp/stadium/` とトップ `https://www.nagai-park.jp/` はともに HTTP 500 の WordPress fatal error を返し、代替の安定した月次 schedule 導線も確認できなかったため、公式 source 追加は引き続き保留、Ticketjam 補完継続と判断した
 - Release assets 公開workflowの定期監視を実施した。2026-03-11 時点の直近10 run は `success 9 / skipped 1 / failure 0` で、最新成功 run は `22931909506`。Release `external-events-latest` の asset `events.sqlite / event_signals.sqlite / manifest.json` は `2026-03-11T01:15:01Z` 更新を確認し、即時の手動再公開は不要と判断した
 - `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加した。`edion_arena_osaka_pdf_schedule` で公式トップページ上の `monthlyYYMM.pdf` を取得し、第1競技場のみを `events.sqlite` へ反映するよう更新した。ローカル実行では `15件 fetched`（大相撲三月場所 `15日程`）を確認し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた

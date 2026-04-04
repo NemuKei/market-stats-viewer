@@ -3,7 +3,7 @@ name: Update events official data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 4 * * 1" # 毎週月曜 04:00 UTC（日本時間 月曜13:00）
+    - cron: "0 4 */3 * *" # 各月1日から3日刻みで 04:00 UTC（日本時間 13:00）
 
 concurrency:
   group: repo-write-${{ github.ref }}

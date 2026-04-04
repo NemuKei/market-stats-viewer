@@ -54,7 +54,8 @@
 - `update_data.yml` は core統計データ更新のみを担当する（会場公式イベント更新を含めない）。
 - 会場公式イベント更新は `update_events_official.yml` へ分離する。
   - 実行: `python -m scripts.update_events_data --skip-artist-inference` → `python -m scripts.build_events_artist_inferred`
-  - 定期実行: `cron: 0 4 * * 1`（毎週月曜 04:00 UTC）
+  - 定期実行: `cron: 0 4 */3 * *`（各月1日から3日刻みで 04:00 UTC / 日本時間 13:00）
+  - GitHub Actions の cron は「厳密に72時間ごと」を表現できないため、実運用は day-of-month step による「3日ごと目安」とする。
 - 目的: 失敗分離（events側の障害でcore統計更新を止めない）と運用負荷の分離。
 
 ## ICD/TA Additions
