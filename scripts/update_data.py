@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -35,8 +36,8 @@ META_PATH = DATA_DIR / "meta.json"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 MARKET_STATS_TABLE_NAME = "market_stats"
 STAY_FACILITY_OCCUPANCY_TABLE_NAME = "stay_facility_occupancy"
-FACILITY_OCCUPANCY_MONTHLY_SHEET_NAME = "4-2"
-PIPELINE_VERSION = 3
+PIPELINE_VERSION = 4
+MONTHLY_SHEET_RE = re.compile(r"^(?P<legacy>旧)?(?P<prefix>[1-8])-(?P<suffix>\d+)$")
 
 
 def has_required_facility_occupancy_schema(sqlite_path: Path) -> bool:
@@ -108,6 +109,106 @@ def find_ts_table_xlsx_url(html: str, base_url: str) -> str:
     return links[0][0]
 
 
+def fetch_html_text(url: str, timeout_sec: int = 60) -> str:
+    response = requests.get(url, timeout=timeout_sec)
+    response.raise_for_status()
+
+    # 観光庁ページは requests が ISO-8859-1 と誤判定することがある。
+    if (response.encoding or "").lower() == "iso-8859-1":
+        apparent = response.apparent_encoding
+        if apparent:
+            response.encoding = apparent
+
+    return response.text
+
+
+def find_monthly_sheet_name(workbook, prefix: str, legacy: bool = False) -> str:
+    matches = []
+    for name in workbook.sheetnames:
+        match = MONTHLY_SHEET_RE.match(name)
+        if match is None:
+            continue
+        if match.group("prefix") != prefix:
+            continue
+        if bool(match.group("legacy")) != legacy:
+            continue
+        matches.append((int(match.group("suffix")), name))
+
+    if not matches:
+        raise KeyError(
+            f"Monthly sheet with prefix '{prefix}-' was not found. "
+            f"available={workbook.sheetnames}"
+        )
+
+    matches.sort(key=lambda item: item[0], reverse=legacy)
+    return matches[0][1]
+
+
+def find_optional_monthly_sheet_name(
+    workbook, prefix: str, legacy: bool = False
+) -> str | None:
+    try:
+        return find_monthly_sheet_name(workbook, prefix=prefix, legacy=legacy)
+    except KeyError:
+        return None
+
+
+def build_market_stats_from_workbook(workbook) -> pd.DataFrame:
+    data_frames = []
+
+    current_total = find_monthly_sheet_name(workbook, "1", legacy=False)
+    current_jp = find_monthly_sheet_name(workbook, "2", legacy=False)
+    current_foreign = find_monthly_sheet_name(workbook, "3", legacy=False)
+    data_frames.append(
+        build_raw_from_three_sheets(
+            ws_total=workbook[current_total],
+            ws_jp=workbook[current_jp],
+            ws_foreign=workbook[current_foreign],
+            make_national_sum=True,
+        )
+    )
+
+    legacy_total = find_optional_monthly_sheet_name(workbook, "1", legacy=True)
+    legacy_jp = find_optional_monthly_sheet_name(workbook, "2", legacy=True)
+    legacy_foreign = find_optional_monthly_sheet_name(workbook, "3", legacy=True)
+    if legacy_total and legacy_jp and legacy_foreign:
+        data_frames.append(
+            build_raw_from_three_sheets(
+                ws_total=workbook[legacy_total],
+                ws_jp=workbook[legacy_jp],
+                ws_foreign=workbook[legacy_foreign],
+                make_national_sum=True,
+            )
+        )
+
+    merged = pd.concat(data_frames, ignore_index=True)
+    merged = merged.drop_duplicates(subset=["ym", "pref_code"], keep="first")
+    return merged.sort_values(["ym", "pref_code"]).reset_index(drop=True)
+
+
+def build_facility_occupancy_from_workbook(workbook) -> pd.DataFrame:
+    data_frames = []
+
+    current_sheet = find_monthly_sheet_name(workbook, "4", legacy=False)
+    data_frames.append(
+        parse_facility_occupancy_monthly_sheet(workbook[current_sheet])
+    )
+
+    legacy_sheet = find_optional_monthly_sheet_name(workbook, "4", legacy=True)
+    if legacy_sheet:
+        data_frames.append(
+            parse_facility_occupancy_monthly_sheet(workbook[legacy_sheet])
+        )
+
+    merged = pd.concat(data_frames, ignore_index=True)
+    merged = merged.drop_duplicates(
+        subset=["ym", "pref_code", "facility_type"], keep="first"
+    )
+    return merged.sort_values(["ym", "pref_code", "facility_type"]).reset_index(
+        drop=True
+    )
+
+
 def load_meta() -> dict:
     if not META_PATH.exists():
         return {}
@@ -168,7 +269,7 @@ def build_sqlite(
 def main() -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    html = requests.get(SOURCE_PAGE_URL, timeout=60).text
+    html = fetch_html_text(SOURCE_PAGE_URL, timeout_sec=60)
     xlsx_url = find_ts_table_xlsx_url(html, SOURCE_PAGE_URL)
 
     with tempfile.TemporaryDirectory() as td:
@@ -187,21 +288,8 @@ def main() -> int:
 
         wb = load_workbook(tmp_xlsx, read_only=False, data_only=True)
         try:
-            # 推移表の想定シート（今回MVPはこの3つに固定）
-            ws_total = wb["1-2"]
-            ws_jp = wb["2-2"]
-            ws_foreign = wb["3-2"]
-
-            df = build_raw_from_three_sheets(
-                ws_total=ws_total,
-                ws_jp=ws_jp,
-                ws_foreign=ws_foreign,
-                make_national_sum=True,
-            )
-            ws_facility_occupancy = wb[FACILITY_OCCUPANCY_MONTHLY_SHEET_NAME]
-            df_facility_occupancy = parse_facility_occupancy_monthly_sheet(
-                ws_facility_occupancy
-            )
+            df = build_market_stats_from_workbook(wb)
+            df_facility_occupancy = build_facility_occupancy_from_workbook(wb)
         finally:
             wb.close()
 

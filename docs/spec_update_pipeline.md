@@ -12,9 +12,13 @@
 ## 処理フロー（MVP）
 1. 取得元ページのHTMLを取得
 2. 推移表ExcelのURLを抽出
+   - HTMLは実レスポンスの文字コードを補正し、日本語リンク文字列の判定を壊さないようにする
+   - `推移表` を含む Excel リンクを優先する
 3. Excelをダウンロード
 4. sha256 を計算し、前回値と比較（差分が無ければ終了）
-5. Excelを読み込み、想定3シート（`1-2/2-2/3-2`）をパースしてRAW化
+5. Excelを読み込み、月別推移の3シート（`1-* / 2-* / 3-*`）をパースしてRAW化
+   - 現行ファイルは当年分を `1-1/2-1/3-1`、過去年分を `旧1-2/旧2-2/旧3-2` に分けている
+   - シートは固定名ではなく、数値プレフィックスで current / legacy の両方を解決して結合する
    - 読み込みは openpyxl の `load_workbook(..., read_only=False, data_only=True)` を採用する
    - `read_only=False` は、セル参照型のパースで性能劣化が出るケースを避ける目的
 6. 全国（00）は 01〜47 合算で生成
@@ -72,7 +76,9 @@
 
 
 ## Addendum (2026-02-18) Stay Facility Occupancy
-- `python -m scripts.update_data` now also parses sheet `4-2` (monthly facility-type occupancy).
+- `python -m scripts.update_data` now also parses sheet `4-*` (monthly facility-type occupancy).
+- Current workbook uses `4-1` for current year and `旧4-2` for historical months.
+- Update flow merges both sheets into one monthly series.
 - A new sqlite table `stay_facility_occupancy` is rebuilt on each successful update.
 - No-op condition is `source_sha256` + `pipeline_version` match.
 - `meta.json` stores occupancy row count and min/max ym.
