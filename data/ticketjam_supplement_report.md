@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1714
-- additional_unique_schedules: 11
-- overlap_unique_schedules: 2
-- noise_rate: 0.1538
-- out_of_scope_rate: 0.9924
-- ticketjam_category_counts: {"その他": 135, "コンサート": 1200, "野球": 379}
+- ticketjam_unique_schedules: 1684
+- additional_unique_schedules: 9
+- overlap_unique_schedules: 1
+- noise_rate: 0.1
+- out_of_scope_rate: 0.9941
+- ticketjam_category_counts: {"その他": 126, "コンサート": 1183, "野球": 375}
 
 ## Artist Gap
 
@@ -14,9 +14,9 @@
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | S | Mrs. GREEN APPLE | 0 | 0 | 0 | 0.0000 |  |
 | S | サザンオールスターズ | 0 | 0 | 0 | 0.0000 |  |
-| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 2 | 0 | 2 | 1.0000 | MUFGスタジアム |
+| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 1 | 0 | 1 | 1.0000 | MUFGスタジアム |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
-| B | 福山雅治 | 7 | 7 | 0 | 0.0000 | あなぶきアリーナ香川, 日本武道館, 朱鷺メッセ 新潟コンベンションセンター, 真駒内セキスイハイムアイスアリーナ |
+| B | 福山雅治 | 6 | 6 | 0 | 0.0000 | あなぶきアリーナ香川, 日本武道館, 朱鷺メッセ 新潟コンベンションセンター, 真駒内セキスイハイムアイスアリーナ |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
 | B | EXILE | 0 | 0 | 0 | 0.0000 |  |
 | B | GLAY | 0 | 0 | 0 | 0.0000 |  |
@@ -25,14 +25,14 @@
 
 | venue_name | ticketjam_hits | additional_hits | overlap_hits | noise_rate | official_fetch_candidate | official_gap_reason |
 | --- | ---: | ---: | ---: | ---: | --- | --- |
-| ヤンマースタジアム長居 | 4 | 4 | 0 | 0.0000 | 1 | weak_schedule |
+| ヤンマースタジアム長居 | 3 | 3 | 0 | 0.0000 | 1 | weak_schedule |
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-04-11T05:20:34Z
+- ticketjam_source_updated_at_utc: 2026-04-12T05:47:27Z
 - starto_source_updated_at_utc: 2026-04-01T13:01:45Z
 - kstyle_source_updated_at_utc: 2026-04-10T12:50:22Z
-- events_db_modified_at_utc: 2026-04-11T05:03:55Z
+- events_db_modified_at_utc: 2026-04-12T05:30:47Z
 
 ## Methodology
 

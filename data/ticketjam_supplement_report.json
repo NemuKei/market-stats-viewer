@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-04-11T05:20:34Z",
+    "ticketjam_source_updated_at_utc": "2026-04-12T05:47:27Z",
     "starto_source_updated_at_utc": "2026-04-01T13:01:45Z",
     "kstyle_source_updated_at_utc": "2026-04-10T12:50:22Z",
-    "events_db_modified_at_utc": "2026-04-11T05:03:55Z"
+    "events_db_modified_at_utc": "2026-04-12T05:30:47Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1714,
+    "ticketjam_unique_schedules": 1684,
     "baseline_news_unique_schedules": 333,
     "baseline_official_unique_schedules": 636,
     "ticketjam_category_counts": {
-      "その他": 135,
-      "コンサート": 1200,
-      "野球": 379
+      "その他": 126,
+      "コンサート": 1183,
+      "野球": 375
     },
-    "in_scope_unique_schedules": 13,
-    "artist_scope_unique_schedules": 9,
-    "venue_scope_unique_schedules": 4,
-    "additional_unique_schedules": 11,
-    "overlap_unique_schedules": 2,
-    "noise_rate": 0.1538,
-    "out_of_scope_unique_schedules": 1701,
-    "out_of_scope_rate": 0.9924
+    "in_scope_unique_schedules": 10,
+    "artist_scope_unique_schedules": 7,
+    "venue_scope_unique_schedules": 3,
+    "additional_unique_schedules": 9,
+    "overlap_unique_schedules": 1,
+    "noise_rate": 0.1,
+    "out_of_scope_unique_schedules": 1674,
+    "out_of_scope_rate": 0.9941
   },
   "artist_gap": {
     "watch_count": 9,
@@ -51,15 +51,15 @@
       {
         "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
         "tier": "A",
-        "ticketjam_hits": 2,
+        "ticketjam_hits": 1,
         "additional_hits": 0,
-        "overlap_hits": 2,
+        "overlap_hits": 1,
         "noise_rate": 1.0,
         "venues": [
           "MUFGスタジアム"
         ],
         "category_counts": {
-          "コンサート": 2
+          "コンサート": 1
         }
       },
       {
@@ -75,8 +75,8 @@
       {
         "artist_name": "福山雅治",
         "tier": "B",
-        "ticketjam_hits": 7,
-        "additional_hits": 7,
+        "ticketjam_hits": 6,
+        "additional_hits": 6,
         "overlap_hits": 0,
         "noise_rate": 0.0,
         "venues": [
@@ -86,7 +86,7 @@
           "真駒内セキスイハイムアイスアリーナ"
         ],
         "category_counts": {
-          "コンサート": 7
+          "コンサート": 6
         }
       },
       {
@@ -126,8 +126,8 @@
     "rows": [
       {
         "venue_name": "ヤンマースタジアム長居",
-        "ticketjam_hits": 4,
-        "additional_hits": 4,
+        "ticketjam_hits": 3,
+        "additional_hits": 3,
         "overlap_hits": 0,
         "noise_rate": 0.0,
         "artists": [
@@ -135,7 +135,7 @@
           "レッドハリケーンズ大阪"
         ],
         "category_counts": {
-          "その他": 2,
+          "その他": 1,
           "コンサート": 2
         },
         "ticketjam_watch": true,
