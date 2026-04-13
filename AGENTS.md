@@ -40,6 +40,7 @@
 - `task-add-and-triage`: 新規タスク追加後に実装粒度チェック（必要時は子タスク分割）と棚卸し/統合効率化/順番最適化を同一ターンで行いたいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `verification-before-completion`: 成功/完了を主張する前に fresh verification を必ず取りたいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `search-first`: 実装前に既存解・外部ライブラリ・既存パターンを先に調べたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `missing-capability-proposal`: 実行中または verify 中に未導入のツール、ライブラリ、Skill、preset が不足能力の原因になったときに、導入提案の要否を短く整理したいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `thread-contract-handoff`: スレッド開始時に目的・範囲・終了条件を固定し、終了時に handoff 要否をユーザー確認で決めたいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `bom-guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
@@ -76,6 +77,9 @@
 ## Engineering Defaults
 
 - デフォルトは単純さを優先する（YAGNI / KISS / DRY）。後方互換の shim・fallback は、明確な運用要件がある場合のみ追加し、目的・適用範囲・廃止条件を記載する。
+- 実行中または verify 中に、未導入のツール、ライブラリ、Skill、preset が不足能力の原因になっている場合は、短い導入提案をしてよい。提案すべきか迷う場合は、提案を抑えるより、不足内容と候補を短く示す方を優先する。
+- 新しい外部ツールや依存ライブラリを提案する前に、既存手段で代替できないか確認する。外部導入候補が残る場合は、`security-best-practices` が使える環境ではそれを使い、使えない場合でも供給網、権限、install script、version 固定を確認する。
+- 導入提案を見送られた場合は、少なくとも `not-now`、`policy-reject`、`security-reject`、`cost-reject` のいずれかで理由を整理する。`policy-reject` と `security-reject` は、明示的な再検討があるまで再提案しない。
 - ビジネスルールは UI / CLI / handler / transport 層へ直置きせず、責務が明確な層へ寄せる。
 - 外部 API / DB / file I/O などの副作用は境界に隔離し、ドメイン判断と混在させない。
 - 新規コードは継承より composition を優先し、interface / abstraction は現実の差し替え点またはテスト上の必要がある場合に限る。

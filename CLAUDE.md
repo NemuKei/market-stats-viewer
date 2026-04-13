@@ -52,6 +52,9 @@ docs/
 - YAGNI / KISS / DRY
 - 後方互換 shim は明確な運用要件がある場合のみ
 - 変更は最小差分、ロールバック可能性を維持
+- 実行中または verify 中に、未導入のツール、ライブラリ、Skill、preset が不足能力の原因になっている場合は、短い導入提案をしてよい。提案すべきか迷う場合は、提案を抑えるより、不足内容と候補を短く示す方を優先する。
+- 新しい外部ツールや依存ライブラリを提案する前に、既存手段で代替できないか確認する。外部導入候補が残る場合は、`security-best-practices` が使える環境ではそれを使い、使えない場合でも供給網、権限、install script、version 固定を確認する。
+- 導入提案を見送られた場合は、少なくとも `not-now`、`policy-reject`、`security-reject`、`cost-reject` のいずれかで理由を整理する。`policy-reject` と `security-reject` は、明示的な再検討があるまで再提案しない。
 
 ## Owner Profile
 - Language: 日本語
@@ -85,6 +88,7 @@ docs/
 | release-gate | リリース可否判定、タグ提案、リリースノート整理 | `~/.codex/skills/release-gate/SKILL.md` |
 | verification-before-completion | 完了主張前の fresh verification | `~/.codex/skills/verification-before-completion/SKILL.md` |
 | search-first | 実装前の既存解・既存パターン調査 | `~/.codex/skills/search-first/SKILL.md` |
+| missing-capability-proposal | 実行中に見つかった不足能力の導入提案整理 | `~/.codex/skills/missing-capability-proposal/SKILL.md` |
 | deep-research | 複数ソース比較と出典付き調査 | `~/.codex/skills/deep-research/SKILL.md` |
 | dictionary_maintenance | event_signals の artist/venue 辞書の定期メンテ | `.agents/skills/dictionary_maintenance/SKILL.md` |
 | gitignore_guard | 新規ファイルの `.gitignore` 判定と追記 | `.agents/skills/gitignore_guard/SKILL.md` |
