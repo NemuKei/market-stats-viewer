@@ -152,7 +152,7 @@ def parse_period_metadata(text: str) -> tuple[str, str, str]:
         period_key = f"{year}Q{quarter}"
         return period_label, period_key, release_type
 
-    m_annual = re.search(r"(20\d{2})年年間", normalized)
+    m_annual = re.search(r"(20\d{2})年(?:（令和\d+年）)?(?:年間|暦年)", normalized)
     if m_annual:
         year = m_annual.group(1)
         period_label = f"{year}年年間"
@@ -170,7 +170,7 @@ def detect_period_metadata_from_df(df: pd.DataFrame) -> tuple[str, str, str]:
             text = normalize_text(df.iat[r, c])
             if "年" not in text:
                 continue
-            if "期" not in text and "年間" not in text:
+            if "期" not in text and "年間" not in text and "暦年" not in text:
                 continue
             try:
                 return parse_period_metadata(text)
