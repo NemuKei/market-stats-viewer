@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-04-21T05:51:38Z",
+    "ticketjam_source_updated_at_utc": "2026-04-22T05:49:15Z",
     "starto_source_updated_at_utc": "2026-04-16T13:12:04Z",
-    "kstyle_source_updated_at_utc": "2026-04-20T13:11:41Z",
-    "events_db_modified_at_utc": "2026-04-21T05:34:38Z"
+    "kstyle_source_updated_at_utc": "2026-04-22T01:31:53Z",
+    "events_db_modified_at_utc": "2026-04-22T05:33:16Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1557,
-    "baseline_news_unique_schedules": 355,
+    "ticketjam_unique_schedules": 1580,
+    "baseline_news_unique_schedules": 353,
     "baseline_official_unique_schedules": 663,
     "ticketjam_category_counts": {
-      "その他": 124,
-      "コンサート": 1081,
-      "野球": 352
+      "その他": 126,
+      "コンサート": 1095,
+      "野球": 359
     },
-    "in_scope_unique_schedules": 8,
-    "artist_scope_unique_schedules": 5,
+    "in_scope_unique_schedules": 9,
+    "artist_scope_unique_schedules": 6,
     "venue_scope_unique_schedules": 3,
     "additional_unique_schedules": 8,
-    "overlap_unique_schedules": 0,
-    "noise_rate": 0.0,
-    "out_of_scope_unique_schedules": 1549,
-    "out_of_scope_rate": 0.9949
+    "overlap_unique_schedules": 1,
+    "noise_rate": 0.1111,
+    "out_of_scope_unique_schedules": 1571,
+    "out_of_scope_rate": 0.9943
   },
   "artist_gap": {
     "watch_count": 9,
@@ -49,17 +49,21 @@
         "category_counts": {}
       },
       {
-        "artist_name": "B'z",
+        "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
         "tier": "A",
-        "ticketjam_hits": 0,
+        "ticketjam_hits": 1,
         "additional_hits": 0,
-        "overlap_hits": 0,
-        "noise_rate": 0.0,
-        "venues": [],
-        "category_counts": {}
+        "overlap_hits": 1,
+        "noise_rate": 1.0,
+        "venues": [
+          "バンテリンドームナゴヤ"
+        ],
+        "category_counts": {
+          "コンサート": 1
+        }
       },
       {
-        "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
+        "artist_name": "B'z",
         "tier": "A",
         "ticketjam_hits": 0,
         "additional_hits": 0,
