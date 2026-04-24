@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-04-23T05:53:43Z",
+    "ticketjam_source_updated_at_utc": "2026-04-24T05:58:24Z",
     "starto_source_updated_at_utc": "2026-04-16T13:12:04Z",
-    "kstyle_source_updated_at_utc": "2026-04-22T13:06:31Z",
-    "events_db_modified_at_utc": "2026-04-23T05:37:52Z"
+    "kstyle_source_updated_at_utc": "2026-04-23T13:05:53Z",
+    "events_db_modified_at_utc": "2026-04-24T05:42:22Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1595,
-    "baseline_news_unique_schedules": 332,
+    "ticketjam_unique_schedules": 1614,
+    "baseline_news_unique_schedules": 331,
     "baseline_official_unique_schedules": 665,
     "ticketjam_category_counts": {
-      "その他": 128,
-      "コンサート": 1099,
-      "野球": 368
+      "その他": 134,
+      "コンサート": 1113,
+      "野球": 367
     },
-    "in_scope_unique_schedules": 9,
-    "artist_scope_unique_schedules": 6,
+    "in_scope_unique_schedules": 11,
+    "artist_scope_unique_schedules": 8,
     "venue_scope_unique_schedules": 3,
-    "additional_unique_schedules": 8,
-    "overlap_unique_schedules": 1,
-    "noise_rate": 0.1111,
-    "out_of_scope_unique_schedules": 1586,
-    "out_of_scope_rate": 0.9944
+    "additional_unique_schedules": 9,
+    "overlap_unique_schedules": 2,
+    "noise_rate": 0.1818,
+    "out_of_scope_unique_schedules": 1603,
+    "out_of_scope_rate": 0.9932
   },
   "artist_gap": {
     "watch_count": 9,
@@ -51,15 +51,17 @@
       {
         "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
         "tier": "A",
-        "ticketjam_hits": 1,
-        "additional_hits": 0,
-        "overlap_hits": 1,
-        "noise_rate": 1.0,
+        "ticketjam_hits": 3,
+        "additional_hits": 1,
+        "overlap_hits": 2,
+        "noise_rate": 0.6667,
         "venues": [
-          "バンテリンドームナゴヤ"
+          "バンテリンドームナゴヤ",
+          "京セラドーム大阪",
+          "東京ドーム"
         ],
         "category_counts": {
-          "コンサート": 1
+          "コンサート": 3
         }
       },
       {
