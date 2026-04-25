@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1614
-- additional_unique_schedules: 9
-- overlap_unique_schedules: 2
-- noise_rate: 0.1818
+- ticketjam_unique_schedules: 1623
+- additional_unique_schedules: 8
+- overlap_unique_schedules: 3
+- noise_rate: 0.2727
 - out_of_scope_rate: 0.9932
-- ticketjam_category_counts: {"その他": 134, "コンサート": 1113, "野球": 367}
+- ticketjam_category_counts: {"その他": 135, "コンサート": 1118, "野球": 370}
 
 ## Artist Gap
 
@@ -14,9 +14,9 @@
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | S | Mrs. GREEN APPLE | 0 | 0 | 0 | 0.0000 |  |
 | S | サザンオールスターズ | 0 | 0 | 0 | 0.0000 |  |
-| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 3 | 1 | 2 | 0.6667 | バンテリンドームナゴヤ, 京セラドーム大阪, 東京ドーム |
+| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 4 | 1 | 3 | 0.7500 | バンテリンドームナゴヤ, 京セラドーム大阪, 東京ドーム |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
-| B | 福山雅治 | 5 | 5 | 0 | 0.0000 | あなぶきアリーナ香川, 日本武道館, 真駒内セキスイハイムアイスアリーナ |
+| B | 福山雅治 | 4 | 4 | 0 | 0.0000 | あなぶきアリーナ香川, 日本武道館, 真駒内セキスイハイムアイスアリーナ |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
 | B | EXILE | 0 | 0 | 0 | 0.0000 |  |
 | B | GLAY | 0 | 0 | 0 | 0.0000 |  |
@@ -29,10 +29,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-04-24T05:58:24Z
+- ticketjam_source_updated_at_utc: 2026-04-25T05:37:08Z
 - starto_source_updated_at_utc: 2026-04-16T13:12:04Z
-- kstyle_source_updated_at_utc: 2026-04-23T13:05:53Z
-- events_db_modified_at_utc: 2026-04-24T05:42:22Z
+- kstyle_source_updated_at_utc: 2026-04-25T01:29:44Z
+- events_db_modified_at_utc: 2026-04-25T05:21:11Z
 
 ## Methodology
 
