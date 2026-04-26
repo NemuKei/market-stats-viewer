@@ -2,19 +2,19 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-04-25T05:37:08Z",
+    "ticketjam_source_updated_at_utc": "2026-04-26T06:01:48Z",
     "starto_source_updated_at_utc": "2026-04-16T13:12:04Z",
-    "kstyle_source_updated_at_utc": "2026-04-25T01:29:44Z",
-    "events_db_modified_at_utc": "2026-04-25T05:21:11Z"
+    "kstyle_source_updated_at_utc": "2026-04-26T01:51:33Z",
+    "events_db_modified_at_utc": "2026-04-26T05:45:57Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1623,
+    "ticketjam_unique_schedules": 1613,
     "baseline_news_unique_schedules": 308,
-    "baseline_official_unique_schedules": 665,
+    "baseline_official_unique_schedules": 671,
     "ticketjam_category_counts": {
-      "その他": 135,
-      "コンサート": 1118,
-      "野球": 370
+      "その他": 133,
+      "コンサート": 1101,
+      "野球": 379
     },
     "in_scope_unique_schedules": 11,
     "artist_scope_unique_schedules": 8,
@@ -22,7 +22,7 @@
     "additional_unique_schedules": 8,
     "overlap_unique_schedules": 3,
     "noise_rate": 0.2727,
-    "out_of_scope_unique_schedules": 1612,
+    "out_of_scope_unique_schedules": 1602,
     "out_of_scope_rate": 0.9932
   },
   "artist_gap": {
@@ -51,17 +51,17 @@
       {
         "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
         "tier": "A",
-        "ticketjam_hits": 4,
-        "additional_hits": 1,
+        "ticketjam_hits": 5,
+        "additional_hits": 2,
         "overlap_hits": 3,
-        "noise_rate": 0.75,
+        "noise_rate": 0.6,
         "venues": [
           "バンテリンドームナゴヤ",
           "京セラドーム大阪",
           "東京ドーム"
         ],
         "category_counts": {
-          "コンサート": 4
+          "コンサート": 5
         }
       },
       {
@@ -77,8 +77,8 @@
       {
         "artist_name": "福山雅治",
         "tier": "B",
-        "ticketjam_hits": 4,
-        "additional_hits": 4,
+        "ticketjam_hits": 3,
+        "additional_hits": 3,
         "overlap_hits": 0,
         "noise_rate": 0.0,
         "venues": [
@@ -87,7 +87,7 @@
           "真駒内セキスイハイムアイスアリーナ"
         ],
         "category_counts": {
-          "コンサート": 4
+          "コンサート": 3
         }
       },
       {
