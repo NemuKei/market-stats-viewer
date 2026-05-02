@@ -57,6 +57,7 @@ uv run streamlit run app.py
 - 主要コンサート/イベント会場の公式サイトからイベント日程を定期収集
 - データ: `data/events.sqlite`（venues + events テーブル）
 - 会場定義: `data/venue_registry.csv`（1行追加で会場追加可能）
+- 他アプリで利用する場合は、会場公式に基づく日程の基準データとして扱う
 - イベント更新コマンド:
   - `uv run python -m scripts.update_events_data`
   - オプション: `--limit N`, `--only venue_id1,venue_id2`, `--verbose`
@@ -68,7 +69,7 @@ uv run streamlit run app.py
   - Kstyle（MUSIC）
 - 収集対象の前提:
   - 現状は音楽ライブ/コンサート情報を主対象とする（全ジャンル網羅ではない）
-  - BCL連携時は `event_signals.sqlite` を「ニュース速報（コンサート中心）」として扱う
+  - 他アプリで利用する場合は `event_signals.sqlite` を「ニュース速報（コンサート中心）」として扱い、会場公式データと同じ確度のイベントマスタとして扱わない
 - データ: `data/event_signals.sqlite`（signal_sources + signals テーブル）
 - 更新コマンド:
   - `uv run python -m scripts.update_event_signals_data`
@@ -80,16 +81,24 @@ uv run streamlit run app.py
 ## 全国イベント参考（二次流通）
 - サイドバーの `参考情報` → `全国イベント参考（二次流通）` で表示
 - ソース:
-  - `ticketjam_events`（公開sitemap由来）
+  - `ticketjam_events`（Ticketjam 会場ページ + 公開 sitemap 補完由来）
 - 取得方針:
-  - `Event` / `MusicEvent` を対象にしつつ、`categorie_groups` が `live_domestic` / `live_international` のコンサート系のみ採用
-  - `categories` は音楽系 slug（`idol-music` / `band-music` / `classical-music` など）に限定し、非ライブ系キーワード（例: 漫才・舞台挨拶・花火・コレクション等）を除外
-  - `male-artist` / `female-artist` 系の曖昧カテゴリは、タイトル/アーティストにライブ系キーワード（`live` / `tour` / `concert` など）がある場合のみ採用
+  - `Event` / `MusicEvent` / `SportsEvent` を対象にし、イベント日・会場・アーティスト・イベント名が揃う行のみ保存
+  - 取得時は Ticketjam 側カテゴリだけで除外せず、保存時に会場辞書一致 + `capacity >= 1000` の採用ゲートを適用
+  - `event_category` は `コンサート / 野球 / その他` を付与
   - 未来開催のみ
-  - 必須4項目（イベント日・会場・アーティスト・イベント名）が揃う行のみ保存
   - 初回は bootstrap full 実行で網羅取得（既定 `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）
   - 以後は増分巡回（既定 `max_sitemaps=120`, `max_event_urls=400`）で新規中心に取り込み（`upsert_existing=false`）
   - 同一公演（イベント日+開始時間+会場+アーティスト+イベント名）は重複行を1件に集約
+  - 他アプリで利用する場合は、会場公式やニュース速報で拾いにくい `artist-gap` / `venue-gap` の補完情報として扱う
+
+## 外部アプリ向けイベントデータ
+- 配布単位: GitHub Release `external-events-latest`
+- assets: `events.sqlite`, `event_signals.sqlite`, `manifest.json`
+- `manifest.json` には生成時刻、配布元 commit、各 asset の `sha256` と `size_bytes` を保存する
+- 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `starto_concert` / `kstyle_music` をニュース速報、`ticketjam_events` を二次流通参考として分けて扱う
+- 同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name` を基本とする
+- 詳細なデータ契約は `docs/spec_data.md` の「外部アプリ向けのイベントデータ契約」を参照
 
 ## 旅行・観光消費動向調査（TCD）拡張
 - サイドバーの `統計の種類` で以下を切替:
