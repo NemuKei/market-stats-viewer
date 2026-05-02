@@ -220,6 +220,11 @@
     - `data/venue_registry.csv` を `is_enabled=1`, `strategy=edion_arena_osaka_pdf_schedule`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
     - 公式トップページ上の `monthlyYYMM.pdf` を巡回し、第2競技場の教室系ノイズを避けるため第1競技場のみ取り込む
     - ローカル `update_events_data --only edion_arena_osaka` で `15件 fetched / 15件 kept` を確認
+  - 2026-05-02 ヤンマースタジアム長居 公式移管:
+    - 旧 `https://www.nagai-park.jp/` は `https://nagaipark.com/` へ移行しており、新サイトの `https://nagaipark.com/news/` から月次 `イベントカレンダー` PDF への導線を確認した
+    - `nagai_park_event_calendar_pdf` はニュース一覧から当月以降の `イベントカレンダー` PDF を収集し、PDF内で `施設・場所等` が `ヤンマースタジアム長居` の行だけを保存する。`関連リンク` などの補助文字列と、同一行抽出で混ざる他施設名だけの継続行はタイトルから除外する
+    - `data/venue_registry.csv` を `is_enabled=1`, `strategy=nagai_park_event_calendar_pdf`, `source_url=https://nagaipark.com/news/`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
+    - ローカル `update_events_data --only yanmar_stadium_nagai` で `11件 fetched` を確認した。`back number` は `artist_name_resolved=back number`, `event_category=コンサート` へ補完された一方、`Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～` は現行のタイトル推論条件では `artist_name_resolved` が空、`event_category=その他` のまま残るため、公式PDF由来タイトルの artist/category 補完改善は別タスクで扱う
 - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）

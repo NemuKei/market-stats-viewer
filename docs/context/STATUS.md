@@ -3,6 +3,7 @@
 最終更新: 2026-05-02
 
 ## Done（直近完了）
+- `ヤンマースタジアム長居` の会場公式 source を追加した。旧 `www.nagai-park.jp` は新 `nagaipark.com` へ移行しており、`https://nagaipark.com/news/` の月次 `イベントカレンダー` PDF から `施設・場所等 = ヤンマースタジアム長居` の行だけを `events.sqlite` へ保存する `nagai_park_event_calendar_pdf` を追加した。ローカル実行では `11件 fetched` を確認し、会場マスタも `is_enabled=1`・`ticketjam_watch=0`・`official_fetch_candidate=0` へ切り替えた。補完評価レポートでは `venue_gap.watch_count=0` となり、ヤンマースタジアム長居は Ticketjam 会場補完監視から外れた
 - Release assets 公開workflowの定期監視を実施した。2026-05-02 時点の直近 publish run `25240914501` は `workflow_run` / `success` で、Release `external-events-latest` の asset は `events.sqlite` / `event_signals.sqlite` が `2026-05-02T01:56:00Z`、`manifest.json` が `2026-05-02T01:56:01Z` に更新されていることを確認した。公開 manifest の `generated_at_utc` は `2026-05-02T01:55:59Z`、`source_commit_sha` は `54d87dedcf181cf4f6fbf3a031eea4544e96efc9`。直近の upstream data workflow はニュース更新 `25240772698` が `success`、Ticketjam 更新 `25204910399` が `success`、会場公式更新 `25205394079` が `success` で、即時の手動再公開は不要と判断した
 - Ticketjam 補完評価レポートの再生成タイミングを広げた。`data/ticketjam_supplement_report.json` / `.md` は `events.sqlite + starto_concert + kstyle_music` を baseline とするため、Ticketjam 更新後だけでなく、ニュース更新workflowと会場公式イベント更新workflowの後段でも `python -m scripts.build_ticketjam_supplement_report` を実行するようにした
 - 他アプリ向けのイベントデータ契約を `docs/spec_data.md` に整理した。`events.sqlite` は会場公式日程、`event_signals.sqlite` の `starto_concert` / `kstyle_music` はニュース速報、`ticketjam_events` は二次流通参考として分けて扱い、同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name`、同一日程がある場合は会場公式日程を優先する方針を正本化した。README も外部アプリ向けの配布単位と読み分けへ同期した
@@ -56,7 +57,7 @@
 - （なし）
 
 ## Next（最大3）
-1. `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+1. 公式PDF由来タイトルの artist/category 補完漏れを点検する（例: `Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～`）
 2. Release assets の定期公開結果を継続監視する
 3. （なし）
 
@@ -103,6 +104,8 @@
 - [x] T-20260311-002: `official_fetch_candidate=1` の大阪会場について、Ticketjam 補完継続か会場公式ソース追加優先かを棚卸しする
 - [x] T-20260311-003: `Panasonic Stadium Suita` の会場公式 source を追加する（月次HTML表）
 - [x] T-20260311-004: `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加する（月次PDF行事案内）
+- [x] T-20260311-005: `ヤンマースタジアム長居` の会場公式 source を追加する（月次イベントカレンダーPDF）
+- [ ] T-20260502-001: 公式PDF由来タイトルの artist/category 補完漏れを点検する（例: `Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～`）
 
 KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 - 全体会場マッチ率（registry or alias）: 15.58% -> 32.67%（+17.09pt）
@@ -154,10 +157,15 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
   - 2026-03-11 再確認時点でも `https://www.nagai-park.jp/` / `https://www.nagai-park.jp/stadium/` は HTTP 500 の WordPress fatal error
   - `nagai-park.jp` 配下の公開導線では、スタジアム固有の安定した月次イベント一覧や PDF 導線を確認できず
   - 公式 source は引き続き保留し、`ticketjam_watch=1` の補完運用を継続する
+- 2026-05-02 ヤンマースタジアム長居 公式移管メモ:
+  - 旧 `www.nagai-park.jp` は新 `https://nagaipark.com/` へ移行済み
+  - `https://nagaipark.com/news/` の月次 `イベントカレンダー` PDF から、`ヤンマースタジアム長居` の公開予定を取得できることを確認した
+  - `update_events_data --only yanmar_stadium_nagai` で `11件 fetched`。内訳には `Mrs. GREEN APPLE` 2日程、`back number` 2日程、陸上・ラグビー等の公開予定が含まれる
+  - `back number` は `artist_name_resolved=back number`, `event_category=コンサート` へ補完されたが、`Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～` は現行のタイトル推論条件では `artist_name_resolved` が空、`event_category=その他` のまま残る
 
 ## Remaining Task Triage (ASCII)
 Now:
-- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+- 公式PDF由来タイトルの artist/category 補完漏れを点検する（例: `Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～`）
 
 Next:
 - Release assets の定期公開結果を継続監視する

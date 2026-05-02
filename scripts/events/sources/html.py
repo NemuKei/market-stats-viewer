@@ -8,7 +8,7 @@ import logging
 import re
 import unicodedata
 from datetime import date, timedelta
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
@@ -4001,6 +4001,77 @@ class _EdionArenaOsakaPdfSchedule(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
+# Nagai Park monthly event calendar PDF
+# ---------------------------------------------------------------------------
+@_register("nagai_park_event_calendar_pdf")
+class _NagaiParkEventCalendarPdf(_BaseStrategy):
+    """Parse Nagai Park monthly event calendar PDFs for one target venue."""
+
+    def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        home_url = str(config.get("home_url") or venue.source_url or venue.official_url)
+        home_url = home_url.strip()
+        if not home_url:
+            return []
+
+        try:
+            resp = session.get(home_url, timeout=30)
+            if resp.status_code != 200:
+                logger.warning("nagai_park: %s returned %s", home_url, resp.status_code)
+                return []
+        except Exception:
+            logger.warning("nagai_park: failed to fetch %s", home_url)
+            return []
+
+        resp.encoding = resp.apparent_encoding or "utf-8"
+        today = date.today()
+        min_year_month = _to_year_month(today)
+        months_ahead = int(config.get("months_ahead", 3) or 3)
+        max_month_date = today.replace(day=1) + timedelta(days=32 * months_ahead)
+        max_year_month = _to_year_month(max_month_date.replace(day=1))
+        pdf_entries = _extract_nagai_event_calendar_pdf_entries(
+            resp.text,
+            home_url,
+            min_year_month=min_year_month,
+            max_year_month=max_year_month,
+        )
+
+        events: list[EventRecord] = []
+        seen_uids: set[str] = set()
+        for pdf_url, year, month in pdf_entries:
+            try:
+                pdf_resp = session.get(pdf_url, timeout=30)
+                if pdf_resp.status_code != 200:
+                    logger.warning("nagai_park: %s returned %s", pdf_url, pdf_resp.status_code)
+                    continue
+            except Exception:
+                logger.warning("nagai_park: failed to fetch %s", pdf_url)
+                continue
+
+            try:
+                reader = PdfReader(io.BytesIO(pdf_resp.content))
+            except Exception:
+                logger.warning("nagai_park: failed to parse PDF %s", pdf_url)
+                continue
+
+            for page in reader.pages:
+                layout_text = _extract_pdf_layout_text(page)
+                if not layout_text:
+                    continue
+                events.extend(
+                    _parse_nagai_event_calendar_layout_text(
+                        venue=venue,
+                        layout_text=layout_text,
+                        source_url=pdf_url,
+                        year=year,
+                        month=month,
+                        seen_uids=seen_uids,
+                    )
+                )
+
+        return events
+
+
+# ---------------------------------------------------------------------------
 # Generic fallback (returns empty, for disabled venues)
 # ---------------------------------------------------------------------------
 @_register("generic")
@@ -4082,6 +4153,161 @@ def _extract_edion_monthly_pdf_entries(
         ((url, year, month) for url, (year, month) in found.items()),
         key=lambda item: (item[1], item[2], item[0]),
     )
+
+
+def _extract_nagai_event_calendar_pdf_entries(
+    html: str,
+    base_url: str,
+    min_year_month: int,
+    max_year_month: int | None = None,
+) -> list[tuple[str, int, int]]:
+    soup = BeautifulSoup(html, "html.parser")
+    found: dict[str, tuple[int, int]] = {}
+    for link in soup.select("a[href]"):
+        href = str(link.get("href") or "").strip()
+        if not href or ".pdf" not in href.lower():
+            continue
+        text_blob = " ".join(
+            part
+            for part in [
+                link.get_text(" ", strip=True),
+                unquote(href),
+            ]
+            if part
+        )
+        if "イベントカレンダー" not in text_blob:
+            continue
+        match = re.search(r"(20\d{2})年度?\s*(\d{1,2})月度", text_blob)
+        if not match:
+            match = re.search(r"(20\d{2})年\s*(\d{1,2})月", text_blob)
+        if not match:
+            continue
+        year = int(match.group(1))
+        month = int(match.group(2))
+        year_month = year * 100 + month
+        if year_month < min_year_month:
+            continue
+        if max_year_month is not None and year_month > max_year_month:
+            continue
+        found[urljoin(base_url, href)] = (year, month)
+    return sorted(
+        ((url, year, month) for url, (year, month) in found.items()),
+        key=lambda item: (item[1], item[2], item[0]),
+    )
+
+
+def _parse_nagai_event_calendar_layout_text(
+    venue: VenueRecord,
+    layout_text: str,
+    source_url: str,
+    year: int,
+    month: int,
+    seen_uids: set[str],
+) -> list[EventRecord]:
+    events: list[EventRecord] = []
+    current_day: int | None = None
+    current_time: str | None = None
+    current_parts: list[str] = []
+    target_venue = venue.venue_name
+
+    def flush_current() -> None:
+        nonlocal current_time, current_parts
+        if current_day is None or not current_time:
+            current_time = None
+            current_parts = []
+            return
+        text = _clean_nagai_calendar_text(" ".join(current_parts))
+        current_time_value = current_time
+        current_time = None
+        current_parts = []
+        if target_venue not in text:
+            return
+        title = _clean_nagai_calendar_title(text, target_venue)
+        if not title or title in {"ー", "-"}:
+            return
+        start_date = f"{year:04d}-{month:02d}-{current_day:02d}"
+        source_key = _source_key_with_schedule(title, start_date, current_time_value)
+        uid = compute_event_uid(
+            venue.venue_id,
+            source_key,
+            title,
+            start_date,
+            start_time=current_time_value,
+            url=source_url,
+        )
+        if uid in seen_uids:
+            return
+        seen_uids.add(uid)
+        rec = EventRecord(
+            event_uid=uid,
+            venue_id=venue.venue_id,
+            title=title,
+            start_date=start_date,
+            start_time=current_time_value,
+            end_date=None,
+            end_time=None,
+            all_day=False,
+            status="scheduled",
+            url=source_url,
+            description=None,
+            performers=None,
+            capacity=None,
+            source_type=venue.source_type,
+            source_url=source_url,
+            source_event_key=source_key,
+        )
+        rec.data_hash = compute_data_hash(rec)
+        events.append(rec)
+
+    for raw_line in layout_text.splitlines():
+        line = _clean_nagai_calendar_text(raw_line)
+        if not line:
+            continue
+        day_match = re.match(r"^(\d{1,2})\s+[月火水木金土日]\s*(.*)$", line)
+        if day_match:
+            flush_current()
+            current_day = int(day_match.group(1))
+            line = day_match.group(2).strip()
+            if not line:
+                continue
+        if current_day is None:
+            continue
+        time_match = re.match(r"^(\d{1,2}[:：]\d{2})\s+(.+)$", line)
+        if time_match:
+            flush_current()
+            current_time = _normalise_time(time_match.group(1).replace("：", ":"))
+            current_parts = [time_match.group(2)]
+            continue
+        if current_time:
+            if _is_nagai_calendar_location_only(line):
+                continue
+            current_parts.append(line)
+
+    flush_current()
+    return events
+
+
+def _clean_nagai_calendar_text(value: str) -> str:
+    text = unicodedata.normalize("NFKC", value or "")
+    return " ".join(text.split())
+
+
+def _clean_nagai_calendar_title(value: str, venue_name: str) -> str:
+    title = value.replace("関連リンク", " ")
+    title = title.replace(venue_name, " ")
+    title = re.sub(r"\s+", " ", title).strip(" -/|　")
+    return title.strip()
+
+
+def _is_nagai_calendar_location_only(value: str) -> bool:
+    text = _clean_nagai_calendar_text(value)
+    return text in {
+        "ヤンマーフィールド長居",
+        "ヤンマーハナサカスタジアム",
+        "自由広場",
+        "長居公園",
+        "長居植物園",
+    }
 
 
 def _parse_edion_main_arena_layout_text(
