@@ -122,6 +122,7 @@ uv run streamlit run app.py
   - 実行順:
     1. `uv run python -m scripts.update_events_data --skip-artist-inference`
     2. `uv run python -m scripts.build_events_artist_inferred`
+    3. `uv run python -m scripts.build_ticketjam_supplement_report`
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
@@ -138,6 +139,9 @@ uv run streamlit run app.py
   - ニュース: `uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music`
   - Ticketjam: `uv run python -m scripts.update_event_signals_data --only ticketjam_events`
   - Ticketjam 初回bootstrap: `uv run python -m scripts.update_event_signals_data --only ticketjam_events --ticketjam-bootstrap-full`
+- 補完評価レポート:
+  - ニュース / Ticketjam / 会場公式イベント更新後に `uv run python -m scripts.build_ticketjam_supplement_report` を実行
+  - `data/ticketjam_supplement_report.json` / `.md` は、`events.sqlite + starto_concert + kstyle_music` を baseline とする Ticketjam 補完評価として更新
 - 差分がある場合のみ commit/push
 
 ## ワークスペース索引

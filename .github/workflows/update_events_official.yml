@@ -36,6 +36,10 @@ jobs:
           uv run python -m scripts.update_events_data --skip-artist-inference
           uv run python -m scripts.build_events_artist_inferred
 
+      - name: Build ticketjam supplement report
+        run: |
+          uv run python -m scripts.build_ticketjam_supplement_report
+
       - name: Commit changes (if any)
         run: |
           git status --porcelain

@@ -240,9 +240,11 @@
   - `--verbose`
 - Workflow:
   - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
+    - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、ニュース速報 baseline 変更後の補完評価レポートを更新する
   - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
     - `workflow_dispatch` 入力 `bootstrap_full=true` で full rebuild を実行可能（legacy sitemap mode を使う場合のみ `bootstrap_max_*` を参照）
     - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、補完評価レポートを `data/ticketjam_supplement_report.json` / `.md` へ更新する
+  - `.github/workflows/update_events_official.yml`（会場公式）も後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、会場公式 baseline 変更後の補完評価レポートを更新する
   - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
 
