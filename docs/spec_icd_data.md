@@ -59,6 +59,10 @@
   - `release_type`
   - `sheets_used`
   - `row_counts`
+- `period_key` の形式:
+  - 四半期 workbook: `YYYYQn`（例: `2026Q1`）
+  - 年間 workbook: `YYYY`（例: `2025`）
+- 年間 workbook の `period_label` は、取得元表題が `暦年` 表記でも `YYYY年年間` に正規化する。
 
 ## UI Note Policy
 - 一般向け注釈の共通仕様は `docs/spec_app.md` の `Common Footnote Policy (General Users)` に従う。

@@ -34,10 +34,13 @@
   - Actionsは失敗（赤）
   - 次対応として scripts側にフォールバック（手動URL指定）を追加する余地はある（P1）
 
-## 追記: 2系統データ更新（2026-02-11）
+## 追記: core統計データ更新（2026-02-11、2026-04-13更新）
 - workflow `update_data.yml`（core data）は以下を順次実行する。
   - `python -m scripts.update_data`
   - `python -m scripts.update_tcd_data`
+  - `python -m scripts.update_icd_data`
+  - `python -m scripts.update_ta_data`
+  - `python -m scripts.update_airport_volume_data`
 - 差分がある場合は `data/` を含めて commit/push する。
 
 ## 追記: TCD更新パイプライン（MVP）
@@ -63,10 +66,12 @@
 - 目的: 失敗分離（events側の障害でcore統計更新を止めない）と運用負荷の分離。
 
 ## ICD/TA Additions
-- Add: python -m scripts.update_icd_data
-- Add: python -m scripts.update_ta_data
-- ICD updates icd_spend_items / icd_entry_port_summary and data/meta_icd.json.
-- TA updates ta_company_amounts and data/meta_ta.json.
+- Add: `python -m scripts.update_icd_data`
+- Add: `python -m scripts.update_ta_data`
+- ICD updates `icd_spend_items` / `icd_entry_port_summary` and `data/meta_icd.json`.
+  - ICD period metadata accepts both quarterly labels such as `2026年1-3月期【1次速報】` and annual labels such as `2025年（令和7年） 暦年【確報】`.
+  - Annual metadata is saved as `period_label=YYYY年年間`, `period_key=YYYY`, and the detected `release_type`.
+- TA updates `ta_company_amounts` and `data/meta_ta.json`.
 
 ## Airport Volume Addition
 - Add: `python -m scripts.update_airport_volume_data`
