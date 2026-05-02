@@ -3,6 +3,7 @@
 最終更新: 2026-05-02
 
 ## Done（直近完了）
+- Release assets 公開workflowの定期監視を実施した。2026-05-02 時点の直近 publish run `25240914501` は `workflow_run` / `success` で、Release `external-events-latest` の asset は `events.sqlite` / `event_signals.sqlite` が `2026-05-02T01:56:00Z`、`manifest.json` が `2026-05-02T01:56:01Z` に更新されていることを確認した。公開 manifest の `generated_at_utc` は `2026-05-02T01:55:59Z`、`source_commit_sha` は `54d87dedcf181cf4f6fbf3a031eea4544e96efc9`。直近の upstream data workflow はニュース更新 `25240772698` が `success`、Ticketjam 更新 `25204910399` が `success`、会場公式更新 `25205394079` が `success` で、即時の手動再公開は不要と判断した
 - Ticketjam 補完評価レポートの再生成タイミングを広げた。`data/ticketjam_supplement_report.json` / `.md` は `events.sqlite + starto_concert + kstyle_music` を baseline とするため、Ticketjam 更新後だけでなく、ニュース更新workflowと会場公式イベント更新workflowの後段でも `python -m scripts.build_ticketjam_supplement_report` を実行するようにした
 - 他アプリ向けのイベントデータ契約を `docs/spec_data.md` に整理した。`events.sqlite` は会場公式日程、`event_signals.sqlite` の `starto_concert` / `kstyle_music` はニュース速報、`ticketjam_events` は二次流通参考として分けて扱い、同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name`、同一日程がある場合は会場公式日程を優先する方針を正本化した。README も外部アプリ向けの配布単位と読み分けへ同期した
 - 会場公式イベント更新の定期実行を週次から `3日ごと目安` へ変更した。`update_events_official.yml` は `cron: 0 4 */3 * *` に更新し、会場公式ビューの注記も `毎週` から `3日ごとを目安に` へ変更した。GitHub Actions cron では厳密72時間間隔を表現できないため、day-of-month step による運用とした
@@ -156,10 +157,10 @@ KPI（2026-03-06, `ticketjam_events` 現在DBに対する辞書照合）:
 
 ## Remaining Task Triage (ASCII)
 Now:
-- Release assets の定期公開結果を継続監視する
+- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
 
 Next:
-- `ヤンマースタジアム長居` の公式サイト障害が解消したら公式 source を再評価する
+- Release assets の定期公開結果を継続監視する
 
 After Next:
 - （なし）
