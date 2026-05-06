@@ -2,19 +2,19 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-05-05T06:04:54Z",
+    "ticketjam_source_updated_at_utc": "2026-05-06T06:27:02Z",
     "starto_source_updated_at_utc": "2026-05-03T01:58:16Z",
     "kstyle_source_updated_at_utc": "2026-05-06T01:56:28Z",
-    "events_db_modified_at_utc": "2026-05-06T01:51:32Z"
+    "events_db_modified_at_utc": "2026-05-06T06:11:29Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1542,
+    "ticketjam_unique_schedules": 1513,
     "baseline_news_unique_schedules": 308,
     "baseline_official_unique_schedules": 627,
     "ticketjam_category_counts": {
-      "その他": 118,
-      "コンサート": 1060,
-      "野球": 364
+      "その他": 115,
+      "コンサート": 1039,
+      "野球": 359
     },
     "in_scope_unique_schedules": 8,
     "artist_scope_unique_schedules": 8,
@@ -22,8 +22,8 @@
     "additional_unique_schedules": 5,
     "overlap_unique_schedules": 3,
     "noise_rate": 0.375,
-    "out_of_scope_unique_schedules": 1534,
-    "out_of_scope_rate": 0.9948
+    "out_of_scope_unique_schedules": 1505,
+    "out_of_scope_rate": 0.9947
   },
   "artist_gap": {
     "watch_count": 9,
