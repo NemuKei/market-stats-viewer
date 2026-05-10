@@ -101,6 +101,8 @@ repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先す
 - repo をまたいで再利用できる判断、検証方法、失敗知識
 - ユーザーの説明粒度、確認頻度、委任範囲に関する作業認識の更新
 - `AGENTS.md`、Skill、handoff、automation、Obsidian vault 運用の変更
+- ユーザー向けに噛み砕いて残す価値がある論文、外部知識、開発概念、専門用語
+- 今後の開発判断に使えそうな補助メモ
 
 ### Capture Rules
 
@@ -111,6 +113,10 @@ repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先す
 - `audience: shared` の note は、Codex とユーザーの両方が参照する運用ルールや判断基準として扱う。
 - Codex 側の作業プロファイルは `update_mode: automatic` として自動更新してよい。
 - 誤りが後続のやり取りで見つかった場合は、必要に応じて `Revision Notes` に修正理由を残す。
+- ユーザー向け知識 note は日本語で噛み砕き、英語の正式名称、略語、検索語、論文タイトル、API 名、ライブラリ名は保持する。
+- 専門用語、略語、モデル名、評価指標、データ概念、設計概念、業務概念は glossary note または candidate queue へ接続する。
+- ユーザー向け note に書くと冗長だが今後の開発に応用できる補助メモは、Codex Application Memos へ分ける。
+- SecondBrain 更新が非自明な場合は subagent 利用を標準候補にし、メインスレッドが保存先、repo 正本との境界、最終差分、verify、commit、最終報告を担う。
 
 ### Do Not Capture
 
