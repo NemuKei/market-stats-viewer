@@ -33,6 +33,7 @@
 - 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
 - `.agents/skills/README.md` には、この repo 固有 Skill だけを残す。
 - `context-writeback`: 常設コンテキストへの反映が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
+- `second-brain-capture`: Codex 作業のうち、repo をまたいで再利用する価値がある情報を Obsidian SecondBrain vault へ記録または更新するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `design-review`: 設計相談や大きめ変更で、責務境界・依存方向・分割要否を点検したいときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `docs-governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `intent-governance`: 複数の仕様判断にまたがって再利用する判断原則を `INTENT.md` 相当へ反映するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
@@ -70,6 +71,58 @@
 ## Constant Context Rules
 
 - 推測禁止。条件を満たすときだけ `context-writeback` の手順で常設コンテキストへ反映する。
+
+## Obsidian SecondBrain Capture
+
+### Purpose
+
+各 repo での Codex 作業のうち、次回以降も参照する価値がある情報は、Obsidian SecondBrain vault へ記録する。
+
+Obsidian vault:
+
+```text
+C:\Users\n-kei\Documents\Obsidian\SecondBrain
+```
+
+### Source Of Truth
+
+この repo の仕様、進捗、決定、タスクの正本は repo 内ドキュメントである。
+
+Obsidian は、repo をまたいで検索、比較、再利用するための横断索引と、Codex の作業文脈を維持するための補助情報である。
+
+repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先する。
+
+### Capture Triggers
+
+次の作業を行った場合、終了前に Obsidian への記録対象を判断する。
+
+- 非自明な実装、調査、設計判断、docs handoff
+- 次スレッドの再開地点が重要な作業
+- repo をまたいで再利用できる判断、検証方法、失敗知識
+- ユーザーの説明粒度、確認頻度、委任範囲に関する作業認識の更新
+- `AGENTS.md`、Skill、handoff、automation、Obsidian vault 運用の変更
+
+### Capture Rules
+
+- 新規作業記録は `00_Inbox/Codex Captures/` に作成する。
+- note には `audience`、`update_mode`、`confidence` を入れる。
+- `audience: codex` の note は、Codex が次回以降の作業文脈として使う。
+- `audience: user` の note は、ユーザー本人が後で読む知識体系として扱う。
+- `audience: shared` の note は、Codex とユーザーの両方が参照する運用ルールや判断基準として扱う。
+- Codex 側の作業プロファイルは `update_mode: automatic` として自動更新してよい。
+- 誤りが後続のやり取りで見つかった場合は、必要に応じて `Revision Notes` に修正理由を残す。
+
+### Do Not Capture
+
+- API key、Cookie、token、認証情報
+- 不必要な個人情報
+- 一時ログ全文
+- repo 内正本と矛盾する未確認情報
+- 人格評価、感情の断定、開発支援に不要な推測
+
+### Skill
+
+Obsidian capture を作成または更新する場合は、`second-brain-capture` Skill を使う。
 
 ## Docs Governance
 
