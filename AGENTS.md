@@ -104,6 +104,20 @@ repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先す
 - ユーザー向けに噛み砕いて残す価値がある論文、外部知識、開発概念、専門用語
 - 今後の開発判断に使えそうな補助メモ
 
+### Completion Checkpoint
+
+次のいずれかを行った場合、最終回答の前に `capture-needed: yes | no` を明示的に判定する。
+
+- 非自明な実装、調査、設計判断、docs 更新、handoff
+- AGENTS.md、Skill、automation、Obsidian vault 運用の変更
+- 論文、外部知識、開発概念、専門用語に関する整理
+- repo をまたいで再利用できる判断、検証方法、失敗知識の発見
+
+`capture-needed: yes` の場合は、`second-brain-capture` Skill を使い、repo 内正本と Obsidian note の境界を分けて記録する。
+
+`capture-needed: no` の場合は、保存しない理由を短く示す。例: 単発回答、repo 内正本に十分記録済み、再利用価値がない、秘密情報を含むため保存しない。
+
+この判定を省略したまま、非自明な作業を完了扱いにしない。
 ### Capture Rules
 
 - 新規作業記録は `00_Inbox/Codex Captures/` に作成する。
