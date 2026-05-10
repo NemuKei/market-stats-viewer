@@ -116,6 +116,7 @@ repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先す
 - ユーザー向け知識 note は日本語で噛み砕き、英語の正式名称、略語、検索語、論文タイトル、API 名、ライブラリ名は保持する。
 - 専門用語、略語、モデル名、評価指標、データ概念、設計概念、業務概念は glossary note または candidate queue へ接続する。
 - ユーザー向け note に書くと冗長だが今後の開発に応用できる補助メモは、Codex Application Memos へ分ける。
+- 未確認、出典確認、開発応用の棚卸しは Knowledge Dashboard と review 系 Base から辿れるようにする。
 - SecondBrain 更新が非自明な場合は subagent 利用を標準候補にし、メインスレッドが保存先、repo 正本との境界、最終差分、verify、commit、最終報告を担う。
 
 ### Do Not Capture
