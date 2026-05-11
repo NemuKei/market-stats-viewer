@@ -83,6 +83,7 @@ docs/
 | Skill | 用途 | 定義 |
 |---|---|---|
 | context-writeback | 常設コンテキストへの反映（4 条件ゲート） | `~/.codex/skills/context-writeback/SKILL.md` |
+| second-brain-capture | Obsidian SecondBrain への作業文脈 capture と完了前判定 | `~/.codex/skills/second-brain-capture/SKILL.md` |
 | design-review | 責務境界・依存方向・分割要否の設計レビュー | `~/.codex/skills/design-review/SKILL.md` |
 | docs-governance | ドキュメント新設 vs 統合判断（3 条件ゲート） | `~/.codex/skills/docs-governance/SKILL.md` |
 | release-gate | リリース可否判定、タグ提案、リリースノート整理 | `~/.codex/skills/release-gate/SKILL.md` |
@@ -91,9 +92,8 @@ docs/
 | missing-capability-proposal | 実行中に見つかった不足能力の導入提案整理 | `~/.codex/skills/missing-capability-proposal/SKILL.md` |
 | deep-research | 複数ソース比較と出典付き調査 | `~/.codex/skills/deep-research/SKILL.md` |
 | dictionary_maintenance | event_signals の artist/venue 辞書の定期メンテ | `.agents/skills/dictionary_maintenance/SKILL.md` |
-| gitignore_guard | 新規ファイルの `.gitignore` 判定と追記 | `.agents/skills/gitignore_guard/SKILL.md` |
+| gitignore-guard | 新規ファイルの `.gitignore` 判定と追記 | `~/.codex/skills/gitignore-guard/SKILL.md` |
 | repo-bootstrap | 責務ベースの最小構成整備 | `~/.codex/skills/repo-bootstrap/SKILL.md` |
-| sidebiz_sync | 確定事項の SideBiz ハブ同期 | `.agents/skills/sidebiz_sync/SKILL.md` |
 | bom-guard | UTF-8 BOM 問題の防止 | `~/.codex/skills/bom-guard/SKILL.md` |
 | spec-wallbat-to-task | 壁打ち → 仕様確定 → タスク化 | `.agents/skills/spec-wallbat-to-task/SKILL.md` |
 | task-add-and-triage | タスク追加 + バックログ棚卸し | `~/.codex/skills/task-add-and-triage/SKILL.md` |
