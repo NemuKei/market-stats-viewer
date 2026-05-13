@@ -222,6 +222,7 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 - データ取得元は公的公開統計を原則とする。
 - 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
 - 既存仕様の変更時は `docs/context/DECISIONS.md` を更新し、関連する `docs/spec_*.md` に反映する。
+- 市場統計またはイベント情報に関わる実装では、LP側で利用するデータへの影響を必ず確認する。対象は `data/market_stats.sqlite`、`data/events.sqlite`、`data/event_signals.sqlite`、`data/manifest.json`、Release asset、関連workflow、表示用のカテゴリ・期間・集計・正規化ロジックを含む。影響がない場合も、理由を `lp_impact=none` 相当として説明する。
 - `.agents/skills/` には、この repo 固有の Skill だけを置く。
 - 共有 Skill は `~/.codex/skills` から使い、この repo へ複製しない。
 
