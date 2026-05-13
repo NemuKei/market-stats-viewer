@@ -123,6 +123,7 @@
   - どちらもない場合: `artist_name_resolved` は空、`artist_confidence` は `low`
 - 誤補完低減のため、`DOME` など汎用語エイリアスと、`ベン/たま/ナビ` 等の曖昧短縮aliasを補完候補から除外する。
 - `title` 単体推論は音楽イベントキーワードに一致する場合のみ採用し、就活/展示会/スポーツ系の非音楽キーワードを含むタイトルは除外する。
+- 例外として、音楽イベントキーワードがなくても、辞書の canonical artist name がタイトル先頭に高信頼で一致し、かつ非音楽キーワードを含まない場合は `title` 単体推論を採用する。alias だけがタイトル先頭に一致する場合は採用しない。
 
 ## Addendum (2026-02-25) Artist Registry Monthly Refresh
 - Workflow: `.github/workflows/update_artist_registry.yml`
@@ -229,7 +230,7 @@
     - 旧 `https://www.nagai-park.jp/` は `https://nagaipark.com/` へ移行しており、新サイトの `https://nagaipark.com/news/` から月次 `イベントカレンダー` PDF への導線を確認した
     - `nagai_park_event_calendar_pdf` はニュース一覧から当月以降の `イベントカレンダー` PDF を収集し、PDF内で `施設・場所等` が `ヤンマースタジアム長居` の行だけを保存する。`関連リンク` などの補助文字列と、同一行抽出で混ざる他施設名だけの継続行はタイトルから除外する
     - `data/venue_registry.csv` を `is_enabled=1`, `strategy=nagai_park_event_calendar_pdf`, `source_url=https://nagaipark.com/news/`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
-    - ローカル `update_events_data --only yanmar_stadium_nagai` で `11件 fetched` を確認した。`back number` は `artist_name_resolved=back number`, `event_category=コンサート` へ補完された一方、`Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～` は現行のタイトル推論条件では `artist_name_resolved` が空、`event_category=その他` のまま残るため、公式PDF由来タイトルの artist/category 補完改善は別タスクで扱う
+    - ローカル `update_events_data --only yanmar_stadium_nagai` で `11件 fetched` を確認した。`back number` は `artist_name_resolved=back number`, `event_category=コンサート` へ補完された。当初 `Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～` は音楽イベントキーワードを含まないため未補完だったが、2026-05-12 の canonical artist name 先頭一致条件追加により `artist_name_resolved=Mrs. GREEN APPLE`, `event_category=コンサート` へ補完される。
 - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
@@ -257,6 +258,84 @@
   - `.github/workflows/update_events_official.yml`（会場公式）も後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、会場公式 baseline 変更後の補完評価レポートを更新する
   - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
+
+## Addendum (2026-05-12) Event Signal Coverage and Normalization Audit
+- 目的:
+  - 会場公式以外のイベント情報について、記事取得前の取りこぼし、本文抽出失敗、辞書未解決、カテゴリ誤分類、同一イベントの未統合を分けて検知する。
+  - 初期対象は `kstyle_music` とする。`starto_concert` と `ticketjam_events` へ広げるかは、K-Style監査の出力形式と運用負荷を確認してから判断する。
+- 非目標:
+  - 監査の初期実装では、`events.sqlite` / `event_signals.sqlite` の既存スキーマを変更しない。
+  - 監査の初期実装では、ニュース記事本文全文を保存しない。保存するのはURL、タイトル、掲載日時、短い根拠文字列、抽出結果、判定理由とする。
+  - 会場公式データをニュース由来データで上書きしない。同一日程が会場公式に存在する場合、利用側の優先表示は従来どおり会場公式を優先する。
+- 取得漏れ監査:
+  - 入力:
+    - K-Style の recent news sitemap
+    - K-Style の検索結果（例: `■公演情報`, `■開催概要`）
+    - K-Style の musicカテゴリページまたは newest ページ
+    - 既知の取得漏れURLサンプル。これは入口監査とは別に、過去に漏れた実例を現行parserが抽出できるかを確認する回帰サンプルとして使う。
+    - 既存 `data/event_signals.sqlite` の `kstyle_music` 行
+  - 監査軸:
+    1. 取得頻度: 現行のニュース更新間隔（12時間ごと）で、候補記事が次回取得までに取得入口から流れていないかを確認する。
+    2. 取得入口: sitemap、検索結果、カテゴリページ、newestページのどこで候補記事を発見できるかを比較する。
+    3. 取得件数上限: `pages`、`sitemap_max_candidates`、カテゴリページ巡回数を変えた場合に、候補記事数とノイズ記事数がどの程度変わるかを記録する。
+    4. parser抽出可否: 記事本文に公演日程があるが、現行parserが `event_start_date`、`venue_name`、`artist_name` を抽出できない記事を検知する。
+  - 出力:
+    - `articles_scanned`: 取得入口ごとの記事数
+    - `candidate_articles`: 公演候補記事数
+    - `matched_existing_articles`: 既存 `kstyle_music` に同一URLが存在する記事数
+    - `missed_candidate_articles`: 記事URL単位の取得漏れ候補
+    - `missed_occurrences`: 日程単位の取得漏れ候補
+    - `miss_reason`: `frequency_gap` / `entry_gap` / `page_limit_gap` / `parser_gap` / `normalization_gap`
+    - `oldest_candidate_in_scan` / `newest_candidate_in_scan`
+    - `recommended_frequency_hours`
+    - `recommended_pages`
+    - `recommended_sitemap_max_candidates`
+- 正規化監査:
+  - イベント正規化:
+    - 比較キーは `event_date + canonical venue_name + canonical artist_name` を基本とする。
+    - 同一キーに複数ソースが存在する場合は重複削除ではなく、同一イベント候補として `same_event_candidates` に出力する。
+    - 同一キーに近いが、会場名またはアーティスト名だけが未解決で一致できない場合は `normalization_gap` として出力する。
+  - 会場正規化:
+    - `raw_venue_name` を `venue_registry.csv` と `venue_aliases.csv` で解決できるか確認する。
+    - 住所付き会場名、地域接頭辞付き会場名、表記ゆれを `venue_alias_candidates` として出力する。
+    - 会場名変更の場合は `venue_id` を変更せず、旧名称を `venue_aliases.csv` に追加する候補として出力する。
+  - アーティスト正規化:
+    - `raw_artist_name` を `artist_registry.seed.csv`、`artist_registry.jp.seed.csv`、`artist_registry.manual.csv` で解決できるか確認する。
+    - 未解決、曖昧一致、短いaliasによる誤一致候補を `artist_alias_candidates` として出力する。
+    - `manual` 辞書は自動上書きしない。自動反映する場合もCodex automationが差分を作成し、verifyを通す。
+  - カテゴリ精査:
+    - `event_category=その他` だが、タイトル、説明、artist解決結果、本文根拠から音楽イベントと判断できる候補を `category_review_candidates` に出力する。
+    - `event_category=コンサート` だが、展示会、物販、配信、受賞式、テレビ放送など日程需要への影響が限定的な候補も `category_review_candidates` に出力する。
+- Codex automation の役割:
+  - dry-run 手順:
+    - 正本: `docs/event_signal_audit_automation.md`
+    - 初期運用では、監査レポート生成、低リスク修正案の作成、verify、PR作成までを行い、自動マージは行わない。
+    - Codex automation は `data/event_signal_audit_report.json` の `automation_bucket`、`lp_impact`、`needs_review_reason` を読んで、「自動反映可」「PR作成のみ」「人間確認が必要」を分ける。
+    - 自動マージ可否のチェックリストは `docs/event_signal_audit_automation.md` の `Auto-merge Gate Checklist` を正本とする。
+  - 自動で行ってよいこと:
+    - 監査レポート生成
+    - 低リスクな `venue_aliases.csv` 追加案の作成
+    - 低リスクな `artist_registry.manual.csv` 追加案の作成
+    - 狭いparser形式対応のPR作成
+    - 監査スクリプト、K-Style更新、辞書監査、カテゴリ監査、補完評価レポート生成のverify
+  - 自動マージを許可する条件:
+    - 変更対象が監査レポート、alias追加、テスト追加、K-Style parserの狭い形式対応に限られる
+    - `events.sqlite` / `event_signals.sqlite` の大規模再生成を含まない
+    - `venue_id` / `artist_id` の変更を含まない
+    - verify がすべて成功する
+    - `needs_review_reason` が残っていない
+    - 外部LP向けの配布データ影響が `lp_impact=none`、または影響内容が `display_count_change` / `category_change` / `duplicate_grouping_change` / `source_priority_change` として明示され、想定どおりである
+  - 自動マージしない変更:
+    - DBスキーマ変更
+    - 会場正式名変更
+    - 新しい外部サービス依存
+    - parser全体の大幅再設計
+    - 取得対象ソースの大幅追加
+- 外部LPへの影響確認:
+  - 外部LPが利用する配布単位は `events.sqlite` / `event_signals.sqlite` / `manifest.json` である。
+  - 監査スクリプト追加、監査レポート生成、docs更新だけでは、配布DBとmanifestの内容を変更しないため、LP表示への直接影響はない。
+  - 辞書、カテゴリ分類、parser、取得件数、取得頻度を変更する場合は、LP側の表示件数、カテゴリ表示、同一イベントのまとまり、会場公式・ニュース・二次流通の優先順位に影響し得る。
+  - 統合監査レポートは `lp_impact` を出力する。値は `none`、`display_count_change`、`category_change`、`duplicate_grouping_change`、`source_priority_change` のいずれか、または複数とする。
 
 ## Addendum (2026-02-27) Entity Alias Governance
 - `python -m scripts.update_event_signals_data` 実行時に、`labels_json` の `artist_name` / `venue_name` を辞書正規化する。

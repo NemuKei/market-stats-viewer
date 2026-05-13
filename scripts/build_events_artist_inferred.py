@@ -248,6 +248,26 @@ def _is_music_like_text(text: str) -> bool:
     return any(keyword in normalized for keyword in MUSIC_HINT_KEYWORDS)
 
 
+def _title_starts_with_artist_alias(
+    title: str, canonical_name: str, matched_alias: str, confidence: str
+) -> bool:
+    if confidence != "high":
+        return False
+    if _contains_non_music_exclude_keyword(title):
+        return False
+
+    title_keep = normalize_text(title, mode="keep")
+    if not title_keep:
+        return False
+
+    canonical_prefix = normalize_text(canonical_name, mode="keep")
+    if not canonical_prefix:
+        return False
+    if len(normalize_text(canonical_prefix, mode="compact")) < 4:
+        return False
+    return title_keep.startswith(canonical_prefix)
+
+
 def load_merged_registry(extra_seed_path: Path | None) -> list[ArtistEntry]:
     merged: dict[str, ArtistEntry] = {}
     for entry in load_registry():
@@ -339,6 +359,10 @@ def infer_event_artist(
             alias_compact = normalize_text(matched_alias, mode="compact")
             if title_compact in {canonical_compact, alias_compact}:
                 return (*title_match, "title")
+        if _title_starts_with_artist_alias(
+            title_text, matched_canonical, matched_alias, _confidence
+        ):
+            return (*title_match, "title")
 
     if not description_text:
         return None

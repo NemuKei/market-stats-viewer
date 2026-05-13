@@ -47,6 +47,7 @@
 - `missing-capability-proposal`: 実行中または verify 中に未導入のツール、ライブラリ、Skill、preset が不足能力の原因になったときに、導入提案の要否を短く整理したいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `thread-contract-handoff`: スレッド開始時に目的・範囲・終了条件を固定し、終了時に handoff 要否をユーザー確認で決めたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `create-cli`: 新しい CLI、サブコマンド、引数体系、出力契約を設計または変更するときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `bom-guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `dictionary_maintenance`: `event_signals` の artist/venue 辞書をメンテするときだけ使う。手順は `.agents/skills/dictionary_maintenance/SKILL.md` を参照。
 - `generic-skill-template-sync`: repo 固有 skill を汎用化できるか判定し、template へ逆輸入するか整理するときに使う。手順は `.agents/skills/generic-skill-template-sync/SKILL.md` を参照。
@@ -130,8 +131,8 @@ repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先す
 - ユーザー向け知識 note は日本語で噛み砕き、英語の正式名称、略語、検索語、論文タイトル、API 名、ライブラリ名は保持する。
 - 専門用語、略語、モデル名、評価指標、データ概念、設計概念、業務概念は glossary note または candidate queue へ接続する。
 - ユーザー向け note に書くと冗長だが今後の開発に応用できる補助メモは、Codex Application Memos へ分ける。
+- Glossary note と論文 note は、Obsidian Bases の一覧に出るように必要な frontmatter property を埋める。
 - 未確認、出典確認、開発応用の棚卸しは Knowledge Dashboard と review 系 Base から辿れるようにする。
-- SecondBrain 更新が非自明な場合は subagent 利用を標準候補にし、メインスレッドが保存先、repo 正本との境界、最終差分、verify、commit、最終報告を担う。
 
 ### Do Not Capture
 
@@ -140,6 +141,41 @@ repo 内正本と Obsidian が矛盾する場合は、repo 内正本を優先す
 - 一時ログ全文
 - repo 内正本と矛盾する未確認情報
 - 人格評価、感情の断定、開発支援に不要な推測
+
+### Subagent Orchestration
+
+SecondBrain 更新が非自明な場合は、subagent 利用を標準候補にする。
+
+メインスレッドが担うこと:
+
+- 保存先、`audience`、`update_mode`、`confidence` の最終判断
+- repo 内正本と Obsidian note の境界判断
+- subagent 結果の統合
+- 最終差分、verify、commit、最終報告
+
+subagent に委譲してよいこと:
+
+- 既存 note の探索
+- 関連 glossary 候補の抽出
+- 論文や外部資料の source、DOI、Open Access 状態の確認
+- ユーザー向け説明と Codex 向けメモの分離案作成
+- frontmatter、wikilink、秘密情報、repo 正本混同のレビュー
+
+同じファイルを複数 agent が同時に編集する作業、repo 正本か Obsidian note かの最終判断、commit、push、最終報告はメインスレッドが担う。
+
+### Knowledge Note Rules
+
+ユーザー向け知識体系は、日本語で読める説明を基本にする。
+
+英語の正式名称、略語、検索語、論文タイトル、API 名、ライブラリ名、モデル名、評価指標は、後から公式資料、論文、実装へ接続するために残す。
+
+Glossary note は `99_System/Bases/Glossary.base`、論文 note は `99_System/Bases/Academic Papers.base` に表示される property を埋める。未確認、出典確認、開発応用は `20_Areas/Knowledge Dashboard.md`、`99_System/Bases/Knowledge Review Queue.base`、`99_System/Bases/Source Access Review.base`、`99_System/Bases/Development Application.base` から辿れるようにする。Base file は一覧の定義であり、知識の本体は個別 Markdown note に残す。
+
+初出では、可能な限り次の形を使う。
+
+```text
+日本語での理解（English formal name、略語）
+```
 
 ### Skill
 
@@ -186,6 +222,7 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 - データ取得元は公的公開統計を原則とする。
 - 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
 - 既存仕様の変更時は `docs/context/DECISIONS.md` を更新し、関連する `docs/spec_*.md` に反映する。
+- 市場統計またはイベント情報に関わる実装では、LP側で利用するデータへの影響を必ず確認する。対象は `data/market_stats.sqlite`、`data/events.sqlite`、`data/event_signals.sqlite`、`data/manifest.json`、Release asset、関連workflow、表示用のカテゴリ・期間・集計・正規化ロジックを含む。影響がない場合も、理由を `lp_impact=none` 相当として説明する。
 - `.agents/skills/` には、この repo 固有の Skill だけを置く。
 - 共有 Skill は `~/.codex/skills` から使い、この repo へ複製しない。
 
