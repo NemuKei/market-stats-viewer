@@ -310,7 +310,7 @@
   - dry-run 手順:
     - 正本: `docs/event_signal_audit_automation.md`
     - 初期運用では、監査レポート生成、低リスク修正案の作成、verify、PR作成までを行い、自動マージは行わない。
-    - Codex automation は `data/event_signal_audit_report.json` の `automation_bucket`、`lp_impact`、`needs_review_reason` を読んで、「自動反映可」「PR作成のみ」「人間確認が必要」を分ける。
+    - Codex automation は `data/event_signal_audit_report.json` の `summary.automation_bucket_counts`、`summary.candidate_lp_impact_counts`、`summary.lp_impact` を確認し、候補配列内の各行が持つ `automation_bucket`、`lp_impact`、`needs_review_reason` と `needs_review` 一覧を読んで、「自動反映可」「PR作成のみ」「人間確認が必要」を分ける。
     - 自動マージ可否のチェックリストは `docs/event_signal_audit_automation.md` の `Auto-merge Gate Checklist` を正本とする。
   - 自動で行ってよいこと:
     - 監査レポート生成
@@ -335,7 +335,7 @@
   - 外部LPが利用する配布単位は `events.sqlite` / `event_signals.sqlite` / `manifest.json` である。
   - 監査スクリプト追加、監査レポート生成、docs更新だけでは、配布DBとmanifestの内容を変更しないため、LP表示への直接影響はない。
   - 辞書、カテゴリ分類、parser、取得件数、取得頻度を変更する場合は、LP側の表示件数、カテゴリ表示、同一イベントのまとまり、会場公式・ニュース・二次流通の優先順位に影響し得る。
-  - 統合監査レポートは `lp_impact` を出力する。値は `none`、`display_count_change`、`category_change`、`duplicate_grouping_change`、`source_priority_change` のいずれか、または複数とする。
+  - 統合監査レポートは `summary.lp_impact` と候補ごとの `lp_impact` を出力する。値は `none`、`display_count_change`、`category_change`、`duplicate_grouping_change`、`source_priority_change` のいずれか、または複数とする。
 
 ## Addendum (2026-02-27) Entity Alias Governance
 - `python -m scripts.update_event_signals_data` 実行時に、`labels_json` の `artist_name` / `venue_name` を辞書正規化する。
