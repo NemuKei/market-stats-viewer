@@ -49,7 +49,7 @@ market-stats-viewer のイベント情報監査レポートを確認し、dry-ru
 - data/event_signal_audit_report.json
 
 実行目的:
-- data/event_signal_audit_report.json の候補を読み、automation_bucket ごとに処理を分ける。
+- data/event_signal_audit_report.json の `summary` と候補配列を読み、各候補行の `automation_bucket` ごとに処理を分ける。
 - report_only は監査結果の要約だけを作る。
 - pr_candidate は低リスク修正案を作る。
 - human_review は修正せず、理由と確認対象をまとめる。
@@ -94,12 +94,12 @@ market-stats-viewer のイベント情報監査レポートを確認し、dry-ru
 1. `git status --short` を確認する。
 2. `data/event_signal_audit_report.json` を読む。
 3. `summary.lp_impact` が `none` であること、または候補ごとの `candidate_lp_impact_counts` が説明されていることを確認する。
-4. `automation_bucket_counts` を確認し、候補を次の3区分に分ける。
+4. `summary.automation_bucket_counts` を確認し、候補を次の3区分に分ける。
    - `report_only`: 修正しない。レポートの要約対象とする。
    - `pr_candidate`: 低リスク修正案の対象にしてよい。
    - `human_review`: 修正しない。根拠と確認観点だけを出す。
 5. `needs_review` を確認する。
-6. `needs_review_reason` が残る候補は、人間確認対象として扱う。
+6. 候補行の `needs_review_reason` が残る候補は、人間確認対象として扱う。
 7. 低リスク修正案を作る場合、変更範囲を1種類に絞る。
    - alias追加だけ
    - manual artist追加だけ
