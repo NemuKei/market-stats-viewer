@@ -299,4 +299,38 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 - GUI/UXに影響する実装を行った場合、最終回答に `GUIで確認してほしい箇所` を必ず明示する。
 - `GUIで確認してほしい箇所` には、画面名・操作手順・期待結果を最低1件以上含める。
 - GUI確認が不要な変更（内部処理/ドキュメントのみ等）の場合は、最終回答に `GUI確認不要` と理由を明記する。
-- verify 未通過では通常の commit / push を行わない。ユーザーが停止を明示しない限り、verify 通過後のみ commit と push まで進める。verify 手段が未整備なら勝手に増やさず、その旨を報告する。
+- verify 未通過では通常の commit / push を行わない。Codex がセッション中に意味のある差分を作った場合、ユーザーが停止を明示しない限り、verify 通過後は commit と `origin/main` への push までを既定の完了状態とする。verify 手段が未整備なら勝手に増やさず、その旨を報告する。
+
+## Short Command Defaults
+
+ユーザーの短い指示は、追加説明を要求せずに次の既定動作へ展開する。
+
+- `すすめて`: `STATUS.md` の現在の task bundle と `tasks_backlog` の優先順位を確認し、完了済み task を再開せず、次の 1 task を進める。実装を伴う場合は verify、関連 docs 同期、Session Git Sync Gate まで進める。
+- `次にすすめて`: 現在の task が完了済みであることを確認し、`STATUS.md` または `tasks_backlog` に明記された次 task へ移る。完了済み task の追加掘り下げを既定にしない。
+- `Docs整備して`: docs-only として扱う。実装ファイルを編集せず、`STATUS.md`、`tasks_backlog`、`DECISIONS.md`、関連 `spec` の整合性を確認し、次スレッド入口、非対象、完了条件を明記する。
+- `スレッド移行して`: 次スレッドが会話履歴を読まなくても再開できるように、最初に読む正本、次の 1 task、非対象、終了条件、verify / commit 状態を `STATUS.md` などの正本へ残す。
+- `見解だけ`: read-only として扱う。実装、commit、push をしない。必要な現物確認は行い、結論、根拠、不確実性、実装するなら最初に確認する事項を分けて報告する。
+- `Pushまでしておいて`: 通常の追加要件ではなく、Session Git Sync Gate の実行漏れを補正する指示として扱う。この指示がなくても、意味のある差分があり条件を満たす場合は commit / push まで行う。
+
+## Session Git Sync Gate
+
+Codex がセッション中に意味のある差分を作った場合、ユーザーが停止を明示していない限り、既定の完了状態は次のすべてを満たす状態である。
+
+1. 変更内容に対応する verify が通っている。
+2. 必要な docs、`STATUS.md`、`tasks_backlog`、`DECISIONS.md`、関連 `spec` が同期されている。
+3. 現在 task に関係する差分だけが stage されている。
+4. active branch が `main` である。
+5. commit が作成されている。
+6. commit が `origin/main` へ push されている。
+7. push 後に `git status --short --branch` を再確認し、未コミット差分なし、remote と同期済みであることを確認している。
+
+次の場合は commit / push しない。
+
+- verify が失敗している。
+- 秘密情報、個人情報、生成キャッシュ、巨大な一時ファイルの混入疑いがある。
+- ユーザー由来の無関係差分が同じファイルまたは同じ working tree に残っており、現在 task の差分だけを安全に stage できない。
+- 仕様判断、release 判断、公開判断、削除判断など、ユーザー判断待ちの項目が残っている。
+- no-op で、repo に意味のある差分がない。
+- ユーザーが `commitしない`、`pushしない`、`見解だけ`、`docs案だけ` など、保存しない意図を明示している。
+
+commit / push しない場合は、最終報告で理由、残っている差分、未実施または失敗した verify、次に必要な判断を明記する。
