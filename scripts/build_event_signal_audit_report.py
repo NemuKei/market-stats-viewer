@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import sys
 from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
@@ -63,6 +64,7 @@ def load_dictionary_audit_module():
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Failed to load: {DICTIONARY_AUDIT_SCRIPT_PATH}")
     module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
