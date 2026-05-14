@@ -86,11 +86,14 @@ docs/
 | second-brain-capture | Obsidian SecondBrain への作業文脈 capture と完了前判定 | `~/.codex/skills/second-brain-capture/SKILL.md` |
 | design-review | 責務境界・依存方向・分割要否の設計レビュー | `~/.codex/skills/design-review/SKILL.md` |
 | docs-governance | ドキュメント新設 vs 統合判断（3 条件ゲート） | `~/.codex/skills/docs-governance/SKILL.md` |
+| intent-governance | 判断原則を `INTENT.md` 相当に反映 | `~/.codex/skills/intent-governance/SKILL.md` |
+| spec-governance | `spec` 更新要否の判定と実装前チェックポイント更新 | `~/.codex/skills/spec-governance/SKILL.md` |
 | release-gate | リリース可否判定、タグ提案、リリースノート整理 | `~/.codex/skills/release-gate/SKILL.md` |
 | verification-before-completion | 完了主張前の fresh verification | `~/.codex/skills/verification-before-completion/SKILL.md` |
 | search-first | 実装前の既存解・既存パターン調査 | `~/.codex/skills/search-first/SKILL.md` |
 | missing-capability-proposal | 実行中に見つかった不足能力の導入提案整理 | `~/.codex/skills/missing-capability-proposal/SKILL.md` |
 | deep-research | 複数ソース比較と出典付き調査 | `~/.codex/skills/deep-research/SKILL.md` |
+| thread-contract-handoff | スレッド開始/終了時の契約と handoff 判定 | `~/.codex/skills/thread-contract-handoff/SKILL.md` |
 | dictionary_maintenance | event_signals の artist/venue 辞書の定期メンテ | `.agents/skills/dictionary_maintenance/SKILL.md` |
 | gitignore-guard | 新規ファイルの `.gitignore` 判定と追記 | `~/.codex/skills/gitignore-guard/SKILL.md` |
 | repo-bootstrap | 責務ベースの最小構成整備 | `~/.codex/skills/repo-bootstrap/SKILL.md` |
