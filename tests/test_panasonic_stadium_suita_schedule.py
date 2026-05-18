@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from datetime import date
 
 from scripts.events.category import classify_event_category
 from scripts.events.sources.html import HtmlSource
@@ -81,7 +82,7 @@ class PanasonicStadiumSuitaScheduleTests(unittest.TestCase):
         self.assertEqual(len(events), 1)
         event = events[0]
         self.assertEqual(event.title, "AFCチャンピオンズリーグ2 2025/26 準々決勝 ガンバ大阪 VS ラーチャブリーFC")
-        self.assertEqual(event.start_date[-5:], "03-04")
+        self.assertEqual(event.start_date[-5:], f"{date.today().month:02d}-04")
         self.assertEqual(event.start_time, "19:00")
         self.assertEqual(event.url, "https://www.gamba-osaka.net/")
 

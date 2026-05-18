@@ -744,10 +744,10 @@ class KstyleMusicSource(SignalSource):
     def _candidate_artist_titles(self, title_raw: str, concert_title: str) -> list[str]:
         candidates: list[str] = []
         for value in (
-            self._extract_leading_artist_candidate(title_raw),
             self._extract_leading_artist_candidate(concert_title),
-            title_raw,
+            self._extract_leading_artist_candidate(title_raw),
             concert_title,
+            title_raw,
         ):
             text = " ".join(self._normalize_text(value).split()).strip()
             if text and text not in candidates:
