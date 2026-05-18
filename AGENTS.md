@@ -82,7 +82,8 @@
 Obsidian vault:
 
 ```text
-C:\Users\n-kei\Documents\Obsidian\SecondBrain
+Windows canonical vault: C:\Users\n-kei\Documents\Obsidian\SecondBrain
+WSL access path: /mnt/c/Users/n-kei/Documents/Obsidian/SecondBrain
 ```
 
 ### Source Of Truth
@@ -262,7 +263,7 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 ### Subagent Policy
 
 - メインスレッド側は全体判断・統合・verify・最終報告を担う。クリティカルパスの実装も既定ではメインスレッド側が担当し、明確に独立した変更範囲だけをサブエージェントへ委譲する。
-- 役割定義ファイルの正本は `C:\Users\n-kei\.codex\agents\*.toml` とし、この節は呼称と委譲境界のみを定義する。
+- 役割定義ファイルの正本は Codex home 配下 `agents/*.toml` とする。Windows Codex home は `C:\Users\n-kei\.codex\agents\*.toml`、WSL から同じ Windows 側 home を参照する場合は `/mnt/c/Users/n-kei/.codex/agents/*.toml`、WSL 独立 home を使う場合は `$HOME/.codex/agents/*.toml` とし、この節は呼称と委譲境界のみを定義する。
 - repo 側の `.codex/agents/*.toml` は、この repo だけで追加設定や上書きが必要な場合に限って使う。
 - `.codex/agents/*.toml` では `name` を識別子の正本とする。`subagent://...` で参照する値と、生成時に Codex が使う役割識別子は `name` を基準に解釈する。
 - `researcher` は read-only の調査担当。コードパス、関連テスト、影響範囲、関連ドキュメントの特定だけを行い、編集や広い設計変更を既定にしない。
