@@ -30,6 +30,7 @@
 
 - root `AGENTS.md` は repo-wide の常時ルールを定義し、Skill は必要時に task-specific procedure だけを追加する。
 - 常時ルールや設計原則を Skill へ重複展開しない。Skill 側で不足する repo-wide 判断は root `AGENTS.md` を参照する。
+- Codex lifecycle hooks は Skill や `AGENTS.md` の置き換えではない。hooks は secret guard、repo context guide、completion gate のような反復確認を lifecycle event に差し込む補助層として扱い、repo 固有判断は `AGENTS.md`、`docs/spec_*.md`、`DECISIONS.md`、`STATUS.md` などの正本 docs に置く。
 - 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
 - `.agents/skills/README.md` には、この repo 固有 Skill だけを残す。
 - `context-writeback`: 常設コンテキストへの反映が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
