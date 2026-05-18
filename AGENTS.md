@@ -32,6 +32,7 @@
 - 常時ルールや設計原則を Skill へ重複展開しない。Skill 側で不足する repo-wide 判断は root `AGENTS.md` を参照する。
 - 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
 - `.agents/skills/README.md` には、この repo 固有 Skill だけを残す。
+- Codex lifecycle hooks は Skill の置き換えではなく、secret guard、repo context guide、completion gate のような反復確認を lifecycle event へ差し込む補助層として扱う。repo 固有判断の正本を hooks へ置かず、必要なら template repo の `global/hooks/**` から端末全体へ同期する。
 - `context-writeback`: 常設コンテキストへの反映が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `second-brain-capture`: Codex 作業のうち、repo をまたいで再利用する価値がある情報を Obsidian SecondBrain vault へ記録または更新するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `design-review`: 設計相談や大きめ変更で、責務境界・依存方向・分割要否を点検したいときだけ使う。共有 Skill として `~/.codex/skills` から使う。
