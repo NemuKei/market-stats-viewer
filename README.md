@@ -47,6 +47,19 @@ uv run python -m scripts.update_event_signals_data
 uv run streamlit run app.py
 ```
 
+## Verification
+
+- Focused parser regression for official-event artist/category inference:
+  - `uv run python -m pytest tests/test_build_events_artist_inferred.py -q`
+- Focused report regression for Ticketjam supplement output:
+  - `uv run python -m pytest tests/test_build_ticketjam_supplement_report.py -q`
+- Full local regression suite:
+  - `uv run python -m pytest tests -q`
+- Ticketjam supplement report regeneration check:
+  - `uv run python -m scripts.build_ticketjam_supplement_report`
+- Docs-only whitespace / merge-marker check:
+  - `git diff --check`
+
 ## リリースZIP作成
 - 実行コマンド: `python make_release_zip.py`
 - デフォルトで `data/` フォルダを同梱
