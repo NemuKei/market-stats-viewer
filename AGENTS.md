@@ -21,6 +21,7 @@
 ## Task Read (Only When Needed)
 
 - 仕様変更/挙動確認: 対象領域の `spec_*.md` など
+- 判断原則/優先順位/非目標の確認: `docs/context/INTENT.md` 相当
 - 現在地の確認: `STATUS.md` 相当
 - 判断理由の確認: `DECISIONS.md` 相当
 - 実装規約の確認: `README.md` 相当
@@ -30,7 +31,7 @@
 
 - root `AGENTS.md` は repo-wide の常時ルールを定義し、Skill は必要時に task-specific procedure だけを追加する。
 - 常時ルールや設計原則を Skill へ重複展開しない。Skill 側で不足する repo-wide 判断は root `AGENTS.md` を参照する。
-- Codex lifecycle hooks は Skill や `AGENTS.md` の置き換えではない。hooks は secret guard、repo context guide、completion gate のような反復確認を lifecycle event に差し込む補助層として扱い、repo 固有判断は `AGENTS.md`、`docs/spec_*.md`、`DECISIONS.md`、`STATUS.md` などの正本 docs に置く。
+- Codex lifecycle hooks は Skill や `AGENTS.md` の置き換えではない。hooks は secret guard、repo context guide、completion gate のような反復確認を lifecycle event に差し込む補助層として扱い、repo 固有判断は `AGENTS.md`、`docs/context/INTENT.md`、`docs/spec_*.md`、`DECISIONS.md`、`STATUS.md` などの正本 docs に置く。
 - 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
 - `.agents/skills/README.md` には、この repo 固有 Skill だけを残す。
 - `context-writeback`: 常設コンテキストへの反映が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
@@ -63,11 +64,13 @@
 
 1. セキュリティ/法令/公開制約
 2. 仕様書（`spec_*.md` など）
-3. 現況/意思決定ログ（`STATUS` / `DECISIONS`）
-4. `AGENTS.md`
-5. Archive
+3. 判断原則/意思決定ログ（`INTENT` / `DECISIONS`）
+4. 現況（`STATUS`）
+5. `AGENTS.md`
+6. Archive
 
 同順位で矛盾した場合は、より新しい決定を優先する。
+具体的な仕様書または日付付きの個別決定が、`INTENT` の一般原則と矛盾する場合は、具体的な仕様書または個別決定を優先する。`INTENT` は未定義の判断や複数案の比較に使い、既存仕様を無言で上書きする根拠にはしない。
 未解決なら `DECISIONS` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
 
 ## Constant Context Rules
@@ -251,6 +254,7 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 ### 運用計画の参照先
 
 - 運用計画や次アクションの確認は `docs/context/STATUS.md` を参照する。
+- 複数の仕様判断または automation 判断にまたがる優先順位、比較軸、非目標は `docs/context/INTENT.md` を参照する。
 
 ### Repo-specific Domain Rules
 
