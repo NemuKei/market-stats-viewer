@@ -152,7 +152,7 @@
   - `ticketjam_events`（Ticketjam 会場ページ由来、二次流通参考）
 - Source-specific extraction policy:
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
-  - `kstyle_music`: 記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する
+  - `kstyle_music`: recent news sitemap、検索結果、必要な場合の `backfill_article_urls` 明示URLから記事を取得する。記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する。`backfill_article_urls` は監査で本文・日程・会場を確認済みだが通常入口から漏れた記事だけに使い、取得対象ソースの優先順位は変更しない。
   - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集しつつ、公開 sitemap も補完導線として併用する。イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）とページ見出しを組み合わせ、`イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
     - Phase 1 対象: 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
     - 会場ページマスタ: `data/ticketjam_venue_pages.csv`
@@ -279,6 +279,10 @@
     2. 取得入口: sitemap、検索結果、カテゴリページ、newestページのどこで候補記事を発見できるかを比較する。
     3. 取得件数上限: `pages`、`sitemap_max_candidates`、カテゴリページ巡回数を変えた場合に、候補記事数とノイズ記事数がどの程度変わるかを記録する。
     4. parser抽出可否: 記事本文に公演日程があるが、現行parserが `event_start_date`、`venue_name`、`artist_name` を抽出できない記事を検知する。
+  - 監査後の低リスク取り込み:
+    - K-Style の通常入口から漏れた記事でも、記事本文に日本国内公演の日付と会場が明記され、現行parserで `event_start_date` と `venue_name` を抽出できる場合は、`kstyle_music` の `backfill_article_urls` に明示URLとして追加できる。
+    - `backfill_article_urls` は過去漏れの限定的な補完であり、source優先順位、DBスキーマ、LP表示契約、Release asset更新条件を変更しない。
+    - `parser_gap`、海外公演、本文詳細未確認、または日本国内公演か判断できない候補は `backfill_article_urls` に追加しない。
   - 出力:
     - `articles_scanned`: 取得入口ごとの記事数
     - `candidate_articles`: 公演候補記事数
@@ -307,11 +311,12 @@
     - `event_category=その他` だが、タイトル、説明、artist解決結果、本文根拠から音楽イベントと判断できる候補を `category_review_candidates` に出力する。
     - `event_category=コンサート` だが、展示会、物販、配信、受賞式、テレビ放送など日程需要への影響が限定的な候補も `category_review_candidates` に出力する。
 - Codex automation の役割:
-  - dry-run 手順:
+  - イベント情報監査手順:
     - 正本: `docs/event_signal_audit_automation.md`
-    - 初期運用では、監査レポート生成、低リスク修正案の作成、verify、PR作成までを行い、自動マージは行わない。
-    - Codex automation は `data/event_signal_audit_report.json` の `summary.automation_bucket_counts`、`summary.candidate_lp_impact_counts`、`summary.lp_impact` を確認し、候補配列内の各行が持つ `automation_bucket`、`lp_impact`、`needs_review_reason` と `needs_review` 一覧を読んで、「自動反映可」「PR作成のみ」「人間確認が必要」を分ける。
+    - Codex automation は、監査レポート生成、低リスク修正案の作成、verify、PR作成、自動マージ判定、マージ後監査までを行う。
+    - Codex automation は `data/event_signal_audit_report.json` の `summary.automation_bucket_counts`、`summary.candidate_lp_impact_counts`、`summary.lp_impact` を確認し、候補配列内の各行が持つ `automation_bucket`、`lp_impact`、`needs_review_reason` と `needs_review` 一覧を読んで、「自動マージ可」「PR作成のみ」「人間確認が必要」を分ける。
     - 自動マージ可否のチェックリストは `docs/event_signal_audit_automation.md` の `Auto-merge Gate Checklist` を正本とする。
+    - 自動マージした場合は、同じ手順書の `Post-merge Audit` を必ず実行し、実際の差分、DB行、LP影響、禁止ファイルの有無を確認する。
   - 自動で行ってよいこと:
     - 監査レポート生成
     - 低リスクな `venue_aliases.csv` 追加案の作成
@@ -319,18 +324,23 @@
     - 狭いparser形式対応のPR作成
     - 監査スクリプト、K-Style更新、辞書監査、カテゴリ監査、補完評価レポート生成のverify
   - 自動マージを許可する条件:
-    - 変更対象が監査レポート、alias追加、テスト追加、K-Style parserの狭い形式対応に限られる
+    - 変更対象が監査レポート、alias追加、テスト追加、K-Style parserの狭い形式対応、またはK-Style確認済み候補の限定取り込みに限られる
     - `events.sqlite` / `event_signals.sqlite` の大規模再生成を含まない
+    - `data/event_signals.sqlite` を変更する場合、`source_id='kstyle_music'` の本文確認済みURLに対する限定追加または更新だけである
     - `venue_id` / `artist_id` の変更を含まない
     - verify がすべて成功する
     - `needs_review_reason` が残っていない
     - 外部LP向けの配布データ影響が `lp_impact=none`、または影響内容が `display_count_change` / `category_change` / `duplicate_grouping_change` / `source_priority_change` として明示され、想定どおりである
+    - 自動マージ後に `Post-merge Audit` を実行し、結果を記録する
   - 自動マージしない変更:
     - DBスキーマ変更
     - 会場正式名変更
     - 新しい外部サービス依存
     - parser全体の大幅再設計
     - 取得対象ソースの大幅追加
+    - `data/manifest.json` 更新
+    - Release asset 更新
+    - source優先順位変更
 - 外部LPへの影響確認:
   - 外部LPが利用する配布単位は `events.sqlite` / `event_signals.sqlite` / `manifest.json` である。
   - 監査スクリプト追加、監査レポート生成、docs更新だけでは、配布DBとmanifestの内容を変更しないため、LP表示への直接影響はない。

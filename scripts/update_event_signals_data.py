@@ -106,7 +106,19 @@ DEFAULT_SOURCES = [
         "source_url": "https://kstyle.com/search.ksn?searchWord=%E2%96%A0%E5%85%AC%E6%BC%94%E6%83%85%E5%A0%B1",
         "source_type": "html_list",
         "config_json": json.dumps(
-            {"pages": 2, "category": "music"}, ensure_ascii=False
+            {
+                "pages": 2,
+                "category": "music",
+                "backfill_article_urls": [
+                    "https://kstyle.com/article.ksn?articleNo=2277247",
+                    "https://kstyle.com/article.ksn?articleNo=2276584",
+                    "https://kstyle.com/article.ksn?articleNo=2276235",
+                    "https://kstyle.com/article.ksn?articleNo=2278017",
+                    "https://kstyle.com/article.ksn?articleNo=2277661",
+                    "https://kstyle.com/article.ksn?articleNo=2277595",
+                ],
+            },
+            ensure_ascii=False,
         ),
     },
     {

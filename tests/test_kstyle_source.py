@@ -53,6 +53,24 @@ class _FakeSession:
                 </urlset>
                 """,
             )
+        if "articleNo=2277247" in url:
+            return _FakeResponse(
+                url,
+                """
+                <html><head>
+                  <meta property="article:published_time" content="2026-03-29T15:13:00+09:00">
+                  <meta property="og:title" content="KARA、約3年ぶりの日本ファンミーティングが決定！7月に東京で開催 - Kstyle">
+                </head><body>
+                  <h1>KARA、約3年ぶりの日本ファンミーティングが決定！7月に東京で開催</h1>
+                  <div id="articleBody">
+                    <p>■公演情報</p>
+                    <p>「2026 KARA JAPAN FANMEETING : Hello, KAMILIA！」</p>
+                    <p>日程：2026年7月4日（土）・5日（日）</p>
+                    <p>会場：東京・TOYOTA ARENA TOKYO</p>
+                  </div>
+                </body></html>
+                """,
+            )
         raise AssertionError(f"unexpected url requested: {url}")
 
 
@@ -107,6 +125,36 @@ class KstyleMusicSourceTests(unittest.TestCase):
                 url.endswith("/assets/sitemap/sitemaps/recent_news.xml")
                 for url in source.session.requested_urls
             )
+        )
+
+    def test_fetch_signals_uses_backfill_article_urls(self) -> None:
+        source = _StubKstyleMusicSource(_FakeSession())
+        source_record = SignalSourceRecord(
+            source_id="kstyle_music",
+            source_name="Kstyle MUSIC",
+            source_url="https://kstyle.com/search.ksn?searchWord=%E2%96%A0%E5%85%AC%E6%BC%94%E6%83%85%E5%A0%B1",
+            source_type="html_list",
+            config_json=json.dumps(
+                {
+                    "pages": 1,
+                    "sitemap_max_candidates": 0,
+                    "backfill_article_urls": [
+                        "https://kstyle.com/article.ksn?articleNo=2277247"
+                    ],
+                },
+                ensure_ascii=False,
+            ),
+            is_enabled=True,
+        )
+
+        records = source.fetch_signals(source_record)
+
+        self.assertEqual(len(records), 1)
+        self.assertEqual(
+            records[0].url, "https://kstyle.com/article.ksn?articleNo=2277247"
+        )
+        self.assertTrue(
+            any("articleNo=2277247" in url for url in source.session.requested_urls)
         )
 
     def test_extract_article_lines_normalizes_compatibility_ideographs(self) -> None:
@@ -453,6 +501,57 @@ class KstyleMusicSourceTests(unittest.TestCase):
                 ("2026-04-19", "FCLIVE TOKYO HALL(東京都新宿区大久保2-18-14)"),
             ],
         )
+
+    def test_extract_occurrences_uses_time_line_as_venue_for_pending_date(
+        self,
+    ) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "2026年6月19日(金)",
+            "東京国際フォーラム ホールA 開場17:00 開演18:00",
+            "<チケット料金>",
+            "全席指定:16,000円(税込・システム手数料別途)",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(
+            [(event_date, venue_name, pref_name) for event_date, venue_name, _, pref_name in occurrences],
+            [("2026-06-19", "東京国際フォーラム ホールA", "東京都")],
+        )
+
+    def test_extract_occurrences_uses_explicit_venue_after_open_start_date(
+        self,
+    ) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■公演情報",
+            "「2026 ZICO LIVE : TOKYO DRIVE」",
+            "【公演日程】",
+            "2026年2月7日(土) OPEN 17:00 / START 18:00",
+            "【会場】",
+            "京王アリーナ TOKYO",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(
+            [(event_date, venue_name, pref_name) for event_date, venue_name, _, pref_name in occurrences],
+            [("2026-02-07", "京王アリーナ TOKYO", "東京都")],
+        )
+
+    def test_is_japan_occurrence_accepts_in_japan_title(self) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■開催概要",
+            "「2026 PARK JIHOON FANCON IN JAPAN [REFLECT]」",
+            "開催日:2026年5月23日(土)",
+            "会場:川口総合文化センター・リリア フカガワみらいホール",
+        ]
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertTrue(source._is_japan_occurrence(section_lines, occurrences))
 
 
 if __name__ == "__main__":

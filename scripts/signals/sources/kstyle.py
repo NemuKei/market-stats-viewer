@@ -406,6 +406,9 @@ class KstyleMusicSource(SignalSource):
     _OFFICIAL_VENUE_PREF_CACHE: dict[str, str] | None = None
     TEXT_COMPAT_TRANSLATIONS = str.maketrans({"戶": "戸"})
     OFFICIAL_VENUE_PREF_ALIASES = {
+        "川口総合文化センター・リリア フカガワみらいホール": "埼玉県",
+        "きゅりあん・大ホール": "東京都",
+        "東京国際フォーラム ホールA": "東京都",
         "MUFG STADIUM": "東京都",
         "MUFG STADIUM（国立競技場）": "東京都",
         "国立競技場": "東京都",
@@ -422,6 +425,10 @@ class KstyleMusicSource(SignalSource):
         signals: dict[str, SignalRecord] = {}
         seen_article_urls: set[str] = set()
         for rec in self._fetch_recent_sitemap_records(
+            source.source_id, seen_article_urls, cfg
+        ):
+            signals[rec.signal_uid] = rec
+        for rec in self._fetch_backfill_article_records(
             source.source_id, seen_article_urls, cfg
         ):
             signals[rec.signal_uid] = rec
@@ -468,6 +475,46 @@ class KstyleMusicSource(SignalSource):
                     signals[rec.signal_uid] = rec
 
         return sorted(signals.values(), key=lambda r: r.published_at_utc, reverse=True)
+
+    def _fetch_backfill_article_records(
+        self,
+        source_id: str,
+        seen_article_urls: set[str],
+        cfg: dict,
+    ) -> list[SignalRecord]:
+        article_urls = self._normalize_article_urls(cfg.get("backfill_article_urls"))
+        if not article_urls:
+            return []
+
+        candidates: list[tuple[str, str, str]] = []
+        for article_url in article_urls:
+            if article_url in seen_article_urls:
+                continue
+            seen_article_urls.add(article_url)
+            try:
+                resp = self._get_with_retry(article_url, timeout=30)
+                if resp.status_code != 200:
+                    logger.warning(
+                        "kstyle: backfill detail %s returned %s",
+                        article_url,
+                        resp.status_code,
+                    )
+                    continue
+                resp.encoding = resp.apparent_encoding or "utf-8"
+            except Exception as exc:
+                logger.warning("kstyle: backfill fetch failed %s (%s)", article_url, exc)
+                continue
+
+            soup = BeautifulSoup(resp.text, "html.parser")
+            title = self._extract_article_title(soup, article_url)
+            published_at_utc = self._extract_article_published_at(soup)
+            if not title or not published_at_utc:
+                continue
+            if not self._is_event_candidate(title, title):
+                continue
+            candidates.append((title, article_url, published_at_utc))
+
+        return self._build_records_from_candidates(candidates, source_id)
 
     def _parse_page(
         self,
@@ -580,6 +627,22 @@ class KstyleMusicSource(SignalSource):
             candidates.append((normalized_title, abs_url.strip(), published_at_utc))
 
         return candidates
+
+    def _extract_article_published_at(self, soup: BeautifulSoup) -> str:
+        for selector, attr in [
+            ('meta[property="article:published_time"]', "content"),
+            ('meta[name="pubdate"]', "content"),
+            ("time[datetime]", "datetime"),
+        ]:
+            node = soup.select_one(selector)
+            if node is None:
+                continue
+            parsed = self._to_utc_datetime_from_iso(str(node.get(attr) or "").strip())
+            if parsed:
+                return parsed
+        text = " ".join(soup.get_text(" ", strip=True).split())
+        match = self.DATETIME_RE.search(text)
+        return self._to_utc_datetime(match.group(1)) if match else ""
 
     def _build_records_from_candidates(
         self, candidates: list[tuple[str, str, str]], source_id: str
@@ -1000,6 +1063,22 @@ class KstyleMusicSource(SignalSource):
                 normalized_line, default_year=default_year
             )
             if not event_dates:
+                if pending_dates and not foreign_block:
+                    venue_from_time_line = self._extract_venue_from_time_line(
+                        normalized_line
+                    )
+                    if venue_from_time_line:
+                        current_venue = venue_from_time_line
+                        current_pref = self._pref_from_official_venue(
+                            current_venue
+                        ) or self._pref_from_text(current_venue)
+                        self._flush_pending_dates(
+                            occurrences,
+                            pending_dates,
+                            current_venue,
+                            current_pref,
+                        )
+                        continue
                 if not foreign_block and self._looks_like_venue_line(normalized_line):
                     current_venue = self._normalize_venue_name(normalized_line)
                     current_pref = self._pref_from_official_venue(
@@ -1074,9 +1153,10 @@ class KstyleMusicSource(SignalSource):
             return "", ""
 
         rest = re.split(
-            r"(?:開場|開演|START|DOOR|チケット|問い合わせ|お問合せ|※)",
+            r"(?:開場|開演|OPEN|START|DOOR|チケット|問い合わせ|お問合せ|※)",
             rest,
             maxsplit=1,
+            flags=re.IGNORECASE,
         )[0].strip()
         if not rest:
             return "", ""
@@ -1097,6 +1177,20 @@ class KstyleMusicSource(SignalSource):
             venue_name = self._normalize_venue_name(pref_venue_match.group("venue"))
             return pref_name, venue_name
         return "", self._normalize_venue_name(rest)
+
+    def _extract_venue_from_time_line(self, line: str) -> str:
+        candidate = re.split(
+            r"(?:開場|開演|OPEN|START|DOOR)",
+            line,
+            maxsplit=1,
+            flags=re.IGNORECASE,
+        )[0].strip()
+        venue_name = self._normalize_venue_name(candidate)
+        if not self._is_probable_venue_name(venue_name):
+            return ""
+        if self._is_non_venue_candidate(venue_name):
+            return ""
+        return venue_name
 
     def _flush_pending_dates(
         self,
@@ -1534,9 +1628,10 @@ class KstyleMusicSource(SignalSource):
 
     def _is_japan_show(self, text: str) -> bool:
         has_japan_word = "日本" in text
+        has_japan_latin_word = "JAPAN" in self._normalize_text(text).upper()
         has_prefecture = any(term in text for term in self.PREFECTURE_TERMS)
         has_major_city = any(term in text for term in self.MAJOR_CITY_TERMS)
-        return has_japan_word or has_prefecture or has_major_city
+        return has_japan_word or has_japan_latin_word or has_prefecture or has_major_city
 
     def _extract_event_date_range(self, text: str) -> tuple[str | None, str | None]:
         dates: list[str] = []
@@ -1687,6 +1782,27 @@ class KstyleMusicSource(SignalSource):
             seen.add(word)
             search_words.append(word)
         return search_words
+
+    @staticmethod
+    def _normalize_article_urls(value: object) -> list[str]:
+        if value is None:
+            return []
+        if isinstance(value, str):
+            candidates = [value]
+        elif isinstance(value, list):
+            candidates = value
+        else:
+            return []
+
+        urls: list[str] = []
+        seen: set[str] = set()
+        for candidate in candidates:
+            url = str(candidate or "").strip()
+            if not url or "article.ksn?articleNo=" not in url or url in seen:
+                continue
+            seen.add(url)
+            urls.append(url)
+        return urls
 
     def _resolve_search_urls(self, source_url: str, cfg: dict) -> list[str]:
         if "search_words" in cfg:

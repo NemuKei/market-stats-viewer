@@ -1,8 +1,11 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-05-14
+最終更新: 2026-05-21
 
 ## Done（直近完了）
+- `docs/event_signal_audit_automation.md` と `docs/spec_update_pipeline.md` を更新し、イベント情報監査automationの運用を「低リスク候補は自動マージ可、その直後に `Post-merge Audit` を必ず実行する」方針へ変更した。自動マージできるのは `Auto-merge Gate Checklist` を満たす `auto_merge_candidate` だけで、K-Style確認済み候補の限定取り込みを含める場合も `source_id='kstyle_music'` の本文確認済みURLに対する限定追加または更新だけに限る。Release asset更新、manifest更新、source優先順位変更、DBスキーマ変更、ID変更、parser全体再設計は引き続き自動マージ禁止。運用手順更新のみのため `lp_impact=none`
+- `T-20260512-001` 系のK-Style取得漏れ監査から、本文・日程・会場を確認済みで現行parserが正しく抽出できる6記事を `kstyle_music` に取り込んだ。対象は `KARA` 2日程、`TREASURE` 15日程、`i-dle` 2日程、`PARK JIHOON` 1日程、`SUPER JUNIOR キュヒョン` 1日程、`キム・ジョンヒョン` 1日程で、`data/event_signals.sqlite` の `kstyle_music` は `88 -> 110件` になった。再発防止として `backfill_article_urls` 設定を追加し、通常入口から漏れた確認済み記事だけを明示URLで補完できるようにした。追加で、`IN JAPAN` 表記の国内判定、日付の次行にある `会場 + 開場/開演` 形式、日付行の `OPEN / START` を会場名として誤認しない処理を追加した。統合監査レポート再生成後は `missed_articles 13`、`needs_review_count 153`、`automation_bucket_counts` は `human_review 92` / `pr_candidate 11` / `report_only 50`。ローカル配布DBの表示件数が変わるため `lp_impact=display_count_change`。manifest と Release asset は更新していない。
+- `docs/event_signal_audit_automation.md` を更新し、次回以降のイベント情報監査automationでは、K-Style `pr_candidate` を記事本文確認まで進め、`import_ready`、`parser_patch_ready`、`out_of_scope`、`human_review_required` に再分類する運用へ変更した。`import_ready` は `backfill_article_urls` 追加と `event_signals.sqlite` 限定取り込みまで実行し、`parser_patch_ready` は狭いparser形式対応とテスト追加後に限定取り込みしてよい。Release asset更新、manifest更新、source優先順位変更、DBスキーマ変更は禁止のまま維持する。運用手順更新のみのため `lp_impact=none`
 - Release assets 公開workflowの定期監視を実施した。2026-05-14 時点の直近 publish run `25837707963` は `workflow_run` / `success` で、Release `external-events-latest` の asset は `events.sqlite` / `event_signals.sqlite` / `manifest.json` がすべて `2026-05-14T02:16:29Z` に更新されていることを確認した。公開 manifest の `generated_at_utc` は `2026-05-14T02:16:27Z`、`source_commit_sha` は `530079f519e4e81a92d4575fdab6812d3cc8a565` で、最新 publish run の `headSha` と一致する。直近の upstream data workflow はニュース更新 `25837467120`、Ticketjam 更新 `25782552884`、会場公式更新 `25783373482` がいずれも `success`。即時の手動再公開は不要と判断した。監視のみで配布DB、manifest、Release assetの内容を変更していないため `lp_impact=none`
 - `T-20260502-001` として、公式PDF由来タイトルの artist/category 補完漏れを修正した。`scripts/build_events_artist_inferred.py` で、音楽イベントキーワードがない場合でも辞書の canonical artist name がタイトル先頭に高信頼で一致し、非音楽キーワードを含まない場合は `title` 単体推論を採用するようにした。alias だけの先頭一致は採用しない。`tests/test_build_events_artist_inferred.py` を追加し、`Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル〜間奏編〜` を補完すること、`LIFE! ON STAGE` の alias 先頭一致を補完しないことを検証した。`data/events.sqlite` と `data/events_artist_inferred.csv` を最新mainデータ上で再同期し、ヤンマースタジアム長居PDF由来の2日程は `artist_name_resolved=Mrs. GREEN APPLE`、`artist_confidence=high`、`event_category=コンサート` になった。監査レポート再生成後のカテゴリ精査候補内訳は `other_but_music_likely 234`、`missing_category 103`、`concert_but_non_music_hint 7`。配布DB内のカテゴリが変わるため `lp_impact=category_change`
 - `T-20260512-006` として、イベント情報監査の自動マージ可否チェックリストを `docs/event_signal_audit_automation.md` に追加した。`Required Evidence`、`Auto-merge Allowed Candidates`、`Auto-merge Prohibited Candidates`、`Required Classification`、`Decision Output Contract` を定義し、初期運用では `classification=auto_merge_candidate` でも `merge_action=do_not_merge` とした。`docs/spec_update_pipeline.md` からチェックリストを参照し、`docs/context/DECISIONS.md` に `D-20260512-004` を追加した。docs運用手順追加のみで配布DB、manifest、Release assetを変更しないため `lp_impact=none`
@@ -146,17 +149,17 @@
   - LP影響確認: 外部LPが `events.sqlite` / `event_signals.sqlite` / `manifest.json` を利用しているため、監査レポートは `summary.lp_impact` と候補ごとの `lp_impact` を含める。値は `none`、`display_count_change`、`category_change`、`duplicate_grouping_change`、`source_priority_change` のいずれか、または複数を出力する。監査スクリプト追加のみで配布DBやmanifestを変更しない場合は `summary.lp_impact=none` とする
   - 受け入れ条件: Codex automation が、レポートだけを読んで「自動反映可」「PR作成のみ」「人間確認が必要」を分けられる
   - 実行確認: `python -m scripts.build_event_signal_audit_report --kstyle-json tmp\kstyle_audit_known.json --normalization-json tmp\event_normalization_audit.json --dictionary-json tmp\dictionary_maintenance_audit.json --output-json data\event_signal_audit_report.json --output-md data\event_signal_audit_report.md --limit 50 --dictionary-top 30` で統合レポートを生成した。`lp_impact=none`
-- [x] T-20260512-005: Codex automation の dry-run 運用を追加する
+- [x] T-20260512-005: Codex automation の初期 dry-run 運用を追加する（現行運用は `D-20260521-003` で更新済み）
   - 主成果物: Codex automation 用の実行プロンプトまたは運用手順
-  - 処理内容: 監査レポート生成、低リスク修正案の作成、verify、PR作成までを行う。初期状態では自動マージしない
+  - 処理内容: 当時の初期運用として、監査レポート生成、低リスク修正案の作成、verify、PR作成までを行い、自動マージしない形を定義した
   - 受け入れ条件: 生成された修正案が、変更対象ファイル、根拠、verify結果、`needs_review_reason` を含む
   - 実行確認: `docs/event_signal_audit_automation.md` に dry-run prompt、入力、許可変更、禁止変更、レポート再生成コマンド、verify、PR本文契約、LP影響の扱い、完了条件を記載した。自動マージは初期運用で禁止する。
-- [x] T-20260512-006: 限定条件付き自動マージの可否を実装前に判定する
+- [x] T-20260512-006: 限定条件付き自動マージの可否を実装前に判定する（現行運用は `D-20260521-003` で更新済み）
   - 主成果物: 自動マージ許可条件と禁止条件のチェックリスト
   - 自動マージ許可候補: 監査レポートのみ、alias追加のみ、テスト追加のみ、K-Style parserの狭い形式対応のみ
   - 自動マージ禁止候補: DBスキーマ変更、会場正式名変更、`venue_id` / `artist_id` 変更、新しい外部サービス依存、parser全体の大幅再設計
   - 受け入れ条件: `docs/spec_update_pipeline.md` の Codex automation 条件と実際のチェックリストが一致している
-  - 実行確認: `docs/event_signal_audit_automation.md` に `Auto-merge Gate Checklist` を追加し、許可候補、禁止候補、必須証跡、分類、JSON出力契約を定義した。初期運用では自動マージ候補でも `merge_action=do_not_merge` とする。
+  - 実行確認: `docs/event_signal_audit_automation.md` に `Auto-merge Gate Checklist` を追加し、許可候補、禁止候補、必須証跡、分類、JSON出力契約を定義した。当時の初期運用では自動マージ候補でも `merge_action=do_not_merge` としていたが、現行運用では `D-20260521-003` により、条件を満たす候補は自動マージし、直後に `Post-merge Audit` を実行する。
 
 ## Task Backlog（Local Development Environment Maintenance）
 - [x] T-20260512-007: Windows ローカルの Python / uv 実行環境を修復する

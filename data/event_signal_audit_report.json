@@ -1,28 +1,28 @@
 {
   "report_name": "event_signal_audit_report",
   "report_version": 1,
-  "generated_at_utc": "2026-05-13T01:42:34Z",
+  "generated_at_utc": "2026-05-21T01:56:42Z",
   "component_status": {
     "kstyle_coverage": "loaded",
     "event_normalization": "loaded",
     "dictionary_maintenance": "loaded"
   },
   "summary": {
-    "missed_articles": 31,
-    "missed_occurrences": 19,
+    "missed_articles": 13,
+    "missed_occurrences": 0,
     "same_event_candidates": 50,
     "venue_alias_candidates": 30,
     "artist_alias_candidates": 30,
     "category_review_candidates": 30,
-    "needs_review_count": 171,
+    "needs_review_count": 153,
     "automation_bucket_counts": {
       "human_review": 92,
-      "pr_candidate": 29,
-      "report_only": 69
+      "pr_candidate": 11,
+      "report_only": 50
     },
     "candidate_lp_impact_counts": {
       "category_change": 30,
-      "display_count_change": 50,
+      "display_count_change": 13,
       "duplicate_grouping_change": 110
     },
     "lp_impact": "none",
@@ -36,61 +36,61 @@
       "configured_sitemap_max_candidates": 40,
       "articles_scanned": {
         "sitemap": 40,
-        "search": 47,
+        "search": 48,
         "known_sample": 5
       },
-      "candidate_articles": 65,
-      "matched_existing_articles": 34,
-      "missed_candidate_articles": 31,
-      "missed_occurrences": 19,
+      "candidate_articles": 57,
+      "matched_existing_articles": 44,
+      "missed_candidate_articles": 13,
+      "missed_occurrences": 0,
       "miss_reason_counts": {
-        "detail_not_checked": 26,
-        "entry_gap": 18,
+        "detail_not_checked": 11,
+        "entry_gap": 6,
         "parser_gap": 2
       },
       "oldest_candidate_in_scan": "2025-12-04T08:07:00Z",
-      "newest_candidate_in_scan": "2026-05-12T06:07:43Z",
+      "newest_candidate_in_scan": "2026-05-20T09:35:31Z",
       "recommended_frequency_hours": 12,
       "recommended_pages": 2,
       "recommended_sitemap_max_candidates": 40
     },
     "event_normalization": {
-      "records_total": 3345,
-      "official_records": 1361,
-      "signal_records": 1984,
+      "records_total": 3430,
+      "official_records": 1473,
+      "signal_records": 1957,
       "records_by_source": {
-        "kstyle_music": 103,
-        "official_events": 1361,
-        "starto_concert": 250,
-        "ticketjam_events": 1631
+        "kstyle_music": 110,
+        "official_events": 1473,
+        "starto_concert": 269,
+        "ticketjam_events": 1578
       },
       "comparable_records_by_source": {
-        "kstyle_music": 77,
-        "official_events": 557,
-        "starto_concert": 180,
-        "ticketjam_events": 243
+        "kstyle_music": 72,
+        "official_events": 610,
+        "starto_concert": 197,
+        "ticketjam_events": 249
       },
-      "same_event_candidate_groups": 73,
+      "same_event_candidate_groups": 84,
       "same_event_candidate_groups_output": 50,
-      "official_overlap_groups": 68,
-      "news_ticketjam_overlap_groups": 6,
-      "normalization_gap_records": 2365,
+      "official_overlap_groups": 77,
+      "news_ticketjam_overlap_groups": 9,
+      "normalization_gap_records": 2374,
       "normalization_gap_counts": {
-        "missing_artist": 724,
-        "missing_category": 103,
-        "unmatched_artist": 1507,
-        "unmatched_venue": 63
+        "missing_artist": 775,
+        "missing_category": 110,
+        "unmatched_artist": 1463,
+        "unmatched_venue": 74
       }
     },
     "dictionary_maintenance": {
       "venue_alias_candidates": 30,
       "artist_alias_candidates": 30,
       "category_review_candidates": 30,
-      "category_review_candidates_total": 344,
+      "category_review_candidates_total": 357,
       "category_review_counts": {
-        "concert_but_non_music_hint": 7,
-        "missing_category": 103,
-        "other_but_music_likely": 234
+        "concert_but_non_music_hint": 8,
+        "missing_category": 110,
+        "other_but_music_likely": 239
       },
       "lp_impact": "none",
       "lp_impact_reason": "監査レポート生成のみで、配布DB、manifest、Release assetは変更しない。"
@@ -119,42 +119,6 @@
     },
     {
       "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "title": "KARA、約3年ぶりの日本ファンミーティングが決定!7月に東京で開催 - Kstyle",
-      "published_at_utc": "2026-03-29T06:13:05Z",
-      "entry_points": [
-        "known_sample"
-      ],
-      "miss_reason": [
-        "entry_gap"
-      ],
-      "parser_occurrence_count": 2,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "published_at_utc": "2026-03-13T04:34:00Z",
-      "entry_points": [
-        "known_sample"
-      ],
-      "miss_reason": [
-        "entry_gap"
-      ],
-      "parser_occurrence_count": 15,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
       "url": "https://kstyle.com/article.ksn?articleNo=2276393",
       "title": "SEVENTEEN ドギョム&スングァン、単独コンサートの日本公演の詳細が決定! - Kstyle",
       "published_at_utc": "2026-03-09T08:56:17Z",
@@ -175,27 +139,9 @@
     },
     {
       "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "title": "i-dle、ワールドツアー日本公演の詳細を発表!6月に横浜で2Days開催 - Kstyle",
-      "published_at_utc": "2026-03-05T09:59:00Z",
-      "entry_points": [
-        "known_sample"
-      ],
-      "miss_reason": [
-        "entry_gap"
-      ],
-      "parser_occurrence_count": 2,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279039",
-      "title": "山田涼介、9月に韓国ファンと対面!初のアジアツアーに期待高まる",
-      "published_at_utc": "2026-05-12T06:07:43Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279393",
+      "title": "人気アニメ「鬼滅の刃」韓国で初の没入型展示会を開催決定!ソウルで6月より実施",
+      "published_at_utc": "2026-05-20T09:35:31Z",
       "entry_points": [
         "sitemap"
       ],
@@ -213,9 +159,9 @@
     },
     {
       "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279037",
-      "title": "チュ・ヨンウ、日韓でファンミーティングを開催決定!可愛らしいポスター公開",
-      "published_at_utc": "2026-05-12T04:30:44Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279382",
+      "title": "“活動中断を発表”LE SSERAFIM キム・チェウォン、新曲のライブを披露!美しい歌声で魅了(動画あり)",
+      "published_at_utc": "2026-05-20T07:54:00Z",
       "entry_points": [
         "sitemap"
       ],
@@ -233,9 +179,9 @@
     },
     {
       "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279035",
-      "title": "NCT WISH、ILLIT、Hearts2Hearts、今夏開催の「めざましライブ」に出演決定!",
-      "published_at_utc": "2026-05-12T04:14:00Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279387",
+      "title": "IVE、日本4th EPよりタイトル曲「LUCID DREAM」先行配信!",
+      "published_at_utc": "2026-05-20T05:45:16Z",
       "entry_points": [
         "sitemap"
       ],
@@ -253,9 +199,9 @@
     },
     {
       "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279028",
-      "title": "BTS、メキシコ公演で15万人を動員!約10年10ヶ月ぶり...スペイン語で感謝の挨拶も",
-      "published_at_utc": "2026-05-12T04:11:42Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279338",
+      "title": "「21世紀の大君夫人」ロケ地を巡るツアーが中止に...歴史歪曲の議論うけ発表",
+      "published_at_utc": "2026-05-20T02:44:37Z",
       "entry_points": [
         "sitemap"
       ],
@@ -268,240 +214,6 @@
       "lp_impact": "display_count_change",
       "needs_review_reason": [
         "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279018",
-      "title": "LUCY、完全体で2年ぶりの日本公演が決定!7月に横浜で開催へ",
-      "published_at_utc": "2026-05-12T03:54:30Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279023",
-      "title": "SEVENTEEN ジョシュア&ディノ&ジュン、ファンミーティングのため日本へ!",
-      "published_at_utc": "2026-05-12T02:13:04Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279020",
-      "title": "NCT WISH、山下智久&ENHYPEN ジョンウォンら、5月18日放送の「CDTVライブ!ライブ!」に出演決定!",
-      "published_at_utc": "2026-05-12T01:53:12Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279002",
-      "title": "Creepy Nutsと¥ØU$UK€ ¥UK1MAT$UがThe Weekndのアジアツアーに参加!韓国公演は8年ぶりの開催",
-      "published_at_utc": "2026-05-11T09:25:07Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279009",
-      "title": "“BTSノミクス”に世界が注目!ワールドツアーの経済効果&ファンの購買力が話題に",
-      "published_at_utc": "2026-05-11T08:27:14Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279008",
-      "title": "BABYMONSTER、日本に続いてワールドツアーのアジア・オセアニア公演の開催地を発表!18都市27公演に拡大",
-      "published_at_utc": "2026-05-11T07:49:21Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278997",
-      "title": "“東京ドーム公演が大盛況”2PM、3年ぶりの韓国単独コンサート開催が決定!",
-      "published_at_utc": "2026-05-11T07:35:24Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279004",
-      "title": "FTISLAND“狂うほど楽しい”Zeppツアーでファンと一つに!「俺ら生きてるって気持ちになる」",
-      "published_at_utc": "2026-05-11T07:22:22Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278968",
-      "title": "近藤真彦、デビュー47年目で初の韓国コンサートが決定!ファンミーティング開催も",
-      "published_at_utc": "2026-05-11T07:06:55Z",
-      "entry_points": [
-        "sitemap"
-      ],
-      "miss_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278017",
-      "title": "Wanna One出身パク・ジフン、待望の日本ソロファンコンサートを5月に開催決定！",
-      "published_at_utc": "2026-04-16T03:41:00Z",
-      "entry_points": [
-        "search"
-      ],
-      "miss_reason": [
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277661",
-      "title": "SUPER JUNIOR キュヒョン、デビュー20周年記念！来日ファンミーティングの詳細が決定",
-      "published_at_utc": "2026-04-07T09:00:00Z",
-      "entry_points": [
-        "search"
-      ],
-      "miss_reason": [
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277595",
-      "title": "キム・ジョンヒョン、日本で初のソロファンミーティングを開催決定！ハイタッチ会も実施",
-      "published_at_utc": "2026-04-06T05:15:00Z",
-      "entry_points": [
-        "search"
-      ],
-      "miss_reason": [
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
         "detail_not_checked"
       ]
     },
@@ -546,60 +258,6 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2277230",
       "title": "NTX、4月に大阪でファンライブを開催決定！初日はフリーショーケース実施",
       "published_at_utc": "2026-03-28T09:50:00Z",
-      "entry_points": [
-        "search"
-      ],
-      "miss_reason": [
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277171",
-      "title": "NCT 127からILLIT、ZEROBASEONEまで！8月に開催「KCON LA 2026」豪華ラインナップを公開",
-      "published_at_utc": "2026-03-27T01:54:00Z",
-      "entry_points": [
-        "search"
-      ],
-      "miss_reason": [
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276867",
-      "title": "FTISLANDからCNBLUEまで5組集結！「FNC BAND KINGDOM 2026」7月に横浜で開催決定",
-      "published_at_utc": "2026-03-20T02:29:00Z",
-      "entry_points": [
-        "search"
-      ],
-      "miss_reason": [
-        "detail_not_checked"
-      ],
-      "parser_occurrence_count": 0,
-      "automation_bucket": "pr_candidate",
-      "lp_impact": "display_count_change",
-      "needs_review_reason": [
-        "detail_not_checked"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276652",
-      "title": "新人ボーイズグループADAP、日本プロモーションが大反響！5月東京と大阪でファンミーティング開催決定",
-      "published_at_utc": "2026-03-15T09:40:00Z",
       "entry_points": [
         "search"
       ],
@@ -686,198 +344,7 @@
       ]
     }
   ],
-  "missed_occurrences": [
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "title": "KARA、約3年ぶりの日本ファンミーティングが決定!7月に東京で開催 - Kstyle",
-      "event_start_date": "2026-07-04",
-      "venue_name": "東京・TOYOTA ARENA TOKYO",
-      "pref_name": "東京都",
-      "event_info": "日程:2026年7月4日(土)・5日(日)",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "title": "KARA、約3年ぶりの日本ファンミーティングが決定!7月に東京で開催 - Kstyle",
-      "event_start_date": "2026-07-05",
-      "venue_name": "東京・TOYOTA ARENA TOKYO",
-      "pref_name": "東京都",
-      "event_info": "日程:2026年7月4日(土)・5日(日)",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-08",
-      "venue_name": "大阪城ホール",
-      "pref_name": "大阪府",
-      "event_info": "2026年7月8日(水) 開場 17:30 / 開演 18:30",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-09",
-      "venue_name": "大阪城ホール",
-      "pref_name": "大阪府",
-      "event_info": "2026年7月9日(木) 開場 17:30 / 開演 18:30",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-18",
-      "venue_name": "Kアリーナ横浜",
-      "pref_name": "神奈川県",
-      "event_info": "2026年7月18日(土) 開場 17:00 / 開演 18:30",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-19",
-      "venue_name": "Kアリーナ横浜",
-      "pref_name": "神奈川県",
-      "event_info": "2026年7月19日(日) 開場 17:00 / 開演 18:30",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-20",
-      "venue_name": "Kアリーナ横浜",
-      "pref_name": "神奈川県",
-      "event_info": "2026年7月20日(月・祝) 開場 14:00 / 開演 15:30",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-25",
-      "venue_name": "GLION ARENA KOBE",
-      "pref_name": "",
-      "event_info": "2026年7月25日(土) 開場 17:00 / 開演 18:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-07-26",
-      "venue_name": "GLION ARENA KOBE",
-      "pref_name": "",
-      "event_info": "2026年7月26日(日) 開場 14:00 / 開演 15:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-08-01",
-      "venue_name": "IGアリーナ",
-      "pref_name": "",
-      "event_info": "2026年8月1日(土) 開場 17:00 / 開演 18:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-08-02",
-      "venue_name": "IGアリーナ",
-      "pref_name": "",
-      "event_info": "2026年8月2日(日) 開場 14:00 / 開演 15:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-08-08",
-      "venue_name": "サンドーム福井",
-      "pref_name": "福井県",
-      "event_info": "2026年8月8日(土) 開場 15:00 / 開演 16:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-08-09",
-      "venue_name": "サンドーム福井",
-      "pref_name": "福井県",
-      "event_info": "2026年8月9日(日) 開場 14:00 / 開演 15:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-08-22",
-      "venue_name": "マリンメッセ福岡 A館",
-      "pref_name": "福岡県",
-      "event_info": "2026年8月22日(土) 開場 17:00 / 開演 18:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-08-23",
-      "venue_name": "マリンメッセ福岡 A館",
-      "pref_name": "福岡県",
-      "event_info": "2026年8月23日(日) 開場 14:00 / 開演 15:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-09-05",
-      "venue_name": "有明アリーナ",
-      "pref_name": "東京都",
-      "event_info": "2026年9月5日(土) 開場 17:00 / 開演 18:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "event_start_date": "2026-09-06",
-      "venue_name": "有明アリーナ",
-      "pref_name": "東京都",
-      "event_info": "2026年9月6日(日) 開場 14:00 / 開演 15:00",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "title": "i-dle、ワールドツアー日本公演の詳細を発表!6月に横浜で2Days開催 - Kstyle",
-      "event_start_date": "2026-06-20",
-      "venue_name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)",
-      "pref_name": "神奈川県",
-      "event_info": "2026年6月20日 (土) 16:30開場 / 18:00開演",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_id": "kstyle_music",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "title": "i-dle、ワールドツアー日本公演の詳細を発表!6月に横浜で2Days開催 - Kstyle",
-      "event_start_date": "2026-06-21",
-      "venue_name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)",
-      "pref_name": "神奈川県",
-      "event_info": "2026年6月21日 (日) 15:30開場 / 17:00開演",
-      "lp_impact": "display_count_change"
-    }
-  ],
+  "missed_occurrences": [],
   "same_event_candidates": [
     {
       "event_date": "2026-07-25",
@@ -967,6 +434,263 @@
       "needs_review_reason": []
     },
     {
+      "event_date": "2026-08-07",
+      "canonical_venue_name": "横浜アリーナ",
+      "canonical_artist_name": "なにわ男子",
+      "source_count": 3,
+      "record_count": 3,
+      "source_ids": [
+        "official_events",
+        "starto_concert",
+        "ticketjam_events"
+      ],
+      "source_kinds": [
+        "news",
+        "official",
+        "secondary"
+      ],
+      "same_event_key": {
+        "event_date": "2026-08-07",
+        "venue_key": "横浜アリ-ナ",
+        "artist_key": "なにわ男子"
+      },
+      "records": [
+        {
+          "source_id": "starto_concert",
+          "source_kind": "news",
+          "source_record_id": "12507bd13019944e1fc7ff97a8b2c0baad60e1c2884472b0685a05c362e2a82b",
+          "event_date": "2026-08-07",
+          "raw_venue_name": "横浜アリーナ",
+          "venue_name": "横浜アリーナ",
+          "canonical_venue_name": "横浜アリーナ",
+          "venue_matched": true,
+          "raw_artist_name": "なにわ男子",
+          "artist_name": "なにわ男子",
+          "canonical_artist_name": "なにわ男子",
+          "artist_matched": true,
+          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
+          "url": "https://starto.jp/s/p/live/10489",
+          "event_category": "concert",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-04-16T13:12:04Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "yokohama_arena:/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
+          "event_date": "2026-08-07",
+          "raw_venue_name": "横浜アリーナ",
+          "venue_name": "横浜アリーナ",
+          "canonical_venue_name": "横浜アリーナ",
+          "venue_matched": true,
+          "raw_artist_name": "なにわ男子",
+          "artist_name": "なにわ男子",
+          "canonical_artist_name": "なにわ男子",
+          "artist_matched": true,
+          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
+          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
+          "event_category": "コンサート",
+          "artist_confidence": "source",
+          "updated_at_utc": "2026-05-19T07:53:16Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "6123e7ad7693f70b3c56955ab4f1aa910a08ebcd79bbaa2ea58c504e494e11fe",
+          "event_date": "2026-08-07",
+          "raw_venue_name": "横浜アリーナ",
+          "venue_name": "横浜アリーナ",
+          "canonical_venue_name": "横浜アリーナ",
+          "venue_matched": true,
+          "raw_artist_name": "なにわ男子",
+          "artist_name": "なにわ男子",
+          "canonical_artist_name": "なにわ男子",
+          "artist_matched": true,
+          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
+          "url": "https://ticketjam.jp/tickets/takahashi-kyouhei/event/1152906",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-20T07:10:29Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
+      "event_date": "2026-05-23",
+      "canonical_venue_name": "TOKYO DOME CITY HALL",
+      "canonical_artist_name": "いぎなり東北産",
+      "source_count": 2,
+      "record_count": 3,
+      "source_ids": [
+        "official_events",
+        "ticketjam_events"
+      ],
+      "source_kinds": [
+        "official",
+        "secondary"
+      ],
+      "same_event_key": {
+        "event_date": "2026-05-23",
+        "venue_key": "tokyo dome city hall",
+        "artist_key": "いぎなり東北産"
+      },
+      "records": [
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "tdc_hall:https://madeintohoku.com/contents/pages/kanadeviahall#d=2026-05-23#t=13:00",
+          "event_date": "2026-05-23",
+          "raw_venue_name": "TOKYO DOME CITY HALL",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "いぎなり東北産",
+          "artist_name": "いぎなり東北産",
+          "canonical_artist_name": "いぎなり東北産",
+          "artist_matched": true,
+          "title": "いぎなり東北産『9人と もぎたてHALL PARTY』",
+          "url": "https://madeintohoku.com/contents/pages/kanadeviahall",
+          "event_category": "コンサート",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-19T08:06:52Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "32a18c27a5901350d2b7f9bf73095df52a026b5d48ed650f72f053e2dcda6bd2",
+          "event_date": "2026-05-23",
+          "raw_venue_name": "TOKYO DOME CITY HALL",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "いぎなり東北産",
+          "artist_name": "いぎなり東北産",
+          "canonical_artist_name": "いぎなり東北産",
+          "artist_matched": true,
+          "title": "9人と もぎたてHALL PARTY",
+          "url": "https://ticketjam.jp/tickets/iginari-touhokusann/event/1094966",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-10T06:33:36Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "516d590b5517a1f09153e24ea95a0b097a04fa63c514f0c5ae9facea2265a625",
+          "event_date": "2026-05-23",
+          "raw_venue_name": "TOKYO DOME CITY HALL",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "いぎなり東北産",
+          "artist_name": "いぎなり東北産",
+          "canonical_artist_name": "いぎなり東北産",
+          "artist_matched": true,
+          "title": "9人と もぎたてHALL PARTY",
+          "url": "https://ticketjam.jp/tickets/iginari-touhokusann/event/1094965",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-10T06:33:36Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
+      "event_date": "2026-05-23",
+      "canonical_venue_name": "Zepp Haneda(Tokyo)",
+      "canonical_artist_name": "氷室京介",
+      "source_count": 2,
+      "record_count": 3,
+      "source_ids": [
+        "official_events",
+        "ticketjam_events"
+      ],
+      "source_kinds": [
+        "official",
+        "secondary"
+      ],
+      "same_event_key": {
+        "event_date": "2026-05-23",
+        "venue_key": "zepp haneda(tokyo)",
+        "artist_key": "氷室京介"
+      },
+      "records": [
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=152081",
+          "event_date": "2026-05-23",
+          "raw_venue_name": "Zepp Haneda(Tokyo)",
+          "venue_name": "Zepp Haneda(Tokyo)",
+          "canonical_venue_name": "Zepp Haneda(Tokyo)",
+          "venue_matched": true,
+          "raw_artist_name": "氷室京介",
+          "artist_name": "氷室京介",
+          "canonical_artist_name": "氷室京介",
+          "artist_matched": true,
+          "title": "KYOSUKE HIMURO FILM CONCERT LAST GIGS OVERRIDE",
+          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=152081",
+          "event_category": "コンサート",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-19T08:03:53Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "1e541728ce07ba43e7e946f3758bd63fd1d1a0d1480a5898da231771477b3f66",
+          "event_date": "2026-05-23",
+          "raw_venue_name": "Zepp Haneda(Tokyo)",
+          "venue_name": "Zepp Haneda(Tokyo)",
+          "canonical_venue_name": "Zepp Haneda(Tokyo)",
+          "venue_matched": true,
+          "raw_artist_name": "氷室京介",
+          "artist_name": "氷室京介",
+          "canonical_artist_name": "氷室京介",
+          "artist_matched": true,
+          "title": "KYOSUKE HIMURO FILM CONCERT TOUR LAST GIGS OVERRIDE",
+          "url": "https://ticketjam.jp/tickets/himuro-kyosuke/event/999714",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-13T06:46:55Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "ea56c82419ba7828fe972b8c3dd9773c50b0863c2b2a74bcdc43c7d7217cbf22",
+          "event_date": "2026-05-23",
+          "raw_venue_name": "Zepp Haneda(Tokyo)",
+          "venue_name": "Zepp Haneda(Tokyo)",
+          "canonical_venue_name": "Zepp Haneda(Tokyo)",
+          "venue_matched": true,
+          "raw_artist_name": "氷室京介",
+          "artist_name": "氷室京介",
+          "canonical_artist_name": "氷室京介",
+          "artist_matched": true,
+          "title": "KYOSUKE HIMURO FILM CONCERT TOUR LAST GIGS OVERRIDE",
+          "url": "https://ticketjam.jp/tickets/himuro-kyosuke/event/999715",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-16T06:21:37Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
       "event_date": "2026-07-04",
       "canonical_venue_name": "フェスティバルホール",
       "canonical_artist_name": "梶浦由記",
@@ -1003,7 +727,7 @@
           "url": "https://www.festivalhall.jp/events/6184/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -1278,7 +1002,7 @@
           "url": "https://starto.jp/s/p/live/10387",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:10Z",
+          "updated_at_utc": "2026-05-19T07:56:08Z",
           "normalization_gaps": []
         }
       ],
@@ -1343,7 +1067,7 @@
           "url": "https://starto.jp/s/p/live/10387",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:10Z",
+          "updated_at_utc": "2026-05-19T07:56:08Z",
           "normalization_gaps": []
         }
       ],
@@ -1408,7 +1132,7 @@
           "url": "https://starto.jp/s/p/live/10387",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:10Z",
+          "updated_at_utc": "2026-05-19T07:56:08Z",
           "normalization_gaps": []
         }
       ],
@@ -1473,72 +1197,7 @@
           "url": "https://www.yokohama-arena.co.jp/event/detail/west-live-tour-2026-%E5%94%AF%E4%B8%80%E7%84%A1%E4%BA%8C",
           "event_category": "コンサート",
           "artist_confidence": "source",
-          "updated_at_utc": "2026-05-10T06:39:25Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-05-13",
-      "canonical_venue_name": "豊洲PIT",
-      "canonical_artist_name": "ゲスの極み乙女",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-05-13",
-        "venue_key": "豊洲pit",
-        "artist_key": "ゲスの極み乙女"
-      },
-      "records": [
-        {
-          "source_id": "official_events",
-          "source_kind": "official",
-          "source_record_id": "toyosu_pit:../../../schedule/202604/8475.html",
-          "event_date": "2026-05-13",
-          "raw_venue_name": "豊洲PIT",
-          "venue_name": "豊洲PIT",
-          "canonical_venue_name": "豊洲PIT",
-          "venue_matched": true,
-          "raw_artist_name": "ゲスの極み乙女",
-          "artist_name": "ゲスの極み乙女",
-          "canonical_artist_name": "ゲスの極み乙女",
-          "artist_matched": true,
-          "title": "ゲスの極み乙女/indigo la End 馳せ合い vol.7",
-          "url": "https://toyosu.pia-pit.jp/schedule/202604/8475.html",
-          "event_category": "コンサート",
-          "artist_confidence": "source",
-          "updated_at_utc": "2026-05-04T07:00:06Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "ae29c835a0e6544ba5638f9f1ce0110c65aa48b082b51d8a4e71e7354ee6cb0c",
-          "event_date": "2026-05-13",
-          "raw_venue_name": "豊洲PIT",
-          "venue_name": "豊洲PIT",
-          "canonical_venue_name": "豊洲PIT",
-          "venue_matched": true,
-          "raw_artist_name": "ゲスの極み乙女",
-          "artist_name": "ゲスの極み乙女",
-          "canonical_artist_name": "ゲスの極み乙女",
-          "artist_matched": true,
-          "title": "ゲスの極み乙女 / indigo la End「馳せ合い vol.7」",
-          "url": "https://ticketjam.jp/tickets/gesunokiwamiotome/event/1105812",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-04-29T06:22:41Z",
+          "updated_at_utc": "2026-05-19T07:53:16Z",
           "normalization_gaps": []
         }
       ],
@@ -1807,6 +1466,71 @@
       "needs_review_reason": []
     },
     {
+      "event_date": "2026-05-22",
+      "canonical_venue_name": "TOKYO DOME CITY HALL",
+      "canonical_artist_name": "いぎなり東北産",
+      "source_count": 2,
+      "record_count": 2,
+      "source_ids": [
+        "official_events",
+        "ticketjam_events"
+      ],
+      "source_kinds": [
+        "official",
+        "secondary"
+      ],
+      "same_event_key": {
+        "event_date": "2026-05-22",
+        "venue_key": "tokyo dome city hall",
+        "artist_key": "いぎなり東北産"
+      },
+      "records": [
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "tdc_hall:https://madeintohoku.com/contents/pages/kanadeviahall#d=2026-05-22#t=18:30",
+          "event_date": "2026-05-22",
+          "raw_venue_name": "TOKYO DOME CITY HALL",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "いぎなり東北産",
+          "artist_name": "いぎなり東北産",
+          "canonical_artist_name": "いぎなり東北産",
+          "artist_matched": true,
+          "title": "いぎなり東北産『9人と もぎたてHALL PARTY』",
+          "url": "https://madeintohoku.com/contents/pages/kanadeviahall",
+          "event_category": "コンサート",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-19T08:06:52Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "00e13f16e528219114b0f5efd39924b1e63b4caa814bd77a3dfe456eccec6eb7",
+          "event_date": "2026-05-22",
+          "raw_venue_name": "TOKYO DOME CITY HALL",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "いぎなり東北産",
+          "artist_name": "いぎなり東北産",
+          "canonical_artist_name": "いぎなり東北産",
+          "artist_matched": true,
+          "title": "9人と もぎたてHALL PARTY",
+          "url": "https://ticketjam.jp/tickets/iginari-touhokusann/event/1094964",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-09T06:14:31Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
       "event_date": "2026-05-29",
       "canonical_venue_name": "フェスティバルホール",
       "canonical_artist_name": "財津和夫",
@@ -1843,7 +1567,7 @@
           "url": "https://www.festivalhall.jp/events/5815/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -1930,7 +1654,7 @@
           "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=5963&etype=1",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:52:05Z",
+          "updated_at_utc": "2026-05-19T08:06:14Z",
           "normalization_gaps": []
         }
       ],
@@ -1981,9 +1705,9 @@
         {
           "source_id": "ticketjam_events",
           "source_kind": "secondary",
-          "source_record_id": "e19e09dd7e01994f087bae9d194b834ad5e5f6cbfab168f869bd72acc13bb965",
+          "source_record_id": "e924b6915fa11c91a51c1af846a5896cfe732b6f8711ec6d3aa75a5235555a51",
           "event_date": "2026-05-30",
-          "raw_venue_name": "ガーデンシアター",
+          "raw_venue_name": "東京ガーデンシアター",
           "venue_name": "東京ガーデンシアター",
           "canonical_venue_name": "東京ガーデンシアター",
           "venue_matched": true,
@@ -1991,11 +1715,11 @@
           "artist_name": "及川光博",
           "canonical_artist_name": "及川光博",
           "artist_matched": true,
-          "title": "及川光博ワンマンショーツアー2026",
+          "title": "及川光博 30周年☆ワンマンショーツアー2026『TAKE IT ROSY！』",
           "url": "https://ticketjam.jp/tickets/placeholder_qxucehkauuibklegycnk/event/1000402",
           "event_category": "コンサート",
           "artist_confidence": "",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
+          "updated_at_utc": "2026-05-18T07:18:53Z",
           "normalization_gaps": []
         }
       ],
@@ -2062,7 +1786,7 @@
           "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=5964&etype=1",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:52:05Z",
+          "updated_at_utc": "2026-05-19T08:06:14Z",
           "normalization_gaps": []
         }
       ],
@@ -2127,7 +1851,139 @@
           "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:40:28Z",
+          "updated_at_utc": "2026-05-19T07:54:25Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
+      "event_date": "2026-06-03",
+      "canonical_venue_name": "TOKYO DOME CITY HALL",
+      "canonical_artist_name": "N.Flying",
+      "source_count": 2,
+      "record_count": 2,
+      "source_ids": [
+        "kstyle_music",
+        "official_events"
+      ],
+      "source_kinds": [
+        "news",
+        "official"
+      ],
+      "same_event_key": {
+        "event_date": "2026-06-03",
+        "venue_key": "tokyo dome city hall",
+        "artist_key": "n.flying"
+      },
+      "records": [
+        {
+          "source_id": "kstyle_music",
+          "source_kind": "news",
+          "source_record_id": "1a54e371dee73bcb3de12445a216bd18db66135a4a53d5611c62b4937f9dd5b4",
+          "event_date": "2026-06-03",
+          "raw_venue_name": "東京・Kanadevia Hall(TOKYO DOME CITY HALL)",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "N.Flying",
+          "artist_name": "N.Flying",
+          "canonical_artist_name": "N.Flying",
+          "artist_matched": true,
+          "title": "2026 N.Flying FAN MEETING IN JAPAN ‘Let's have some little talk‘",
+          "url": "https://kstyle.com/article.ksn?articleNo=2277530",
+          "event_category": "",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-18T02:19:32Z",
+          "normalization_gaps": [
+            "missing_category"
+          ]
+        },
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "tdc_hall:https://nflying-official.jp/news/detail/830#d=2026-06-03#t=15:00",
+          "event_date": "2026-06-03",
+          "raw_venue_name": "TOKYO DOME CITY HALL",
+          "venue_name": "TOKYO DOME CITY HALL",
+          "canonical_venue_name": "TOKYO DOME CITY HALL",
+          "venue_matched": true,
+          "raw_artist_name": "N.Flying",
+          "artist_name": "N.Flying",
+          "canonical_artist_name": "N.Flying",
+          "artist_matched": true,
+          "title": "2026 N.Flying FAN MEETING IN JAPAN 'Let's have some little talk'",
+          "url": "https://nflying-official.jp/news/detail/830",
+          "event_category": "コンサート",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-19T08:06:52Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
+      "event_date": "2026-06-06",
+      "canonical_venue_name": "Zepp札幌",
+      "canonical_artist_name": "ピノキオピー",
+      "source_count": 2,
+      "record_count": 2,
+      "source_ids": [
+        "official_events",
+        "ticketjam_events"
+      ],
+      "source_kinds": [
+        "official",
+        "secondary"
+      ],
+      "same_event_key": {
+        "event_date": "2026-06-06",
+        "venue_key": "zepp札幌",
+        "artist_key": "ピノキオピ-"
+      },
+      "records": [
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155724",
+          "event_date": "2026-06-06",
+          "raw_venue_name": "Zepp札幌",
+          "venue_name": "Zepp札幌",
+          "canonical_venue_name": "Zepp札幌",
+          "venue_matched": true,
+          "raw_artist_name": "ピノキオピー",
+          "artist_name": "ピノキオピー",
+          "canonical_artist_name": "ピノキオピー",
+          "artist_matched": true,
+          "title": "ピノキオピー2026 TOUR 「アンダーワールド」",
+          "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155724",
+          "event_category": "コンサート",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-19T07:54:20Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "860b1adf8a3e0fbefcdb560ea2938aac3c35d4592c7d38e554733cacad8e1b9c",
+          "event_date": "2026-06-06",
+          "raw_venue_name": "Zepp札幌",
+          "venue_name": "Zepp札幌",
+          "canonical_venue_name": "Zepp札幌",
+          "venue_matched": true,
+          "raw_artist_name": "ピノキオピー",
+          "artist_name": "ピノキオピー",
+          "canonical_artist_name": "ピノキオピー",
+          "artist_matched": true,
+          "title": "ピノキオピー2026 TOUR 「アンダーワールド」",
+          "url": "https://ticketjam.jp/tickets/pinokiop/event/1101641",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-17T06:43:56Z",
           "normalization_gaps": []
         }
       ],
@@ -2172,7 +2028,7 @@
           "url": "https://www.seikomatsuda.co.jp/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:52:02Z",
+          "updated_at_utc": "2026-05-19T08:06:11Z",
           "normalization_gaps": []
         },
         {
@@ -2237,7 +2093,7 @@
           "url": "https://www.yokohama-arena.co.jp/event/detail/bullet-train-arena-tour-2026-escort",
           "event_category": "コンサート",
           "artist_confidence": "source",
-          "updated_at_utc": "2026-05-10T06:39:25Z",
+          "updated_at_utc": "2026-05-19T07:53:16Z",
           "normalization_gaps": []
         },
         {
@@ -2302,7 +2158,7 @@
           "url": "https://www.festivalhall.jp/events/6120/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -2367,7 +2223,7 @@
           "url": "https://www.festivalhall.jp/events/6121/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -2432,7 +2288,7 @@
           "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%82%B1%E3%83%84%E3%83%A1%E3%82%A4%E3%82%B7-25th-anniversary-tour%E3%80%80%E3%82%B1%E3%83%84%E3%83%A1%E3%83%B3camp-2026",
           "event_category": "コンサート",
           "artist_confidence": "source",
-          "updated_at_utc": "2026-05-10T06:39:25Z",
+          "updated_at_utc": "2026-05-19T07:53:16Z",
           "normalization_gaps": []
         },
         {
@@ -2453,6 +2309,71 @@
           "event_category": "コンサート",
           "artist_confidence": "",
           "updated_at_utc": "2026-03-09T07:46:04Z",
+          "normalization_gaps": []
+        }
+      ],
+      "automation_bucket": "report_only",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": []
+    },
+    {
+      "event_date": "2026-06-18",
+      "canonical_venue_name": "Zepp DiverCity(Tokyo)",
+      "canonical_artist_name": "小山田壮平",
+      "source_count": 2,
+      "record_count": 2,
+      "source_ids": [
+        "official_events",
+        "ticketjam_events"
+      ],
+      "source_kinds": [
+        "official",
+        "secondary"
+      ],
+      "same_event_key": {
+        "event_date": "2026-06-18",
+        "venue_key": "zepp divercity(tokyo)",
+        "artist_key": "小山田壮平"
+      },
+      "records": [
+        {
+          "source_id": "official_events",
+          "source_kind": "official",
+          "source_record_id": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158031",
+          "event_date": "2026-06-18",
+          "raw_venue_name": "Zepp DiverCity(Tokyo)",
+          "venue_name": "Zepp DiverCity(Tokyo)",
+          "canonical_venue_name": "Zepp DiverCity(Tokyo)",
+          "venue_matched": true,
+          "raw_artist_name": "小山田壮平",
+          "artist_name": "小山田壮平",
+          "canonical_artist_name": "小山田壮平",
+          "artist_matched": true,
+          "title": "小山田壮平バンドツアー2026",
+          "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158031",
+          "event_category": "コンサート",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-19T08:04:14Z",
+          "normalization_gaps": []
+        },
+        {
+          "source_id": "ticketjam_events",
+          "source_kind": "secondary",
+          "source_record_id": "188292177147978f281c7547a2d96c01c70b384ad49f503e48b59c915c16c64e",
+          "event_date": "2026-06-18",
+          "raw_venue_name": "Zepp DiverCity （TOKYO）",
+          "venue_name": "Zepp DiverCity(Tokyo)",
+          "canonical_venue_name": "Zepp DiverCity(Tokyo)",
+          "venue_matched": true,
+          "raw_artist_name": "小山田壮平",
+          "artist_name": "小山田壮平",
+          "canonical_artist_name": "小山田壮平",
+          "artist_matched": true,
+          "title": "小山田壮平BAND TOUR2026",
+          "url": "https://ticketjam.jp/tickets/oyamada-sohei/event/1077115",
+          "event_category": "コンサート",
+          "artist_confidence": "",
+          "updated_at_utc": "2026-05-15T06:55:07Z",
           "normalization_gaps": []
         }
       ],
@@ -2497,7 +2418,7 @@
           "url": "https://www.yokohama-arena.co.jp/event/detail/%E8%8A%B8%E8%83%BD%E2%BD%A3%E6%B4%BB30%E5%91%A8%E5%B9%B4%EF%B8%95%EF%B8%95-%E2%BC%A4%E6%B3%89%E6%B4%8B%E3%83%AA%E3%82%B5%E3%82%A4%E3%82%BF%E3%83%AB2-%E3%83%BCrevenge%E3%83%BC",
           "event_category": "コンサート",
           "artist_confidence": "source_normalized",
-          "updated_at_utc": "2026-05-10T06:39:25Z",
+          "updated_at_utc": "2026-05-19T07:53:16Z",
           "normalization_gaps": []
         },
         {
@@ -2562,7 +2483,7 @@
           "url": "https://www.festivalhall.jp/events/6173/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -2627,7 +2548,7 @@
           "url": "https://kyodo-osaka.co.jp/search/detail/12024",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:03Z",
+          "updated_at_utc": "2026-05-19T07:56:01Z",
           "normalization_gaps": []
         },
         {
@@ -2692,7 +2613,7 @@
           "url": "https://www.festivalhall.jp/events/6406/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -2757,7 +2678,7 @@
           "url": "https://kyodo-osaka.co.jp/search/detail/12024",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:03Z",
+          "updated_at_utc": "2026-05-19T07:56:01Z",
           "normalization_gaps": []
         },
         {
@@ -2822,7 +2743,7 @@
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158873",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:09Z",
+          "updated_at_utc": "2026-05-19T08:05:20Z",
           "normalization_gaps": []
         },
         {
@@ -2887,7 +2808,7 @@
           "url": "https://www.festivalhall.jp/events/6172/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-03-09T07:57:51Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -2952,7 +2873,7 @@
           "url": "https://www.osaka-johall.com/event?ym=202606",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:03Z",
+          "updated_at_utc": "2026-05-19T07:56:01Z",
           "normalization_gaps": []
         },
         {
@@ -3017,7 +2938,7 @@
           "url": "https://www.osaka-johall.com/event?ym=202606",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:03Z",
+          "updated_at_utc": "2026-05-19T07:56:01Z",
           "normalization_gaps": []
         },
         {
@@ -3147,7 +3068,7 @@
           "url": "https://www.osaka-johall.com/event?ym=202606",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:42:03Z",
+          "updated_at_utc": "2026-05-19T07:56:01Z",
           "normalization_gaps": []
         },
         {
@@ -3342,7 +3263,7 @@
           "url": "https://www.festivalhall.jp/events/6145/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -3492,7 +3413,7 @@
           "url": "https://www.yokohama-arena.co.jp/event/detail/were-timelesz-live-tour-2026-episode-2-momentum",
           "event_category": "コンサート",
           "artist_confidence": "source",
-          "updated_at_utc": "2026-05-10T06:39:25Z",
+          "updated_at_utc": "2026-05-19T07:53:16Z",
           "normalization_gaps": []
         }
       ],
@@ -3537,7 +3458,7 @@
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=157614",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:09Z",
+          "updated_at_utc": "2026-05-19T08:05:20Z",
           "normalization_gaps": []
         },
         {
@@ -3602,7 +3523,7 @@
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=157615",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:09Z",
+          "updated_at_utc": "2026-05-19T08:05:20Z",
           "normalization_gaps": []
         },
         {
@@ -3667,7 +3588,7 @@
           "url": "https://genjibu.jp/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:52:02Z",
+          "updated_at_utc": "2026-05-19T08:06:11Z",
           "normalization_gaps": []
         },
         {
@@ -3732,7 +3653,7 @@
           "url": "https://www.festivalhall.jp/events/6068/",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
+          "updated_at_utc": "2026-05-19T08:05:57Z",
           "normalization_gaps": []
         },
         {
@@ -3761,453 +3682,65 @@
       "needs_review_reason": []
     },
     {
-      "event_date": "2026-07-09",
-      "canonical_venue_name": "フェスティバルホール",
-      "canonical_artist_name": "中森明菜",
+      "event_date": "2026-07-08",
+      "canonical_venue_name": "大阪城ホール",
+      "canonical_artist_name": "TREASURE",
       "source_count": 2,
       "record_count": 2,
       "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-07-09",
-        "venue_key": "フェスティバルホ-ル",
-        "artist_key": "中森明菜"
-      },
-      "records": [
-        {
-          "source_id": "official_events",
-          "source_kind": "official",
-          "source_record_id": "festival_hall:https://www.festivalhall.jp/events/6069/",
-          "event_date": "2026-07-09",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "中森明菜",
-          "artist_name": "中森明菜",
-          "canonical_artist_name": "中森明菜",
-          "artist_matched": true,
-          "title": "中森明菜 AKINA NAKAMORI LIVE TOUR 2026",
-          "url": "https://www.festivalhall.jp/events/6069/",
-          "event_category": "コンサート",
-          "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "7df36dc52f2b0e57b493908060363f27a8d79700685f65936aa28eaace5588ca",
-          "event_date": "2026-07-09",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "中森明菜",
-          "artist_name": "中森明菜",
-          "canonical_artist_name": "中森明菜",
-          "artist_matched": true,
-          "title": "AKINA NAKAMORI LIVE TOUR 2026",
-          "url": "https://ticketjam.jp/tickets/nakamori-akina/event/1093002",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-04-27T06:24:32Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-07-10",
-      "canonical_venue_name": "フェスティバルホール",
-      "canonical_artist_name": "ナオト・インティライミ",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-07-10",
-        "venue_key": "フェスティバルホ-ル",
-        "artist_key": "ナオト・インティライミ"
-      },
-      "records": [
-        {
-          "source_id": "official_events",
-          "source_kind": "official",
-          "source_record_id": "festival_hall:https://www.festivalhall.jp/events/5979/",
-          "event_date": "2026-07-10",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "ナオト・インティライミ",
-          "artist_name": "ナオト・インティライミ",
-          "canonical_artist_name": "ナオト・インティライミ",
-          "artist_matched": true,
-          "title": "ナオトの日 スペシャルLIVE 2026　今さら開幕！？ティライミ館！！大阪ワンパク ほないこか！！",
-          "url": "https://www.festivalhall.jp/events/5979/",
-          "event_category": "コンサート",
-          "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "d8ee07eab95c209fb4240b2507f5675ec5890cea41275f7df3c2a015a7a8e88b",
-          "event_date": "2026-07-10",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "ナオト・インティライミ",
-          "artist_name": "ナオト・インティライミ",
-          "canonical_artist_name": "ナオト・インティライミ",
-          "artist_matched": true,
-          "title": "ナオトの日 スペシャルLIVE 2026〜今さら開幕！？ ティライミ館！！大阪ワンパク ほないこか！！〜",
-          "url": "https://ticketjam.jp/tickets/placeholder_cufubhllufwlbompoxho/event/1107496",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-07-12",
-      "canonical_venue_name": "北海道立総合体育センター 北海きたえーる",
-      "canonical_artist_name": "なにわ男子",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "starto_concert",
-        "ticketjam_events"
+        "kstyle_music",
+        "official_events"
       ],
       "source_kinds": [
         "news",
-        "secondary"
+        "official"
       ],
       "same_event_key": {
-        "event_date": "2026-07-12",
-        "venue_key": "北海道立総合体育センタ- 北海きたえ-る",
-        "artist_key": "なにわ男子"
+        "event_date": "2026-07-08",
+        "venue_key": "大阪城ホ-ル",
+        "artist_key": "treasure"
       },
       "records": [
         {
-          "source_id": "starto_concert",
+          "source_id": "kstyle_music",
           "source_kind": "news",
-          "source_record_id": "ac57af4ec0c51de72117d01518854b4924e2d36c3ba0777b17154708a9bfb07e",
-          "event_date": "2026-07-12",
-          "raw_venue_name": "北海道立総合体育センター（北海きたえーる）",
-          "venue_name": "北海道立総合体育センター 北海きたえーる",
-          "canonical_venue_name": "北海道立総合体育センター 北海きたえーる",
+          "source_record_id": "842ea7c391a178326a12b7da6b8357500280e81819cf45ce1a6501ad93507711",
+          "event_date": "2026-07-08",
+          "raw_venue_name": "大阪城ホール",
+          "venue_name": "大阪城ホール",
+          "canonical_venue_name": "大阪城ホール",
           "venue_matched": true,
-          "raw_artist_name": "なにわ男子",
-          "artist_name": "なにわ男子",
-          "canonical_artist_name": "なにわ男子",
+          "raw_artist_name": "TREASURE",
+          "artist_name": "TREASURE",
+          "canonical_artist_name": "TREASURE",
           "artist_matched": true,
-          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
-          "url": "https://starto.jp/s/p/live/10489",
-          "event_category": "concert",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-04-16T13:12:04Z",
-          "normalization_gaps": []
+          "title": "TREASURE THE STAGE 2026 IN JAPAN",
+          "url": "https://kstyle.com/article.ksn?articleNo=2276584",
+          "event_category": "",
+          "artist_confidence": "high",
+          "updated_at_utc": "2026-05-21T01:40:13Z",
+          "normalization_gaps": [
+            "missing_category"
+          ]
         },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "6c878a16168ec2aedd92f50a4127d231808840c870305989892ec2f7bb79535c",
-          "event_date": "2026-07-12",
-          "raw_venue_name": "北海道立総合体育センター 北海きたえーる",
-          "venue_name": "北海道立総合体育センター 北海きたえーる",
-          "canonical_venue_name": "北海道立総合体育センター 北海きたえーる",
-          "venue_matched": true,
-          "raw_artist_name": "なにわ男子",
-          "artist_name": "なにわ男子",
-          "canonical_artist_name": "なにわ男子",
-          "artist_matched": true,
-          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
-          "url": "https://ticketjam.jp/tickets/naniwa-dannshi/event/1152896",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-05-10T06:33:36Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-07-19",
-      "canonical_venue_name": "Zepp Haneda(Tokyo)",
-      "canonical_artist_name": "岡村靖幸",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-07-19",
-        "venue_key": "zepp haneda(tokyo)",
-        "artist_key": "岡村靖幸"
-      },
-      "records": [
         {
           "source_id": "official_events",
           "source_kind": "official",
-          "source_record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157349",
-          "event_date": "2026-07-19",
-          "raw_venue_name": "Zepp Haneda(Tokyo)",
-          "venue_name": "Zepp Haneda(Tokyo)",
-          "canonical_venue_name": "Zepp Haneda(Tokyo)",
+          "source_record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/12820#d=2026-07-08#t=18:30",
+          "event_date": "2026-07-08",
+          "raw_venue_name": "大阪城ホール",
+          "venue_name": "大阪城ホール",
+          "canonical_venue_name": "大阪城ホール",
           "venue_matched": true,
-          "raw_artist_name": "岡村靖幸",
-          "artist_name": "岡村靖幸",
-          "canonical_artist_name": "岡村靖幸",
+          "raw_artist_name": "TREASURE",
+          "artist_name": "TREASURE",
+          "canonical_artist_name": "TREASURE",
           "artist_matched": true,
-          "title": "岡村靖幸 2026 SUMMER TOUR 「ピポット」",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157349",
+          "title": "TREASURE",
+          "url": "https://kyodo-osaka.co.jp/search/detail/12820",
           "event_category": "コンサート",
           "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:49:42Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "41f3a24679067779bbd6cef40d3e097a280ee943065bc487888adcf869d12fc6",
-          "event_date": "2026-07-19",
-          "raw_venue_name": "Zepp Haneda",
-          "venue_name": "Zepp Haneda(Tokyo)",
-          "canonical_venue_name": "Zepp Haneda(Tokyo)",
-          "venue_matched": true,
-          "raw_artist_name": "岡村靖幸",
-          "artist_name": "岡村靖幸",
-          "canonical_artist_name": "岡村靖幸",
-          "artist_matched": true,
-          "title": "岡村靖幸 2026 SUMMER TOUR「ピポット」全国公演",
-          "url": "https://ticketjam.jp/tickets/okamura-yasuyuki/event/1093444",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-07-19",
-      "canonical_venue_name": "Zepp Osaka Bayside",
-      "canonical_artist_name": "斉藤壮馬",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-07-19",
-        "venue_key": "zepp osaka bayside",
-        "artist_key": "斉藤壮馬"
-      },
-      "records": [
-        {
-          "source_id": "official_events",
-          "source_kind": "official",
-          "source_record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=157310",
-          "event_date": "2026-07-19",
-          "raw_venue_name": "Zepp Osaka Bayside",
-          "venue_name": "Zepp Osaka Bayside",
-          "canonical_venue_name": "Zepp Osaka Bayside",
-          "venue_matched": true,
-          "raw_artist_name": "斉藤壮馬",
-          "artist_name": "斉藤壮馬",
-          "canonical_artist_name": "斉藤壮馬",
-          "artist_matched": true,
-          "title": "斉藤壮馬 Zepp Live Tour 2026",
-          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=157310",
-          "event_category": "コンサート",
-          "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:09Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "5119528c4f4ed92558b0febd72d94006fb9dab8c36dd19f966b1a481bb5b586c",
-          "event_date": "2026-07-19",
-          "raw_venue_name": "Zepp Osaka Bayside（大阪ベイサイド）",
-          "venue_name": "Zepp Osaka Bayside",
-          "canonical_venue_name": "Zepp Osaka Bayside",
-          "venue_matched": true,
-          "raw_artist_name": "斉藤壮馬",
-          "artist_name": "斉藤壮馬",
-          "canonical_artist_name": "斉藤壮馬",
-          "artist_matched": true,
-          "title": "斉藤壮馬 Zepp Live Tour 2026",
-          "url": "https://ticketjam.jp/tickets/saito-soma/event/1053817",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-07-19",
-      "canonical_venue_name": "フェスティバルホール",
-      "canonical_artist_name": "さだまさし",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-07-19",
-        "venue_key": "フェスティバルホ-ル",
-        "artist_key": "さだまさし"
-      },
-      "records": [
-        {
-          "source_id": "official_events",
-          "source_kind": "official",
-          "source_record_id": "festival_hall:https://www.festivalhall.jp/events/6142/",
-          "event_date": "2026-07-19",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "さだまさし",
-          "artist_name": "さだまさし",
-          "canonical_artist_name": "さだまさし",
-          "artist_matched": true,
-          "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
-          "url": "https://www.festivalhall.jp/events/6142/",
-          "event_category": "コンサート",
-          "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "42e5d25aa947ba88d6fe4a52f097e6fa7983753017549553d3f5b59b6b772d62",
-          "event_date": "2026-07-19",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "さだまさし",
-          "artist_name": "さだまさし",
-          "canonical_artist_name": "さだまさし",
-          "artist_matched": true,
-          "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
-          "url": "https://ticketjam.jp/tickets/sada-masashi/event/1110314",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-05-04T06:35:52Z",
-          "normalization_gaps": []
-        }
-      ],
-      "automation_bucket": "report_only",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": []
-    },
-    {
-      "event_date": "2026-07-20",
-      "canonical_venue_name": "フェスティバルホール",
-      "canonical_artist_name": "さだまさし",
-      "source_count": 2,
-      "record_count": 2,
-      "source_ids": [
-        "official_events",
-        "ticketjam_events"
-      ],
-      "source_kinds": [
-        "official",
-        "secondary"
-      ],
-      "same_event_key": {
-        "event_date": "2026-07-20",
-        "venue_key": "フェスティバルホ-ル",
-        "artist_key": "さだまさし"
-      },
-      "records": [
-        {
-          "source_id": "official_events",
-          "source_kind": "official",
-          "source_record_id": "festival_hall:https://www.festivalhall.jp/events/6183/",
-          "event_date": "2026-07-20",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "さだまさし",
-          "artist_name": "さだまさし",
-          "canonical_artist_name": "さだまさし",
-          "artist_matched": true,
-          "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
-          "url": "https://www.festivalhall.jp/events/6183/",
-          "event_category": "コンサート",
-          "artist_confidence": "high",
-          "updated_at_utc": "2026-05-10T06:51:47Z",
-          "normalization_gaps": []
-        },
-        {
-          "source_id": "ticketjam_events",
-          "source_kind": "secondary",
-          "source_record_id": "01305d6c59c249f9685ad6f9613e3e2cd7d52bb22dc47ed5ce773594e05690e9",
-          "event_date": "2026-07-20",
-          "raw_venue_name": "フェスティバルホール",
-          "venue_name": "フェスティバルホール",
-          "canonical_venue_name": "フェスティバルホール",
-          "venue_matched": true,
-          "raw_artist_name": "さだまさし",
-          "artist_name": "さだまさし",
-          "canonical_artist_name": "さだまさし",
-          "artist_matched": true,
-          "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
-          "url": "https://ticketjam.jp/tickets/sada-masashi/event/1110315",
-          "event_category": "コンサート",
-          "artist_confidence": "",
-          "updated_at_utc": "2026-05-04T06:35:52Z",
+          "updated_at_utc": "2026-05-19T07:56:01Z",
           "normalization_gaps": []
         }
       ],
@@ -4226,42 +3759,15 @@
       "venue_name": "IGアリーナ",
       "canonical_venue_name": "IGアリーナ",
       "venue_matched": true,
-      "raw_artist_name": "SEVENTEEN",
-      "artist_name": "SEVENTEEN",
-      "canonical_artist_name": "SEVENTEEN",
+      "raw_artist_name": "DOUBLE",
+      "artist_name": "DOUBLE",
+      "canonical_artist_name": "DOUBLE",
       "artist_matched": true,
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
-      "normalization_gaps": [
-        "missing_category"
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "missing_category"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "source_kind": "news",
-      "source_record_id": "53268538fc3e226fcd3728d842bc96248d2029dc96365b1f0dc77c88fcd44bc7",
-      "event_date": "2026-01-18",
-      "raw_venue_name": "DREAM SQUARE HALL",
-      "venue_name": "DREAM SQUARE HALL",
-      "canonical_venue_name": "DREAM SQUARE HALL",
-      "venue_matched": true,
-      "raw_artist_name": "ICHILLIN'",
-      "artist_name": "ICHILLIN'",
-      "canonical_artist_name": "ICHILLIN'",
-      "artist_matched": true,
-      "title": "ICHILLIN' JAPAN FAN LIVE 2026 SEASON OF ICHILLIN'",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278932",
-      "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-05-09T12:57:33Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4280,15 +3786,15 @@
       "venue_name": "IGアリーナ",
       "canonical_venue_name": "IGアリーナ",
       "venue_matched": true,
-      "raw_artist_name": "SEVENTEEN",
-      "artist_name": "SEVENTEEN",
-      "canonical_artist_name": "SEVENTEEN",
+      "raw_artist_name": "DOUBLE",
+      "artist_name": "DOUBLE",
+      "canonical_artist_name": "DOUBLE",
       "artist_matched": true,
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4307,15 +3813,15 @@
       "venue_name": "IGアリーナ",
       "canonical_venue_name": "IGアリーナ",
       "venue_matched": true,
-      "raw_artist_name": "SEVENTEEN",
-      "artist_name": "SEVENTEEN",
-      "canonical_artist_name": "SEVENTEEN",
+      "raw_artist_name": "DOUBLE",
+      "artist_name": "DOUBLE",
+      "canonical_artist_name": "DOUBLE",
       "artist_matched": true,
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4334,15 +3840,15 @@
       "venue_name": "IGアリーナ",
       "canonical_venue_name": "IGアリーナ",
       "venue_matched": true,
-      "raw_artist_name": "SEVENTEEN",
-      "artist_name": "SEVENTEEN",
-      "canonical_artist_name": "SEVENTEEN",
+      "raw_artist_name": "DOUBLE",
+      "artist_name": "DOUBLE",
+      "canonical_artist_name": "DOUBLE",
       "artist_matched": true,
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4355,21 +3861,52 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
+      "source_record_id": "28c1971bbfa455ded4fdadd2cf7926a878c2db2f092c1e024d17deefac2d7dd3",
+      "event_date": "2026-02-06",
+      "raw_venue_name": "TIAT SKY HALL",
+      "venue_name": "TIAT SKY HALL",
+      "canonical_venue_name": "TIAT SKY HALL",
+      "venue_matched": false,
+      "raw_artist_name": "LEE JOOBEEN",
+      "artist_name": "LEE JOOBEEN",
+      "canonical_artist_name": "LEE JOOBEEN",
+      "artist_matched": false,
+      "title": "2026 LEE JOOBEEN 1st FANMEETING [JOOTOPIA] : ASIA TOUR in Tokyo",
+      "url": "https://kstyle.com/article.ksn?articleNo=2278262",
+      "event_category": "",
+      "artist_confidence": "low",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
+      "normalization_gaps": [
+        "unmatched_venue",
+        "unmatched_artist",
+        "missing_category"
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue",
+        "unmatched_artist",
+        "missing_category"
+      ]
+    },
+    {
+      "source_id": "kstyle_music",
+      "source_kind": "news",
       "source_record_id": "f62c87ae8991d1378907df8a23aa95f374f1999ab98774932d657a251fe2fc32",
       "event_date": "2026-02-06",
       "raw_venue_name": "愛知/IGアリーナ",
       "venue_name": "IGアリーナ",
       "canonical_venue_name": "IGアリーナ",
       "venue_matched": true,
-      "raw_artist_name": "SEVENTEEN",
-      "artist_name": "SEVENTEEN",
-      "canonical_artist_name": "SEVENTEEN",
+      "raw_artist_name": "DOUBLE",
+      "artist_name": "DOUBLE",
+      "canonical_artist_name": "DOUBLE",
       "artist_matched": true,
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4450,7 +3987,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2273771",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4477,7 +4014,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2273771",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4496,21 +4033,23 @@
       "venue_name": "iBIG HALL",
       "canonical_venue_name": "iBIG HALL",
       "venue_matched": true,
-      "raw_artist_name": "NINE.i",
-      "artist_name": "NINE.i",
-      "canonical_artist_name": "NINE.i",
-      "artist_matched": true,
+      "raw_artist_name": "Seowon",
+      "artist_name": "Seowon",
+      "canonical_artist_name": "Seowon",
+      "artist_matched": false,
       "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
       "url": "https://kstyle.com/article.ksn?articleNo=2274719",
       "event_category": "",
-      "artist_confidence": "medium",
-      "updated_at_utc": "2026-05-01T13:00:12Z",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-05-19T14:39:58Z",
       "normalization_gaps": [
+        "unmatched_artist",
         "missing_category"
       ],
       "automation_bucket": "human_review",
       "lp_impact": "duplicate_grouping_change",
       "needs_review_reason": [
+        "unmatched_artist",
         "missing_category"
       ]
     },
@@ -4523,21 +4062,23 @@
       "venue_name": "iBIG HALL",
       "canonical_venue_name": "iBIG HALL",
       "venue_matched": true,
-      "raw_artist_name": "NINE.i",
-      "artist_name": "NINE.i",
-      "canonical_artist_name": "NINE.i",
-      "artist_matched": true,
+      "raw_artist_name": "Seowon",
+      "artist_name": "Seowon",
+      "canonical_artist_name": "Seowon",
+      "artist_matched": false,
       "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
       "url": "https://kstyle.com/article.ksn?articleNo=2274719",
       "event_category": "",
-      "artist_confidence": "medium",
-      "updated_at_utc": "2026-05-01T13:00:12Z",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-05-19T14:39:58Z",
       "normalization_gaps": [
+        "unmatched_artist",
         "missing_category"
       ],
       "automation_bucket": "human_review",
       "lp_impact": "duplicate_grouping_change",
       "needs_review_reason": [
+        "unmatched_artist",
         "missing_category"
       ]
     },
@@ -4612,7 +4153,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2274736",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-04-18T12:44:08Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4712,15 +4253,15 @@
       "venue_name": "やまと芸術文化ホール メインホール",
       "canonical_venue_name": "やまと芸術文化ホール メインホール",
       "venue_matched": false,
-      "raw_artist_name": "キム・ヘユン",
-      "artist_name": "キム・ヘユン",
-      "canonical_artist_name": "キム・ヘユン",
+      "raw_artist_name": "KIMHYEYOON",
+      "artist_name": "KIMHYEYOON",
+      "canonical_artist_name": "KIMHYEYOON",
       "artist_matched": false,
       "title": "2026 KIMHYEYOON FANMEETING [Season of HYEPPINESS] IN JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2274868",
       "event_category": "",
       "artist_confidence": "low",
-      "updated_at_utc": "2026-04-21T13:05:42Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "unmatched_venue",
         "unmatched_artist",
@@ -4743,15 +4284,15 @@
       "venue_name": "Zepp Namba(Osaka)",
       "canonical_venue_name": "Zepp Namba(Osaka)",
       "venue_matched": true,
-      "raw_artist_name": "Hi-Fi Un!corn",
-      "artist_name": "Hi-Fi Un!corn",
-      "canonical_artist_name": "Hi-Fi Un!corn",
+      "raw_artist_name": "Chocolat",
+      "artist_name": "Chocolat",
+      "canonical_artist_name": "Chocolat",
       "artist_matched": true,
       "title": "Music Chocolate Festival.2026",
       "url": "https://kstyle.com/article.ksn?articleNo=2273704",
       "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T05:44:19Z",
+      "artist_confidence": "medium",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4770,15 +4311,15 @@
       "venue_name": "Zepp Namba(Osaka)",
       "canonical_venue_name": "Zepp Namba(Osaka)",
       "venue_matched": true,
-      "raw_artist_name": "N.SSign",
-      "artist_name": "N.SSign",
-      "canonical_artist_name": "N.SSign",
+      "raw_artist_name": "Chocolat",
+      "artist_name": "Chocolat",
+      "canonical_artist_name": "Chocolat",
       "artist_matched": true,
       "title": "Music Chocolate Festival.2026",
       "url": "https://kstyle.com/article.ksn?articleNo=2274071",
       "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-05-01T13:00:12Z",
+      "artist_confidence": "medium",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4797,15 +4338,15 @@
       "venue_name": "松下IMPホール",
       "canonical_venue_name": "松下IMPホール",
       "venue_matched": false,
-      "raw_artist_name": "キム・ヘユン",
-      "artist_name": "キム・ヘユン",
-      "canonical_artist_name": "キム・ヘユン",
+      "raw_artist_name": "KIMHYEYOON",
+      "artist_name": "KIMHYEYOON",
+      "canonical_artist_name": "KIMHYEYOON",
       "artist_matched": false,
       "title": "2026 KIMHYEYOON FANMEETING [Season of HYEPPINESS] IN JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2274868",
       "event_category": "",
       "artist_confidence": "low",
-      "updated_at_utc": "2026-04-21T13:05:42Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "unmatched_venue",
         "unmatched_artist",
@@ -4865,7 +4406,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2274691",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-20T12:40:56Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -4905,33 +4446,6 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
-      "source_record_id": "9dfe4f055f65dbc9d334fd02b1e9f9630c1f192267cb8c43d7f14a146b8cd9d0",
-      "event_date": "2026-04-17",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "venue_name": "iBIG HALL",
-      "canonical_venue_name": "iBIG HALL",
-      "venue_matched": true,
-      "raw_artist_name": "GHOST9",
-      "artist_name": "GHOST9",
-      "canonical_artist_name": "GHOST9",
-      "artist_matched": true,
-      "title": "GHOST9 SPECIAL JAPAN LIVE 2026 “Our Story, Unfolding Season 3”",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277158",
-      "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-04-03T12:45:08Z",
-      "normalization_gaps": [
-        "missing_category"
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "missing_category"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "source_kind": "news",
       "source_record_id": "6fe240f010f8f0c37e0d280801702e1ea330975ef4254fb06e279e17005b4354",
       "event_date": "2026-04-18",
       "raw_venue_name": "FCLIVE TOKYO HALL(東京都新宿区大久保2-18-14)",
@@ -4947,33 +4461,6 @@
       "event_category": "",
       "artist_confidence": "medium",
       "updated_at_utc": "2026-04-07T13:01:58Z",
-      "normalization_gaps": [
-        "missing_category"
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "missing_category"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "source_kind": "news",
-      "source_record_id": "956619e5412151c8c2f607d57485fecb3f9473dfaa257e1857abefc48c114f47",
-      "event_date": "2026-04-18",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "venue_name": "iBIG HALL",
-      "canonical_venue_name": "iBIG HALL",
-      "venue_matched": true,
-      "raw_artist_name": "GHOST9",
-      "artist_name": "GHOST9",
-      "canonical_artist_name": "GHOST9",
-      "artist_matched": true,
-      "title": "GHOST9 SPECIAL JAPAN LIVE 2026 “Our Story, Unfolding Season 3”",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277158",
-      "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-04-03T12:45:08Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5069,33 +4556,6 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
-      "source_record_id": "d28a789bfac4c26f72aada5777dae23a07fbf99ddb4547bf161b96f092bdd784",
-      "event_date": "2026-04-19",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "venue_name": "iBIG HALL",
-      "canonical_venue_name": "iBIG HALL",
-      "venue_matched": true,
-      "raw_artist_name": "GHOST9",
-      "artist_name": "GHOST9",
-      "canonical_artist_name": "GHOST9",
-      "artist_matched": true,
-      "title": "GHOST9 SPECIAL JAPAN LIVE 2026 “Our Story, Unfolding Season 3”",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277158",
-      "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-04-03T12:45:08Z",
-      "normalization_gaps": [
-        "missing_category"
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "missing_category"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "source_kind": "news",
       "source_record_id": "2d3037858f3160bafa3b40c7ecb0425f8925809cd322ce3ee24990d39123adbd",
       "event_date": "2026-04-19",
       "raw_venue_name": "大和ハウス プレミストドーム",
@@ -5137,7 +4597,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2272201",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T10:05:59Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5164,7 +4624,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2272201",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T10:05:59Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5191,7 +4651,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2274691",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-20T12:40:56Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "unmatched_venue",
         "missing_category"
@@ -5220,34 +4680,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2272201",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-03-18T10:05:59Z",
-      "normalization_gaps": [
-        "missing_category"
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "missing_category"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "source_kind": "news",
-      "source_record_id": "e5e54c47e45d6a1324b5a98099ede7b3a07dc63815c0bba01b7dd27cdc32b91d",
-      "event_date": "2026-04-29",
-      "raw_venue_name": "東京・Zepp Haneda",
-      "venue_name": "Zepp Haneda(Tokyo)",
-      "canonical_venue_name": "Zepp Haneda(Tokyo)",
-      "venue_matched": true,
-      "raw_artist_name": "FTISLAND",
-      "artist_name": "FTISLAND",
-      "canonical_artist_name": "FTISLAND",
-      "artist_matched": true,
-      "title": "2026 FTISLAND LIVE 'MAD HAPPY' Zepp Tour IN JAPAN",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279004",
-      "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-05-11T14:30:34Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5289,33 +4722,6 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
-      "source_record_id": "d01bb811892eff0a06d26bad27882126744258e2993af406c7f2831b2a7a237c",
-      "event_date": "2026-05-09",
-      "raw_venue_name": "Kアリーナ横浜",
-      "venue_name": "Kアリーナ横浜",
-      "canonical_venue_name": "Kアリーナ横浜",
-      "venue_matched": true,
-      "raw_artist_name": "BOYNEXTDOOR",
-      "artist_name": "BOYNEXTDOOR",
-      "canonical_artist_name": "BOYNEXTDOOR",
-      "artist_matched": true,
-      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
-      "event_category": "",
-      "artist_confidence": "high",
-      "updated_at_utc": "2026-04-10T12:50:22Z",
-      "normalization_gaps": [
-        "missing_category"
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "missing_category"
-      ]
-    },
-    {
-      "source_id": "kstyle_music",
-      "source_kind": "news",
       "source_record_id": "478433b62f3e693ecfcf45de44dfa7ee40468edbff14a715c80e4fed0ae728c3",
       "event_date": "2026-05-09",
       "raw_venue_name": "Kアリーナ横浜",
@@ -5343,21 +4749,21 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
-      "source_record_id": "84c916427bee21b0bce716bbd8cfb6c5820e42153abfaf1cd80a7ba70a8fb4f4",
+      "source_record_id": "4cf654034a0f128e5a0edc947a41aca4f10d0473860717af4e7bc097dd1a62d8",
       "event_date": "2026-05-09",
       "raw_venue_name": "Kアリーナ横浜",
       "venue_name": "Kアリーナ横浜",
       "canonical_venue_name": "Kアリーナ横浜",
       "venue_matched": true,
-      "raw_artist_name": "RIIZE",
-      "artist_name": "RIIZE",
-      "canonical_artist_name": "RIIZE",
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
       "artist_matched": true,
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277668",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277651",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-04-28T13:33:36Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5370,21 +4776,75 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
-      "source_record_id": "4cf654034a0f128e5a0edc947a41aca4f10d0473860717af4e7bc097dd1a62d8",
+      "source_record_id": "84c916427bee21b0bce716bbd8cfb6c5820e42153abfaf1cd80a7ba70a8fb4f4",
       "event_date": "2026-05-09",
       "raw_venue_name": "Kアリーナ横浜",
       "venue_name": "Kアリーナ横浜",
       "canonical_venue_name": "Kアリーナ横浜",
       "venue_matched": true,
-      "raw_artist_name": "SAY MY NAME",
-      "artist_name": "SAY MY NAME",
-      "canonical_artist_name": "SAY MY NAME",
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
       "artist_matched": true,
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277651",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277668",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-04-30T13:25:27Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
+      "normalization_gaps": [
+        "missing_category"
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "missing_category"
+      ]
+    },
+    {
+      "source_id": "kstyle_music",
+      "source_kind": "news",
+      "source_record_id": "94681618af255caefe271fad0d0b6c818e03545516b887b9c934e31cca727913",
+      "event_date": "2026-05-09",
+      "raw_venue_name": "Kアリーナ横浜",
+      "venue_name": "Kアリーナ横浜",
+      "canonical_venue_name": "Kアリーナ横浜",
+      "venue_matched": true,
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
+      "artist_matched": true,
+      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277989",
+      "event_category": "",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-05-13T14:11:17Z",
+      "normalization_gaps": [
+        "missing_category"
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "missing_category"
+      ]
+    },
+    {
+      "source_id": "kstyle_music",
+      "source_kind": "news",
+      "source_record_id": "d01bb811892eff0a06d26bad27882126744258e2993af406c7f2831b2a7a237c",
+      "event_date": "2026-05-09",
+      "raw_venue_name": "Kアリーナ横浜",
+      "venue_name": "Kアリーナ横浜",
+      "canonical_venue_name": "Kアリーナ横浜",
+      "venue_matched": true,
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
+      "artist_matched": true,
+      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
+      "event_category": "",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5411,7 +4871,7 @@
       "url": "https://kstyle.com/article.ksn?articleNo=2278035",
       "event_category": "",
       "artist_confidence": "medium",
-      "updated_at_utc": "2026-05-09T12:57:33Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "unmatched_venue",
         "missing_category"
@@ -5455,21 +4915,21 @@
     {
       "source_id": "kstyle_music",
       "source_kind": "news",
-      "source_record_id": "c9abaaeca199cc9f68ed0b3486cd35453e30f98cf973fd8df6dffac9427eb0d3",
+      "source_record_id": "0156db1a92e73c00c365dcc2b3223be67e87b1c47c486b246a4788699a062fa6",
       "event_date": "2026-05-10",
       "raw_venue_name": "Kアリーナ横浜",
       "venue_name": "Kアリーナ横浜",
       "canonical_venue_name": "Kアリーナ横浜",
       "venue_matched": true,
-      "raw_artist_name": "BOYNEXTDOOR",
-      "artist_name": "BOYNEXTDOOR",
-      "canonical_artist_name": "BOYNEXTDOOR",
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
       "artist_matched": true,
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277989",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-04-10T12:50:22Z",
+      "updated_at_utc": "2026-05-13T14:11:17Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5515,15 +4975,15 @@
       "venue_name": "Kアリーナ横浜",
       "canonical_venue_name": "Kアリーナ横浜",
       "venue_matched": true,
-      "raw_artist_name": "RIIZE",
-      "artist_name": "RIIZE",
-      "canonical_artist_name": "RIIZE",
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
       "artist_matched": true,
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
       "url": "https://kstyle.com/article.ksn?articleNo=2277668",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-04-28T13:33:36Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5542,15 +5002,42 @@
       "venue_name": "Kアリーナ横浜",
       "canonical_venue_name": "Kアリーナ横浜",
       "venue_matched": true,
-      "raw_artist_name": "SAY MY NAME",
-      "artist_name": "SAY MY NAME",
-      "canonical_artist_name": "SAY MY NAME",
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
       "artist_matched": true,
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
       "url": "https://kstyle.com/article.ksn?articleNo=2277651",
       "event_category": "",
       "artist_confidence": "high",
-      "updated_at_utc": "2026-04-30T13:25:27Z",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
+      "normalization_gaps": [
+        "missing_category"
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "missing_category"
+      ]
+    },
+    {
+      "source_id": "kstyle_music",
+      "source_kind": "news",
+      "source_record_id": "c9abaaeca199cc9f68ed0b3486cd35453e30f98cf973fd8df6dffac9427eb0d3",
+      "event_date": "2026-05-10",
+      "raw_venue_name": "Kアリーナ横浜",
+      "venue_name": "Kアリーナ横浜",
+      "canonical_venue_name": "Kアリーナ横浜",
+      "venue_matched": true,
+      "raw_artist_name": "POP",
+      "artist_name": "POP",
+      "canonical_artist_name": "POP",
+      "artist_matched": true,
+      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
+      "event_category": "",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-05-18T02:19:32Z",
       "normalization_gaps": [
         "missing_category"
       ],
@@ -5588,9 +5075,102 @@
         "unmatched_venue",
         "missing_category"
       ]
+    },
+    {
+      "source_id": "kstyle_music",
+      "source_kind": "news",
+      "source_record_id": "0d09186f4d834ddc8a898ec499d73cb39fd37323020d06a30fcaeb59319f6614",
+      "event_date": "2026-05-10",
+      "raw_venue_name": "東京・KEIO ARENA TOKYO",
+      "venue_name": "東京・KEIO ARENA TOKYO",
+      "canonical_venue_name": "東京・KEIO ARENA TOKYO",
+      "venue_matched": false,
+      "raw_artist_name": "ITZY",
+      "artist_name": "ITZY",
+      "canonical_artist_name": "ITZY",
+      "artist_matched": true,
+      "title": "ITZY 3RD WORLD TOUR <TUNNEL VISION>",
+      "url": "https://kstyle.com/article.ksn?articleNo=2275463",
+      "event_category": "",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-04-30T13:25:27Z",
+      "normalization_gaps": [
+        "unmatched_venue",
+        "missing_category"
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue",
+        "missing_category"
+      ]
+    },
+    {
+      "source_id": "kstyle_music",
+      "source_kind": "news",
+      "source_record_id": "e3e1c9cdf48658fbd8dcf57b14a4986c34e6148aebb3479d6511d1a33221e338",
+      "event_date": "2026-05-13",
+      "raw_venue_name": "[神奈川] Kアリーナ横浜",
+      "venue_name": "Kアリーナ横浜",
+      "canonical_venue_name": "Kアリーナ横浜",
+      "venue_matched": true,
+      "raw_artist_name": "&TEAM",
+      "artist_name": "&TEAM",
+      "canonical_artist_name": "&TEAM",
+      "artist_matched": true,
+      "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY'",
+      "url": "https://kstyle.com/article.ksn?articleNo=2275567",
+      "event_category": "",
+      "artist_confidence": "high",
+      "updated_at_utc": "2026-05-09T12:57:33Z",
+      "normalization_gaps": [
+        "missing_category"
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "missing_category"
+      ]
     }
   ],
   "venue_alias_candidates": [
+    {
+      "name": "広島グリーンアリーナ",
+      "candidate_type": "unmatched_venue",
+      "count": 4,
+      "source_ids": {
+        "starto_concert": 4
+      },
+      "suggested_action": "review data/venue_aliases.csv",
+      "examples": [
+        {
+          "source_id": "starto_concert",
+          "record_id": "fe4efa9f4601cda0464cce73d07bcb4c24fc820448e9cb3a141dd0471103ca98",
+          "event_date": "2026-09-13",
+          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
+          "url": "https://starto.jp/s/p/live/10460"
+        },
+        {
+          "source_id": "starto_concert",
+          "record_id": "01e0c0f5ad8dfd5b982ad12e5818698c2519c4c370333a452665f5d6352330cd",
+          "event_date": "2026-09-12",
+          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
+          "url": "https://starto.jp/s/p/live/10460"
+        },
+        {
+          "source_id": "starto_concert",
+          "record_id": "3970d2ceac65bb3727d70bd4b7c67e95e55df9327c626bc38e93ef22849a0ad7",
+          "event_date": "2026-10-18",
+          "title": "NEWS LIVE TOUR 2026 /// KMK",
+          "url": "https://starto.jp/s/p/live/10507"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue"
+      ]
+    },
     {
       "name": "Niterra日本特殊陶業市民会館 フォレストホール",
       "candidate_type": "unmatched_venue",
@@ -5823,6 +5403,36 @@
       ]
     },
     {
+      "name": "TIAT SKY HALL",
+      "candidate_type": "unmatched_venue",
+      "count": 2,
+      "source_ids": {
+        "kstyle_music": 2
+      },
+      "suggested_action": "review data/venue_aliases.csv",
+      "examples": [
+        {
+          "source_id": "kstyle_music",
+          "record_id": "28c1971bbfa455ded4fdadd2cf7926a878c2db2f092c1e024d17deefac2d7dd3",
+          "event_date": "2026-02-06",
+          "title": "2026 LEE JOOBEEN 1st FANMEETING [JOOTOPIA] : ASIA TOUR in Tokyo",
+          "url": "https://kstyle.com/article.ksn?articleNo=2278262"
+        },
+        {
+          "source_id": "kstyle_music",
+          "record_id": "afa2d62083d8ab55f21459fdf9303cb277c4f469ca2e1ed725744149cd3c3546",
+          "event_date": "2026-06-13",
+          "title": "2026 LEE JOOBEEN 1st FANMEETING [JOOTOPIA] : ASIA TOUR in Tokyo",
+          "url": "https://kstyle.com/article.ksn?articleNo=2278262"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue"
+      ]
+    },
+    {
       "name": "[福岡] 北九州メッセ",
       "candidate_type": "unmatched_venue",
       "count": 2,
@@ -5973,36 +5583,6 @@
       ]
     },
     {
-      "name": "広島グリーンアリーナ",
-      "candidate_type": "unmatched_venue",
-      "count": 2,
-      "source_ids": {
-        "starto_concert": 2
-      },
-      "suggested_action": "review data/venue_aliases.csv",
-      "examples": [
-        {
-          "source_id": "starto_concert",
-          "record_id": "fe4efa9f4601cda0464cce73d07bcb4c24fc820448e9cb3a141dd0471103ca98",
-          "event_date": "2026-09-13",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
-          "url": "https://starto.jp/s/p/live/10460"
-        },
-        {
-          "source_id": "starto_concert",
-          "record_id": "01e0c0f5ad8dfd5b982ad12e5818698c2519c4c370333a452665f5d6352330cd",
-          "event_date": "2026-09-12",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_venue"
-      ]
-    },
-    {
       "name": "広島文化学園HBGホール",
       "candidate_type": "unmatched_venue",
       "count": 2,
@@ -6123,6 +5703,66 @@
       ]
     },
     {
+      "name": "東京・TOYOTA ARENA TOKYO",
+      "candidate_type": "unmatched_venue",
+      "count": 2,
+      "source_ids": {
+        "kstyle_music": 2
+      },
+      "suggested_action": "review data/venue_aliases.csv",
+      "examples": [
+        {
+          "source_id": "kstyle_music",
+          "record_id": "f49d8b84fd490ce3f2617e7c337b2fc21cc6b0c0cfd0e461e50a0d75cc5daf90",
+          "event_date": "2026-07-04",
+          "title": "2026 KARA JAPAN FANMEETING : Hello, KAMILIA!",
+          "url": "https://kstyle.com/article.ksn?articleNo=2277247"
+        },
+        {
+          "source_id": "kstyle_music",
+          "record_id": "90b37045ddd8ad9ae894c223df35207b9d6eabd965cc34da94557593c67f1434",
+          "event_date": "2026-07-05",
+          "title": "2026 KARA JAPAN FANMEETING : Hello, KAMILIA!",
+          "url": "https://kstyle.com/article.ksn?articleNo=2277247"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue"
+      ]
+    },
+    {
+      "name": "東京都内 LIVE HOUSE",
+      "candidate_type": "unmatched_venue",
+      "count": 2,
+      "source_ids": {
+        "kstyle_music": 2
+      },
+      "suggested_action": "review data/venue_aliases.csv",
+      "examples": [
+        {
+          "source_id": "kstyle_music",
+          "record_id": "eb6c526a5661ab3d031751cbfb45ae46b5949db5753c3f63a90e39c11efca632",
+          "event_date": "2026-07-10",
+          "title": "LEE YURI FAN MEETING IN TOKYO『Our Scene』",
+          "url": "https://kstyle.com/article.ksn?articleNo=2279275"
+        },
+        {
+          "source_id": "kstyle_music",
+          "record_id": "9e80156e939d4a65ddaa27d8c147428945a919e1c2a27d247a305c582cdc1f1b",
+          "event_date": "2026-07-11",
+          "title": "LEE YURI FAN MEETING IN TOKYO『Our Scene』",
+          "url": "https://kstyle.com/article.ksn?articleNo=2279275"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue"
+      ]
+    },
+    {
       "name": "沖縄サントリーアリーナ",
       "candidate_type": "unmatched_venue",
       "count": 2,
@@ -6144,6 +5784,36 @@
           "event_date": "2026-06-13",
           "title": "MILESixTONES",
           "url": "https://starto.jp/s/p/live/10377"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_venue"
+      ]
+    },
+    {
+      "name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)",
+      "candidate_type": "unmatched_venue",
+      "count": 2,
+      "source_ids": {
+        "kstyle_music": 2
+      },
+      "suggested_action": "review data/venue_aliases.csv",
+      "examples": [
+        {
+          "source_id": "kstyle_music",
+          "record_id": "ab0222e35961f847dfa818cfa801d5ff4bb875465e29ec8fa0b51113151f07e4",
+          "event_date": "2026-06-20",
+          "title": "2026 i-dle WORLD TOUR [Syncopation] IN YOKOHAMA",
+          "url": "https://kstyle.com/article.ksn?articleNo=2276235"
+        },
+        {
+          "source_id": "kstyle_music",
+          "record_id": "011a09034dafebed748db31757b73bed91bc7ae4ae5b7f3aaf2ae226b63c98e4",
+          "event_date": "2026-06-21",
+          "title": "2026 i-dle WORLD TOUR [Syncopation] IN YOKOHAMA",
+          "url": "https://kstyle.com/article.ksn?articleNo=2276235"
         }
       ],
       "automation_bucket": "human_review",
@@ -6349,107 +6019,15 @@
       "needs_review_reason": [
         "unmatched_venue"
       ]
-    },
-    {
-      "name": "TIAT SKY HALL(東京都大田区羽田空港2-6-5羽田空港第3旅客ターミナル直結4F)",
-      "candidate_type": "unmatched_venue",
-      "count": 1,
-      "source_ids": {
-        "kstyle_music": 1
-      },
-      "suggested_action": "review data/venue_aliases.csv",
-      "examples": [
-        {
-          "source_id": "kstyle_music",
-          "record_id": "7275a40271d56a4f49948b093750e5fc4dbf74cb06575d12a66e67efe6deb6bb",
-          "event_date": "2026-03-21",
-          "title": "2026 KEUM DONGHYUN 1ST FANMEETING [Our Golden Time] In TOKYO",
-          "url": "https://kstyle.com/article.ksn?articleNo=2274713"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_venue"
-      ]
-    },
-    {
-      "name": "festhalle",
-      "candidate_type": "unmatched_venue",
-      "count": 1,
-      "source_ids": {
-        "starto_concert": 1
-      },
-      "suggested_action": "review data/venue_aliases.csv",
-      "examples": [
-        {
-          "source_id": "starto_concert",
-          "record_id": "ca8679732a009cde5733e5d393471f37271ca121267fae50652aabbec710cdc1",
-          "event_date": "2026-08-28",
-          "title": "ROCK FOR YOU LIVE TOUR",
-          "url": "https://starto.jp/s/p/live/10505"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_venue"
-      ]
-    },
-    {
-      "name": "〇東京/Zepp Shinjuku",
-      "candidate_type": "unmatched_venue",
-      "count": 1,
-      "source_ids": {
-        "kstyle_music": 1
-      },
-      "suggested_action": "review data/venue_aliases.csv",
-      "examples": [
-        {
-          "source_id": "kstyle_music",
-          "record_id": "03744945da5e59e5b3b5a61c735b3186634e9ab1a0e9855e8180f512df675d64",
-          "event_date": "2026-04-26",
-          "title": "Hi-Fi Un!corn 2026 ASIA LIVEHOUSE TOUR -FIRST MOVE-",
-          "url": "https://kstyle.com/article.ksn?articleNo=2274691"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_venue"
-      ]
-    },
-    {
-      "name": "やまと芸術文化ホール メインホール",
-      "candidate_type": "unmatched_venue",
-      "count": 1,
-      "source_ids": {
-        "kstyle_music": 1
-      },
-      "suggested_action": "review data/venue_aliases.csv",
-      "examples": [
-        {
-          "source_id": "kstyle_music",
-          "record_id": "c004ba1cc58609015b385971fec78837236c39b06841094cdecfa88e30d78945",
-          "event_date": "2026-03-13",
-          "title": "2026 KIMHYEYOON FANMEETING [Season of HYEPPINESS] IN JAPAN",
-          "url": "https://kstyle.com/article.ksn?articleNo=2274868"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_venue"
-      ]
     }
   ],
   "artist_alias_candidates": [
     {
       "name": "北海道日本ハムファイターズ 駐車場券",
       "candidate_type": "unmatched_artist",
-      "count": 93,
+      "count": 82,
       "source_ids": {
-        "ticketjam_events": 93
+        "ticketjam_events": 82
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6462,17 +6040,17 @@
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "e922b0fef5fd2690d213a5cda7435c7177bf1ba70746dc3d129dcc31059d01d5",
-          "event_date": "2026-07-25",
-          "title": "日本ハムファイターズ駐車場券【P1-P7】",
-          "url": "https://ticketjam.jp/tickets/fighters/event/1043873"
-        },
-        {
-          "source_id": "ticketjam_events",
           "record_id": "a4af0c2b3c46a799e33054539353496344a46fcacc006729fe36edd5e2e729f3",
           "event_date": "2026-07-16",
           "title": "日本ハムファイターズ駐車場券【P1-P7】",
           "url": "https://ticketjam.jp/tickets/fighters/event/1043872"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "59021d044f2ff38de39f5ceeb9023d04c4181fe580a96e36ffee69d1f3ddb952",
+          "event_date": "2026-07-15",
+          "title": "日本ハムファイターズ駐車場券【P1-P7】",
+          "url": "https://ticketjam.jp/tickets/fighters/event/1043871"
         }
       ],
       "automation_bucket": "human_review",
@@ -6484,9 +6062,9 @@
     {
       "name": "北海道日本ハムファイターズ（日ハム）",
       "candidate_type": "unmatched_artist",
-      "count": 55,
+      "count": 51,
       "source_ids": {
-        "ticketjam_events": 55
+        "ticketjam_events": 51
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6499,17 +6077,17 @@
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "479ea400010cb9bde38b0e0e5f1566baa9eea963a10d3c2121526b59df40121e",
-          "event_date": "2026-09-23",
-          "title": "日本ハム vs 楽天",
-          "url": "https://ticketjam.jp/tickets/fighters/event/1031301"
+          "record_id": "4d9fe217dbf224ba777c76d30327c914df656e39ad57ad985a66dfe479c6a6ce",
+          "event_date": "2026-09-21",
+          "title": "日本ハム vs オリックス",
+          "url": "https://ticketjam.jp/tickets/buffaloes/event/1031305"
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "53f0d25175b34a43448523eba003d43f6fc1701b8af9bc48cb163cc202be0abb",
-          "event_date": "2026-09-22",
-          "title": "日本ハム vs 楽天",
-          "url": "https://ticketjam.jp/tickets/rakuteneagles/event/1031300"
+          "record_id": "45a529af37baece48c23c5c35db60c579ad26e04b8acda36df80b30586592cac",
+          "event_date": "2026-09-20",
+          "title": "日本ハム vs オリックス",
+          "url": "https://ticketjam.jp/tickets/buffaloes/event/1031304"
         }
       ],
       "automation_bucket": "human_review",
@@ -6521,9 +6099,9 @@
     {
       "name": "阪神タイガース",
       "candidate_type": "unmatched_artist",
-      "count": 51,
+      "count": 48,
       "source_ids": {
-        "ticketjam_events": 51
+        "ticketjam_events": 48
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6558,9 +6136,9 @@
     {
       "name": "オリックス・バファローズ",
       "candidate_type": "unmatched_artist",
-      "count": 42,
+      "count": 41,
       "source_ids": {
-        "ticketjam_events": 42
+        "ticketjam_events": 41
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6595,9 +6173,9 @@
     {
       "name": "中日ドラゴンズ",
       "candidate_type": "unmatched_artist",
-      "count": 40,
+      "count": 38,
       "source_ids": {
-        "ticketjam_events": 40
+        "ticketjam_events": 38
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6632,9 +6210,9 @@
     {
       "name": "読売ジャイアンツ（巨人）",
       "candidate_type": "unmatched_artist",
-      "count": 37,
+      "count": 36,
       "source_ids": {
-        "ticketjam_events": 37
+        "ticketjam_events": 36
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6677,13 +6255,6 @@
       "examples": [
         {
           "source_id": "ticketjam_events",
-          "record_id": "1d5e8962ffb7515261c8b55a9ce75d36de022f971dad1b3fd37bc244b974f7ad",
-          "event_date": "2026-06-28",
-          "title": "DeNA vs 巨人",
-          "url": "https://ticketjam.jp/tickets/baystars/event/1040786"
-        },
-        {
-          "source_id": "ticketjam_events",
           "record_id": "a28106578d87cfa12f9c4e44d1c745b66cd0e9c6bf5200e4afd170093b3a19c1",
           "event_date": "2026-06-26",
           "title": "DeNA vs 巨人",
@@ -6691,10 +6262,17 @@
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "9664f3c49e29515103a4d2d7abd53d971bc989ed5783c929120da181d19a2a62",
-          "event_date": "2026-05-12",
-          "title": "DeNA vs 中日",
-          "url": "https://ticketjam.jp/tickets/baystars/event/1032429"
+          "record_id": "c9edfc1dd4773ee4b6659bedc6ccac4c8931b90a9f776fb0ce03a5a80f5c0110",
+          "event_date": "2026-07-19",
+          "title": "DeNA vs ヤクルト",
+          "url": "https://ticketjam.jp/tickets/yokohama-yakuruto/event/1040404"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "820e115010111c479a03664b7ab29c44697a51c377fdd227aef9d137e587e658",
+          "event_date": "2026-07-18",
+          "title": "DeNA vs ヤクルト",
+          "url": "https://ticketjam.jp/tickets/yokohama-yakuruto/event/1040403"
         }
       ],
       "automation_bucket": "human_review",
@@ -6706,9 +6284,9 @@
     {
       "name": "福岡ソフトバンクホークス",
       "candidate_type": "unmatched_artist",
-      "count": 28,
+      "count": 26,
       "source_ids": {
-        "ticketjam_events": 28
+        "ticketjam_events": 26
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -6779,58 +6357,14 @@
       ]
     },
     {
-      "name": "千葉ロッテマリーンズ",
-      "candidate_type": "unmatched_artist",
-      "count": 19,
-      "source_ids": {
-        "ticketjam_events": 19
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "bdd9af4a1cd36601a2b13c9722d9d1c9fc21dfe0f415fd3570320970db4072bd",
-          "event_date": "2026-05-31",
-          "title": "ロッテ vs 阪神",
-          "url": "https://ticketjam.jp/tickets/lotte-tigers/event/1011841"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "ea93c8fa6312e4fdeb80390884a001822e06d18d22bd4b197b6fd398f919d477",
-          "event_date": "2026-06-19",
-          "title": "ロッテ vs 楽天",
-          "url": "https://ticketjam.jp/tickets/marines-rakuten/event/1028151"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "f8b7ce6c2c6cadb27395586dc82edeed72089a58af87c8674338426bc475c598",
-          "event_date": "2026-06-11",
-          "title": "ロッテ vs 中日",
-          "url": "https://ticketjam.jp/tickets/dragons-lotte/event/1020405"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
       "name": "埼玉西武ライオンズ",
       "candidate_type": "unmatched_artist",
-      "count": 17,
+      "count": 20,
       "source_ids": {
-        "ticketjam_events": 17
+        "ticketjam_events": 20
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "14de90c52a37d973a830009c1f2318f5772a0e3827bb063d00c7b2857e321a6f",
-          "event_date": "2026-05-30",
-          "title": "西武 vs DeNA",
-          "url": "https://ticketjam.jp/tickets/baysters-lions/event/1011838"
-        },
         {
           "source_id": "ticketjam_events",
           "record_id": "fdecd48486965420503fabdb5d55a7add5580acac96dfb2e05c16c876749749f",
@@ -6844,6 +6378,87 @@
           "event_date": "2026-06-11",
           "title": "西武 vs 広島",
           "url": "https://ticketjam.jp/tickets/lions-carp/event/1020403"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "a791a38258cf83175768bd0fd3b062d84ec855a67cc84e9fca7f366509ca86dd",
+          "event_date": "2026-06-10",
+          "title": "西武 vs 広島",
+          "url": "https://ticketjam.jp/tickets/lions-carp/event/1020402"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
+    },
+    {
+      "name": "Kis-My-Ft2（キスマイフットツー）",
+      "candidate_type": "unmatched_artist",
+      "count": 19,
+      "source_ids": {
+        "ticketjam_events": 19
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "7375b2fb57c83611e56c3f6c4a72c18240dd36163b5b25f5022fbcceec034395",
+          "event_date": "2026-06-20",
+          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
+          "url": "https://ticketjam.jp/tickets/kis-my-ft2/event/1124257"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "d733bb8026c43a496f0c2bf340a44e581f73c2541c6e8bbad67211ddd44b42db",
+          "event_date": "2026-06-21",
+          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
+          "url": "https://ticketjam.jp/tickets/kis-my-ft2/event/1124259"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "b1584085684c74c33652a3546f297c627c59db1c26bbf1ada419d0bd61319ff9",
+          "event_date": "2026-06-21",
+          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
+          "url": "https://ticketjam.jp/tickets/kis-my-ft2/event/1124258"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
+    },
+    {
+      "name": "ACEes（エイシーズ）",
+      "candidate_type": "unmatched_artist",
+      "count": 16,
+      "source_ids": {
+        "ticketjam_events": 16
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "5d6c5c56020cd8c3d5ea9b166b563cbf2fafb20f7b6da9fa673a69f2a07d9d93",
+          "event_date": "2026-08-30",
+          "title": "ACEes Arena Tour 2026 V",
+          "url": "https://ticketjam.jp/tickets/acees/event/1097151"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "eb9a33d673a98a58537206d7e6ad7765d15e9dc6783fd01d7fc7f806e603d904",
+          "event_date": "2026-08-30",
+          "title": "ACEes Arena Tour 2026 V",
+          "url": "https://ticketjam.jp/tickets/acees/event/1097152"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "19df048848645b0d6c9265985f89e37a89750623917911219da6bc00656bf4ed",
+          "event_date": "2026-07-10",
+          "title": "ACEes Arena Tour 2026 V",
+          "url": "https://ticketjam.jp/tickets/hukada-ryusei/event/1097149"
         }
       ],
       "automation_bucket": "human_review",
@@ -6893,80 +6508,6 @@
       ]
     },
     {
-      "name": "ACEes（エイシーズ）",
-      "candidate_type": "unmatched_artist",
-      "count": 15,
-      "source_ids": {
-        "ticketjam_events": 15
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "5d6c5c56020cd8c3d5ea9b166b563cbf2fafb20f7b6da9fa673a69f2a07d9d93",
-          "event_date": "2026-08-30",
-          "title": "ACEes Arena Tour 2026 V",
-          "url": "https://ticketjam.jp/tickets/acees/event/1097151"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "eb9a33d673a98a58537206d7e6ad7765d15e9dc6783fd01d7fc7f806e603d904",
-          "event_date": "2026-08-30",
-          "title": "ACEes Arena Tour 2026 V",
-          "url": "https://ticketjam.jp/tickets/acees/event/1097152"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "c570c153e7936ce8b8786c0866a5b5322e50519a1b609bde434e67fa955d1d79",
-          "event_date": "2026-06-07",
-          "title": "ACEes Arena Tour 2026 V",
-          "url": "https://ticketjam.jp/tickets/hukada-ryusei/event/1097138"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
-      "name": "大相撲",
-      "candidate_type": "unmatched_artist",
-      "count": 15,
-      "source_ids": {
-        "ticketjam_events": 15
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "e3e041da0016c641421fde25e3a29ff9680e4100035cb5c288b4811699b821fa",
-          "event_date": "2026-11-08",
-          "title": "令和8年 大相撲十一月場所",
-          "url": "https://ticketjam.jp/tickets/sumo-jan/event/1031384"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "06c70ff12490afe8874057d967849b40dfee5dbcdbf156d16f8917300b0532a7",
-          "event_date": "2026-05-30",
-          "title": "北勝富士 引退 大山 襲名 披露大相撲",
-          "url": "https://ticketjam.jp/tickets/sumo-jan/event/1073971"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "da19b712a7c5478dfdbfbb19e4eb748a1f812b32bd81fc8ec7a29ab8ea1c2509",
-          "event_date": "2026-05-12",
-          "title": "令和8年 大相撲五月場所",
-          "url": "https://ticketjam.jp/tickets/sumo-jan/event/1013781"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
       "name": "DREAMS COME TRUE（ドリームズカムトゥルー）",
       "candidate_type": "unmatched_artist",
       "count": 14,
@@ -7004,7 +6545,44 @@
       ]
     },
     {
-      "name": "Kis-My-Ft2（キスマイフットツー）",
+      "name": "One",
+      "candidate_type": "unmatched_artist",
+      "count": 14,
+      "source_ids": {
+        "official_events": 14
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "official_events",
+          "record_id": "festival_hall:https://www.festivalhall.jp/events/6025/",
+          "event_date": "2026-05-08",
+          "title": "マルシィ one man live 2026 Hall Tour",
+          "url": "https://www.festivalhall.jp/events/6025/"
+        },
+        {
+          "source_id": "official_events",
+          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157239",
+          "event_date": "2026-06-16",
+          "title": "one-man tour 2026",
+          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157239"
+        },
+        {
+          "source_id": "official_events",
+          "record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158867",
+          "event_date": "2026-05-21",
+          "title": "the cabs one-man tour 2026",
+          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158867"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
+    },
+    {
+      "name": "千葉ロッテマリーンズ",
       "candidate_type": "unmatched_artist",
       "count": 14,
       "source_ids": {
@@ -7014,24 +6592,24 @@
       "examples": [
         {
           "source_id": "ticketjam_events",
-          "record_id": "7375b2fb57c83611e56c3f6c4a72c18240dd36163b5b25f5022fbcceec034395",
-          "event_date": "2026-06-20",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
-          "url": "https://ticketjam.jp/tickets/kis-my-ft2/event/1124257"
+          "record_id": "ea93c8fa6312e4fdeb80390884a001822e06d18d22bd4b197b6fd398f919d477",
+          "event_date": "2026-06-19",
+          "title": "ロッテ vs 楽天",
+          "url": "https://ticketjam.jp/tickets/marines-rakuten/event/1028151"
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "d733bb8026c43a496f0c2bf340a44e581f73c2541c6e8bbad67211ddd44b42db",
-          "event_date": "2026-06-21",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
-          "url": "https://ticketjam.jp/tickets/kis-my-ft2/event/1124259"
+          "record_id": "f8b7ce6c2c6cadb27395586dc82edeed72089a58af87c8674338426bc475c598",
+          "event_date": "2026-06-11",
+          "title": "ロッテ vs 中日",
+          "url": "https://ticketjam.jp/tickets/dragons-lotte/event/1020405"
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "b1584085684c74c33652a3546f297c627c59db1c26bbf1ada419d0bd61319ff9",
-          "event_date": "2026-06-21",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
-          "url": "https://ticketjam.jp/tickets/kis-my-ft2/event/1124258"
+          "record_id": "2f3a5b4080955775e06cdd76e74911aff9f8addb00b7ec236f60f90df24c9699",
+          "event_date": "2026-06-10",
+          "title": "ロッテ vs 中日",
+          "url": "https://ticketjam.jp/tickets/dragons-lotte/event/1020404"
         }
       ],
       "automation_bucket": "human_review",
@@ -7118,48 +6696,11 @@
       ]
     },
     {
-      "name": "Suchmos（サチモス）",
-      "candidate_type": "unmatched_artist",
-      "count": 12,
-      "source_ids": {
-        "ticketjam_events": 12
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "d9b0027a7051d911b35dc5f7eafab6fefa9114b87bc1b379973260c7cc977f9b",
-          "event_date": "2026-06-05",
-          "title": "Suchmos『The Blow Your Mind TOUR 2026』",
-          "url": "https://ticketjam.jp/tickets/cero/event/1086937"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "97ca9ff1faf7eff8858adaf79c7bb572cbfe528390e61ef3087afcfd9d7ef0e8",
-          "event_date": "2026-05-29",
-          "title": "Suchmos『The Blow Your Mind TOUR 2026』",
-          "url": "https://ticketjam.jp/tickets/suchmos/event/1086910"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "80f424ebad80ef7c268c9ad243eb5eed6cc290f34190b127235f17991cca1543",
-          "event_date": "2026-05-14",
-          "title": "Suchmos『The Blow Your Mind TOUR 2026』",
-          "url": "https://ticketjam.jp/tickets/suchmos/event/1086905"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
       "name": "Eve / confidence=medium",
       "candidate_type": "artist_alias_or_match_review",
-      "count": 11,
+      "count": 12,
       "source_ids": {
-        "official_events": 11
+        "official_events": 12
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -7197,9 +6738,9 @@
     {
       "name": "Eve",
       "candidate_type": "unmatched_artist",
-      "count": 11,
+      "count": 12,
       "source_ids": {
-        "official_events": 11
+        "official_events": 12
       },
       "suggested_action": "review data/artist_registry.manual.csv",
       "examples": [
@@ -7223,6 +6764,83 @@
           "event_date": "2026-06-11",
           "title": "ライブハウスツアー2026「あのころ一番熱いのは君の口の中だった」",
           "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160966"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
+    },
+    {
+      "name": "キー / confidence=medium",
+      "candidate_type": "artist_alias_or_match_review",
+      "count": 11,
+      "source_ids": {
+        "official_events": 11
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "official_events",
+          "record_id": "festival_hall:https://www.festivalhall.jp/events/5701/",
+          "event_date": "2026-06-28",
+          "title": "スロヴァキア・フィルハーモニー管弦楽団",
+          "url": "https://www.festivalhall.jp/events/5701/",
+          "artist_confidence": "medium"
+        },
+        {
+          "source_id": "official_events",
+          "record_id": "vantelin_dome_nagoya:https://dragons.jp/special/bluesummer/2025/#d=2026-07-06#t=13:30",
+          "event_date": "2026-07-06",
+          "title": "ブルーサマーフェスティバル2025ホンダカーズ愛知　エキサイティングゲーム中日vsヤクルト",
+          "url": "https://dragons.jp/special/bluesummer/2025/",
+          "artist_confidence": "medium"
+        },
+        {
+          "source_id": "official_events",
+          "record_id": "vantelin_dome_nagoya:https://www.imuse-p.jp/plasma/#d=2026-07-31#t=18:00",
+          "event_date": "2026-07-31",
+          "title": "キリン 夏もおいしく！免疫ケア ナイター中日vs巨人",
+          "url": "https://www.imuse-p.jp/plasma/",
+          "artist_confidence": "medium"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "artist_alias_or_match_review"
+      ]
+    },
+    {
+      "name": "timelesz（タイムレス／旧Sexy Zone）",
+      "candidate_type": "unmatched_artist",
+      "count": 11,
+      "source_ids": {
+        "ticketjam_events": 11
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "7a92cf22833d44148ad338e1e79654996299cba992b4386bb56b05399c82199d",
+          "event_date": "2026-06-14",
+          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
+          "url": "https://ticketjam.jp/tickets/teranishi-takuto/event/1095864"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "59e484c0b7064e95ed3d922c65c2e7d51b06e7b374670fb78d9c63310dad8c9b",
+          "event_date": "2026-07-02",
+          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
+          "url": "https://ticketjam.jp/tickets/shinozukataiki/event/1095868"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "938553a4bcb9488561913389aa2cf872a959a0982c2bc5951d04159cef03b6ec",
+          "event_date": "2026-07-01",
+          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
+          "url": "https://ticketjam.jp/tickets/shinozukataiki/event/1095866"
         }
       ],
       "automation_bucket": "human_review",
@@ -7343,44 +6961,7 @@
       ]
     },
     {
-      "name": "One",
-      "candidate_type": "unmatched_artist",
-      "count": 10,
-      "source_ids": {
-        "official_events": 10
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "official_events",
-          "record_id": "festival_hall:https://www.festivalhall.jp/events/6025/",
-          "event_date": "2026-05-08",
-          "title": "マルシィ one man live 2026 Hall Tour",
-          "url": "https://www.festivalhall.jp/events/6025/"
-        },
-        {
-          "source_id": "official_events",
-          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157239",
-          "event_date": "2026-06-16",
-          "title": "one-man tour 2026",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157239"
-        },
-        {
-          "source_id": "official_events",
-          "record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158867",
-          "event_date": "2026-05-21",
-          "title": "the cabs one-man tour 2026",
-          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158867"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
-      "name": "WEST.（ウエスト／旧ジャニーズWEST）",
+      "name": "Suchmos（サチモス）",
       "candidate_type": "unmatched_artist",
       "count": 10,
       "source_ids": {
@@ -7390,138 +6971,24 @@
       "examples": [
         {
           "source_id": "ticketjam_events",
-          "record_id": "bd8598404c072378aa40fc118077f4002c0acc3f1e8a0005d40445e5b8418b35",
-          "event_date": "2026-06-28",
-          "title": "WEST. LIVE TOUR 2026 唯一無二",
-          "url": "https://ticketjam.jp/tickets/johnnys-west4/event/1073604"
+          "record_id": "97ca9ff1faf7eff8858adaf79c7bb572cbfe528390e61ef3087afcfd9d7ef0e8",
+          "event_date": "2026-05-29",
+          "title": "Suchmos『The Blow Your Mind TOUR 2026』",
+          "url": "https://ticketjam.jp/tickets/suchmos/event/1086910"
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "314521a79c7b5eee5b5f7756c94cb422f5261e559451adf7a383ece615038cf7",
-          "event_date": "2026-06-28",
-          "title": "WEST. LIVE TOUR 2026 唯一無二",
-          "url": "https://ticketjam.jp/tickets/johnnys-west4/event/1073603"
+          "record_id": "b3d6205404c7d0b485269d7744360b90867c08bdbe0200f1ea0ddf4fdb20de94",
+          "event_date": "2026-07-02",
+          "title": "Suchmos『The Blow Your Mind TOUR 2026』",
+          "url": "https://ticketjam.jp/tickets/yonce/event/1086920"
         },
         {
           "source_id": "ticketjam_events",
-          "record_id": "aed085016ceb65d2c1f98cacc6cb5a3e73173f2c83f7e7b807e18fc9714edeaf",
-          "event_date": "2026-06-26",
-          "title": "WEST. LIVE TOUR 2026 唯一無二",
-          "url": "https://ticketjam.jp/tickets/shigeoka-daiki/event/1073601"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
-      "name": "timelesz（タイムレス／旧Sexy Zone）",
-      "candidate_type": "unmatched_artist",
-      "count": 10,
-      "source_ids": {
-        "ticketjam_events": 10
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "779e4fed13632d9b31b5470b06555655e00836118100526440b17b1d385b6696",
-          "event_date": "2026-05-17",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "url": "https://ticketjam.jp/tickets/teranishi-takuto/event/1095856"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "dd1b9f527d7843f1c63795b122118608b3b770e3e9a2c1154b355d5fe91afd4d",
-          "event_date": "2026-05-16",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "url": "https://ticketjam.jp/tickets/teranishi-takuto/event/1095786"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "7a92cf22833d44148ad338e1e79654996299cba992b4386bb56b05399c82199d",
-          "event_date": "2026-06-14",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "url": "https://ticketjam.jp/tickets/teranishi-takuto/event/1095864"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "unmatched_artist"
-      ]
-    },
-    {
-      "name": "キー / confidence=medium",
-      "candidate_type": "artist_alias_or_match_review",
-      "count": 9,
-      "source_ids": {
-        "official_events": 9
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "official_events",
-          "record_id": "festival_hall:https://www.festivalhall.jp/events/5701/",
-          "event_date": "2026-06-28",
-          "title": "スロヴァキア・フィルハーモニー管弦楽団",
-          "url": "https://www.festivalhall.jp/events/5701/",
-          "artist_confidence": "medium"
-        },
-        {
-          "source_id": "official_events",
-          "record_id": "vantelin_dome_nagoya:https://dragons.jp/special/bluesummer/2025/#d=2026-07-06#t=13:30",
-          "event_date": "2026-07-06",
-          "title": "ブルーサマーフェスティバル2025ホンダカーズ愛知　エキサイティングゲーム中日vsヤクルト",
-          "url": "https://dragons.jp/special/bluesummer/2025/",
-          "artist_confidence": "medium"
-        },
-        {
-          "source_id": "official_events",
-          "record_id": "vantelin_dome_nagoya:https://www.imuse-p.jp/plasma/#d=2026-07-31#t=18:00",
-          "event_date": "2026-07-31",
-          "title": "キリン 夏もおいしく！免疫ケア ナイター中日vs巨人",
-          "url": "https://www.imuse-p.jp/plasma/",
-          "artist_confidence": "medium"
-        }
-      ],
-      "automation_bucket": "human_review",
-      "lp_impact": "duplicate_grouping_change",
-      "needs_review_reason": [
-        "artist_alias_or_match_review"
-      ]
-    },
-    {
-      "name": "B’z（ビーズ）",
-      "candidate_type": "unmatched_artist",
-      "count": 9,
-      "source_ids": {
-        "ticketjam_events": 9
-      },
-      "suggested_action": "review data/artist_registry.manual.csv",
-      "examples": [
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "bfd5cc57e610e0dec7f6bcbc2a64be65f9180b459a9bb93d35577fd126cfc413",
-          "event_date": "2026-05-31",
-          "title": "B’z LIVE-GYM 2026 -FYOP＋-",
-          "url": "https://ticketjam.jp/tickets/bz/event/1031061"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "bbf636b7a3a6967c4bd88cc31a62ca5b86e4e89d4b09962da37d5dfcf8050c3b",
-          "event_date": "2026-05-30",
-          "title": "B’z LIVE-GYM 2026 -FYOP＋-",
-          "url": "https://ticketjam.jp/tickets/bz/event/1031060"
-        },
-        {
-          "source_id": "ticketjam_events",
-          "record_id": "5498f9974ceca032acc4071ad3237b21c1ff4c04a01e97351b7c2bf5c2b002ad",
-          "event_date": "2026-05-23",
-          "title": "B’z LIVE-GYM 2026 -FYOP＋-",
-          "url": "https://ticketjam.jp/tickets/bz/event/1031058"
+          "record_id": "c68d1c35afad3d05c6e8f2d72fba6d33e400b0fed4595139ee6ef8f4bd7b16d0",
+          "event_date": "2026-07-01",
+          "title": "Suchmos『The Blow Your Mind TOUR 2026』",
+          "url": "https://ticketjam.jp/tickets/yonce/event/1086919"
         }
       ],
       "automation_bucket": "human_review",
@@ -7566,6 +7033,117 @@
       "needs_review_reason": [
         "unmatched_artist"
       ]
+    },
+    {
+      "name": "FANTASTICS（ファンタスティックス）",
+      "candidate_type": "unmatched_artist",
+      "count": 9,
+      "source_ids": {
+        "ticketjam_events": 9
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "c18ad5e3562f7ebd5164d00f7d491aeed19db6e7694fcce6da9479de66138eaf",
+          "event_date": "2026-09-26",
+          "title": "FANTASTICS LIVE TOUR 2026 \"SUNFLOWER\"",
+          "url": "https://ticketjam.jp/tickets/exile-tribe/event/1050637"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "7b9c39f59679461b52bc73ebc50929310ff404f7bc7794d9a8f87c83e9b235ee",
+          "event_date": "2026-09-06",
+          "title": "FANTASTICS LIVE TOUR 2026 \"SUNFLOWER\"",
+          "url": "https://ticketjam.jp/tickets/exile-tribe/event/1050636"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "456137a977c0a01205b1705b61ce52bc436b51472454d833fb543ea0e4e8d2f8",
+          "event_date": "2026-07-26",
+          "title": "FANTASTICS LIVE TOUR 2026 \"SUNFLOWER\"",
+          "url": "https://ticketjam.jp/tickets/exile-tribe/event/1050635"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
+    },
+    {
+      "name": "GENERATIONS（ジェネレーションズ）",
+      "candidate_type": "unmatched_artist",
+      "count": 9,
+      "source_ids": {
+        "ticketjam_events": 9
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "a2f51ac88aa792dccf399d897bc7f236e4e6317a8386ed48efe0e9f2e8df8168",
+          "event_date": "2026-12-23",
+          "title": "GENERATIONS LIVE TOUR 2026 “PARALLEL QUEST”",
+          "url": "https://ticketjam.jp/tickets/generations/event/1045860"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "820b1241f69cb6b2ff6b0f59aa5a4547b6b5511f225424278ff726e50dbabf53",
+          "event_date": "2026-12-22",
+          "title": "GENERATIONS LIVE TOUR 2026 “PARALLEL QUEST”",
+          "url": "https://ticketjam.jp/tickets/generations/event/1045859"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "bc396c7b1bf106a9f7a51614399e71cdc78e49228d581e6ed3c2c969310719bd",
+          "event_date": "2026-11-26",
+          "title": "GENERATIONS LIVE TOUR 2026 “PARALLEL QUEST”",
+          "url": "https://ticketjam.jp/tickets/generations/event/1045855"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
+    },
+    {
+      "name": "日本カーリング選手権大会",
+      "candidate_type": "unmatched_artist",
+      "count": 9,
+      "source_ids": {
+        "ticketjam_events": 9
+      },
+      "suggested_action": "review data/artist_registry.manual.csv",
+      "examples": [
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "a14984edf64e6302a6a82051d661e135585a0d87374f4a8716c19bd62d588f5c",
+          "event_date": "2026-06-07",
+          "title": "日本カーリング選手権大会 横浜2026",
+          "url": "https://ticketjam.jp/tickets/japan-curling/event/1109763"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "079e457bcb38e3f833dbcff7952905231d8b1bf827c216c7e50530b6bd879a76",
+          "event_date": "2026-06-08",
+          "title": "日本カーリング選手権大会 横浜2026",
+          "url": "https://ticketjam.jp/tickets/japan-curling/event/1109764"
+        },
+        {
+          "source_id": "ticketjam_events",
+          "record_id": "b0a4966d8da1a6c2e5415100e24f8263636ea338d2c0d5cddcba68f93e7abd59",
+          "event_date": "2026-06-09",
+          "title": "日本カーリング選手権大会 横浜2026",
+          "url": "https://ticketjam.jp/tickets/japan-curling/event/1109765"
+        }
+      ],
+      "automation_bucket": "human_review",
+      "lp_impact": "duplicate_grouping_change",
+      "needs_review_reason": [
+        "unmatched_artist"
+      ]
     }
   ],
   "category_review_candidates": [
@@ -7581,6 +7159,25 @@
       "expected_category": "コンサート",
       "artist_name": "",
       "inferred_artist_name": "京",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-01#t=18:00",
+      "event_date": "2026-05-01",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
       "inferred_artist_confidence": "high",
       "lp_impact": "category_change",
       "automation_bucket": "human_review",
@@ -7638,6 +7235,25 @@
       "expected_category": "コンサート",
       "artist_name": "",
       "inferred_artist_name": "潤",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-02#t=18:00",
+      "event_date": "2026-05-02",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
       "inferred_artist_confidence": "high",
       "lp_impact": "category_change",
       "automation_bucket": "human_review",
@@ -7743,6 +7359,25 @@
     {
       "candidate_type": "other_but_music_likely",
       "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-03#t=13:00",
+      "event_date": "2026-05-03",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
       "record_id": "mufg_stadium:/schedule/2026/0503_15443.php",
       "event_date": "2026-05-03",
       "venue_name": "MUFGスタジアム",
@@ -7790,6 +7425,25 @@
       "expected_category": "コンサート",
       "artist_name": "",
       "inferred_artist_name": "ピ",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-04#t=18:00",
+      "event_date": "2026-05-04",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
       "inferred_artist_confidence": "high",
       "lp_impact": "category_change",
       "automation_bucket": "human_review",
@@ -7857,6 +7511,25 @@
     {
       "candidate_type": "other_but_music_likely",
       "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-05#t=13:00",
+      "event_date": "2026-05-05",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
       "record_id": "mufg_stadium:/schedule/2026/0505_15814.php",
       "event_date": "2026-05-05",
       "venue_name": "MUFGスタジアム",
@@ -7914,6 +7587,25 @@
     {
       "candidate_type": "other_but_music_likely",
       "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-07#t=18:00",
+      "event_date": "2026-05-07",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
       "record_id": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158274",
       "event_date": "2026-05-07",
       "venue_name": "Zepp DiverCity(Tokyo)",
@@ -7923,6 +7615,25 @@
       "expected_category": "コンサート",
       "artist_name": "",
       "inferred_artist_name": "福田未来",
+      "inferred_artist_confidence": "high",
+      "lp_impact": "category_change",
+      "automation_bucket": "human_review",
+      "needs_review_reason": [
+        "other_but_music_likely"
+      ]
+    },
+    {
+      "candidate_type": "other_but_music_likely",
+      "source_id": "official_events",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-08#t=13:00",
+      "event_date": "2026-05-08",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "current_category": "その他",
+      "expected_category": "コンサート",
+      "artist_name": "",
+      "inferred_artist_name": "工藤舞",
       "inferred_artist_confidence": "high",
       "lp_impact": "category_change",
       "automation_bucket": "human_review",
@@ -7990,148 +7701,15 @@
     {
       "candidate_type": "other_but_music_likely",
       "source_id": "official_events",
-      "record_id": "mufg_stadium:/schedule/2026/0510_15785.php",
-      "event_date": "2026-05-10",
-      "venue_name": "MUFGスタジアム",
-      "title": "FC東京 味スタBBQ",
-      "url": "https://www.ajinomotostadium.com/schedule/2026/0510_15785.php",
+      "record_id": "tdc_hall:https://musical-toukenranbu.jp/pages/kashusololive2026#d=2026-05-09#t=13:00",
+      "event_date": "2026-05-09",
+      "venue_name": "TOKYO DOME CITY HALL",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
       "current_category": "その他",
       "expected_category": "コンサート",
       "artist_name": "",
-      "inferred_artist_name": "京",
-      "inferred_artist_confidence": "high",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "k_arena_yokohama:https://k-arena.com/schedule/20260510-1/",
-      "event_date": "2026-05-10",
-      "venue_name": "Kアリーナ横浜",
-      "title": "Kstyle PARTY 2026 RIIZE / SUPER JUNIOR D&E / AHOF / YENA / Royal44(Opening Act) / チャン・ハヌム(Opening Act)",
-      "url": "https://k-arena.com/schedule/20260510-1/",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "RIIZE",
-      "inferred_artist_confidence": "medium",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "pia_arena_mm:event/6674.html",
-      "event_date": "2026-05-10",
-      "venue_name": "ぴあアリーナMM",
-      "title": "LIFE! ON STAGE ～マーベラーに捧げるコント～",
-      "url": "https://pia-arena-mm.jp/event/6674.html",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "人生",
-      "inferred_artist_confidence": "high",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id699e63779b0ee",
-      "event_date": "2026-05-10",
-      "venue_name": "日産スタジアム",
-      "title": "明治安田Ｊ１百年構想リーグ 地域リーグラウンド 第16節 横浜F・マリノス vs 鹿島アントラーズ",
-      "url": "https://www.nissan-stadium.jp/calendar/detail.php?id699e63779b0ee",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "リノ",
-      "inferred_artist_confidence": "high",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "mufg_stadium:/schedule/2026/0510_15444.php",
-      "event_date": "2026-05-10",
-      "venue_name": "MUFGスタジアム",
-      "title": "ＦＣ東京×東京ヴェルディ",
-      "url": "https://www.ajinomotostadium.com/schedule/2026/0510_15444.php",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "京",
-      "inferred_artist_confidence": "high",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "yanmar_stadium_nagai:NTTジャパンラグビー リーグワン 2025-26 ディビジョン2 第14節 レッドハリケーンズ大阪 VS NECグリーンロケッツ東葛#d=2026-05-11#t=19:00",
-      "event_date": "2026-05-11",
-      "venue_name": "ヤンマースタジアム長居",
-      "title": "NTTジャパンラグビー リーグワン 2025-26 ディビジョン2 第14節 レッドハリケーンズ大阪 VS NECグリーンロケッツ東葛",
-      "url": "https://smaspo.raku-za.jp/apps/nagaipark/file/users/6470_413_213/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC_2026%E5%B9%B45%E6%9C%88.pdf",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "Billlie",
-      "inferred_artist_confidence": "medium",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=155182",
-      "event_date": "2026-05-16",
-      "venue_name": "Zepp Osaka Bayside",
-      "title": "BIG Night- HEY MAN 2026-",
-      "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=155182",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "B.I.G",
-      "inferred_artist_confidence": "high",
-      "lp_impact": "category_change",
-      "automation_bucket": "human_review",
-      "needs_review_reason": [
-        "other_but_music_likely"
-      ]
-    },
-    {
-      "candidate_type": "other_but_music_likely",
-      "source_id": "official_events",
-      "record_id": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id699e6403ad39f",
-      "event_date": "2026-05-16",
-      "venue_name": "日産スタジアム",
-      "title": "明治安田Ｊ１百年構想リーグ 地域リーグラウンド 第17節 横浜F・マリノス vs 柏レイソル",
-      "url": "https://www.nissan-stadium.jp/calendar/detail.php?id699e6403ad39f",
-      "current_category": "その他",
-      "expected_category": "コンサート",
-      "artist_name": "",
-      "inferred_artist_name": "リノ",
+      "inferred_artist_name": "工藤舞",
       "inferred_artist_confidence": "high",
       "lp_impact": "category_change",
       "automation_bucket": "human_review",
@@ -8154,26 +7732,6 @@
     },
     {
       "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap"
-      ],
-      "title": "KARA、約3年ぶりの日本ファンミーティングが決定!7月に東京で開催 - Kstyle",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap"
-      ],
-      "title": "TREASURE、日本での特別公演が決定!7月より全国7都市15公演にわたり開催 - Kstyle",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
       "automation_bucket": "human_review",
       "reason": [
         "entry_gap",
@@ -8187,10 +7745,11 @@
       "source_section": "missed_articles",
       "automation_bucket": "pr_candidate",
       "reason": [
-        "entry_gap"
+        "entry_gap",
+        "detail_not_checked"
       ],
-      "title": "i-dle、ワールドツアー日本公演の詳細を発表!6月に横浜で2Days開催 - Kstyle",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276235",
+      "title": "人気アニメ「鬼滅の刃」韓国で初の没入型展示会を開催決定!ソウルで6月より実施",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279393",
       "lp_impact": "display_count_change"
     },
     {
@@ -8200,8 +7759,8 @@
         "entry_gap",
         "detail_not_checked"
       ],
-      "title": "山田涼介、9月に韓国ファンと対面!初のアジアツアーに期待高まる",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279039",
+      "title": "“活動中断を発表”LE SSERAFIM キム・チェウォン、新曲のライブを披露!美しい歌声で魅了(動画あり)",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279382",
       "lp_impact": "display_count_change"
     },
     {
@@ -8211,8 +7770,8 @@
         "entry_gap",
         "detail_not_checked"
       ],
-      "title": "チュ・ヨンウ、日韓でファンミーティングを開催決定!可愛らしいポスター公開",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279037",
+      "title": "IVE、日本4th EPよりタイトル曲「LUCID DREAM」先行配信!",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279387",
       "lp_impact": "display_count_change"
     },
     {
@@ -8222,148 +7781,8 @@
         "entry_gap",
         "detail_not_checked"
       ],
-      "title": "NCT WISH、ILLIT、Hearts2Hearts、今夏開催の「めざましライブ」に出演決定!",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279035",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "BTS、メキシコ公演で15万人を動員!約10年10ヶ月ぶり...スペイン語で感謝の挨拶も",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279028",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "LUCY、完全体で2年ぶりの日本公演が決定!7月に横浜で開催へ",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279018",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "SEVENTEEN ジョシュア&ディノ&ジュン、ファンミーティングのため日本へ!",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279023",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "NCT WISH、山下智久&ENHYPEN ジョンウォンら、5月18日放送の「CDTVライブ!ライブ!」に出演決定!",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279020",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "Creepy Nutsと¥ØU$UK€ ¥UK1MAT$UがThe Weekndのアジアツアーに参加!韓国公演は8年ぶりの開催",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279002",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "“BTSノミクス”に世界が注目!ワールドツアーの経済効果&ファンの購買力が話題に",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279009",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "BABYMONSTER、日本に続いてワールドツアーのアジア・オセアニア公演の開催地を発表!18都市27公演に拡大",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279008",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "“東京ドーム公演が大盛況”2PM、3年ぶりの韓国単独コンサート開催が決定!",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278997",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "FTISLAND“狂うほど楽しい”Zeppツアーでファンと一つに!「俺ら生きてるって気持ちになる」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279004",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "entry_gap",
-        "detail_not_checked"
-      ],
-      "title": "近藤真彦、デビュー47年目で初の韓国コンサートが決定!ファンミーティング開催も",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278968",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "detail_not_checked"
-      ],
-      "title": "Wanna One出身パク・ジフン、待望の日本ソロファンコンサートを5月に開催決定！",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278017",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "detail_not_checked"
-      ],
-      "title": "SUPER JUNIOR キュヒョン、デビュー20周年記念！来日ファンミーティングの詳細が決定",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277661",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "detail_not_checked"
-      ],
-      "title": "キム・ジョンヒョン、日本で初のソロファンミーティングを開催決定！ハイタッチ会も実施",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277595",
+      "title": "「21世紀の大君夫人」ロケ地を巡るツアーが中止に...歴史歪曲の議論うけ発表",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279338",
       "lp_impact": "display_count_change"
     },
     {
@@ -8394,36 +7813,6 @@
       ],
       "title": "NTX、4月に大阪でファンライブを開催決定！初日はフリーショーケース実施",
       "url": "https://kstyle.com/article.ksn?articleNo=2277230",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "detail_not_checked"
-      ],
-      "title": "NCT 127からILLIT、ZEROBASEONEまで！8月に開催「KCON LA 2026」豪華ラインナップを公開",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277171",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "detail_not_checked"
-      ],
-      "title": "FTISLANDからCNBLUEまで5組集結！「FNC BAND KINGDOM 2026」7月に横浜で開催決定",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276867",
-      "lp_impact": "display_count_change"
-    },
-    {
-      "source_section": "missed_articles",
-      "automation_bucket": "pr_candidate",
-      "reason": [
-        "detail_not_checked"
-      ],
-      "title": "新人ボーイズグループADAP、日本プロモーションが大反響！5月東京と大阪でファンミーティング開催決定",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276652",
       "lp_impact": "display_count_change"
     },
     {
@@ -8482,16 +7871,6 @@
       "reason": [
         "missing_category"
       ],
-      "title": "ICHILLIN' JAPAN FAN LIVE 2026 SEASON OF ICHILLIN'",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278932",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "normalization_gap",
-      "automation_bucket": "human_review",
-      "reason": [
-        "missing_category"
-      ],
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
       "lp_impact": "duplicate_grouping_change"
@@ -8514,6 +7893,18 @@
       ],
       "title": "CxM [DOUBLE UP] LIVE PARTY in JAPANCxM [DOUBLE UP] LIVE PARTY in JAPAN",
       "url": "https://kstyle.com/article.ksn?articleNo=2272590",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "normalization_gap",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue",
+        "unmatched_artist",
+        "missing_category"
+      ],
+      "title": "2026 LEE JOOBEEN 1st FANMEETING [JOOTOPIA] : ASIA TOUR in Tokyo",
+      "url": "https://kstyle.com/article.ksn?articleNo=2278262",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -8570,6 +7961,7 @@
       "source_section": "normalization_gap",
       "automation_bucket": "human_review",
       "reason": [
+        "unmatched_artist",
         "missing_category"
       ],
       "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
@@ -8580,6 +7972,7 @@
       "source_section": "normalization_gap",
       "automation_bucket": "human_review",
       "reason": [
+        "unmatched_artist",
         "missing_category"
       ],
       "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
@@ -8727,28 +8120,8 @@
       "reason": [
         "missing_category"
       ],
-      "title": "GHOST9 SPECIAL JAPAN LIVE 2026 “Our Story, Unfolding Season 3”",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277158",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "normalization_gap",
-      "automation_bucket": "human_review",
-      "reason": [
-        "missing_category"
-      ],
       "title": "2026 BXB SPECIAL LIVE IN JAPAN The Last Story",
       "url": "https://kstyle.com/article.ksn?articleNo=2277228",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "normalization_gap",
-      "automation_bucket": "human_review",
-      "reason": [
-        "missing_category"
-      ],
-      "title": "GHOST9 SPECIAL JAPAN LIVE 2026 “Our Story, Unfolding Season 3”",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277158",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -8780,16 +8153,6 @@
       ],
       "title": "2026 BXB SPECIAL LIVE IN JAPAN The Last Story",
       "url": "https://kstyle.com/article.ksn?articleNo=2277228",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "normalization_gap",
-      "automation_bucket": "human_review",
-      "reason": [
-        "missing_category"
-      ],
-      "title": "GHOST9 SPECIAL JAPAN LIVE 2026 “Our Story, Unfolding Season 3”",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277158",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -8847,31 +8210,11 @@
       "source_section": "normalization_gap",
       "automation_bucket": "human_review",
       "reason": [
-        "missing_category"
-      ],
-      "title": "2026 FTISLAND LIVE 'MAD HAPPY' Zepp Tour IN JAPAN",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279004",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "normalization_gap",
-      "automation_bucket": "human_review",
-      "reason": [
         "unmatched_venue",
         "missing_category"
       ],
       "title": "2026 WOOSEUNG 1st Fanmeeting in Osaka: [MAY BE]",
       "url": "https://kstyle.com/article.ksn?articleNo=2277417",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "normalization_gap",
-      "automation_bucket": "human_review",
-      "reason": [
-        "missing_category"
-      ],
-      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -8891,6 +8234,16 @@
         "missing_category"
       ],
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277651",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "normalization_gap",
+      "automation_bucket": "human_review",
+      "reason": [
+        "missing_category"
+      ],
+      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
       "url": "https://kstyle.com/article.ksn?articleNo=2277668",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -8901,7 +8254,17 @@
         "missing_category"
       ],
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277651",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277989",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "normalization_gap",
+      "automation_bucket": "human_review",
+      "reason": [
+        "missing_category"
+      ],
+      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -8933,7 +8296,7 @@
         "missing_category"
       ],
       "title": "K-POP音楽祭「Kstyle PARTY 2026」",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277989",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -8970,11 +8333,52 @@
       "source_section": "normalization_gap",
       "automation_bucket": "human_review",
       "reason": [
+        "missing_category"
+      ],
+      "title": "K-POP音楽祭「Kstyle PARTY 2026」",
+      "url": "https://kstyle.com/article.ksn?articleNo=2277047",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "normalization_gap",
+      "automation_bucket": "human_review",
+      "reason": [
         "unmatched_venue",
         "missing_category"
       ],
       "title": "2026 WOOSEUNG 1st Fanmeeting in Osaka: [MAY BE]",
       "url": "https://kstyle.com/article.ksn?articleNo=2277417",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "normalization_gap",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue",
+        "missing_category"
+      ],
+      "title": "ITZY 3RD WORLD TOUR <TUNNEL VISION>",
+      "url": "https://kstyle.com/article.ksn?articleNo=2275463",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "normalization_gap",
+      "automation_bucket": "human_review",
+      "reason": [
+        "missing_category"
+      ],
+      "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY'",
+      "url": "https://kstyle.com/article.ksn?articleNo=2275567",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "venue_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue"
+      ],
+      "title": "広島グリーンアリーナ",
+      "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
     {
@@ -9053,6 +8457,16 @@
       "reason": [
         "unmatched_venue"
       ],
+      "title": "TIAT SKY HALL",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "venue_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue"
+      ],
       "title": "[福岡] 北九州メッセ",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
@@ -9103,16 +8517,6 @@
       "reason": [
         "unmatched_venue"
       ],
-      "title": "広島グリーンアリーナ",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "venue_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_venue"
-      ],
       "title": "広島文化学園HBGホール",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
@@ -9153,7 +8557,37 @@
       "reason": [
         "unmatched_venue"
       ],
+      "title": "東京・TOYOTA ARENA TOKYO",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "venue_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue"
+      ],
+      "title": "東京都内 LIVE HOUSE",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "venue_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue"
+      ],
       "title": "沖縄サントリーアリーナ",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "venue_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_venue"
+      ],
+      "title": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9234,46 +8668,6 @@
         "unmatched_venue"
       ],
       "title": "Shinjuku Park Tower Hall(新宿パークタワーホール、東京都新宿区西新宿3-7-1新宿パークタワー 3F)",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "venue_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_venue"
-      ],
-      "title": "TIAT SKY HALL(東京都大田区羽田空港2-6-5羽田空港第3旅客ターミナル直結4F)",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "venue_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_venue"
-      ],
-      "title": "festhalle",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "venue_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_venue"
-      ],
-      "title": "〇東京/Zepp Shinjuku",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "venue_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_venue"
-      ],
-      "title": "やまと芸術文化ホール メインホール",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9373,7 +8767,7 @@
       "reason": [
         "unmatched_artist"
       ],
-      "title": "千葉ロッテマリーンズ",
+      "title": "埼玉西武ライオンズ",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9383,7 +8777,17 @@
       "reason": [
         "unmatched_artist"
       ],
-      "title": "埼玉西武ライオンズ",
+      "title": "Kis-My-Ft2（キスマイフットツー）",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_artist"
+      ],
+      "title": "ACEes（エイシーズ）",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9403,26 +8807,6 @@
       "reason": [
         "unmatched_artist"
       ],
-      "title": "ACEes（エイシーズ）",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_artist"
-      ],
-      "title": "大相撲",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_artist"
-      ],
       "title": "DREAMS COME TRUE（ドリームズカムトゥルー）",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
@@ -9433,7 +8817,17 @@
       "reason": [
         "unmatched_artist"
       ],
-      "title": "Kis-My-Ft2（キスマイフットツー）",
+      "title": "One",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_artist"
+      ],
+      "title": "千葉ロッテマリーンズ",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9461,16 +8855,6 @@
       "source_section": "artist_alias_candidates",
       "automation_bucket": "human_review",
       "reason": [
-        "unmatched_artist"
-      ],
-      "title": "Suchmos（サチモス）",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
         "artist_alias_or_match_review"
       ],
       "title": "Eve / confidence=medium",
@@ -9484,6 +8868,26 @@
         "unmatched_artist"
       ],
       "title": "Eve",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "artist_alias_or_match_review"
+      ],
+      "title": "キー / confidence=medium",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_artist"
+      ],
+      "title": "timelesz（タイムレス／旧Sexy Zone）",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9523,47 +8927,7 @@
       "reason": [
         "unmatched_artist"
       ],
-      "title": "One",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_artist"
-      ],
-      "title": "WEST.（ウエスト／旧ジャニーズWEST）",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_artist"
-      ],
-      "title": "timelesz（タイムレス／旧Sexy Zone）",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "artist_alias_or_match_review"
-      ],
-      "title": "キー / confidence=medium",
-      "url": "",
-      "lp_impact": "duplicate_grouping_change"
-    },
-    {
-      "source_section": "artist_alias_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "unmatched_artist"
-      ],
-      "title": "B’z（ビーズ）",
+      "title": "Suchmos（サチモス）",
       "url": "",
       "lp_impact": "duplicate_grouping_change"
     },
@@ -9578,6 +8942,36 @@
       "lp_impact": "duplicate_grouping_change"
     },
     {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_artist"
+      ],
+      "title": "FANTASTICS（ファンタスティックス）",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_artist"
+      ],
+      "title": "GENERATIONS（ジェネレーションズ）",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
+      "source_section": "artist_alias_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "unmatched_artist"
+      ],
+      "title": "日本カーリング選手権大会",
+      "url": "",
+      "lp_impact": "duplicate_grouping_change"
+    },
+    {
       "source_section": "category_review_candidates",
       "automation_bucket": "human_review",
       "reason": [
@@ -9585,6 +8979,16 @@
       ],
       "title": "FC東京 味スタBBQ",
       "url": "https://www.ajinomotostadium.com/schedule/2026/0501_15778.php",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
       "lp_impact": "category_change"
     },
     {
@@ -9615,6 +9019,16 @@
       ],
       "title": "NTTドコモ presents Lemino BOXING ダブル世界タイトルマッチ 井上尚弥 vs 中谷潤人",
       "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
       "lp_impact": "category_change"
     },
     {
@@ -9673,6 +9087,16 @@
       "reason": [
         "other_but_music_likely"
       ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
       "title": "東京ヴェルディ×柏レイソル",
       "url": "https://www.ajinomotostadium.com/schedule/2026/0503_15443.php",
       "lp_impact": "category_change"
@@ -9695,6 +9119,16 @@
       ],
       "title": "JA全農チビリンピック2026",
       "url": "https://www.nissan-stadium.jp/calendar/detail.php?id69ba0f1312da6",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
       "lp_impact": "category_change"
     },
     {
@@ -9733,6 +9167,16 @@
       "reason": [
         "other_but_music_likely"
       ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
       "title": "味の素スタジアムBIGフリーマーケット",
       "url": "https://www.ajinomotostadium.com/schedule/2026/0505_15814.php",
       "lp_impact": "category_change"
@@ -9763,8 +9207,28 @@
       "reason": [
         "other_but_music_likely"
       ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
       "title": "未来古代楽団 祝祭あるいは断章6「巨いなる神のオブリビオ」",
       "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158274",
+      "lp_impact": "category_change"
+    },
+    {
+      "source_section": "category_review_candidates",
+      "automation_bucket": "human_review",
+      "reason": [
+        "other_but_music_likely"
+      ],
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
       "lp_impact": "category_change"
     },
     {
@@ -9803,78 +9267,8 @@
       "reason": [
         "other_but_music_likely"
       ],
-      "title": "FC東京 味スタBBQ",
-      "url": "https://www.ajinomotostadium.com/schedule/2026/0510_15785.php",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "Kstyle PARTY 2026 RIIZE / SUPER JUNIOR D&E / AHOF / YENA / Royal44(Opening Act) / チャン・ハヌム(Opening Act)",
-      "url": "https://k-arena.com/schedule/20260510-1/",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "LIFE! ON STAGE ～マーベラーに捧げるコント～",
-      "url": "https://pia-arena-mm.jp/event/6674.html",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "明治安田Ｊ１百年構想リーグ 地域リーグラウンド 第16節 横浜F・マリノス vs 鹿島アントラーズ",
-      "url": "https://www.nissan-stadium.jp/calendar/detail.php?id699e63779b0ee",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "ＦＣ東京×東京ヴェルディ",
-      "url": "https://www.ajinomotostadium.com/schedule/2026/0510_15444.php",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "NTTジャパンラグビー リーグワン 2025-26 ディビジョン2 第14節 レッドハリケーンズ大阪 VS NECグリーンロケッツ東葛",
-      "url": "https://smaspo.raku-za.jp/apps/nagaipark/file/users/6470_413_213/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%82%AB%E3%83%AC%E3%83%B3%E3%83%80%E3%83%BC_2026%E5%B9%B45%E6%9C%88.pdf",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "BIG Night- HEY MAN 2026-",
-      "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=155182",
-      "lp_impact": "category_change"
-    },
-    {
-      "source_section": "category_review_candidates",
-      "automation_bucket": "human_review",
-      "reason": [
-        "other_but_music_likely"
-      ],
-      "title": "明治安田Ｊ１百年構想リーグ 地域リーグラウンド 第17節 横浜F・マリノス vs 柏レイソル",
-      "url": "https://www.nissan-stadium.jp/calendar/detail.php?id699e6403ad39f",
+      "title": "ミュージカル『刀剣乱舞』 加州清光 単騎出陣 極",
+      "url": "https://musical-toukenranbu.jp/pages/kashusololive2026",
       "lp_impact": "category_change"
     }
   ]
