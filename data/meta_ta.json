@@ -1,8 +1,17 @@
 {
   "source_index_url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku.html",
-  "signature": "835aa47302f6867666e7b26cb89033e19d4f9786002bb5387907db14f4f0b948",
-  "last_checked_at": "2026-04-14T08:07:46.571555+00:00",
+  "signature": "a96b4b98e6e942d3f7a1727603222e3dd4101af5b0eac6eeacb8d5c8f3057fd0",
+  "last_checked_at": "2026-05-25T07:14:47.829505+00:00",
   "processed_files": [
+    {
+      "page_url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r7.html",
+      "excel_url": "https://www.mlit.go.jp/kankocho/content/002002289.xlsx",
+      "excel_link_text": "令和8年（2026年）3月各社別内訳［Excel:27KB］",
+      "sha256": "c01db7269370a8cd593e3d3bdb5f97d7aee11fb52a4df9c0be1cff0391595b67",
+      "fiscal_year": "2025",
+      "period": "2026-03",
+      "rows": 220
+    },
     {
       "page_url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r7.html",
       "excel_url": "https://www.mlit.go.jp/kankocho/content/001995545.xlsx",
@@ -355,7 +364,7 @@
       "rows": 184
     }
   ],
-  "row_count": 7040,
+  "row_count": 7220,
   "fiscal_years": [
     "2025",
     "2024",
@@ -401,6 +410,7 @@
     "2025-12",
     "2026-01",
     "2026-02",
+    "2026-03",
     "total"
   ],
   "segments": [

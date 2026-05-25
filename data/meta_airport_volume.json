@@ -1,12 +1,12 @@
 {
   "source_name": "e-Stat 出入国管理統計（港別 出入国者）",
   "source_list_url": "https://www.e-stat.go.jp/stat-search/files?cycle=1&cycle_facet=tclass1%3Acycle&layout=dataset&result_back=1&tclass1=000001012481&tclass2val=0&toukei=00250011&tstat=000001012480",
-  "source_signature": "ea38a5128b0b0c8385e3e890333f46b0e14a293d0525d2f18cb97c67343d7278",
-  "source_excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040437679&fileKind=4",
-  "source_sha256": "8b9d92062c09623364be7180641ab0695a16c26753bf30fa0180feec3235c208",
-  "fetched_at_utc": "2026-04-27T05:54:35.471007+00:00",
-  "period_min": "2022-03",
-  "period_max": "2026-02",
+  "source_signature": "aaaa654e60cb9f0446b8c821809212dada88d347e3641e1f7c31cd44fd474d29",
+  "source_excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040455721&fileKind=4",
+  "source_sha256": "95a8fa2a345743c454ea1fdbc692e79f692db385fad13785d760b57e600a1125",
+  "fetched_at_utc": "2026-05-25T07:15:50.586395+00:00",
+  "period_min": "2022-04",
+  "period_max": "2026-03",
   "row_count": 624,
   "airports": [
     {
@@ -64,6 +64,14 @@
   ],
   "processed_sources": [
     {
+      "period_key": "2026-03",
+      "title": "総括 26-03-01 港別 出入国者",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=1&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040455721",
+      "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040455721&fileKind=4",
+      "sha256": "95a8fa2a345743c454ea1fdbc692e79f692db385fad13785d760b57e600a1125",
+      "release_date": "2026-05-25"
+    },
+    {
       "period_key": "2026-02",
       "title": "総括 26-02-01 港別 出入国者",
       "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=1&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040437679",
@@ -106,7 +114,7 @@
     {
       "period_key": "2025-09",
       "title": "総括 25-09-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=1&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040362028",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=2&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040362028",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040362028&fileKind=4",
       "sha256": "6e93828da49ee635ce72bfb9c7e92b89bc37950028830f844c7b4b462268edd4",
       "release_date": "2025-11-25"
@@ -154,7 +162,7 @@
     {
       "period_key": "2025-03",
       "title": "総括 25-03-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=2&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040276795",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=3&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040276795",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040276795&fileKind=4",
       "sha256": "ebdfc45886c7af1f6f4e416f3430ebf720608a15d20ea26025549781aefa4c1d",
       "release_date": "2025-05-26"
@@ -194,7 +202,7 @@
     {
       "period_key": "2024-10",
       "title": "総括 24-10-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=3&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040225841",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=4&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040225841",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040225841&fileKind=4",
       "sha256": "81a535c84b48151f46bcde38c94b09900d2060b66a3ec5bcec04b1700578d604",
       "release_date": "2024-12-25"
@@ -234,7 +242,7 @@
     {
       "period_key": "2024-05",
       "title": "総括 24-05-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=4&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040190502",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=5&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040190502",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040190502&fileKind=4",
       "sha256": "f222001e60a66201d2df8d436d824b6fd978c1d49f9fbb809341d42858f7c4c2",
       "release_date": "2024-07-25"
@@ -282,7 +290,7 @@
     {
       "period_key": "2023-11",
       "title": "総括 23-11-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=5&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040136940",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=6&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040136940",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040136940&fileKind=4",
       "sha256": "2ad67f1bec77b2f1dc3a5bec563581a768be01e1084f84c133ba94aa80e9fa3e",
       "release_date": "2024-01-25"
@@ -322,7 +330,7 @@
     {
       "period_key": "2023-06",
       "title": "総括 23-06-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=6&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040090121",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=7&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040090121",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040090121&fileKind=4",
       "sha256": "1d58ce33f76a672ccbfc665e9b740181118d8e4d3ce2c3d3de99d0d0b84564d2",
       "release_date": "2023-08-25"
@@ -330,7 +338,7 @@
     {
       "period_key": "2023-05",
       "title": "総括 23-05-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=6&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040079540",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=7&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040079540",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040079540&fileKind=4",
       "sha256": "34af52c10ac782364a5796ad09f1ff8d39fbe6a915c4c187a29ea1b538048d9e",
       "release_date": "2023-07-25"
@@ -370,7 +378,7 @@
     {
       "period_key": "2022-12",
       "title": "総括 22-12-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=7&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040020300",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=8&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000040020300",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040020300&fileKind=4",
       "sha256": "5e766dacf351e7eb95e698098dd3cc85937b794733f2f17e21dbcb1355adb78c",
       "release_date": "2023-02-24"
@@ -418,7 +426,7 @@
     {
       "period_key": "2022-06",
       "title": "総括 22-06-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=8&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000032227114",
+      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=9&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000032227114",
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032227114&fileKind=4",
       "sha256": "1e982400549df1d5b78594024a2a3d8f8ff40c21e4aca2dc8f99cc6bf62952d3",
       "release_date": "2022-08-25"
@@ -438,14 +446,6 @@
       "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032209274&fileKind=4",
       "sha256": "81cf35afe2598203c6c4ef87a8dc3684f739919cd4d4329542f46a78dd5db653",
       "release_date": "2022-06-24"
-    },
-    {
-      "period_key": "2022-03",
-      "title": "総括 22-03-01 港別 出入国者",
-      "detail_url": "https://www.e-stat.go.jp/stat-search/files?page=9&layout=dataset&cycle=1&toukei=00250011&tstat=000001012480&tclass1=000001012481&cycle_facet=tclass1%3Acycle&result_back=1&tclass2val=0&stat_infid=000032203523",
-      "excel_url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000032203523&fileKind=4",
-      "sha256": "af2de4c34544e2705b2bed692d13a5e940e8b594f9185f1dcebb8900a7281005",
-      "release_date": "2022-05-25"
     }
   ],
   "unit": "persons"
