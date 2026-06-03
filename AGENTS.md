@@ -48,12 +48,20 @@
 - `search-first`: 実装前に既存解・外部ライブラリ・既存パターンを先に調べたいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `missing-capability-proposal`: 実行中または verify 中に未導入のツール、ライブラリ、Skill、preset が不足能力の原因になったときに、導入提案の要否を短く整理したいときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `deep-research`: 複数ソースの比較、出典付きの調査要約、論点整理が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
-- `thread-contract-handoff`: スレッド開始時に目的・範囲・終了条件を固定し、終了時に handoff 要否をユーザー確認で決めたいときに使う。共有 Skill として `~/.codex/skills` から使う。
+- `thread-contract-handoff`: 明示的な handoff 作成、古い handoff からの復旧、長期中断後の正本再同期、既存 handoff prompt の正本照合が必要なときだけ使う optional / legacy Skill。通常の Goal Bundle Execution、通常の task 継続、通常の終了判断では使わない。共有 Skill として `~/.codex/skills` から使う。
 - `create-cli`: 新しい CLI、サブコマンド、引数体系、出力契約を設計または変更するときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `bom-guard`: Windows 環境で UTF-8 BOM の混入防止や除去が必要なときに使う。共有 Skill として `~/.codex/skills` から使う。
 - `dictionary_maintenance`: `event_signals` の artist/venue 辞書をメンテするときだけ使う。手順は `.agents/skills/dictionary_maintenance/SKILL.md` を参照。
 - `generic-skill-template-sync`: repo 固有 skill を汎用化できるか判定し、template へ逆輸入するか整理するときに使う。手順は `.agents/skills/generic-skill-template-sync/SKILL.md` を参照。
 - `spec-wallbat-to-task`: 仕様追加・修正の相談で壁打ちを先行し、仕様確定後にタスク化してから実装へ進めるときに使う。手順は `.agents/skills/spec-wallbat-to-task/SKILL.md` を参照。
+
+## Goal Bundle Execution
+
+- Goal Bundle Execution は root `AGENTS.md` の常設ルールであり、Skill ではない。通常の正本確認、Goal Bundle 判断、subagent 利用判断、終了条件は、repo 正本に基づいて扱う。
+- Task ID は追跡単位であり、常に実行停止単位ではない。利用者が `すすめて`、`次にすすめて`、`未着手を進めて`、`未着手つぶして`、`ゴールモード`、または同等の継続実装を求めた場合は、Goal Bundle Execution として扱う。
+- Goal Bundle は、同じユーザー可視成果に属し、同じ spec または同じ責務境界に属し、同じ verify セットで完了判定でき、同じ commit / push セーブポイントにまとめても戻しやすい未着手 task 群で構成する。
+- Codex は Goal Bundle 内の小 task ごとに利用者確認で止まらない。止まるのは、外部契約、公開挙動、削除、migration、依存追加または更新、認証・secret・権限、実データ操作、release / publish、または利用者判断が必要な仕様判断が出た場合だけにする。
+- 影響が局所的で戻せる判断は、前提を明示して進め、最終報告で確認結果を書く。Goal Bundle 外の論点は別管理にし、現在の Goal Bundle 完了に必要なものだけ扱う。
 
 ## Archive
 
@@ -333,10 +341,11 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 
 ユーザーの短い指示は、追加説明を要求せずに次の既定動作へ展開する。
 
-- `すすめて`: `STATUS.md` の現在の task bundle と `tasks_backlog` の優先順位を確認し、完了済み task を再開せず、次の 1 task を進める。実装を伴う場合は verify、関連 docs 同期、Session Git Sync Gate まで進める。
-- `次にすすめて`: 現在の task が完了済みであることを確認し、`STATUS.md` または `tasks_backlog` に明記された次 task へ移る。完了済み task の追加掘り下げを既定にしない。
+- `すすめて`: `STATUS.md` の現在地と `tasks_backlog` の優先順位を確認し、完了済み task を再開せず、次の Goal Bundle を作って進める。実装を伴う場合は verify、関連 docs 同期、Session Git Sync Gate まで進める。
+- `次にすすめて`: 現在の Goal Bundle が完了済みであることを確認し、`STATUS.md` または `tasks_backlog` から次の Goal Bundle へ移る。完了済み bundle の追加掘り下げを既定にしない。
+- `未着手つぶして` / `ゴールモード`: `STATUS.md` と `tasks_backlog` から未着手 task を確認し、ユーザー可視成果ごとに Goal Bundle 化して、停止条件に当たるまで連続で進める。
 - `Docs整備して`: docs-only として扱う。実装ファイルを編集せず、`STATUS.md`、`tasks_backlog`、`DECISIONS.md`、関連 `spec` の整合性を確認し、次スレッド入口、非対象、完了条件を明記する。
-- `スレッド移行して`: 次スレッドが会話履歴を読まなくても再開できるように、最初に読む正本、次の 1 task、非対象、終了条件、verify / commit 状態を `STATUS.md` などの正本へ残す。
+- `スレッド移行して`: 利用者が明示した場合だけ、次スレッドが会話履歴を読まなくても再開できるように、最初に読む正本、次の Goal Bundle、非対象、終了条件、verify / commit 状態を `STATUS.md` などの正本へ残す。通常終了時に毎回 handoff を作る指示としては扱わない。
 - `見解だけ`: read-only として扱う。実装、commit、push をしない。必要な現物確認は行い、結論、根拠、不確実性、実装するなら最初に確認する事項を分けて報告する。
 - `Pushまでしておいて`: 通常の追加要件ではなく、Session Git Sync Gate の実行漏れを補正する指示として扱う。この指示がなくても、意味のある差分があり条件を満たす場合は commit / push まで行う。
 
