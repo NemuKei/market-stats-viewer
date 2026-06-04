@@ -319,6 +319,14 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 - GUI確認が不要な変更（内部処理/ドキュメントのみ等）の場合は、最終回答に `GUI確認不要` と理由を明記する。
 - verify 未通過では通常の commit / push を行わない。Codex がセッション中に意味のある差分を作った場合、ユーザーが停止を明示しない限り、verify 通過後は commit と `origin/main` への push までを既定の完了状態とする。verify 手段が未整備なら勝手に増やさず、その旨を報告する。
 
+## Frontend Product Design Routing
+
+フロントエンド実装、UI redesign、prototype、image-to-code、または視覚品質が成果に大きく影響する作業では、Product Design プラグインが利用可能な場合、Product Design workflow を優先候補にする。
+Product Design を frontend 作業の必須依存にはしない。Product Design プラグインが利用できない場合は、`frontend-skill` と通常の browser / screenshot verification で進める。
+小規模な文言修正、機械的な CSS 修正、既存 component contract を変えない局所修正では、Product Design の brief gate を必須にしない。
+Product Design を使う場合でも、既存 codebase の framework、routing、component、design token、test、build、preview の確認は省略しない。
+Product Design が visual brief や prototype の前段を担当し、repo 内実装と検証を `frontend-skill` の手順で閉じる場合は、どちらの workflow がどの入力、処理、出力を担当したかを最終報告で分けて書く。
+
 ## Browser Tool Routing
 
 ブラウザ操作が必要な場合は、先に目的を分類し、目的に合う手段を選ぶ。
