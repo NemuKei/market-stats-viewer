@@ -15,6 +15,7 @@ Codex automation は、監査レポート生成、低リスク修正案の作成
 - `data/event_signal_audit_report.json`
 - `data/event_signal_audit_report.md`
 - `docs/spec_update_pipeline.md`
+- `docs/context/INTENT.md`
 - `docs/context/STATUS.md`
 - `docs/context/DECISIONS.md`
 
@@ -44,6 +45,7 @@ market-stats-viewer のイベント情報監査レポートを確認し、低リ
 
 必ず最初に以下を読んでください。
 - AGENTS.md
+- docs/context/INTENT.md
 - docs/context/STATUS.md
 - docs/context/DECISIONS.md
 - docs/spec_update_pipeline.md
