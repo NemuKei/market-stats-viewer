@@ -2,28 +2,28 @@
   "report_name": "ticketjam_supplement_report",
   "report_version": 1,
   "inputs": {
-    "ticketjam_source_updated_at_utc": "2026-06-06T06:50:34Z",
+    "ticketjam_source_updated_at_utc": "2026-06-07T07:27:12Z",
     "starto_source_updated_at_utc": "2026-06-01T02:45:47Z",
     "kstyle_source_updated_at_utc": "2026-06-06T13:12:49Z",
-    "events_db_modified_at_utc": "2026-06-07T02:32:48Z"
+    "events_db_modified_at_utc": "2026-06-07T07:11:53Z"
   },
   "summary": {
-    "ticketjam_unique_schedules": 1401,
+    "ticketjam_unique_schedules": 1389,
     "baseline_news_unique_schedules": 345,
     "baseline_official_unique_schedules": 622,
     "ticketjam_category_counts": {
-      "その他": 73,
-      "コンサート": 994,
-      "野球": 334
+      "その他": 71,
+      "コンサート": 987,
+      "野球": 331
     },
-    "in_scope_unique_schedules": 11,
-    "artist_scope_unique_schedules": 11,
+    "in_scope_unique_schedules": 10,
+    "artist_scope_unique_schedules": 10,
     "venue_scope_unique_schedules": 0,
     "additional_unique_schedules": 7,
-    "overlap_unique_schedules": 4,
-    "noise_rate": 0.3636,
-    "out_of_scope_unique_schedules": 1390,
-    "out_of_scope_rate": 0.9921
+    "overlap_unique_schedules": 3,
+    "noise_rate": 0.3,
+    "out_of_scope_unique_schedules": 1379,
+    "out_of_scope_rate": 0.9928
   },
   "artist_gap": {
     "watch_count": 9,
@@ -51,18 +51,17 @@
       {
         "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
         "tier": "A",
-        "ticketjam_hits": 6,
+        "ticketjam_hits": 5,
         "additional_hits": 2,
-        "overlap_hits": 4,
-        "noise_rate": 0.6667,
+        "overlap_hits": 3,
+        "noise_rate": 0.6,
         "venues": [
           "バンテリンドームナゴヤ",
           "京セラドーム大阪",
-          "東京ドーム",
-          "福岡PayPayドーム"
+          "東京ドーム"
         ],
         "category_counts": {
-          "コンサート": 6
+          "コンサート": 5
         }
       },
       {
@@ -85,6 +84,7 @@
         "venues": [
           "あなぶきアリーナ香川",
           "日本武道館",
+          "東京ドーム",
           "真駒内セキスイハイムアイスアリーナ"
         ],
         "category_counts": {
