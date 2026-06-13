@@ -31,7 +31,7 @@
 - ticketjam_source_updated_at_utc: 2026-06-13T07:19:57Z
 - starto_source_updated_at_utc: 2026-06-01T02:45:47Z
 - kstyle_source_updated_at_utc: 2026-06-12T14:38:43Z
-- events_db_modified_at_utc: 2026-06-13T07:04:26Z
+- events_db_modified_at_utc: 2026-06-13T08:08:14Z
 
 ## Methodology
 
