@@ -63,6 +63,20 @@
 - Codex は Goal Bundle 内の小 task ごとに利用者確認で止まらない。止まるのは、外部契約、公開挙動、削除、migration、依存追加または更新、認証・secret・権限、実データ操作、release / publish、または利用者判断が必要な仕様判断が出た場合だけにする。
 - 影響が局所的で戻せる判断は、前提を明示して進め、最終報告で確認結果を書く。Goal Bundle 外の論点は別管理にし、現在の Goal Bundle 完了に必要なものだけ扱う。
 
+## Parallel Worktree Orchestration
+
+- 通常の Codex workflow は `main` 上の線形作業を既定とする。並列作業や worktree 分割を既定にしない。
+- 利用者が `並列で進めて`、`これも並列で進めて`、`別で進めて`、`裏で進めて`、または同等の意図を明示した場合だけ、Parallel Worktree Orchestration として扱う。
+- Lite orchestration は、1 repo で 1 つの親 thread が複数 task / Goal Bundle を調整し、通常は `main` 上で進める。
+- Parallel Worktree Orchestration では、親 thread が orchestration owner のまま、子 Codex thread が dedicated worktree / task branch で担当範囲だけを進める。
+- 親 thread は、task 分割、依存順、子 thread / worktree dispatch、branch 名、owned files、out-of-scope、推奨 `thinking`、done definition、local verify、shared / high-conflict file coordination、integration、final verify、docs / status / backlog / DECISIONS / spec sync、repo ルールに従う `main` への Git sync を担う。
+- 子 thread は、dedicated worktree / task branch で owned scope 内に留まり、local verify の証跡を報告する。親または repo policy が明示しない限り、`main` へ push / merge しない。
+- branch 名は、Task ID がある場合は `codex/<task-id>-<short-slug>`、ない場合は `codex/<short-goal-slug>` を優先する。
+- `STATUS.md`、`tasks_backlog.md`、`DECISIONS.md`、release notes、central specs、lockfiles、migrations、generated manifests のような shared / high-conflict files は原則として親 thread が所有する。子 thread が編集するのは、親から明示的に割り当てられた場合だけにする。
+- 親 thread が統合する前に、子 thread の verify 結果または失敗理由、secret / credential / PII / raw trace / generated cache / unrelated artifact の混入なし、diff と conflict risk、docs 整合性、merge 順を確認する。
+- 推奨 `thinking` は、status / verify / commit 確認は low、通常の docs / task execution は medium、仕様・安全性・source boundary・公開主張・法務/ポリシー隣接・cross-repo responsibility・shared-file ownership・merge / release 判断は high 以上を目安にし、混在 bundle は reasoning requirement ごとに分割する。
+- 長時間の親 handoff には、現在 goal、repos / branches / thread IDs、完了 bundle、次 bundle、推奨 `thinking`、pending verification、sync / capture expectations、source-of-truth docs を残す。
+
 ## Archive
 
 - `archive/**`, `thread_logs/**`, `handovers/**` は参照専用
