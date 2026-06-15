@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1357
-- additional_unique_schedules: 5
+- ticketjam_unique_schedules: 1351
+- additional_unique_schedules: 4
 - overlap_unique_schedules: 3
-- noise_rate: 0.375
-- out_of_scope_rate: 0.9941
-- ticketjam_category_counts: {"その他": 71, "コンサート": 974, "野球": 312}
+- noise_rate: 0.4286
+- out_of_scope_rate: 0.9948
+- ticketjam_category_counts: {"その他": 74, "コンサート": 969, "野球": 308}
 
 ## Artist Gap
 
@@ -16,7 +16,7 @@
 | S | サザンオールスターズ | 0 | 0 | 0 | 0.0000 |  |
 | A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 5 | 2 | 3 | 0.6000 | バンテリンドームナゴヤ, 京セラドーム大阪, 東京ドーム |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
-| B | 福山雅治 | 3 | 3 | 0 | 0.0000 | あなぶきアリーナ香川, 日本武道館, 東京ドーム |
+| B | 福山雅治 | 2 | 2 | 0 | 0.0000 | あなぶきアリーナ香川, 東京ドーム |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
 | B | EXILE | 0 | 0 | 0 | 0.0000 |  |
 | B | GLAY | 0 | 0 | 0 | 0.0000 |  |
@@ -28,10 +28,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-06-14T08:10:15Z
+- ticketjam_source_updated_at_utc: 2026-06-15T09:47:06Z
 - starto_source_updated_at_utc: 2026-06-15T02:49:43Z
 - kstyle_source_updated_at_utc: 2026-06-14T13:32:54Z
-- events_db_modified_at_utc: 2026-06-15T02:42:13Z
+- events_db_modified_at_utc: 2026-06-15T09:31:56Z
 
 ## Methodology
 
