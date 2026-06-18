@@ -51,6 +51,7 @@ temp/
 # AI workflow (internal)
 .agents/
 .codex/
+.chatgpt/
 !.codex/
 .codex/*
 !.codex/config.toml
