@@ -77,7 +77,8 @@ uv run streamlit run app.py
 
 ## 全国イベント速報（ニュース）
 - サイドバーの `参考情報` → `全国イベント速報（ニュース）` で表示
-- 速報ソース（MVP）:
+- 速報/検知ソース（MVP）:
+  - Venue Web Discovery（公式/準公式ページ本文確認済み）
   - STARTO NEWS（CONCERT）
   - Kstyle（MUSIC）
 - 収集対象の前提:
@@ -86,10 +87,23 @@ uv run streamlit run app.py
 - データ: `data/event_signals.sqlite`（signal_sources + signals テーブル）
 - 更新コマンド:
   - `uv run python -m scripts.update_event_signals_data`
-  - オプション: `--only starto_concert,kstyle_music,ticketjam_events`, `--ticketjam-bootstrap-full`, `--verbose`
+  - オプション: `--only venue_web_discovery,starto_concert,kstyle_music,ticketjam_events`, `--ticketjam-bootstrap-full`, `--verbose`
 - 保存方針:
   - ニュース本文は保存しない
   - 保存対象は掲載日時・タイトル・URL・短い抜粋（取得できる場合のみ）
+  - `venue_web_discovery` は公式/準公式ページ本文を根拠にした confirmed event のみ保存する
+  - 本文抽出は `requests_bs4` が既定。JS生成ページや複雑HTML、アーティスト公式サイトでは optional provider の `crawl4ai` をfallbackとして使える
+
+### Venue Web Discovery optional provider
+- `crawl4ai` は必須依存ではない。通常のDB更新とLP出力生成は `uv sync --frozen` の範囲で動く
+- Crawl4AIを使う環境だけ、次を実行する:
+  - `uv sync --extra crawl4ai`
+  - `uv run crawl4ai-setup`
+  - `uv run crawl4ai-doctor`
+- 抽出helper:
+  - `uv run python -m scripts.venue_web_discovery_extract <official-url> --content-extractor requests_bs4`
+  - `uv run python -m scripts.venue_web_discovery_extract <official-url> --content-extractor crawl4ai`
+- DB更新根拠は Crawl4AI の出力そのものではなく、取得できた公式/準公式URLと本文根拠に限定する
 
 ## 全国イベント参考（二次流通）
 - サイドバーの `参考情報` → `全国イベント参考（二次流通）` で表示
@@ -107,10 +121,12 @@ uv run streamlit run app.py
 
 ## 外部アプリ向けイベントデータ
 - 配布単位: GitHub Release `external-events-latest`
-- assets: `events.sqlite`, `event_signals.sqlite`, `manifest.json`
+- assets: `events.sqlite`, `event_signals.sqlite`, `lp_events.json`, `manifest.json`
 - `manifest.json` には生成時刻、配布元 commit、各 asset の `sha256` と `size_bytes` を保存する
-- 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `starto_concert` / `kstyle_music` をニュース速報、`ticketjam_events` を二次流通参考として分けて扱う
+- LPイベント一覧は、重複統合済みの `lp_events.json` を読む
+- 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `venue_web_discovery` を公式/準公式Web検知、`starto_concert` / `kstyle_music` をニュース速報、`ticketjam_events` を二次流通参考として分けて扱う
 - 同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name` を基本とする
+- 表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events`
 - 詳細なデータ契約は `docs/spec_data.md` の「外部アプリ向けのイベントデータ契約」を参照
 
 ## 旅行・観光消費動向調査（TCD）拡張
@@ -136,19 +152,24 @@ uv run streamlit run app.py
     1. `uv run python -m scripts.update_events_data --skip-artist-inference`
     2. `uv run python -m scripts.build_events_artist_inferred`
     3. `uv run python -m scripts.build_ticketjam_supplement_report`
+    4. `uv run python -m scripts.build_lp_events`
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
 
 ## 速報データ自動更新
 - Workflow:
+  - `.github/workflows/update_signals_venue_web_discovery.yml`（公式/準公式Web検知: Venue Web Discovery）
   - `.github/workflows/update_signals.yml`（ニュース: STARTO/Kstyle）
   - `.github/workflows/update_signals_ticketjam.yml`（二次流通: Ticketjam）
 - Trigger:
+  - Venue Web Discovery: `schedule` = `35 4 * * *`（毎日 UTC）
   - ニュース: `schedule` = `0 */12 * * *`（12時間ごと UTC）
   - Ticketjam: `schedule` = `15 3 * * *`（毎日 UTC）
   - `workflow_dispatch`: 手動実行可（Ticketjam は `bootstrap_full=true` で初回全件近似取得モード）
 - 実行コマンド:
+  - Venue Web Discovery: `uv run python -m scripts.update_event_signals_data --only venue_web_discovery`
+  - LP統合JSON: `uv run python -m scripts.build_lp_events`
   - ニュース: `uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music`
   - Ticketjam: `uv run python -m scripts.update_event_signals_data --only ticketjam_events`
   - Ticketjam 初回bootstrap: `uv run python -m scripts.update_event_signals_data --only ticketjam_events --ticketjam-bootstrap-full`

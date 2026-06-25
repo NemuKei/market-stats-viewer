@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 DEFAULT_RELEASE_TAG = "external-events-latest"
-DEFAULT_ASSET_FILENAMES = ("events.sqlite", "event_signals.sqlite")
+DEFAULT_ASSET_FILENAMES = ("events.sqlite", "event_signals.sqlite", "lp_events.json")
 
 
 def _compute_sha256(path: Path) -> str:

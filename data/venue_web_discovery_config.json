@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "source_id": "venue_web_discovery",
+  "future_only": true,
+  "provider_policy": {
+    "default_content_extractor": "requests_bs4",
+    "optional_content_extractors": ["crawl4ai"],
+    "use_crawl4ai_when": [
+      "js_generated_page",
+      "requests_bs4_text_too_short_or_empty",
+      "official_site_crawl_or_link_discovery_required",
+      "artist_official_site"
+    ],
+    "reserved_paid_optional_provider": "firecrawl",
+    "reserved_research_provider": "browser-use"
+  },
+  "accepted_source_classes": [
+    "venue_official",
+    "artist_official",
+    "promoter_official",
+    "ticket_official"
+  ],
+  "rejected_source_classes": [
+    "general_news",
+    "search_result",
+    "ai_overview",
+    "secondary_market",
+    "social_only"
+  ],
+  "query_templates": [
+    "{venue_alias} {artist_name}",
+    "{venue_alias} 開催決定",
+    "{venue_alias} チケット",
+    "{venue_alias} ワールドツアー",
+    "{venue_alias} 来日公演"
+  ],
+  "watch_venues": [
+    {
+      "venue_id": "tokyo_dome",
+      "venue_name": "東京ドーム",
+      "aliases": ["東京ドーム", "Tokyo Dome"]
+    },
+    {
+      "venue_id": "kyocera_dome_osaka",
+      "venue_name": "京セラドーム大阪",
+      "aliases": ["京セラドーム大阪", "京セラドーム", "Kyocera Dome Osaka"]
+    },
+    {
+      "venue_id": "vantelin_dome_nagoya",
+      "venue_name": "バンテリンドームナゴヤ",
+      "aliases": ["バンテリンドームナゴヤ", "Vantelin Dome Nagoya"]
+    },
+    {
+      "venue_id": "fukuoka_paypay_dome",
+      "venue_name": "福岡PayPayドーム",
+      "aliases": ["福岡PayPayドーム", "みずほPayPayドーム福岡", "Mizuho PayPay Dome Fukuoka"]
+    },
+    {
+      "venue_id": "mufg_stadium",
+      "venue_name": "MUFGスタジアム",
+      "aliases": ["MUFGスタジアム", "国立競技場", "MUFG STADIUM"]
+    },
+    {
+      "venue_id": "sapporo_dome",
+      "venue_name": "札幌ドーム",
+      "aliases": ["札幌ドーム", "Sapporo Dome"]
+    },
+    {
+      "venue_id": "belluna_dome",
+      "venue_name": "ベルーナドーム",
+      "aliases": ["ベルーナドーム", "Belluna Dome"]
+    },
+    {
+      "venue_id": "saitama_super_arena",
+      "venue_name": "さいたまスーパーアリーナ",
+      "aliases": ["さいたまスーパーアリーナ", "Saitama Super Arena"]
+    },
+    {
+      "venue_id": "k_arena_yokohama",
+      "venue_name": "Kアリーナ横浜",
+      "aliases": ["Kアリーナ横浜", "K Arena Yokohama"]
+    },
+    {
+      "venue_id": "yokohama_arena",
+      "venue_name": "横浜アリーナ",
+      "aliases": ["横浜アリーナ", "Yokohama Arena"]
+    },
+    {
+      "venue_id": "ariake_arena",
+      "venue_name": "有明アリーナ",
+      "aliases": ["有明アリーナ", "Ariake Arena"]
+    },
+    {
+      "venue_id": "yanmar_stadium_nagai",
+      "venue_name": "ヤンマースタジアム長居",
+      "aliases": ["ヤンマースタジアム長居", "Yanmar Stadium Nagai"]
+    }
+  ],
+  "preferred_domains": {
+    "www.livenationhip.co.jp": "promoter_official",
+    "www.straykidsjapan.com": "artist_official",
+    "www.sonymusic.co.jp": "artist_official",
+    "ticket.tickebo.jp": "ticket_official"
+  },
+  "preferred_domain_extractors": {
+    "www.livenationhip.co.jp": "requests_bs4",
+    "www.straykidsjapan.com": "crawl4ai",
+    "www.sonymusic.co.jp": "requests_bs4",
+    "ticket.tickebo.jp": "requests_bs4"
+  },
+  "rejected_domains": [
+    "google.com",
+    "news.google.com",
+    "ticketjam.jp",
+    "x.com",
+    "twitter.com"
+  ],
+  "known_examples": [
+    {
+      "label": "Bruno Mars - The Romantic Tour in Japan",
+      "venue": "京セラドーム大阪",
+      "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+      "source_class": "promoter_official"
+    },
+    {
+      "label": "Stray Kids World Tour <RUN IT JAPAN>",
+      "venue": "京セラドーム大阪",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "source_class": "artist_official"
+    }
+  ],
+  "confirmed_events": [
+    {
+      "event_id": "bruno-mars-romantic-tour-japan-2027-01-19-kyocera",
+      "enabled": true,
+      "title": "Bruno Mars - The Romantic Tour in Japan",
+      "artist_name": "Bruno Mars",
+      "raw_artist_name": "Bruno Mars",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2027-01-19",
+      "event_end_date": "2027-01-19",
+      "event_start_time": "19:00",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+      "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at 京セラドーム大阪 on 2027年1月19日.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "京セラドーム大阪 Bruno Mars"
+    },
+    {
+      "event_id": "bruno-mars-romantic-tour-japan-2027-01-20-kyocera",
+      "enabled": true,
+      "title": "Bruno Mars - The Romantic Tour in Japan",
+      "artist_name": "Bruno Mars",
+      "raw_artist_name": "Bruno Mars",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2027-01-20",
+      "event_end_date": "2027-01-20",
+      "event_start_time": "19:00",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+      "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at 京セラドーム大阪 on 2027年1月20日.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "京セラドーム大阪 Bruno Mars"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-08-29-mufg",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "MUFGスタジアム",
+      "raw_venue_name": "MUFG STADIUM",
+      "event_start_date": "2026-08-29",
+      "event_end_date": "2026-08-29",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists TOKYO MUFG STADIUM on 2026.08.29-30 for World Tour <RUN IT JAPAN>.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "MUFG STADIUM Stray Kids"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-08-30-mufg",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "MUFGスタジアム",
+      "raw_venue_name": "MUFG STADIUM",
+      "event_start_date": "2026-08-30",
+      "event_end_date": "2026-08-30",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists TOKYO MUFG STADIUM on 2026.08.29-30 for World Tour <RUN IT JAPAN>.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "MUFG STADIUM Stray Kids"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-09-05-vantelin",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "バンテリンドームナゴヤ",
+      "raw_venue_name": "バンテリンドームナゴヤ",
+      "event_start_date": "2026-09-05",
+      "event_end_date": "2026-09-05",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists NAGOYA バンテリンドームナゴヤ on 2026.09.05-06.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "バンテリンドームナゴヤ Stray Kids"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-09-06-vantelin",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "バンテリンドームナゴヤ",
+      "raw_venue_name": "バンテリンドームナゴヤ",
+      "event_start_date": "2026-09-06",
+      "event_end_date": "2026-09-06",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists NAGOYA バンテリンドームナゴヤ on 2026.09.05-06.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "バンテリンドームナゴヤ Stray Kids"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-09-19-kyocera",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-09-19",
+      "event_end_date": "2026-09-19",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists OSAKA 京セラドーム大阪 on 2026.09.19-20.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "京セラドーム大阪 Stray Kids"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-09-20-kyocera",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-09-20",
+      "event_end_date": "2026-09-20",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists OSAKA 京セラドーム大阪 on 2026.09.19-20.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "京セラドーム大阪 Stray Kids"
+    },
+    {
+      "event_id": "stray-kids-run-it-japan-2026-10-24-paypay",
+      "enabled": true,
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "artist_name": "Stray Kids",
+      "raw_artist_name": "Stray Kids",
+      "venue_name": "福岡PayPayドーム",
+      "raw_venue_name": "みずほPayPayドーム福岡",
+      "event_start_date": "2026-10-24",
+      "event_end_date": "2026-10-24",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "crawl4ai",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
+      "evidence_snippet": "Stray Kids official special site lists FUKUOKA みずほPayPayドーム福岡 on 2026.10.24.",
+      "announced_at_utc": "2026-06-23T00:00:00Z",
+      "verified_at_utc": "2026-06-25T00:00:00Z",
+      "discovery_query": "みずほPayPayドーム福岡 Stray Kids"
+    }
+  ]
+}

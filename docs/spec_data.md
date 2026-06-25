@@ -101,18 +101,22 @@
 - `artist_confidence`: `source` / `source_normalized` / `high` / `medium` / `low`
 
 ### 外部アプリ向けのイベントデータ契約
-- 外部アプリが利用する配布単位は GitHub Release `external-events-latest` の `events.sqlite` / `event_signals.sqlite` / `manifest.json` とする。
+- 外部アプリが利用する配布単位は GitHub Release `external-events-latest` の `events.sqlite` / `event_signals.sqlite` / `lp_events.json` / `manifest.json` とする。
 - `manifest.json` は配布ファイルの鮮度と同一性を確認するためのメタデータであり、利用側は `generated_at_utc`、各 asset の `sha256`、`size_bytes` を確認できる。
-- 外部アプリは、次の3層を同じ意味のイベント情報として混ぜない。
+- LP向けイベント一覧は、重複統合済みの `lp_events.json` を読む。LP側で同じsource priorityを再実装しない。
+- 外部アプリは、次の4層を同じ意味のイベント情報として混ぜない。
   - `events.sqlite`: 会場公式サイトまたは会場公式に準じる公開スケジュールから取得した日程。会場別の定期予定表として扱う。
+  - `event_signals.sqlite` の `venue_web_discovery`: Codex Automation が公式/準公式ページ本文を根拠確認した大型会場イベント検知。LP掲載候補として扱う。
   - `event_signals.sqlite` の `starto_concert` / `kstyle_music`: ニュース記事または公式に近い告知ページから抽出した速報。興行決定や追加公演の早期検知に使う。
   - `event_signals.sqlite` の `ticketjam_events`: 二次流通サイト上で確認できる参考日程。公式取得が弱い会場やニュースで拾いにくいアーティストの補完に使う。
-- 外部アプリが「確定日程」として優先表示する場合は、まず `events.sqlite` を使う。`event_signals.sqlite` は速報・参考・補完として扱い、同一日程が公式側に存在する場合は公式側を優先する。
+- 同一イベントのLP表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。
+- 外部アプリが「確定日程」として優先表示する場合は、まず `lp_events.json` を使う。元DBを直接使う場合も、同一日程が公式側に存在する場合は公式側を優先する。
 - 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、ニュース由来と二次流通由来を同じ信頼度として扱わない。
 - 外部アプリが同一日程を統合する場合の比較キーは、原則として `event_date + canonical venue_name + canonical artist_name` とする。
   - `events.sqlite` 側の `event_date` は `events.start_date` を使う。
   - `events.sqlite` 側の `canonical artist_name` は `artist_name_resolved` を優先し、空の場合のみ `performers` を使う。
   - `event_signals.sqlite` 側の `event_date` / `canonical venue_name` / `canonical artist_name` は `signals.labels_json` の `event_start_date` / `venue_name` / `artist_name` を使う。
+- `lp_events.json` は上記キーで同一イベントを統合し、表示に使うsourceを `display_source_id`、下位根拠を `supporting_sources` として保持する。
 - 外部アプリが新着判定を行う場合、`ticketjam_events` は `published_at_utc` ではなく `first_seen_at_utc` を使う。Ticketjam の公開ページから安定した掲載日時を取得できないためである。
 - 外部アプリがデータ品質を判断する場合、少なくとも次の情報を保持する。
   - `source_id`: `events.sqlite` 由来か、ニュース由来か、二次流通由来かを判定する。
@@ -121,19 +125,23 @@
   - `raw_artist_name` / `raw_venue_name`: `event_signals.sqlite` で正規化前の表記確認が必要な場合に使う。
 - 外部アプリは `ticketjam_events` を会場網羅の代替として使わない。`ticketjam_events` は `artist-gap` / `venue-gap` を補う参考ソースであり、会場公式取得が安定している会場では公式データを優先する。
 - 外部アプリ向けの利用例:
-  - BCL などの需要予測支援: `events.sqlite` を基準にし、`event_signals.sqlite` は追加検知と早期注意喚起に使う。
+  - LPイベント一覧: `lp_events.json` を使い、表示sourceとsupporting sourceをそのまま利用する。
+  - BCL などの需要予測支援: `events.sqlite` を基準にし、`event_signals.sqlite` と `lp_events.json` は追加検知と早期注意喚起に使う。
   - イベント監視ダッシュボード: 3層を別ラベルで表示し、公式日程、ニュース速報、二次流通参考を分けて比較する。
   - 辞書メンテナンス支援: `raw_*` と canonical 名の差分、未解決ログ、`ticketjam_supplement_report.json` を使って artist/venue 辞書候補を抽出する。
 
 ## 追補（2026-02-23）イベント速報/参考シグナル
 - SSOT: `data/event_signals.sqlite`（`events.sqlite` とは分離）
 - 対象範囲（BCL向け注記）:
-  - 収集ソースは `starto_concert` / `kstyle_music` / `ticketjam_events`
-  - `starto_concert` / `kstyle_music` はニュース由来、`ticketjam_events` は二次流通由来の参考データ
+  - 収集ソースは `venue_web_discovery` / `starto_concert` / `kstyle_music` / `ticketjam_events`
+  - `venue_web_discovery` は公式/準公式ページ本文確認済み、`starto_concert` / `kstyle_music` はニュース由来、`ticketjam_events` は二次流通由来の参考データ
   - 全カテゴリ横断の網羅DBではない（野球/その他イベントの網羅は目的外）
 - 保存方針:
   - 本文は保存しない（ニュース全文のDB保存禁止）
   - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
+  - `venue_web_discovery` は `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する
+  - `venue_web_discovery` の `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` に限定する
+  - `venue_web_discovery` の `content_extractor` は `requests_bs4` / `crawl4ai` のどちらで本文確認したかを示す監査用ラベルであり、DB採用根拠そのものではない
   - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
   - `ticketjam_events` は 1日程=1データを原則とし、複数日開催のシリーズでも日別ページ単位で保存する
   - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する

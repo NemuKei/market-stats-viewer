@@ -45,6 +45,7 @@ from .signals.sources.base import (
 from .signals.sources.kstyle import KstyleMusicSource
 from .signals.sources.starto import StartoConcertSource
 from .signals.sources.ticketjam import TicketjamEventsSource
+from .signals.sources.venue_web_discovery import VenueWebDiscoverySource
 from .signals.types import SignalRecord, SignalSourceRecord
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -157,6 +158,21 @@ DEFAULT_SOURCES = [
             ensure_ascii=False,
         ),
     },
+    {
+        "source_id": "venue_web_discovery",
+        "source_name": "Venue Web Discovery (Official/Semi-official)",
+        "source_url": "data/venue_web_discovery_config.json",
+        "source_type": "codex_web_discovery",
+        "config_json": json.dumps(
+            {
+                "config_path": "data/venue_web_discovery_config.json",
+                "prune_missing": True,
+                "drop_past_events": True,
+                "upsert_existing": True,
+            },
+            ensure_ascii=False,
+        ),
+    },
 ]
 
 
@@ -214,6 +230,7 @@ SOURCE_MAP: dict[str, type[SignalSource]] = {
     "starto_concert": StartoConcertSource,
     "kstyle_music": KstyleMusicSource,
     "ticketjam_events": TicketjamEventsSource,
+    "venue_web_discovery": VenueWebDiscoverySource,
 }
 
 
@@ -246,7 +263,7 @@ def ensure_default_sources(conn: sqlite3.Connection) -> None:
                 source_url = excluded.source_url,
                 source_type = excluded.source_type,
                 config_json = CASE
-                    WHEN signal_sources.source_id = 'ticketjam_events'
+                    WHEN signal_sources.source_id IN ('ticketjam_events', 'venue_web_discovery')
                     THEN excluded.config_json
                     ELSE COALESCE(signal_sources.config_json, excluded.config_json)
                 END

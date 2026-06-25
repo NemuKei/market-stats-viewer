@@ -147,10 +147,20 @@
   - `event_signals.sqlite` stores both news signals and secondary-market reference signals.
   - It is not a complete multi-category events master DB.
 - Sources (MVP):
+  - `venue_web_discovery`（Codex Automation が公式/準公式ページ本文を確認した会場起点Web検知）
   - `starto_concert`（STARTO 公演情報 / CONCERT）
   - `kstyle_music`（Kstyle MUSIC）
   - `ticketjam_events`（Ticketjam 会場ページ由来、二次流通参考）
 - Source-specific extraction policy:
+  - `venue_web_discovery`: `.agents/skills/venue-web-discovery/SKILL.md` を使う Codex Automation が会場起点で検索し、公式/準公式ページ本文に公演日、会場、アーティスト/イベント名が揃う候補だけを `data/venue_web_discovery_config.json` の `confirmed_events` に反映する。保存処理は設定ファイルを読み、`event_signals.sqlite` の `source_id=venue_web_discovery` として `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する。
+    - DB更新根拠にできる `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` のみ。
+    - Google検索結果、AI概要、一般ニュース、SNS単体、二次流通単体は発見導線として使えてもDB更新根拠にしない。
+    - DB schema は増やさず、設定ファイルと `labels_json` で運用する。
+    - Skill本文は自動編集しない。Codex Automation が自動調整してよいのは `data/venue_web_discovery_config.json` の設定と confirmed event rows のみ。
+    - 本文抽出providerは `content_extractor=requests_bs4|crawl4ai` とする。既定は `requests_bs4`、`crawl4ai` は optional fallback provider であり、JS生成ページ、`requests_bs4` 失敗ページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトだけに使う。
+    - `crawl4ai` は optional dependency とし、通常の `uv sync --frozen` では必須にしない。必要な環境だけ `uv sync --extra crawl4ai`、`uv run crawl4ai-setup`、`uv run crawl4ai-doctor` を実行する。
+    - Firecrawl は将来の paid optional provider として保留し、browser-use は調査・Skill改善・例外調査用に保留する。
+    - `content_extractor` は確認に使った抽出providerの監査ラベルであり、DB採用根拠そのものではない。採用根拠は常に公式/準公式URLと本文根拠である。
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: recent news sitemap、検索結果、必要な場合の `backfill_article_urls` 明示URLから記事を取得する。記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する。`backfill_article_urls` は監査で本文・日程・会場を確認済みだが通常入口から漏れた記事だけに使い、取得対象ソースの優先順位は変更しない。
   - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集しつつ、公開 sitemap も補完導線として併用する。イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）とページ見出しを組み合わせ、`イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
@@ -245,17 +255,29 @@
   - User-Agent: `market-stats-viewer-signals-bot/1.0 (+https://deltahelmlab.com/)`
   - ドメイン単位レート制限（全GETに適用）
 - CLI:
-  - `--only starto_concert,kstyle_music,ticketjam_events`
+  - `--only venue_web_discovery,starto_concert,kstyle_music,ticketjam_events`
   - `--ticketjam-bootstrap-full`（Ticketjam 全件再評価）
   - `--ticketjam-discovery-mode prefecture_month|prefecture_month_hybrid|hybrid|...`（Ticketjam discovery route の一時切替）
   - `--verbose`
+- LP-ready output:
+  - Script: `python -m scripts.build_lp_events`
+  - Inputs: `data/events.sqlite`, `data/event_signals.sqlite`
+  - Output: `data/lp_events.json`
+  - Grouping key: `event_date + canonical venue_name + canonical artist_name`
+  - Display source priority: `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events`
+  - Lower-priority matches are retained in `supporting_sources`.
 - Workflow:
+  - `.github/workflows/update_signals_venue_web_discovery.yml`（公式/準公式Web検知: `venue_web_discovery`）
+    - Codex Automation が確認済み候補を `data/venue_web_discovery_config.json` へ反映したあと、`python -m scripts.update_event_signals_data --only venue_web_discovery` と `python -m scripts.build_lp_events` を実行する
+    - focused tests と一時manifest生成で `event_signals.sqlite`、`lp_events.json`、manifest対象assetの整合を検証する
+    - repository variable `VENUE_WEB_DISCOVERY_ENABLE_CRAWL4AI=true` のときだけ optional Crawl4AI setup を行う
   - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
     - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、ニュース速報 baseline 変更後の補完評価レポートを更新する
   - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
     - `workflow_dispatch` 入力 `bootstrap_full=true` で full rebuild を実行可能（legacy sitemap mode を使う場合のみ `bootstrap_max_*` を参照）
     - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、補完評価レポートを `data/ticketjam_supplement_report.json` / `.md` へ更新する
   - `.github/workflows/update_events_official.yml`（会場公式）も後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、会場公式 baseline 変更後の補完評価レポートを更新する
+  - 会場公式、ニュース、Ticketjam、Venue Web Discovery の各更新workflowは後段で `python -m scripts.build_lp_events` を実行し、LP向け統合JSONを stale にしない
   - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
   - 差分がある場合のみ commit
 
@@ -342,7 +364,7 @@
     - Release asset 更新
     - source優先順位変更
 - 外部LPへの影響確認:
-  - 外部LPが利用する配布単位は `events.sqlite` / `event_signals.sqlite` / `manifest.json` である。
+  - 外部LPが利用する配布単位は `events.sqlite` / `event_signals.sqlite` / `lp_events.json` / `manifest.json` である。
   - 監査スクリプト追加、監査レポート生成、docs更新だけでは、配布DBとmanifestの内容を変更しないため、LP表示への直接影響はない。
   - 辞書、カテゴリ分類、parser、取得件数、取得頻度を変更する場合は、LP側の表示件数、カテゴリ表示、同一イベントのまとまり、会場公式・ニュース・二次流通の優先順位に影響し得る。
   - 統合監査レポートは `summary.lp_impact` と候補ごとの `lp_impact` を出力する。値は `none`、`display_count_change`、`category_change`、`duplicate_grouping_change`、`source_priority_change` のいずれか、または複数とする。
@@ -371,11 +393,11 @@
 ## Addendum (2026-02-25) External Events Release Assets
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:
-  - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` が `main` で成功したとき）
+  - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
   - `workflow_dispatch`（手動再公開）
 - Release:
   - tag: `external-events-latest`
-  - assets: `events.sqlite`, `event_signals.sqlite`, `manifest.json`
+  - assets: `events.sqlite`, `event_signals.sqlite`, `lp_events.json`, `manifest.json`
 - Manifest generation:
   - script: `python -m scripts.build_external_events_manifest --release-tag external-events-latest`
   - output: `data/manifest.json`

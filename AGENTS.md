@@ -14,6 +14,7 @@
 ## Read Budget
 
 - 初手で読むのは `AGENTS.md` のみ。
+- `docs/context/PROJECT_CONTEXT.md` が存在する場合は、`AGENTS.md` 確認後に `Always Read Block` だけを毎回読む。全文は目的、source priority、LP影響、automation判断、または仕様判断に触れるときだけ読む。
 - 追加読込は、タスク遂行に必要な最小数に限定する（目安: 追加2ファイルまで）。
 - 不足があれば推測せず、必要ファイルを特定して読む。
 - サブエージェント利用時も read budget を免除しない。起動時に対象ファイルと理由を固定し、読み広げが必要になった場合はメインスレッド側へ戻して再判断する。
@@ -21,7 +22,7 @@
 ## Task Read (Only When Needed)
 
 - 仕様変更/挙動確認: 対象領域の `spec_*.md` など
-- 判断原則/優先順位/非目標の確認: `docs/context/INTENT.md` 相当
+- 判断原則/優先順位/非目標の確認: `docs/context/PROJECT_CONTEXT.md`
 - 現在地の確認: `STATUS.md` 相当
 - 判断理由の確認: `DECISIONS.md` 相当
 - 実装規約の確認: `README.md` 相当
@@ -31,14 +32,14 @@
 
 - root `AGENTS.md` は repo-wide の常時ルールを定義し、Skill は必要時に task-specific procedure だけを追加する。
 - 常時ルールや設計原則を Skill へ重複展開しない。Skill 側で不足する repo-wide 判断は root `AGENTS.md` を参照する。
-- Codex lifecycle hooks は Skill や `AGENTS.md` の置き換えではない。hooks は secret guard、repo context guide、completion gate のような反復確認を lifecycle event に差し込む補助層として扱い、repo 固有判断は `AGENTS.md`、`docs/context/INTENT.md`、`docs/spec_*.md`、`DECISIONS.md`、`STATUS.md` などの正本 docs に置く。
+- Codex lifecycle hooks は Skill や `AGENTS.md` の置き換えではない。hooks は secret guard、repo context guide、completion gate のような反復確認を lifecycle event に差し込む補助層として扱い、repo 固有判断は `AGENTS.md`、`docs/context/PROJECT_CONTEXT.md`、`docs/spec_*.md`、`DECISIONS.md`、`STATUS.md` などの正本 docs に置く。
 - 新規 Skill 名は hyphen-case を既定とする。既存の underscore 名は専用 migration まで legacy として扱い、rename を他タスクへ混ぜない。
 - `.agents/skills/README.md` には、この repo 固有 Skill だけを残す。
 - `context-writeback`: 常設コンテキストへの反映が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `second-brain-capture`: Codex 作業のうち、repo をまたいで再利用する価値がある情報を Obsidian SecondBrain vault へ記録または更新するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `design-review`: 設計相談や大きめ変更で、責務境界・依存方向・分割要否を点検したいときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `docs-governance`: ドキュメント新設/統合/正本反映の判断が必要なときだけ使う。共有 Skill として `~/.codex/skills` から使う。
-- `intent-governance`: 複数の仕様判断にまたがって再利用する判断原則を `INTENT.md` 相当へ反映するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
+- `intent-governance`: 複数の仕様判断にまたがって再利用する判断原則を `PROJECT_CONTEXT.md` へ反映するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `spec-governance`: タスクが `spec` 更新に影響するかを判定し、実装開始前の checkpoint で `spec` を更新する必要があるときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `repo-bootstrap`: 新規リポジトリの最小構成を責務ベースで整備するときだけ使う。共有 Skill として `~/.codex/skills` から使う。
 - `release-gate`: リリース可否判定、タグ提案、リリースノート作成、タグ付け実行を標準化したいときに使う。共有 Skill として `~/.codex/skills` から使う。
@@ -86,13 +87,13 @@
 
 1. セキュリティ/法令/公開制約
 2. 仕様書（`spec_*.md` など）
-3. 判断原則/意思決定ログ（`INTENT` / `DECISIONS`）
+3. 上位文脈/判断原則/意思決定ログ（`PROJECT_CONTEXT` / `DECISIONS`）
 4. 現況（`STATUS`）
 5. `AGENTS.md`
 6. Archive
 
 同順位で矛盾した場合は、より新しい決定を優先する。
-具体的な仕様書または日付付きの個別決定が、`INTENT` の一般原則と矛盾する場合は、具体的な仕様書または個別決定を優先する。`INTENT` は未定義の判断や複数案の比較に使い、既存仕様を無言で上書きする根拠にはしない。
+具体的な仕様書または日付付きの個別決定が、`PROJECT_CONTEXT` の一般原則と矛盾する場合は、具体的な仕様書または個別決定を優先する。`PROJECT_CONTEXT` は未定義の判断や複数案の比較に使い、既存仕様を無言で上書きする根拠にはしない。
 未解決なら `DECISIONS` 相当へ `D-YYYYMM-xxx` 形式で暫定記録して進める。
 
 ## Constant Context Rules
@@ -279,14 +280,14 @@ Obsidian capture を作成または更新する場合は、`second-brain-capture
 ### 運用計画の参照先
 
 - 運用計画や次アクションの確認は `docs/context/STATUS.md` を参照する。
-- 複数の仕様判断または automation 判断にまたがる優先順位、比較軸、非目標は `docs/context/INTENT.md` を参照する。
+- 複数の仕様判断または automation 判断にまたがる優先順位、比較軸、非目標は `docs/context/PROJECT_CONTEXT.md` を参照する。
 
 ### Repo-specific Domain Rules
 
 - データ取得元は公的公開統計を原則とする。
 - 仕様外の挙動は既存仕様として断定せず、新仕様提案として扱う。
 - 既存仕様の変更時は `docs/context/DECISIONS.md` を更新し、関連する `docs/spec_*.md` に反映する。
-- 市場統計またはイベント情報に関わる実装では、LP側で利用するデータへの影響を必ず確認する。対象は `data/market_stats.sqlite`、`data/events.sqlite`、`data/event_signals.sqlite`、`data/manifest.json`、Release asset、関連workflow、表示用のカテゴリ・期間・集計・正規化ロジックを含む。影響がない場合も、理由を `lp_impact=none` 相当として説明する。
+- 市場統計またはイベント情報に関わる実装では、LP側で利用するデータへの影響を必ず確認する。対象は `data/market_stats.sqlite`、`data/events.sqlite`、`data/event_signals.sqlite`、`data/lp_events.json`、`data/manifest.json`、Release asset、関連workflow、表示用のカテゴリ・期間・集計・正規化ロジックを含む。影響がない場合も、理由を `lp_impact=none` 相当として説明する。
 - `.agents/skills/` には、この repo 固有の Skill だけを置く。
 - 共有 Skill は `~/.codex/skills` から使い、この repo へ複製しない。
 

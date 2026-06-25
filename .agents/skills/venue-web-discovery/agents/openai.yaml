@@ -1,0 +1,4 @@
+interface:
+  display_name: "Venue Web Discovery"
+  short_description: "Detect official venue-based event announcements for LP-ready event data."
+  default_prompt: "Use venue-web-discovery to detect official large-venue event announcements and update LP-ready event data."

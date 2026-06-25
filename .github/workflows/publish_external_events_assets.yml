@@ -7,6 +7,7 @@ on:
       - Update events official data
       - Update event signals data (News)
       - Update event signals data (Ticketjam)
+      - Update event signals data (Venue Web Discovery)
     types:
       - completed
 
@@ -54,4 +55,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release upload external-events-latest data/events.sqlite data/event_signals.sqlite data/manifest.json --clobber
+          gh release upload external-events-latest data/events.sqlite data/event_signals.sqlite data/lp_events.json data/manifest.json --clobber
