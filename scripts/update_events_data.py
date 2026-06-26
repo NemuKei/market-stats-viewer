@@ -339,7 +339,12 @@ def resolve_source_artist(
     text = str(performers or "").strip()
     if not text:
         return "", "low"
-    normalized, matched = normalize_with_lookup(text, artist_keep_map, artist_compact_map)
+    normalized, matched = normalize_with_lookup(
+        text,
+        artist_keep_map,
+        artist_compact_map,
+        allow_parenthetical_base=True,
+    )
     if matched and normalized and normalized != text:
         return normalized, "source_normalized"
     return text, "source"

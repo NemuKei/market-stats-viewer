@@ -51,6 +51,12 @@ AMBIGUOUS_ALIAS_TOKENS = {
     "ナビ",
     "声",
     "dream",
+    "one",
+    "rsp",
+    "summer",
+    "wqwq",
+    "わくわく",
+    "るい",
 }
 AMBIGUOUS_ALIAS_COMPACT_TOKENS = {
     re.sub(r"[\s\-_/.,()\[\]{}<>【】［］＜＞'\"`]+", "", str(token)).lower()
@@ -406,7 +412,10 @@ def _build_cross_venue_title_artist_map(
         if not performers_text:
             continue
         normalized, matched = normalize_with_lookup(
-            performers_text, artist_keep_map, artist_compact_map
+            performers_text,
+            artist_keep_map,
+            artist_compact_map,
+            allow_parenthetical_base=True,
         )
         artist_name = normalized if matched and normalized else performers_text
         artist_name = str(artist_name or "").strip()
@@ -447,6 +456,27 @@ def write_csv_noop(rows: list[dict[str, str]], output_path: Path) -> bool:
 
     output_path.write_text(new_content, encoding="utf-8", newline="")
     return True
+
+
+def load_existing_inferred_dates(output_path: Path) -> dict[tuple[str, ...], str]:
+    if not output_path.exists():
+        return {}
+    out: dict[tuple[str, ...], str] = {}
+    with output_path.open("r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            key = (
+                str(row.get("event_uid", "")).strip(),
+                str(row.get("title", "")).strip(),
+                str(row.get("artist_name", "")).strip(),
+                str(row.get("artist_confidence", "")).strip(),
+                str(row.get("matched_alias", "")).strip(),
+                str(row.get("matched_field", "")).strip(),
+            )
+            updated_at = str(row.get("updated_at", "")).strip()
+            if all(key) and updated_at:
+                out[key] = updated_at
+    return out
 
 
 def ensure_events_artist_columns(conn: sqlite3.Connection) -> None:
@@ -527,7 +557,10 @@ def sync_resolved_artists_to_events(
             new_confidence = "low"
             if performers:
                 normalized, matched = normalize_with_lookup(
-                    performers, artist_keep_map, artist_compact_map
+                    performers,
+                    artist_keep_map,
+                    artist_compact_map,
+                    allow_parenthetical_base=True,
                 )
                 if matched and normalized and normalized != performers:
                     new_resolved = normalized
@@ -601,7 +634,8 @@ def main() -> None:
     else:
         registry = load_merged_registry(extra_seed_path)
         artist_index = build_artist_index(registry)
-        updated_at = date.today().isoformat()
+        today_iso = date.today().isoformat()
+        existing_dates = load_existing_inferred_dates(output_path)
 
         for idx, event in enumerate(targets, start=1):
             inferred = infer_event_artist(
@@ -612,6 +646,14 @@ def main() -> None:
             if inferred is None:
                 continue
             artist_name, confidence, matched_alias, matched_field = inferred
+            inferred_key = (
+                event["event_uid"],
+                event["title"],
+                artist_name,
+                confidence,
+                matched_alias,
+                matched_field,
+            )
             rows.append(
                 {
                     "event_uid": event["event_uid"],
@@ -620,7 +662,7 @@ def main() -> None:
                     "artist_confidence": confidence,
                     "matched_alias": matched_alias,
                     "matched_field": matched_field,
-                    "updated_at": updated_at,
+                    "updated_at": existing_dates.get(inferred_key, today_iso),
                 }
             )
             if idx % 500 == 0:

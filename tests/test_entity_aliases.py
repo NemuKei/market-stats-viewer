@@ -1,8 +1,10 @@
 import unittest
 
+from scripts.signals.artist_registry import normalize_text
 from scripts.signals.entity_aliases import (
     load_venue_lookup_maps,
     normalize_venue_with_lookup,
+    normalize_with_lookup,
 )
 
 
@@ -65,6 +67,43 @@ class VenueAliasNormalizationTests(unittest.TestCase):
         for raw_value, expected in cases:
             with self.subTest(raw_value=raw_value):
                 self.assertVenueNormalized(raw_value, expected)
+
+
+def _artist_lookup(*pairs: tuple[str, str]) -> tuple[dict[str, str], dict[str, str]]:
+    keep: dict[str, str] = {}
+    compact: dict[str, str] = {}
+    for alias, canonical in pairs:
+        keep[normalize_text(alias, mode="keep")] = canonical
+        compact[normalize_text(alias, mode="compact")] = canonical
+    return keep, compact
+
+
+class ArtistAliasNormalizationTests(unittest.TestCase):
+    def test_artist_lookup_can_use_known_parenthetical_base(self) -> None:
+        keep, compact = _artist_lookup(("EXILE", "EXILE"), ("エグザイル", "EXILE"))
+
+        self.assertEqual(
+            normalize_with_lookup(
+                "EXILE（エグザイル）",
+                keep,
+                compact,
+                allow_parenthetical_base=True,
+            ),
+            ("EXILE", True),
+        )
+
+    def test_artist_lookup_does_not_strip_unknown_parenthetical_base(self) -> None:
+        keep, compact = _artist_lookup(("EXILE", "EXILE"))
+
+        self.assertEqual(
+            normalize_with_lookup(
+                "EXILE ATSUSHI（エグザイル アツシ／EXILE）",
+                keep,
+                compact,
+                allow_parenthetical_base=True,
+            ),
+            ("EXILE ATSUSHI（エグザイル アツシ／EXILE）", False),
+        )
 
 
 if __name__ == "__main__":

@@ -72,6 +72,32 @@ def _create_events_db(path: Path) -> None:
             "2026-06-24T00:00:00Z",
         ),
     )
+    conn.execute(
+        """
+        INSERT INTO events VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        )
+        """,
+        (
+            "official-exile",
+            "kyocera_dome_osaka",
+            "EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～",
+            "2026-12-06",
+            None,
+            "2026-12-06",
+            None,
+            "scheduled",
+            "https://www.kyoceradome-osaka.jp/schedule/",
+            "official venue row",
+            "EXILE",
+            "EXILE",
+            "コンサート",
+            "html",
+            "https://www.kyoceradome-osaka.jp/schedule/",
+            "2026-06-24T00:00:00Z",
+            "2026-06-24T00:00:00Z",
+        ),
+    )
     conn.commit()
     conn.close()
 
@@ -140,6 +166,14 @@ def _create_signals_db(path: Path) -> None:
             "2026-09-19",
             "京セラドーム大阪",
             "Stray Kids",
+            source_class="secondary_market",
+        ),
+        _signal(
+            "ticketjam_events",
+            "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
+            "2026-12-06",
+            "京セラドーム大阪",
+            "EXILE（エグザイル）",
             source_class="secondary_market",
         ),
     ]:
@@ -215,6 +249,10 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
 
     by_artist = {row["artist_name"]: row for row in payload["events"]}
     assert by_artist["Bruno Mars"]["display_source_id"] == "official_events"
+    assert by_artist["EXILE"]["display_source_id"] == "official_events"
+    assert [
+        item["source_id"] for item in by_artist["EXILE"]["supporting_sources"]
+    ] == ["official_events", "ticketjam_events"]
     assert by_artist["Stray Kids"]["display_source_id"] == "venue_web_discovery"
     assert [
         item["source_id"] for item in by_artist["Stray Kids"]["supporting_sources"]

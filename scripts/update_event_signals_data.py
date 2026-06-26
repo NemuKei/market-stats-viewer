@@ -884,6 +884,7 @@ def normalize_signal_labels(
                 raw_artist,
                 artist_keep_map,
                 artist_compact_map,
+                allow_parenthetical_base=True,
             )
             if normalized_artist and normalized_artist != current_artist:
                 labels["artist_name"] = normalized_artist

@@ -175,7 +175,10 @@ def load_official_records(
             raw_artists = ("",)
         for raw_artist in raw_artists:
             canonical_artist, artist_matched = normalize_with_lookup(
-                raw_artist, artist_keep_map, artist_compact_map
+                raw_artist,
+                artist_keep_map,
+                artist_compact_map,
+                allow_parenthetical_base=True,
             )
             records.append(
                 NormalizedEventRecord(
@@ -245,7 +248,10 @@ def load_signal_records(
             venue_name or raw_venue, venue_keep_map, venue_compact_map
         )
         canonical_artist, artist_matched = normalize_with_lookup(
-            artist_name or raw_artist, artist_keep_map, artist_compact_map
+            artist_name or raw_artist,
+            artist_keep_map,
+            artist_compact_map,
+            allow_parenthetical_base=True,
         )
         records.append(
             NormalizedEventRecord(

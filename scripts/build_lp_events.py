@@ -16,6 +16,13 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .signals.entity_aliases import (
+    load_artist_lookup_maps,
+    load_venue_lookup_maps,
+    normalize_venue_with_lookup,
+    normalize_with_lookup,
+)
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 DEFAULT_EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
@@ -57,7 +64,53 @@ def event_group_key(event_date: str, venue_name: str, artist_name: str) -> str:
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:20]
 
 
-def load_official_events(db_path: Path, *, include_past: bool, today_iso: str) -> list[dict[str, Any]]:
+def canonicalize_artist_name(
+    raw_artist_name: object,
+    artist_name: object,
+    artist_keep_map: dict[str, str],
+    artist_compact_map: dict[str, str],
+) -> str:
+    current = str(artist_name or "").strip()
+    raw = str(raw_artist_name or current).strip()
+    normalized, matched = normalize_with_lookup(
+        raw or current,
+        artist_keep_map,
+        artist_compact_map,
+        allow_parenthetical_base=True,
+    )
+    if matched and normalized:
+        return normalized
+    return current or normalized
+
+
+def canonicalize_venue_name(
+    raw_venue_name: object,
+    venue_name: object,
+    venue_keep_map: dict[str, str],
+    venue_compact_map: dict[str, str],
+) -> str:
+    current = str(venue_name or "").strip()
+    raw = str(raw_venue_name or current).strip()
+    normalized, matched = normalize_venue_with_lookup(
+        raw or current,
+        venue_keep_map,
+        venue_compact_map,
+    )
+    if matched and normalized:
+        return normalized
+    return current or normalized
+
+
+def load_official_events(
+    db_path: Path,
+    *,
+    include_past: bool,
+    today_iso: str,
+    artist_keep_map: dict[str, str],
+    artist_compact_map: dict[str, str],
+    venue_keep_map: dict[str, str],
+    venue_compact_map: dict[str, str],
+) -> list[dict[str, Any]]:
     if not db_path.exists():
         raise FileNotFoundError(f"events db not found: {db_path}")
     conn = sqlite3.connect(str(db_path))
@@ -97,8 +150,20 @@ def load_official_events(db_path: Path, *, include_past: bool, today_iso: str) -
     for row in rows:
         event_date = str(row["start_date"] or "").strip()
         event_end_date = str(row["end_date"] or event_date).strip()
-        artist_name = str(row["artist_name_resolved"] or row["performers"] or "").strip()
-        venue_name = str(row["venue_name"] or "").strip()
+        raw_artist_name = str(row["performers"] or row["artist_name_resolved"] or "").strip()
+        artist_name = canonicalize_artist_name(
+            raw_artist_name,
+            row["artist_name_resolved"] or row["performers"] or "",
+            artist_keep_map,
+            artist_compact_map,
+        )
+        raw_venue_name = str(row["venue_name"] or "").strip()
+        venue_name = canonicalize_venue_name(
+            raw_venue_name,
+            row["venue_name"] or "",
+            venue_keep_map,
+            venue_compact_map,
+        )
         if not event_date or not artist_name or not venue_name:
             continue
         if not include_past and event_end_date < today_iso:
@@ -114,9 +179,9 @@ def load_official_events(db_path: Path, *, include_past: bool, today_iso: str) -
                 "event_start_time": row["start_time"],
                 "event_end_time": row["end_time"],
                 "venue_name": venue_name,
-                "raw_venue_name": venue_name,
+                "raw_venue_name": raw_venue_name,
                 "artist_name": artist_name,
-                "raw_artist_name": str(row["performers"] or artist_name).strip(),
+                "raw_artist_name": raw_artist_name or artist_name,
                 "title": str(row["title"] or "").strip(),
                 "event_category": str(row["event_category"] or "").strip(),
                 "url": str(row["url"] or row["source_url"] or "").strip(),
@@ -131,7 +196,16 @@ def load_official_events(db_path: Path, *, include_past: bool, today_iso: str) -
     return events
 
 
-def load_signal_events(db_path: Path, *, include_past: bool, today_iso: str) -> list[dict[str, Any]]:
+def load_signal_events(
+    db_path: Path,
+    *,
+    include_past: bool,
+    today_iso: str,
+    artist_keep_map: dict[str, str],
+    artist_compact_map: dict[str, str],
+    venue_keep_map: dict[str, str],
+    venue_compact_map: dict[str, str],
+) -> list[dict[str, Any]]:
     if not db_path.exists():
         raise FileNotFoundError(f"event signals db not found: {db_path}")
     conn = sqlite3.connect(str(db_path))
@@ -164,8 +238,20 @@ def load_signal_events(db_path: Path, *, include_past: bool, today_iso: str) -> 
         labels = parse_labels(row["labels_json"])
         event_date = str(labels.get("event_start_date") or "").strip()
         event_end_date = str(labels.get("event_end_date") or event_date).strip()
-        artist_name = str(labels.get("artist_name") or "").strip()
-        venue_name = str(labels.get("venue_name") or "").strip()
+        raw_artist_name = str(labels.get("raw_artist_name") or labels.get("artist_name") or "").strip()
+        artist_name = canonicalize_artist_name(
+            raw_artist_name,
+            labels.get("artist_name") or "",
+            artist_keep_map,
+            artist_compact_map,
+        )
+        raw_venue_name = str(labels.get("raw_venue_name") or labels.get("venue_name") or "").strip()
+        venue_name = canonicalize_venue_name(
+            raw_venue_name,
+            labels.get("venue_name") or "",
+            venue_keep_map,
+            venue_compact_map,
+        )
         if not event_date or not artist_name or not venue_name:
             continue
         if not include_past and event_end_date < today_iso:
@@ -181,9 +267,9 @@ def load_signal_events(db_path: Path, *, include_past: bool, today_iso: str) -> 
                 "event_start_time": labels.get("event_start_time"),
                 "event_end_time": labels.get("event_end_time"),
                 "venue_name": venue_name,
-                "raw_venue_name": str(labels.get("raw_venue_name") or venue_name).strip(),
+                "raw_venue_name": raw_venue_name or venue_name,
                 "artist_name": artist_name,
-                "raw_artist_name": str(labels.get("raw_artist_name") or artist_name).strip(),
+                "raw_artist_name": raw_artist_name or artist_name,
                 "title": str(row["title"] or "").strip(),
                 "event_category": str(labels.get("event_category") or "").strip(),
                 "url": str(row["url"] or "").strip(),
@@ -295,8 +381,26 @@ def build_lp_events(
     include_past: bool = False,
 ) -> dict[str, Any]:
     today_iso = date.today().isoformat()
-    official = load_official_events(events_db_path, include_past=include_past, today_iso=today_iso)
-    signals = load_signal_events(event_signals_db_path, include_past=include_past, today_iso=today_iso)
+    artist_keep_map, artist_compact_map = load_artist_lookup_maps()
+    venue_keep_map, venue_compact_map = load_venue_lookup_maps()
+    official = load_official_events(
+        events_db_path,
+        include_past=include_past,
+        today_iso=today_iso,
+        artist_keep_map=artist_keep_map,
+        artist_compact_map=artist_compact_map,
+        venue_keep_map=venue_keep_map,
+        venue_compact_map=venue_compact_map,
+    )
+    signals = load_signal_events(
+        event_signals_db_path,
+        include_past=include_past,
+        today_iso=today_iso,
+        artist_keep_map=artist_keep_map,
+        artist_compact_map=artist_compact_map,
+        venue_keep_map=venue_keep_map,
+        venue_compact_map=venue_compact_map,
+    )
     records = official + signals
     events = consolidate_events(records)
     counts_by_display_source: dict[str, int] = {}

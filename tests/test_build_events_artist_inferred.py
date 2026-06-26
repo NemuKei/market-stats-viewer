@@ -58,6 +58,56 @@ class BuildEventsArtistInferredTests(unittest.TestCase):
 
         self.assertIsNone(inferred)
 
+    def test_do_not_infer_short_generic_artist_names_from_title_words(self) -> None:
+        artist_index = build_artist_index(
+            [
+                ArtistEntry(
+                    artist_id="seed:one",
+                    canonical_name="One",
+                    aliases=("One",),
+                    source="seed",
+                    is_enabled=True,
+                ),
+                ArtistEntry(
+                    artist_id="seed:summer",
+                    canonical_name="Summer",
+                    aliases=("Summer",),
+                    source="seed",
+                    is_enabled=True,
+                ),
+                ArtistEntry(
+                    artist_id="seed:rsp",
+                    canonical_name="RSP",
+                    aliases=("RSP",),
+                    source="seed",
+                    is_enabled=True,
+                ),
+                ArtistEntry(
+                    artist_id="seed:wqwq",
+                    canonical_name="wqwq",
+                    aliases=("wqwq", "わくわく"),
+                    source="seed",
+                    is_enabled=True,
+                ),
+                ArtistEntry(
+                    artist_id="seed:kosaka",
+                    canonical_name="小坂洋二",
+                    aliases=("るい",),
+                    source="seed",
+                    is_enabled=True,
+                ),
+            ]
+        )
+
+        for title in [
+            "TRACK15 Zepp ONE MAN Tour",
+            "B&ZAI LIVE 2026 Summer Beat",
+            "SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！』",
+            "NTPグループ 創業70周年記念 わくわくフェスタ",
+        ]:
+            with self.subTest(title=title):
+                self.assertIsNone(infer_event_artist(title, "", artist_index))
+
 
 if __name__ == "__main__":
     unittest.main()

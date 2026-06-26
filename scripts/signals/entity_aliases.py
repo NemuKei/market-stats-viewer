@@ -64,22 +64,29 @@ def load_venue_lookup_maps() -> tuple[dict[str, str], dict[str, str]]:
 
 
 def normalize_with_lookup(
-    raw_value: object, keep_map: dict[str, str], compact_map: dict[str, str]
+    raw_value: object,
+    keep_map: dict[str, str],
+    compact_map: dict[str, str],
+    *,
+    allow_parenthetical_base: bool = False,
 ) -> tuple[str, bool]:
     text = str(raw_value or "").strip()
     if not text:
         return "", False
     sanitized = _strip_html_tags(text)
-    keep_key = normalize_text(sanitized, mode="keep")
-    if keep_key:
-        canonical = keep_map.get(keep_key)
-        if canonical:
-            return canonical, True
-    compact_key = normalize_text(sanitized, mode="compact")
-    if compact_key:
-        canonical = compact_map.get(compact_key)
-        if canonical:
-            return canonical, True
+    for candidate in _iter_artist_lookup_candidates(
+        sanitized, allow_parenthetical_base=allow_parenthetical_base
+    ):
+        keep_key = normalize_text(candidate, mode="keep")
+        if keep_key:
+            canonical = keep_map.get(keep_key)
+            if canonical:
+                return canonical, True
+        compact_key = normalize_text(candidate, mode="compact")
+        if compact_key:
+            canonical = compact_map.get(compact_key)
+            if canonical:
+                return canonical, True
     return sanitized, False
 
 
@@ -198,6 +205,19 @@ def _parse_aliases(raw: object) -> tuple[str, ...]:
 def _strip_html_tags(text: str) -> str:
     cleaned = re.sub(r"</?[^>]+>", "", str(text or ""))
     return " ".join(cleaned.split())
+
+
+def _iter_artist_lookup_candidates(text: str, *, allow_parenthetical_base: bool):
+    candidate = " ".join(str(text or "").split())
+    if not candidate:
+        return
+    yield candidate
+    if not allow_parenthetical_base:
+        return
+
+    without_suffix = _strip_trailing_parenthetical_suffix(candidate)
+    if without_suffix and without_suffix != candidate:
+        yield without_suffix
 
 
 def _iter_venue_lookup_candidates(text: str):
