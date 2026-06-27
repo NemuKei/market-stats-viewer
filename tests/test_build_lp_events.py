@@ -131,6 +131,7 @@ def _create_signals_db(path: Path) -> None:
     )
     for source_id, source_name in [
         ("venue_web_discovery", "Venue Web Discovery"),
+        ("starto_concert", "STARTO NEWS (CONCERT)"),
         ("kstyle_music", "Kstyle MUSIC"),
         ("ticketjam_events", "Ticketjam Events"),
     ]:
@@ -159,6 +160,25 @@ def _create_signals_db(path: Path) -> None:
             "京セラドーム大阪",
             "Stray Kids",
             source_class="general_news",
+        ),
+        _signal(
+            "starto_concert",
+            "STARTO legacy category concert",
+            "2027-02-01",
+            "京セラドーム大阪",
+            "STARTO Artist",
+            source_class="general_news",
+            event_category=None,
+            category="concert",
+        ),
+        _signal(
+            "kstyle_music",
+            "Kstyle missing category concert",
+            "2027-02-02",
+            "京セラドーム大阪",
+            "Kstyle Artist",
+            source_class="general_news",
+            event_category=None,
         ),
         _signal(
             "ticketjam_events",
@@ -207,6 +227,8 @@ def _signal(
     artist_name: str,
     *,
     source_class: str,
+    event_category: str | None = "コンサート",
+    category: str | None = None,
 ) -> SignalRecord:
     url = f"https://example.com/{source_id}/{event_date}/{artist_name}"
     labels = {
@@ -216,11 +238,14 @@ def _signal(
         "raw_venue_name": venue_name,
         "artist_name": artist_name,
         "raw_artist_name": artist_name,
-        "event_category": "コンサート",
         "source_class": source_class,
         "evidence_url": url,
         "evidence_snippet": "official evidence",
     }
+    if event_category is not None:
+        labels["event_category"] = event_category
+    if category is not None:
+        labels["category"] = category
     rec = SignalRecord(
         signal_uid=compute_signal_uid(source_id, url),
         source_id=source_id,
@@ -257,4 +282,8 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     assert [
         item["source_id"] for item in by_artist["Stray Kids"]["supporting_sources"]
     ] == ["venue_web_discovery", "kstyle_music", "ticketjam_events"]
+    assert by_artist["STARTO Artist"]["display_source_id"] == "starto_concert"
+    assert by_artist["STARTO Artist"]["event_category"] == "コンサート"
+    assert by_artist["Kstyle Artist"]["display_source_id"] == "kstyle_music"
+    assert by_artist["Kstyle Artist"]["event_category"] == "コンサート"
     assert json.dumps(payload, ensure_ascii=False)

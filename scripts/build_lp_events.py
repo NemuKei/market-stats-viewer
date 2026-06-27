@@ -16,6 +16,7 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .events.category import EVENT_CATEGORY_BASEBALL, EVENT_CATEGORY_CONCERT, EVENT_CATEGORY_OTHER
 from .signals.entity_aliases import (
     load_artist_lookup_maps,
     load_venue_lookup_maps,
@@ -41,6 +42,20 @@ SIGNAL_SOURCE_IDS = {
     "starto_concert",
     "kstyle_music",
     "ticketjam_events",
+}
+SIGNAL_CATEGORY_MAP = {
+    "concert": EVENT_CATEGORY_CONCERT,
+    "music": EVENT_CATEGORY_CONCERT,
+    "musicevent": EVENT_CATEGORY_CONCERT,
+    "music_event": EVENT_CATEGORY_CONCERT,
+    "baseball": EVENT_CATEGORY_BASEBALL,
+    "baseballevent": EVENT_CATEGORY_BASEBALL,
+    "baseball_event": EVENT_CATEGORY_BASEBALL,
+    "other": EVENT_CATEGORY_OTHER,
+}
+SIGNAL_SOURCE_DEFAULT_CATEGORY = {
+    "starto_concert": EVENT_CATEGORY_CONCERT,
+    "kstyle_music": EVENT_CATEGORY_CONCERT,
 }
 
 
@@ -99,6 +114,25 @@ def canonicalize_venue_name(
     if matched and normalized:
         return normalized
     return current or normalized
+
+
+def normalize_event_category(value: object) -> str:
+    text = str(value or "").strip()
+    if not text:
+        return ""
+    if text in {EVENT_CATEGORY_CONCERT, EVENT_CATEGORY_BASEBALL, EVENT_CATEGORY_OTHER}:
+        return text
+    key = unicodedata.normalize("NFKC", text).casefold().strip()
+    key = re.sub(r"[\s-]+", "_", key)
+    return SIGNAL_CATEGORY_MAP.get(key, "")
+
+
+def signal_event_category(source_id: str, labels: dict[str, Any]) -> str:
+    for raw in (labels.get("event_category"), labels.get("category")):
+        category = normalize_event_category(raw)
+        if category:
+            return category
+    return SIGNAL_SOURCE_DEFAULT_CATEGORY.get(source_id, "")
 
 
 def load_official_events(
@@ -256,9 +290,10 @@ def load_signal_events(
             continue
         if not include_past and event_end_date < today_iso:
             continue
+        source_id = str(row["source_id"] or "")
         events.append(
             {
-                "source_id": str(row["source_id"] or ""),
+                "source_id": source_id,
                 "source_label": str(row["source_name"] or row["source_id"] or ""),
                 "source_class": str(labels.get("source_class") or "").strip(),
                 "record_id": str(row["signal_uid"] or ""),
@@ -271,7 +306,7 @@ def load_signal_events(
                 "artist_name": artist_name,
                 "raw_artist_name": raw_artist_name or artist_name,
                 "title": str(row["title"] or "").strip(),
-                "event_category": str(labels.get("event_category") or "").strip(),
+                "event_category": signal_event_category(source_id, labels),
                 "url": str(row["url"] or "").strip(),
                 "evidence_url": str(labels.get("evidence_url") or row["url"] or "").strip(),
                 "evidence_snippet": str(labels.get("evidence_snippet") or row["snippet"] or "").strip(),
