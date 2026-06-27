@@ -847,6 +847,44 @@
       "venue_name": "iBIG HALL"
     },
     {
+      "artist_name": "Seowon",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-06-27",
+      "event_end_date": "2026-06-27",
+      "event_end_time": null,
+      "event_key": "a7d05a2efef92bf89937",
+      "event_start_time": null,
+      "evidence_snippet": "会場: iBIG HALL / 日時: 2026-06-27 / (東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2274719",
+      "first_seen_at_utc": "2026-06-27T13:14:06Z",
+      "pref_name": null,
+      "raw_artist_name": "Seowon",
+      "raw_venue_name": "iBIG HALL",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2274719",
+          "priority": 30,
+          "record_id": "4565a92671f3708d22255762988ee1d530ff26c1f8abaf2daa80d6182d6fe743",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
+          "updated_at_utc": "2026-06-27T13:14:06Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2274719"
+        }
+      ],
+      "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
+      "updated_at_utc": "2026-06-27T13:14:06Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2274719",
+      "venue_name": "iBIG HALL"
+    },
+    {
       "artist_name": "U-KISS",
       "capacity": null,
       "display_source_class": "",
@@ -77419,7 +77457,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-06-27T07:38:15Z",
+  "generated_at_utc": "2026-06-27T13:15:18Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -77431,13 +77469,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 49,
+      "kstyle_music": 50,
       "official_events": 553,
       "starto_concert": 126,
       "ticketjam_events": 1157,
       "venue_web_discovery": 14
     },
-    "event_count": 1899,
-    "record_count_before_grouping": 2337
+    "event_count": 1900,
+    "record_count_before_grouping": 2338
   }
 }
