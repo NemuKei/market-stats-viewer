@@ -847,44 +847,6 @@
       "venue_name": "iBIG HALL"
     },
     {
-      "artist_name": "Seowon",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-27",
-      "event_end_date": "2026-06-27",
-      "event_end_time": null,
-      "event_key": "a7d05a2efef92bf89937",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL / 日時: 2026-06-27 / (東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2274719",
-      "first_seen_at_utc": "2026-06-25T02:18:10Z",
-      "pref_name": null,
-      "raw_artist_name": "Seowon",
-      "raw_venue_name": "iBIG HALL",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2274719",
-          "priority": 30,
-          "record_id": "4565a92671f3708d22255762988ee1d530ff26c1f8abaf2daa80d6182d6fe743",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
-          "updated_at_utc": "2026-06-25T02:18:10Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2274719"
-        }
-      ],
-      "title": "SEOWON 2026 FANMEETING IN JAPAN VALENTINE'S MEMORY",
-      "updated_at_utc": "2026-06-25T02:18:10Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2274719",
-      "venue_name": "iBIG HALL"
-    },
-    {
       "artist_name": "U-KISS",
       "capacity": null,
       "display_source_class": "",
@@ -3051,6 +3013,44 @@
       "venue_name": "ららアリーナ 東京ベイ"
     },
     {
+      "artist_name": "及川光博",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-06-28",
+      "event_end_date": "2026-06-28",
+      "event_end_time": null,
+      "event_key": "9c061804b182cd5974ce",
+      "event_start_time": "16:00",
+      "evidence_snippet": "2026-06-28 16:00 / 大阪府 オリックス劇場",
+      "evidence_url": "https://ticketjam.jp/tickets/placeholder_qxucehkauuibklegycnk/event/1000499",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "及川光博",
+      "raw_venue_name": "オリックス劇場",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/placeholder_qxucehkauuibklegycnk/event/1000499",
+          "priority": 40,
+          "record_id": "807e2fd52eeeb8dcf579d07ba720bf4d662f5757e2d4d84913a903f7cedaa8f0",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "及川光博 30周年☆ワンマンショーツアー2026『TAKE IT ROSY！』",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/placeholder_qxucehkauuibklegycnk/event/1000499"
+        }
+      ],
+      "title": "及川光博 30周年☆ワンマンショーツアー2026『TAKE IT ROSY！』",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/placeholder_qxucehkauuibklegycnk/event/1000499",
+      "venue_name": "オリックス劇場"
+    },
+    {
       "artist_name": "Kis-My-Ft2",
       "capacity": null,
       "display_source_class": "",
@@ -4259,6 +4259,44 @@
       "updated_at_utc": "2026-06-25T08:03:25Z",
       "url": "https://www.festivalhall.jp/events/5617/",
       "venue_name": "フェスティバルホール"
+    },
+    {
+      "artist_name": "みずほPayPayドーム福岡ドームツアー",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "野球",
+      "event_date": "2026-06-29",
+      "event_end_date": "2026-06-29",
+      "event_end_time": null,
+      "event_key": "235a3ddfc011b81d155e",
+      "event_start_time": "",
+      "evidence_snippet": "2026-06-29 / 福岡県 みずほPayPayドーム福岡",
+      "evidence_url": "https://ticketjam.jp/tickets/paypaydome-tour/event/1208248",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "みずほPayPayドーム福岡ドームツアー",
+      "raw_venue_name": "みずほPayPayドーム福岡",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/paypaydome-tour/event/1208248",
+          "priority": 40,
+          "record_id": "527a0dacfdd208eb4479c35030dba6aa0dafb862b025e9c08be5360420013341",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "ドームツアー＜ドーム満喫コース＞",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/paypaydome-tour/event/1208248"
+        }
+      ],
+      "title": "ドームツアー＜ドーム満喫コース＞",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/paypaydome-tour/event/1208248",
+      "venue_name": "福岡PayPayドーム"
     },
     {
       "artist_name": "ILLIT",
@@ -6065,6 +6103,44 @@
       "venue_name": "福岡PayPayドーム"
     },
     {
+      "artist_name": "鷹祭",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "野球",
+      "event_date": "2026-07-01",
+      "event_end_date": "2026-07-01",
+      "event_end_time": null,
+      "event_key": "cddfd8d8e688134c5e73",
+      "event_start_time": "18:00",
+      "evidence_snippet": "2026-07-01 18:00 / 福岡県 福岡PayPayドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/taka-matsuri/event/1211761",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "鷹祭",
+      "raw_venue_name": "福岡PayPayドーム",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/taka-matsuri/event/1211761",
+          "priority": 40,
+          "record_id": "fca799ca6653bc011675dd9c37a785eb4edc5219c229a16c460facd86c23cfd7",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "鷹祭 SUMMER BOOST 2026",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/taka-matsuri/event/1211761"
+        }
+      ],
+      "title": "鷹祭 SUMMER BOOST 2026",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/taka-matsuri/event/1211761",
+      "venue_name": "福岡PayPayドーム"
+    },
+    {
       "artist_name": "CANDY TUNE",
       "capacity": null,
       "display_source_class": "",
@@ -6227,27 +6303,15 @@
       "event_end_date": "2026-07-02",
       "event_end_time": null,
       "event_key": "66c0decc25ce0fa10243",
-      "event_start_time": "19:00",
-      "evidence_snippet": "2026-07-02 19:00 / 東京都 LINE CUBE SHIBUYA（渋谷公会堂）",
-      "evidence_url": "https://ticketjam.jp/tickets/jaejoong/event/1149193",
-      "first_seen_at_utc": "2026-04-23T05:53:43Z",
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-07-02 15:00 / 東京都 LINE CUBE SHIBUYA",
+      "evidence_url": "https://ticketjam.jp/tickets/jaejoong/event/1113823",
+      "first_seen_at_utc": "2026-06-25T07:11:21Z",
       "pref_name": "東京都",
       "raw_artist_name": "JAEJOONG（ジェジュン）",
-      "raw_venue_name": "LINE CUBE SHIBUYA（渋谷公会堂）",
+      "raw_venue_name": "LINE CUBE SHIBUYA",
       "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/jaejoong/event/1149193",
-          "priority": 40,
-          "record_id": "2629ce9d9d9260f7f8437b08317d1654007fd57d7ddeba11bcdfcb2f922f5470",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR",
-          "updated_at_utc": "2026-04-23T05:53:43Z",
-          "url": "https://ticketjam.jp/tickets/jaejoong/event/1149193"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/jaejoong/event/1113823",
@@ -6259,11 +6323,23 @@
           "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR",
           "updated_at_utc": "2026-06-25T07:11:21Z",
           "url": "https://ticketjam.jp/tickets/jaejoong/event/1113823"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/jaejoong/event/1149193",
+          "priority": 40,
+          "record_id": "d78d9d44a5cb3e02e63412214b2b7f20bd15d43d5bb0e3078af1cb45ca69a61f",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/jaejoong/event/1149193"
         }
       ],
       "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR",
-      "updated_at_utc": "2026-04-23T05:53:43Z",
-      "url": "https://ticketjam.jp/tickets/jaejoong/event/1149193",
+      "updated_at_utc": "2026-06-25T07:11:21Z",
+      "url": "https://ticketjam.jp/tickets/jaejoong/event/1113823",
       "venue_name": "LINE CUBE SHIBUYA"
     },
     {
@@ -7134,30 +7210,30 @@
       "event_end_time": null,
       "event_key": "8bab8fd07c847341d17d",
       "event_start_time": "18:00",
-      "evidence_snippet": "2026-07-02 18:00 / 福岡県 みずほPayPayドーム福岡",
-      "evidence_url": "https://ticketjam.jp/tickets/softbank-lions/event/1036331",
-      "first_seen_at_utc": "2026-04-26T06:01:48Z",
+      "evidence_snippet": "2026-07-02 18:00 / 福岡県 福岡PayPayドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/softbankhawks/event/1036331",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
       "pref_name": "福岡県",
       "raw_artist_name": "福岡ソフトバンクホークス",
-      "raw_venue_name": "みずほPayPayドーム福岡",
+      "raw_venue_name": "福岡PayPayドーム",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/softbank-lions/event/1036331",
+          "evidence_url": "https://ticketjam.jp/tickets/softbankhawks/event/1036331",
           "priority": 40,
-          "record_id": "f5b7142a7d60896d1593f7f3d11ffbb6fe34ee26c39faa8e2eb727f9b1bec7d6",
+          "record_id": "0a614642b51561130c12ceeb2ed9e06c05336289720a85f0d9b8414b97610f50",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "ソフトバンク vs 西武",
-          "updated_at_utc": "2026-04-26T06:01:48Z",
-          "url": "https://ticketjam.jp/tickets/softbank-lions/event/1036331"
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/softbankhawks/event/1036331"
         }
       ],
       "title": "ソフトバンク vs 西武",
-      "updated_at_utc": "2026-04-26T06:01:48Z",
-      "url": "https://ticketjam.jp/tickets/softbank-lions/event/1036331",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/softbankhawks/event/1036331",
       "venue_name": "福岡PayPayドーム"
     },
     {
@@ -8189,6 +8265,18 @@
           "title": "OWV LIVE TOUR 2026-SQUAD-",
           "updated_at_utc": "2026-06-25T07:11:21Z",
           "url": "https://ticketjam.jp/tickets/owv/event/1115055"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/owv/event/1115057",
+          "priority": 40,
+          "record_id": "d0602fb2ed60081eff52d1edb9a4ee4ee5884e4d70ea1e1a9fedf1a59c6a6009",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "OWV LIVE TOUR 2026-SQUAD-",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/owv/event/1115057"
         }
       ],
       "title": "OWV LIVE TOUR 2026-SQUAD-",
@@ -11638,29 +11726,29 @@
       "event_end_time": null,
       "event_key": "7293bec331cda97da034",
       "event_start_time": "19:00",
-      "evidence_snippet": "2026-07-06 19:00 / 東京都 Zepp DiverCity（ダイバーシティ東京）",
+      "evidence_snippet": "2026-07-06 19:00 / 東京都 Zepp DiverCity(Tokyo)",
       "evidence_url": "https://ticketjam.jp/tickets/kingsofconvenience/event/1029960",
-      "first_seen_at_utc": "2026-03-09T07:46:04Z",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
       "pref_name": "東京都",
       "raw_artist_name": "KINGS OF CONVENIENCE（キングス オブ コンビニエンス）",
-      "raw_venue_name": "Zepp DiverCity（ダイバーシティ東京）",
+      "raw_venue_name": "Zepp DiverCity(Tokyo)",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/kingsofconvenience/event/1029960",
           "priority": 40,
-          "record_id": "7cdd42ea0a740e24f0f9c6b9b67f8f102e9c562570e82e72b05df6f45405dc71",
+          "record_id": "a745c571879b04a9f854fb768a8f26168e82628714a80602dec908ee9f84fcd7",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "KINGS OF CONVENIENCE Japan Tour 2026",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
           "url": "https://ticketjam.jp/tickets/kingsofconvenience/event/1029960"
         }
       ],
       "title": "KINGS OF CONVENIENCE Japan Tour 2026",
-      "updated_at_utc": "2026-03-09T07:46:04Z",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
       "url": "https://ticketjam.jp/tickets/kingsofconvenience/event/1029960",
       "venue_name": "Zepp DiverCity(Tokyo)"
     },
@@ -11701,6 +11789,44 @@
       "updated_at_utc": "2026-06-25T08:01:21Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158070",
       "venue_name": "Zepp Haneda(Tokyo)"
+    },
+    {
+      "artist_name": "the HIATUS",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-07-06",
+      "event_end_date": "2026-07-06",
+      "event_end_time": null,
+      "event_key": "900022942d2c60042d7a",
+      "event_start_time": "19:00",
+      "evidence_snippet": "2026-07-06 19:00 / 愛知県 Zepp Nagoya",
+      "evidence_url": "https://ticketjam.jp/tickets/thehiatus/event/1170402",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "愛知県",
+      "raw_artist_name": "the HIATUS（ハイエイタス）",
+      "raw_venue_name": "Zepp Nagoya",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/thehiatus/event/1170402",
+          "priority": 40,
+          "record_id": "0112b4f9f3deeb93e5abf907d42db57ab3ca792d99178de2dd6218579d150be9",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "Back Into the Noise Tour 2026",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/thehiatus/event/1170402"
+        }
+      ],
+      "title": "Back Into the Noise Tour 2026",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/thehiatus/event/1170402",
+      "venue_name": "Zepp Nagoya"
     },
     {
       "artist_name": "Blue Mash（ブルーマッシュ）",
@@ -13278,29 +13404,29 @@
       "event_end_time": null,
       "event_key": "5f43fb2fecbf4cb9f62b",
       "event_start_time": "18:30",
-      "evidence_snippet": "2026-07-09 18:30 / Zepp Haneda",
+      "evidence_snippet": "2026-07-09 18:30 / 東京都 Zepp Haneda(Tokyo)",
       "evidence_url": "https://ticketjam.jp/tickets/zipang-opera/event/1037891",
-      "first_seen_at_utc": "2026-06-17T08:49:41Z",
-      "pref_name": null,
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "東京都",
       "raw_artist_name": "ZIPANG OPERA（ジパングオペラ）",
-      "raw_venue_name": "Zepp Haneda",
+      "raw_venue_name": "Zepp Haneda(Tokyo)",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/zipang-opera/event/1037891",
           "priority": 40,
-          "record_id": "c928608faa6e361a726a033ada501fafb6f9714316b353914919660df946d77c",
+          "record_id": "b860dd242e35219ed104a496ec1dda756bc9bf452908eebd68feb3adb9fd996f",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "ZIPANG OPERA Live 2025 ～Ambition～",
-          "updated_at_utc": "2026-06-17T08:49:41Z",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
           "url": "https://ticketjam.jp/tickets/zipang-opera/event/1037891"
         }
       ],
       "title": "ZIPANG OPERA Live 2025 ～Ambition～",
-      "updated_at_utc": "2026-06-17T08:49:41Z",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
       "url": "https://ticketjam.jp/tickets/zipang-opera/event/1037891",
       "venue_name": "Zepp Haneda(Tokyo)"
     },
@@ -15207,27 +15333,15 @@
       "event_end_date": "2026-07-11",
       "event_end_time": null,
       "event_key": "02c35a7ef4118b813526",
-      "event_start_time": "13:30",
-      "evidence_snippet": "2026-07-11 13:30 / 東京都 NHKホール",
-      "evidence_url": "https://ticketjam.jp/tickets/giselle/event/1091522",
-      "first_seen_at_utc": "2026-05-11T07:03:38Z",
+      "event_start_time": "18:30",
+      "evidence_snippet": "2026-07-11 18:30 / 東京都 NHKホール",
+      "evidence_url": "https://ticketjam.jp/tickets/giselle/event/1091463",
+      "first_seen_at_utc": "2026-06-17T08:49:41Z",
       "pref_name": "東京都",
       "raw_artist_name": "英国ロイヤルバレエ団",
       "raw_venue_name": "NHKホール",
       "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/giselle/event/1091522",
-          "priority": 40,
-          "record_id": "c7fcf58eb08821439b0dc36b94834c6ffa78de3557ab00e29d7f5cce360b6102",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "英国ロイヤル・バレエ団2026年日本公演『ジゼル』全2幕",
-          "updated_at_utc": "2026-05-11T07:03:38Z",
-          "url": "https://ticketjam.jp/tickets/giselle/event/1091522"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/giselle/event/1091463",
@@ -15239,11 +15353,23 @@
           "title": "英国ロイヤル・バレエ団2026年日本公演『ジゼル』全2幕",
           "updated_at_utc": "2026-06-17T08:49:41Z",
           "url": "https://ticketjam.jp/tickets/giselle/event/1091463"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/uk-royal/event/1091522",
+          "priority": 40,
+          "record_id": "9044405d9423fb1fadb6e8bde0167f4e6fe27e71187c01a1f10409784c001c2c",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "英国ロイヤル・バレエ団2026年日本公演『ジゼル』全2幕",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/uk-royal/event/1091522"
         }
       ],
       "title": "英国ロイヤル・バレエ団2026年日本公演『ジゼル』全2幕",
-      "updated_at_utc": "2026-05-11T07:03:38Z",
-      "url": "https://ticketjam.jp/tickets/giselle/event/1091522",
+      "updated_at_utc": "2026-06-17T08:49:41Z",
+      "url": "https://ticketjam.jp/tickets/giselle/event/1091463",
       "venue_name": "NHKホール"
     },
     {
@@ -16080,30 +16206,30 @@
       "event_end_time": null,
       "event_key": "7e1dd5c1e105fd1f0989",
       "event_start_time": "14:00",
-      "evidence_snippet": "2026-07-11 14:00 / 愛知県 バンテリンドーム ナゴヤ",
-      "evidence_url": "https://ticketjam.jp/tickets/hiroshima-chunichi/event/1039661",
-      "first_seen_at_utc": "2026-05-04T06:35:52Z",
+      "evidence_snippet": "2026-07-11 14:00 / 愛知県 バンテリンドームナゴヤ",
+      "evidence_url": "https://ticketjam.jp/tickets/dragons/event/1039661",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
       "pref_name": "愛知県",
       "raw_artist_name": "中日ドラゴンズ",
-      "raw_venue_name": "バンテリンドーム ナゴヤ",
+      "raw_venue_name": "バンテリンドームナゴヤ",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/hiroshima-chunichi/event/1039661",
+          "evidence_url": "https://ticketjam.jp/tickets/dragons/event/1039661",
           "priority": 40,
-          "record_id": "b4f5242d156a82f57c8e11e4a5babf0d20136c8b8b5974aa30b4e530f91dc8e0",
+          "record_id": "2adb3baff3f605b376c3251bd86940f7e725dd95cbb245c2fc6ae9d68151859b",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "中日 vs 広島",
-          "updated_at_utc": "2026-05-04T06:35:52Z",
-          "url": "https://ticketjam.jp/tickets/hiroshima-chunichi/event/1039661"
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/dragons/event/1039661"
         }
       ],
       "title": "中日 vs 広島",
-      "updated_at_utc": "2026-05-04T06:35:52Z",
-      "url": "https://ticketjam.jp/tickets/hiroshima-chunichi/event/1039661",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/dragons/event/1039661",
       "venue_name": "バンテリンドームナゴヤ"
     },
     {
@@ -17663,6 +17789,18 @@
           "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR – 86% –",
           "updated_at_utc": "2026-06-25T08:02:48Z",
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=155294"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/jaejoong/event/1113825",
+          "priority": 40,
+          "record_id": "af420db1720b6cbd92e271a84e4bdfe5118b15f37e51822389a0a313f17d60f8",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/jaejoong/event/1113825"
         }
       ],
       "title": "2026 JAEJOONG ZEPP & HALL LIVE TOUR – 86% –",
@@ -18997,6 +19135,44 @@
       "venue_name": "福岡PayPayドーム"
     },
     {
+      "artist_name": "ALI PROJECT",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-07-12",
+      "event_end_date": "2026-07-12",
+      "event_end_time": null,
+      "event_key": "76444d5ba39cb96cb6fa",
+      "event_start_time": "18:00",
+      "evidence_snippet": "2026-07-12 18:00 / 東京都 豊洲PIT",
+      "evidence_url": "https://ticketjam.jp/tickets/ali-project/event/1115305",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ALI PROJECT（アリプロジェクト）",
+      "raw_venue_name": "豊洲PIT",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/ali-project/event/1115305",
+          "priority": 40,
+          "record_id": "b0fc55812ba11e7196c07bfe5730f9cee65a157d9fe6800feeedcd82418be8f5",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "ALI PROJECT A級ヒットパレード2026「魔夏の夜の夢～暗黒フェアリーランド」",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/ali-project/event/1115305"
+        }
+      ],
+      "title": "ALI PROJECT A級ヒットパレード2026「魔夏の夜の夢～暗黒フェアリーランド」",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/ali-project/event/1115305",
+      "venue_name": "豊洲PIT"
+    },
+    {
       "artist_name": "阪神タイガース",
       "capacity": null,
       "display_source_class": "",
@@ -19426,29 +19602,29 @@
       "event_end_time": null,
       "event_key": "9e4ce794f65a8d3cb410",
       "event_start_time": "17:00",
-      "evidence_snippet": "2026-07-14 17:00 / 東京都 Kanadevia Hall（旧TOKYO DOME CITY HALL）",
+      "evidence_snippet": "2026-07-14 17:00 / 東京都 TOKYO DOME CITY HALL",
       "evidence_url": "https://ticketjam.jp/tickets/kayaonokariri/event/1207322",
-      "first_seen_at_utc": "2026-06-22T09:35:16Z",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
       "pref_name": "東京都",
       "raw_artist_name": "心花りり（iLiFE!／GILTY × GILTY）",
-      "raw_venue_name": "Kanadevia Hall（旧TOKYO DOME CITY HALL）",
+      "raw_venue_name": "TOKYO DOME CITY HALL",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/kayaonokariri/event/1207322",
           "priority": 40,
-          "record_id": "8271083360f1d0f69a0943f5db5f9755898df75178dc173423d3a8967f5f0f8a",
+          "record_id": "f9053b308b6ce697c18c9fef04edb78a2971e8651b9dfd7ee9c02faa78825011",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "心花りり生誕祭2026『めろめろきゅーとな白米6合-DAY1-』",
-          "updated_at_utc": "2026-06-22T09:35:16Z",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
           "url": "https://ticketjam.jp/tickets/kayaonokariri/event/1207322"
         }
       ],
       "title": "心花りり生誕祭2026『めろめろきゅーとな白米6合-DAY1-』",
-      "updated_at_utc": "2026-06-22T09:35:16Z",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
       "url": "https://ticketjam.jp/tickets/kayaonokariri/event/1207322",
       "venue_name": "TOKYO DOME CITY HALL"
     },
@@ -21443,6 +21619,44 @@
       "updated_at_utc": "2026-03-09T07:46:04Z",
       "url": "https://ticketjam.jp/tickets/true/event/976030",
       "venue_name": "LINE CUBE SHIBUYA"
+    },
+    {
+      "artist_name": "iLiVE!（アイライブ）",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-07-17",
+      "event_end_date": "2026-07-17",
+      "event_end_time": null,
+      "event_key": "3c816496091e644034ae",
+      "event_start_time": "10:40",
+      "evidence_snippet": "2026-07-17 10:40 / 東京都 Kanadevia Hall（旧TOKYO DOME CITY HALL）",
+      "evidence_url": "https://ticketjam.jp/tickets/ponkotsukompo/event/1220237",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "iLiVE!（アイライブ）",
+      "raw_venue_name": "Kanadevia Hall（旧TOKYO DOME CITY HALL）",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/ponkotsukompo/event/1220237",
+          "priority": 40,
+          "record_id": "3cbf958fbcf439f996bfcf3bc53c6ced5487d0d7968dbe20d1b3eb16dec7bee9",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "iLiVE! Vol.22",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/ponkotsukompo/event/1220237"
+        }
+      ],
+      "title": "iLiVE! Vol.22",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/ponkotsukompo/event/1220237",
+      "venue_name": "TOKYO DOME CITY HALL"
     },
     {
       "artist_name": "渋谷すばる",
@@ -25415,6 +25629,44 @@
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）"
     },
     {
+      "artist_name": "U-NEXT BOXING（ユーネクストボクシング）",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "その他",
+      "event_date": "2026-07-20",
+      "event_end_date": "2026-07-20",
+      "event_end_time": null,
+      "event_key": "2ee8ad1b200f09f65c9e",
+      "event_start_time": "17:00",
+      "evidence_snippet": "2026-07-20 17:00 / 東京都 両国国技館",
+      "evidence_url": "https://ticketjam.jp/tickets/u-next-boxing/event/1222917",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "U-NEXT BOXING（ユーネクストボクシング）",
+      "raw_venue_name": "両国国技館",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/u-next-boxing/event/1222917",
+          "priority": 40,
+          "record_id": "d28275e53355bdb56718798abc95653640e117517a9d52abd1f9d8cbb83cee93",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "U-NEXT BOXING.6",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/u-next-boxing/event/1222917"
+        }
+      ],
+      "title": "U-NEXT BOXING.6",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/u-next-boxing/event/1222917",
+      "venue_name": "両国国技館"
+    },
+    {
       "artist_name": "オリックス・バファローズ",
       "capacity": null,
       "display_source_class": "",
@@ -25578,30 +25830,30 @@
       "event_end_time": null,
       "event_key": "7caf0f5e70fb2ad5f3e4",
       "event_start_time": "18:00",
-      "evidence_snippet": "2026-07-20 18:00 / 北海道 札幌文化芸術劇場（札幌市民交流プラザ）",
-      "evidence_url": "https://ticketjam.jp/tickets/sugizo/event/1119433",
-      "first_seen_at_utc": "2026-05-27T07:27:10Z",
+      "evidence_snippet": "2026-07-20 18:00 / 北海道 札幌文化芸術劇場 hitaru",
+      "evidence_url": "https://ticketjam.jp/tickets/luna-sea/event/1119433",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
       "pref_name": "北海道",
       "raw_artist_name": "LUNA SEA（ルナシー）",
-      "raw_venue_name": "札幌文化芸術劇場（札幌市民交流プラザ）",
+      "raw_venue_name": "札幌文化芸術劇場 hitaru",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/sugizo/event/1119433",
+          "evidence_url": "https://ticketjam.jp/tickets/luna-sea/event/1119433",
           "priority": 40,
-          "record_id": "d54517153613f93a6c1e699ab12076421cf7bd6a67eeaf290687d02ae7d69b1c",
+          "record_id": "655933b25de1ed1c1d8e95059b2e60855e2ab4eb031bf649f3675c53044cb449",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "LUNA SEA TOUR 2026 UNENDING JOURNEY -FOREVER-",
-          "updated_at_utc": "2026-05-27T07:27:10Z",
-          "url": "https://ticketjam.jp/tickets/sugizo/event/1119433"
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/luna-sea/event/1119433"
         }
       ],
       "title": "LUNA SEA TOUR 2026 UNENDING JOURNEY -FOREVER-",
-      "updated_at_utc": "2026-05-27T07:27:10Z",
-      "url": "https://ticketjam.jp/tickets/sugizo/event/1119433",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/luna-sea/event/1119433",
       "venue_name": "札幌文化芸術劇場 hitaru"
     },
     {
@@ -25757,6 +26009,44 @@
       "venue_name": "神戸国際会館 こくさいホール"
     },
     {
+      "artist_name": "しまじろうコンサート",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-07-20",
+      "event_end_date": "2026-07-20",
+      "event_end_time": null,
+      "event_key": "538d8ea96c446966b4fc",
+      "event_start_time": "12:30",
+      "evidence_snippet": "2026-07-20 12:30 / 福岡県 福岡サンパレス",
+      "evidence_url": "https://ticketjam.jp/tickets/shimajiro/event/1078037",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "しまじろうコンサート",
+      "raw_venue_name": "福岡サンパレス",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/shimajiro/event/1078037",
+          "priority": 40,
+          "record_id": "42e7ece571a527404922ad35c7dab2fe0e4bb287601c4ee2a9d846efb629f8d1",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "しまじろうとおかしのくにのハッピーパーティー",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/shimajiro/event/1078037"
+        }
+      ],
+      "title": "しまじろうとおかしのくにのハッピーパーティー",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/shimajiro/event/1078037",
+      "venue_name": "福岡サンパレス"
+    },
+    {
       "artist_name": "阪神タイガース",
       "capacity": null,
       "display_source_class": "",
@@ -25806,29 +26096,29 @@
       "event_end_time": null,
       "event_key": "862f5782a4238d289ec3",
       "event_start_time": "18:30",
-      "evidence_snippet": "2026-07-21 18:30 / 愛知県 Zepp Nagoya（名古屋）",
+      "evidence_snippet": "2026-07-21 18:30 / 愛知県 Zepp Nagoya",
       "evidence_url": "https://ticketjam.jp/tickets/thejetboybangerz/event/1112558",
-      "first_seen_at_utc": "2026-04-27T06:24:32Z",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
       "pref_name": "愛知県",
       "raw_artist_name": "EXILE AKIRA（エグザイル アキラ／EXILE／EXILE THE SECOND）",
-      "raw_venue_name": "Zepp Nagoya（名古屋）",
+      "raw_venue_name": "Zepp Nagoya",
       "source_priority": 40,
       "supporting_sources": [
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/thejetboybangerz/event/1112558",
           "priority": 40,
-          "record_id": "f2c695fbfb6fbc5f6a094442ac31843c427a23edb5e1f1dcee383d35ee3cdf18",
+          "record_id": "57fcadafb7764609983df26b08a26abd059c6850b41176ce2481cdde4a81ec09",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "EXILE AKIRA 20TH ANNIVERSARY SPECIAL LIVE TOUR \"URBAN SAVAGE\"",
-          "updated_at_utc": "2026-04-27T06:24:32Z",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
           "url": "https://ticketjam.jp/tickets/thejetboybangerz/event/1112558"
         }
       ],
       "title": "EXILE AKIRA 20TH ANNIVERSARY SPECIAL LIVE TOUR \"URBAN SAVAGE\"",
-      "updated_at_utc": "2026-04-27T06:24:32Z",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
       "url": "https://ticketjam.jp/tickets/thejetboybangerz/event/1112558",
       "venue_name": "Zepp Nagoya"
     },
@@ -25944,12 +26234,12 @@
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/nakajima-kento/event/1065670",
           "priority": 40,
-          "record_id": "49985d74d9f391221593a91257375bb9c08673030402e6b8e5c4ea338378b7be",
+          "record_id": "7717c5fdf1a15b21799c5185548052ab997d27b8a4c1eb9aa186c5b5aa4ee87e",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "\"IDOL1ST 中島健人\" LIVE TOUR 2026",
-          "updated_at_utc": "2026-06-09T07:11:35Z",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
           "url": "https://ticketjam.jp/tickets/nakajima-kento/event/1065670"
         }
       ],
@@ -32784,15 +33074,15 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/nagami-daigo/event/1137468",
+          "evidence_url": "https://ticketjam.jp/tickets/akabane-kenichi/event/1137468",
           "priority": 40,
-          "record_id": "bed3e2a0594cc11431d21833f9ce706c1a335b266858d5990135906e909cf5cc",
+          "record_id": "7b40d8466952d688f3b8059c43d7092ce83f98f44fb2ce0af32c8e31e7c6aad3",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "DAIENKAI 2026【1日券】",
-          "updated_at_utc": "2026-05-22T07:10:51Z",
-          "url": "https://ticketjam.jp/tickets/nagami-daigo/event/1137468"
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/akabane-kenichi/event/1137468"
         }
       ],
       "title": "DAIENKAI 2026【2日ぶっ通し券】",
@@ -36545,6 +36835,44 @@
       "venue_name": "サンドーム福井"
     },
     {
+      "artist_name": "埼玉西武ライオンズ",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "野球",
+      "event_date": "2026-08-08",
+      "event_end_date": "2026-08-08",
+      "event_end_time": null,
+      "event_key": "c89e234bbc225c9e6897",
+      "event_start_time": "18:00",
+      "evidence_snippet": "2026-08-08 18:00 / 埼玉県 ベルーナドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/softbank-lions/event/1040570",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "埼玉西武ライオンズ",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/softbank-lions/event/1040570",
+          "priority": 40,
+          "record_id": "51c86baac0812a88e727cb6b9146318393d6191bd9c23ca0afa4d748dd53de7f",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "西武 vs ソフトバンク",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/softbank-lions/event/1040570"
+        }
+      ],
+      "title": "西武 vs ソフトバンク",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/softbank-lions/event/1040570",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "Talking Rock!FES.（トーキングロックフェス）",
       "capacity": null,
       "display_source_class": "",
@@ -38407,6 +38735,18 @@
           "title": "日本ハムファイターズ【えふたんパーキング】",
           "updated_at_utc": "2026-05-28T07:16:33Z",
           "url": "https://ticketjam.jp/tickets/fighters-parking/event/1044212"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/fighters-parking/event/1043881",
+          "priority": 40,
+          "record_id": "669bab68b98a6785a98c10b37c5303056256eeb744535d3e099322e7e27b23d9",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "日本ハムファイターズ駐車場券【P1-P7】",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043881"
         }
       ],
       "title": "日本ハムファイターズ【えふたんパーキング】",
@@ -42467,6 +42807,44 @@
       "venue_name": "Zepp Nagoya"
     },
     {
+      "artist_name": "New",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-08-20",
+      "event_end_date": "2026-08-20",
+      "event_end_time": null,
+      "event_key": "3aa5b49e088b2b7c12ca",
+      "event_start_time": null,
+      "evidence_snippet": "会場: Zepp Osaka Bayside / 日時: 2026-08-20 / 2026年8月20日(木)開場 18:00 / 開演 19:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "first_seen_at_utc": "2026-06-26T14:07:55Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "New",
+      "raw_venue_name": "Zepp Osaka Bayside",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+          "priority": 30,
+          "record_id": "d0f3d77c15a691cacca0d5c9246c8653be87a18e969cf47bc7dfd47c3461c5dd",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+          "updated_at_utc": "2026-06-26T14:07:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2279484"
+        }
+      ],
+      "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+      "updated_at_utc": "2026-06-26T14:07:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "venue_name": "Zepp Osaka Bayside"
+    },
+    {
       "artist_name": "北海道日本ハムファイターズ 駐車場券",
       "capacity": null,
       "display_source_class": "",
@@ -42933,6 +43311,44 @@
       "updated_at_utc": "2026-06-25T08:01:21Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158570",
       "venue_name": "Zepp Haneda(Tokyo)"
+    },
+    {
+      "artist_name": "New",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-08-21",
+      "event_end_date": "2026-08-21",
+      "event_end_time": null,
+      "event_key": "523fe8d7a55709e86dda",
+      "event_start_time": null,
+      "evidence_snippet": "会場: Zepp Osaka Bayside / 日時: 2026-08-21 / 2026年8月21日(金)開場 16:00 / 開演 17:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "first_seen_at_utc": "2026-06-26T14:07:55Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "New",
+      "raw_venue_name": "Zepp Osaka Bayside",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+          "priority": 30,
+          "record_id": "ef5984c3082af71659ab796536ed86a6dfcb24250788a626d2b65d0ba2c95d71",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+          "updated_at_utc": "2026-06-26T14:07:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2279484"
+        }
+      ],
+      "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+      "updated_at_utc": "2026-06-26T14:07:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "venue_name": "Zepp Osaka Bayside"
     },
     {
       "artist_name": "中日ドラゴンズ",
@@ -44977,6 +45393,44 @@
       "updated_at_utc": "2026-06-16T09:16:41Z",
       "url": "https://ticketjam.jp/tickets/hanshin-chunichi/event/1040346",
       "venue_name": "バンテリンドームナゴヤ"
+    },
+    {
+      "artist_name": "埼玉西武ライオンズ",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "野球",
+      "event_date": "2026-08-25",
+      "event_end_date": "2026-08-25",
+      "event_end_time": null,
+      "event_key": "7adb760b64eeb034c374",
+      "event_start_time": "18:00",
+      "evidence_snippet": "2026-08-25 18:00 / 埼玉県 ベルーナドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/lions-fighters/event/1040525",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "埼玉西武ライオンズ",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/lions-fighters/event/1040525",
+          "priority": 40,
+          "record_id": "782d406bd00ec9b2b8ac23abc9c455ef78f2709f1f8185efbb0682d24316e560",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "西武 vs 日本ハム",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/lions-fighters/event/1040525"
+        }
+      ],
+      "title": "西武 vs 日本ハム",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/lions-fighters/event/1040525",
+      "venue_name": "ベルーナドーム"
     },
     {
       "artist_name": "オリックス・バファローズ",
@@ -50069,6 +50523,44 @@
       "venue_name": "Zepp Fukuoka"
     },
     {
+      "artist_name": "New",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-05",
+      "event_end_date": "2026-09-05",
+      "event_end_time": null,
+      "event_key": "70388b726bcddfbac064",
+      "event_start_time": null,
+      "evidence_snippet": "会場: Zepp Osaka Bayside / 日時: 2026-09-05 / 2026年9月5日(土)開場 18:00 / 開演 19:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "first_seen_at_utc": "2026-06-26T14:07:55Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "New",
+      "raw_venue_name": "Zepp Osaka Bayside",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+          "priority": 30,
+          "record_id": "ece106e82efe1baadb2d7171d17d4be2d7a6e6c4a90a52514c24d0a319781022",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+          "updated_at_utc": "2026-06-26T14:07:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2279484"
+        }
+      ],
+      "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+      "updated_at_utc": "2026-06-26T14:07:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "venue_name": "Zepp Osaka Bayside"
+    },
+    {
       "artist_name": "CORTIS",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -51023,6 +51515,44 @@
       "updated_at_utc": "2026-06-25T08:01:21Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=156145",
       "venue_name": "Zepp Haneda(Tokyo)"
+    },
+    {
+      "artist_name": "New",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-06",
+      "event_end_date": "2026-09-06",
+      "event_end_time": null,
+      "event_key": "e4b53b3df68d9a66bfab",
+      "event_start_time": null,
+      "evidence_snippet": "会場: Zepp Osaka Bayside / 日時: 2026-09-06 / 2026年9月6日(日)開場 15:00 / 開演 16:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "first_seen_at_utc": "2026-06-26T14:07:55Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "New",
+      "raw_venue_name": "Zepp Osaka Bayside",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279484",
+          "priority": 30,
+          "record_id": "f73da5e3fc6b267f2145bead66b6260725e26842d3a8dff7f585a876afd67a25",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+          "updated_at_utc": "2026-06-26T14:07:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2279484"
+        }
+      ],
+      "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+      "updated_at_utc": "2026-06-26T14:07:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2279484",
+      "venue_name": "Zepp Osaka Bayside"
     },
     {
       "artist_name": "CORTIS",
@@ -52805,6 +53335,44 @@
       "venue_name": "B.9 V1"
     },
     {
+      "artist_name": "ペルソナ（Persona）",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-11",
+      "event_end_date": "2026-09-11",
+      "event_end_time": null,
+      "event_key": "85ec56f5b168d791b2ca",
+      "event_start_time": "19:00",
+      "evidence_snippet": "2026-09-11 19:00 / 福岡県 Zepp Fukuoka",
+      "evidence_url": "https://ticketjam.jp/tickets/lotus-juice/event/1206843",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "ペルソナ（Persona）",
+      "raw_venue_name": "Zepp Fukuoka",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/lotus-juice/event/1206843",
+          "priority": 40,
+          "record_id": "f4add28477d2827810d3e62c9324b51ee00e9668d3c57a7167cc1188b24688a9",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "PERSONA LIVE TOUR 2026 - Resonance -",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/lotus-juice/event/1206843"
+        }
+      ],
+      "title": "PERSONA LIVE TOUR 2026 - Resonance -",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/lotus-juice/event/1206843",
+      "venue_name": "Zepp Fukuoka"
+    },
+    {
       "artist_name": "日本フィルハーモニー交響楽団",
       "capacity": null,
       "display_source_class": "",
@@ -53459,6 +54027,44 @@
       "updated_at_utc": "2026-06-07T07:27:12Z",
       "url": "https://ticketjam.jp/tickets/yasuoka-yutaka/event/1135046",
       "venue_name": "神戸国際会館 こくさいホール"
+    },
+    {
+      "artist_name": "TWS",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-13",
+      "event_end_date": "2026-09-13",
+      "event_end_time": null,
+      "event_key": "148832deed647350a38a",
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-09-13 15:00 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/tws/event/1206723",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "TWS（トゥアス）",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tws/event/1206723",
+          "priority": 40,
+          "record_id": "355e9b5214e0fbf66798756d9cb19c9310389e37dc0ea97366c89d75cee43950",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "2026 TWS TOUR '24/7:FOR:YOU' IN JAPAN",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/tws/event/1206723"
+        }
+      ],
+      "title": "2026 TWS TOUR '24/7:FOR:YOU' IN JAPAN",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/tws/event/1206723",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "児玉隼人",
@@ -54123,6 +54729,18 @@
           "title": "日本ハムファイターズ【レ・ジェイド北海道ボールパーク立体駐車場】",
           "updated_at_utc": "2026-06-19T08:53:51Z",
           "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043966"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/fighters-parking/event/1043889",
+          "priority": 40,
+          "record_id": "4fb139ca8c7cb70b3bd05a1487a5a8dc89280d241f38a792eb4ddef2e3f1da90",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "日本ハムファイターズ駐車場券【P1-P7】",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043889"
         }
       ],
       "title": "日本ハムファイターズ【レ・ジェイド北海道ボールパーク立体駐車場】",
@@ -54591,6 +55209,18 @@
           "title": "日本ハムファイターズ【レ・ジェイド北海道ボールパーク立体駐車場】",
           "updated_at_utc": "2026-06-19T08:53:51Z",
           "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043967"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/fighters-parking/event/1043890",
+          "priority": 40,
+          "record_id": "c4edc90d4d0aebcdb75db8b419b481296b085d21d23e9e66856c3da58335616f",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "日本ハムファイターズ駐車場券【P1-P7】",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043890"
         }
       ],
       "title": "日本ハムファイターズ【レ・ジェイド北海道ボールパーク立体駐車場】",
@@ -55285,6 +55915,18 @@
           "title": "日本ハムファイターズ【PARKS PARK 北広島市中央6丁目駐車場】",
           "updated_at_utc": "2026-06-24T07:10:47Z",
           "url": "https://ticketjam.jp/tickets/fighters-parking/event/1044375"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/fighters-parking/event/1043891",
+          "priority": 40,
+          "record_id": "94876133d785a7ca585c1608550f2e89ff4d36ce699e4993755349d9730f8c58",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "日本ハムファイターズ駐車場券【P1-P7】",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043891"
         }
       ],
       "title": "日本ハムファイターズ【中山機械(株)駐車】",
@@ -55645,6 +56287,44 @@
       "updated_at_utc": "2026-06-25T07:53:54Z",
       "url": "https://kyodo-osaka.co.jp/search/detail/13371",
       "venue_name": "大阪城ホール"
+    },
+    {
+      "artist_name": "北山宏光",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-19",
+      "event_end_date": "2026-09-19",
+      "event_end_time": null,
+      "event_key": "e3f7d758319e5fe58b92",
+      "event_start_time": "18:00",
+      "evidence_snippet": "2026-09-19 18:00 / 東京都 有明アリーナ",
+      "evidence_url": "https://ticketjam.jp/tickets/tobe-newstar/event/1205731",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "北山宏光（TOBE）",
+      "raw_venue_name": "有明アリーナ",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tobe-newstar/event/1205731",
+          "priority": 40,
+          "record_id": "4cba523225e57c6e4ba9a6499808fd574da768db0d8ffa12fa4b1d83020dc32b",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "HIROMITSU KITAYAMA LIVE TOUR 2026「ULTRActi:on」",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/tobe-newstar/event/1205731"
+        }
+      ],
+      "title": "HIROMITSU KITAYAMA LIVE TOUR 2026「ULTRActi:on」",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/tobe-newstar/event/1205731",
+      "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "Kis-My-Ft2",
@@ -56233,6 +56913,18 @@
           "title": "日本ハムファイターズ【VIP2 PARKING 駐車券】",
           "updated_at_utc": "2026-06-15T09:47:06Z",
           "url": "https://ticketjam.jp/tickets/fighters-parking/event/1125304"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/fighters-parking/event/1043892",
+          "priority": 40,
+          "record_id": "640babd512a9023f1560a33eb393e9f930286066c0a38c89a3a4e9c55731f582",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "日本ハムファイターズ駐車場券【P1-P7】",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/fighters-parking/event/1043892"
         }
       ],
       "title": "日本ハムファイターズ【VIP2 PARKING 駐車券】",
@@ -57467,6 +58159,44 @@
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
     {
+      "artist_name": "&TEAM",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-22",
+      "event_end_date": "2026-09-22",
+      "event_end_time": null,
+      "event_key": "93edd525cb2990379c0b",
+      "event_start_time": null,
+      "evidence_snippet": "会場: ベルーナドーム(埼玉県所沢市) / 日時: 2026-09-22 / 2026年9月22日(火・祝)開場16:00/開演18:00(予定)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280783",
+      "first_seen_at_utc": "2026-06-26T14:07:55Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "&TEAM",
+      "raw_venue_name": "ベルーナドーム(埼玉県所沢市)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280783",
+          "priority": 30,
+          "record_id": "3d55e2dd53c51f44fbb202ae82ef0edebd14d2e21baebbafaaef4a0255e4de8e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-06-26T14:07:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2280783"
+        }
+      ],
+      "title": "INKIGAYO LIVE in TOKYO",
+      "updated_at_utc": "2026-06-26T14:07:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2280783",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "BABYMONSTER",
       "capacity": 55000,
       "display_source_class": "venue_official",
@@ -57945,6 +58675,44 @@
       "updated_at_utc": "2026-05-17T06:43:56Z",
       "url": "https://ticketjam.jp/tickets/rakuten-fighters/event/1031301",
       "venue_name": "エスコンフィールドHOKKAIDO"
+    },
+    {
+      "artist_name": "&TEAM",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "9fe21f6743fd0021e2ea",
+      "event_start_time": null,
+      "evidence_snippet": "会場: ベルーナドーム(埼玉県所沢市) / 日時: 2026-09-23 / 2026年9月23日(水・祝)開場16:00/開演18:00(予定)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280783",
+      "first_seen_at_utc": "2026-06-26T14:07:55Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "&TEAM",
+      "raw_venue_name": "ベルーナドーム(埼玉県所沢市)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280783",
+          "priority": 30,
+          "record_id": "e25c3885ed77be5d1a344770939d273fa2c894a783831b737d64983e8fbe53bd",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-06-26T14:07:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2280783"
+        }
+      ],
+      "title": "INKIGAYO LIVE in TOKYO",
+      "updated_at_utc": "2026-06-26T14:07:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2280783",
+      "venue_name": "ベルーナドーム"
     },
     {
       "artist_name": "BABYMONSTER",
@@ -60154,12 +60922,12 @@
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/rockonsocialclub/event/1112272",
           "priority": 40,
-          "record_id": "3dc1c075b0f2aa6c011f52e82bf1500c3355fde59a2ed89b0544e7ca3f63cfe9",
+          "record_id": "62e436c93b33dcf683454a510ce1e3f6e6c7404bc00b382364c51f34eb44b466",
           "source_class": "",
           "source_id": "ticketjam_events",
           "source_label": "Ticketjam Events (Secondary)",
           "title": "Rockon Social Club Tour 2026 The Warriors",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
           "url": "https://ticketjam.jp/tickets/rockonsocialclub/event/1112272"
         }
       ],
@@ -60697,6 +61465,44 @@
       "updated_at_utc": "2026-05-30T06:44:25Z",
       "url": "https://ticketjam.jp/tickets/taisho-iwasaki/event/1173145",
       "venue_name": "マリンメッセ福岡"
+    },
+    {
+      "artist_name": "刀剣乱舞（とうらぶ）",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-04",
+      "event_end_date": "2026-10-04",
+      "event_end_time": null,
+      "event_key": "66e6ea7e4f464c16c62c",
+      "event_start_time": "11:00",
+      "evidence_snippet": "2026-10-04 11:00 / 東京都 国立代々木競技場 第一体育館",
+      "evidence_url": "https://ticketjam.jp/tickets/ichiki-mitsuhiro/event/1219220",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "刀剣乱舞（とうらぶ）",
+      "raw_venue_name": "国立代々木競技場 第一体育館",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/ichiki-mitsuhiro/event/1219220",
+          "priority": 40,
+          "record_id": "9c51a459a9bf9094c79ffebd7ee0f0014c87651a480f169a45a5023eaba62a00",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "刀剣乱舞 - ICE BLADE -",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/ichiki-mitsuhiro/event/1219220"
+        }
+      ],
+      "title": "刀剣乱舞 - ICE BLADE -",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/ichiki-mitsuhiro/event/1219220",
+      "venue_name": "国立代々木競技場第一体育館"
     },
     {
       "artist_name": "マカロニえんぴつ",
@@ -69749,6 +70555,44 @@
       "venue_name": "ららアリーナ 東京ベイ"
     },
     {
+      "artist_name": "FIGHTERS LEGENDS GAME（ファイターズ レジェンド ゲーム）",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-22",
+      "event_end_date": "2026-11-22",
+      "event_end_time": null,
+      "event_key": "33a3bbf7f5b84540d614",
+      "event_start_time": "13:00",
+      "evidence_snippet": "2026-11-22 13:00 / 北海道 エスコンフィールド北海道",
+      "evidence_url": "https://ticketjam.jp/tickets/makoto-kaneko/event/1220094",
+      "first_seen_at_utc": "2026-06-26T07:18:57Z",
+      "pref_name": "北海道",
+      "raw_artist_name": "FIGHTERS LEGENDS GAME（ファイターズ レジェンド ゲーム）",
+      "raw_venue_name": "エスコンフィールド北海道",
+      "source_priority": 40,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/makoto-kaneko/event/1220094",
+          "priority": 40,
+          "record_id": "da11fc6519931a104ab094a97485e6e7c65a2156f8dd85b221c45874e2a38c0f",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "FIGHTERS LEGENDS GAME",
+          "updated_at_utc": "2026-06-26T07:18:57Z",
+          "url": "https://ticketjam.jp/tickets/makoto-kaneko/event/1220094"
+        }
+      ],
+      "title": "FIGHTERS LEGENDS GAME",
+      "updated_at_utc": "2026-06-26T07:18:57Z",
+      "url": "https://ticketjam.jp/tickets/makoto-kaneko/event/1220094",
+      "venue_name": "エスコンフィールドHOKKAIDO"
+    },
+    {
       "artist_name": "東京都交響楽団（都響）",
       "capacity": null,
       "display_source_class": "",
@@ -71513,6 +72357,18 @@
           "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
         },
         {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "0352ee24a3db395b947129ee05eafd391b1101d288ebfd7eccdd7b8feecd627a",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
+        },
+        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/parksunghoon/event/1164280",
           "priority": 40,
@@ -71637,6 +72493,18 @@
           "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
           "updated_at_utc": "2026-06-25T07:52:17Z",
           "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "748b68a7feffdf92ca64dbc418479c188d3ccb5e4556f581e5916e31ad9afe39",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
         },
         {
           "content_extractor": null,
@@ -73739,6 +74607,18 @@
           "url": "https://www.hybejapan-concert.com/statics/enhypen_blood_saga"
         },
         {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "f2658d5d4dd5487d9409fd5a5641fcfe8ded6e9e5659affe96e33960e76fa530",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
+        },
+        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/parksunghoon/event/1164282",
           "priority": 40,
@@ -73863,6 +74743,18 @@
           "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
           "updated_at_utc": "2026-06-25T07:53:56Z",
           "url": "https://www.hybejapan-concert.com/statics/enhypen_blood_saga"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "89a5f9d3c808361540e956c4cbf29314d48e4b1cf60fc63917b7b2082f4b0c06",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
         },
         {
           "content_extractor": null,
@@ -74645,6 +75537,18 @@
           "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
           "updated_at_utc": "2026-06-25T07:54:01Z",
           "url": "https://enhypen-jp.weverse.io/news/932a12458df2"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "979dc79c2e3650f7bf106d41c233451ddce63b174fd1ff1470d8f7318c2ed95e",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
         }
       ],
       "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
@@ -74721,6 +75625,18 @@
           "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
           "updated_at_utc": "2026-06-25T07:54:01Z",
           "url": "https://enhypen-jp.weverse.io/news/932a12458df2"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "2dd866ac58a76845cee745d16f439fa2c932dff21403d67f81fb203df1170277",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
         }
       ],
       "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
@@ -74923,6 +75839,18 @@
           "title": "ENHYPEN WORLD TOUR ‘BLOOD SAGA’ IN JAPAN",
           "updated_at_utc": "2026-05-04T06:48:59Z",
           "url": "https://www.hybejapan-concert.com/statics/enhypen_blood_saga"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "7329eaf124c4c97193908ab467c1e22212e3e218a26ce5a805d6b9f7e2719352",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
         }
       ],
       "title": "ENHYPEN WORLD TOUR ‘BLOOD SAGA’ IN JAPAN",
@@ -74961,6 +75889,18 @@
           "title": "ENHYPEN WORLD TOUR ‘BLOOD SAGA’ IN JAPAN",
           "updated_at_utc": "2026-05-04T06:48:59Z",
           "url": "https://www.hybejapan-concert.com/statics/enhypen_blood_saga"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.hybejapan.events/enhypen",
+          "priority": 20,
+          "record_id": "90c102b911eeab91943752b368f0e9099aca630b1fcd06aaa139f5e73d040069",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
+          "updated_at_utc": "2026-06-27T00:07:20Z",
+          "url": "https://www.hybejapan.events/enhypen"
         }
       ],
       "title": "ENHYPEN WORLD TOUR ‘BLOOD SAGA’ IN JAPAN",
@@ -75513,7 +76453,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-06-27T06:47:31Z",
+  "generated_at_utc": "2026-06-27T06:50:26Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -75525,13 +76465,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 44,
+      "kstyle_music": 49,
       "official_events": 553,
       "starto_concert": 126,
-      "ticketjam_events": 1121,
+      "ticketjam_events": 1136,
       "venue_web_discovery": 14
     },
-    "event_count": 1858,
-    "record_count_before_grouping": 2267
+    "event_count": 1878,
+    "record_count_before_grouping": 2302
   }
 }
