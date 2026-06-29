@@ -183,5 +183,7 @@ uv run streamlit run app.py
 - 本READMEは当リポジトリ固有情報を主に記載し、横断マッピングは正本を参照してください。
 
 ## 常設コンテキスト
+- `AGENTS.md`: MSV作業入口、読み順、安全境界、Git/verifyの最小ルール
+- `docs/context/PROJECT_CONTEXT.md`: optional upper premise layer（目的、判断原則、非目的、LP掲載優先）
 - `docs/context/STATUS.md`: 現在地（最新スナップショット）
 - `docs/context/DECISIONS.md`: 意思決定ログ

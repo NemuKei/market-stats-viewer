@@ -6,7 +6,7 @@
 
 対象は、会場公式以外のイベント情報に関する取得漏れ、イベント単位の正規化、会場名・アーティスト名・カテゴリ分類のメンテナンス候補である。
 
-Codex automation は、監査レポート生成、低リスク修正案の作成、本文確認済み候補の限定取り込み、verify、PR作成、自動マージ判定までを行う。`Auto-merge Gate Checklist` をすべて満たす `auto_merge_candidate` は自動マージしてよい。自動マージした場合は、同じ候補をマージ前と別の観点で確認する `Post-merge Audit` を必ず実行する。
+Codex automation は、監査レポート生成、低リスク修正案の作成、本文確認済み候補の限定取り込み、verify、PR作成、自動マージ判定までを行う。判断の中心は prompt 文面ではなく、入力、許可変更、禁止変更、evidence、verification、`Post-merge Audit` である。`Auto-merge Gate Checklist` をすべて満たす `auto_merge_candidate` は自動マージしてよい。自動マージした場合は、同じ候補をマージ前と別の観点で確認する `Post-merge Audit` を必ず実行する。
 
 ## Inputs
 
@@ -36,72 +36,65 @@ Codex automation は、監査レポート生成、低リスク修正案の作成
 - `scripts/signals/sources/kstyle.py`
 - `scripts/update_event_signals_data.py`
 
-## Automation Prompt
+## Automation Contract
 
-Codex automation には次のプロンプトを使う。
+Automation 実行時は、長い prompt ではなく次の contract を満たすことを優先する。
 
-```text
-market-stats-viewer のイベント情報監査レポートを確認し、低リスク修正案の作成、限定取り込み、自動マージ判定、マージ後監査まで実行してください。
+### Required Reads
 
-必ず最初に以下を読んでください。
-- AGENTS.md
-- docs/context/PROJECT_CONTEXT.md
-- docs/context/STATUS.md
-- docs/context/DECISIONS.md
-- docs/spec_update_pipeline.md
-- docs/event_signal_audit_automation.md
-- data/event_signal_audit_report.json
+- `AGENTS.md`
+- `docs/context/PROJECT_CONTEXT.md` の `Always Read Block`
+- `docs/context/STATUS.md`
+- `docs/context/DECISIONS.md`
+- `docs/spec_update_pipeline.md`
+- `docs/event_signal_audit_automation.md`
+- `data/event_signal_audit_report.json`
 
-実行目的:
-- data/event_signal_audit_report.json の `summary` と候補配列を読み、各候補行の `automation_bucket` ごとに処理を分ける。
-- report_only は監査結果の要約だけを作る。
-- pr_candidate は記事本文を確認し、低リスク修正案または限定取り込みを作る。
-- human_review は修正せず、理由と確認対象をまとめる。
-- K-Style 取得漏れ候補は、本文を取得して、国内公演か、未来日程か、日付・会場・アーティストが抽出可能かを確認する。
-- 確認済みで現行parserが抽出できる候補は `backfill_article_urls` へ追加し、`data/event_signals.sqlite` へ限定取り込みしてよい。
-- 現行parserが近い形式差分だけで失敗している候補は、`tests/test_kstyle_source.py` で対象形式を固定し、`scripts/signals/sources/kstyle.py` に狭い parser 形式対応を追加してから限定取り込みしてよい。
-- 直接取り込みは、記事本文全文を保存せず、既存の `SignalRecord` 生成、辞書正規化、`upsert_signals` と同等の保存経路を使う。
+### Work Classification
 
-許可する変更:
-- data/event_signal_audit_report.json
-- data/event_signal_audit_report.md
-- data/event_signals.sqlite への K-Style 確認済み候補の限定追加
-- data/ticketjam_supplement_report.json
-- data/ticketjam_supplement_report.md
-- data/venue_aliases.csv への低リスク alias 追加案
-- data/artist_registry.manual.csv への低リスク manual entry 追加案
-- tests/test_kstyle_source.py など、既存挙動を固定するための狭いテスト追加
-- scripts/signals/sources/kstyle.py の狭い parser 形式対応
-- scripts/update_event_signals_data.py の `kstyle_music.backfill_article_urls` 追加
-- docs/context/STATUS.md の実行結果更新
+- `report_only`: 修正しない。監査結果の要約対象とする。
+- `pr_candidate`: 記事本文を確認し、低リスク修正案または限定取り込みの対象にしてよい。
+- `human_review`: 修正しない。理由と確認対象だけを出す。
+- K-Style 取得漏れ候補は、本文確認後に `import_ready`、`parser_patch_ready`、`out_of_scope`、`human_review_required` へ再分類する。
 
-禁止する変更:
-- events.sqlite / event_signals.sqlite の大規模再生成
+### Allowed Changes
+
+- `data/event_signal_audit_report.json`
+- `data/event_signal_audit_report.md`
+- `data/event_signals.sqlite` への K-Style 確認済み候補の限定追加
+- `data/ticketjam_supplement_report.json`
+- `data/ticketjam_supplement_report.md`
+- `data/venue_aliases.csv` への低リスク alias 追加案
+- `data/artist_registry.manual.csv` への低リスク manual entry 追加案
+- `tests/test_kstyle_source.py` など、既存挙動を固定するための狭いテスト追加
+- `scripts/signals/sources/kstyle.py` の狭い parser 形式対応
+- `scripts/update_event_signals_data.py` の `kstyle_music.backfill_article_urls` 追加
+- `docs/context/STATUS.md` の実行結果更新
+
+### Prohibited Changes
+
+- `events.sqlite` / `event_signals.sqlite` の大規模再生成
 - K-Style以外の source 行の再生成または削除
-- data/manifest.json の更新
+- `data/manifest.json` の更新
 - Release asset の更新
 - DBスキーマ変更
-- venue_id / artist_id の変更
-- venue_registry.csv の正式会場名変更
+- `venue_id` / `artist_id` の変更
+- `venue_registry.csv` の正式会場名変更
 - 新しい外部サービス依存の追加
 - parser全体の大幅再設計
-- LP側の表示契約を変える変更
+- source優先順位、LP側の表示契約、フィールド契約、カテゴリ契約の変更
 - `Auto-merge Gate Checklist` を満たさない変更の自動マージ
 
-必須出力:
+### Required Evidence And Output
+
 - 変更対象ファイル一覧
-- 候補ごとの根拠
+- 候補ごとの根拠URL、title、event_date、venue_name、artist_name のうち該当する値
 - 候補ごとの判定結果（取り込み、parser改善後に取り込み、対象外、人間確認）
 - 実施したverifyコマンドと結果
-- lp_impact
-- needs_review_reason
-- 自動マージ可、PR作成のみ、人間確認が必要、の分類
-
-最終状態:
-- `classification=auto_merge_candidate` で verify が通り、禁止条件に該当しない場合は自動マージしてよい。
-- 自動マージした場合は `Post-merge Audit` を実行し、監査結果をPRまたはautomation出力に残す。
-- needs_review_reason が1件でも残る場合、その候補は修正しない。
-```
+- `lp_impact`
+- 残った `needs_review_reason`
+- `auto_merge_candidate`、`pr_only`、`human_review_required`、`blocked` の分類
+- 自動マージした場合の `Post-merge Audit` 結果
 
 ## Execution Steps
 
