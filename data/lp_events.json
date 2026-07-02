@@ -54101,6 +54101,44 @@
       "venue_name": "東京ドーム"
     },
     {
+      "artist_name": "Jisun",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-18",
+      "event_end_date": "2026-09-18",
+      "event_end_time": null,
+      "event_key": "9d5b004896e4f5143431",
+      "event_start_time": null,
+      "evidence_snippet": "会場: / せたがやイーグレットホール(世田谷区民会館) / 日時: 2026-09-18 / 2026年9月18日(金)/ せたがやイーグレットホール(世田谷区民会館)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280979",
+      "first_seen_at_utc": "2026-07-02T13:33:56Z",
+      "pref_name": null,
+      "raw_artist_name": "Jisun",
+      "raw_venue_name": "/ せたがやイーグレットホール(世田谷区民会館)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280979",
+          "priority": 30,
+          "record_id": "4996b3f8b859a8d0231c8f91de8943249305d029c0457f9178dd8d02cdae4e2b",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 JISUNG FANMEETING IN JAPAN : OUR SCENE",
+          "updated_at_utc": "2026-07-02T13:33:56Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2280979"
+        }
+      ],
+      "title": "2026 JISUNG FANMEETING IN JAPAN : OUR SCENE",
+      "updated_at_utc": "2026-07-02T13:33:56Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2280979",
+      "venue_name": "/ せたがやイーグレットホール(世田谷区民会館)"
+    },
+    {
       "artist_name": "横山裕",
       "capacity": null,
       "display_source_class": "",
@@ -54327,6 +54365,44 @@
       "updated_at_utc": "2026-03-09T07:46:04Z",
       "url": "https://ticketjam.jp/tickets/carp/event/1040781",
       "venue_name": "阪神甲子園球場"
+    },
+    {
+      "artist_name": "Jisun",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-19",
+      "event_end_date": "2026-09-19",
+      "event_end_time": null,
+      "event_key": "3f856d17b2514b694a1f",
+      "event_start_time": null,
+      "evidence_snippet": "会場: / 寝屋川市立市民会館 大ホール / 日時: 2026-09-19 / 2026年9月19日(土)/ 寝屋川市立市民会館 大ホール",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280979",
+      "first_seen_at_utc": "2026-07-02T13:33:56Z",
+      "pref_name": null,
+      "raw_artist_name": "Jisun",
+      "raw_venue_name": "/ 寝屋川市立市民会館 大ホール",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280979",
+          "priority": 30,
+          "record_id": "1984dc10d51296eec8f5e3bb3907140c971bc0d90b80390d500c5fa9140b8cf7",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 JISUNG FANMEETING IN JAPAN : OUR SCENE",
+          "updated_at_utc": "2026-07-02T13:33:56Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2280979"
+        }
+      ],
+      "title": "2026 JISUNG FANMEETING IN JAPAN : OUR SCENE",
+      "updated_at_utc": "2026-07-02T13:33:56Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2280979",
+      "venue_name": "/ 寝屋川市立市民会館 大ホール"
     },
     {
       "artist_name": "東祥高",
@@ -77339,7 +77415,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-02T07:53:16Z",
+  "generated_at_utc": "2026-07-02T13:35:08Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -77351,13 +77427,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 47,
+      "kstyle_music": 49,
       "official_events": 565,
       "starto_concert": 116,
       "ticketjam_events": 1122,
       "venue_web_discovery": 39
     },
-    "event_count": 1889,
-    "record_count_before_grouping": 2352
+    "event_count": 1891,
+    "record_count_before_grouping": 2354
   }
 }
