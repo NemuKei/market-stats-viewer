@@ -24451,44 +24451,6 @@
       "venue_name": "Kアリーナ横浜"
     },
     {
-      "artist_name": "Official髭男dism",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-07-25",
-      "event_end_date": "2026-07-25",
-      "event_end_time": null,
-      "event_key": "482526c0949c2a9673fa",
-      "event_start_time": "18:00",
-      "evidence_snippet": "K Arena Yokohama official schedule lists OFFICIAL HIGE DANDISM one-man tour 2026 on 2026.07.25 with ARTIST Official髭男dism and START 18:00.",
-      "evidence_url": "https://k-arena.com/schedule/20260725-1/",
-      "first_seen_at_utc": "2026-07-02T00:09:33Z",
-      "pref_name": null,
-      "raw_artist_name": "Official髭男dism",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260725-1/",
-          "priority": 20,
-          "record_id": "8b61c1dd6f903783b50c28ae5adee29405c2dfce6db9bd632c9ee0df324c9916",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "OFFICIAL HIGE DANDISM one-man tour 2026",
-          "updated_at_utc": "2026-07-02T00:09:33Z",
-          "url": "https://k-arena.com/schedule/20260725-1/"
-        }
-      ],
-      "title": "OFFICIAL HIGE DANDISM one-man tour 2026",
-      "updated_at_utc": "2026-07-02T00:09:33Z",
-      "url": "https://k-arena.com/schedule/20260725-1/",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
       "artist_name": "相川七瀬",
       "capacity": 2473,
       "display_source_class": "venue_official",
@@ -26007,44 +25969,6 @@
       ],
       "title": "OFFICIAL HIGE DANDISM one-man tour 2026 Official髭男dism",
       "updated_at_utc": "2026-07-01T08:18:14Z",
-      "url": "https://k-arena.com/schedule/20260726-1/",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
-      "artist_name": "Official髭男dism",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-07-26",
-      "event_end_date": "2026-07-26",
-      "event_end_time": null,
-      "event_key": "e5c03a1a7fcc5307425e",
-      "event_start_time": "18:00",
-      "evidence_snippet": "K Arena Yokohama official schedule lists OFFICIAL HIGE DANDISM one-man tour 2026 on 2026.07.26 with ARTIST Official髭男dism and START 18:00.",
-      "evidence_url": "https://k-arena.com/schedule/20260726-1/",
-      "first_seen_at_utc": "2026-07-02T00:09:33Z",
-      "pref_name": null,
-      "raw_artist_name": "Official髭男dism",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260726-1/",
-          "priority": 20,
-          "record_id": "361c7d6f39e19a8944fd608a325857edeb9eca661d3f10a27260837cd0ba5f42",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "OFFICIAL HIGE DANDISM one-man tour 2026",
-          "updated_at_utc": "2026-07-02T00:09:33Z",
-          "url": "https://k-arena.com/schedule/20260726-1/"
-        }
-      ],
-      "title": "OFFICIAL HIGE DANDISM one-man tour 2026",
-      "updated_at_utc": "2026-07-02T00:09:33Z",
       "url": "https://k-arena.com/schedule/20260726-1/",
       "venue_name": "Kアリーナ横浜"
     },
@@ -76597,7 +76521,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-02T00:09:44Z",
+  "generated_at_utc": "2026-07-02T00:15:28Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -76613,9 +76537,9 @@
       "official_events": 565,
       "starto_concert": 116,
       "ticketjam_events": 1103,
-      "venue_web_discovery": 41
+      "venue_web_discovery": 39
     },
-    "event_count": 1872,
-    "record_count_before_grouping": 2327
+    "event_count": 1870,
+    "record_count_before_grouping": 2325
   }
 }
