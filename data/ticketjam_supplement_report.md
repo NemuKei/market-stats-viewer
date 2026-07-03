@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1348
+- ticketjam_unique_schedules: 1355
 - additional_unique_schedules: 3
-- overlap_unique_schedules: 2
-- noise_rate: 0.4
-- out_of_scope_rate: 0.9963
-- ticketjam_category_counts: {"その他": 86, "コンサート": 960, "野球": 302}
+- overlap_unique_schedules: 1
+- noise_rate: 0.25
+- out_of_scope_rate: 0.997
+- ticketjam_category_counts: {"その他": 93, "コンサート": 963, "野球": 299}
 
 ## Artist Gap
 
@@ -14,7 +14,7 @@
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | S | Mrs. GREEN APPLE | 0 | 0 | 0 | 0.0000 |  |
 | S | サザンオールスターズ | 0 | 0 | 0 | 0.0000 |  |
-| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 4 | 2 | 2 | 0.5000 | バンテリンドームナゴヤ, ヤンマースタジアム長居, 京セラドーム大阪 |
+| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 3 | 2 | 1 | 0.3333 | バンテリンドームナゴヤ, ヤンマースタジアム長居 |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
 | B | 福山雅治 | 1 | 1 | 0 | 0.0000 | 東京ドーム |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
@@ -28,10 +28,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-07-02T07:04:26Z
+- ticketjam_source_updated_at_utc: 2026-07-03T06:55:48Z
 - starto_source_updated_at_utc: 2026-06-30T02:21:18Z
 - kstyle_source_updated_at_utc: 2026-07-02T13:33:56Z
-- events_db_modified_at_utc: 2026-07-03T01:54:12Z
+- events_db_modified_at_utc: 2026-07-03T06:40:18Z
 
 ## Methodology
 
