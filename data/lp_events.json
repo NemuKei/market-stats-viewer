@@ -46513,6 +46513,44 @@
       "venue_name": "Zepp Osaka Bayside"
     },
     {
+      "artist_name": "&TEAM",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-05",
+      "event_end_date": "2026-09-05",
+      "event_end_time": null,
+      "event_key": "2463b098729c3090f366",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 〇埼玉 ベルーナドーム / 日時: 2026-09-05 / 2026年9月5日(土)開場 15:00/開演 17:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281075",
+      "first_seen_at_utc": "2026-07-06T15:02:55Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "&TEAM",
+      "raw_venue_name": "〇埼玉 ベルーナドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281075",
+          "priority": 30,
+          "record_id": "425c1b50b5b2b78e67b7c1ad3dd347ef95acdb14ad4eae3ee90f1e244e20f19b",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
+          "updated_at_utc": "2026-07-06T15:02:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281075"
+        }
+      ],
+      "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
+      "updated_at_utc": "2026-07-06T15:02:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281075",
+      "venue_name": "〇埼玉 ベルーナドーム"
+    },
+    {
       "artist_name": "CORTIS",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -47631,6 +47669,44 @@
       "updated_at_utc": "2026-06-26T14:07:55Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2279484",
       "venue_name": "Zepp Osaka Bayside"
+    },
+    {
+      "artist_name": "&TEAM",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-06",
+      "event_end_date": "2026-09-06",
+      "event_end_time": null,
+      "event_key": "0dfe2ccf2b896d4d866e",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 〇埼玉 ベルーナドーム / 日時: 2026-09-06 / 2026年9月6日(日)開場 14:00/開演 16:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281075",
+      "first_seen_at_utc": "2026-07-06T15:02:55Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "&TEAM",
+      "raw_venue_name": "〇埼玉 ベルーナドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281075",
+          "priority": 30,
+          "record_id": "19fdde7771c2d1ed11688277d508b8019177e11d23aeef0680e4099d89d0e2a0",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
+          "updated_at_utc": "2026-07-06T15:02:55Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281075"
+        }
+      ],
+      "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
+      "updated_at_utc": "2026-07-06T15:02:55Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281075",
+      "venue_name": "〇埼玉 ベルーナドーム"
     },
     {
       "artist_name": "CORTIS",
@@ -76677,7 +76753,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-06T08:48:34Z",
+  "generated_at_utc": "2026-07-06T15:04:07Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -76689,13 +76765,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 50,
+      "kstyle_music": 52,
       "official_events": 542,
       "starto_concert": 110,
       "ticketjam_events": 1096,
       "venue_web_discovery": 72
     },
-    "event_count": 1870,
-    "record_count_before_grouping": 2338
+    "event_count": 1872,
+    "record_count_before_grouping": 2340
   }
 }
