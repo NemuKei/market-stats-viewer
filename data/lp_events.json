@@ -68271,6 +68271,44 @@
       "venue_name": "大阪城ホール"
     },
     {
+      "artist_name": "P1Harmony",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-20",
+      "event_end_date": "2026-11-20",
+      "event_end_time": null,
+      "event_key": "8910a95b68eff1e22239",
+      "event_start_time": null,
+      "evidence_snippet": "会場: TOYOTA ARENA TOKYO / 日時: 2026-11-20 / 2026年11月20日(金)18:00開場 19:00開演",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281031",
+      "first_seen_at_utc": "2026-07-08T01:49:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "P1Harmony",
+      "raw_venue_name": "TOYOTA ARENA TOKYO",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281031",
+          "priority": 30,
+          "record_id": "33829061872fc8d566a81dfdc6fed5bf44b89dd7949d44d158fd32965db1f8fe",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 P1Harmony ASIA STAGE [BE UNIQUE] IN JAPAN",
+          "updated_at_utc": "2026-07-08T01:49:57Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281031"
+        }
+      ],
+      "title": "2026 P1Harmony ASIA STAGE [BE UNIQUE] IN JAPAN",
+      "updated_at_utc": "2026-07-08T01:49:57Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281031",
+      "venue_name": "TOYOTA ARENA TOKYO"
+    },
+    {
       "artist_name": "ASIAN KUNG-FU GENERATION",
       "capacity": 2009,
       "display_source_class": "venue_official",
@@ -68319,6 +68357,44 @@
       "updated_at_utc": "2026-07-07T07:49:09Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=157850",
       "venue_name": "Zepp札幌"
+    },
+    {
+      "artist_name": "P1Harmony",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-21",
+      "event_end_date": "2026-11-21",
+      "event_end_time": null,
+      "event_key": "a4c330eaeb0b76fd7e64",
+      "event_start_time": null,
+      "evidence_snippet": "会場: TOYOTA ARENA TOKYO / 日時: 2026-11-21 / 2026年11月21日(土)14:00開場 15:00開演",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281031",
+      "first_seen_at_utc": "2026-07-08T01:49:57Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "P1Harmony",
+      "raw_venue_name": "TOYOTA ARENA TOKYO",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281031",
+          "priority": 30,
+          "record_id": "aa929139f0db822d80e4301da6c99d00caf20144c3cca08ec813bcea2d1c5981",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 P1Harmony ASIA STAGE [BE UNIQUE] IN JAPAN",
+          "updated_at_utc": "2026-07-08T01:49:57Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281031"
+        }
+      ],
+      "title": "2026 P1Harmony ASIA STAGE [BE UNIQUE] IN JAPAN",
+      "updated_at_utc": "2026-07-08T01:49:57Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281031",
+      "venue_name": "TOYOTA ARENA TOKYO"
     },
     {
       "artist_name": "ASIAN KUNG-FU GENERATION",
@@ -76395,7 +76471,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-08T00:08:31Z",
+  "generated_at_utc": "2026-07-08T01:51:09Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -76407,13 +76483,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 48,
+      "kstyle_music": 50,
       "official_events": 553,
       "starto_concert": 109,
       "ticketjam_events": 1076,
       "venue_web_discovery": 75
     },
-    "event_count": 1861,
-    "record_count_before_grouping": 2334
+    "event_count": 1863,
+    "record_count_before_grouping": 2336
   }
 }
