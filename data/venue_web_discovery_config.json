@@ -2917,6 +2917,28 @@
       "evidence_snippet": "BIGBANG official tour page lists みずほPayPayドーム福岡 on 2026.12.27[Sun] with 開演:15:00.",
       "verified_at_utc": "2026-07-08T00:06:10Z",
       "discovery_query": "福岡PayPayドーム BIGBANG 2026 WORLD TOUR"
+    },
+    {
+      "event_id": "kansai-collection-2026-aw-2026-08-13-kyocera-dome-osaka",
+      "enabled": true,
+      "title": "KANSAI COLLECTION 2026 AUTUMN & WINTER",
+      "artist_name": "関西コレクション（KANSAI COLLECTION）",
+      "raw_artist_name": "関西コレクション（KANSAI COLLECTION）",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-08-13",
+      "event_end_date": "2026-08-13",
+      "event_start_time": "13:00",
+      "event_category": "その他",
+      "source_class": "promoter_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.kansai-collection.net/",
+      "evidence_url": "https://www.kansai-collection.net/",
+      "evidence_snippet": "Official Kansai Collection page lists 2026年8月13日(木), 開演13:00(予定), 京セラドーム大阪, 主催 関西コレクション実行委員会.",
+      "verified_at_utc": "2026-07-10T00:08:11Z",
+      "discovery_query": "京セラドーム大阪 KANSAI COLLECTION 2026 A/W"
     }
   ]
 }
