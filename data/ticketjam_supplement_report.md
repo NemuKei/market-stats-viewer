@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1298
+- ticketjam_unique_schedules: 1288
 - additional_unique_schedules: 3
-- overlap_unique_schedules: 1
-- noise_rate: 0.25
-- out_of_scope_rate: 0.9969
-- ticketjam_category_counts: {"その他": 110, "コンサート": 911, "野球": 277}
+- overlap_unique_schedules: 3
+- noise_rate: 0.5
+- out_of_scope_rate: 0.9953
+- ticketjam_category_counts: {"その他": 113, "コンサート": 901, "野球": 274}
 
 ## Artist Gap
 
@@ -17,9 +17,9 @@
 | A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 3 | 2 | 1 | 0.3333 | バンテリンドームナゴヤ, ヤンマースタジアム長居 |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
 | B | 福山雅治 | 1 | 1 | 0 | 0.0000 | 東京ドーム |
+| B | EXILE | 1 | 0 | 1 | 1.0000 | 京セラドーム大阪 |
+| B | GLAY | 1 | 0 | 1 | 1.0000 | Zepp DiverCity(Tokyo) |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
-| B | EXILE | 0 | 0 | 0 | 0.0000 |  |
-| B | GLAY | 0 | 0 | 0 | 0.0000 |  |
 
 ## Venue Gap
 
@@ -28,10 +28,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-07-11T06:04:07Z
+- ticketjam_source_updated_at_utc: 2026-07-12T06:27:08Z
 - starto_source_updated_at_utc: 2026-07-10T02:00:32Z
 - kstyle_source_updated_at_utc: 2026-07-11T13:00:22Z
-- events_db_modified_at_utc: 2026-07-12T01:44:16Z
+- events_db_modified_at_utc: 2026-07-12T06:11:01Z
 
 ## Methodology
 
