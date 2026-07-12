@@ -2,9 +2,12 @@ import json
 import sqlite3
 from pathlib import Path
 
+import pytest
+
 from scripts.build_lp_events import build_lp_events
 from scripts.signals.sources.base import canonical_labels_json, compute_content_hash, compute_signal_uid
 from scripts.signals.types import SignalRecord
+from scripts.signals.text_quality import EventTextQualityError
 
 
 def _create_events_db(path: Path) -> None:
@@ -217,6 +220,28 @@ def _create_signals_db(path: Path) -> None:
         )
     conn.commit()
     conn.close()
+
+
+def test_build_rejects_mojibake_before_output_payload(tmp_path: Path) -> None:
+    events_db = tmp_path / "events.sqlite"
+    signals_db = tmp_path / "signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+    good = "GRe4N BOYZ イマーシブライブシアター2026"
+    bad = good.encode("utf-8").decode("ptcp154")
+    conn = sqlite3.connect(str(signals_db))
+    conn.execute(
+        "UPDATE signals SET title = ? WHERE source_id = 'ticketjam_events'",
+        (bad,),
+    )
+    conn.commit()
+    conn.close()
+
+    with pytest.raises(EventTextQualityError, match="title=probable_utf8_mojibake"):
+        build_lp_events(
+            events_db_path=events_db,
+            event_signals_db_path=signals_db,
+        )
 
 
 def _signal(

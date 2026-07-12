@@ -164,6 +164,7 @@
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: recent news sitemap、検索結果、必要な場合の `backfill_article_urls` 明示URLから記事を取得する。記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する。`backfill_article_urls` は監査で本文・日程・会場を確認済みだが通常入口から漏れた記事だけに使い、取得対象ソースの優先順位は変更しない。
   - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集しつつ、公開 sitemap も補完導線として併用する。イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）とページ見出しを組み合わせ、`イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
+    - HTML responseはraw bytesをUTF-8 strict decodeする。HTTPのUTF-8 charsetは監査情報として扱い、`apparent_encoding` による推測decodeやdecode失敗時の別encoding fallbackは行わない
     - Phase 1 対象: 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
     - 会場ページマスタ: `data/ticketjam_venue_pages.csv`
       - `venue_id` は内部辞書の canonical 会場へ対応付ける
@@ -250,6 +251,13 @@
   - `signals` は既定で `content_hash` が変わった行のみ UPSERT
   - ただし `ticketjam_events` は通常運用で `upsert_existing=false` のため、既存行更新は行わず新規行のみ INSERT する
   - `signal_sources.updated_at_utc/last_signature` は変化がある場合のみ更新
+- Event text quality gate:
+  - source parser完了後、DBのclear/prune/upsert/signature更新より前に、表示・統合に使うイベント文字列を共通validatorで検証する
+  - Unicode replacement character、禁止control character、または「元文字列を既知の誤encodingへencodeしてUTF-8 strict decodeすると日本語へ復元できる」高確度な誤decodeを拒否する
+  - 正常なCyrillic、絵文字、アクセント付きLatin文字、日本語記号は許可する。文字種だけを根拠に拒否しない
+  - 不正レコードが1件でもあるsource更新はDB変更前に失敗させる。部分反映、黙示除外、自動逆変換はしない
+  - `build_lp_events` は `events.sqlite` / `event_signals.sqlite` 由来レコードを同じvalidatorでpreflightし、不正時はoutputを書かない
+  - 既存破損データの回復はcanonical event URL単位で再取得し、正常レコードへ置換する。最古の `first_seen_at_utc` を保持し、UID/content hash/LP event keyを再計算して監査する。通常の `new_only` による自然回復へ依存しない
 - Access policy:
   - `requests.Session` + UA明示
   - User-Agent: `market-stats-viewer-signals-bot/1.0 (+https://deltahelmlab.com/)`

@@ -52,6 +52,27 @@ class TicketjamPrefectureMonthTests(unittest.TestCase):
         self.assertEqual(candidate["venue_name"], "京セラドーム大阪")
         self.assertEqual(candidate["pref_name"], "大阪府")
 
+    def test_html_response_uses_utf8_bytes_not_apparent_encoding(self) -> None:
+        class Response:
+            content = "公演🎤 GRe4N BOYZ".encode("utf-8")
+            apparent_encoding = "ptcp154"
+
+        decoded = self.source._decode_html_response(
+            Response(), url="https://ticketjam.jp/event/fixture"
+        )
+
+        self.assertEqual(decoded, "公演🎤 GRe4N BOYZ")
+
+    def test_html_response_rejects_non_utf8_bytes(self) -> None:
+        class Response:
+            content = b"\x82\xa0"
+            apparent_encoding = "shift_jis"
+
+        with self.assertRaisesRegex(ValueError, "not valid UTF-8"):
+            self.source._decode_html_response(
+                Response(), url="https://ticketjam.jp/event/fixture"
+            )
+
     def test_build_prefecture_month_page_url_uses_events_page(self) -> None:
         url = self.source._build_prefecture_month_page_url(
             "https://ticketjam.jp/prefectures/osaka/month?foo=bar",

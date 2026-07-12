@@ -47,6 +47,7 @@ from .signals.sources.starto import StartoConcertSource
 from .signals.sources.ticketjam import TicketjamEventsSource
 from .signals.sources.venue_web_discovery import VenueWebDiscoverySource
 from .signals.types import SignalRecord, SignalSourceRecord
+from .signals.text_quality import validate_event_text_fields
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
@@ -332,6 +333,19 @@ def compute_source_signature(signals: list[SignalRecord]) -> str:
     uid_hash = {row.signal_uid: row.content_hash for row in signals}
     payload = json.dumps(sorted(uid_hash.items()), ensure_ascii=False)
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def validate_signal_text_quality(signals: list[SignalRecord]) -> None:
+    for row in signals:
+        labels: dict[str, object] = {}
+        if isinstance(row.labels_json, str) and row.labels_json.strip():
+            parsed = json.loads(row.labels_json)
+            if isinstance(parsed, dict):
+                labels = parsed
+        validate_event_text_fields(
+            {"title": row.title, **labels},
+            context=f"source_id={row.source_id} signal_uid={row.signal_uid} url={row.url}",
+        )
 
 
 def update_source_signature(
@@ -1140,6 +1154,8 @@ def main() -> None:
                     selection_stats.get("dropped_low_capacity"),
                     category_summary or "-",
                 )
+
+            validate_signal_text_quality(signals)
 
             if args.rebuild:
                 clear_source_for_rebuild(conn, source.source_id)

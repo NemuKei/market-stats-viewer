@@ -9,6 +9,7 @@
 - Unresolved risk: 現時点の active backlog はない。docs-only 更新では `data/**`、workflow dispatch、Release publish、SideBiz 取り込みを行わない。
 
 ## Done（直近完了）
+- `T-20260712-001` として TicketJam 由来イベント文字化けの恒久対策を実装した。2026-07-11の対象URL `/event/1063773` はUTF-8 bytesを`PTCP154`で誤decodeした値と一致し、`event_signals.sqlite` 保存時点で既に壊れていたことを確認した。TicketJamのprefecture month / venue / event HTMLはraw bytesのUTF-8 strict decodeへ統一し、`apparent_encoding` fallbackを廃止した。共通event text quality gateはreplacement character、禁止control character、高確度なUTF-8誤decodeをDB変更前とLP build前に拒否し、正常な日本語、絵文字、記号、Cyrillicは許可する。`build_lp_events` はpreflight後にatomic replaceする。現行DB/LP全1845イベントの品質不良は0件で、対象URLの正常表記を確認し、自然回復でずれた `first_seen_at_utc` を履歴上の最古値 `2026-07-11T06:04:07Z` へURL単位で回復して `data/lp_events.json` を再生成した。Release asset / `data/manifest.json` / SideBizは未更新のため `lp_impact=data_freshness_change`、外部反映には後続のpublish承認とSideBiz同期が必要。
 - MSV docs governance を `AGENTS-first + retained optional PROJECT_CONTEXT` profile として整理した。`AGENTS.md` は作業入口、読み順、LP影響確認、公開/配布境界、Git/verify 最小ルールへ圧縮し、`PROJECT_CONTEXT.md` は目的・判断原則・非目的を置く optional upper premise layer として明示した。source priority / LP data contract の詳細は `docs/spec_data.md`、provider/command/workflow 詳細は `docs/spec_update_pipeline.md`、イベント監査automationの詳細は `docs/event_signal_audit_automation.md` を正本とする。docs-only 変更であり、DB、JSON data、Release asset、workflow run、SideBiz 取り込みは変更していないため `lp_impact=none`
 - LP向けイベントJSONのカテゴリ欠落を修正した。`scripts.build_lp_events` が `event_signals.sqlite` 由来レコードを読み込む際、`labels_json.event_category` だけでなく既存 `labels_json.category` の `concert` / `music` なども `コンサート` へ正規化し、`starto_concert` / `kstyle_music` はsource特性に基づいてカテゴリ未付与時も `コンサート` として出力するようにした。これによりLP側でカテゴリ変換やsource別補完を再実装せず、`lp_events.json` 側で表示用カテゴリを完結させる。`origin/main` の最新イベントsignalsを取り込んで再生成した `data/lp_events.json` は `event_count=1878`、`record_count_before_grouping=2302`、カテゴリ欠落0件（`コンサート=1470` / `野球=325` / `その他=83`）。現在日付基準の再生成により過去日程が落ちたため、表示件数も更新された。Release asset と公開 `manifest.json` は未更新のため、外部LP反映には後続の publish / SideBiz 取り込みが必要。`lp_impact=category_change,display_count_change`
 - LP向けイベントの artist 正規化漏れと cross-source 重複統合を修正した。`scripts.build_lp_events` が `data/events.sqlite` / `data/event_signals.sqlite` 読み込み時に artist/venue 辞書を再適用し、`raw_artist_name` は保持したまま `artist_name` を canonical へ寄せて `event_date + canonical venue_name + canonical artist_name` で統合するようにした。Ticketjam 由来の `Artist（カナ読み）` は、括弧を無条件削除せず「括弧前の base が既存 artist 辞書に一致する場合だけ」canonical 化する。2026-12-06 京セラドーム大阪の `EXILE` / `EXILE（エグザイル）` は LP JSON 上 1イベントとなり、表示sourceは `official_events`、`ticketjam_events` は `supporting_sources` に残る。`GENERATIONS（ジェネレーションズ）` は既存辞書 alias により `GENERATIONS from EXILE TRIBE` へ統合される。公式イベント推論では `One` / `Summer` / `RSP` / `wqwq` / `わくわく` / `るい` の短い一般語・曖昧aliasを除外し、既存誤検知を `events.sqlite` / `events_artist_inferred.csv` / `lp_events.json` から除いた。再生成後の `data/lp_events.json` は `event_count=1882`、`record_count_before_grouping=2299`。Release asset と公開 `manifest.json` は未更新のため、外部LP反映には後続の publish / SideBiz 取り込みが必要。`lp_impact=duplicate_grouping_change,display_count_change,category_change`
@@ -132,6 +133,15 @@
 - [x] T-20260311-004: `大阪府立体育会館（エディオンアリーナ大阪）` の会場公式 source を追加する（月次PDF行事案内）
 - [x] T-20260311-005: `ヤンマースタジアム長居` の会場公式 source を追加する（月次イベントカレンダーPDF）
 - [x] T-20260502-001: 公式PDF由来タイトルの artist/category 補完漏れを点検する（例: `Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～`）
+
+## Task Backlog（Ticketjam Text Quality）
+- [x] T-20260712-001: TicketJam UTF-8 decode とイベント文字品質ゲートを実装する
+  - 目的: `resp.apparent_encoding` の非決定的な誤判定による文字化けを ingestion で防ぎ、破損したイベント文字列を SQLite / `lp_events.json` / Release asset へ進めない。
+  - スコープ: TicketJam HTML の UTF-8 strict decode、event signal 保存前の共通文字品質検証、`build_lp_events` の preflight、既存破損データのURL単位監査と回復手順、関連spec/decision/tests。
+  - 非目標: 正常文字列への一律逆変換、TicketJam以外のparser全面改修、SideBiz実装、Release publish、deploy。
+  - 受け入れ条件: 2026-07-11に発生したUTF-8→PTCP154誤decode fixtureを拒否し、正常な日本語、絵文字、記号、Cyrillicを許可する。
+  - 受け入れ条件: 品質不良を検出した更新はSQLiteへ部分反映せず、`build_lp_events` は既存outputを上書きしない。
+  - 受け入れ条件: 対象URL `/event/1063773` を含む現行DB/LP出力が正常表記であり、品質監査が0件になることを確認する。
 
 ## Task Backlog（News Coverage and Normalization Audit）
 - [x] T-20260512-001: K-Style の取得漏れ監査を実装する

@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sqlite3
 import unicodedata
@@ -23,6 +24,7 @@ from .signals.entity_aliases import (
     normalize_venue_with_lookup,
     normalize_with_lookup,
 )
+from .signals.text_quality import validate_event_text_fields
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
@@ -437,6 +439,14 @@ def build_lp_events(
         venue_compact_map=venue_compact_map,
     )
     records = official + signals
+    for record in records:
+        validate_event_text_fields(
+            record,
+            context=(
+                f"source_id={record.get('source_id')} "
+                f"record_id={record.get('record_id')} url={record.get('url')}"
+            ),
+        )
     events = consolidate_events(records)
     counts_by_display_source: dict[str, int] = {}
     for event in events:
@@ -464,10 +474,12 @@ def build_lp_events(
 
 def write_lp_events(payload: dict[str, Any], output_path: Path = DEFAULT_OUTPUT_PATH) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(
+    temp_path = output_path.with_name(f".{output_path.name}.tmp")
+    temp_path.write_text(
         json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
+    os.replace(temp_path, output_path)
 
 
 def main() -> int:

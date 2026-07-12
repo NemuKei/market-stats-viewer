@@ -48,6 +48,14 @@ class TicketjamEventsSource(SignalSource):
     _VENUE_PAGE_EVENT_LINK_SELECTOR = "a.p-event-min__link[href]"
     _SKIP_EVENT_HINTS = ("駐車場券", "駐車券", "駐車場")
 
+    @staticmethod
+    def _decode_html_response(resp, *, url: str) -> str:
+        content = bytes(resp.content or b"")
+        try:
+            return content.decode("utf-8", errors="strict")
+        except UnicodeDecodeError as exc:
+            raise ValueError(f"ticketjam: response is not valid UTF-8: {url}") from exc
+
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_config(source.config_json)
         cfg = self._normalize_legacy_config(cfg)
@@ -227,10 +235,9 @@ class TicketjamEventsSource(SignalSource):
                     break
 
                 scanned_pages += 1
-                resp.encoding = resp.apparent_encoding or "utf-8"
                 page_candidates, discovered_total_pages = (
                     self._load_event_candidates_from_prefecture_month_html(
-                        resp.text,
+                        self._decode_html_response(resp, url=page_url),
                         skip_keywords=skip_keywords,
                         allowed_event_types=allowed_event_types,
                         page_param=page_param,
@@ -296,8 +303,9 @@ class TicketjamEventsSource(SignalSource):
             logger.warning("ticketjam: venue page %s returned %s", venue_url, status)
             return []
 
-        resp.encoding = resp.apparent_encoding or "utf-8"
-        soup = BeautifulSoup(resp.text, "html.parser")
+        soup = BeautifulSoup(
+            self._decode_html_response(resp, url=venue_url), "html.parser"
+        )
         sections = self._find_venue_event_sections(soup)
 
         candidates: list[dict[str, str]] = []
@@ -867,8 +875,9 @@ class TicketjamEventsSource(SignalSource):
             logger.warning("ticketjam: event %s returned %s", event_url, resp.status_code)
             return None
 
-        resp.encoding = resp.apparent_encoding or "utf-8"
-        soup = BeautifulSoup(resp.text, "html.parser")
+        soup = BeautifulSoup(
+            self._decode_html_response(resp, url=event_url), "html.parser"
+        )
         category_group = self._extract_category_group(soup)
         category_slug = self._extract_primary_category_slug(soup)
         event_payload = self._extract_event_payload(soup, allowed_event_types)

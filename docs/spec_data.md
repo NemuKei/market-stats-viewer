@@ -123,6 +123,12 @@
   - `url`: 利用者が元ページで確認するための参照先。
   - `updated_at_utc` または `first_seen_at_utc`: データ更新または初回検知の時刻。
   - `raw_artist_name` / `raw_venue_name`: `event_signals.sqlite` で正規化前の表記確認が必要な場合に使う。
+- イベント文字列の品質契約:
+  - `title`、`artist_name`、`raw_artist_name`、`venue_name`、`raw_venue_name`、`pref_name`、`event_category` は Unicode replacement character、禁止control character、または高確度なUTF-8誤decodeを含んではならない。
+  - Cyrillic、絵文字、アクセント付きLatin文字、日本語の波ダッシュ・引用符などは、それ単独では不正と判定しない。
+  - 品質不良を検出したレコードは自動再変換しない。producer側で保存を停止し、source URLとfield名を含むエラーとして扱う。
+  - `build_lp_events` は入力DBをpreflightし、品質不良があれば既存の `lp_events.json` を上書きしない。
+  - 外部アプリは配布assetのshape/hash検証に加え、同じ最低限の文字品質検査をconsumer防御として行ってよい。
 - 外部アプリは `ticketjam_events` を会場網羅の代替として使わない。`ticketjam_events` は `artist-gap` / `venue-gap` を補う参考ソースであり、会場公式取得が安定している会場では公式データを優先する。
 - 外部アプリ向けの利用例:
   - LPイベント一覧: `lp_events.json` を使い、表示sourceとsupporting sourceをそのまま利用する。
@@ -146,6 +152,7 @@
   - `ticketjam_events` は 1日程=1データを原則とし、複数日開催のシリーズでも日別ページ単位で保存する
   - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する
   - `ticketjam_events` は会場網羅の正本DBではなく、`artist-gap` / `venue-gap` を補う参考ソースとして扱う
+  - `ticketjam_events` のHTML本文はUTF-8 strict decodeを使い、`apparent_encoding` などの推測encodingは使わない。decode失敗時は当該source更新を失敗させ、別encodingによる推測変換は行わない
   - `ticketjam_events` の会場ページ対応は `data/ticketjam_venue_pages.csv` で管理する
     - 1行=1 Ticketjam 会場ページと内部 `venue_id` の対応
     - 初期 scope は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
