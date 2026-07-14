@@ -110,7 +110,8 @@
     "hehn.fujiikaze.com": "artist_official",
     "k-arena.com": "venue_official",
     "befirst.tokyo": "artist_official",
-    "ygex.jp": "artist_official"
+    "ygex.jp": "artist_official",
+    "yg-babymonster-official.jp": "artist_official"
   },
   "preferred_domain_extractors": {
     "www.livenationhip.co.jp": "requests_bs4",
@@ -126,7 +127,8 @@
     "hehn.fujiikaze.com": "requests_bs4",
     "k-arena.com": "requests_bs4",
     "befirst.tokyo": "requests_bs4",
-    "ygex.jp": "requests_bs4"
+    "ygex.jp": "requests_bs4",
+    "yg-babymonster-official.jp": "requests_bs4"
   },
   "rejected_domains": [
     "google.com",
@@ -2939,6 +2941,52 @@
       "evidence_snippet": "Official Kansai Collection page lists 2026年8月13日(木), 開演13:00(予定), 京セラドーム大阪, 主催 関西コレクション実行委員会.",
       "verified_at_utc": "2026-07-10T00:08:11Z",
       "discovery_query": "京セラドーム大阪 KANSAI COLLECTION 2026 A/W"
+    },
+    {
+      "event_id": "babymonster-choom-japan-2026-09-22-kyocera",
+      "enabled": true,
+      "title": "2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN",
+      "artist_name": "BABYMONSTER",
+      "raw_artist_name": "BABYMONSTER",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-09-22",
+      "event_end_date": "2026-09-22",
+      "event_start_time": "19:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://yg-babymonster-official.jp/live/2026-2027_worldtour_in_japan/",
+      "evidence_url": "https://yg-babymonster-official.jp/live/2026-2027_worldtour_in_japan/",
+      "evidence_snippet": "BABYMONSTER official Japan tour page lists 2026.09.22 at 京セラドーム大阪 with 開場17:00 / 開演19:00.",
+      "announced_at_utc": null,
+      "verified_at_utc": "2026-07-14T00:08:18Z",
+      "discovery_query": "京セラドーム大阪 BABYMONSTER"
+    },
+    {
+      "event_id": "babymonster-choom-japan-2026-09-23-kyocera",
+      "enabled": true,
+      "title": "2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN",
+      "artist_name": "BABYMONSTER",
+      "raw_artist_name": "BABYMONSTER",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_start_time": "15:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://yg-babymonster-official.jp/live/2026-2027_worldtour_in_japan/",
+      "evidence_url": "https://yg-babymonster-official.jp/live/2026-2027_worldtour_in_japan/",
+      "evidence_snippet": "BABYMONSTER official Japan tour page lists 2026.09.23 at 京セラドーム大阪 with 開場13:00 / 開演15:00.",
+      "announced_at_utc": null,
+      "verified_at_utc": "2026-07-14T00:08:18Z",
+      "discovery_query": "京セラドーム大阪 BABYMONSTER"
     }
   ]
 }
