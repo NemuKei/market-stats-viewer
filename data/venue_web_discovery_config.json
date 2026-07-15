@@ -73,7 +73,7 @@
     {
       "venue_id": "saitama_super_arena",
       "venue_name": "さいたまスーパーアリーナ",
-      "aliases": ["さいたまスーパーアリーナ", "Saitama Super Arena"]
+      "aliases": ["さいたまスーパーアリーナ", "GMOアリーナさいたま", "Saitama Super Arena"]
     },
     {
       "venue_id": "k_arena_yokohama",
@@ -111,7 +111,9 @@
     "k-arena.com": "venue_official",
     "befirst.tokyo": "artist_official",
     "ygex.jp": "artist_official",
-    "yg-babymonster-official.jp": "artist_official"
+    "yg-babymonster-official.jp": "artist_official",
+    "eveofficial.com": "artist_official",
+    "group.gmo": "promoter_official"
   },
   "preferred_domain_extractors": {
     "www.livenationhip.co.jp": "requests_bs4",
@@ -128,7 +130,9 @@
     "k-arena.com": "requests_bs4",
     "befirst.tokyo": "requests_bs4",
     "ygex.jp": "requests_bs4",
-    "yg-babymonster-official.jp": "requests_bs4"
+    "yg-babymonster-official.jp": "requests_bs4",
+    "eveofficial.com": "requests_bs4",
+    "group.gmo": "requests_bs4"
   },
   "rejected_domains": [
     "google.com",
@@ -2987,6 +2991,52 @@
       "announced_at_utc": null,
       "verified_at_utc": "2026-07-14T00:08:18Z",
       "discovery_query": "京セラドーム大阪 BABYMONSTER"
+    },
+    {
+      "event_id": "eve-arena-tour-kaiki-2027-08-21-k-arena-yokohama",
+      "enabled": true,
+      "title": "Eve Arena Tour 2027「廻帰」",
+      "artist_name": "Eve",
+      "raw_artist_name": "Eve",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "event_start_date": "2027-08-21",
+      "event_end_date": "2027-08-21",
+      "event_start_time": "19:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://eveofficial.com/news/20260524190015.html",
+      "evidence_url": "https://eveofficial.com/news/20260524190015.html",
+      "evidence_snippet": "Eve official site lists 2027年8月21日(土), 神奈川・Kアリーナ横浜, OPEN17:30 / START19:00 for Eve Arena Tour 2027「廻帰」.",
+      "announced_at_utc": "2026-05-24T00:00:00Z",
+      "verified_at_utc": "2026-07-15T00:07:36Z",
+      "discovery_query": "Kアリーナ横浜 Eve"
+    },
+    {
+      "event_id": "eve-arena-tour-kaiki-2027-08-22-k-arena-yokohama",
+      "enabled": true,
+      "title": "Eve Arena Tour 2027「廻帰」",
+      "artist_name": "Eve",
+      "raw_artist_name": "Eve",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "event_start_date": "2027-08-22",
+      "event_end_date": "2027-08-22",
+      "event_start_time": "17:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://eveofficial.com/news/20260524190015.html",
+      "evidence_url": "https://eveofficial.com/news/20260524190015.html",
+      "evidence_snippet": "Eve official site lists 2027年8月22日(日), 神奈川・Kアリーナ横浜, OPEN15:30 / START17:00 for Eve Arena Tour 2027「廻帰」.",
+      "announced_at_utc": "2026-05-24T00:00:00Z",
+      "verified_at_utc": "2026-07-15T00:07:36Z",
+      "discovery_query": "Kアリーナ横浜 Eve"
     }
   ]
 }
