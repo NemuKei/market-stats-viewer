@@ -51033,6 +51033,44 @@
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
     {
+      "artist_name": "&TEAM",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-22",
+      "event_end_date": "2026-09-22",
+      "event_end_time": null,
+      "event_key": "93edd525cb2990379c0b",
+      "event_start_time": null,
+      "evidence_snippet": "会場: ベルーナドーム(埼玉県所沢市) / 日時: 2026-09-22 / DAY1 <9月22日(火・祝)>",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281488",
+      "first_seen_at_utc": "2026-07-16T13:25:11Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "&TEAM",
+      "raw_venue_name": "ベルーナドーム(埼玉県所沢市)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281488",
+          "priority": 30,
+          "record_id": "6089bb927c6272035dad1716e3fb9e023ec6014a3733a57d1a801b389d8f5c99",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-07-16T13:25:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281488"
+        }
+      ],
+      "title": "INKIGAYO LIVE in TOKYO",
+      "updated_at_utc": "2026-07-16T13:25:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281488",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "BABYMONSTER",
       "capacity": 55000,
       "display_source_class": "venue_official",
@@ -51825,6 +51863,44 @@
       "updated_at_utc": "2026-05-17T06:43:56Z",
       "url": "https://ticketjam.jp/tickets/rakuten-fighters/event/1031301",
       "venue_name": "エスコンフィールドHOKKAIDO"
+    },
+    {
+      "artist_name": "&TEAM",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "9fe21f6743fd0021e2ea",
+      "event_start_time": null,
+      "evidence_snippet": "会場: ベルーナドーム(埼玉県所沢市) / 日時: 2026-09-23 / DAY2 <9月23日(水・祝)>",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281488",
+      "first_seen_at_utc": "2026-07-16T13:25:11Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "&TEAM",
+      "raw_venue_name": "ベルーナドーム(埼玉県所沢市)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281488",
+          "priority": 30,
+          "record_id": "246804e300f4e0e9a06c74b4fb3219df40c97ba2f3a0d61336caca7ff20706f6",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-07-16T13:25:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281488"
+        }
+      ],
+      "title": "INKIGAYO LIVE in TOKYO",
+      "updated_at_utc": "2026-07-16T13:25:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281488",
+      "venue_name": "ベルーナドーム"
     },
     {
       "artist_name": "SBS INKIGAYO（人気歌謡）",
@@ -75591,7 +75667,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-16T07:06:10Z",
+  "generated_at_utc": "2026-07-16T13:26:23Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -75603,13 +75679,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 38,
+      "kstyle_music": 40,
       "official_events": 537,
       "starto_concert": 107,
       "ticketjam_events": 1067,
       "venue_web_discovery": 82
     },
-    "event_count": 1831,
-    "record_count_before_grouping": 2332
+    "event_count": 1833,
+    "record_count_before_grouping": 2334
   }
 }
