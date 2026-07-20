@@ -75341,44 +75341,6 @@
       "venue_name": "フェスティバルホール"
     },
     {
-      "artist_name": "GMO SONIC",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2027-04-03",
-      "event_end_date": "2027-04-03",
-      "event_end_time": null,
-      "event_key": "4c084a805fca97290014",
-      "event_start_time": null,
-      "evidence_snippet": "GMO Internet Group official release lists GMO SONIC 2027 at GMOアリーナさいたま (さいたまスーパーアリーナ) on 2027年4月3日 and 4日.",
-      "evidence_url": "https://group.gmo/news/article/9964/",
-      "first_seen_at_utc": "2026-07-20T00:17:13Z",
-      "pref_name": null,
-      "raw_artist_name": "GMO SONIC",
-      "raw_venue_name": "GMOアリーナさいたま",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://group.gmo/news/article/9964/",
-          "priority": 20,
-          "record_id": "0b922e87870a7af99f80a73f9065b92fac1dfd56f24680554af7a276546e0b89",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "GMO SONIC 2027",
-          "updated_at_utc": "2026-07-20T00:17:13Z",
-          "url": "https://group.gmo/news/article/9964/"
-        }
-      ],
-      "title": "GMO SONIC 2027",
-      "updated_at_utc": "2026-07-20T00:17:13Z",
-      "url": "https://group.gmo/news/article/9964/",
-      "venue_name": "GMOアリーナさいたま"
-    },
-    {
       "artist_name": "MISIA",
       "capacity": null,
       "display_source_class": "artist_official",
@@ -75453,44 +75415,6 @@
       "updated_at_utc": "2026-07-20T00:17:13Z",
       "url": "https://www.a3-liber.jp/news/20260519-2521",
       "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "GMO SONIC",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2027-04-04",
-      "event_end_date": "2027-04-04",
-      "event_end_time": null,
-      "event_key": "2b2b568e8afe2eeb5884",
-      "event_start_time": null,
-      "evidence_snippet": "GMO Internet Group official release lists GMO SONIC 2027 at GMOアリーナさいたま (さいたまスーパーアリーナ) on 2027年4月3日 and 4日.",
-      "evidence_url": "https://group.gmo/news/article/9964/",
-      "first_seen_at_utc": "2026-07-20T00:17:13Z",
-      "pref_name": null,
-      "raw_artist_name": "GMO SONIC",
-      "raw_venue_name": "GMOアリーナさいたま",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://group.gmo/news/article/9964/",
-          "priority": 20,
-          "record_id": "14e48bd9fe850e16b0c32a35829257f41d38d08482fa041908b325c9db0c0a26",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "GMO SONIC 2027",
-          "updated_at_utc": "2026-07-20T00:17:13Z",
-          "url": "https://group.gmo/news/article/9964/"
-        }
-      ],
-      "title": "GMO SONIC 2027",
-      "updated_at_utc": "2026-07-20T00:17:13Z",
-      "url": "https://group.gmo/news/article/9964/",
-      "venue_name": "GMOアリーナさいたま"
     },
     {
       "artist_name": "MISIA",
@@ -76011,7 +75935,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-20T00:17:20Z",
+  "generated_at_utc": "2026-07-20T00:33:59Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -76027,9 +75951,9 @@
       "official_events": 520,
       "starto_concert": 103,
       "ticketjam_events": 1049,
-      "venue_web_discovery": 135
+      "venue_web_discovery": 133
     },
-    "event_count": 1855,
-    "record_count_before_grouping": 2315
+    "event_count": 1853,
+    "record_count_before_grouping": 2313
   }
 }
