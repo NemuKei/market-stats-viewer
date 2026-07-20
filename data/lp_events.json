@@ -29243,6 +29243,44 @@
       "venue_name": "豊田スタジアム"
     },
     {
+      "artist_name": "ソンミン",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-08-23",
+      "event_end_date": "2026-08-23",
+      "event_end_time": null,
+      "event_key": "fe04afe5f263c732ebb4",
+      "event_start_time": null,
+      "evidence_snippet": "会場: J-Stage O! / 日時: 2026-08-23 / 日程:2026年8月23日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280940",
+      "first_seen_at_utc": "2026-07-20T02:03:33Z",
+      "pref_name": null,
+      "raw_artist_name": "ソンミン",
+      "raw_venue_name": "J-Stage O!",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280940",
+          "priority": 30,
+          "record_id": "46084312939291f909979d929e42a37f872d55d4a80a0f9ff5bd5735c4c40c2d",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "SUNGMIN FANMEETING in JAPAN『思い』",
+          "updated_at_utc": "2026-07-20T02:03:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2280940"
+        }
+      ],
+      "title": "SUNGMIN FANMEETING in JAPAN『思い』",
+      "updated_at_utc": "2026-07-20T02:03:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2280940",
+      "venue_name": "J-Stage O!"
+    },
+    {
       "artist_name": "BOYNEXTDOOR",
       "capacity": null,
       "display_source_class": "promoter_official",
@@ -75935,7 +75973,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-20T00:33:59Z",
+  "generated_at_utc": "2026-07-20T02:04:45Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -75947,13 +75985,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 48,
+      "kstyle_music": 49,
       "official_events": 520,
       "starto_concert": 103,
       "ticketjam_events": 1049,
       "venue_web_discovery": 133
     },
-    "event_count": 1853,
-    "record_count_before_grouping": 2313
+    "event_count": 1854,
+    "record_count_before_grouping": 2314
   }
 }
