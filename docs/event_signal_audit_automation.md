@@ -28,7 +28,7 @@ Codex automation は、監査レポート生成、低リスク修正案の作成
 - `data/artist_registry.seed.csv`
 - `data/artist_registry.jp.seed.csv`
 - `data/artist_registry.manual.csv`
-- `.agents/skills/dictionary_maintenance/scripts/audit_alias_candidates.py`
+- `.agents/skills/dictionary-maintenance/scripts/audit_alias_candidates.py`
 - `scripts/audit_kstyle_news_coverage.py`
 - `scripts/audit_event_normalization_candidates.py`
 - `scripts/build_event_signal_audit_report.py`
@@ -174,7 +174,7 @@ uv run python -m scripts.audit_event_normalization_candidates --limit 50 --outpu
 辞書・カテゴリ監査:
 
 ```powershell
-uv run python .agents\skills\dictionary_maintenance\scripts\audit_alias_candidates.py --top 30 --output-json tmp\dictionary_maintenance_audit.json --output-md tmp\dictionary_maintenance_audit.md
+uv run python .agents\skills\dictionary-maintenance\scripts\audit_alias_candidates.py --top 30 --output-json tmp\dictionary_maintenance_audit.json --output-md tmp\dictionary_maintenance_audit.md
 ```
 
 統合監査レポート:
@@ -196,7 +196,7 @@ uv run python -m scripts.build_event_signal_audit_report --output-json data\even
 最小verify:
 
 ```powershell
-uv run python -m py_compile scripts\audit_kstyle_news_coverage.py scripts\audit_event_normalization_candidates.py scripts\build_event_signal_audit_report.py .agents\skills\dictionary_maintenance\scripts\audit_alias_candidates.py
+uv run python -m py_compile scripts\audit_kstyle_news_coverage.py scripts\audit_event_normalization_candidates.py scripts\build_event_signal_audit_report.py .agents\skills\dictionary-maintenance\scripts\audit_alias_candidates.py
 git diff --check
 ```
 

@@ -49,7 +49,9 @@ temp/
 .streamlit/
 
 # AI workflow (internal)
-.agents/
+.agents/*
+!.agents/skills/
+!.agents/skills/**
 .codex/
 .chatgpt/
 !.codex/

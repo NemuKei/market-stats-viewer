@@ -5,12 +5,14 @@ on:
     paths:
       - ".agents/skills/**"
       - "scripts/ensure_venv.ps1"
+      - "scripts/quick_validate_skill.py"
       - "scripts/validate_skills.ps1"
       - ".github/workflows/validate-skills.yml"
   push:
     paths:
       - ".agents/skills/**"
       - "scripts/ensure_venv.ps1"
+      - "scripts/quick_validate_skill.py"
       - "scripts/validate_skills.ps1"
       - ".github/workflows/validate-skills.yml"
 

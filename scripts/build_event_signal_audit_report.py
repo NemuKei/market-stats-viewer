@@ -38,7 +38,7 @@ DICTIONARY_AUDIT_SCRIPT_PATH = (
     REPO_ROOT
     / ".agents"
     / "skills"
-    / "dictionary_maintenance"
+    / "dictionary-maintenance"
     / "scripts"
     / "audit_alias_candidates.py"
 )

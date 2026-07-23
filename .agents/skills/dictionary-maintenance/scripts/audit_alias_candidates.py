@@ -1,5 +1,6 @@
 """Audit event dictionary and category maintenance candidates.
 
+The canonical Skill package is `.agents/skills/dictionary-maintenance`.
 This script is read-only. It inspects event_signals.sqlite and events.sqlite,
 then reports candidates that need venue aliases, artist aliases, or category
 review before downstream consumers such as LP pages rely on the data.

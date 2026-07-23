@@ -38,10 +38,7 @@ if (-not (Test-Path $skillRootPath)) {
     throw "skill root not found: $skillRootPath"
 }
 
-$legacyUnderscoreNames = @()
-
 $ok = 0
-$warn = 0
 $fail = 0
 
 $skills = Get-ChildItem -Path $skillRootPath -Directory | Sort-Object Name
@@ -55,22 +52,12 @@ foreach ($skill in $skills) {
         continue
     }
 
-    if (($legacyUnderscoreNames -contains $skill.Name) -and ($message -match "should be hyphen-case")) {
-        Write-Host ("[WARN] {0}: legacy underscore name allowed for now" -f $skill.Name) -ForegroundColor Yellow
-        $warn++
-        continue
-    }
-
     Write-Host ("[FAIL] {0}: {1}" -f $skill.Name, $message) -ForegroundColor Red
     $fail++
 }
 
 Write-Host ""
-Write-Host ("Summary: OK={0} WARN={1} FAIL={2}" -f $ok, $warn, $fail)
-
-if ($warn -gt 0) {
-    Write-Host "Legacy underscore skill names remain. Migrate them only in a dedicated rename task." -ForegroundColor Yellow
-}
+Write-Host ("Summary: OK={0} FAIL={1}" -f $ok, $fail)
 
 if ($fail -gt 0) {
     exit 1

@@ -12,7 +12,7 @@ from pathlib import Path
 import yaml
 
 MAX_SKILL_NAME_LENGTH = 64
-ALLOWED_FRONTMATTER_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+ALLOWED_FRONTMATTER_KEYS = {"name", "description"}
 
 
 def validate_skill(skill_path: str) -> tuple[bool, str]:
@@ -53,24 +53,29 @@ def validate_skill(skill_path: str) -> tuple[bool, str]:
         return False, "Missing 'description' in frontmatter"
 
     name = str(frontmatter.get("name", "")).strip()
-    if name:
-        if not re.match(r"^[a-z0-9-]+$", name):
-            return (
-                False,
-                f"Name '{name}' should be hyphen-case (lowercase letters, digits, and hyphens only)",
-            )
-        if name.startswith("-") or name.endswith("-") or "--" in name:
-            return (
-                False,
-                f"Name '{name}' cannot start/end with hyphen or contain consecutive hyphens",
-            )
-        if len(name) > MAX_SKILL_NAME_LENGTH:
-            return (
-                False,
-                f"Name is too long ({len(name)} characters). Maximum is {MAX_SKILL_NAME_LENGTH} characters.",
-            )
+    if not name:
+        return False, "Skill name cannot be empty"
+    if not re.match(r"^[a-z0-9-]+$", name):
+        return (
+            False,
+            f"Name '{name}' should be hyphen-case (lowercase letters, digits, and hyphens only)",
+        )
+    if name.startswith("-") or name.endswith("-") or "--" in name:
+        return (
+            False,
+            f"Name '{name}' cannot start/end with hyphen or contain consecutive hyphens",
+        )
+    if len(name) > MAX_SKILL_NAME_LENGTH:
+        return (
+            False,
+            f"Name is too long ({len(name)} characters). Maximum is {MAX_SKILL_NAME_LENGTH} characters.",
+        )
+    if name != skill_dir.name:
+        return False, f"Skill name '{name}' must match folder name '{skill_dir.name}'"
 
     description = str(frontmatter.get("description", "")).strip()
+    if not description:
+        return False, "Skill description cannot be empty"
     if "<" in description or ">" in description:
         return False, "Description cannot contain angle brackets (< or >)"
     if len(description) > 1024:
