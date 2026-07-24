@@ -124,7 +124,8 @@
     "www.softbankhawks.co.jp": "venue_official",
     "sd-milk.com": "artist_official",
     "www.tokyo-dome.co.jp": "venue_official",
-    "pylonport.bandainamcomusiclive.co.jp": "promoter_official"
+    "pylonport.bandainamcomusiclive.co.jp": "promoter_official",
+    "www.kyodoyokohama.com": "promoter_official"
   },
   "preferred_domain_extractors": {
     "www.livenationhip.co.jp": "requests_bs4",
@@ -154,7 +155,8 @@
     "www.softbankhawks.co.jp": "requests_bs4",
     "sd-milk.com": "requests_bs4",
     "www.tokyo-dome.co.jp": "requests_bs4",
-    "pylonport.bandainamcomusiclive.co.jp": "requests_bs4"
+    "pylonport.bandainamcomusiclive.co.jp": "requests_bs4",
+    "www.kyodoyokohama.com": "requests_bs4"
   },
   "rejected_domains": [
     "google.com",
@@ -4613,6 +4615,72 @@
       "evidence_snippet": "M!LK official site lists M!LK ARENA TOUR 2026-2027「シャカリキレボリューション」 at 横浜アリーナ on 2027年1月17日 with OPEN15:00 / START16:00.",
       "verified_at_utc": "2026-07-20T00:14:10Z",
       "discovery_query": "横浜アリーナ M!LK 2027"
+    },
+    {
+      "event_id": "koshi-inaba-env-2027-01-28-k-arena-yokohama",
+      "enabled": true,
+      "title": "Koshi Inaba LIVE 2026-2027 ～enV～",
+      "artist_name": "稲葉浩志",
+      "raw_artist_name": "稲葉浩志",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "event_start_date": "2027-01-28",
+      "event_end_date": "2027-01-28",
+      "event_start_time": "18:00",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
+      "evidence_url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
+      "evidence_snippet": "キョードー横浜公式スケジュールに、稲葉浩志「Koshi Inaba LIVE 2026-2027 ～enV～」をKアリーナ横浜で2027年1月28日（18:00）、30日・31日（17:00）開催と掲載。",
+      "verified_at_utc": "2026-07-24T00:10:57Z",
+      "discovery_query": "Kアリーナ横浜 稲葉浩志 2027"
+    },
+    {
+      "event_id": "koshi-inaba-env-2027-01-30-k-arena-yokohama",
+      "enabled": true,
+      "title": "Koshi Inaba LIVE 2026-2027 ～enV～",
+      "artist_name": "稲葉浩志",
+      "raw_artist_name": "稲葉浩志",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "event_start_date": "2027-01-30",
+      "event_end_date": "2027-01-30",
+      "event_start_time": "17:00",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
+      "evidence_url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
+      "evidence_snippet": "キョードー横浜公式スケジュールに、稲葉浩志「Koshi Inaba LIVE 2026-2027 ～enV～」をKアリーナ横浜で2027年1月28日（18:00）、30日・31日（17:00）開催と掲載。",
+      "verified_at_utc": "2026-07-24T00:10:57Z",
+      "discovery_query": "Kアリーナ横浜 稲葉浩志 2027"
+    },
+    {
+      "event_id": "koshi-inaba-env-2027-01-31-k-arena-yokohama",
+      "enabled": true,
+      "title": "Koshi Inaba LIVE 2026-2027 ～enV～",
+      "artist_name": "稲葉浩志",
+      "raw_artist_name": "稲葉浩志",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "event_start_date": "2027-01-31",
+      "event_end_date": "2027-01-31",
+      "event_start_time": "17:00",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
+      "evidence_url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
+      "evidence_snippet": "キョードー横浜公式スケジュールに、稲葉浩志「Koshi Inaba LIVE 2026-2027 ～enV～」をKアリーナ横浜で2027年1月28日（18:00）、30日・31日（17:00）開催と掲載。",
+      "verified_at_utc": "2026-07-24T00:10:57Z",
+      "discovery_query": "Kアリーナ横浜 稲葉浩志 2027"
     }
   ]
 }
