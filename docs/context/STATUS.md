@@ -4,11 +4,11 @@
 
 ## Current / Re-entry
 
-- Active implementation / data update task: （なし）
+- Active implementation / data update task: Kstyle article `2280609` の「日付群 → 会場」形式で、前会場を次の日付群へ持ち越す parser 誤りはコードと回帰テストを修正済み。既存 `data/event_signals.sqlite` / `data/lp_events.json` の限定修復は `data/**` 更新の明示承認待ち。
 - Docs governance profile: Profile C。root `AGENTS.md` を作業入口とし、`PROJECT_CONTEXT.md`、`STATUS.md`、`DECISIONS.md` は責務が一致するときだけ読む optional layer とする。
-- Next re-entry: 市場統計、イベント情報、LP-facing data、Release asset、source priority に触れる作業では、`AGENTS.md` → 必要な `PROJECT_CONTEXT.md` / `docs/spec_data.md` / `docs/spec_update_pipeline.md` / `docs/context/DECISIONS.md` の順で確認する。
-- 2026-07-23 にlocal `main`を `origin/main` へfast-forwardし、automation由来のdata更新40 commitsを `bdcaf6e` まで取り込んだ。横展開taskの差分へ `data/**` は含めない。
-- Unresolved risk: remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。現在の数値・workflow run・Release asset freshnessは必要なtaskごとにlive確認する。
+- Next re-entry: 明示承認後、Kstyle article `https://kstyle.com/article.ksn?articleNo=2280609` の行だけを公式本文どおり7公演へ限定置換し、`python -m scripts.build_lp_events` を再実行する。2026-10-24 の京セラドーム大阪は YOASOBI のみ、Stray Kids は福岡PayPayドームになることを確認する。Release asset更新、SideBiz反映、公開LP反映は別承認・別owner。
+- 2026-07-26 にlocal `main`を `origin/main` へfast-forwardし、automation由来のdata更新19 commitsを `6b28819` まで取り込んだ。今回の parser 修正差分へ `data/**` は含めない。
+- Unresolved risk: remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。現行の配布assetと公開LPには誤行が残っており、このtaskでは未更新・未公開。現在の数値・workflow run・Release asset freshnessは必要なtaskごとにlive確認する。
 
 ## Current Operating State
 
@@ -30,6 +30,9 @@
 
 ## Verification State
 
+- `.\.venv\Scripts\python.exe -B -m pytest tests\test_kstyle_source.py -q --basetemp .tmp\pytest-kstyle-date-typo -p no:cacheprovider`: 20 passed、7 subtests passed。
+- Kstyle article `2280609` のlive本文を修正後parserへ通し、7公演が `MUFGスタジアム 8/29-30`、`バンテリンドームナゴヤ 9/5-6`、`京セラドーム大阪 9/19-20`、`福岡PayPayドーム 10/24` に分かれることを確認した。
+- 今回の変更対象は parser、回帰テスト、re-entry status。既存 `data/**`、Release asset、SideBiz、公開LPは未変更。承認後の想定 `lp_impact=display_count_change,duplicate_grouping_change`。
 - `pwsh -NoProfile -File .\scripts\validate_skills.ps1`: repo-local Skill 2件 PASS。
 - validatorはSkill name / folder不一致fixtureを拒否した。
 - `scripts.build_event_signal_audit_report` から `dictionary-maintenance` のaudit moduleを新pathでloadできた。

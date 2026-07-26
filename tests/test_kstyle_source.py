@@ -288,6 +288,41 @@ class KstyleMusicSourceTests(unittest.TestCase):
             ],
         )
 
+    def test_extract_occurrences_does_not_carry_late_venue_into_next_date_block(
+        self,
+    ) -> None:
+        source = KstyleMusicSource(requests.Session())
+        section_lines = [
+            "■公演情報",
+            "「Stray Kids World Tour <RUN IT JAPAN>」",
+            "2026年8月29日（土）",
+            "2026年8月30日（日）",
+            "MUFG STADIUM（国立競技場）",
+            "2026年9年5日（土）",
+            "2026年9年6日（日）",
+            "VANTELIN DOME NAGOYA",
+            "2026年9月19日（土）",
+            "2026年9月20日（日）",
+            "KYOCERA DOME OSAKA",
+            "2026年10月24日（土）",
+            "MIZUHO PayPay Dome FUKUOKA",
+        ]
+
+        occurrences = source._extract_occurrences(section_lines, default_year=2026)
+
+        self.assertEqual(
+            [(event_date, venue_name) for event_date, venue_name, _, _ in occurrences],
+            [
+                ("2026-08-29", "MUFG STADIUM(国立競技場)"),
+                ("2026-08-30", "MUFG STADIUM(国立競技場)"),
+                ("2026-09-05", "VANTELIN DOME NAGOYA"),
+                ("2026-09-06", "VANTELIN DOME NAGOYA"),
+                ("2026-09-19", "KYOCERA DOME OSAKA"),
+                ("2026-09-20", "KYOCERA DOME OSAKA"),
+                ("2026-10-24", "MIZUHO PayPay Dome FUKUOKA"),
+            ],
+        )
+
     def test_extract_occurrences_ignores_headliner_lines_as_venues(self) -> None:
         source = KstyleMusicSource(requests.Session())
         section_lines = [

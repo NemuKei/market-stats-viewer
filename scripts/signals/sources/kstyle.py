@@ -279,7 +279,8 @@ class KstyleMusicSource(SignalSource):
     DATE_LINE_RE = re.compile(r"(?:日時|日程|公演日|開催日|開演|DAY\d)")
     DATE_TOKEN_RE = re.compile(
         r"(?:(?P<year>\d{4})\s*[./年-]\s*)?"
-        r"(?P<month>\d{1,2})\s*[./月-]\s*(?P<day>\d{1,2})\s*日?"
+        r"(?P<month>\d{1,2})\s*(?:[./月-]|年(?=\s*\d{1,2}\s*日))\s*"
+        r"(?P<day>\d{1,2})\s*日?"
     )
     DAY_ONLY_RE = re.compile(r"(?<!\d)(?P<day>\d{1,2})\s*日")
     PREF_VENUE_LINE_RE = re.compile(
@@ -1078,6 +1079,8 @@ class KstyleMusicSource(SignalSource):
                             current_venue,
                             current_pref,
                         )
+                        current_venue = ""
+                        current_pref = ""
                         continue
                 if not foreign_block and self._looks_like_venue_line(normalized_line):
                     current_venue = self._normalize_venue_name(normalized_line)
@@ -1091,6 +1094,8 @@ class KstyleMusicSource(SignalSource):
                             current_venue,
                             current_pref,
                         )
+                        current_venue = ""
+                        current_pref = ""
                 continue
             if any(term in normalized_line for term in self.NON_EVENT_DATE_TERMS):
                 continue
