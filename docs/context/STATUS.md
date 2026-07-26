@@ -4,11 +4,11 @@
 
 ## Current / Re-entry
 
-- Active implementation / data update task: なし。Kstyle article `2280609` の parser 修正に続き、対象URLの既存5行を公式本文どおり7公演へ限定置換し、`data/lp_events.json` を再生成した。
+- Active implementation / data update task: なし。Kstyle article `2280609` の日程修復に続き、`fukuoka_paypay_dome` のcanonical会場名を公式の「みずほPayPayドーム福岡」へ移行し、配布元DBと `data/lp_events.json` を同期した。
 - Docs governance profile: Profile C。root `AGENTS.md` を作業入口とし、`PROJECT_CONTEXT.md`、`STATUS.md`、`DECISIONS.md` は責務が一致するときだけ読む optional layer とする。
 - Next re-entry: 公開反映が必要なら、現行Release assetの内容とworkflow状態をlive確認し、Release更新を別承認で実行する。SideBiz反映と公開LP反映は別repo・別ownerとして扱う。
-- 2026-07-26 の限定修復では、Kstyle article `https://kstyle.com/article.ksn?articleNo=2280609` の最古 `first_seen_at_utc=2026-07-14T13:12:28Z` を保持した。source priority、schema、pipeline契約は変更していない。
-- Unresolved risk: repo内の配布元データは修復済みだが、現行Release assetと公開LPはこのtaskでは未更新・未公開のため、別途同期するまで誤表示が残る可能性がある。remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。
+- 2026-07-26 の正式名称移行では `venue_id=fukuoka_paypay_dome` を維持し、旧「福岡PayPayドーム」と略称・英文表記をaliasへ移送した。適用判断は `D-20260726-001`、一般契約は `D-20260227-001` と該当specを正とする。
+- Unresolved risk: repo内の配布元データは新正式名称へ移行済みだが、現行Release assetと公開LPはこのtaskでは未更新・未公開のため、別途同期するまで旧表示が残る可能性がある。remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。
 
 ## Current Operating State
 
@@ -30,14 +30,14 @@
 
 ## Verification State
 
-- Kstyle article `2280609` のlive本文を修正後parserへ通し、7公演が `MUFGスタジアム 8/29-30`、`バンテリンドームナゴヤ 9/5-6`、`京セラドーム大阪 9/19-20`、`福岡PayPayドーム 10/24` に分かれることを確認した。
-- 対象URLの既存5行をtransaction内で削除し、正しい7行を挿入した。全行で最古の `first_seen_at_utc` を保持し、書込み後に対象URLの行集合を再照合した。
-- `MIZUHO PayPay Dome FUKUOKA` を既存の `福岡PayPayドーム` canonicalへ追加し、alias focused testは 4 passed、21 subtests passed。
-- `dictionary-maintenance` のalias候補監査はUTF-8 modeで完走し、今回追加した会場表記は未解決候補に残らず、辞書単体の `lp_impact=none` を確認した。
-- `python -m scripts.build_lp_events` で `data/lp_events.json` を 1,890件から1,887件へ再生成した。
-- 2026-10-24 の京セラドーム大阪は YOASOBI のみとなり、Stray Kidsは福岡PayPayドームの既存official表示groupへ `kstyle_music` supporting sourceとして統合された。`lp_impact=display_count_change,duplicate_grouping_change`、source priorityは不変。
-- `PRAGMA integrity_check=ok`、対象URLの7行完全一致、最古 `first_seen_at_utc` 保持、LP 1,887件、対象2会場の表示groupをread-only assertionで再確認した。
-- focused testsは 27 passed、28 subtests passed。全test suiteは 56 passed、32 subtests passed。
+- 会場公式で、正式名称「みずほPayPayドーム福岡」、略称「みずほPayPayドーム / みずほPayPay」、英文表記 `MIZUHO PayPay Dome FUKUOKA` を確認した。
+- `data/venue_registry.csv` と `data/venue_aliases.csv` は `venue_id=fukuoka_paypay_dome` を維持し、旧称・略称・英文名を新canonicalへ正規化する。
+- `events.sqlite` は会場マスタ1行だけを変更し、全1,412 event行は不変、同venue_idへの27行の紐づきを保持した。`event_signals.sqlite` は旧canonicalの56行だけを変更し、内訳は `kstyle_music=1`、`ticketjam_events=39`、`venue_web_discovery=16`。raw表記、`first_seen_at_utc`、その他の行は不変。
+- `venue_web_discovery_config.json` の対象confirmed event 16行を新canonicalへ更新し、全行の `event_id` が安定していることを確認した。Ticketjam会場表も同じvenue_idの代表名称だけを同期した。
+- `python -m scripts.build_lp_events` で `data/lp_events.json` を1,887件のまま再生成した。旧canonicalの表示50件を新正式名称へ置換し、対応する `event_key` 50件を再生成した。表示source内訳、カテゴリ、source priorityは不変で、`lp_impact=duplicate_grouping_change`。
+- `PRAGMA integrity_check=ok`、対象56行のcontent hash一致、旧canonical表示0件、Stray Kids 2026-10-24の新canonical会場groupとsupporting sourceをread-only assertionで確認した。
+- `dictionary-maintenance` のalias候補監査はUTF-8 modeで完走し、旧称・新正式名・略称・英文名は未解決候補に残らず、辞書監査自体の `lp_impact=none` を確認した。
+- focused testsは 19 passed、23 subtests passed。全test suiteは 57 passed、34 subtests passed。
 - temporary manifest生成で `events.sqlite`、`event_signals.sqlite`、`lp_events.json` のsizeとSHA-256を算出できることを確認した。tracked `data/manifest.json` は更新していない。
 - Release asset、workflow dispatch、SideBiz、公開LPは未変更。`sync-needed=release_asset,sidebiz_public_lp`。
 

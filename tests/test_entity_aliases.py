@@ -1,4 +1,7 @@
+import csv
+import json
 import unittest
+from pathlib import Path
 
 from scripts.signals.artist_registry import normalize_text
 from scripts.signals.entity_aliases import (
@@ -58,7 +61,9 @@ class VenueAliasNormalizationTests(unittest.TestCase):
             ("東京・Club eX", "Club eX"),
             ("NHK大阪ホール", "NHK大阪ホール"),
             ("〇大阪/京セラドーム", "京セラドーム大阪"),
-            ("MIZUHO PayPay Dome FUKUOKA", "福岡PayPayドーム"),
+            ("福岡PayPayドーム", "みずほPayPayドーム福岡"),
+            ("みずほPayPayドーム", "みずほPayPayドーム福岡"),
+            ("MIZUHO PayPay Dome FUKUOKA", "みずほPayPayドーム福岡"),
             (
                 "新宿パークタワーホール(東京都新宿区西新宿3-7-1新宿パークタワー 3F)",
                 "新宿パークタワーホール",
@@ -68,6 +73,26 @@ class VenueAliasNormalizationTests(unittest.TestCase):
         for raw_value, expected in cases:
             with self.subTest(raw_value=raw_value):
                 self.assertVenueNormalized(raw_value, expected)
+
+    def test_fukuoka_venue_rename_keeps_id_and_old_name_as_alias(self) -> None:
+        data_dir = Path(__file__).resolve().parents[1] / "data"
+        with (data_dir / "venue_registry.csv").open(
+            "r", encoding="utf-8-sig", newline=""
+        ) as f:
+            registry = {row["venue_id"]: row for row in csv.DictReader(f)}
+        with (data_dir / "venue_aliases.csv").open(
+            "r", encoding="utf-8-sig", newline=""
+        ) as f:
+            aliases = {row["venue_id"]: row for row in csv.DictReader(f)}
+
+        venue_id = "fukuoka_paypay_dome"
+        canonical_name = "みずほPayPayドーム福岡"
+        self.assertEqual(canonical_name, registry[venue_id]["venue_name"])
+        self.assertEqual(canonical_name, aliases[venue_id]["canonical_name"])
+        self.assertIn(
+            "福岡PayPayドーム",
+            json.loads(aliases[venue_id]["aliases_json"]),
+        )
 
 
 def _artist_lookup(*pairs: tuple[str, str]) -> tuple[dict[str, str], dict[str, str]]:
