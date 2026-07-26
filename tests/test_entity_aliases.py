@@ -58,6 +58,7 @@ class VenueAliasNormalizationTests(unittest.TestCase):
             ("東京・Club eX", "Club eX"),
             ("NHK大阪ホール", "NHK大阪ホール"),
             ("〇大阪/京セラドーム", "京セラドーム大阪"),
+            ("MIZUHO PayPay Dome FUKUOKA", "福岡PayPayドーム"),
             (
                 "新宿パークタワーホール(東京都新宿区西新宿3-7-1新宿パークタワー 3F)",
                 "新宿パークタワーホール",
