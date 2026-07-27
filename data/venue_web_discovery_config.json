@@ -4899,6 +4899,48 @@
       "evidence_snippet": "ブシロード公式サイトは「ブシロード20周年記念ライブ」を横浜アリーナで2027年6月12日、13日に開催すると掲載している。",
       "verified_at_utc": "2026-07-25T00:13:26Z",
       "discovery_query": "横浜アリーナ ブシロード20周年記念ライブ 2027"
+    },
+    {
+      "event_id": "tokyo-spaceship-2027-02-13-tokyo-dome",
+      "enabled": true,
+      "title": "TOKYO SPACESHIP 2027",
+      "artist_name": "TOKYO SPACESHIP 2027",
+      "raw_artist_name": "TOKYO SPACESHIP 2027",
+      "venue_name": "東京ドーム",
+      "raw_venue_name": "東京ドーム",
+      "event_start_date": "2027-02-13",
+      "event_end_date": "2027-02-13",
+      "event_category": "コンサート",
+      "source_class": "venue_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート「TOKYO SPACESHIP 2027」を2027年2月13日、東京ドームで開催すると掲載している。",
+      "verified_at_utc": "2026-07-27T22:16:48Z",
+      "discovery_query": "東京ドーム TOKYO SPACESHIP 2027"
+    },
+    {
+      "event_id": "tokyo-spaceship-2027-02-14-tokyo-dome",
+      "enabled": true,
+      "title": "TOKYO SPACESHIP 2027",
+      "artist_name": "TOKYO SPACESHIP 2027",
+      "raw_artist_name": "TOKYO SPACESHIP 2027",
+      "venue_name": "東京ドーム",
+      "raw_venue_name": "東京ドーム",
+      "event_start_date": "2027-02-14",
+      "event_end_date": "2027-02-14",
+      "event_category": "コンサート",
+      "source_class": "venue_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート「TOKYO SPACESHIP 2027」を2027年2月14日、東京ドームで開催すると掲載している。",
+      "verified_at_utc": "2026-07-27T22:16:48Z",
+      "discovery_query": "東京ドーム TOKYO SPACESHIP 2027"
     }
   ]
 }

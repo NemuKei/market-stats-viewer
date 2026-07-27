@@ -73755,6 +73755,44 @@
       "venue_name": "京セラドーム大阪"
     },
     {
+      "artist_name": "TOKYO SPACESHIP 2027",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-13",
+      "event_end_date": "2027-02-13",
+      "event_end_time": null,
+      "event_key": "a863c6d099553f684d7a",
+      "event_start_time": null,
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート「TOKYO SPACESHIP 2027」を2027年2月13日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-07-27T22:17:15Z",
+      "pref_name": null,
+      "raw_artist_name": "TOKYO SPACESHIP 2027",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "30404502914e021a121a6f2f44a5b26a4515dc619538d0e1d6bae03d43bd5b2b",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "TOKYO SPACESHIP 2027",
+          "updated_at_utc": "2026-07-27T22:17:15Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "TOKYO SPACESHIP 2027",
+      "updated_at_utc": "2026-07-27T22:17:15Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "BE:FIRST",
       "capacity": 52500,
       "display_source_class": "venue_official",
@@ -73891,6 +73929,44 @@
       "updated_at_utc": "2026-05-04T06:48:59Z",
       "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=02&yearId=2027",
       "venue_name": "京セラドーム大阪"
+    },
+    {
+      "artist_name": "TOKYO SPACESHIP 2027",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-14",
+      "event_end_date": "2027-02-14",
+      "event_end_time": null,
+      "event_key": "78604d1877713fd034f7",
+      "event_start_time": null,
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート「TOKYO SPACESHIP 2027」を2027年2月14日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-07-27T22:17:15Z",
+      "pref_name": null,
+      "raw_artist_name": "TOKYO SPACESHIP 2027",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "7c5815bea0cabfb7b28ae928e2a00a9a3c03a9452667ba82af9412ae07bad71b",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "TOKYO SPACESHIP 2027",
+          "updated_at_utc": "2026-07-27T22:17:15Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "TOKYO SPACESHIP 2027",
+      "updated_at_utc": "2026-07-27T22:17:15Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "King Gnu",
@@ -75747,7 +75823,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-07-27T18:54:04Z",
+  "generated_at_utc": "2026-07-27T22:17:20Z",
   "include_past": false,
   "schema_version": 1,
   "source_priority": [
@@ -75763,9 +75839,9 @@
       "official_events": 496,
       "starto_concert": 94,
       "ticketjam_events": 1059,
-      "venue_web_discovery": 149
+      "venue_web_discovery": 151
     },
-    "event_count": 1849,
-    "record_count_before_grouping": 2306
+    "event_count": 1851,
+    "record_count_before_grouping": 2308
   }
 }
