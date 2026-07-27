@@ -64,6 +64,10 @@ class VenueAliasNormalizationTests(unittest.TestCase):
             ("福岡PayPayドーム", "みずほPayPayドーム福岡"),
             ("みずほPayPayドーム", "みずほPayPayドーム福岡"),
             ("MIZUHO PayPay Dome FUKUOKA", "みずほPayPayドーム福岡"),
+            ("GMOアリーナさいたま", "GMOアリーナさいたま"),
+            ("さいたまスーパーアリーナ", "GMOアリーナさいたま"),
+            ("SSA", "GMOアリーナさいたま"),
+            ("Saitama Super Arena", "GMOアリーナさいたま"),
             (
                 "新宿パークタワーホール(東京都新宿区西新宿3-7-1新宿パークタワー 3F)",
                 "新宿パークタワーホール",
@@ -91,6 +95,26 @@ class VenueAliasNormalizationTests(unittest.TestCase):
         self.assertEqual(canonical_name, aliases[venue_id]["canonical_name"])
         self.assertIn(
             "福岡PayPayドーム",
+            json.loads(aliases[venue_id]["aliases_json"]),
+        )
+
+    def test_saitama_venue_rename_keeps_id_and_old_name_as_alias(self) -> None:
+        data_dir = Path(__file__).resolve().parents[1] / "data"
+        with (data_dir / "venue_registry.csv").open(
+            "r", encoding="utf-8-sig", newline=""
+        ) as f:
+            registry = {row["venue_id"]: row for row in csv.DictReader(f)}
+        with (data_dir / "venue_aliases.csv").open(
+            "r", encoding="utf-8-sig", newline=""
+        ) as f:
+            aliases = {row["venue_id"]: row for row in csv.DictReader(f)}
+
+        venue_id = "saitama_super_arena"
+        canonical_name = "GMOアリーナさいたま"
+        self.assertEqual(canonical_name, registry[venue_id]["venue_name"])
+        self.assertEqual(canonical_name, aliases[venue_id]["canonical_name"])
+        self.assertIn(
+            "さいたまスーパーアリーナ",
             json.loads(aliases[venue_id]["aliases_json"]),
         )
 
