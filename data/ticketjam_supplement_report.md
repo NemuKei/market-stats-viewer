@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1268
+- ticketjam_unique_schedules: 1265
 - additional_unique_schedules: 4
-- overlap_unique_schedules: 4
-- noise_rate: 0.5
-- out_of_scope_rate: 0.9937
-- ticketjam_category_counts: {"その他": 134, "コンサート": 885, "野球": 249}
+- overlap_unique_schedules: 3
+- noise_rate: 0.4286
+- out_of_scope_rate: 0.9945
+- ticketjam_category_counts: {"その他": 134, "コンサート": 884, "野球": 247}
 
 ## Artist Gap
 
@@ -18,8 +18,8 @@
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
 | B | 福山雅治 | 2 | 2 | 0 | 0.0000 | 東京ドーム |
 | B | EXILE | 2 | 0 | 2 | 1.0000 | 京セラドーム大阪 |
-| B | GLAY | 1 | 0 | 1 | 1.0000 | Zepp DiverCity(Tokyo) |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
+| B | GLAY | 0 | 0 | 0 | 0.0000 |  |
 
 ## Venue Gap
 
@@ -28,10 +28,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-07-27T06:55:35Z
+- ticketjam_source_updated_at_utc: 2026-07-28T06:17:59Z
 - starto_source_updated_at_utc: 2026-07-27T18:52:51Z
 - kstyle_source_updated_at_utc: 2026-07-28T01:35:08Z
-- events_db_modified_at_utc: 2026-07-28T01:28:57Z
+- events_db_modified_at_utc: 2026-07-28T06:01:23Z
 
 ## Methodology
 
