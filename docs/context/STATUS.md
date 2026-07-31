@@ -1,20 +1,20 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-07-28
+最終更新: 2026-07-31
 
 ## Current / Re-entry
 
-- Active implementation / data update task: なし。Kstyle article `2280609` の日程修復、`fukuoka_paypay_dome` のcanonical移行に続き、`saitama_super_arena` の運用canonical会場名を「GMOアリーナさいたま」へ移行し、配布元DBと `data/lp_events.json` を同期した。
+- Active implementation / data update task: なし。LP向け `data/lp_events.json` は、開催予定に加えて開催終了日が基準日の90日前以降である保存済みイベントを含む契約へ更新した。過去分は元DBに残る公開情報の範囲であり、網羅的なアーカイブではない。
 - Docs governance profile: Profile C。root `AGENTS.md` を作業入口とし、`PROJECT_CONTEXT.md`、`STATUS.md`、`DECISIONS.md` は責務が一致するときだけ読む optional layer とする。
-- Next re-entry: 公開反映が必要なら、現行Release assetの内容とworkflow状態をlive確認し、Release更新を別承認で実行する。SideBiz反映と公開LP反映は別repo・別ownerとして扱う。
+- Next re-entry: Release asset更新が必要なら、現行assetの内容とworkflow状態をlive確認し、別承認で実行する。SideBiz反映と公開LP反映は別repo・別ownerとして扱い、公開状態はSideBiz側でlive確認する。
 - 2026-07-26 の正式名称移行では `venue_id=fukuoka_paypay_dome` を維持し、旧「福岡PayPayドーム」と略称・英文表記をaliasへ移送した。適用判断は `D-20260726-001`、一般契約は `D-20260227-001` と該当specを正とする。
 - 2026-07-28 のcanonical移行では `venue_id=saitama_super_arena` を維持し、旧「さいたまスーパーアリーナ」と略称・英文表記をaliasへ移送した。TicketJamのraw表記は取得元監査値として保持した。
-- Unresolved risk: repo内の配布元データは新canonicalへ移行済みだが、現行Release assetと公開LPはこのtaskでは未更新・未公開のため、別途同期するまで旧asset表示が残る可能性がある。remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。
+- Unresolved risk: 現行Release assetにはこの90日履歴契約を反映していない。Release更新は別承認とし、tracked `data/lp_events.json` と同一視しない。remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。
 
 ## Current Operating State
 
 - MSVは市場統計と大型イベント情報のsource ownerであり、SideBiz側JSON、Cloudflare/Vite build、公開LPは別repoのownerである。
-- LP-facing event dataは `data/lp_events.json` で重複統合し、表示source優先は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。詳細契約は `docs/spec_data.md` を正とする。
+- LP-facing event dataは `data/lp_events.json` で重複統合し、表示source優先は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。通常生成は基準日から90日前までの保存済み過去イベントを含み、`history_window_days` と `history_start_date` をpayloadへ保持する。詳細契約は `docs/spec_data.md` を正とする。
 - update command、provider、workflow、Release asset publish条件は `docs/spec_update_pipeline.md` を正とする。
 - TicketJam文字列はUTF-8 strict decodeと共通text-quality gateを使う。個別仕様と回復条件は `D-20260712-001` と該当specを正とする。
 - 現時点のactive backlogはない。完了済みtaskの詳細、過去の件数、実測メモはGit履歴、`DECISIONS.md`、spec、生成レポートを参照し、STATUSへ再蓄積しない。
@@ -43,7 +43,7 @@
 - `dictionary-maintenance` のalias候補監査はUTF-8 modeで完走し、旧称・新正式名・略称・英文名は未解決候補に残らず、辞書監査自体の `lp_impact=none` を確認した。
 - 今回のfocused testsは 10 passed。dictionary-maintenanceのalias監査は `lp_impact=none` で完走し、GMO会場名は未解決候補に残らなかった。
 - temporary manifest生成で `events.sqlite`、`event_signals.sqlite`、`lp_events.json` のsizeとSHA-256を算出できることを確認した。tracked `data/manifest.json` は更新していない。
-- Release asset、workflow dispatch、SideBiz、公開LPは未変更。`sync-needed=release_asset,sidebiz_public_lp`。
+- Release assetとworkflow dispatchは未変更。SideBizと公開LPは別repoのownerであり、このSTATUSでは反映済みと判定しない。
 
 ## Remaining Task Triage (ASCII)
 

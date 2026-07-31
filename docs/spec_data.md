@@ -104,6 +104,10 @@
 - 外部アプリが利用する配布単位は GitHub Release `external-events-latest` の `events.sqlite` / `event_signals.sqlite` / `lp_events.json` / `manifest.json` とする。
 - `manifest.json` は配布ファイルの鮮度と同一性を確認するためのメタデータであり、利用側は `generated_at_utc`、各 asset の `sha256`、`size_bytes` を確認できる。
 - LP向けイベント一覧は、重複統合済みの `lp_events.json` を読む。LP側で同じsource priorityを再実装しない。
+- `lp_events.json` の通常生成は、生成基準日以降の開催予定に加え、開催終了日が基準日の90日前以降であるイベントを含める。
+  - `history_window_days=90` と `history_start_date` をpayloadへ保持し、外部アプリはこの範囲を「直近の開催済みイベント」として扱う。
+  - 過去分は元DBに残る公開情報の範囲に限り、sourceごとの保存方針も異なるため、網羅的なイベントアーカイブとは表現しない。
+  - `ticketjam_events` は従来どおり未来開催のみを保持する。開催済みイベントの過去範囲や網羅性を補うsourceとして扱わない。
 - 外部アプリは、次の4層を同じ意味のイベント情報として混ぜない。
   - `events.sqlite`: 会場公式サイトまたは会場公式に準じる公開スケジュールから取得した日程。会場別の定期予定表として扱う。
   - `event_signals.sqlite` の `venue_web_discovery`: Codex Automation が公式/準公式ページ本文を根拠確認した大型会場イベント検知。LP掲載候補として扱う。

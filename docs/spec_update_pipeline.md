@@ -271,6 +271,9 @@
   - Script: `python -m scripts.build_lp_events`
   - Inputs: `data/events.sqlite`, `data/event_signals.sqlite`
   - Output: `data/lp_events.json`
+  - 通常生成の履歴範囲: 基準日から90日前まで。`--past-days N` でboundedな日数を変更でき、`--include-past` は監査・再生成用に保存済み過去行を全件含める。
+  - 履歴判定は開催開始日ではなく `event_end_date` を使い、基準日時点で開催中の複数日イベントを過去扱いしない。
+  - payloadは `include_past`、`history_window_days`、`history_start_date` を持つ。通常生成は `include_past=true`、`history_window_days=90` とする。
   - Grouping key: `event_date + canonical venue_name + canonical artist_name`
   - Display source priority: `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events`
   - Lower-priority matches are retained in `supporting_sources`.

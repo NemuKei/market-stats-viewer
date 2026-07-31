@@ -13,7 +13,7 @@ import os
 import re
 import sqlite3
 import unicodedata
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +31,7 @@ DATA_DIR = REPO_ROOT / "data"
 DEFAULT_EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 DEFAULT_EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
 DEFAULT_OUTPUT_PATH = DATA_DIR / "lp_events.json"
+DEFAULT_HISTORY_WINDOW_DAYS = 90
 
 SOURCE_PRIORITY = {
     "official_events": 10,
@@ -140,8 +141,7 @@ def signal_event_category(source_id: str, labels: dict[str, Any]) -> str:
 def load_official_events(
     db_path: Path,
     *,
-    include_past: bool,
-    today_iso: str,
+    history_start_date: str | None,
     artist_keep_map: dict[str, str],
     artist_compact_map: dict[str, str],
     venue_keep_map: dict[str, str],
@@ -202,7 +202,7 @@ def load_official_events(
         )
         if not event_date or not artist_name or not venue_name:
             continue
-        if not include_past and event_end_date < today_iso:
+        if history_start_date and event_end_date < history_start_date:
             continue
         events.append(
             {
@@ -235,8 +235,7 @@ def load_official_events(
 def load_signal_events(
     db_path: Path,
     *,
-    include_past: bool,
-    today_iso: str,
+    history_start_date: str | None,
     artist_keep_map: dict[str, str],
     artist_compact_map: dict[str, str],
     venue_keep_map: dict[str, str],
@@ -290,7 +289,7 @@ def load_signal_events(
         )
         if not event_date or not artist_name or not venue_name:
             continue
-        if not include_past and event_end_date < today_iso:
+        if history_start_date and event_end_date < history_start_date:
             continue
         source_id = str(row["source_id"] or "")
         events.append(
@@ -416,14 +415,18 @@ def build_lp_events(
     events_db_path: Path = DEFAULT_EVENTS_DB_PATH,
     event_signals_db_path: Path = DEFAULT_EVENT_SIGNALS_DB_PATH,
     include_past: bool = False,
+    past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
+    as_of_date: date | None = None,
 ) -> dict[str, Any]:
-    today_iso = date.today().isoformat()
+    if past_days < 0:
+        raise ValueError("past_days must be zero or greater")
+    reference_date = as_of_date or date.today()
+    history_start_date = None if include_past else (reference_date - timedelta(days=past_days)).isoformat()
     artist_keep_map, artist_compact_map = load_artist_lookup_maps()
     venue_keep_map, venue_compact_map = load_venue_lookup_maps()
     official = load_official_events(
         events_db_path,
-        include_past=include_past,
-        today_iso=today_iso,
+        history_start_date=history_start_date,
         artist_keep_map=artist_keep_map,
         artist_compact_map=artist_compact_map,
         venue_keep_map=venue_keep_map,
@@ -431,8 +434,7 @@ def build_lp_events(
     )
     signals = load_signal_events(
         event_signals_db_path,
-        include_past=include_past,
-        today_iso=today_iso,
+        history_start_date=history_start_date,
         artist_keep_map=artist_keep_map,
         artist_compact_map=artist_compact_map,
         venue_keep_map=venue_keep_map,
@@ -455,7 +457,10 @@ def build_lp_events(
     return {
         "schema_version": 1,
         "generated_at_utc": now_utc_z(),
-        "include_past": include_past,
+        "as_of_date": reference_date.isoformat(),
+        "include_past": include_past or past_days > 0,
+        "history_window_days": None if include_past else past_days,
+        "history_start_date": history_start_date,
         "source_priority": [
             "official_events",
             "venue_web_discovery",
@@ -487,13 +492,24 @@ def main() -> int:
     parser.add_argument("--events-db", type=Path, default=DEFAULT_EVENTS_DB_PATH)
     parser.add_argument("--event-signals-db", type=Path, default=DEFAULT_EVENT_SIGNALS_DB_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
-    parser.add_argument("--include-past", action="store_true", help="Include past events in output.")
+    parser.add_argument(
+        "--past-days",
+        type=int,
+        default=DEFAULT_HISTORY_WINDOW_DAYS,
+        help=f"Include events ending within this many days before today (default: {DEFAULT_HISTORY_WINDOW_DAYS}).",
+    )
+    parser.add_argument(
+        "--include-past",
+        action="store_true",
+        help="Include all past events retained in the source databases.",
+    )
     args = parser.parse_args()
 
     payload = build_lp_events(
         events_db_path=args.events_db,
         event_signals_db_path=args.event_signals_db,
         include_past=bool(args.include_past),
+        past_days=args.past_days,
     )
     write_lp_events(payload, args.output)
     print(f"lp events written: {args.output} ({payload['summary']['event_count']} events)")

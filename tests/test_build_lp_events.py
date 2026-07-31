@@ -1,5 +1,6 @@
 import json
 import sqlite3
+from datetime import date
 from pathlib import Path
 
 import pytest
@@ -99,6 +100,45 @@ def _create_events_db(path: Path) -> None:
             "https://www.kyoceradome-osaka.jp/schedule/",
             "2026-06-24T00:00:00Z",
             "2026-06-24T00:00:00Z",
+        ),
+    )
+    conn.commit()
+    conn.close()
+
+
+def _insert_official_event(
+    path: Path,
+    *,
+    event_uid: str,
+    title: str,
+    event_date: str,
+    artist_name: str,
+) -> None:
+    conn = sqlite3.connect(str(path))
+    conn.execute(
+        """
+        INSERT INTO events VALUES (
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+        )
+        """,
+        (
+            event_uid,
+            "kyocera_dome_osaka",
+            title,
+            event_date,
+            None,
+            event_date,
+            None,
+            "scheduled",
+            f"https://example.com/{event_uid}",
+            "official venue row",
+            artist_name,
+            artist_name,
+            "コンサート",
+            "html",
+            "https://www.kyoceradome-osaka.jp/schedule/",
+            "2026-04-01T00:00:00Z",
+            "2026-04-01T00:00:00Z",
         ),
     )
     conn.commit()
@@ -312,3 +352,62 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     assert by_artist["Kstyle Artist"]["display_source_id"] == "kstyle_music"
     assert by_artist["Kstyle Artist"]["event_category"] == "コンサート"
     assert json.dumps(payload, ensure_ascii=False)
+
+
+def test_lp_events_default_history_window_is_bounded_to_90_days(tmp_path: Path) -> None:
+    events_db = tmp_path / "events.sqlite"
+    signals_db = tmp_path / "event_signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+    _insert_official_event(
+        events_db,
+        event_uid="history-boundary",
+        title="History Boundary Event",
+        event_date="2026-05-02",
+        artist_name="Boundary Artist",
+    )
+    _insert_official_event(
+        events_db,
+        event_uid="history-too-old",
+        title="History Too Old Event",
+        event_date="2026-05-01",
+        artist_name="Older Artist",
+    )
+
+    payload = build_lp_events(
+        events_db_path=events_db,
+        event_signals_db_path=signals_db,
+        as_of_date=date(2026, 7, 31),
+    )
+    artists = {row["artist_name"] for row in payload["events"]}
+
+    assert "Boundary Artist" in artists
+    assert "Older Artist" not in artists
+    assert payload["as_of_date"] == "2026-07-31"
+    assert payload["include_past"] is True
+    assert payload["history_window_days"] == 90
+    assert payload["history_start_date"] == "2026-05-02"
+
+    all_history = build_lp_events(
+        events_db_path=events_db,
+        event_signals_db_path=signals_db,
+        include_past=True,
+        as_of_date=date(2026, 7, 31),
+    )
+    assert "Older Artist" in {row["artist_name"] for row in all_history["events"]}
+    assert all_history["history_window_days"] is None
+    assert all_history["history_start_date"] is None
+
+
+def test_lp_events_rejects_negative_history_window(tmp_path: Path) -> None:
+    events_db = tmp_path / "events.sqlite"
+    signals_db = tmp_path / "event_signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+
+    with pytest.raises(ValueError, match="past_days must be zero or greater"):
+        build_lp_events(
+            events_db_path=events_db,
+            event_signals_db_path=signals_db,
+            past_days=-1,
+        )
