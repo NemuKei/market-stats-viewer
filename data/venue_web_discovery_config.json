@@ -5417,6 +5417,28 @@
       "evidence_snippet": "東京ドーム公式スケジュールは、配信者ハイパーゲーム大会 FINALを東京ドームで2026年11月29日に開催すると掲載している。",
       "verified_at_utc": "2026-07-30T00:09:06Z",
       "discovery_query": "東京ドーム 配信者ハイパーゲーム大会 FINAL"
+    },
+    {
+      "event_id": "sbi-music-circus-hokkaido-2026-09-26-sapporo-dome",
+      "enabled": true,
+      "title": "SBI MUSIC CIRCUS HOKKAIDO",
+      "artist_name": "SBI MUSIC CIRCUS HOKKAIDO",
+      "raw_artist_name": "SBI MUSIC CIRCUS HOKKAIDO",
+      "venue_name": "札幌ドーム",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "event_start_date": "2026-09-26",
+      "event_end_date": "2026-09-26",
+      "event_info": "第一部 13:00開始〜22:00（予定）、第二部 23:00開始〜翌6:30（予定）。",
+      "event_category": "コンサート",
+      "source_class": "venue_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260926",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260926",
+      "evidence_snippet": "大和ハウス プレミストドーム公式詳細は、SBI MUSIC CIRCUS HOKKAIDO 第一部・第二部を大和ハウス プレミストドームで2026年9月26日に開催すると掲載している。",
+      "verified_at_utc": "2026-07-31T00:08:19Z",
+      "discovery_query": "札幌ドーム SBI MUSIC CIRCUS HOKKAIDO"
     }
   ]
 }
