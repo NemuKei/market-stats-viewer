@@ -2,9 +2,9 @@
 
 ## Summary
 - ticketjam_unique_schedules: 1285
-- additional_unique_schedules: 4
-- overlap_unique_schedules: 3
-- noise_rate: 0.4286
+- additional_unique_schedules: 5
+- overlap_unique_schedules: 2
+- noise_rate: 0.2857
 - out_of_scope_rate: 0.9946
 - ticketjam_category_counts: {"その他": 142, "コンサート": 898, "野球": 245}
 
@@ -14,7 +14,7 @@
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | S | Mrs. GREEN APPLE | 0 | 0 | 0 | 0.0000 |  |
 | S | サザンオールスターズ | 0 | 0 | 0 | 0.0000 |  |
-| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 3 | 2 | 1 | 0.3333 | バンテリンドームナゴヤ, ヤンマースタジアム長居 |
+| A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 3 | 3 | 0 | 0.0000 | バンテリンドームナゴヤ, ヤンマースタジアム長居 |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
 | B | 福山雅治 | 2 | 2 | 0 | 0.0000 | 東京ドーム |
 | B | EXILE | 2 | 0 | 2 | 1.0000 | 京セラドーム大阪 |
@@ -31,7 +31,7 @@
 - ticketjam_source_updated_at_utc: 2026-08-01T06:23:00Z
 - starto_source_updated_at_utc: 2026-07-31T13:37:08Z
 - kstyle_source_updated_at_utc: 2026-08-01T01:56:19Z
-- events_db_modified_at_utc: 2026-08-01T06:06:42Z
+- events_db_modified_at_utc: 2026-08-01T08:28:37Z
 
 ## Methodology
 

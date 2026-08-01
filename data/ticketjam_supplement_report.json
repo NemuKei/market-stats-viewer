@@ -5,12 +5,12 @@
     "ticketjam_source_updated_at_utc": "2026-08-01T06:23:00Z",
     "starto_source_updated_at_utc": "2026-07-31T13:37:08Z",
     "kstyle_source_updated_at_utc": "2026-08-01T01:56:19Z",
-    "events_db_modified_at_utc": "2026-08-01T06:06:42Z"
+    "events_db_modified_at_utc": "2026-08-01T08:28:37Z"
   },
   "summary": {
     "ticketjam_unique_schedules": 1285,
     "baseline_news_unique_schedules": 270,
-    "baseline_official_unique_schedules": 662,
+    "baseline_official_unique_schedules": 558,
     "ticketjam_category_counts": {
       "その他": 142,
       "コンサート": 898,
@@ -19,9 +19,9 @@
     "in_scope_unique_schedules": 7,
     "artist_scope_unique_schedules": 7,
     "venue_scope_unique_schedules": 0,
-    "additional_unique_schedules": 4,
-    "overlap_unique_schedules": 3,
-    "noise_rate": 0.4286,
+    "additional_unique_schedules": 5,
+    "overlap_unique_schedules": 2,
+    "noise_rate": 0.2857,
     "out_of_scope_unique_schedules": 1278,
     "out_of_scope_rate": 0.9946
   },
@@ -52,9 +52,9 @@
         "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
         "tier": "A",
         "ticketjam_hits": 3,
-        "additional_hits": 2,
-        "overlap_hits": 1,
-        "noise_rate": 0.3333,
+        "additional_hits": 3,
+        "overlap_hits": 0,
+        "noise_rate": 0.0,
         "venues": [
           "バンテリンドームナゴヤ",
           "ヤンマースタジアム長居"
