@@ -3671,6 +3671,16 @@ class _ToyosuPitSchedule(_BaseStrategy):
     Each event is <a class="schedule_list"> inside <ul class="schedule_block">.
     """
 
+    @staticmethod
+    def _decode_html_response(resp, *, url: str) -> str:
+        content = bytes(resp.content or b"")
+        try:
+            return content.decode("utf-8", errors="strict")
+        except UnicodeDecodeError as exc:
+            raise ValueError(
+                f"toyosu_pit: response is not valid UTF-8: {url}"
+            ) from exc
+
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
         months_ahead = int(config.get("months_ahead", 3))
         today = date.today()
@@ -3687,8 +3697,8 @@ class _ToyosuPitSchedule(_BaseStrategy):
                     continue
             except Exception:
                 continue
-            resp.encoding = resp.apparent_encoding or "utf-8"
-            soup = BeautifulSoup(resp.text, "html.parser")
+            html = self._decode_html_response(resp, url=month_url)
+            soup = BeautifulSoup(html, "html.parser")
             events.extend(self._parse_page(venue, soup, month_url, d.year, seen_uids))
 
         return events
