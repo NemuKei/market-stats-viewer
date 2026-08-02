@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-01",
+  "as_of_date": "2026-08-02",
   "events": [
     {
       "artist_name": "GPP",
@@ -3676,18 +3676,6 @@
           "url": "https://k-arena.com/schedule/20260801-1/"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/le-sserafim_pureflow",
-          "priority": 20,
-          "record_id": "3bd9398f643caa6a52f17424f91df08f8b363aa8fce6c30b98fea998c0db21b4",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN JAPAN",
-          "updated_at_utc": "2026-06-28T00:10:44Z",
-          "url": "https://www.hybejapan-concert.com/statics/le-sserafim_pureflow"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/le-sserafim/event/1181317",
           "priority": 40,
@@ -4110,35 +4098,23 @@
     {
       "artist_name": "NUMBER SHOT（ナンバーショット）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-01",
       "event_end_date": "2026-08-01",
       "event_end_time": null,
       "event_key": "a2974ea874e6a03a31c5",
-      "event_start_time": null,
-      "evidence_snippet": "Fukuoka SoftBank HAWKS official event schedule lists NUMBER SHOT2026 at みずほPayPayドーム福岡 on 2026年8月1日.",
-      "evidence_url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
-      "first_seen_at_utc": "2026-07-23T00:18:36Z",
-      "pref_name": null,
+      "event_start_time": "10:30",
+      "evidence_snippet": "2026-08-01 10:30 / 福岡県 みずほPayPayドーム福岡",
+      "evidence_url": "https://ticketjam.jp/tickets/number-shot/event/1105736",
+      "first_seen_at_utc": "2026-07-27T06:55:35Z",
+      "pref_name": "福岡県",
       "raw_artist_name": "NUMBER SHOT（ナンバーショット）",
       "raw_venue_name": "みずほPayPayドーム福岡",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
-          "priority": 20,
-          "record_id": "c1ec8add8921e1763985ada749ab1e3e7c3006ed03241bd38d177651cbbb0697",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "NUMBER SHOT2026",
-          "updated_at_utc": "2026-07-26T08:46:27Z",
-          "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/number-shot/event/1105736",
@@ -4152,9 +4128,9 @@
           "url": "https://ticketjam.jp/tickets/number-shot/event/1105736"
         }
       ],
-      "title": "NUMBER SHOT2026",
-      "updated_at_utc": "2026-07-26T08:46:27Z",
-      "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
+      "title": "NUMBER SHOT2026【単日券】",
+      "updated_at_utc": "2026-07-27T06:55:35Z",
+      "url": "https://ticketjam.jp/tickets/number-shot/event/1105736",
       "venue_name": "みずほPayPayドーム福岡"
     },
     {
@@ -4606,18 +4582,6 @@
           "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://sp.super-beaver.com/live_information/list/?range=future",
-          "priority": 20,
-          "record_id": "242a7a916d555114d6635666729bc8623eb1713805a982267ff837bf9af95a09",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "SUPER BEAVER <ドームツアー>",
-          "updated_at_utc": "2026-07-01T00:16:12Z",
-          "url": "https://sp.super-beaver.com/live_information/list/?range=future"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/super-beaver/event/1032289",
           "priority": 40,
@@ -4633,44 +4597,6 @@
       "title": "SUPER BEAVER「都会のラクダ DOME TOUR 2026」",
       "updated_at_utc": "2026-03-02T07:09:01Z",
       "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "5896c744f7dde612cfae",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月1日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "0d0bf4c5973c27490a137fc7e512fe083c13a1c039cba654cbca09ea5f297367",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
       "venue_name": "京セラドーム大阪"
     },
     {
@@ -5236,44 +5162,6 @@
       "updated_at_utc": "2026-03-09T07:46:04Z",
       "url": "https://ticketjam.jp/tickets/pacificphilharmoniatokyo/event/1071550",
       "venue_name": "東京芸術劇場 コンサートホール"
-    },
-    {
-      "artist_name": "STARGLOW",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "d1c8a990cac966f639c5",
-      "event_start_time": "17:30",
-      "evidence_snippet": "Creativeman official page lists STARGLOW 1st Fan Meeting -STAR CRUISE Special Edition- at 横浜アリーナ on 2026/8/1.",
-      "evidence_url": "https://www.creativeman.co.jp/event/starglow26/",
-      "first_seen_at_utc": "2026-06-25T20:34:54Z",
-      "pref_name": null,
-      "raw_artist_name": "STARGLOW",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.creativeman.co.jp/event/starglow26/",
-          "priority": 20,
-          "record_id": "99ad139ed79a0dac34aa8378f9a517d803569c3cc4a9600ef07c238185028b48",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "STARGLOW 1st Fan Meeting -STAR CRUISE Special Edition-",
-          "updated_at_utc": "2026-06-25T20:34:54Z",
-          "url": "https://www.creativeman.co.jp/event/starglow26/"
-        }
-      ],
-      "title": "STARGLOW 1st Fan Meeting -STAR CRUISE Special Edition-",
-      "updated_at_utc": "2026-06-25T20:34:54Z",
-      "url": "https://www.creativeman.co.jp/event/starglow26/",
-      "venue_name": "横浜アリーナ"
     },
     {
       "artist_name": "STARGLOW（スターグロウ）",
@@ -78086,8 +77974,8 @@
       "event_end_date": "2027-01-04",
       "event_end_time": null,
       "event_key": "11415d518f4d2b9b4e24",
-      "event_start_time": "18:00",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at バンテリンドーム ナゴヤ on 2027年1月4日 with START 18:00.",
+      "event_start_time": "19:00",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at バンテリンドーム ナゴヤ on 2027年1月4日 with START 19:00.",
       "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "first_seen_at_utc": "2026-06-28T00:10:44Z",
       "pref_name": null,
@@ -78104,12 +77992,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-06-30T00:09:09Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
       "title": "Bruno Mars - The Romantic Tour in Japan",
-      "updated_at_utc": "2026-06-30T00:09:09Z",
+      "updated_at_utc": "2026-08-02T00:14:06Z",
       "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "venue_name": "バンテリンドームナゴヤ"
     },
@@ -78656,8 +78544,8 @@
       "event_end_date": "2027-01-10",
       "event_end_time": null,
       "event_key": "3a000ab22b633d3fafd7",
-      "event_start_time": "16:00",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at 大和ハウス プレミストドーム（札幌ドーム） on 2027年1月10日 with START 16:00.",
+      "event_start_time": "17:00",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at 大和ハウス プレミストドーム（札幌ドーム） on 2027年1月10日 with START 17:00.",
       "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "first_seen_at_utc": "2026-06-28T00:10:44Z",
       "pref_name": null,
@@ -78674,12 +78562,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-06-30T00:09:09Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
       "title": "Bruno Mars - The Romantic Tour in Japan",
-      "updated_at_utc": "2026-06-30T00:09:09Z",
+      "updated_at_utc": "2026-08-02T00:14:06Z",
       "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "venue_name": "札幌ドーム"
     },
@@ -79022,8 +78910,8 @@
       "event_end_date": "2027-01-15",
       "event_end_time": null,
       "event_key": "ab6c2d71a16a965f4761",
-      "event_start_time": "17:30",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at ベルーナドーム（西武ドーム） on 2027年1月15日 with START 17:30.",
+      "event_start_time": "18:30",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at ベルーナドーム（西武ドーム） on 2027年1月15日 with START 18:30.",
       "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "first_seen_at_utc": "2026-06-28T00:10:44Z",
       "pref_name": null,
@@ -79040,12 +78928,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-06-30T00:09:09Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
       "title": "Bruno Mars - The Romantic Tour in Japan",
-      "updated_at_utc": "2026-06-30T00:09:09Z",
+      "updated_at_utc": "2026-08-02T00:14:06Z",
       "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "venue_name": "ベルーナドーム"
     },
@@ -79558,7 +79446,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-06-30T00:09:09Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
@@ -79780,8 +79668,8 @@
       "event_end_date": "2027-01-23",
       "event_end_time": null,
       "event_key": "f7f36bd5e6fa560585e4",
-      "event_start_time": "17:00",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at みずほPayPayドーム福岡 on 2027年1月23日 with START 17:00.",
+      "event_start_time": "18:00",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at みずほPayPayドーム福岡 on 2027年1月23日 with START 18:00.",
       "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "first_seen_at_utc": "2026-06-28T00:10:44Z",
       "pref_name": null,
@@ -79798,12 +79686,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-07-26T08:46:27Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
       "title": "Bruno Mars - The Romantic Tour in Japan",
-      "updated_at_utc": "2026-07-26T08:46:27Z",
+      "updated_at_utc": "2026-08-02T00:14:06Z",
       "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -79944,8 +79832,8 @@
       "event_end_date": "2027-01-24",
       "event_end_time": null,
       "event_key": "3bfd902e6cc7c29affed",
-      "event_start_time": "16:30",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at みずほPayPayドーム福岡 on 2027年1月24日 with START 16:30.",
+      "event_start_time": "17:00",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at みずほPayPayドーム福岡 on 2027年1月24日 with START 17:00.",
       "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "first_seen_at_utc": "2026-06-28T00:10:44Z",
       "pref_name": null,
@@ -79962,12 +79850,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-07-26T08:46:27Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
       "title": "Bruno Mars - The Romantic Tour in Japan",
-      "updated_at_utc": "2026-07-26T08:46:27Z",
+      "updated_at_utc": "2026-08-02T00:14:06Z",
       "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -80108,8 +79996,8 @@
       "event_end_date": "2027-01-27",
       "event_end_time": null,
       "event_key": "c7157e56e68caf5e4f03",
-      "event_start_time": "18:00",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at 東京ドーム on 2027年1月27日 with START 18:00.",
+      "event_start_time": "19:00",
+      "evidence_snippet": "Live Nation H.I.P. official page lists Bruno Mars - The Romantic Tour in Japan at 東京ドーム on 2027年1月27日 with START 19:00.",
       "evidence_url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "first_seen_at_utc": "2026-06-28T00:10:44Z",
       "pref_name": null,
@@ -80126,12 +80014,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Bruno Mars - The Romantic Tour in Japan",
-          "updated_at_utc": "2026-06-30T00:09:09Z",
+          "updated_at_utc": "2026-08-02T00:14:06Z",
           "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
         }
       ],
       "title": "Bruno Mars - The Romantic Tour in Japan",
-      "updated_at_utc": "2026-06-30T00:09:09Z",
+      "updated_at_utc": "2026-08-02T00:14:06Z",
       "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
       "venue_name": "東京ドーム"
     },
@@ -83288,8 +83176,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-01T13:01:33Z",
-  "history_start_date": "2026-05-03",
+  "generated_at_utc": "2026-08-02T00:14:13Z",
+  "history_start_date": "2026-05-04",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -83305,10 +83193,10 @@
       "kstyle_music": 111,
       "official_events": 535,
       "starto_concert": 127,
-      "ticketjam_events": 1083,
-      "venue_web_discovery": 181
+      "ticketjam_events": 1084,
+      "venue_web_discovery": 178
     },
-    "event_count": 2037,
-    "record_count_before_grouping": 2527
+    "event_count": 2035,
+    "record_count_before_grouping": 2522
   }
 }
