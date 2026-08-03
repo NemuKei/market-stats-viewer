@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-02",
+  "as_of_date": "2026-08-03",
   "events": [
     {
       "artist_name": "GPP",
@@ -4206,18 +4206,6 @@
           "url": "https://k-arena.com/schedule/20260802-1/"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/le-sserafim_pureflow",
-          "priority": 20,
-          "record_id": "0ff7e0cd36ab2ff80478c775a0aa05ce246315faf40a28e856e23f82f4309705",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN JAPAN",
-          "updated_at_utc": "2026-06-28T00:10:44Z",
-          "url": "https://www.hybejapan-concert.com/statics/le-sserafim_pureflow"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/le-sserafim/event/1181318",
           "priority": 40,
@@ -4602,35 +4590,23 @@
     {
       "artist_name": "NUMBER SHOT（ナンバーショット）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-02",
       "event_end_date": "2026-08-02",
       "event_end_time": null,
       "event_key": "3d5fd02304543cd9c7b3",
-      "event_start_time": null,
-      "evidence_snippet": "Fukuoka SoftBank HAWKS official event schedule lists NUMBER SHOT2026 at みずほPayPayドーム福岡 on 2026年8月2日.",
-      "evidence_url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
-      "first_seen_at_utc": "2026-07-23T00:18:36Z",
-      "pref_name": null,
+      "event_start_time": "10:30",
+      "evidence_snippet": "2026-08-02 10:30 / 福岡県 みずほPayPayドーム福岡",
+      "evidence_url": "https://ticketjam.jp/tickets/number-shot/event/1106140",
+      "first_seen_at_utc": "2026-07-27T06:55:35Z",
+      "pref_name": "福岡県",
       "raw_artist_name": "NUMBER SHOT（ナンバーショット）",
       "raw_venue_name": "みずほPayPayドーム福岡",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
-          "priority": 20,
-          "record_id": "72ba7ef2d3bb38d5f4a13ebbea783e4008595c9a8c0d3ea51fecd554449a6ef4",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "NUMBER SHOT2026",
-          "updated_at_utc": "2026-07-26T08:46:27Z",
-          "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/number-shot/event/1106140",
@@ -4656,9 +4632,9 @@
           "url": "https://ticketjam.jp/tickets/number-shot/event/1105737"
         }
       ],
-      "title": "NUMBER SHOT2026",
-      "updated_at_utc": "2026-07-26T08:46:27Z",
-      "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
+      "title": "NUMBER SHOT2026【2日通し券】",
+      "updated_at_utc": "2026-07-27T06:55:35Z",
+      "url": "https://ticketjam.jp/tickets/number-shot/event/1106140",
       "venue_name": "みずほPayPayドーム福岡"
     },
     {
@@ -5134,18 +5110,6 @@
           "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://sp.super-beaver.com/live_information/list/?range=future",
-          "priority": 20,
-          "record_id": "35343463e1c52e6ec079bdf524c66bc8be0cdfd6233957bc26ee460a898de2b5",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "SUPER BEAVER <ドームツアー>",
-          "updated_at_utc": "2026-07-01T00:16:12Z",
-          "url": "https://sp.super-beaver.com/live_information/list/?range=future"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/super-beaver/event/1032290",
           "priority": 40,
@@ -5161,44 +5125,6 @@
       "title": "SUPER BEAVER「都会のラクダ DOME TOUR 2026」",
       "updated_at_utc": "2026-03-02T07:09:01Z",
       "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-02",
-      "event_end_date": "2026-08-02",
-      "event_end_time": null,
-      "event_key": "30855f97651f1460bdca",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月2日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "2924d1c7fab58d0cc385dac003a9fb42c28e34ac5dbeca01017b597f02a9aea0",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
       "venue_name": "京セラドーム大阪"
     },
     {
@@ -5404,35 +5330,23 @@
     {
       "artist_name": "ME:I",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-02",
       "event_end_date": "2026-08-02",
       "event_end_time": null,
       "event_key": "0ceece97cc71002c76b9",
       "event_start_time": "15:00",
-      "evidence_snippet": "Tokyo Ariake Arena official event page lists 2026 ME:I 2ND ARENA LIVE TOUR \"ME:I WAY\" at 有明アリーナ on 2026年8月2日 with OPEN 14:00 / START 15:00.",
-      "evidence_url": "https://ariake-arena.tokyo/event/next/",
-      "first_seen_at_utc": "2026-07-23T00:18:36Z",
-      "pref_name": null,
-      "raw_artist_name": "ME:I",
+      "evidence_snippet": "2026-08-02 15:00 / 東京都 有明アリーナ",
+      "evidence_url": "https://ticketjam.jp/tickets/thegirls-produce101/event/1156096",
+      "first_seen_at_utc": "2026-07-19T06:23:00Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ME:I（ミーアイ）",
       "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/event/next/",
-          "priority": 20,
-          "record_id": "17d3cb1f2122df62ebc8b885df579c2f86c9b84d45302a0b7fb63cb630eb9ccc",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 ME:I 2ND ARENA LIVE TOUR \"ME:I WAY\"",
-          "updated_at_utc": "2026-07-23T00:18:36Z",
-          "url": "https://ariake-arena.tokyo/event/next/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/thegirls-produce101/event/1156096",
@@ -5447,8 +5361,8 @@
         }
       ],
       "title": "2026 ME:I 2ND ARENA LIVE TOUR \"ME:I WAY\"",
-      "updated_at_utc": "2026-07-23T00:18:36Z",
-      "url": "https://ariake-arena.tokyo/event/next/",
+      "updated_at_utc": "2026-07-19T06:23:00Z",
+      "url": "https://ticketjam.jp/tickets/thegirls-produce101/event/1156096",
       "venue_name": "有明アリーナ"
     },
     {
@@ -5620,18 +5534,6 @@
           "title": "STARGLOW 1st Fan Meeting -STAR CRUISE Special Edition-",
           "updated_at_utc": "2026-08-01T08:10:12Z",
           "url": "https://www.yokohama-arena.co.jp/event/detail/starglow-1st-fan-meeting-star-cruise-special-edition"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.creativeman.co.jp/event/starglow26/",
-          "priority": 20,
-          "record_id": "4226b029926a79a6bb75cbdd7b581b3a9b84234e3df06c2779285308b2630294",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "STARGLOW 1st Fan Meeting -STAR CRUISE Special Edition-",
-          "updated_at_utc": "2026-06-25T20:34:54Z",
-          "url": "https://www.creativeman.co.jp/event/starglow26/"
         }
       ],
       "title": "STARGLOW 1st Fan Meeting -STAR CRUISE Special Edition-",
@@ -83244,8 +83146,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-02T13:03:28Z",
-  "history_start_date": "2026-05-04",
+  "generated_at_utc": "2026-08-03T00:08:49Z",
+  "history_start_date": "2026-05-05",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -83261,10 +83163,10 @@
       "kstyle_music": 109,
       "official_events": 535,
       "starto_concert": 127,
-      "ticketjam_events": 1090,
-      "venue_web_discovery": 178
+      "ticketjam_events": 1092,
+      "venue_web_discovery": 175
     },
-    "event_count": 2039,
-    "record_count_before_grouping": 2519
+    "event_count": 2038,
+    "record_count_before_grouping": 2513
   }
 }
