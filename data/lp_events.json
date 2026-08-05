@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-04",
+  "as_of_date": "2026-08-05",
   "events": [
     {
       "artist_name": "GPP",
@@ -4292,35 +4292,23 @@
     {
       "artist_name": "ATEEZ",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-04",
       "event_end_date": "2026-08-04",
       "event_end_time": null,
       "event_key": "0eb3b55e7275abdb49eb",
-      "event_start_time": null,
-      "evidence_snippet": "K Arena Yokohama official schedule lists 2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN on 2026.08.04 with ARTIST ATEEZ.",
-      "evidence_url": "https://k-arena.com/schedule/20260804-1/",
-      "first_seen_at_utc": "2026-07-02T00:09:33Z",
-      "pref_name": null,
-      "raw_artist_name": "ATEEZ",
+      "event_start_time": "18:30",
+      "evidence_snippet": "2026-08-04 18:30 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/ateez/event/1166499",
+      "first_seen_at_utc": "2026-06-28T07:25:15Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "ATEEZ（エイティーズ／アチズ）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260804-1/",
-          "priority": 20,
-          "record_id": "13d16a44271df8ce2e835c93f2ed08edf5a8511cbd7dcd48be58375009956344",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN",
-          "updated_at_utc": "2026-07-02T00:09:33Z",
-          "url": "https://k-arena.com/schedule/20260804-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/ateez/event/1166499",
@@ -4334,9 +4322,9 @@
           "url": "https://ticketjam.jp/tickets/ateez/event/1166499"
         }
       ],
-      "title": "2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN",
-      "updated_at_utc": "2026-07-02T00:09:33Z",
-      "url": "https://k-arena.com/schedule/20260804-1/",
+      "title": "2026 ATEEZ FANMEETING ATINY’S VOYAGE : TINY MYSTERY IN JAPAN",
+      "updated_at_utc": "2026-06-28T07:25:15Z",
+      "url": "https://ticketjam.jp/tickets/ateez/event/1166499",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -4756,44 +4744,6 @@
       "updated_at_utc": "2026-07-19T06:23:00Z",
       "url": "https://ticketjam.jp/tickets/yorushika/event/1064966",
       "venue_name": "マリンメッセ福岡"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-04",
-      "event_end_date": "2026-08-04",
-      "event_end_time": null,
-      "event_key": "a2464523c94f4dd57dc7",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月4日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "6f482d2200b479db00046cef520dc63eb58175c116d4b4b50ff372ace6a697c4",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "福岡ソフトバンクホークス",
@@ -82698,8 +82648,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-04T13:52:42Z",
-  "history_start_date": "2026-05-06",
+  "generated_at_utc": "2026-08-05T00:07:53Z",
+  "history_start_date": "2026-05-07",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82715,10 +82665,10 @@
       "kstyle_music": 102,
       "official_events": 535,
       "starto_concert": 129,
-      "ticketjam_events": 1090,
-      "venue_web_discovery": 174
+      "ticketjam_events": 1091,
+      "venue_web_discovery": 172
     },
-    "event_count": 2030,
-    "record_count_before_grouping": 2493
+    "event_count": 2029,
+    "record_count_before_grouping": 2491
   }
 }
