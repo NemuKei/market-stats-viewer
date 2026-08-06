@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-05",
+  "as_of_date": "2026-08-06",
   "events": [
     {
       "artist_name": "GPP",
@@ -4532,35 +4532,23 @@
     {
       "artist_name": "ATEEZ",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-05",
       "event_end_date": "2026-08-05",
       "event_end_time": null,
       "event_key": "621a72e8ed0a649922ba",
-      "event_start_time": null,
-      "evidence_snippet": "K Arena Yokohama official schedule lists 2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN on 2026.08.05 with ARTIST ATEEZ.",
-      "evidence_url": "https://k-arena.com/schedule/20260805-1/",
-      "first_seen_at_utc": "2026-07-02T00:09:33Z",
-      "pref_name": null,
-      "raw_artist_name": "ATEEZ",
+      "event_start_time": "18:30",
+      "evidence_snippet": "2026-08-05 18:30 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/ateez/event/1166500",
+      "first_seen_at_utc": "2026-06-08T08:35:06Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "ATEEZ（エイティーズ／アチズ）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260805-1/",
-          "priority": 20,
-          "record_id": "f899730baf1b852b0ad8a36f97c1a1c89a9b7d754139ea0d08952b80183bf2f0",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN",
-          "updated_at_utc": "2026-07-02T00:09:33Z",
-          "url": "https://k-arena.com/schedule/20260805-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/ateez/event/1166500",
@@ -4574,9 +4562,9 @@
           "url": "https://ticketjam.jp/tickets/ateez/event/1166500"
         }
       ],
-      "title": "2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN",
-      "updated_at_utc": "2026-07-02T00:09:33Z",
-      "url": "https://k-arena.com/schedule/20260805-1/",
+      "title": "2026 ATEEZ FANMEETING ATINY’S VOYAGE : TINY MYSTERY IN JAPAN",
+      "updated_at_utc": "2026-06-08T08:35:06Z",
+      "url": "https://ticketjam.jp/tickets/ateez/event/1166500",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -5238,44 +5226,6 @@
       "venue_name": "マリンメッセ福岡"
     },
     {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-05",
-      "event_end_date": "2026-08-05",
-      "event_end_time": null,
-      "event_key": "a78582ba5cb23a6d7d7d",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月5日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "2eb454855b901e7a1a68ca758ce3b18b2d059dcac12dcb281026d18b5e8b2b14",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "オリックス・バファローズ",
       "capacity": null,
       "display_source_class": "",
@@ -5466,35 +5416,23 @@
     {
       "artist_name": "パリ・サン＝ジェルマン ハンドボールジャパンツアー",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-05",
       "event_end_date": "2026-08-05",
       "event_end_time": null,
       "event_key": "b7de696d55d8638d96bd",
       "event_start_time": "19:00",
-      "evidence_snippet": "Tokyo Ariake Arena official event page lists パリ・サン＝ジェルマン ハンドボールジャパンツアー2026 at 有明アリーナ on 2026年8月5日 with OPEN 17:00 / START 19:00.",
-      "evidence_url": "https://ariake-arena.tokyo/event/next/",
-      "first_seen_at_utc": "2026-07-23T00:18:36Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-05 19:00 / 東京都 有明アリーナ",
+      "evidence_url": "https://ticketjam.jp/tickets/paris-handballjapan/event/1176211",
+      "first_seen_at_utc": "2026-07-20T06:41:19Z",
+      "pref_name": "東京都",
       "raw_artist_name": "パリ・サン＝ジェルマン ハンドボールジャパンツアー",
       "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/event/next/",
-          "priority": 20,
-          "record_id": "d00eb003f4c4d983c3d2239f41c38598d01309ddd654907e9dc4aba44aeff1e9",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "パリ・サン＝ジェルマン ハンドボールジャパンツアー2026",
-          "updated_at_utc": "2026-07-23T00:18:36Z",
-          "url": "https://ariake-arena.tokyo/event/next/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/paris-handballjapan/event/1176211",
@@ -5509,42 +5447,30 @@
         }
       ],
       "title": "パリ・サン＝ジェルマン ハンドボールジャパンツアー2026",
-      "updated_at_utc": "2026-07-23T00:18:36Z",
-      "url": "https://ariake-arena.tokyo/event/next/",
+      "updated_at_utc": "2026-07-20T06:41:19Z",
+      "url": "https://ticketjam.jp/tickets/paris-handballjapan/event/1176211",
       "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "福山雅治",
       "capacity": null,
-      "display_source_class": "artist_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-05",
       "event_end_date": "2026-08-05",
       "event_end_time": null,
       "event_key": "831ce1cb6d61d36cbd9c",
       "event_start_time": "18:00",
-      "evidence_snippet": "福山雅治オフィシャルサイトは『NISSAY PRESENTS WE’RE BROS. TOUR 2026 DOME LIVE 龍、涼風至』を東京ドームで2026年8月5日に開催し、START 18:00と掲載している。",
-      "evidence_url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F",
-      "first_seen_at_utc": "2026-07-28T00:15:45Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-05 18:00 / 東京都 東京ドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/fukuyama-masaharu/event/1146646",
+      "first_seen_at_utc": "2026-06-07T07:27:12Z",
+      "pref_name": "東京都",
       "raw_artist_name": "福山雅治",
       "raw_venue_name": "東京ドーム",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F",
-          "priority": 20,
-          "record_id": "e54a4e08fd7386e6b95926c1bb99a1d910a300f4ccf5671d91775345ee08bba9",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "NISSAY PRESENTS WE’RE BROS. TOUR 2026 DOME LIVE 龍、涼風至",
-          "updated_at_utc": "2026-07-28T00:15:45Z",
-          "url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/fukuyama-masaharu/event/1146646",
@@ -5559,8 +5485,8 @@
         }
       ],
       "title": "NISSAY PRESENTS WE’RE BROS. TOUR 2026 DOME LIVE 龍、涼風至",
-      "updated_at_utc": "2026-07-28T00:15:45Z",
-      "url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F",
+      "updated_at_utc": "2026-06-07T07:27:12Z",
+      "url": "https://ticketjam.jp/tickets/fukuyama-masaharu/event/1146646",
       "venue_name": "東京ドーム"
     },
     {
@@ -5616,35 +5542,23 @@
     {
       "artist_name": "なにわ男子",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
       "event_category": "コンサート",
       "event_date": "2026-08-05",
       "event_end_date": "2026-08-05",
       "event_end_time": null,
       "event_key": "962a9f7ce2611e191193",
       "event_start_time": null,
-      "evidence_snippet": "横浜アリーナ公式イベントページは、なにわ男子 LIVE TOUR 2026「ND⁵」を横浜アリーナで2026年8月5日に開催すると掲載している。",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
-      "first_seen_at_utc": "2026-07-28T00:15:45Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-05 13:00 / [神奈川県] 横浜アリーナ | 2026-08-05 18:00 / [神奈川県] 横浜アリーナ",
+      "evidence_url": "https://starto.jp/s/p/live/10489",
+      "first_seen_at_utc": "2026-07-27T18:52:51Z",
+      "pref_name": "神奈川県",
       "raw_artist_name": "なにわ男子",
       "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
+      "source_priority": 30,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
-          "priority": 20,
-          "record_id": "08fd8ff0f55e4b81a37cb4211c3136e307e88544befda0099b6c5d641400cf8a",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
-          "updated_at_utc": "2026-07-28T00:15:45Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://starto.jp/s/p/live/10489",
@@ -5695,8 +5609,8 @@
         }
       ],
       "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
-      "updated_at_utc": "2026-07-28T00:15:45Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
+      "updated_at_utc": "2026-07-27T18:52:51Z",
+      "url": "https://starto.jp/s/p/live/10489",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -82508,8 +82422,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-05T13:48:31Z",
-  "history_start_date": "2026-05-07",
+  "generated_at_utc": "2026-08-06T00:06:18Z",
+  "history_start_date": "2026-05-08",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82524,11 +82438,11 @@
     "counts_by_display_source": {
       "kstyle_music": 100,
       "official_events": 535,
-      "starto_concert": 129,
-      "ticketjam_events": 1089,
-      "venue_web_discovery": 172
+      "starto_concert": 130,
+      "ticketjam_events": 1092,
+      "venue_web_discovery": 167
     },
-    "event_count": 2025,
-    "record_count_before_grouping": 2488
+    "event_count": 2024,
+    "record_count_before_grouping": 2483
   }
 }
