@@ -1,79 +1,60 @@
+<!-- agents-catalog-basis: repo-template-codex@8877297d; profile=solo-product; overlays=data-contract-and-migration,architecture-and-dependencies -->
 # AGENTS.md
 
 ## Purpose
 
-このファイルは `market-stats-viewer`（MSV）の作業入口である。方針は **AGENTS-first, not AGENTS-only**。ここで読み順と安全境界を確認し、必要な範囲だけ `PROJECT_CONTEXT`、`STATUS`、`DECISIONS`、`spec`、README へ進む。
+`market-stats-viewer`（MSV）は、市場統計と大型イベント情報を、外部LPや需要判断で安全に使える配布dataとして安定提供するrepoである。DB更新、JSON生成、Release asset、automationは手段であり、利用側で鮮度と意味を確認できるdata productが成果である。
 
-MSV の目的は、市場統計と大型イベント情報を、外部LPや需要判断に使える配布データとして安定提供すること。DB更新、JSON生成、Release asset、automation はそのための手段であり、単独の成果ではない。
+方針はAGENTS-first, not AGENTS-onlyとする。root `AGENTS.md`を入口にし、追加文書は現在の問いと責務が一致するときだけ読む。
 
-MSV は Profile C として扱う。root `AGENTS.md` を常時入口とし、`PROJECT_CONTEXT`、`STATUS`、`DECISIONS` は責務が一致するときだけ読む optional layer のまま維持する。
+## Working Contract
 
-## Read Budget
-
-- 最初に `AGENTS.md` を読む。
-- `docs/context/PROJECT_CONTEXT.md` は retained optional upper premise layer。目的、source priority、LP影響、automation判断、仕様判断、docs governance に触れる場合だけ `Always Read Block` を読み、必要時だけ全文を読む。
-- 現在地、再開地点、backlog は `docs/context/STATUS.md` を読む。
-- 日付付きの固定判断や superseded 判断は `docs/context/DECISIONS.md` を読む。
-- 外部契約、データ契約、pipeline、UI挙動は該当する `docs/spec_*.md` を読む。
-- 実行手順、利用者向け概要、公開URLは `README.md` を読む。
-- `docs/handovers/**`、`docs/thread_logs/**`、archive 相当は参照専用。新規ルールを置かない。
-- 読み広げる前に、何を確認するために読むのかを短く固定する。
+- 変更前に、利用側の成果、今回の成功状態、変える対象、変えない対象、確認方法、LPへの影響を短く固定する。
+- 既定は`main`上のlinear workflowとする。branch / worktree / child taskは、利用者が並列進行を明示した場合だけ増やす。
+- source確認からDB、JSON / manifest、配布asset、利用側で観測できる結果までを1つのvertical sliceとして扱う。pipelineの途中だけを変えて完了にしない。
+- 日常的で局所的な修正は直接進める。再発問題、複数境界をまたぐ変更、将来のdata contractを狭める変更では、局所patch、boundedな根本修正、大きな再設計を比較する。
+- `PROJECT_CONTEXT`、`STATUS`、`DECISIONS`、task queueはoptional layerであり、存在するだけで毎回読まない。読み広げる前に、何を判断するためかを固定する。
+- `見解だけ`はread-only、`Docs整備して`はdocs-only、`すすめて`系は同じ利用者可視成果とverify setで閉じられるbundleとして扱う。
 
 ## Source Map
 
-- `AGENTS.md`: 作業入口、読み順、常時安全境界、Git/verify の最小ルール。
-- `docs/context/PROJECT_CONTEXT.md`: MSV の upper premise。目的、成功条件、判断原則、非目的、source-of-truth routing、LP掲載優先。
-- `docs/context/STATUS.md`: current / re-entry / unresolved risk。完了履歴は補助情報。
-- `docs/context/DECISIONS.md`: durable な日付付き判断。古い判断は削除せず superseded として残す。
-- `docs/spec_data.md`: DB、JSON、manifest、外部アプリ向けデータ契約、source priority の詳細。
-- `docs/spec_update_pipeline.md`: update scripts、workflow、provider、command、Release asset publish、automation 実行条件。
-- `docs/event_signal_audit_automation.md`: イベント監査automationの入力、許可変更、禁止変更、evidence、verification、post-merge audit。
+- `AGENTS.md`: operational entrypoint、読込routing、常時安全境界、verification。
+- `docs/context/PROJECT_CONTEXT.md`: 目的、成功条件、非目的、source priority、LP掲載優先。premise、LP影響、automation判断、docs governanceに触れる場合だけ`Always Read Block`から確認する。
+- `docs/context/STATUS.md`: current state、re-entry、unresolved risk。
+- `docs/context/DECISIONS.md`: durable decisionとsupersession history。
+- `docs/spec_data.md`: DB、JSON、manifest、外部app向けdata contract、source priorityの詳細。
+- `docs/spec_update_pipeline.md`: update script、workflow、provider、command、Release asset publish、automation実行条件。
+- `docs/event_signal_audit_automation.md`: イベント監査automationの入力、許可・禁止変更、evidence、verification、post-merge audit。
+- `README.md`: setup、実行手順、利用者向け概要、公開URL。
+- `docs/handovers/**`、`docs/thread_logs/**`、archive相当は参照専用とし、新規ruleを置かない。
 
-具体的な spec または日付付き decision が `PROJECT_CONTEXT` の一般原則と矛盾する場合は、具体的な spec / decision を優先する。未解決のまま外部挙動へ影響する場合は、推測で進めず `DECISIONS` へ暫定記録するか利用者へ確認する。
+具体的なspecまたはactive decisionが一般原則と衝突する場合は、狭い責務の正本を優先する。外部挙動に影響する未解決事項は推測で進めず、利用者確認または新decisionへrouteする。
 
-## Domain Guardrails
+## Source And Product Guardrails
 
-- SideBiz_HotelRM、公開LP反映、Cloudflare/Vite build、SideBiz側JSON取り込みはこのrepoの直接作業範囲ではない。必要な場合も別repo作業として明示する。
-- データ取得元は公的公開統計、会場公式、公式/準公式ページ本文を優先する。Web検知でDB/LP掲載してよい根拠は公式/準公式ページ本文に限り、検索結果、AI概要、一般ニュース、SNS単体、二次流通単体はDB更新根拠にしない。
-- LP向けイベント一覧は、重複統合済みの `data/lp_events.json` をデータ側で生成し、LP側は原則としてその一覧を読むだけにする。source priority の判断原則は `PROJECT_CONTEXT`、詳細契約は `docs/spec_data.md` を正本にする。
-- 市場統計またはイベント情報に関わる変更では、LP側で利用するデータへの影響を必ず確認する。対象は `data/market_stats.sqlite`、`data/events.sqlite`、`data/event_signals.sqlite`、`data/lp_events.json`、`data/manifest.json`、Release asset、関連workflow、表示用のカテゴリ・期間・集計・正規化ロジック。
-- 影響がない場合も `lp_impact=none` 相当の理由を残す。影響がある場合は、表示件数、カテゴリ、同一イベントのまとまり、データ鮮度、配布 manifest、source priority のどれが変わるかを分けて説明する。
-- provider名、コマンド、workflow、fallback 条件などの実装詳細は `docs/spec_update_pipeline.md` に置く。source priority、DB schema、Release asset契約、LP表示契約を変える場合は、同一変更内で `docs/spec_*.md`、`docs/context/DECISIONS.md`、必要な tests/verify を同期する。
+- data取得元は公的公開統計、会場公式、公式 / 準公式page本文を優先する。検索結果、AI概要、一般news、SNS単体、二次流通単体をDB更新やLP掲載の根拠にしない。
+- LP向けイベント一覧は、重複統合済みの`data/lp_events.json`をdata側で生成し、LP側は原則その一覧を読むだけにする。
+- 市場統計やイベント変更では、`data/market_stats.sqlite`、`data/events.sqlite`、`data/event_signals.sqlite`、`data/lp_events.json`、`data/manifest.json`、Release asset、workflow、category / period / aggregation / normalizationへの影響を確認する。
+- 影響がない場合も`lp_impact=none`と理由を残す。影響がある場合は、表示件数、category、event統合、鮮度、manifest、source priorityのどれが変わるかを分ける。
+- `SideBiz_HotelRM`のLP実装、Cloudflare / Vite build、SideBiz側JSON取込はこのrepoの直接範囲ではない。必要な場合は別repo作業として明示し、technical detailsを複製しない。
 
-## Docs And Local Work
+## Data, Architecture, And Dependencies
 
-- 会話内容だけを正本にしない。正本化する場合は対象ファイルを更新する。
-- 同じルールを複数文書へ重複展開しない。正本を1箇所に定め、他は短い参照にする。
-- `PROJECT_CONTEXT.md` にタスク一覧、完了履歴、コマンド詳細、provider詳細、個別入出力契約を入れない。
-- `spec` 更新要否は、外部挙動、入出力契約、用語、受け入れ条件、非機能要件が変わるかで判定する。
-- repo固有Skillは `.agents/skills/` に置く。共有Skillは `~/.codex/skills` から使い、このrepoへ複製しない。
-- context の採否、改訂、再検証、失効を利用者が明示した場合だけ `context-lifecycle` を使う。routine closeout や自動captureでは発火させない。
-- GUI/UXの設計・実装・視覚レビューでは、共有 `frontend-skill` を capability router として使い、利用者の明示指定を優先して現在利用可能なownerを選ぶ。特定Pluginを固定依存にしない。
-- docs配置、重複整理、正本化判断では `docs-governance`、spec影響が不明な場合は `spec-governance`、完了主張前には `verification-before-completion` を使う。
-- subagent は read-heavy な調査、レビュー、要約に限定して使う。write-heavy、shared/high-conflict files、final verify、commit/push 判断はメインスレッド側が保持する。
+- DB schema、保存JSON、manifest、Release asset、URL、config、workflow入出力、LP表示契約をcontractとして扱う。意味またはshapeを変える場合はbefore / after、consumer、互換方針、forward migration、rollback、旧pathの削除条件を確認する。
+- 既存dataを無断で削除、初期化、再解釈せず、適用済みの可能性があるmigrationを書き換えない。意味や新旧値が衝突する場合はsilent selectionしない。
+- source priority、DB schema、Release asset、LP表示契約を変える場合は、同じ変更で該当`docs/spec_*.md`、必要なdecision、test / verifyを同期する。
+- provider名、command、workflow、fallbackなどの実装詳細は`docs/spec_update_pipeline.md`へ置く。root、spec、script、automationに同じruleを複製しない。
+- 責務は変更理由、lifecycle、外部境界、独立検証が異なる場合だけ分ける。新しいpackageや独自実装の前に、既存実装、dependency、current documentation、type、APIを確認する。
 
-## Safety Boundaries
+## Safety And Local Work
 
-- 明示承認なしで行わない: `data/**` 更新、SQLite/JSON生成物更新、workflow dispatch、Release publish、live hook/config apply、DB schema変更、依存追加/更新、認証/secret/権限変更、SideBiz反映。
-- 秘密情報、Cookie、token、個人情報、raw log 全文、端末固有cacheを repo 管理対象へ入れない。
-- `.chatgpt/` はツール実行履歴や一時メタ情報として扱い、repo 管理対象にしない。
-- `docs/ai/` に後続連携用の資産を置く場合も、secret/PII/raw log/巨大一時出力がないことを確認し、現在taskに関係するファイルだけを stage する。
+- 明示承認なしで行わない: `data/**`更新、SQLite / JSON生成物更新、workflow dispatch、Release publish、live hook / config apply、DB schema変更、dependency追加 / 更新、credential / secret / 権限変更、SideBiz反映。
+- secret、Cookie、token、PII、raw log全文、端末固有cacheをrepo管理対象へ入れない。`.chatgpt/`はlocal-only metadataとして扱う。
+- `.agents/skills/`にはrepo固有手順だけを置き、共有Skillを複製しない。docs配置には`docs-governance`、spec影響が不明な場合は`spec-governance`、GUI / UXには`frontend-skill`を必要時だけ使う。
+- `docs/ai/`へ後続連携資産を置く場合も、secret / PII / raw log / 巨大一時出力がないことを確認し、現在taskのfileだけをstage対象にする。
 
-## Verify And Git
+## Verification And Closeout
 
-- 変更は依頼範囲に対して必要最小限に保つ。無関係な refactor、整形、削除、rename を混ぜない。
-- docs-only の最小verifyは、`git diff --check`、対象語句の `rg`、BOM確認、secret/credential/PII marker の簡易scan、`git status --short --branch`。
-- コード、data、workflow、Release asset、LP表示契約に触れた場合は、該当 spec/README の focused tests、build、生成確認を追加する。
-- verify が失敗した状態では通常の commit/push をしない。失敗内容、未解決点、次に見る箇所を報告する。
-- stage するのは現在taskに関係する tracked files だけ。ユーザー由来や無関係の差分を戻さない、stageしない。
-- 意味のある差分があり、verify が通り、ユーザーが止めていない場合は、`main` で commit し `origin/main` へ push する。push後に `git status --short --branch` を再確認する。
-
-## Request Semantics
-
-- `見解だけ`: read-only。実装、commit、push をしない。
-- `Docs整備して`: docs-only。実装ファイルや data 生成物を編集しない。
-- `すすめて` / `次にすすめて` / `未着手つぶして` / `ゴールモード`: `STATUS.md` と必要な spec/decision を確認し、同じ verify set で閉じられる Goal Bundle 単位で進める。
-
-## Closeout
-
-非自明な docs / governance / implementation では、変更ファイル、理由、LP/data/publish 境界への影響、verification evidence、commit hash / push state、`sync-needed` を報告する。SecondBrain / Memory への書込みは明示依頼または採用済みpolicyがある場合だけ行い、routine closeoutの必須判定にしない。GUI/UX に影響する場合は確認箇所を示し、内部/docs-only では GUI確認不要の理由を示す。
+- docs-onlyでは`git diff --check`、対象語句と参照path、BOM、secret / credential / PII marker、`git status --short --branch`を確認する。
+- code、data、workflow、Release asset、LP表示契約に触れた場合は、該当spec / READMEのfocused test、build、生成物検証、consumer-facing smokeを追加する。
+- 完了時は、変更、実行済み・未実行の検証、data / publish境界、`lp_impact`、必要な`sync-needed`、残存riskを報告する。
