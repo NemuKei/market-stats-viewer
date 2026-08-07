@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-06",
+  "as_of_date": "2026-08-07",
   "events": [
     {
       "artist_name": "GPP",
@@ -4646,35 +4646,23 @@
     {
       "artist_name": "ATEEZ",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-06",
       "event_end_date": "2026-08-06",
       "event_end_time": null,
       "event_key": "46a6ccf8bb54496925d1",
-      "event_start_time": null,
-      "evidence_snippet": "K Arena Yokohama official schedule lists 2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN on 2026.08.06 with ARTIST ATEEZ.",
-      "evidence_url": "https://k-arena.com/schedule/20260806-1/",
-      "first_seen_at_utc": "2026-07-02T00:09:33Z",
-      "pref_name": null,
-      "raw_artist_name": "ATEEZ",
+      "event_start_time": "18:30",
+      "evidence_snippet": "2026-08-06 18:30 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/ateez/event/1166501",
+      "first_seen_at_utc": "2026-07-11T06:04:07Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "ATEEZ（エイティーズ／アチズ）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260806-1/",
-          "priority": 20,
-          "record_id": "b30e9248f41792b4f15a2c69d8a2ec85868b24f2895d556fbd8976e50d050589",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN",
-          "updated_at_utc": "2026-07-02T00:09:33Z",
-          "url": "https://k-arena.com/schedule/20260806-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/ateez/event/1166501",
@@ -4688,9 +4676,9 @@
           "url": "https://ticketjam.jp/tickets/ateez/event/1166501"
         }
       ],
-      "title": "2026 ATEEZ FANMEETING ATINY'S VOYAGE : TINY MYSTERY IN JAPAN",
-      "updated_at_utc": "2026-07-02T00:09:33Z",
-      "url": "https://k-arena.com/schedule/20260806-1/",
+      "title": "2026 ATEEZ FANMEETING ATINY’S VOYAGE : TINY MYSTERY IN JAPAN",
+      "updated_at_utc": "2026-07-11T06:04:07Z",
+      "url": "https://ticketjam.jp/tickets/ateez/event/1166501",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -5212,44 +5200,6 @@
       "venue_name": "ベルーナドーム"
     },
     {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-06",
-      "event_end_date": "2026-08-06",
-      "event_end_time": null,
-      "event_key": "e42d1e7bae44885b26d1",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月6日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "70934bb90707080dd4d0efe8c6713ad459b19e5ec609ceb906ab2f821f329bd3",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "オリックス・バファローズ",
       "capacity": null,
       "display_source_class": "",
@@ -5428,35 +5378,23 @@
     {
       "artist_name": "福山雅治",
       "capacity": null,
-      "display_source_class": "artist_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-06",
       "event_end_date": "2026-08-06",
       "event_end_time": null,
       "event_key": "b5fb10855a04ed2f9c02",
       "event_start_time": "18:00",
-      "evidence_snippet": "福山雅治オフィシャルサイトは『NISSAY PRESENTS WE’RE BROS. TOUR 2026 DOME LIVE 龍、涼風至』を東京ドームで2026年8月6日に開催し、START 18:00と掲載している。",
-      "evidence_url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F",
-      "first_seen_at_utc": "2026-07-28T00:15:45Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-06 18:00 / 東京都 東京ドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/fukuyama-masaharu/event/1146647",
+      "first_seen_at_utc": "2026-07-27T06:55:35Z",
+      "pref_name": "東京都",
       "raw_artist_name": "福山雅治",
       "raw_venue_name": "東京ドーム",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F",
-          "priority": 20,
-          "record_id": "093ee5fdc3989689a00c623e59bb41d6f2e69ece8a474713f585eeddf3636f87",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "NISSAY PRESENTS WE’RE BROS. TOUR 2026 DOME LIVE 龍、涼風至",
-          "updated_at_utc": "2026-07-28T00:15:45Z",
-          "url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/fukuyama-masaharu/event/1146647",
@@ -5471,8 +5409,8 @@
         }
       ],
       "title": "NISSAY PRESENTS WE’RE BROS. TOUR 2026 DOME LIVE 龍、涼風至",
-      "updated_at_utc": "2026-07-28T00:15:45Z",
-      "url": "https://www.fukuyamamasaharu.com/mob/news/news_show.php?aff=ROBO004&cd=12959&ima=4908&site=F",
+      "updated_at_utc": "2026-07-27T06:55:35Z",
+      "url": "https://ticketjam.jp/tickets/fukuyama-masaharu/event/1146647",
       "venue_name": "東京ドーム"
     },
     {
@@ -5566,35 +5504,23 @@
     {
       "artist_name": "なにわ男子",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
       "event_category": "コンサート",
       "event_date": "2026-08-06",
       "event_end_date": "2026-08-06",
       "event_end_time": null,
       "event_key": "70f62eb568f590385f5c",
       "event_start_time": null,
-      "evidence_snippet": "横浜アリーナ公式イベントページは、なにわ男子 LIVE TOUR 2026「ND⁵」を横浜アリーナで2026年8月6日に開催すると掲載している。",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
-      "first_seen_at_utc": "2026-07-28T00:15:45Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-06 13:00 / [神奈川県] 横浜アリーナ | 2026-08-06 18:00 / [神奈川県] 横浜アリーナ",
+      "evidence_url": "https://starto.jp/s/p/live/10489",
+      "first_seen_at_utc": "2026-07-27T18:52:51Z",
+      "pref_name": "神奈川県",
       "raw_artist_name": "なにわ男子",
       "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
+      "source_priority": 30,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
-          "priority": 20,
-          "record_id": "7ca459639d67be197e4e9bbe9fd957e046f5b1883fd999c8231a45119d1d1002",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
-          "updated_at_utc": "2026-07-28T00:15:45Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://starto.jp/s/p/live/10489",
@@ -5645,8 +5571,8 @@
         }
       ],
       "title": "なにわ男子 LIVE TOUR 2026 「ND⁵」",
-      "updated_at_utc": "2026-07-28T00:15:45Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%81%AA%E3%81%AB%E3%82%8F%E7%94%B7%E5%AD%90-live-tour-2026-%E3%80%8Cnd%E2%81%B5%E3%80%8D",
+      "updated_at_utc": "2026-07-27T18:52:51Z",
+      "url": "https://starto.jp/s/p/live/10489",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -56280,6 +56206,44 @@
       "venue_name": "Asueアリーナ大阪"
     },
     {
+      "artist_name": "佐伯イッテツ / 赤城ウェン / 宇佐美リト / 緋八マナ / 星導ショウ / 叢雲カゲツ / 小柳ロウ / 伊波ライ",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-10",
+      "event_end_date": "2026-10-10",
+      "event_end_time": null,
+      "event_key": "69a1ec80bc936b46adc1",
+      "event_start_time": "18:00",
+      "evidence_snippet": "K Arena Yokohama official schedule lists MECHATU-A 1st LIVE “Over Drive!” at Kアリーナ横浜 on 2026.10.10 with ARTIST members and START 18:00.",
+      "evidence_url": "https://k-arena.com/schedule/20261010-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "佐伯イッテツ / 赤城ウェン / 宇佐美リト / 緋八マナ / 星導ショウ / 叢雲カゲツ / 小柳ロウ / 伊波ライ",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261010-1/",
+          "priority": 20,
+          "record_id": "b6708acf47cfd5333cd803e0077f0b3c67817f3ae8816b316d774ef754f4f69e",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "MECHATU-A 1st LIVE “Over Drive!”",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261010-1/"
+        }
+      ],
+      "title": "MECHATU-A 1st LIVE “Over Drive!”",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261010-1/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "FC東京",
       "capacity": null,
       "display_source_class": "",
@@ -56834,6 +56798,44 @@
       "updated_at_utc": "2026-07-01T08:30:05Z",
       "url": "https://toyosu.pia-pit.jp/schedule/202606/8577.html",
       "venue_name": "豊洲PIT"
+    },
+    {
+      "artist_name": "剣持刀也",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-11",
+      "event_end_date": "2026-10-11",
+      "event_end_time": null,
+      "event_key": "d39738b1f7188f739d5b",
+      "event_start_time": "18:00",
+      "evidence_snippet": "K Arena Yokohama official schedule lists 剣持刀也リアルソロライブ【虚空狂宴】 at Kアリーナ横浜 on 2026.10.11 with ARTIST 剣持刀也 and START 18:00.",
+      "evidence_url": "https://k-arena.com/schedule/20261011-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "剣持刀也",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261011-1/",
+          "priority": 20,
+          "record_id": "e405c6161f2a333fe2a712b5188fc2ba4154c572ef1147334e9132ffd5fe7b94",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "剣持刀也リアルソロライブ【虚空狂宴】",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261011-1/"
+        }
+      ],
+      "title": "剣持刀也リアルソロライブ【虚空狂宴】",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261011-1/",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "東京ヴェルディ（サッカー）",
@@ -62556,6 +62558,44 @@
       "venue_name": "有明アリーナ"
     },
     {
+      "artist_name": "さくらみこ",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-29",
+      "event_end_date": "2026-10-29",
+      "event_end_time": null,
+      "event_key": "74268cb4f276494f39b2",
+      "event_start_time": "18:30",
+      "evidence_snippet": "K Arena Yokohama official schedule lists Sakura Miko 2nd Live “Blooming Parade!!” at Kアリーナ横浜 on 2026.10.29 with ARTIST さくらみこ and START 18:30.",
+      "evidence_url": "https://k-arena.com/schedule/20261029-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "さくらみこ",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261029-1/",
+          "priority": 20,
+          "record_id": "c7dbb3b999dc30c7ee494a8e65a4bc841eb57b27dcb80aba5a7a41c9951795ac",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Sakura Miko 2nd Live “Blooming Parade!!”",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261029-1/"
+        }
+      ],
+      "title": "Sakura Miko 2nd Live “Blooming Parade!!”",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261029-1/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "CHANYEOL（チャンヨル／EXO）",
       "capacity": null,
       "display_source_class": "",
@@ -66486,6 +66526,44 @@
       "venue_name": "東京芸術劇場 コンサートホール"
     },
     {
+      "artist_name": "米津玄師",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-11",
+      "event_end_date": "2026-11-11",
+      "event_end_time": null,
+      "event_key": "e456c6a34ce0796d2d0a",
+      "event_start_time": null,
+      "evidence_snippet": "K Arena Yokohama official schedule detail lists 米津玄師 2026 TOUR / GHOST at Kアリーナ横浜 on 2026.11.11 with ARTIST 米津玄師.",
+      "evidence_url": "https://k-arena.com/schedule/20261111-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "米津玄師",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261111-1/",
+          "priority": 20,
+          "record_id": "dc80764cb7151179f380d4539503af108b7bf987d6aa97a2f7ab617141d8c534",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "米津玄師 2026 TOUR / GHOST",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261111-1/"
+        }
+      ],
+      "title": "米津玄師 2026 TOUR / GHOST",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261111-1/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "ミュージカル『新テニスの王子様』",
       "capacity": null,
       "display_source_class": "",
@@ -66674,6 +66752,44 @@
       "updated_at_utc": "2026-07-24T06:19:19Z",
       "url": "https://ticketjam.jp/tickets/sugiyama-kiyotaka/event/1231320",
       "venue_name": "KT Zepp Yokohama"
+    },
+    {
+      "artist_name": "米津玄師",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-12",
+      "event_end_date": "2026-11-12",
+      "event_end_time": null,
+      "event_key": "7f4d4fbd3fdfd218e835",
+      "event_start_time": null,
+      "evidence_snippet": "K Arena Yokohama official schedule detail lists 米津玄師 2026 TOUR / GHOST at Kアリーナ横浜 on 2026.11.12 with ARTIST 米津玄師.",
+      "evidence_url": "https://k-arena.com/schedule/20261112-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "米津玄師",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261112-1/",
+          "priority": 20,
+          "record_id": "eb2d3e536d89eed80dda092025a0564ba6400ca24546c9edb6b80f9312ddca52",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "米津玄師 2026 TOUR / GHOST",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261112-1/"
+        }
+      ],
+      "title": "米津玄師 2026 TOUR / GHOST",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261112-1/",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "ウィーン・フィルハーモニー管弦楽団",
@@ -67016,6 +67132,44 @@
       "updated_at_utc": "2026-07-31T13:37:08Z",
       "url": "https://starto.jp/s/p/live/10569",
       "venue_name": "Billboard Live YOKOHAMA"
+    },
+    {
+      "artist_name": "きゅるりんってしてみて",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-14",
+      "event_end_date": "2026-11-14",
+      "event_end_time": null,
+      "event_key": "2eca06d5314f116926ac",
+      "event_start_time": "16:30",
+      "evidence_snippet": "K Arena Yokohama official schedule lists しゅーぱーきゅるりんコア 〜カワイイ・リアリズム宣言〜 at Kアリーナ横浜 on 2026.11.14 with ARTIST きゅるりんってしてみて and START 16:30.",
+      "evidence_url": "https://k-arena.com/schedule/20261114-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "きゅるりんってしてみて",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261114-1/",
+          "priority": 20,
+          "record_id": "6cb21a86eb12c43d2616731b6d5421ee8a57d209519b980ac7213d8bf5021a6f",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "しゅーぱーきゅるりんコア 〜カワイイ・リアリズム宣言〜",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261114-1/"
+        }
+      ],
+      "title": "しゅーぱーきゅるりんコア 〜カワイイ・リアリズム宣言〜",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261114-1/",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "ミュージカル『新テニスの王子様』",
@@ -74748,6 +74902,82 @@
       "venue_name": "東京ドーム"
     },
     {
+      "artist_name": "米津玄師",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-16",
+      "event_end_date": "2026-12-16",
+      "event_end_time": null,
+      "event_key": "475ced8364e8dfb18c5d",
+      "event_start_time": null,
+      "evidence_snippet": "K Arena Yokohama official schedule detail lists 米津玄師 2026 TOUR / GHOST at Kアリーナ横浜 on 2026.12.16 with ARTIST 米津玄師.",
+      "evidence_url": "https://k-arena.com/schedule/20261216-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "米津玄師",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261216-1/",
+          "priority": 20,
+          "record_id": "88b4aaf549b8a2739cf7f509fd66520ccfc6b196fa5a0989f7bda4f0384ef4a6",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "米津玄師 2026 TOUR / GHOST",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261216-1/"
+        }
+      ],
+      "title": "米津玄師 2026 TOUR / GHOST",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261216-1/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "米津玄師",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-17",
+      "event_end_date": "2026-12-17",
+      "event_end_time": null,
+      "event_key": "10865a135fca9be9959a",
+      "event_start_time": null,
+      "evidence_snippet": "K Arena Yokohama official schedule detail lists 米津玄師 2026 TOUR / GHOST at Kアリーナ横浜 on 2026.12.17 with ARTIST 米津玄師.",
+      "evidence_url": "https://k-arena.com/schedule/20261217-1/",
+      "first_seen_at_utc": "2026-08-07T00:12:14Z",
+      "pref_name": null,
+      "raw_artist_name": "米津玄師",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://k-arena.com/schedule/20261217-1/",
+          "priority": 20,
+          "record_id": "cdfe26ca61c622eb0904177ce4d4248db360324dd1f0aa9c6c1298e019d803ba",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "米津玄師 2026 TOUR / GHOST",
+          "updated_at_utc": "2026-08-07T00:12:14Z",
+          "url": "https://k-arena.com/schedule/20261217-1/"
+        }
+      ],
+      "title": "米津玄師 2026 TOUR / GHOST",
+      "updated_at_utc": "2026-08-07T00:12:14Z",
+      "url": "https://k-arena.com/schedule/20261217-1/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "ゲスの極み乙女",
       "capacity": 2801,
       "display_source_class": "venue_official",
@@ -82056,8 +82286,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-06T13:47:00Z",
-  "history_start_date": "2026-05-08",
+  "generated_at_utc": "2026-08-07T00:18:24Z",
+  "history_start_date": "2026-05-09",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82072,11 +82302,11 @@
     "counts_by_display_source": {
       "kstyle_music": 98,
       "official_events": 535,
-      "starto_concert": 130,
-      "ticketjam_events": 1085,
-      "venue_web_discovery": 167
+      "starto_concert": 131,
+      "ticketjam_events": 1087,
+      "venue_web_discovery": 171
     },
-    "event_count": 2015,
-    "record_count_before_grouping": 2472
+    "event_count": 2022,
+    "record_count_before_grouping": 2476
   }
 }
