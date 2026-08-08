@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-08-07",
+  "as_of_date": "2026-08-08",
   "events": [
-    {
-      "artist_name": "GPP",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-05-09",
-      "event_end_date": "2026-05-09",
-      "event_end_time": null,
-      "event_key": "6f0bcaba5fec3d52b85e",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京都新宿近辺 ※当選者のみに開催場所詳細をお伝えいたします。 / 日時: 2026-05-09 / ※5月9日(土)0:00以降の投稿が対象となります",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2278909",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "GPP",
-      "raw_venue_name": "東京都新宿近辺 ※当選者のみに開催場所詳細をお伝えいたします。",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2278909",
-          "priority": 30,
-          "record_id": "ddef8d75f28594cb1cbbca3ed85323fccc73ad9c69841c597d556db5791ee908",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "GPP 2nd Release Party \"ATE!\"",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2278909"
-        }
-      ],
-      "title": "GPP 2nd Release Party \"ATE!\"",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278909",
-      "venue_name": "東京都新宿近辺 ※当選者のみに開催場所詳細をお伝えいたします。"
-    },
     {
       "artist_name": "timelesz",
       "capacity": null,
@@ -5550,44 +5512,6 @@
       "updated_at_utc": "2026-07-27T06:55:35Z",
       "url": "https://ticketjam.jp/tickets/seibulions/event/1040568",
       "venue_name": "ベルーナドーム"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-07",
-      "event_end_date": "2026-08-07",
-      "event_end_time": null,
-      "event_key": "60c6a645d2c4ca7ffa99",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月7日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "84bb807a56854a5f35cea90e8a20a5c2a6cc9fba3efb97a2e11324fffede5f00",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "阪神タイガース",
@@ -66108,23 +66032,35 @@
     {
       "artist_name": "EXILE",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-11-14",
       "event_end_date": "2026-11-14",
       "event_end_time": null,
       "event_key": "5d3866afc73492e4ebdf",
-      "event_start_time": "17:00",
-      "evidence_snippet": "2026-11-14 17:00 / 埼玉県 ベルーナドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/exile-hiro/event/1160217",
-      "first_seen_at_utc": "2026-06-12T08:14:58Z",
-      "pref_name": "埼玉県",
-      "raw_artist_name": "EXILE（エグザイル）",
+      "event_start_time": null,
+      "evidence_snippet": "EXILE公式ページは、EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～を2026年11月14日、埼玉・ベルーナドームで開催すると掲載している。",
+      "evidence_url": "https://exile.jp/news/detail.php?id=1132920",
+      "first_seen_at_utc": "2026-08-08T00:18:26Z",
+      "pref_name": null,
+      "raw_artist_name": "EXILE",
       "raw_venue_name": "ベルーナドーム",
-      "source_priority": 40,
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://exile.jp/news/detail.php?id=1132920",
+          "priority": 20,
+          "record_id": "73150ae1ed606d3ab045a7ac51605b2fa16a7ae8487cb83352904c1d3246a3ec",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～",
+          "updated_at_utc": "2026-08-08T00:18:26Z",
+          "url": "https://exile.jp/news/detail.php?id=1132920"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/exile-hiro/event/1160217",
@@ -66138,9 +66074,9 @@
           "url": "https://ticketjam.jp/tickets/exile-hiro/event/1160217"
         }
       ],
-      "title": "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
-      "updated_at_utc": "2026-06-12T08:14:58Z",
-      "url": "https://ticketjam.jp/tickets/exile-hiro/event/1160217",
+      "title": "EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～",
+      "updated_at_utc": "2026-08-08T00:18:26Z",
+      "url": "https://exile.jp/news/detail.php?id=1132920",
       "venue_name": "ベルーナドーム"
     },
     {
@@ -66714,23 +66650,35 @@
     {
       "artist_name": "EXILE",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-11-15",
       "event_end_date": "2026-11-15",
       "event_end_time": null,
       "event_key": "5950944c0d267b0c58a3",
-      "event_start_time": "16:00",
-      "evidence_snippet": "2026-11-15 16:00 / 埼玉県 ベルーナドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/exile-hiro/event/1160218",
-      "first_seen_at_utc": "2026-06-08T08:35:06Z",
-      "pref_name": "埼玉県",
-      "raw_artist_name": "EXILE（エグザイル）",
+      "event_start_time": null,
+      "evidence_snippet": "EXILE公式ページは、EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～を2026年11月15日、埼玉・ベルーナドームで開催すると掲載している。",
+      "evidence_url": "https://exile.jp/news/detail.php?id=1132920",
+      "first_seen_at_utc": "2026-08-08T00:18:26Z",
+      "pref_name": null,
+      "raw_artist_name": "EXILE",
       "raw_venue_name": "ベルーナドーム",
-      "source_priority": 40,
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://exile.jp/news/detail.php?id=1132920",
+          "priority": 20,
+          "record_id": "bee458b2cbfdfef713737a4d2330ce4c25a6d22cff1151c750f00195425589df",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～",
+          "updated_at_utc": "2026-08-08T00:18:26Z",
+          "url": "https://exile.jp/news/detail.php?id=1132920"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/exile-hiro/event/1160218",
@@ -66744,9 +66692,9 @@
           "url": "https://ticketjam.jp/tickets/exile-hiro/event/1160218"
         }
       ],
-      "title": "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
-      "updated_at_utc": "2026-06-08T08:35:06Z",
-      "url": "https://ticketjam.jp/tickets/exile-hiro/event/1160218",
+      "title": "EXILE 25th ANNIVERSARY BEST LIVE ～LDH PERFECT YEAR 2026～",
+      "updated_at_utc": "2026-08-08T00:18:26Z",
+      "url": "https://exile.jp/news/detail.php?id=1132920",
       "venue_name": "ベルーナドーム"
     },
     {
@@ -77766,6 +77714,44 @@
       "venue_name": "Zepp Haneda(Tokyo)"
     },
     {
+      "artist_name": "Maroon 5",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-01-30",
+      "event_end_date": "2027-01-30",
+      "event_end_time": null,
+      "event_key": "b339105c32230b293e04",
+      "event_start_time": null,
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート『Maroon 5』を2027年1月30日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-08-08T00:18:26Z",
+      "pref_name": null,
+      "raw_artist_name": "Maroon 5",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "9a95dced5e93dc022e58f876cfed8e11753fbfe1596944c8333f2d45309461a3",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Maroon 5",
+          "updated_at_utc": "2026-08-08T00:18:26Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "Maroon 5",
+      "updated_at_utc": "2026-08-08T00:18:26Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "WayV",
       "capacity": null,
       "display_source_class": "artist_official",
@@ -77842,6 +77828,44 @@
       "venue_name": "Kアリーナ横浜"
     },
     {
+      "artist_name": "Maroon 5",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-01-31",
+      "event_end_date": "2027-01-31",
+      "event_end_time": null,
+      "event_key": "e8d5bb68999d3b66d15d",
+      "event_start_time": null,
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート『Maroon 5』を2027年1月31日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-08-08T00:18:26Z",
+      "pref_name": null,
+      "raw_artist_name": "Maroon 5",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "b24aad755f33dfe97d513daebb6736492acc271004cc8ffa16a11e825a5b7f48",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Maroon 5",
+          "updated_at_utc": "2026-08-08T00:18:26Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "Maroon 5",
+      "updated_at_utc": "2026-08-08T00:18:26Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "WayV",
       "capacity": null,
       "display_source_class": "artist_official",
@@ -77878,6 +77902,82 @@
       "updated_at_utc": "2026-07-25T00:16:18Z",
       "url": "https://nct-jp.net/zh-CHT/news/detail.php?id=1134930",
       "venue_name": "横浜アリーナ"
+    },
+    {
+      "artist_name": "Maroon 5",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-01",
+      "event_end_date": "2027-02-01",
+      "event_end_time": null,
+      "event_key": "3578da1ddd6fd8aa12e3",
+      "event_start_time": null,
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート『Maroon 5』を2027年2月1日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-08-08T00:18:26Z",
+      "pref_name": null,
+      "raw_artist_name": "Maroon 5",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "6e242c388a743551b9f97398a9c61dadfb0c24aae7e97833ef254506f521b70c",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Maroon 5",
+          "updated_at_utc": "2026-08-08T00:18:26Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "Maroon 5",
+      "updated_at_utc": "2026-08-08T00:18:26Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
+    },
+    {
+      "artist_name": "Maroon 5",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-02",
+      "event_end_date": "2027-02-02",
+      "event_end_time": null,
+      "event_key": "3c919352613e74d095a0",
+      "event_start_time": null,
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート『Maroon 5』を2027年2月2日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-08-08T00:18:26Z",
+      "pref_name": null,
+      "raw_artist_name": "Maroon 5",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "81e2a00ae427e19dce616ffa4fcf0a3433fb8c175b25cde8a462fad92bcc5dff",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Maroon 5",
+          "updated_at_utc": "2026-08-08T00:18:26Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "Maroon 5",
+      "updated_at_utc": "2026-08-08T00:18:26Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "Da-iCE",
@@ -80728,8 +80828,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-07T12:46:14Z",
-  "history_start_date": "2026-05-09",
+  "generated_at_utc": "2026-08-08T00:22:53Z",
+  "history_start_date": "2026-05-10",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -80742,13 +80842,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 95,
+      "kstyle_music": 94,
       "official_events": 496,
       "starto_concert": 133,
-      "ticketjam_events": 1092,
-      "venue_web_discovery": 171
+      "ticketjam_events": 1090,
+      "venue_web_discovery": 176
     },
-    "event_count": 1987,
-    "record_count_before_grouping": 2422
+    "event_count": 1989,
+    "record_count_before_grouping": 2426
   }
 }
