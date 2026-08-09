@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-08",
+  "as_of_date": "2026-08-09",
   "events": [
     {
       "artist_name": "timelesz",
@@ -5094,18 +5094,6 @@
           "url": "https://k-arena.com/schedule/20260808-1/"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260808-1/",
-          "priority": 20,
-          "record_id": "d69fe1ffc42cc46ee432b83364d6b6898953da01890bee385019a8b166dd74b5",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "超特急 BULLET TRAIN ARENA TOUR 2026 ESCORT",
-          "updated_at_utc": "2026-07-05T00:15:49Z",
-          "url": "https://k-arena.com/schedule/20260808-1/"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/train/event/1053755",
           "priority": 40,
@@ -6128,44 +6116,6 @@
       "updated_at_utc": "2026-07-06T07:37:08Z",
       "url": "https://ticketjam.jp/tickets/talkingrockfes/event/1091355",
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-08",
-      "event_end_date": "2026-08-08",
-      "event_end_time": null,
-      "event_key": "7e75f7b83b2ec5355854",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月8日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "f1506bc5ea3e94cbd6de55141fe64c505e4e855a3c8cc67d5c79729099015f88",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "阪神タイガース",
@@ -80764,8 +80714,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-08T12:32:28Z",
-  "history_start_date": "2026-05-10",
+  "generated_at_utc": "2026-08-09T00:07:30Z",
+  "history_start_date": "2026-05-11",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -80782,9 +80732,9 @@
       "official_events": 496,
       "starto_concert": 133,
       "ticketjam_events": 1088,
-      "venue_web_discovery": 176
+      "venue_web_discovery": 175
     },
-    "event_count": 1987,
-    "record_count_before_grouping": 2425
+    "event_count": 1986,
+    "record_count_before_grouping": 2423
   }
 }
