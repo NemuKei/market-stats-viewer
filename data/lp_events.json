@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-09",
+  "as_of_date": "2026-08-10",
   "events": [
     {
       "artist_name": "timelesz",
@@ -5460,18 +5460,6 @@
           "url": "https://k-arena.com/schedule/20260809-1/"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260809-1/",
-          "priority": 20,
-          "record_id": "eafc9907eaae752c3eaad21b2bbac087507919b711b34b8519c9f353821985f4",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "超特急 BULLET TRAIN ARENA TOUR 2026 ESCORT",
-          "updated_at_utc": "2026-07-05T00:15:49Z",
-          "url": "https://k-arena.com/schedule/20260809-1/"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/train/event/1053756",
           "priority": 40,
@@ -6560,44 +6548,6 @@
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）"
     },
     {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-09",
-      "event_end_date": "2026-08-09",
-      "event_end_time": null,
-      "event_key": "9ca7bcf72fa8c91c0968",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月9日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "e7d10f3cfe293e3b78fe4fff7b3d327fcc55518eaf4f81f2e672e750d0881c41",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "阪神タイガース",
       "capacity": null,
       "display_source_class": "",
@@ -6852,35 +6802,23 @@
     {
       "artist_name": "CANNONBALL（キャノンボール）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-09",
       "event_end_date": "2026-08-09",
       "event_end_time": null,
       "event_key": "6068818fbfc1724367f7",
-      "event_start_time": null,
-      "evidence_snippet": "Tokyo Ariake Arena official site lists CANNONBALL外伝 on 2026.08.09-11 at 有明アリーナ, including 2026.08.09.",
-      "evidence_url": "https://ariake-arena.tokyo/",
-      "first_seen_at_utc": "2026-07-16T00:10:50Z",
-      "pref_name": null,
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-08-09 15:00 / 東京都 有明アリーナ",
+      "evidence_url": "https://ticketjam.jp/tickets/cannonball/event/1200998",
+      "first_seen_at_utc": "2026-07-20T06:41:19Z",
+      "pref_name": "東京都",
       "raw_artist_name": "CANNONBALL（キャノンボール）",
       "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/",
-          "priority": 20,
-          "record_id": "d8b6a671a2609420cfa9c9555831cf6fba0eaf99a7e40904043bc54e79e3842c",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "CANNONBALL外伝",
-          "updated_at_utc": "2026-07-16T00:10:50Z",
-          "url": "https://ariake-arena.tokyo/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/cannonball/event/1200998",
@@ -6895,8 +6833,8 @@
         }
       ],
       "title": "CANNONBALL外伝",
-      "updated_at_utc": "2026-07-16T00:10:50Z",
-      "url": "https://ariake-arena.tokyo/",
+      "updated_at_utc": "2026-07-20T06:41:19Z",
+      "url": "https://ticketjam.jp/tickets/cannonball/event/1200998",
       "venue_name": "有明アリーナ"
     },
     {
@@ -80578,8 +80516,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-09T12:34:55Z",
-  "history_start_date": "2026-05-11",
+  "generated_at_utc": "2026-08-10T00:10:02Z",
+  "history_start_date": "2026-05-12",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -80595,10 +80533,10 @@
       "kstyle_music": 99,
       "official_events": 496,
       "starto_concert": 133,
-      "ticketjam_events": 1081,
-      "venue_web_discovery": 175
+      "ticketjam_events": 1082,
+      "venue_web_discovery": 173
     },
-    "event_count": 1984,
-    "record_count_before_grouping": 2416
+    "event_count": 1983,
+    "record_count_before_grouping": 2413
   }
 }
