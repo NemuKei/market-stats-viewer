@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-11",
+  "as_of_date": "2026-08-12",
   "events": [
     {
       "artist_name": "timelesz",
@@ -5632,35 +5632,23 @@
     {
       "artist_name": "BATTLE SUMMIT（バトルサミット）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-11",
       "event_end_date": "2026-08-11",
       "event_end_time": null,
       "event_key": "ba7c11d9d2e1af87bf28",
       "event_start_time": "18:00",
-      "evidence_snippet": "K Arena Yokohama official schedule lists BATTLE SUMMIT Ⅲ on 2026.08.11 with ARTIST ■2on2 MC BATTLE T-Pablow & Zeebra and START 18:00.",
-      "evidence_url": "https://k-arena.com/schedule/20260811-1/",
-      "first_seen_at_utc": "2026-07-05T00:15:49Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-11 18:00 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/battlesummit/event/1204575",
+      "first_seen_at_utc": "2026-07-20T06:41:19Z",
+      "pref_name": "神奈川県",
       "raw_artist_name": "BATTLE SUMMIT（バトルサミット）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260811-1/",
-          "priority": 20,
-          "record_id": "25b91f919ff88a39890ce97aa50fa741e6b2f4ce55548d75d0b815ba768304ea",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "BATTLE SUMMIT Ⅲ",
-          "updated_at_utc": "2026-07-05T00:17:45Z",
-          "url": "https://k-arena.com/schedule/20260811-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/battlesummit/event/1204575",
@@ -5674,9 +5662,9 @@
           "url": "https://ticketjam.jp/tickets/battlesummit/event/1204575"
         }
       ],
-      "title": "BATTLE SUMMIT Ⅲ",
-      "updated_at_utc": "2026-07-05T00:17:45Z",
-      "url": "https://k-arena.com/schedule/20260811-1/",
+      "title": "BATTLE SUMMIT III",
+      "updated_at_utc": "2026-07-20T06:41:19Z",
+      "url": "https://ticketjam.jp/tickets/battlesummit/event/1204575",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -6648,44 +6636,6 @@
       "venue_name": "両国国技館"
     },
     {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-11",
-      "event_end_date": "2026-08-11",
-      "event_end_time": null,
-      "event_key": "5fd9a2f49ceea1aa9647",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月11日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "16cec3feb4ff9ab90e85bc62be8f907e291e8a0e57999c85f30e5ffbb625539b",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "蒼井翔太",
       "capacity": null,
       "display_source_class": "",
@@ -6814,35 +6764,23 @@
     {
       "artist_name": "CANNONBALL（キャノンボール）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-11",
       "event_end_date": "2026-08-11",
       "event_end_time": null,
       "event_key": "258eca2810dbf5e094c5",
-      "event_start_time": null,
-      "evidence_snippet": "Tokyo Ariake Arena official site lists CANNONBALL外伝 on 2026.08.09-11 at 有明アリーナ, including 2026.08.11.",
-      "evidence_url": "https://ariake-arena.tokyo/",
-      "first_seen_at_utc": "2026-07-16T00:09:18Z",
-      "pref_name": null,
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-08-11 15:00 / 東京都 有明アリーナ",
+      "evidence_url": "https://ticketjam.jp/tickets/cannonball/event/1201000",
+      "first_seen_at_utc": "2026-07-21T06:21:15Z",
+      "pref_name": "東京都",
       "raw_artist_name": "CANNONBALL（キャノンボール）",
       "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/",
-          "priority": 20,
-          "record_id": "16848de256ff543ce6303a8b06c3a98f05e6c9f60b7803646b93ea7c68ac29ce",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "CANNONBALL外伝",
-          "updated_at_utc": "2026-07-16T00:09:18Z",
-          "url": "https://ariake-arena.tokyo/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/cannonball/event/1201000",
@@ -6857,8 +6795,8 @@
         }
       ],
       "title": "CANNONBALL外伝",
-      "updated_at_utc": "2026-07-16T00:09:18Z",
-      "url": "https://ariake-arena.tokyo/",
+      "updated_at_utc": "2026-07-21T06:21:15Z",
+      "url": "https://ticketjam.jp/tickets/cannonball/event/1201000",
       "venue_name": "有明アリーナ"
     },
     {
@@ -82356,8 +82294,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-11T12:46:59Z",
-  "history_start_date": "2026-05-13",
+  "generated_at_utc": "2026-08-12T00:08:17Z",
+  "history_start_date": "2026-05-14",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82373,10 +82311,10 @@
       "kstyle_music": 100,
       "official_events": 568,
       "starto_concert": 126,
-      "ticketjam_events": 1057,
-      "venue_web_discovery": 170
+      "ticketjam_events": 1059,
+      "venue_web_discovery": 167
     },
-    "event_count": 2021,
-    "record_count_before_grouping": 2484
+    "event_count": 2020,
+    "record_count_before_grouping": 2481
   }
 }
