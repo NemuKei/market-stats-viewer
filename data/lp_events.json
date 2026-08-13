@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-12",
+  "as_of_date": "2026-08-13",
   "events": [
     {
       "artist_name": "timelesz",
@@ -6472,44 +6472,6 @@
       "updated_at_utc": "2026-07-27T18:52:51Z",
       "url": "https://starto.jp/s/p/live/10507",
       "venue_name": "マリンメッセ福岡"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-12",
-      "event_end_date": "2026-08-12",
-      "event_end_time": null,
-      "event_key": "e4d8d6ea8582ada52556",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月12日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "3af855ac0a1d334fd59e50b4b64ed1ad860a5e9ccab3bdee13e218b2ba6568e2",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "超ときめき♡宣伝部",
@@ -82444,8 +82406,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-12T12:50:17Z",
-  "history_start_date": "2026-05-14",
+  "generated_at_utc": "2026-08-13T00:09:25Z",
+  "history_start_date": "2026-05-15",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82462,9 +82424,9 @@
       "official_events": 568,
       "starto_concert": 126,
       "ticketjam_events": 1056,
-      "venue_web_discovery": 167
+      "venue_web_discovery": 166
     },
-    "event_count": 2023,
-    "record_count_before_grouping": 2487
+    "event_count": 2022,
+    "record_count_before_grouping": 2486
   }
 }
