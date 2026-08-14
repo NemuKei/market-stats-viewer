@@ -6714,44 +6714,6 @@
       "venue_name": "日本武道館"
     },
     {
-      "artist_name": "ふぉ～ゆ～",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-13",
-      "event_end_date": "2026-08-13",
-      "event_end_time": null,
-      "event_key": "1398d09c11c284c1d9a1",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-13 18:30 / [東京都] 日本武道館",
-      "evidence_url": "https://starto.jp/s/p/live/10474",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "ふぉ～ゆ～",
-      "raw_venue_name": "日本武道館",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10474",
-          "priority": 30,
-          "record_id": "08e4a9ab5ad6c805d3895df22a06a02a3393d7c02f794661b359b39eb7923d34",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "ふぉ～ゆ～ 一夜限りの15周年LIVE I♡YoU ～3939です～",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10474"
-        }
-      ],
-      "title": "ふぉ～ゆ～ 一夜限りの15周年LIVE I♡YoU ～3939です～",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10474",
-      "venue_name": "日本武道館"
-    },
-    {
       "artist_name": "三井不動産カップ",
       "capacity": null,
       "display_source_class": "",
@@ -82230,7 +82192,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-14T00:10:12Z",
+  "generated_at_utc": "2026-08-14T01:10:05Z",
   "history_start_date": "2026-05-16",
   "history_window_days": 90,
   "include_past": true,
@@ -82246,11 +82208,11 @@
     "counts_by_display_source": {
       "kstyle_music": 109,
       "official_events": 574,
-      "starto_concert": 126,
+      "starto_concert": 125,
       "ticketjam_events": 1043,
       "venue_web_discovery": 166
     },
-    "event_count": 2018,
-    "record_count_before_grouping": 2480
+    "event_count": 2017,
+    "record_count_before_grouping": 2479
   }
 }
