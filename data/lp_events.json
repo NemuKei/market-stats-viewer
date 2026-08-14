@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-13",
+  "as_of_date": "2026-08-14",
   "events": [
     {
       "artist_name": "timelesz",
@@ -6538,75 +6538,25 @@
       "venue_name": "ベルーナドーム"
     },
     {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-13",
-      "event_end_date": "2026-08-13",
-      "event_end_time": null,
-      "event_key": "e69af46ed8d2593b591b",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月13日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "bba7c3b1f3816d3c42f80ab9342cee76e95c9f5ce2db360d27b8b1b0080725e3",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "関西コレクション（KANSAI COLLECTION）",
       "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "その他",
       "event_date": "2026-08-13",
       "event_end_date": "2026-08-13",
       "event_end_time": null,
       "event_key": "ce6469510a8163135a7a",
       "event_start_time": "13:00",
-      "evidence_snippet": "Official Kansai Collection page lists 2026年8月13日(木), 開演13:00(予定), 京セラドーム大阪, 主催 関西コレクション実行委員会.",
-      "evidence_url": "https://www.kansai-collection.net/",
-      "first_seen_at_utc": "2026-07-10T00:08:48Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-13 13:00 / 大阪府 京セラドーム大阪",
+      "evidence_url": "https://ticketjam.jp/tickets/kansai-collection/event/1194240",
+      "first_seen_at_utc": "2026-08-06T06:18:53Z",
+      "pref_name": "大阪府",
       "raw_artist_name": "関西コレクション（KANSAI COLLECTION）",
       "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kansai-collection.net/",
-          "priority": 20,
-          "record_id": "ad4f97828bbe40c4478593ac02e36659cd10c8f5a47a0c61239e9bc7d7ca5255",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "KANSAI COLLECTION 2026 AUTUMN & WINTER",
-          "updated_at_utc": "2026-07-10T00:10:00Z",
-          "url": "https://www.kansai-collection.net/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/kansai-collection/event/1194240",
@@ -6621,8 +6571,8 @@
         }
       ],
       "title": "KANSAI COLLECTION 2026 AUTUMN & WINTER",
-      "updated_at_utc": "2026-07-10T00:10:00Z",
-      "url": "https://www.kansai-collection.net/",
+      "updated_at_utc": "2026-08-06T06:18:53Z",
+      "url": "https://ticketjam.jp/tickets/kansai-collection/event/1194240",
       "venue_name": "京セラドーム大阪"
     },
     {
@@ -82128,6 +82078,82 @@
       "venue_name": "GMOアリーナさいたま"
     },
     {
+      "artist_name": "アニサマ2027",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-08-28",
+      "event_end_date": "2027-08-28",
+      "event_end_time": null,
+      "event_key": "aa11d6a61f562380d797",
+      "event_start_time": null,
+      "evidence_snippet": "アニサマ公式NEWSは、2027年8月27日から29日の3日間、GMOアリーナさいたま（旧さいたまスーパーアリーナ）で「アニサマ2027」を開催すると掲載している。",
+      "evidence_url": "https://anisama.tv/2026/news/article26071201.html",
+      "first_seen_at_utc": "2026-08-14T00:07:19Z",
+      "pref_name": null,
+      "raw_artist_name": "アニサマ2027",
+      "raw_venue_name": "GMOアリーナさいたま",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://anisama.tv/2026/news/article26071201.html",
+          "priority": 20,
+          "record_id": "5e75ab21c887d76b9d698e5fb62e64bc367763ec93db6bb1165716be5746922c",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "アニサマ2027",
+          "updated_at_utc": "2026-08-14T00:07:19Z",
+          "url": "https://anisama.tv/2026/news/article26071201.html"
+        }
+      ],
+      "title": "アニサマ2027",
+      "updated_at_utc": "2026-08-14T00:07:19Z",
+      "url": "https://anisama.tv/2026/news/article26071201.html",
+      "venue_name": "GMOアリーナさいたま"
+    },
+    {
+      "artist_name": "アニサマ2027",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-08-29",
+      "event_end_date": "2027-08-29",
+      "event_end_time": null,
+      "event_key": "9126fdae787ebcfda878",
+      "event_start_time": null,
+      "evidence_snippet": "アニサマ公式NEWSは、2027年8月27日から29日の3日間、GMOアリーナさいたま（旧さいたまスーパーアリーナ）で「アニサマ2027」を開催すると掲載している。",
+      "evidence_url": "https://anisama.tv/2026/news/article26071201.html",
+      "first_seen_at_utc": "2026-08-14T00:07:19Z",
+      "pref_name": null,
+      "raw_artist_name": "アニサマ2027",
+      "raw_venue_name": "GMOアリーナさいたま",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://anisama.tv/2026/news/article26071201.html",
+          "priority": 20,
+          "record_id": "6212f857d343431f448ab28d2cc2be7a253c453c7e2d8701e398bbba6a99d314",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "アニサマ2027",
+          "updated_at_utc": "2026-08-14T00:07:19Z",
+          "url": "https://anisama.tv/2026/news/article26071201.html"
+        }
+      ],
+      "title": "アニサマ2027",
+      "updated_at_utc": "2026-08-14T00:07:19Z",
+      "url": "https://anisama.tv/2026/news/article26071201.html",
+      "venue_name": "GMOアリーナさいたま"
+    },
+    {
       "artist_name": "Vaundy",
       "capacity": null,
       "display_source_class": "",
@@ -82204,8 +82230,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-13T12:51:03Z",
-  "history_start_date": "2026-05-15",
+  "generated_at_utc": "2026-08-14T00:10:12Z",
+  "history_start_date": "2026-05-16",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82221,10 +82247,10 @@
       "kstyle_music": 109,
       "official_events": 574,
       "starto_concert": 126,
-      "ticketjam_events": 1042,
+      "ticketjam_events": 1043,
       "venue_web_discovery": 166
     },
-    "event_count": 2017,
+    "event_count": 2018,
     "record_count_before_grouping": 2480
   }
 }
