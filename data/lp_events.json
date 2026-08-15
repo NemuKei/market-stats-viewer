@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-08-14",
+  "as_of_date": "2026-08-15",
   "events": [
-    {
-      "artist_name": "timelesz",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-05-16",
-      "event_end_date": "2026-05-16",
-      "event_end_time": null,
-      "event_key": "a0ac7d96402ac283cbe5",
-      "event_start_time": null,
-      "evidence_snippet": "2026-05-16 18:00 / [愛知県] Aichi Sky Expo（愛知県国際展示場）Aホール",
-      "evidence_url": "https://starto.jp/s/p/live/10431",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "愛知県",
-      "raw_artist_name": "timelesz",
-      "raw_venue_name": "Aichi Sky Expo（愛知県国際展示場）Aホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10431",
-          "priority": 30,
-          "record_id": "dc28aae65b5c6b81776740ab8f4e548b8d7883627d1d6eb079a1535401075445",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10431"
-        }
-      ],
-      "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10431",
-      "venue_name": "愛知県国際展示場（AICHI SKY EXPO）"
-    },
     {
       "artist_name": "timelesz",
       "capacity": null,
@@ -6648,44 +6610,6 @@
       "updated_at_utc": "2026-08-08T04:36:11Z",
       "url": "https://ticketjam.jp/tickets/seibulions/event/1040384",
       "venue_name": "ベルーナドーム"
-    },
-    {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-14",
-      "event_end_date": "2026-08-14",
-      "event_end_time": null,
-      "event_key": "726ac412f7c645361269",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月14日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "7e829c347f4be51263dd35c56a2d1c45fcc7e5abe8b0a08dcf23bc4903d198aa",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "オリックス・バファローズ",
@@ -82788,8 +82712,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-14T12:47:17Z",
-  "history_start_date": "2026-05-16",
+  "generated_at_utc": "2026-08-15T00:06:24Z",
+  "history_start_date": "2026-05-17",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82804,11 +82728,11 @@
     "counts_by_display_source": {
       "kstyle_music": 109,
       "official_events": 574,
-      "starto_concert": 143,
+      "starto_concert": 142,
       "ticketjam_events": 1041,
-      "venue_web_discovery": 166
+      "venue_web_discovery": 165
     },
-    "event_count": 2033,
-    "record_count_before_grouping": 2494
+    "event_count": 2031,
+    "record_count_before_grouping": 2492
   }
 }
