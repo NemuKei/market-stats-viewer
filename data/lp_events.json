@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-08-15",
+  "as_of_date": "2026-08-16",
   "events": [
-    {
-      "artist_name": "timelesz",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-05-17",
-      "event_end_date": "2026-05-17",
-      "event_end_time": null,
-      "event_key": "0da3b06f4c889fafdb28",
-      "event_start_time": null,
-      "evidence_snippet": "2026-05-17 13:00 / [愛知県] Aichi Sky Expo（愛知県国際展示場）Aホール | 2026-05-17 17:30 / [愛知県] Aichi Sky Expo（愛知県国際展示場）Aホール",
-      "evidence_url": "https://starto.jp/s/p/live/10431",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "愛知県",
-      "raw_artist_name": "timelesz",
-      "raw_venue_name": "Aichi Sky Expo（愛知県国際展示場）Aホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10431",
-          "priority": 30,
-          "record_id": "33734062da29deda723d265c2f80e911d8c42b588fba4ea41461ff02f622e93a",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10431"
-        }
-      ],
-      "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10431",
-      "venue_name": "愛知県国際展示場（AICHI SKY EXPO）"
-    },
     {
       "artist_name": "パク・ジフン",
       "capacity": null,
@@ -6136,35 +6098,23 @@
     {
       "artist_name": "THE ALFEE",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-15",
       "event_end_date": "2026-08-15",
       "event_end_time": null,
       "event_key": "8389b675f989f81b9c30",
       "event_start_time": "18:00",
-      "evidence_snippet": "K Arena Yokohama official schedule lists THE ALFEE Summer Celebration 2026 Mr. Moonlight on 2026.08.15 with ARTIST THE ALFEE and START 18:00.",
-      "evidence_url": "https://k-arena.com/schedule/20260815-1/",
-      "first_seen_at_utc": "2026-07-05T00:15:49Z",
-      "pref_name": null,
-      "raw_artist_name": "THE ALFEE",
+      "evidence_snippet": "2026-08-15 18:00 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/the-alfee/event/1205778",
+      "first_seen_at_utc": "2026-07-21T06:21:15Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "THE ALFEE（ジアルフィー）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260815-1/",
-          "priority": 20,
-          "record_id": "efbee2fb25bc33feac27167601f564071cb9b4370a93528c264b7ec26a5236da",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "THE ALFEE Summer Celebration 2026 Mr. Moonlight",
-          "updated_at_utc": "2026-07-05T00:15:49Z",
-          "url": "https://k-arena.com/schedule/20260815-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/the-alfee/event/1205778",
@@ -6179,8 +6129,8 @@
         }
       ],
       "title": "THE ALFEE Summer Celebration 2026 Mr. Moonlight",
-      "updated_at_utc": "2026-07-05T00:15:49Z",
-      "url": "https://k-arena.com/schedule/20260815-1/",
+      "updated_at_utc": "2026-07-21T06:21:15Z",
+      "url": "https://ticketjam.jp/tickets/the-alfee/event/1205778",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -7230,44 +7180,6 @@
       "venue_name": "両国国技館"
     },
     {
-      "artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-15",
-      "event_end_date": "2026-08-15",
-      "event_end_time": null,
-      "event_key": "a0d852e1e6c4f79e441a",
-      "event_start_time": null,
-      "evidence_snippet": "京セラドーム大阪公式エンターテインメントスケジュールは、TVアニメDr.STONE体験型謎解きイベントを2026年8月15日に同会場で開催すると掲載している。",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "first_seen_at_utc": "2026-08-01T00:15:46Z",
-      "pref_name": null,
-      "raw_artist_name": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-          "priority": 20,
-          "record_id": "1192d87df3bf1029baebdae93d6d698d54f666751adfc58abdf888ffe6a500de",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-          "updated_at_utc": "2026-08-01T00:15:46Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026"
-        }
-      ],
-      "title": "TVアニメDr.STONE 体験型謎解きイベント 科学王国vs闇の科学王国～唆るぜ！ナゾめくアジトを攻略せよ～",
-      "updated_at_utc": "2026-08-01T00:15:46Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "オリックス・バファローズ",
       "capacity": null,
       "display_source_class": "",
@@ -7838,18 +7750,6 @@
           "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
         },
         {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://sekainoowari.jp/info/2026/06/29/4466/",
-          "priority": 20,
-          "record_id": "628fee758bb9a73c61b785d7bf2a2faacd6b31a5fdf9bd0b7bf54b739f844a9d",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "SEKAI NO OWARI DOME TOUR 2026「THE CINEMA」",
-          "updated_at_utc": "2026-07-01T00:16:12Z",
-          "url": "https://sekainoowari.jp/info/2026/06/29/4466/"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/sekai-no-owari/event/1049133",
           "priority": 40,
@@ -7908,35 +7808,23 @@
     {
       "artist_name": "おかあさんといっしょ",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-15",
       "event_end_date": "2026-08-15",
       "event_end_time": null,
       "event_key": "fcb55107487c2b4d5e2c",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists おかあさんといっしょスペシャルステージ２０２６ ゆめのとびら at the main arena on 2026/08/15.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
+      "event_start_time": "10:30",
+      "evidence_snippet": "2026-08-15 10:30 / 神奈川県 横浜アリーナ",
+      "evidence_url": "https://ticketjam.jp/tickets/okasan/event/1222282",
+      "first_seen_at_utc": "2026-08-03T06:48:33Z",
+      "pref_name": "神奈川県",
       "raw_artist_name": "おかあさんといっしょ",
       "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら",
-          "priority": 20,
-          "record_id": "34ccfd98ecaaa87c331a62e8a577fbc5a8f1e537252fc5d7e92e5b2c15df6507",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/okasan/event/1222282",
@@ -7974,9 +7862,9 @@
           "url": "https://ticketjam.jp/tickets/okasan/event/1222281"
         }
       ],
-      "title": "おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら",
+      "title": "おかあさんといっしょスペシャルステージ2026",
+      "updated_at_utc": "2026-08-03T06:48:33Z",
+      "url": "https://ticketjam.jp/tickets/okasan/event/1222282",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -82726,8 +82614,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-15T12:24:03Z",
-  "history_start_date": "2026-05-17",
+  "generated_at_utc": "2026-08-16T00:08:25Z",
+  "history_start_date": "2026-05-18",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82742,11 +82630,11 @@
     "counts_by_display_source": {
       "kstyle_music": 109,
       "official_events": 574,
-      "starto_concert": 142,
-      "ticketjam_events": 1042,
-      "venue_web_discovery": 165
+      "starto_concert": 141,
+      "ticketjam_events": 1044,
+      "venue_web_discovery": 162
     },
-    "event_count": 2032,
-    "record_count_before_grouping": 2491
+    "event_count": 2030,
+    "record_count_before_grouping": 2486
   }
 }
