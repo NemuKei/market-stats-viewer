@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-18",
+  "as_of_date": "2026-08-19",
   "events": [
     {
       "artist_name": "パク・ジフン",
@@ -21132,6 +21132,44 @@
       "venue_name": "有明アリーナ"
     },
     {
+      "artist_name": "北海道ペット＆ファミリーEXPO 2026",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-08-29",
+      "event_end_date": "2026-08-29",
+      "event_end_time": null,
+      "event_key": "8c1c463e38078e2a507d",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、北海道ペット＆ファミリーEXPO 2026を2026年8月29日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "北海道ペット＆ファミリーEXPO 2026",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "c3f2dd40b9700a787c694711110c58c9fae25717289a0fb2d3742ae888bbb2f0",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "北海道ペット＆ファミリーEXPO 2026",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        }
+      ],
+      "title": "北海道ペット＆ファミリーEXPO 2026",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
+      "venue_name": "札幌ドーム"
+    },
+    {
       "artist_name": "松任谷由実",
       "capacity": null,
       "display_source_class": "",
@@ -22856,6 +22894,44 @@
       "updated_at_utc": "2026-08-12T05:15:27Z",
       "url": "https://ticketjam.jp/tickets/roselia/event/1200523",
       "venue_name": "有明アリーナ"
+    },
+    {
+      "artist_name": "北海道ペット＆ファミリーEXPO 2026",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-08-30",
+      "event_end_date": "2026-08-30",
+      "event_end_time": null,
+      "event_key": "b0a2d39d19f065d26b76",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、北海道ペット＆ファミリーEXPO 2026を2026年8月30日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "北海道ペット＆ファミリーEXPO 2026",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "f43fc8b96b7815d8e681d2fb4ba033c51bbac86e4a0f5bf69d59525b7b3da07f",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "北海道ペット＆ファミリーEXPO 2026",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        }
+      ],
+      "title": "北海道ペット＆ファミリーEXPO 2026",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
+      "venue_name": "札幌ドーム"
     },
     {
       "artist_name": "松任谷由実",
@@ -25628,23 +25704,35 @@
     {
       "artist_name": "水曜どうでしょう祭",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "その他",
       "event_date": "2026-09-04",
       "event_end_date": "2026-09-04",
       "event_end_time": null,
       "event_key": "ddcd2738cdb55f58c2fd",
-      "event_start_time": "11:00",
-      "evidence_snippet": "2026-09-04 11:00 / 北海道 札幌ドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127374",
-      "first_seen_at_utc": "2026-04-06T05:49:28Z",
-      "pref_name": "北海道",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、水曜どうでしょう祭UNITE2026 前日祭を2026年9月4日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
       "raw_artist_name": "水曜どうでしょう祭",
-      "raw_venue_name": "札幌ドーム",
-      "source_priority": 40,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "7f06c48bde2e643d84a1345befdea8f5397aea79593d9f0c5e62901ba2969d38",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "水曜どうでしょう祭UNITE2026 前日祭",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127374",
@@ -25659,8 +25747,8 @@
         }
       ],
       "title": "水曜どうでしょう祭UNITE2026 前日祭",
-      "updated_at_utc": "2026-04-06T05:49:28Z",
-      "url": "https://ticketjam.jp/tickets/unite2013/event/1127374",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
       "venue_name": "札幌ドーム"
     },
     {
@@ -26974,23 +27062,35 @@
     {
       "artist_name": "水曜どうでしょう祭",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "その他",
       "event_date": "2026-09-05",
       "event_end_date": "2026-09-05",
       "event_end_time": null,
       "event_key": "64595610d6c6211427d5",
-      "event_start_time": "10:00",
-      "evidence_snippet": "2026-09-05 10:00 / 北海道 札幌ドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127375",
-      "first_seen_at_utc": "2026-04-19T05:52:34Z",
-      "pref_name": "北海道",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、水曜どうでしょう祭UNITE2026 本祭を2026年9月5日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
       "raw_artist_name": "水曜どうでしょう祭",
-      "raw_venue_name": "札幌ドーム",
-      "source_priority": 40,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "aef17b32b21b00099dd62b4e1d40f9479fab002e51bf49718a8613d4c7ed398f",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "水曜どうでしょう祭UNITE2026 本祭",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127375",
@@ -27004,9 +27104,9 @@
           "url": "https://ticketjam.jp/tickets/unite2013/event/1127375"
         }
       ],
-      "title": "水曜どうでしょう祭UNITE2026【1日券】",
-      "updated_at_utc": "2026-04-19T05:52:34Z",
-      "url": "https://ticketjam.jp/tickets/unite2013/event/1127375",
+      "title": "水曜どうでしょう祭UNITE2026 本祭",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
       "venue_name": "札幌ドーム"
     },
     {
@@ -28736,23 +28836,35 @@
     {
       "artist_name": "水曜どうでしょう祭",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "その他",
       "event_date": "2026-09-06",
       "event_end_date": "2026-09-06",
       "event_end_time": null,
       "event_key": "d9342058cfc220375621",
-      "event_start_time": "10:00",
-      "evidence_snippet": "2026-09-06 10:00 / 北海道 札幌ドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127376",
-      "first_seen_at_utc": "2026-04-20T06:04:58Z",
-      "pref_name": "北海道",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、水曜どうでしょう祭UNITE2026 本祭を2026年9月6日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
       "raw_artist_name": "水曜どうでしょう祭",
-      "raw_venue_name": "札幌ドーム",
-      "source_priority": 40,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "a9013565eedb9de3403b175610dceaaf74062c63ac71d4e964d1ed98dc4e701f",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "水曜どうでしょう祭UNITE2026 本祭",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127376",
@@ -28778,9 +28890,9 @@
           "url": "https://ticketjam.jp/tickets/unite2013/event/1127377"
         }
       ],
-      "title": "水曜どうでしょう祭UNITE2026【1日券】",
-      "updated_at_utc": "2026-04-20T06:04:58Z",
-      "url": "https://ticketjam.jp/tickets/unite2013/event/1127376",
+      "title": "水曜どうでしょう祭UNITE2026 本祭",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
       "venue_name": "札幌ドーム"
     },
     {
@@ -33972,6 +34084,44 @@
       "updated_at_utc": "2026-07-28T00:15:45Z",
       "url": "https://ariake-arena.tokyo/event/two/",
       "venue_name": "有明アリーナ"
+    },
+    {
+      "artist_name": "スーパーマリオ : RUN TO THE GOAL in Hokkaido 2026",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-09-13",
+      "event_end_date": "2026-09-13",
+      "event_end_time": null,
+      "event_key": "42be85e127e282e61f53",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、スーパーマリオ : RUN TO THE GOAL in Hokkaido 2026を2026年9月13日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "スーパーマリオ : RUN TO THE GOAL in Hokkaido 2026",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "666ec6d24e936e6c2ae0db0d789b4c01793947b2f877b9523d862b2fedfe40a9",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "スーパーマリオ : RUN TO THE GOAL in Hokkaido 2026",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        }
+      ],
+      "title": "スーパーマリオ : RUN TO THE GOAL in Hokkaido 2026",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
+      "venue_name": "札幌ドーム"
     },
     {
       "artist_name": "カウントダウンTV（CDTV）",
@@ -40096,23 +40246,35 @@
     {
       "artist_name": "道新・秋華火",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "その他",
       "event_date": "2026-09-21",
       "event_end_date": "2026-09-21",
       "event_end_time": null,
       "event_key": "e3c7ab6adb3385895c25",
-      "event_start_time": "19:00",
-      "evidence_snippet": "2026-09-21 19:00 / 北海道 札幌ドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/doshin-akihanabi/event/1247352",
-      "first_seen_at_utc": "2026-07-21T06:21:15Z",
-      "pref_name": "北海道",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、HBA Special Night 道新・秋華火を2026年9月21日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
       "raw_artist_name": "道新・秋華火",
-      "raw_venue_name": "札幌ドーム",
-      "source_priority": 40,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "392bd926c63400190a1538c129d5f79ea00b42f6688206927e4efda03e811618",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HBA Special Night 道新・秋華火",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/doshin-akihanabi/event/1247352",
@@ -40127,8 +40289,8 @@
         }
       ],
       "title": "HBA Special Night 道新・秋華火",
-      "updated_at_utc": "2026-07-21T06:21:15Z",
-      "url": "https://ticketjam.jp/tickets/doshin-akihanabi/event/1247352",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
       "venue_name": "札幌ドーム"
     },
     {
@@ -41113,6 +41275,44 @@
       "title": "スピッツ, Teenage Fanclub, 羊文学,  Ride",
       "updated_at_utc": "2026-08-16T04:56:36Z",
       "url": "https://rockmansai.com",
+      "venue_name": "有明アリーナ"
+    },
+    {
+      "artist_name": "ロク漫祭",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-22",
+      "event_end_date": "2026-09-22",
+      "event_end_time": null,
+      "event_key": "dc4b8dd8d52cabc80862",
+      "event_start_time": "16:00",
+      "evidence_snippet": "東京有明アリーナ公式イベントページは、スピッツ、Teenage Fanclub、羊文学、Ride出演の『ロク漫祭 〜SPITZ 草野マサムネのロック大陸漫遊祭り〜』を2026年9月22日、有明アリーナで開催すると掲載している。",
+      "evidence_url": "https://ariake-arena.tokyo/event/next/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "ロク漫祭",
+      "raw_venue_name": "有明アリーナ",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/next/",
+          "priority": 20,
+          "record_id": "5fdea07b6d61487f2d378f84ab4acaa463d28d284877e75b5617f256f747d8a0",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ロク漫祭 〜SPITZ 草野マサムネのロック大陸漫遊祭り〜",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://ariake-arena.tokyo/event/next/"
+        }
+      ],
+      "title": "ロク漫祭 〜SPITZ 草野マサムネのロック大陸漫遊祭り〜",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://ariake-arena.tokyo/event/next/",
       "venue_name": "有明アリーナ"
     },
     {
@@ -54378,6 +54578,44 @@
       "venue_name": "広島グリーンアリーナ"
     },
     {
+      "artist_name": "EZOist JAPAN 2026",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-10-18",
+      "event_end_date": "2026-10-18",
+      "event_end_time": null,
+      "event_key": "1cd1e54a3a995bc11510",
+      "event_start_time": null,
+      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、EZOist JAPAN 2026を2026年10月18日、大和ハウス プレミストドームで開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "EZOist JAPAN 2026",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "priority": 20,
+          "record_id": "9fa2bbacbc92f17658ca00b0969ee63fc901bbb867bae59a6c2370016a5e9ab1",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "EZOist JAPAN 2026",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/"
+        }
+      ],
+      "title": "EZOist JAPAN 2026",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/",
+      "venue_name": "札幌ドーム"
+    },
+    {
       "artist_name": "読売日本交響楽団",
       "capacity": null,
       "display_source_class": "",
@@ -58402,6 +58640,44 @@
       "venue_name": "フェスティバルホール"
     },
     {
+      "artist_name": "MTV VMAJ 2026",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-29",
+      "event_end_date": "2026-10-29",
+      "event_end_time": null,
+      "event_key": "cd410d131e07a24eb9c1",
+      "event_start_time": "18:00",
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート『MTV VMAJ 2026』を2026年10月29日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "MTV VMAJ 2026",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "8803aa5163abec82d5468843f0fc9280244fe5db817dbaac9e924de5b07c034b",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "MTV VMAJ 2026",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "MTV VMAJ 2026",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "中村雅俊",
       "capacity": null,
       "display_source_class": "",
@@ -62104,6 +62380,44 @@
       "venue_name": "フクダ電子アリーナ"
     },
     {
+      "artist_name": "渡辺美里",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-08",
+      "event_end_date": "2026-11-08",
+      "event_end_time": null,
+      "event_key": "1af3bf74274ed26a0616",
+      "event_start_time": null,
+      "evidence_snippet": "ベルーナドーム公式スケジュールは、明治 チョコレート効果 プレゼンツ 渡辺美里 スタジアム伝説～復活～ Sweet 60を2026年11月8日にベルーナドームで開催すると掲載している。",
+      "evidence_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "渡辺美里",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+          "priority": 20,
+          "record_id": "273f285bf0c7f94b778cbfac77fd01746594f5f46f11fd565f8a872455ac3e38",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "明治 チョコレート効果 プレゼンツ 渡辺美里 スタジアム伝説～復活～ Sweet 60",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html"
+        }
+      ],
+      "title": "明治 チョコレート効果 プレゼンツ 渡辺美里 スタジアム伝説～復活～ Sweet 60",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "SixTONES",
       "capacity": null,
       "display_source_class": "",
@@ -65148,6 +65462,44 @@
       "updated_at_utc": "2026-05-04T06:35:52Z",
       "url": "https://ticketjam.jp/tickets/ebasu/event/1169237",
       "venue_name": "LINE CUBE SHIBUYA"
+    },
+    {
+      "artist_name": "Tohji",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-17",
+      "event_end_date": "2026-11-17",
+      "event_end_time": null,
+      "event_key": "5044146a672e57b50ad5",
+      "event_start_time": "18:00",
+      "evidence_snippet": "東京ドーム公式スケジュールは、コンサート『Tohji Last Live Tokyo MALL』を2026年11月17日、東京ドームで開催すると掲載している。",
+      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "first_seen_at_utc": "2026-08-19T00:18:39Z",
+      "pref_name": null,
+      "raw_artist_name": "Tohji",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+          "priority": 20,
+          "record_id": "44d77df0ba5c1e357ef85a45dc9180f77b93aad94a5a406696256f66bf9a891e",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Tohji Last Live Tokyo MALL",
+          "updated_at_utc": "2026-08-19T00:18:39Z",
+          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+        }
+      ],
+      "title": "Tohji Last Live Tokyo MALL",
+      "updated_at_utc": "2026-08-19T00:18:39Z",
+      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "中村雅俊",
@@ -81502,8 +81854,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-18T12:29:23Z",
-  "history_start_date": "2026-05-20",
+  "generated_at_utc": "2026-08-19T00:18:44Z",
+  "history_start_date": "2026-05-21",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -81519,10 +81871,10 @@
       "kstyle_music": 105,
       "official_events": 589,
       "starto_concert": 134,
-      "ticketjam_events": 1021,
-      "venue_web_discovery": 159
+      "ticketjam_events": 1017,
+      "venue_web_discovery": 171
     },
-    "event_count": 2008,
-    "record_count_before_grouping": 2441
+    "event_count": 2016,
+    "record_count_before_grouping": 2453
   }
 }
