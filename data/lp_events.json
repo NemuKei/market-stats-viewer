@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-20",
+  "as_of_date": "2026-08-21",
   "events": [
     {
       "artist_name": "パク・ジフン",
@@ -7854,44 +7854,6 @@
       "venue_name": "日本武道館"
     },
     {
-      "artist_name": "KEY TO LIT",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-20",
-      "event_end_date": "2026-08-20",
-      "event_end_time": null,
-      "event_key": "d6116ea599a11b6b9aa7",
-      "event_start_time": null,
-      "evidence_snippet": "Ariake Arena official site lists KEY TO LIT Arena Tour 2026 NEO CLASSICS at 有明アリーナ on 2026.08.20-23, including 2026.08.20.",
-      "evidence_url": "https://ariake-arena.tokyo/",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "KEY TO LIT",
-      "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/",
-          "priority": 20,
-          "record_id": "52d5186081ed800b9bfe573c6bc82eb4cd1baec51bb0c7f79256273d92fb9a86",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://ariake-arena.tokyo/"
-        }
-      ],
-      "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://ariake-arena.tokyo/",
-      "venue_name": "有明アリーナ"
-    },
-    {
       "artist_name": "KEY TO LIT（キテレツ）",
       "capacity": null,
       "display_source_class": "",
@@ -8015,44 +7977,6 @@
       "title": "ディズニー･オン･アイス 2026",
       "updated_at_utc": "2026-05-11T07:03:38Z",
       "url": "https://ticketjam.jp/tickets/disney-on-ice/event/1125811",
-      "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "ディズニー・オン・アイス",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-20",
-      "event_end_date": "2026-08-20",
-      "event_end_time": null,
-      "event_key": "ef8a7b1b476421a72c8a",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists ディズニー・オン・アイス “Let’s Party!” at the main arena on 2026/08/20.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "ディズニー・オン・アイス",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-          "priority": 20,
-          "record_id": "1c90be5ddaeb6c866a2336347f93e59b046a4315f03d5d121e9c1e541efc8fec",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D"
-        }
-      ],
-      "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -57266,23 +57190,35 @@
     {
       "artist_name": "Number_i",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-10-24",
       "event_end_date": "2026-10-24",
       "event_end_time": null,
       "event_key": "df21480aaa2cd895a65e",
       "event_start_time": "16:00",
-      "evidence_snippet": "2026-10-24 16:00 / 北海道 札幌ドーム",
-      "evidence_url": "https://ticketjam.jp/tickets/number-i/event/1265580",
-      "first_seen_at_utc": "2026-08-07T05:16:47Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "Number_i（ナンバーアイ）",
-      "raw_venue_name": "札幌ドーム",
-      "source_priority": 40,
+      "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、Number_i LIVE TOUR No.Ⅲを2026年10月24日、同会場で開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261024",
+      "first_seen_at_utc": "2026-08-21T00:11:07Z",
+      "pref_name": null,
+      "raw_artist_name": "Number_i",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261024",
+          "priority": 20,
+          "record_id": "14ed66714cb9e9ed0c85ec29d4f80797332a91cb3272ab424f652b2d5c8d9dcb",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Number_i LIVE TOUR No.Ⅲ",
+          "updated_at_utc": "2026-08-21T00:11:07Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261024"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/number-i/event/1265580",
@@ -57296,9 +57232,9 @@
           "url": "https://ticketjam.jp/tickets/number-i/event/1265580"
         }
       ],
-      "title": "Number_i LIVE TOUR No.III",
-      "updated_at_utc": "2026-08-07T05:16:47Z",
-      "url": "https://ticketjam.jp/tickets/number-i/event/1265580",
+      "title": "Number_i LIVE TOUR No.Ⅲ",
+      "updated_at_utc": "2026-08-21T00:11:07Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261024",
       "venue_name": "札幌ドーム"
     },
     {
@@ -59146,23 +59082,35 @@
     {
       "artist_name": "Snow Man",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-10-30",
       "event_end_date": "2026-10-30",
       "event_end_time": null,
       "event_key": "701be3ab442ab0a1bfe8",
-      "event_start_time": null,
-      "evidence_snippet": "2026-10-30 17:00 / [北海道] 大和ハウス プレミストドーム（札幌ドーム）",
-      "evidence_url": "https://starto.jp/s/p/live/10578",
-      "first_seen_at_utc": "2026-08-14T12:47:15Z",
-      "pref_name": "北海道",
+      "event_start_time": "17:00",
+      "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、Snow Man DOME TOUR 2026-2027 ALL SUITEを2026年10月30日、同会場で開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261030",
+      "first_seen_at_utc": "2026-08-21T00:11:07Z",
+      "pref_name": null,
       "raw_artist_name": "Snow Man",
-      "raw_venue_name": "大和ハウス プレミストドーム（札幌ドーム）",
-      "source_priority": 30,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261030",
+          "priority": 20,
+          "record_id": "aa581d70f8a5d4920c4007e66f9b59f23c8e4db93ffa229a8473463013fd6f77",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
+          "updated_at_utc": "2026-08-21T00:11:07Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261030"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://starto.jp/s/p/live/10578",
@@ -59177,8 +59125,8 @@
         }
       ],
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
-      "updated_at_utc": "2026-08-14T12:47:15Z",
-      "url": "https://starto.jp/s/p/live/10578",
+      "updated_at_utc": "2026-08-21T00:11:07Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261030",
       "venue_name": "札幌ドーム"
     },
     {
@@ -59678,23 +59626,35 @@
     {
       "artist_name": "Snow Man",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-10-31",
       "event_end_date": "2026-10-31",
       "event_end_time": null,
       "event_key": "20b648637b681cd83ed5",
-      "event_start_time": null,
-      "evidence_snippet": "2026-10-31 17:00 / [北海道] 大和ハウス プレミストドーム（札幌ドーム）",
-      "evidence_url": "https://starto.jp/s/p/live/10578",
-      "first_seen_at_utc": "2026-08-14T12:47:15Z",
-      "pref_name": "北海道",
+      "event_start_time": "17:00",
+      "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、Snow Man DOME TOUR 2026-2027 ALL SUITEを2026年10月31日、同会場で開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261031",
+      "first_seen_at_utc": "2026-08-21T00:11:07Z",
+      "pref_name": null,
       "raw_artist_name": "Snow Man",
-      "raw_venue_name": "大和ハウス プレミストドーム（札幌ドーム）",
-      "source_priority": 30,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261031",
+          "priority": 20,
+          "record_id": "6524a64e283f11f1805ceb74938c3bf676d72c65b92a6c8dd36cc61e75ae7b01",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
+          "updated_at_utc": "2026-08-21T00:11:07Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261031"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://starto.jp/s/p/live/10578",
@@ -59709,8 +59669,8 @@
         }
       ],
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
-      "updated_at_utc": "2026-08-14T12:47:15Z",
-      "url": "https://starto.jp/s/p/live/10578",
+      "updated_at_utc": "2026-08-21T00:11:07Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261031",
       "venue_name": "札幌ドーム"
     },
     {
@@ -60360,23 +60320,35 @@
     {
       "artist_name": "Snow Man",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-11-01",
       "event_end_date": "2026-11-01",
       "event_end_time": null,
       "event_key": "d7d1dd05e52ac4ad50b2",
-      "event_start_time": null,
-      "evidence_snippet": "2026-11-01 15:00 / [北海道] 大和ハウス プレミストドーム（札幌ドーム）",
-      "evidence_url": "https://starto.jp/s/p/live/10578",
-      "first_seen_at_utc": "2026-08-14T12:47:15Z",
-      "pref_name": "北海道",
+      "event_start_time": "15:00",
+      "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、Snow Man DOME TOUR 2026-2027 ALL SUITEを2026年11月1日、同会場で開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261101",
+      "first_seen_at_utc": "2026-08-21T00:11:07Z",
+      "pref_name": null,
       "raw_artist_name": "Snow Man",
-      "raw_venue_name": "大和ハウス プレミストドーム（札幌ドーム）",
-      "source_priority": 30,
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261101",
+          "priority": 20,
+          "record_id": "c9dcbee512d33b68065a71e7597f4548272d8afbefdb559fe1a4df5e3155f98e",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
+          "updated_at_utc": "2026-08-21T00:11:07Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261101"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://starto.jp/s/p/live/10578",
@@ -60391,8 +60363,8 @@
         }
       ],
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
-      "updated_at_utc": "2026-08-14T12:47:15Z",
-      "url": "https://starto.jp/s/p/live/10578",
+      "updated_at_utc": "2026-08-21T00:11:07Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261101",
       "venue_name": "札幌ドーム"
     },
     {
@@ -67346,6 +67318,44 @@
       "venue_name": "日産スタジアム"
     },
     {
+      "artist_name": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-11-22",
+      "event_end_date": "2026-11-22",
+      "event_end_time": null,
+      "event_key": "3d3f5488abe43d861da2",
+      "event_start_time": "10:00",
+      "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋を2026年11月22日、同会場で開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261122",
+      "first_seen_at_utc": "2026-08-21T00:11:07Z",
+      "pref_name": null,
+      "raw_artist_name": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261122",
+          "priority": 20,
+          "record_id": "042c37c37911dbec3551faf12d2d970427233253181c4b083252d10c103c4199",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+          "updated_at_utc": "2026-08-21T00:11:07Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261122"
+        }
+      ],
+      "title": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "updated_at_utc": "2026-08-21T00:11:07Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261122",
+      "venue_name": "札幌ドーム"
+    },
+    {
       "artist_name": "天月－あまつき－",
       "capacity": 8000,
       "display_source_class": "venue_official",
@@ -67888,6 +67898,44 @@
       "updated_at_utc": "2026-07-26T06:29:31Z",
       "url": "https://ticketjam.jp/tickets/nargo/event/1075780",
       "venue_name": "日本武道館"
+    },
+    {
+      "artist_name": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-11-23",
+      "event_end_date": "2026-11-23",
+      "event_end_time": null,
+      "event_key": "139988ac487ae7dc1c69",
+      "event_start_time": "10:00",
+      "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋を2026年11月23日、同会場で開催すると掲載している。",
+      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261123",
+      "first_seen_at_utc": "2026-08-21T00:11:07Z",
+      "pref_name": null,
+      "raw_artist_name": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "raw_venue_name": "大和ハウス プレミストドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261123",
+          "priority": 20,
+          "record_id": "e96cb5724c5b7d71cbb0a4cc93b5f4c70eb81e7c830777f4f506411bb453ed8b",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+          "updated_at_utc": "2026-08-21T00:11:07Z",
+          "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261123"
+        }
+      ],
+      "title": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "updated_at_utc": "2026-08-21T00:11:07Z",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261123",
+      "venue_name": "札幌ドーム"
     },
     {
       "artist_name": "WOLF ALICE（ウルフアリス）",
@@ -82722,8 +82770,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-20T12:31:05Z",
-  "history_start_date": "2026-05-22",
+  "generated_at_utc": "2026-08-21T00:11:12Z",
+  "history_start_date": "2026-05-23",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82738,11 +82786,11 @@
     "counts_by_display_source": {
       "kstyle_music": 103,
       "official_events": 610,
-      "starto_concert": 127,
-      "ticketjam_events": 1025,
-      "venue_web_discovery": 171
+      "starto_concert": 124,
+      "ticketjam_events": 1024,
+      "venue_web_discovery": 175
     },
     "event_count": 2036,
-    "record_count_before_grouping": 2482
+    "record_count_before_grouping": 2486
   }
 }
