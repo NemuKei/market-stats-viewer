@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-08-21",
+  "as_of_date": "2026-08-22",
   "events": [
-    {
-      "artist_name": "パク・ジフン",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-05-23",
-      "event_end_date": "2026-05-23",
-      "event_end_time": null,
-      "event_key": "a090384fe854ad50aedb",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 川口総合文化センター・リリア フカガワみらいホール / 日時: 2026-05-23 / 開催日:2026年5月23日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2278017",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "埼玉県",
-      "raw_artist_name": "パク・ジフン",
-      "raw_venue_name": "川口総合文化センター・リリア フカガワみらいホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2278017",
-          "priority": 30,
-          "record_id": "c29363916d99bfe90a4b742f3fed28537179bf14b317c81a65499ecf532b9447",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 PARK JIHOON FANCON IN JAPAN [REFLECT]",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2278017"
-        }
-      ],
-      "title": "2026 PARK JIHOON FANCON IN JAPAN [REFLECT]",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2278017",
-      "venue_name": "川口総合文化センター・リリア フカガワみらいホール"
-    },
     {
       "artist_name": "timelesz",
       "capacity": null,
@@ -7024,35 +6986,23 @@
     {
       "artist_name": "BOYNEXTDOOR",
       "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-21",
       "event_end_date": "2026-08-21",
       "event_end_time": null,
       "event_key": "e6d839d57d2f612a6fad",
-      "event_start_time": "18:00",
-      "evidence_snippet": "HYBE JAPAN CONCERT official page lists BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN at K-Arena横浜 on 2026-08-21.",
-      "evidence_url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-      "first_seen_at_utc": "2026-06-28T00:10:44Z",
-      "pref_name": null,
-      "raw_artist_name": "BOYNEXTDOOR",
+      "event_start_time": "",
+      "evidence_snippet": "2026-08-21 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178905",
+      "first_seen_at_utc": "2026-06-03T08:41:32Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "BOYNEXTDOOR（ボーイネクストドア）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-          "priority": 20,
-          "record_id": "75f0d27763ad2b17498c075db50c8f457c78221756b3eeadafd35da50459b665",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN",
-          "updated_at_utc": "2026-06-28T00:13:11Z",
-          "url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178905",
@@ -7066,9 +7016,9 @@
           "url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178905"
         }
       ],
-      "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN",
-      "updated_at_utc": "2026-06-28T00:13:11Z",
-      "url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
+      "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2'",
+      "updated_at_utc": "2026-06-03T08:41:32Z",
+      "url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178905",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -7778,44 +7728,6 @@
       "venue_name": "大阪城ホール"
     },
     {
-      "artist_name": "KEY TO LIT",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-21",
-      "event_end_date": "2026-08-21",
-      "event_end_time": null,
-      "event_key": "7e79c02a88054b6785da",
-      "event_start_time": null,
-      "evidence_snippet": "Ariake Arena official site lists KEY TO LIT Arena Tour 2026 NEO CLASSICS at 有明アリーナ on 2026.08.20-23, including 2026.08.21.",
-      "evidence_url": "https://ariake-arena.tokyo/",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "KEY TO LIT",
-      "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/",
-          "priority": 20,
-          "record_id": "3730d1222cc2faee392d40e3bf600fcaa81b84829e1297ac79545238f847b2a2",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://ariake-arena.tokyo/"
-        }
-      ],
-      "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://ariake-arena.tokyo/",
-      "venue_name": "有明アリーナ"
-    },
-    {
       "artist_name": "KEY TO LIT（キテレツ）",
       "capacity": null,
       "display_source_class": "",
@@ -7963,44 +7875,6 @@
       "title": "ディズニー･オン･アイス 2026",
       "updated_at_utc": "2026-05-11T07:03:38Z",
       "url": "https://ticketjam.jp/tickets/disney-on-ice/event/1125814",
-      "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "ディズニー・オン・アイス",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-21",
-      "event_end_date": "2026-08-21",
-      "event_end_time": null,
-      "event_key": "6a38b5f28cb3e8e87681",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists ディズニー・オン・アイス “Let’s Party!” at the main arena on 2026/08/21.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "ディズニー・オン・アイス",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-          "priority": 20,
-          "record_id": "85219b65303bfdb803d89fb58ecc8fafa071c44ef8840d9660521fd1d14c082d",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D"
-        }
-      ],
-      "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -59030,23 +58904,35 @@
     {
       "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-10-31",
       "event_end_date": "2026-10-31",
       "event_end_time": null,
       "event_key": "66c80e669ae340336a39",
       "event_start_time": "17:00",
-      "evidence_snippet": "2026-10-31 17:00 / 大阪府 ヤンマースタジアム長居",
-      "evidence_url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228955",
-      "first_seen_at_utc": "2026-07-02T07:04:26Z",
-      "pref_name": "大阪府",
+      "evidence_snippet": "LDH LIVE SCHEDULE公式ページは、三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～を2026年10月31日、ヤンマースタジアム長居で開催すると掲載している（開演17:00）。",
+      "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+      "first_seen_at_utc": "2026-08-22T00:11:05Z",
+      "pref_name": null,
       "raw_artist_name": "三代目 J SOUL BROTHERS",
       "raw_venue_name": "ヤンマースタジアム長居",
-      "source_priority": 40,
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+          "priority": 20,
+          "record_id": "c6c2d16c73c01aa822500f5b3c2ae87c0384c9c9bae8c02fc8f06da2929298da",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～",
+          "updated_at_utc": "2026-08-22T00:11:05Z",
+          "url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228955",
@@ -59060,9 +58946,9 @@
           "url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228955"
         }
       ],
-      "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE \"JSB FOREVER ONE\" ～GRAND FINALE～",
-      "updated_at_utc": "2026-07-02T07:04:26Z",
-      "url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228955",
+      "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～",
+      "updated_at_utc": "2026-08-22T00:11:05Z",
+      "url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
       "venue_name": "ヤンマースタジアム長居"
     },
     {
@@ -59648,23 +59534,35 @@
     {
       "artist_name": "三代目 J SOUL BROTHERS from EXILE TRIBE",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-11-01",
       "event_end_date": "2026-11-01",
       "event_end_time": null,
       "event_key": "6af96fe688a7ae41db99",
       "event_start_time": "17:00",
-      "evidence_snippet": "2026-11-01 17:00 / 大阪府 ヤンマースタジアム長居",
-      "evidence_url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228956",
-      "first_seen_at_utc": "2026-07-02T07:04:26Z",
-      "pref_name": "大阪府",
+      "evidence_snippet": "LDH LIVE SCHEDULE公式ページは、三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～を2026年11月1日、ヤンマースタジアム長居で開催すると掲載している（開演17:00）。",
+      "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+      "first_seen_at_utc": "2026-08-22T00:11:05Z",
+      "pref_name": null,
       "raw_artist_name": "三代目 J SOUL BROTHERS",
       "raw_venue_name": "ヤンマースタジアム長居",
-      "source_priority": 40,
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+          "priority": 20,
+          "record_id": "790fe11fa907f388037794de9d8b3a5d38df5d2bf63690e59764e12eeeb5c6e3",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～",
+          "updated_at_utc": "2026-08-22T00:11:05Z",
+          "url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228956",
@@ -59678,9 +59576,9 @@
           "url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228956"
         }
       ],
-      "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE \"JSB FOREVER ONE\" ～GRAND FINALE～",
-      "updated_at_utc": "2026-07-02T07:04:26Z",
-      "url": "https://ticketjam.jp/tickets/jsoulbrothers/event/1228956",
+      "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～",
+      "updated_at_utc": "2026-08-22T00:11:05Z",
+      "url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
       "venue_name": "ヤンマースタジアム長居"
     },
     {
@@ -82402,8 +82300,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-21T12:30:56Z",
-  "history_start_date": "2026-05-23",
+  "generated_at_utc": "2026-08-22T00:11:10Z",
+  "history_start_date": "2026-05-24",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82416,13 +82314,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 97,
+      "kstyle_music": 96,
       "official_events": 610,
       "starto_concert": 124,
-      "ticketjam_events": 1020,
-      "venue_web_discovery": 175
+      "ticketjam_events": 1019,
+      "venue_web_discovery": 174
     },
-    "event_count": 2026,
-    "record_count_before_grouping": 2477
+    "event_count": 2023,
+    "record_count_before_grouping": 2475
   }
 }

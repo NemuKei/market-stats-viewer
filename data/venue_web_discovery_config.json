@@ -134,7 +134,8 @@
     "bushiroad.com": "promoter_official",
     "www.fukuyamamasaharu.com": "artist_official",
     "mrchildren.jp": "artist_official",
-    "exile.jp": "artist_official"
+    "exile.jp": "artist_official",
+    "www.ldh-liveschedule.jp": "artist_official"
   },
   "preferred_domain_extractors": {
     "www.livenationhip.co.jp": "requests_bs4",
@@ -174,7 +175,8 @@
     "bushiroad.com": "requests_bs4",
     "www.fukuyamamasaharu.com": "requests_bs4",
     "mrchildren.jp": "requests_bs4",
-    "exile.jp": "requests_bs4"
+    "exile.jp": "requests_bs4",
+    "www.ldh-liveschedule.jp": "requests_bs4"
   },
   "rejected_domains": [
     "google.com",
@@ -6524,6 +6526,52 @@
       "evidence_snippet": "大和ハウス プレミストドーム公式日別スケジュールは、北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋を2026年11月23日、同会場で開催すると掲載している。",
       "verified_at_utc": "2026-08-21T00:09:46Z",
       "discovery_query": "札幌ドーム サッポロ モノ ヴィレッジ 2026 秋"
+    },
+    {
+      "event_id": "jsb-forever-one-2026-10-31-yanmar-stadium-nagai",
+      "enabled": true,
+      "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～",
+      "artist_name": "三代目 J SOUL BROTHERS",
+      "raw_artist_name": "三代目 J SOUL BROTHERS",
+      "venue_name": "ヤンマースタジアム長居",
+      "raw_venue_name": "ヤンマースタジアム長居",
+      "event_start_date": "2026-10-31",
+      "event_end_date": "2026-10-31",
+      "event_start_time": "17:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+      "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+      "evidence_snippet": "LDH LIVE SCHEDULE公式ページは、三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～を2026年10月31日、ヤンマースタジアム長居で開催すると掲載している（開演17:00）。",
+      "announced_at_utc": "2026-07-01T00:00:00Z",
+      "verified_at_utc": "2026-08-22T00:10:06Z",
+      "discovery_query": "ヤンマースタジアム長居 三代目 J SOUL BROTHERS"
+    },
+    {
+      "event_id": "jsb-forever-one-2026-11-01-yanmar-stadium-nagai",
+      "enabled": true,
+      "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～",
+      "artist_name": "三代目 J SOUL BROTHERS",
+      "raw_artist_name": "三代目 J SOUL BROTHERS",
+      "venue_name": "ヤンマースタジアム長居",
+      "raw_venue_name": "ヤンマースタジアム長居",
+      "event_start_date": "2026-11-01",
+      "event_end_date": "2026-11-01",
+      "event_start_time": "17:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+      "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+      "evidence_snippet": "LDH LIVE SCHEDULE公式ページは、三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE “JSB FOREVER ONE” ～GRAND FINALE～を2026年11月1日、ヤンマースタジアム長居で開催すると掲載している（開演17:00）。",
+      "announced_at_utc": "2026-07-01T00:00:00Z",
+      "verified_at_utc": "2026-08-22T00:10:06Z",
+      "discovery_query": "ヤンマースタジアム長居 三代目 J SOUL BROTHERS"
     }
   ]
 }
