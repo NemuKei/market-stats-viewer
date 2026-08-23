@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-22",
+  "as_of_date": "2026-08-23",
   "events": [
     {
       "artist_name": "timelesz",
@@ -7264,35 +7264,23 @@
     {
       "artist_name": "BOYNEXTDOOR",
       "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-22",
       "event_end_date": "2026-08-22",
       "event_end_time": null,
       "event_key": "8658d980154ce6903695",
       "event_start_time": "17:00",
-      "evidence_snippet": "HYBE JAPAN CONCERT official page lists BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN at K-Arena横浜 on 2026-08-22.",
-      "evidence_url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-      "first_seen_at_utc": "2026-06-28T00:10:44Z",
-      "pref_name": null,
-      "raw_artist_name": "BOYNEXTDOOR",
+      "evidence_snippet": "2026-08-22 17:00 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178909",
+      "first_seen_at_utc": "2026-07-01T07:34:12Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "BOYNEXTDOOR（ボーイネクストドア）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-          "priority": 20,
-          "record_id": "2cee08a839d75425b9d3540e9413be5b0ea59ed950a9257d130b1679153ca306",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN",
-          "updated_at_utc": "2026-06-28T00:13:11Z",
-          "url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178909",
@@ -7306,9 +7294,9 @@
           "url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178909"
         }
       ],
-      "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN",
-      "updated_at_utc": "2026-06-28T00:13:11Z",
-      "url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
+      "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2'",
+      "updated_at_utc": "2026-07-01T07:34:12Z",
+      "url": "https://ticketjam.jp/tickets/boy-nextdoor/event/1178909",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -8646,44 +8634,6 @@
       "venue_name": "日産スタジアム"
     },
     {
-      "artist_name": "KEY TO LIT",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-22",
-      "event_end_date": "2026-08-22",
-      "event_end_time": null,
-      "event_key": "64b74727a380b9ad4b8f",
-      "event_start_time": null,
-      "evidence_snippet": "Ariake Arena official site lists KEY TO LIT Arena Tour 2026 NEO CLASSICS at 有明アリーナ on 2026.08.20-23, including 2026.08.22.",
-      "evidence_url": "https://ariake-arena.tokyo/",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "KEY TO LIT",
-      "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/",
-          "priority": 20,
-          "record_id": "763519a1962b3b3519dd0bc6c2b028ed24fbe369617378053a34a33cdf4f4939",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://ariake-arena.tokyo/"
-        }
-      ],
-      "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://ariake-arena.tokyo/",
-      "venue_name": "有明アリーナ"
-    },
-    {
       "artist_name": "KEY TO LIT（キテレツ）",
       "capacity": null,
       "display_source_class": "",
@@ -9021,44 +8971,6 @@
       "title": "ディズニー･オン･アイス 2026",
       "updated_at_utc": "2026-05-11T07:03:38Z",
       "url": "https://ticketjam.jp/tickets/disney-on-ice/event/1125817",
-      "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "ディズニー・オン・アイス",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-22",
-      "event_end_date": "2026-08-22",
-      "event_end_time": null,
-      "event_key": "6711d16e0fc8913bd855",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists ディズニー・オン・アイス “Let’s Party!” at the main arena on 2026/08/22.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "ディズニー・オン・アイス",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-          "priority": 20,
-          "record_id": "b7133dbd216750e51aa8f6b9d824708ebd15546c9dc2d52b25cfb4b92ee5678c",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D"
-        }
-      ],
-      "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -68340,6 +68252,44 @@
       "venue_name": "LINE CUBE SHIBUYA"
     },
     {
+      "artist_name": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-28",
+      "event_end_date": "2026-11-28",
+      "event_end_time": null,
+      "event_key": "3dac7dd5625916f08ab3",
+      "event_start_time": "17:30",
+      "evidence_snippet": "LDH LIVE SCHEDULE公式ページは、LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-を2026年11月28日、MUFGスタジアム（国立競技場）で開催すると掲載している（開場15:30／開演17:30）。",
+      "evidence_url": "https://www.ldh-liveschedule.jp/sys/tour/44706/",
+      "first_seen_at_utc": "2026-08-23T00:11:53Z",
+      "pref_name": null,
+      "raw_artist_name": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+      "raw_venue_name": "MUFGスタジアム (国立競技場)",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.ldh-liveschedule.jp/sys/tour/44706/",
+          "priority": 20,
+          "record_id": "f3db6ceef07083f3d89fc2d64baf8652507071e29721614b3c7edd91fbd88e6c",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+          "updated_at_utc": "2026-08-23T00:11:53Z",
+          "url": "https://www.ldh-liveschedule.jp/sys/tour/44706/"
+        }
+      ],
+      "title": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+      "updated_at_utc": "2026-08-23T00:11:53Z",
+      "url": "https://www.ldh-liveschedule.jp/sys/tour/44706/",
+      "venue_name": "MUFGスタジアム"
+    },
+    {
       "artist_name": "YOU",
       "capacity": 2530,
       "display_source_class": "venue_official",
@@ -68932,6 +68882,44 @@
       "updated_at_utc": "2026-03-09T07:46:04Z",
       "url": "https://ticketjam.jp/tickets/ozaki-hiroya/event/1056033",
       "venue_name": "LINE CUBE SHIBUYA"
+    },
+    {
+      "artist_name": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-29",
+      "event_end_date": "2026-11-29",
+      "event_end_time": null,
+      "event_key": "cae7428e58c346b88c6c",
+      "event_start_time": "17:00",
+      "evidence_snippet": "LDH LIVE SCHEDULE公式ページは、LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-を2026年11月29日、MUFGスタジアム（国立競技場）で開催すると掲載している（開場15:00／開演17:00）。",
+      "evidence_url": "https://www.ldh-liveschedule.jp/sys/tour/44706/",
+      "first_seen_at_utc": "2026-08-23T00:11:53Z",
+      "pref_name": null,
+      "raw_artist_name": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+      "raw_venue_name": "MUFGスタジアム (国立競技場)",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.ldh-liveschedule.jp/sys/tour/44706/",
+          "priority": 20,
+          "record_id": "9cb6a48a2f9c53dd0f95cc5f37b9e3d3777781a0936c8cd2a71c3e6b5c39508e",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+          "updated_at_utc": "2026-08-23T00:11:53Z",
+          "url": "https://www.ldh-liveschedule.jp/sys/tour/44706/"
+        }
+      ],
+      "title": "LDH LIVE-EXPO 2026 -PERFECT YEAR BEST-",
+      "updated_at_utc": "2026-08-23T00:11:53Z",
+      "url": "https://www.ldh-liveschedule.jp/sys/tour/44706/",
+      "venue_name": "MUFGスタジアム"
     },
     {
       "artist_name": "宇都宮隆",
@@ -82074,8 +82062,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-22T12:24:07Z",
-  "history_start_date": "2026-05-24",
+  "generated_at_utc": "2026-08-23T00:12:01Z",
+  "history_start_date": "2026-05-25",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82091,10 +82079,10 @@
       "kstyle_music": 96,
       "official_events": 616,
       "starto_concert": 124,
-      "ticketjam_events": 1008,
-      "venue_web_discovery": 174
+      "ticketjam_events": 1009,
+      "venue_web_discovery": 173
     },
     "event_count": 2018,
-    "record_count_before_grouping": 2467
+    "record_count_before_grouping": 2466
   }
 }
