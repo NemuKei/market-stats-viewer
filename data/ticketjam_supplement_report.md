@@ -1,12 +1,12 @@
 # Ticketjam Supplement Report
 
 ## Summary
-- ticketjam_unique_schedules: 1194
+- ticketjam_unique_schedules: 1207
 - additional_unique_schedules: 6
-- overlap_unique_schedules: 3
-- noise_rate: 0.3333
-- out_of_scope_rate: 0.9925
-- ticketjam_category_counts: {"その他": 143, "コンサート": 883, "野球": 168}
+- overlap_unique_schedules: 2
+- noise_rate: 0.25
+- out_of_scope_rate: 0.9934
+- ticketjam_category_counts: {"その他": 153, "コンサート": 888, "野球": 166}
 
 ## Artist Gap
 
@@ -18,8 +18,8 @@
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
 | B | EXILE | 4 | 2 | 2 | 0.5000 | ベルーナドーム, 京セラドーム大阪 |
 | B | GLAY | 2 | 2 | 0 | 0.0000 | 北海道立総合体育センター 北海きたえーる |
-| B | 福山雅治 | 1 | 0 | 1 | 1.0000 | 京セラドーム大阪 |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
+| B | 福山雅治 | 0 | 0 | 0 | 0.0000 |  |
 
 ## Venue Gap
 
@@ -28,10 +28,10 @@
 
 ## Inputs
 
-- ticketjam_source_updated_at_utc: 2026-08-23T04:15:20Z
+- ticketjam_source_updated_at_utc: 2026-08-24T04:19:45Z
 - starto_source_updated_at_utc: 2026-08-18T12:29:21Z
 - kstyle_source_updated_at_utc: 2026-08-23T12:23:22Z
-- events_db_modified_at_utc: 2026-08-24T00:38:35Z
+- events_db_modified_at_utc: 2026-08-24T04:02:40Z
 
 ## Methodology
 
