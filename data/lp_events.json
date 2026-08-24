@@ -7614,44 +7614,6 @@
       "venue_name": "豊洲PIT"
     },
     {
-      "artist_name": "BOYNEXTDOOR",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-23",
-      "event_end_date": "2026-08-23",
-      "event_end_time": null,
-      "event_key": "8a3083f89ac6f24540cb",
-      "event_start_time": "17:00",
-      "evidence_snippet": "HYBE JAPAN CONCERT official page lists BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN at K-Arena横浜 on 2026-08-23.",
-      "evidence_url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-      "first_seen_at_utc": "2026-06-28T00:10:44Z",
-      "pref_name": null,
-      "raw_artist_name": "BOYNEXTDOOR",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-          "priority": 20,
-          "record_id": "08be8c5e75866b6a725d2f1ec3cc1750090821261a050ae4dd44ddd18c2f2991",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN",
-          "updated_at_utc": "2026-06-28T00:13:11Z",
-          "url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan"
-        }
-      ],
-      "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2' IN JAPAN",
-      "updated_at_utc": "2026-06-28T00:13:11Z",
-      "url": "https://www.hybejapan-concert.com/statics/bnd_knock_on_vol2_in_japan",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
       "artist_name": "相川七瀬",
       "capacity": 2473,
       "display_source_class": "venue_official",
@@ -7930,44 +7892,6 @@
       "venue_name": "京セラドーム大阪"
     },
     {
-      "artist_name": "KEY TO LIT",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-23",
-      "event_end_date": "2026-08-23",
-      "event_end_time": null,
-      "event_key": "7dfd1cfd431208ec31e7",
-      "event_start_time": null,
-      "evidence_snippet": "Ariake Arena official site lists KEY TO LIT Arena Tour 2026 NEO CLASSICS at 有明アリーナ on 2026.08.20-23, including 2026.08.23.",
-      "evidence_url": "https://ariake-arena.tokyo/",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "KEY TO LIT",
-      "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/",
-          "priority": 20,
-          "record_id": "e8e4ddba92f2081fd0e76afa3fd7be0afc50ba318660f2da34c139187348d298",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://ariake-arena.tokyo/"
-        }
-      ],
-      "title": "KEY TO LIT Arena Tour 2026 NEO CLASSICS",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://ariake-arena.tokyo/",
-      "venue_name": "有明アリーナ"
-    },
-    {
       "artist_name": "【1部】出演者：高野正成（きしたかの）、吉住、ぐんぴぃ（春とヒコーキ）、Den（リンダカラー∞） ほか【2部】MC：川島明(麒麟)　出演者：村上（マヂカルラブリー）、佐久間宣行、松丸亮吾、サーヤ（ラランド）、松田好花、蓮見翔（ダウ90000）ほか",
       "capacity": 8000,
       "display_source_class": "venue_official",
@@ -8004,44 +7928,6 @@
       "updated_at_utc": "2026-06-28T08:08:03Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5318/",
       "venue_name": "東京ガーデンシアター"
-    },
-    {
-      "artist_name": "ディズニー・オン・アイス",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-23",
-      "event_end_date": "2026-08-23",
-      "event_end_time": null,
-      "event_key": "6816b88f86fe10828820",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists ディズニー・オン・アイス “Let’s Party!” at the main arena on 2026/08/23.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "ディズニー・オン・アイス",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-          "priority": 20,
-          "record_id": "8ad6a2f6ae21cd67a228519ad495563f4fa9d12b77979a25e5ce15b290fd707c",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D"
-        }
-      ],
-      "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-      "venue_name": "横浜アリーナ"
     },
     {
       "artist_name": "Fear, and loathing in Las Vegas",
@@ -82254,7 +82140,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-24T04:19:46Z",
+  "generated_at_utc": "2026-08-24T05:22:20Z",
   "history_start_date": "2026-05-26",
   "history_window_days": 90,
   "include_past": true,
@@ -82272,9 +82158,9 @@
       "official_events": 616,
       "starto_concert": 124,
       "ticketjam_events": 1015,
-      "venue_web_discovery": 173
+      "venue_web_discovery": 170
     },
-    "event_count": 2024,
-    "record_count_before_grouping": 2469
+    "event_count": 2021,
+    "record_count_before_grouping": 2466
   }
 }
