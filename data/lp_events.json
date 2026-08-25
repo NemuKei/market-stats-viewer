@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-24",
+  "as_of_date": "2026-08-25",
   "events": [
     {
       "artist_name": "timelesz",
@@ -8445,44 +8445,6 @@
       "title": "ディズニー･オン･アイス 2026",
       "updated_at_utc": "2026-06-28T07:25:15Z",
       "url": "https://ticketjam.jp/tickets/disney-on-ice/event/1125823",
-      "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "ディズニー・オン・アイス",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-24",
-      "event_end_date": "2026-08-24",
-      "event_end_time": null,
-      "event_key": "f13589c1c31cb64ea671",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists ディズニー・オン・アイス “Let’s Party!” at the main arena on 2026/08/24.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "ディズニー・オン・アイス",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
-          "priority": 20,
-          "record_id": "0c1643d76a4bccb95b3c8cfe32e423b9e1a9f238c85aae4bb68dbe279fa970fc",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D"
-        }
-      ],
-      "title": "ディズニー・オン・アイス　“ Let’s Party!”",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -82102,8 +82064,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-24T12:32:22Z",
-  "history_start_date": "2026-05-26",
+  "generated_at_utc": "2026-08-25T00:06:54Z",
+  "history_start_date": "2026-05-27",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82120,9 +82082,9 @@
       "official_events": 616,
       "starto_concert": 124,
       "ticketjam_events": 1015,
-      "venue_web_discovery": 170
+      "venue_web_discovery": 169
     },
-    "event_count": 2020,
-    "record_count_before_grouping": 2465
+    "event_count": 2019,
+    "record_count_before_grouping": 2464
   }
 }
