@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-25",
+  "as_of_date": "2026-08-26",
   "events": [
     {
       "artist_name": "timelesz",
@@ -80762,6 +80762,82 @@
       "venue_name": "京セラドーム大阪"
     },
     {
+      "artist_name": "Creepy Nuts",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-03-16",
+      "event_end_date": "2027-03-16",
+      "event_end_time": null,
+      "event_key": "c16020e503bd40364693",
+      "event_start_time": "19:00",
+      "evidence_snippet": "Creepy Nuts公式ツアーサイトの「ONEMAN TOUR 2027」日程は、2027年3月16日に東京・有明アリーナで開催すると掲載している（開演19:00）。",
+      "evidence_url": "https://creepynuts.com/onemantour2027/",
+      "first_seen_at_utc": "2026-08-26T00:16:31Z",
+      "pref_name": null,
+      "raw_artist_name": "Creepy Nuts",
+      "raw_venue_name": "有明アリーナ",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "crawl4ai",
+          "evidence_url": "https://creepynuts.com/onemantour2027/",
+          "priority": 20,
+          "record_id": "4e9a896e2861e5030566dbeea2e256837cb09fb8c0b2269727ae5cb43e7e3b7b",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Creepy Nuts ONEMAN TOUR 2027",
+          "updated_at_utc": "2026-08-26T00:16:31Z",
+          "url": "https://creepynuts.com/onemantour2027/"
+        }
+      ],
+      "title": "Creepy Nuts ONEMAN TOUR 2027",
+      "updated_at_utc": "2026-08-26T00:16:31Z",
+      "url": "https://creepynuts.com/onemantour2027/",
+      "venue_name": "有明アリーナ"
+    },
+    {
+      "artist_name": "Creepy Nuts",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-03-17",
+      "event_end_date": "2027-03-17",
+      "event_end_time": null,
+      "event_key": "0068f63c61b865c42013",
+      "event_start_time": "19:00",
+      "evidence_snippet": "Creepy Nuts公式ツアーサイトの「ONEMAN TOUR 2027」日程は、2027年3月17日に東京・有明アリーナで開催すると掲載している（開演19:00）。",
+      "evidence_url": "https://creepynuts.com/onemantour2027/",
+      "first_seen_at_utc": "2026-08-26T00:16:31Z",
+      "pref_name": null,
+      "raw_artist_name": "Creepy Nuts",
+      "raw_venue_name": "有明アリーナ",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "crawl4ai",
+          "evidence_url": "https://creepynuts.com/onemantour2027/",
+          "priority": 20,
+          "record_id": "d933443df30bad483a36cd2949160f433e1981b435d5f2bcee42aac420be3ee0",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Creepy Nuts ONEMAN TOUR 2027",
+          "updated_at_utc": "2026-08-26T00:16:31Z",
+          "url": "https://creepynuts.com/onemantour2027/"
+        }
+      ],
+      "title": "Creepy Nuts ONEMAN TOUR 2027",
+      "updated_at_utc": "2026-08-26T00:16:31Z",
+      "url": "https://creepynuts.com/onemantour2027/",
+      "venue_name": "有明アリーナ"
+    },
+    {
       "artist_name": "Tele",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -81710,6 +81786,120 @@
       "venue_name": "Zepp DiverCity(Tokyo)"
     },
     {
+      "artist_name": "SEKAI NO OWARI",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-07-23",
+      "event_end_date": "2027-07-23",
+      "event_end_time": null,
+      "event_key": "92ebb01131f4747cb0a7",
+      "event_start_time": "19:00",
+      "evidence_snippet": "SEKAI NO OWARI公式ツアーサイトは「SEKAI NO OWARI ARENA TOUR 2027」をKアリーナ横浜で2027年7月23日に開催すると掲載している（開演19:00）。",
+      "evidence_url": "https://www.sekainoowari-tour.jp/",
+      "first_seen_at_utc": "2026-08-26T00:16:31Z",
+      "pref_name": null,
+      "raw_artist_name": "SEKAI NO OWARI",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sekainoowari-tour.jp/",
+          "priority": 20,
+          "record_id": "e2033e9431c4138e919bd4922045898e28c45ee5d0a452101b91901c07895d76",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "SEKAI NO OWARI ARENA TOUR 2027",
+          "updated_at_utc": "2026-08-26T00:16:31Z",
+          "url": "https://www.sekainoowari-tour.jp/"
+        }
+      ],
+      "title": "SEKAI NO OWARI ARENA TOUR 2027",
+      "updated_at_utc": "2026-08-26T00:16:31Z",
+      "url": "https://www.sekainoowari-tour.jp/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "SEKAI NO OWARI",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-07-24",
+      "event_end_date": "2027-07-24",
+      "event_end_time": null,
+      "event_key": "bed93f1142e005622873",
+      "event_start_time": "17:00",
+      "evidence_snippet": "SEKAI NO OWARI公式ツアーサイトは「SEKAI NO OWARI ARENA TOUR 2027」をKアリーナ横浜で2027年7月24日に開催すると掲載している（開演17:00）。",
+      "evidence_url": "https://www.sekainoowari-tour.jp/",
+      "first_seen_at_utc": "2026-08-26T00:16:31Z",
+      "pref_name": null,
+      "raw_artist_name": "SEKAI NO OWARI",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sekainoowari-tour.jp/",
+          "priority": 20,
+          "record_id": "c789a068e74cf4aee653a35f24500374a248fa1c071e0ce3a4ef10161c65236c",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "SEKAI NO OWARI ARENA TOUR 2027",
+          "updated_at_utc": "2026-08-26T00:16:31Z",
+          "url": "https://www.sekainoowari-tour.jp/"
+        }
+      ],
+      "title": "SEKAI NO OWARI ARENA TOUR 2027",
+      "updated_at_utc": "2026-08-26T00:16:31Z",
+      "url": "https://www.sekainoowari-tour.jp/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "SEKAI NO OWARI",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-07-25",
+      "event_end_date": "2027-07-25",
+      "event_end_time": null,
+      "event_key": "9ee1e9569b15e632eedc",
+      "event_start_time": "17:00",
+      "evidence_snippet": "SEKAI NO OWARI公式ツアーサイトは「SEKAI NO OWARI ARENA TOUR 2027」をKアリーナ横浜で2027年7月25日に開催すると掲載している（開演17:00）。",
+      "evidence_url": "https://www.sekainoowari-tour.jp/",
+      "first_seen_at_utc": "2026-08-26T00:16:31Z",
+      "pref_name": null,
+      "raw_artist_name": "SEKAI NO OWARI",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sekainoowari-tour.jp/",
+          "priority": 20,
+          "record_id": "0cfe19b314d7c4e222b161c8892e8b1b60655f693237fad62f2ab0faee7f2072",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "SEKAI NO OWARI ARENA TOUR 2027",
+          "updated_at_utc": "2026-08-26T00:16:31Z",
+          "url": "https://www.sekainoowari-tour.jp/"
+        }
+      ],
+      "title": "SEKAI NO OWARI ARENA TOUR 2027",
+      "updated_at_utc": "2026-08-26T00:16:31Z",
+      "url": "https://www.sekainoowari-tour.jp/",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "Eve",
       "capacity": null,
       "display_source_class": "artist_official",
@@ -82014,8 +82204,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-25T12:32:34Z",
-  "history_start_date": "2026-05-27",
+  "generated_at_utc": "2026-08-26T00:16:35Z",
+  "history_start_date": "2026-05-28",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82032,9 +82222,9 @@
       "official_events": 620,
       "starto_concert": 124,
       "ticketjam_events": 1009,
-      "venue_web_discovery": 169
+      "venue_web_discovery": 174
     },
-    "event_count": 2018,
-    "record_count_before_grouping": 2462
+    "event_count": 2023,
+    "record_count_before_grouping": 2467
   }
 }
