@@ -121,14 +121,15 @@ class VenueWebDiscoverySource(SignalSource):
         future_only: bool,
         today_iso: str,
     ) -> SignalRecord | None:
-        event_status = str(event.get("event_status") or EVENT_STATUS_SCHEDULED).strip().lower()
-        if event_status not in EVENT_STATUSES:
+        raw_event_status = str(event.get("event_status") or "").strip().lower()
+        if raw_event_status and raw_event_status not in EVENT_STATUSES:
             logger.warning(
                 "venue_web_discovery: skip invalid event_status=%s event_id=%s",
-                event_status,
+                raw_event_status,
                 event.get("event_id"),
             )
             return None
+        event_status = raw_event_status or EVENT_STATUS_SCHEDULED
 
         is_suppression = event_status in EVENT_STATUS_SUPPRESSING
         if event.get("enabled") is False and not is_suppression:
@@ -177,13 +178,14 @@ class VenueWebDiscoverySource(SignalSource):
             "artist_name": artist_name,
             "raw_artist_name": str(event.get("raw_artist_name") or artist_name).strip(),
             "event_category": event_category,
-            "event_status": event_status,
             "source_class": source_class,
             "confidence": confidence,
             "content_extractor": content_extractor,
             "evidence_url": evidence_url,
             "evidence_snippet": evidence_snippet,
         }
+        if raw_event_status:
+            labels["event_status"] = event_status
         for key in (
             "event_start_time",
             "event_end_time",
