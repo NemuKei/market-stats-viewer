@@ -156,6 +156,7 @@
     - DB更新根拠にできる `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` のみ。
     - Google検索結果、AI概要、一般ニュース、SNS単体、二次流通単体は発見導線として使えてもDB更新根拠にしない。
     - DB schema は増やさず、設定ファイルと `labels_json` で運用する。
+    - `event_status=postponed|cancelled` の保存、LP表示抑止、振替公演、Release gateは `docs/spec_event_status.md` を正本とする。
     - Skill本文は自動編集しない。Codex Automation が自動調整してよいのは `data/venue_web_discovery_config.json` の設定と confirmed event rows のみ。
     - 本文抽出providerは `content_extractor=requests_bs4|crawl4ai` とする。既定は `requests_bs4`、`crawl4ai` は optional fallback provider であり、JS生成ページ、`requests_bs4` 失敗ページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトだけに使う。
     - `crawl4ai` は optional dependency とし、通常の `uv sync --frozen` では必須にしない。必要な環境だけ `uv sync --extra crawl4ai`、`uv run crawl4ai-setup`、`uv run crawl4ai-doctor` を実行する。

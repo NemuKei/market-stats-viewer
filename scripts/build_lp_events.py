@@ -62,7 +62,12 @@ SIGNAL_SOURCE_DEFAULT_CATEGORY = {
 }
 EVENT_STATUS_SCHEDULED = "scheduled"
 SUPPRESSING_EVENT_STATUSES = {"postponed", "cancelled"}
-AUTHORITATIVE_EVENT_STATUS_SOURCE_IDS = {"official_events", "venue_web_discovery"}
+VENUE_WEB_DISCOVERY_STATUS_SOURCE_CLASSES = {
+    "venue_official",
+    "artist_official",
+    "promoter_official",
+    "ticket_official",
+}
 
 
 def now_utc_z() -> str:
@@ -98,9 +103,17 @@ def normalize_event_status(value: object) -> str:
 def is_authoritative_event_suppression(record: dict[str, Any]) -> bool:
     source_id = str(record.get("source_id") or "")
     event_status = normalize_event_status(record.get("event_status"))
+    if event_status not in SUPPRESSING_EVENT_STATUSES:
+        return False
+    if source_id == "official_events":
+        return True
+    if source_id != "venue_web_discovery":
+        return False
     return (
-        source_id in AUTHORITATIVE_EVENT_STATUS_SOURCE_IDS
-        and event_status in SUPPRESSING_EVENT_STATUSES
+        str(record.get("source_class") or "")
+        in VENUE_WEB_DISCOVERY_STATUS_SOURCE_CLASSES
+        and bool(str(record.get("evidence_url") or "").strip())
+        and bool(str(record.get("evidence_snippet") or "").strip())
     )
 
 

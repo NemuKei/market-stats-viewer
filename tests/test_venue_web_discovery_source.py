@@ -56,6 +56,19 @@ def test_venue_web_discovery_loads_only_accepted_confirmed_events(tmp_path: Path
                         "evidence_snippet": "The artist official page says this event is postponed.",
                     },
                     {
+                        "event_id": "officially-cancelled",
+                        "enabled": False,
+                        "event_status": "cancelled",
+                        "title": "Cancelled official event",
+                        "artist_name": "Cancelled Artist",
+                        "venue_name": "京セラドーム大阪",
+                        "event_start_date": "2026-09-21",
+                        "source_class": "artist_official",
+                        "url": "https://example.com/cancelled",
+                        "evidence_url": "https://example.com/cancelled",
+                        "evidence_snippet": "The artist official page says this event is cancelled.",
+                    },
+                    {
                         "event_id": "rejected-news",
                         "title": "News-only event",
                         "artist_name": "Example",
@@ -83,7 +96,7 @@ def test_venue_web_discovery_loads_only_accepted_confirmed_events(tmp_path: Path
 
     records = VenueWebDiscoverySource(requests.Session()).fetch_signals(source)
 
-    assert len(records) == 2
+    assert len(records) == 3
     by_title = {record.title: record for record in records}
 
     accepted_labels = json.loads(
@@ -100,5 +113,10 @@ def test_venue_web_discovery_loads_only_accepted_confirmed_events(tmp_path: Path
     )
     assert postponed_labels["event_status"] == "postponed"
     assert postponed_labels["source_class"] == "artist_official"
+    cancelled_labels = json.loads(
+        by_title["Cancelled official event"].labels_json or "{}"
+    )
+    assert cancelled_labels["event_status"] == "cancelled"
+    assert cancelled_labels["source_class"] == "artist_official"
     assert "Disabled event without authoritative status" not in by_title
     assert "News-only event" not in by_title
