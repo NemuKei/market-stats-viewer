@@ -60,6 +60,14 @@ SIGNAL_SOURCE_DEFAULT_CATEGORY = {
     "starto_concert": EVENT_CATEGORY_CONCERT,
     "kstyle_music": EVENT_CATEGORY_CONCERT,
 }
+EVENT_STATUS_SCHEDULED = "scheduled"
+SUPPRESSING_EVENT_STATUSES = {"postponed", "cancelled"}
+VENUE_WEB_DISCOVERY_STATUS_SOURCE_CLASSES = {
+    "venue_official",
+    "artist_official",
+    "promoter_official",
+    "ticket_official",
+}
 
 
 def now_utc_z() -> str:
@@ -80,6 +88,33 @@ def event_group_key(event_date: str, venue_name: str, artist_name: str) -> str:
         ]
     )
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:20]
+
+
+def normalize_event_status(value: object) -> str:
+    key = unicodedata.normalize("NFKC", str(value or "")).casefold().strip()
+    key = re.sub(r"[\s_-]+", "", key)
+    if key in {"postponed", "eventpostponed"}:
+        return "postponed"
+    if key in {"cancelled", "canceled", "eventcancelled", "eventcanceled"}:
+        return "cancelled"
+    return EVENT_STATUS_SCHEDULED
+
+
+def is_authoritative_event_suppression(record: dict[str, Any]) -> bool:
+    source_id = str(record.get("source_id") or "")
+    event_status = normalize_event_status(record.get("event_status"))
+    if event_status not in SUPPRESSING_EVENT_STATUSES:
+        return False
+    if source_id == "official_events":
+        return True
+    if source_id != "venue_web_discovery":
+        return False
+    return (
+        str(record.get("source_class") or "")
+        in VENUE_WEB_DISCOVERY_STATUS_SOURCE_CLASSES
+        and bool(str(record.get("evidence_url") or "").strip())
+        and bool(str(record.get("evidence_snippet") or "").strip())
+    )
 
 
 def canonicalize_artist_name(
@@ -214,6 +249,7 @@ def load_official_events(
                 "event_end_date": event_end_date,
                 "event_start_time": row["start_time"],
                 "event_end_time": row["end_time"],
+                "event_status": normalize_event_status(row["status"]),
                 "venue_name": venue_name,
                 "raw_venue_name": raw_venue_name,
                 "artist_name": artist_name,
@@ -302,6 +338,7 @@ def load_signal_events(
                 "event_end_date": event_end_date,
                 "event_start_time": labels.get("event_start_time"),
                 "event_end_time": labels.get("event_end_time"),
+                "event_status": normalize_event_status(labels.get("event_status")),
                 "venue_name": venue_name,
                 "raw_venue_name": raw_venue_name or venue_name,
                 "artist_name": artist_name,
@@ -334,7 +371,7 @@ def parse_labels(labels_json: object) -> dict[str, Any]:
     return parsed if isinstance(parsed, dict) else {}
 
 
-def consolidate_events(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def consolidate_events(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
     groups: dict[str, list[dict[str, Any]]] = {}
     for record in records:
         key = event_group_key(
@@ -346,7 +383,12 @@ def consolidate_events(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
         groups.setdefault(key, []).append(record)
 
     rows: list[dict[str, Any]] = []
+    suppressed_event_count = 0
     for key, members in groups.items():
+        if any(is_authoritative_event_suppression(row) for row in members):
+            suppressed_event_count += 1
+            continue
+
         ordered = sorted(
             members,
             key=lambda row: (
@@ -392,7 +434,7 @@ def consolidate_events(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
             str(row.get("display_source_id") or ""),
         )
     )
-    return rows
+    return rows, suppressed_event_count
 
 
 def source_summary(row: dict[str, Any]) -> dict[str, Any]:
@@ -449,7 +491,7 @@ def build_lp_events(
                 f"record_id={record.get('record_id')} url={record.get('url')}"
             ),
         )
-    events = consolidate_events(records)
+    events, suppressed_event_count = consolidate_events(records)
     counts_by_display_source: dict[str, int] = {}
     for event in events:
         source_id = str(event.get("display_source_id") or "")
@@ -471,6 +513,7 @@ def build_lp_events(
         "summary": {
             "record_count_before_grouping": len(records),
             "event_count": len(events),
+            "suppressed_event_count": suppressed_event_count,
             "counts_by_display_source": counts_by_display_source,
         },
         "events": events,

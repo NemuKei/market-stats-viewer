@@ -40,6 +40,9 @@ CONFIDENCE_SCORES = {
     "low": 50,
 }
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+EVENT_STATUS_SCHEDULED = "scheduled"
+EVENT_STATUS_SUPPRESSING = {"postponed", "cancelled"}
+EVENT_STATUSES = {EVENT_STATUS_SCHEDULED} | EVENT_STATUS_SUPPRESSING
 
 
 class VenueWebDiscoverySource(SignalSource):
@@ -118,7 +121,18 @@ class VenueWebDiscoverySource(SignalSource):
         future_only: bool,
         today_iso: str,
     ) -> SignalRecord | None:
-        if event.get("enabled") is False:
+        raw_event_status = str(event.get("event_status") or "").strip().lower()
+        if raw_event_status and raw_event_status not in EVENT_STATUSES:
+            logger.warning(
+                "venue_web_discovery: skip invalid event_status=%s event_id=%s",
+                raw_event_status,
+                event.get("event_id"),
+            )
+            return None
+        event_status = raw_event_status or EVENT_STATUS_SCHEDULED
+
+        is_suppression = event_status in EVENT_STATUS_SUPPRESSING
+        if event.get("enabled") is False and not is_suppression:
             return None
 
         source_class = str(event.get("source_class") or "").strip()
@@ -170,6 +184,8 @@ class VenueWebDiscoverySource(SignalSource):
             "evidence_url": evidence_url,
             "evidence_snippet": evidence_snippet,
         }
+        if raw_event_status:
+            labels["event_status"] = event_status
         for key in (
             "event_start_time",
             "event_end_time",

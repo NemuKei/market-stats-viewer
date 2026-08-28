@@ -114,6 +114,7 @@
   - `event_signals.sqlite` の `starto_concert` / `kstyle_music`: ニュース記事または公式に近い告知ページから抽出した速報。興行決定や追加公演の早期検知に使う。
   - `event_signals.sqlite` の `ticketjam_events`: 二次流通サイト上で確認できる参考日程。公式取得が弱い会場やニュースで拾いにくいアーティストの補完に使う。
 - 同一イベントのLP表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。
+- 公式／準公式の延期・中止が下位sourceの開催予定を抑止する状態契約と `summary.suppressed_event_count` は、`docs/spec_event_status.md` を正本とする。
 - 外部アプリが「確定日程」として優先表示する場合は、まず `lp_events.json` を使う。元DBを直接使う場合も、同一日程が公式側に存在する場合は公式側を優先する。
 - 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、ニュース由来と二次流通由来を同じ信頼度として扱わない。
 - 外部アプリが同一日程を統合する場合の比較キーは、原則として `event_date + canonical venue_name + canonical artist_name` とする。

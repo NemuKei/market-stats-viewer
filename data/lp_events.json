@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-08-28",
+  "as_of_date": "2026-08-29",
   "events": [
-    {
-      "artist_name": "timelesz",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-05-30",
-      "event_end_date": "2026-05-30",
-      "event_end_time": null,
-      "event_key": "955ecd1e6af8d4b19b5c",
-      "event_start_time": null,
-      "evidence_snippet": "2026-05-30 17:00 / [静岡県] エコパアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10431",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "静岡県",
-      "raw_artist_name": "timelesz",
-      "raw_venue_name": "エコパアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10431",
-          "priority": 30,
-          "record_id": "27513b0fe6d012e92c5a74c91d515bdd1767f85fcae5c53f5a479e34df98356b",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10431"
-        }
-      ],
-      "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10431",
-      "venue_name": "エコパアリーナ"
-    },
     {
       "artist_name": "timelesz",
       "capacity": null,
@@ -46034,44 +45996,6 @@
       "venue_name": "国立競技場"
     },
     {
-      "artist_name": "POST MALONE（ポストマローン）",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
-      "event_category": "コンサート",
-      "event_date": "2026-10-06",
-      "event_end_date": "2026-10-06",
-      "event_end_time": null,
-      "event_key": "f6e2fa924d19421996ba",
-      "event_start_time": "18:30",
-      "evidence_snippet": "2026-10-06 18:30 / 神奈川県 Kアリーナ横浜",
-      "evidence_url": "https://ticketjam.jp/tickets/postmalone/event/1143464",
-      "first_seen_at_utc": "2026-04-22T05:49:15Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "POST MALONE（ポストマローン）",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 40,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/postmalone/event/1143464",
-          "priority": 40,
-          "record_id": "44320ba6db232e2ae7a2f5f26d8be28a13a491e7c27159a13be46cb55b42888c",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "Post Malone Presents The BIG ASS Stadium World Tour",
-          "updated_at_utc": "2026-04-22T05:49:15Z",
-          "url": "https://ticketjam.jp/tickets/postmalone/event/1143464"
-        }
-      ],
-      "title": "Post Malone Presents The BIG ASS Stadium World Tour",
-      "updated_at_utc": "2026-04-22T05:49:15Z",
-      "url": "https://ticketjam.jp/tickets/postmalone/event/1143464",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
       "artist_name": "ミュージカル『新テニスの王子様』",
       "capacity": null,
       "display_source_class": "",
@@ -82766,8 +82690,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-28T21:42:04Z",
-  "history_start_date": "2026-05-30",
+  "generated_at_utc": "2026-08-28T22:16:02Z",
+  "history_start_date": "2026-05-31",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -82782,11 +82706,12 @@
     "counts_by_display_source": {
       "kstyle_music": 94,
       "official_events": 623,
-      "starto_concert": 126,
-      "ticketjam_events": 1021,
+      "starto_concert": 125,
+      "ticketjam_events": 1020,
       "venue_web_discovery": 176
     },
-    "event_count": 2040,
-    "record_count_before_grouping": 2477
+    "event_count": 2038,
+    "record_count_before_grouping": 2477,
+    "suppressed_event_count": 1
   }
 }
