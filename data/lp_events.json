@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-27",
+  "as_of_date": "2026-08-28",
   "events": [
     {
       "artist_name": "timelesz",
@@ -9296,18 +9296,6 @@
           "title": "Shout out to Jesus in YOKOHAMA ARENA",
           "updated_at_utc": "2026-05-04T06:47:03Z",
           "url": "https://www.yokohama-arena.co.jp/event/detail/shout-out-jesus-yokohama-arena"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.creativeman.co.jp/event/kvibaba_2026/",
-          "priority": 20,
-          "record_id": "89505dccf6cc66da2016d4f834d0c6f6af54ef396a439d42d6f757e2ce7f48db",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "Kvi Baba Shout out to Jesus in YOKOHAMA ARENA",
-          "updated_at_utc": "2026-06-25T20:34:54Z",
-          "url": "https://www.creativeman.co.jp/event/kvibaba_2026/"
         }
       ],
       "title": "Shout out to Jesus in YOKOHAMA ARENA",
@@ -45566,44 +45554,6 @@
       "venue_name": "Kアリーナ横浜"
     },
     {
-      "artist_name": "Post Malone",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-10-06",
-      "event_end_date": "2026-10-06",
-      "event_end_time": null,
-      "event_key": "25811b42ca3bc383fe62",
-      "event_start_time": "18:30",
-      "evidence_snippet": "Live Nation H.I.P. official page lists Post Malone Presents The BIG ASS Stadium World Tour at Kアリーナ横浜 on 2026年10月6日.",
-      "evidence_url": "https://www.livenationhip.co.jp/all-events/post-malone-tickets-ae727892",
-      "first_seen_at_utc": "2026-06-25T08:07:58Z",
-      "pref_name": null,
-      "raw_artist_name": "Post Malone",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.livenationhip.co.jp/all-events/post-malone-tickets-ae727892",
-          "priority": 20,
-          "record_id": "d75c1c7f9cf430b17e4e87a69740c71f1e85d60aefce2c2c2c0881eda4725811",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "Post Malone Presents The BIG ASS Stadium World Tour",
-          "updated_at_utc": "2026-06-25T08:07:58Z",
-          "url": "https://www.livenationhip.co.jp/all-events/post-malone-tickets-ae727892"
-        }
-      ],
-      "title": "Post Malone Presents The BIG ASS Stadium World Tour",
-      "updated_at_utc": "2026-06-25T08:07:58Z",
-      "url": "https://www.livenationhip.co.jp/all-events/post-malone-tickets-ae727892",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
       "artist_name": "ミュージカル『新テニスの王子様』",
       "capacity": null,
       "display_source_class": "",
@@ -56982,23 +56932,35 @@
     {
       "artist_name": "ユンホ",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "ticketjam_events",
-      "display_source_label": "Ticketjam Events (Secondary)",
+      "display_source_class": "ticket_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-10-31",
       "event_end_date": "2026-10-31",
       "event_end_time": null,
       "event_key": "4caae7353bac4962cccb",
       "event_start_time": "18:00",
-      "evidence_snippet": "2026-10-31 18:00 / 神奈川県 横浜アリーナ",
-      "evidence_url": "https://ticketjam.jp/tickets/yunho/event/1222422",
-      "first_seen_at_utc": "2026-08-09T04:50:29Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "ユノ（ユンホ／東方神起）",
+      "evidence_snippet": "SMTOWN OFFICIAL JAPAN公式チケット先行ページは、U-KNOW PROJECT 26 : SCENE ♯1 – EDITを2026年10月31日、横浜アリーナで開催すると掲載している（開場17:00／開演18:00）。",
+      "evidence_url": "https://smtown-official.jp/news/detail.php?nid=U8tv+ItraYA%3D",
+      "first_seen_at_utc": "2026-08-28T00:15:19Z",
+      "pref_name": null,
+      "raw_artist_name": "U-KNOW",
       "raw_venue_name": "横浜アリーナ",
-      "source_priority": 40,
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://smtown-official.jp/news/detail.php?nid=U8tv+ItraYA%3D",
+          "priority": 20,
+          "record_id": "8bcff5899e2280f1883939d188ed0b9330e8a5854409ee4b9dc65be149c39867",
+          "source_class": "ticket_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "U-KNOW PROJECT 26 : SCENE ♯1 – EDIT",
+          "updated_at_utc": "2026-08-28T00:15:19Z",
+          "url": "https://smtown-official.jp/news/detail.php?nid=U8tv+ItraYA%3D"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/yunho/event/1222422",
@@ -57013,8 +56975,8 @@
         }
       ],
       "title": "U-KNOW PROJECT 26 : SCENE ♯1 – EDIT",
-      "updated_at_utc": "2026-08-09T04:50:29Z",
-      "url": "https://ticketjam.jp/tickets/yunho/event/1222422",
+      "updated_at_utc": "2026-08-28T00:15:19Z",
+      "url": "https://smtown-official.jp/news/detail.php?nid=U8tv+ItraYA%3D",
       "venue_name": "横浜アリーナ"
     },
     {
@@ -57974,6 +57936,44 @@
       "updated_at_utc": "2026-08-25T05:02:41Z",
       "url": "https://toyosu.pia-pit.jp/schedule/202608/8779.html",
       "venue_name": "豊洲PIT"
+    },
+    {
+      "artist_name": "Kvi Baba",
+      "capacity": null,
+      "display_source_class": "ticket_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-03",
+      "event_end_date": "2026-11-03",
+      "event_end_time": null,
+      "event_key": "a848b35423786b997299",
+      "event_start_time": "17:00",
+      "evidence_snippet": "イープラス公式チケットページは、KviBaba Shout Out to Jesus -ENCORE- in K-Arenaを2026年11月3日、Kアリーナ横浜で開催すると掲載している（開演17:00）。",
+      "evidence_url": "https://eplus.jp/sf/detail/4078830001-P0030008P021001?P6=001",
+      "first_seen_at_utc": "2026-08-28T00:15:19Z",
+      "pref_name": null,
+      "raw_artist_name": "Kvi Baba",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://eplus.jp/sf/detail/4078830001-P0030008P021001?P6=001",
+          "priority": 20,
+          "record_id": "ae6bd5a54967ff5b254090d132fdfa7f2e745e05f71a0def4ddaf81a4bbb4fc9",
+          "source_class": "ticket_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "KviBaba Shout Out to Jesus -ENCORE- in K-Arena",
+          "updated_at_utc": "2026-08-28T00:15:19Z",
+          "url": "https://eplus.jp/sf/detail/4078830001-P0030008P021001?P6=001"
+        }
+      ],
+      "title": "KviBaba Shout Out to Jesus -ENCORE- in K-Arena",
+      "updated_at_utc": "2026-08-28T00:15:19Z",
+      "url": "https://eplus.jp/sf/detail/4078830001-P0030008P021001?P6=001",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "Hump Back",
@@ -81160,6 +81160,44 @@
       "venue_name": "ぴあアリーナMM"
     },
     {
+      "artist_name": "Appare!",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-05-23",
+      "event_end_date": "2027-05-23",
+      "event_end_time": null,
+      "event_key": "3cc009d6f98e19fe8b7a",
+      "event_start_time": null,
+      "evidence_snippet": "Appare!公式サイトは、2027年5月23日に横浜アリーナワンマンライブを開催すると掲載している。",
+      "evidence_url": "https://appare-official.jp/",
+      "first_seen_at_utc": "2026-08-28T00:15:19Z",
+      "pref_name": null,
+      "raw_artist_name": "Appare!",
+      "raw_venue_name": "横浜アリーナ",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://appare-official.jp/",
+          "priority": 20,
+          "record_id": "a019781c7a5cd69ccde8ebbacdc8965c50a531634bbebc151e89a939f5d3d550",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Appare! 横浜アリーナワンマンライブ",
+          "updated_at_utc": "2026-08-28T00:15:19Z",
+          "url": "https://appare-official.jp/"
+        }
+      ],
+      "title": "Appare! 横浜アリーナワンマンライブ",
+      "updated_at_utc": "2026-08-28T00:15:19Z",
+      "url": "https://appare-official.jp/",
+      "venue_name": "横浜アリーナ"
+    },
+    {
       "artist_name": "Creepy Nuts",
       "capacity": null,
       "display_source_class": "",
@@ -81818,8 +81856,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-27T21:32:26Z",
-  "history_start_date": "2026-05-29",
+  "generated_at_utc": "2026-08-28T00:15:28Z",
+  "history_start_date": "2026-05-30",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -81835,10 +81873,10 @@
       "kstyle_music": 96,
       "official_events": 620,
       "starto_concert": 124,
-      "ticketjam_events": 1002,
-      "venue_web_discovery": 174
+      "ticketjam_events": 1001,
+      "venue_web_discovery": 176
     },
-    "event_count": 2016,
-    "record_count_before_grouping": 2450
+    "event_count": 2017,
+    "record_count_before_grouping": 2451
   }
 }
