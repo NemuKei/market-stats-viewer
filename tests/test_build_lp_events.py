@@ -240,24 +240,35 @@ def _create_signals_db(path: Path) -> None:
             source_class="secondary_market",
         ),
     ]:
-        conn.execute(
-            """
-            INSERT INTO signals VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                rec.signal_uid,
-                rec.source_id,
-                rec.published_at_utc,
-                rec.title,
-                rec.url,
-                rec.snippet,
-                rec.score,
-                rec.labels_json,
-                rec.content_hash,
-                "2026-06-23T00:00:00Z",
-                "2026-06-23T00:00:00Z",
-            ),
-        )
+        _insert_signal_with_connection(conn, rec)
+    conn.commit()
+    conn.close()
+
+
+def _insert_signal_with_connection(conn: sqlite3.Connection, rec: SignalRecord) -> None:
+    conn.execute(
+        """
+        INSERT INTO signals VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            rec.signal_uid,
+            rec.source_id,
+            rec.published_at_utc,
+            rec.title,
+            rec.url,
+            rec.snippet,
+            rec.score,
+            rec.labels_json,
+            rec.content_hash,
+            "2026-06-23T00:00:00Z",
+            "2026-06-23T00:00:00Z",
+        ),
+    )
+
+
+def _insert_signal(path: Path, rec: SignalRecord) -> None:
+    conn = sqlite3.connect(str(path))
+    _insert_signal_with_connection(conn, rec)
     conn.commit()
     conn.close()
 
@@ -294,6 +305,7 @@ def _signal(
     source_class: str,
     event_category: str | None = "コンサート",
     category: str | None = None,
+    event_status: str | None = None,
 ) -> SignalRecord:
     url = f"https://example.com/{source_id}/{event_date}/{artist_name}"
     labels = {
@@ -311,6 +323,8 @@ def _signal(
         labels["event_category"] = event_category
     if category is not None:
         labels["category"] = category
+    if event_status is not None:
+        labels["event_status"] = event_status
     rec = SignalRecord(
         signal_uid=compute_signal_uid(source_id, url),
         source_id=source_id,
@@ -351,7 +365,84 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     assert by_artist["STARTO Artist"]["event_category"] == "コンサート"
     assert by_artist["Kstyle Artist"]["display_source_id"] == "kstyle_music"
     assert by_artist["Kstyle Artist"]["event_category"] == "コンサート"
+    assert payload["summary"]["suppressed_event_count"] == 0
     assert json.dumps(payload, ensure_ascii=False)
+
+
+def test_authoritative_postponement_suppresses_lower_priority_sources(tmp_path: Path) -> None:
+    events_db = tmp_path / "events.sqlite"
+    signals_db = tmp_path / "event_signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+
+    for rec in [
+        _signal(
+            "venue_web_discovery",
+            "Post Malone official postponement",
+            "2026-10-06",
+            "京セラドーム大阪",
+            "Post Malone",
+            source_class="promoter_official",
+            event_status="postponed",
+        ),
+        _signal(
+            "ticketjam_events",
+            "Post Malone Presents The BIG ASS Stadium World Tour",
+            "2026-10-06",
+            "京セラドーム大阪",
+            "Post Malone",
+            source_class="secondary_market",
+        ),
+    ]:
+        _insert_signal(signals_db, rec)
+
+    payload = build_lp_events(
+        events_db_path=events_db,
+        event_signals_db_path=signals_db,
+        include_past=True,
+    )
+
+    assert "Post Malone" not in {row["artist_name"] for row in payload["events"]}
+    assert payload["summary"]["suppressed_event_count"] == 1
+
+    conn = sqlite3.connect(str(signals_db))
+    source_ids = {
+        row[0]
+        for row in conn.execute(
+            "SELECT source_id FROM signals WHERE title LIKE 'Post Malone%'"
+        ).fetchall()
+    }
+    conn.close()
+    assert source_ids == {"venue_web_discovery", "ticketjam_events"}
+
+
+def test_secondary_market_status_does_not_suppress_event(tmp_path: Path) -> None:
+    events_db = tmp_path / "events.sqlite"
+    signals_db = tmp_path / "event_signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+    _insert_signal(
+        signals_db,
+        _signal(
+            "ticketjam_events",
+            "Secondary-only status must not suppress",
+            "2026-10-07",
+            "京セラドーム大阪",
+            "Secondary Status Artist",
+            source_class="secondary_market",
+            event_status="cancelled",
+        ),
+    )
+
+    payload = build_lp_events(
+        events_db_path=events_db,
+        event_signals_db_path=signals_db,
+        include_past=True,
+    )
+
+    by_artist = {row["artist_name"]: row for row in payload["events"]}
+    assert by_artist["Secondary Status Artist"]["display_source_id"] == "ticketjam_events"
+    assert payload["summary"]["suppressed_event_count"] == 0
 
 
 def test_lp_events_default_history_window_is_bounded_to_90_days(tmp_path: Path) -> None:
