@@ -93,7 +93,7 @@ def test_venue_web_discovery_loads_only_accepted_confirmed_events(tmp_path: Path
     assert accepted_labels["content_extractor"] == "crawl4ai"
     assert accepted_labels["event_start_date"] == "2026-09-19"
     assert accepted_labels["artist_name"] == "Stray Kids"
-    assert accepted_labels["event_status"] == "scheduled"
+    assert "event_status" not in accepted_labels
 
     postponed_labels = json.loads(
         by_title["Postponed official event"].labels_json or "{}"
