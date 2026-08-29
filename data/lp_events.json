@@ -44130,25 +44130,13 @@
       "event_key": "4526c342f82b4c7c3d90",
       "event_start_time": null,
       "evidence_snippet": "会場: 17時 / 日時: 2026-10-04 / 日時:2026年10月4日(日)17時開場 / 18時開演",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281165",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2282139",
+      "first_seen_at_utc": "2026-08-17T12:27:11Z",
       "pref_name": null,
       "raw_artist_name": "ソン・シギョン",
       "raw_venue_name": "17時",
       "source_priority": 30,
       "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281165",
-          "priority": 30,
-          "record_id": "c8c6c05c9132994e9db3743f8f2c8c6c2571768f37618f5f1827f12b81817e03",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "Sung Si Kyung Japan Concert [A Song For You 2026]",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281165"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2282139",
@@ -44163,8 +44151,8 @@
         }
       ],
       "title": "Sung Si Kyung Japan Concert [A Song For You 2026]",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2281165",
+      "updated_at_utc": "2026-08-17T12:27:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2282139",
       "venue_name": "17時"
     },
     {
@@ -46514,6 +46502,44 @@
       "updated_at_utc": "2026-08-09T04:50:29Z",
       "url": "https://ticketjam.jp/tickets/pop-yours/event/1260333",
       "venue_name": "GORILLA HALL OSAKA"
+    },
+    {
+      "artist_name": "キム・キュジョン",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-10-10",
+      "event_end_date": "2026-10-10",
+      "event_end_time": null,
+      "event_key": "b5bef6bba7ef8209fe12",
+      "event_start_time": null,
+      "evidence_snippet": "会場: I'M A SHOW(アイマショウ) / 日時: 2026-10-10 / 公演日程:2026年10月10日(土)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283298",
+      "first_seen_at_utc": "2026-08-29T16:00:53Z",
+      "pref_name": null,
+      "raw_artist_name": "キム・キュジョン",
+      "raw_venue_name": "I'M A SHOW(アイマショウ)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283298",
+          "priority": 30,
+          "record_id": "0c894384352bf4192abde35edd2abfe512d9a9ef1e06e7c455002c9939c4e9c8",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "キム・キュジョン ファンコン 2026 ~Our life is like a puzzle~",
+          "updated_at_utc": "2026-08-29T16:00:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283298"
+        }
+      ],
+      "title": "キム・キュジョン ファンコン 2026 ~Our life is like a puzzle~",
+      "updated_at_utc": "2026-08-29T16:00:53Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283298",
+      "venue_name": "I'M A SHOW(アイマショウ)"
     },
     {
       "artist_name": "佐伯イッテツ / 赤城ウェン / 宇佐美リト / 緋八マナ / 星導ショウ / 叢雲カゲツ / 小柳ロウ / 伊波ライ",
@@ -81896,7 +81922,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-29T11:19:31Z",
+  "generated_at_utc": "2026-08-29T16:02:02Z",
   "history_start_date": "2026-05-31",
   "history_window_days": 90,
   "include_past": true,
@@ -81910,13 +81936,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 94,
+      "kstyle_music": 95,
       "official_events": 623,
       "starto_concert": 125,
       "ticketjam_events": 1001,
       "venue_web_discovery": 176
     },
-    "event_count": 2019,
+    "event_count": 2020,
     "record_count_before_grouping": 2452,
     "suppressed_event_count": 1
   }
