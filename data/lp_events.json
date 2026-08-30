@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-08-29",
+  "as_of_date": "2026-08-30",
   "events": [
-    {
-      "artist_name": "timelesz",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-05-31",
-      "event_end_date": "2026-05-31",
-      "event_end_time": null,
-      "event_key": "a6f656ed82421ce369eb",
-      "event_start_time": null,
-      "evidence_snippet": "2026-05-31 13:00 / [静岡県] エコパアリーナ | 2026-05-31 17:30 / [静岡県] エコパアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10431",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "静岡県",
-      "raw_artist_name": "timelesz",
-      "raw_venue_name": "エコパアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10431",
-          "priority": 30,
-          "record_id": "a98bf913362cae3d471ab1287aaa94ecf2b07354e20dcf5d8b32ebe641ba11c2",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10431"
-        }
-      ],
-      "title": "We're timelesz LIVE TOUR 2026 episode 2 MOMENTUM",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10431",
-      "venue_name": "エコパアリーナ"
-    },
     {
       "artist_name": "TWICE",
       "capacity": null,
@@ -8804,35 +8766,23 @@
     {
       "artist_name": "呪術廻戦",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-08-29",
       "event_end_date": "2026-08-29",
       "event_end_time": null,
       "event_key": "5644ceaf5b8afb557546",
       "event_start_time": "15:30",
-      "evidence_snippet": "K Arena Yokohama official schedule lists じゅじゅフェス 2026 -5th anniversary- on 2026.08.29 with ARTIST キャスト・アーティスト and START 15:30.",
-      "evidence_url": "https://k-arena.com/schedule/20260829-1/",
-      "first_seen_at_utc": "2026-07-05T00:15:49Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-29 15:30 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/jujutsu-kaisen/event/1136060",
+      "first_seen_at_utc": "2026-08-26T04:17:40Z",
+      "pref_name": "神奈川県",
       "raw_artist_name": "呪術廻戦",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260829-1/",
-          "priority": 20,
-          "record_id": "a0d56c558207a27ec72254ea2abca513d4eba94873dc4b0b649528d2253723c5",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "じゅじゅフェス 2026 -5th anniversary-",
-          "updated_at_utc": "2026-07-05T00:17:45Z",
-          "url": "https://k-arena.com/schedule/20260829-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/jujutsu-kaisen/event/1136060",
@@ -8847,8 +8797,8 @@
         }
       ],
       "title": "じゅじゅフェス 2026 -5th anniversary-",
-      "updated_at_utc": "2026-07-05T00:17:45Z",
-      "url": "https://k-arena.com/schedule/20260829-1/",
+      "updated_at_utc": "2026-08-26T04:17:40Z",
+      "url": "https://ticketjam.jp/tickets/jujutsu-kaisen/event/1136060",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -8892,35 +8842,23 @@
     {
       "artist_name": "Stray Kids",
       "capacity": null,
-      "display_source_class": "artist_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
       "event_category": "コンサート",
       "event_date": "2026-08-29",
       "event_end_date": "2026-08-29",
       "event_end_time": null,
       "event_key": "ef42c40b2702cc7b1ec2",
       "event_start_time": null,
-      "evidence_snippet": "Stray Kids official special site lists TOKYO MUFG STADIUM on 2026.08.29-30 for World Tour <RUN IT JAPAN>.",
-      "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
-      "first_seen_at_utc": "2026-06-25T06:37:15Z",
-      "pref_name": null,
+      "evidence_snippet": "会場: MUFG STADIUM(国立競技場) / 日時: 2026-08-29 / 2026年8月29日(土)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+      "first_seen_at_utc": "2026-08-28T21:40:56Z",
+      "pref_name": "東京都",
       "raw_artist_name": "Stray Kids",
-      "raw_venue_name": "MUFG STADIUM",
-      "source_priority": 20,
+      "raw_venue_name": "MUFG STADIUM(国立競技場)",
+      "source_priority": 30,
       "supporting_sources": [
-        {
-          "content_extractor": "crawl4ai",
-          "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
-          "priority": 20,
-          "record_id": "3950dc127d55ade12e76ce8eff564eb8527e4bf171565cc983c74568fa260cf7",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "Stray Kids World Tour <RUN IT JAPAN>",
-          "updated_at_utc": "2026-06-25T06:44:42Z",
-          "url": "https://www.straykidsjapan.com/runitjapan/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
@@ -8935,8 +8873,8 @@
         }
       ],
       "title": "Stray Kids World Tour <RUN IT JAPAN>",
-      "updated_at_utc": "2026-06-25T06:44:42Z",
-      "url": "https://www.straykidsjapan.com/runitjapan/",
+      "updated_at_utc": "2026-08-28T21:40:56Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283276",
       "venue_name": "MUFGスタジアム"
     },
     {
@@ -9648,35 +9586,23 @@
     {
       "artist_name": "THE GREATEST ROCK FUKUOKA（ザグレイテストロックフクオカ）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
+      "event_category": "コンサート",
       "event_date": "2026-08-29",
       "event_end_date": "2026-08-29",
       "event_end_time": null,
       "event_key": "555f6f64d8e62d1103f5",
       "event_start_time": "11:30",
-      "evidence_snippet": "Fukuoka SoftBank HAWKS official event schedule lists THE GREATEST ROCK FUKUOKA at みずほPayPayドーム福岡 on 2026年8月29日 with OPEN 10:00 / START 11:30.",
-      "evidence_url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
-      "first_seen_at_utc": "2026-07-23T00:18:36Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-08-29 11:30 / 福岡県 みずほPayPayドーム福岡",
+      "evidence_url": "https://ticketjam.jp/tickets/thegratesyrockfukuoka/event/1157365",
+      "first_seen_at_utc": "2026-08-16T04:13:26Z",
+      "pref_name": "福岡県",
       "raw_artist_name": "THE GREATEST ROCK FUKUOKA（ザグレイテストロックフクオカ）",
       "raw_venue_name": "みずほPayPayドーム福岡",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
-          "priority": 20,
-          "record_id": "5ac1eaee30f38c167a6955f64b35011443fe0b26e7cbd432a69e47535c14ee2a",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "THE GREATEST ROCK FUKUOKA",
-          "updated_at_utc": "2026-07-26T08:46:27Z",
-          "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/thegratesyrockfukuoka/event/1157365",
@@ -9691,8 +9617,8 @@
         }
       ],
       "title": "THE GREATEST ROCK FUKUOKA",
-      "updated_at_utc": "2026-07-26T08:46:27Z",
-      "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
+      "updated_at_utc": "2026-08-16T04:13:26Z",
+      "url": "https://ticketjam.jp/tickets/thegratesyrockfukuoka/event/1157365",
       "venue_name": "みずほPayPayドーム福岡"
     },
     {
@@ -10952,44 +10878,6 @@
       "venue_name": "有明アリーナ"
     },
     {
-      "artist_name": "北海道ペット＆ファミリーEXPO 2026",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-08-29",
-      "event_end_date": "2026-08-29",
-      "event_end_time": null,
-      "event_key": "8c1c463e38078e2a507d",
-      "event_start_time": null,
-      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、北海道ペット＆ファミリーEXPO 2026を2026年8月29日、大和ハウス プレミストドームで開催すると掲載している。",
-      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
-      "first_seen_at_utc": "2026-08-19T00:18:39Z",
-      "pref_name": null,
-      "raw_artist_name": "北海道ペット＆ファミリーEXPO 2026",
-      "raw_venue_name": "大和ハウス プレミストドーム",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
-          "priority": 20,
-          "record_id": "c3f2dd40b9700a787c694711110c58c9fae25717289a0fb2d3742ae888bbb2f0",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "北海道ペット＆ファミリーEXPO 2026",
-          "updated_at_utc": "2026-08-19T00:18:39Z",
-          "url": "https://www.sapporo-dome.co.jp/schedule/"
-        }
-      ],
-      "title": "北海道ペット＆ファミリーEXPO 2026",
-      "updated_at_utc": "2026-08-19T00:18:39Z",
-      "url": "https://www.sapporo-dome.co.jp/schedule/",
-      "venue_name": "札幌ドーム"
-    },
-    {
       "artist_name": "松任谷由実",
       "capacity": null,
       "display_source_class": "",
@@ -11228,44 +11116,6 @@
       "updated_at_utc": "2026-06-22T09:35:16Z",
       "url": "https://ticketjam.jp/tickets/over-the-sun-radio/event/1183437",
       "venue_name": "横浜BUNTAI"
-    },
-    {
-      "artist_name": "@JAM EXPO 2026",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-29",
-      "event_end_date": "2026-08-29",
-      "event_end_time": null,
-      "event_key": "533a62604be96243f6a0",
-      "event_start_time": null,
-      "evidence_snippet": "Yokohama Arena official page lists @JAM EXPO 2026 supported by UP-T at the main arena on 2026/08/29.",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/jam-expo-2026-supported-t",
-      "first_seen_at_utc": "2026-07-17T00:31:35Z",
-      "pref_name": null,
-      "raw_artist_name": "@JAM EXPO 2026",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/jam-expo-2026-supported-t",
-          "priority": 20,
-          "record_id": "e428a98026acff1afc9d5f9de6a044850d76dd1753491676438b0be8f9ad23f4",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "@JAM EXPO 2026 supported by UP-T",
-          "updated_at_utc": "2026-07-17T00:31:35Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/jam-expo-2026-supported-t"
-        }
-      ],
-      "title": "@JAM EXPO 2026 supported by UP-T",
-      "updated_at_utc": "2026-07-17T00:31:35Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/jam-expo-2026-supported-t",
-      "venue_name": "横浜アリーナ"
     },
     {
       "artist_name": "@JAM EXPO（アットジャムエキスポ）",
@@ -78036,6 +77886,44 @@
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
     {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-01-30",
+      "event_end_date": "2027-01-30",
+      "event_end_time": null,
+      "event_key": "03bb41d58a6d61909f45",
+      "event_start_time": null,
+      "evidence_snippet": "京セラドーム大阪公式スケジュールは、TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞を2027年1月30日、京セラドーム大阪で開催すると掲載している。",
+      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+      "first_seen_at_utc": "2026-08-30T00:11:11Z",
+      "pref_name": null,
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+          "priority": 20,
+          "record_id": "bc7cfb9fece6bb6a7e726eed5d2858d899f87cca34be5f006380201a70749e08",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
+          "updated_at_utc": "2026-08-30T00:11:11Z",
+          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
+      "updated_at_utc": "2026-08-30T00:11:11Z",
+      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+      "venue_name": "京セラドーム大阪"
+    },
+    {
       "artist_name": "ハラミちゃん",
       "capacity": 8000,
       "display_source_class": "venue_official",
@@ -78186,6 +78074,44 @@
       "updated_at_utc": "2026-07-24T00:12:03Z",
       "url": "https://www.kyodoyokohama.com/schedule/index.php?mode=show&seq=2059",
       "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-01-31",
+      "event_end_date": "2027-01-31",
+      "event_end_time": null,
+      "event_key": "2232164e8c04cee87c99",
+      "event_start_time": null,
+      "evidence_snippet": "京セラドーム大阪公式スケジュールは、TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞を2027年1月31日、京セラドーム大阪で開催すると掲載している。",
+      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+      "first_seen_at_utc": "2026-08-30T00:11:11Z",
+      "pref_name": null,
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+          "priority": 20,
+          "record_id": "6aaf14d7afda3e79e8a911f053df88273a3471d7a9dc0a788c3abca65e46bdf3",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
+          "updated_at_utc": "2026-08-30T00:11:11Z",
+          "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
+      "updated_at_utc": "2026-08-30T00:11:11Z",
+      "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "Maroon 5",
@@ -81922,8 +81848,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-29T16:02:02Z",
-  "history_start_date": "2026-05-31",
+  "generated_at_utc": "2026-08-30T00:11:15Z",
+  "history_start_date": "2026-06-01",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -81936,14 +81862,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 95,
+      "kstyle_music": 96,
       "official_events": 623,
-      "starto_concert": 125,
-      "ticketjam_events": 1001,
-      "venue_web_discovery": 176
+      "starto_concert": 124,
+      "ticketjam_events": 1003,
+      "venue_web_discovery": 173
     },
-    "event_count": 2020,
-    "record_count_before_grouping": 2452,
+    "event_count": 2019,
+    "record_count_before_grouping": 2448,
     "suppressed_event_count": 1
   }
 }
