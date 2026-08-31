@@ -6854,6 +6854,29 @@
       "announced_at_utc": "2026-08-27T00:00:00Z",
       "verified_at_utc": "2026-08-30T00:09:41Z",
       "discovery_query": "京セラドーム大阪 TOMORROW X TOGETHER"
+    },
+    {
+      "event_id": "toto-50th-anniversary-tour-2027-03-23-ariake-arena",
+      "enabled": true,
+      "title": "TOTO 50TH ANNIVERSARY TOUR",
+      "artist_name": "TOTO",
+      "raw_artist_name": "TOTO",
+      "venue_name": "有明アリーナ",
+      "raw_venue_name": "有明アリーナ",
+      "event_start_date": "2027-03-23",
+      "event_end_date": "2027-03-23",
+      "event_start_time": "19:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.sonymusic.co.jp/artist/Toto/info/586327",
+      "evidence_url": "https://www.sonymusic.co.jp/artist/Toto/info/586327",
+      "evidence_snippet": "ソニーミュージック公式TOTOページは、TOTO 50TH ANNIVERSARY TOURの東京公演を2027年3月23日、有明アリーナで開催すると掲載している（開場18:00／開演19:00）。",
+      "announced_at_utc": "2026-08-28T00:00:00Z",
+      "verified_at_utc": "2026-08-31T00:07:31Z",
+      "discovery_query": "有明アリーナ TOTO"
     }
   ]
 }
