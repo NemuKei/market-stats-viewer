@@ -14,10 +14,15 @@ import re
 import sqlite3
 import unicodedata
 from datetime import date, datetime, timedelta, timezone
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
-from .events.category import EVENT_CATEGORY_BASEBALL, EVENT_CATEGORY_CONCERT, EVENT_CATEGORY_OTHER
+from .events.category import (
+    EVENT_CATEGORY_BASEBALL,
+    EVENT_CATEGORY_CONCERT,
+    EVENT_CATEGORY_OTHER,
+)
 from .signals.entity_aliases import (
     load_artist_lookup_maps,
     load_venue_lookup_maps,
@@ -32,6 +37,8 @@ DEFAULT_EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 DEFAULT_EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
 DEFAULT_OUTPUT_PATH = DATA_DIR / "lp_events.json"
 DEFAULT_HISTORY_WINDOW_DAYS = 90
+SUPPLEMENTAL_TITLE_MIN_LENGTH = 8
+SUPPLEMENTAL_TITLE_SIMILARITY_THRESHOLD = 0.80
 
 SOURCE_PRIORITY = {
     "official_events": 10,
@@ -71,7 +78,12 @@ VENUE_WEB_DISCOVERY_STATUS_SOURCE_CLASSES = {
 
 
 def now_utc_z() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return (
+        datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z")
+    )
 
 
 def normalize_key_part(value: object) -> str:
@@ -88,6 +100,52 @@ def event_group_key(event_date: str, venue_name: str, artist_name: str) -> str:
         ]
     )
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:20]
+
+
+def normalize_event_start_time(value: object) -> str:
+    text = unicodedata.normalize("NFKC", str(value or "")).strip()
+    return re.sub(r"\s+", "", text)
+
+
+def time_qualified_event_key(base_event_key: str, event_start_time: object) -> str:
+    normalized_time = normalize_event_start_time(event_start_time)
+    raw = f"{base_event_key}|start_time={normalized_time}"
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:20]
+
+
+def normalize_supplemental_title(value: object) -> str:
+    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    return "".join(
+        character for character in text if character.isalnum() or character == "ー"
+    )
+
+
+def supplemental_titles_match(left: object, right: object) -> bool:
+    normalized_left = normalize_supplemental_title(left)
+    normalized_right = normalize_supplemental_title(right)
+    if not normalized_left or not normalized_right:
+        return False
+    if normalized_left == normalized_right:
+        return True
+    if min(len(normalized_left), len(normalized_right)) < SUPPLEMENTAL_TITLE_MIN_LENGTH:
+        return False
+    similarity = SequenceMatcher(
+        None,
+        normalized_left,
+        normalized_right,
+        autojunk=False,
+    ).ratio()
+    return similarity >= SUPPLEMENTAL_TITLE_SIMILARITY_THRESHOLD
+
+
+def start_times_compatible(left: object, right: object) -> bool:
+    normalized_left = normalize_event_start_time(left)
+    normalized_right = normalize_event_start_time(right)
+    return (
+        not normalized_left
+        or not normalized_right
+        or normalized_left == normalized_right
+    )
 
 
 def normalize_event_status(value: object) -> str:
@@ -221,7 +279,9 @@ def load_official_events(
     for row in rows:
         event_date = str(row["start_date"] or "").strip()
         event_end_date = str(row["end_date"] or event_date).strip()
-        raw_artist_name = str(row["performers"] or row["artist_name_resolved"] or "").strip()
+        raw_artist_name = str(
+            row["performers"] or row["artist_name_resolved"] or ""
+        ).strip()
         artist_name = canonicalize_artist_name(
             raw_artist_name,
             row["artist_name_resolved"] or row["performers"] or "",
@@ -309,14 +369,18 @@ def load_signal_events(
         labels = parse_labels(row["labels_json"])
         event_date = str(labels.get("event_start_date") or "").strip()
         event_end_date = str(labels.get("event_end_date") or event_date).strip()
-        raw_artist_name = str(labels.get("raw_artist_name") or labels.get("artist_name") or "").strip()
+        raw_artist_name = str(
+            labels.get("raw_artist_name") or labels.get("artist_name") or ""
+        ).strip()
         artist_name = canonicalize_artist_name(
             raw_artist_name,
             labels.get("artist_name") or "",
             artist_keep_map,
             artist_compact_map,
         )
-        raw_venue_name = str(labels.get("raw_venue_name") or labels.get("venue_name") or "").strip()
+        raw_venue_name = str(
+            labels.get("raw_venue_name") or labels.get("venue_name") or ""
+        ).strip()
         venue_name = canonicalize_venue_name(
             raw_venue_name,
             labels.get("venue_name") or "",
@@ -346,8 +410,12 @@ def load_signal_events(
                 "title": str(row["title"] or "").strip(),
                 "event_category": signal_event_category(source_id, labels),
                 "url": str(row["url"] or "").strip(),
-                "evidence_url": str(labels.get("evidence_url") or row["url"] or "").strip(),
-                "evidence_snippet": str(labels.get("evidence_snippet") or row["snippet"] or "").strip(),
+                "evidence_url": str(
+                    labels.get("evidence_url") or row["url"] or ""
+                ).strip(),
+                "evidence_snippet": str(
+                    labels.get("evidence_snippet") or row["snippet"] or ""
+                ).strip(),
                 "pref_name": labels.get("pref_name"),
                 "capacity": labels.get("capacity"),
                 "first_seen_at_utc": row["first_seen_at_utc"],
@@ -371,40 +439,226 @@ def parse_labels(labels_json: object) -> dict[str, Any]:
     return parsed if isinstance(parsed, dict) else {}
 
 
-def consolidate_events(records: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
+def source_order_key(record: dict[str, Any]) -> tuple[int, str, str]:
+    return (
+        SOURCE_PRIORITY.get(str(record.get("source_id") or ""), 999),
+        str(record.get("updated_at_utc") or ""),
+        str(record.get("record_id") or ""),
+    )
+
+
+def group_representative(group: dict[str, Any]) -> dict[str, Any]:
+    return min(group["members"], key=source_order_key)
+
+
+def group_order_key(group: dict[str, Any]) -> tuple[int, str, str, str]:
+    representative = group_representative(group)
+    return (*source_order_key(representative), str(group["event_key"]))
+
+
+def build_strict_event_groups(
+    records: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
     groups: dict[str, list[dict[str, Any]]] = {}
     for record in records:
-        key = event_group_key(
+        base_key = event_group_key(
             str(record.get("event_date") or ""),
             str(record.get("venue_name") or ""),
             str(record.get("artist_name") or ""),
         )
-        record["event_key"] = key
-        groups.setdefault(key, []).append(record)
+        groups.setdefault(base_key, []).append(dict(record))
+
+    strict_groups: list[dict[str, Any]] = []
+    start_time_split_group_count = 0
+    start_time_split_event_count = 0
+    for base_key in sorted(groups):
+        members = groups[base_key]
+        nonempty_start_times = sorted(
+            {
+                normalize_event_start_time(member.get("event_start_time"))
+                for member in members
+                if normalize_event_start_time(member.get("event_start_time"))
+            }
+        )
+        if len(nonempty_start_times) <= 1:
+            for member in members:
+                member["event_key"] = base_key
+            strict_groups.append(
+                {
+                    "event_key": base_key,
+                    "strict_base_key": base_key,
+                    "event_start_time": nonempty_start_times[0]
+                    if nonempty_start_times
+                    else "",
+                    "members": members,
+                }
+            )
+            continue
+
+        start_time_split_group_count += 1
+        start_time_split_event_count += len(nonempty_start_times) - 1
+        blank_time_members = [
+            member
+            for member in members
+            if not normalize_event_start_time(member.get("event_start_time"))
+        ]
+        for start_time in nonempty_start_times:
+            event_key = time_qualified_event_key(base_key, start_time)
+            child_members = [dict(member) for member in blank_time_members]
+            child_members.extend(
+                dict(member)
+                for member in members
+                if normalize_event_start_time(member.get("event_start_time"))
+                == start_time
+            )
+            for member in child_members:
+                member["event_key"] = event_key
+            strict_groups.append(
+                {
+                    "event_key": event_key,
+                    "strict_base_key": base_key,
+                    "event_start_time": start_time,
+                    "members": child_members,
+                }
+            )
+
+    return strict_groups, {
+        "start_time_split_group_count": start_time_split_group_count,
+        "start_time_split_event_count": start_time_split_event_count,
+    }
+
+
+def supplemental_group_matches(
+    representative_group: dict[str, Any], candidate_group: dict[str, Any]
+) -> bool:
+    representative = group_representative(representative_group)
+    candidate = group_representative(candidate_group)
+    if str(representative.get("event_date") or "") != str(
+        candidate.get("event_date") or ""
+    ):
+        return False
+    if str(representative.get("venue_name") or "") != str(
+        candidate.get("venue_name") or ""
+    ):
+        return False
+    if not start_times_compatible(
+        representative_group.get("event_start_time"),
+        candidate_group.get("event_start_time"),
+    ):
+        return False
+    return supplemental_titles_match(
+        representative.get("title"),
+        candidate.get("title"),
+    )
+
+
+def merge_supplemental_groups(
+    strict_groups: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    buckets: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for group in strict_groups:
+        representative = group_representative(group)
+        bucket_key = (
+            str(representative.get("event_date") or ""),
+            str(representative.get("venue_name") or ""),
+        )
+        buckets.setdefault(bucket_key, []).append(group)
+
+    final_groups: list[dict[str, Any]] = []
+    supplemental_merged_group_count = 0
+    supplemental_merged_record_count = 0
+    for bucket_key in sorted(buckets):
+        ordered_groups = sorted(buckets[bucket_key], key=group_order_key)
+        unassigned = set(range(len(ordered_groups)))
+        for anchor_index, anchor in enumerate(ordered_groups):
+            if anchor_index not in unassigned:
+                continue
+            candidate_indexes = [
+                index
+                for index in sorted(unassigned)
+                if index != anchor_index
+                and supplemental_group_matches(anchor, ordered_groups[index])
+            ]
+
+            anchor_start_time = normalize_event_start_time(
+                anchor.get("event_start_time")
+            )
+            candidate_start_times = {
+                normalize_event_start_time(
+                    ordered_groups[index].get("event_start_time")
+                )
+                for index in candidate_indexes
+                if normalize_event_start_time(
+                    ordered_groups[index].get("event_start_time")
+                )
+            }
+            if not anchor_start_time and len(candidate_start_times) > 1:
+                raise ValueError(
+                    "supplemental grouping is ambiguous across multiple nonempty "
+                    f"start times: date={bucket_key[0]} venue={bucket_key[1]} "
+                    f"event_key={anchor['event_key']}"
+                )
+
+            merged_indexes = [anchor_index, *candidate_indexes]
+            for index in merged_indexes:
+                unassigned.remove(index)
+            merged_groups = [ordered_groups[index] for index in merged_indexes]
+            merged_members = [
+                member for group in merged_groups for member in group["members"]
+            ]
+            merged_start_times = {
+                normalize_event_start_time(group.get("event_start_time"))
+                for group in merged_groups
+                if normalize_event_start_time(group.get("event_start_time"))
+            }
+            if len(merged_start_times) > 1:
+                raise ValueError(
+                    "supplemental group retained conflicting nonempty start times"
+                )
+            if len(merged_groups) > 1:
+                supplemental_merged_group_count += 1
+                supplemental_merged_record_count += len(merged_groups) - 1
+            final_groups.append(
+                {
+                    "event_key": anchor["event_key"],
+                    "event_start_time": next(iter(merged_start_times), ""),
+                    "members": merged_members,
+                }
+            )
+
+    return final_groups, {
+        "supplemental_merged_group_count": supplemental_merged_group_count,
+        "supplemental_merged_record_count": supplemental_merged_record_count,
+    }
+
+
+def consolidate_events(
+    records: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    strict_groups, split_metrics = build_strict_event_groups(records)
+    final_groups, supplemental_metrics = merge_supplemental_groups(strict_groups)
 
     rows: list[dict[str, Any]] = []
     suppressed_event_count = 0
-    for key, members in groups.items():
+    for group in final_groups:
+        key = str(group["event_key"])
+        members = group["members"]
         if any(is_authoritative_event_suppression(row) for row in members):
             suppressed_event_count += 1
             continue
 
-        ordered = sorted(
-            members,
-            key=lambda row: (
-                SOURCE_PRIORITY.get(str(row.get("source_id") or ""), 999),
-                str(row.get("updated_at_utc") or ""),
-                str(row.get("record_id") or ""),
-            ),
-        )
+        ordered = sorted(members, key=source_order_key)
         display = dict(ordered[0])
         supporting_sources = [source_summary(row) for row in ordered]
+        display_start_time = display.get("event_start_time")
+        if not normalize_event_start_time(display_start_time):
+            display_start_time = group.get("event_start_time") or display_start_time
         rows.append(
             {
                 "event_key": key,
                 "event_date": display.get("event_date"),
                 "event_end_date": display.get("event_end_date"),
-                "event_start_time": display.get("event_start_time"),
+                "event_start_time": display_start_time,
                 "event_end_time": display.get("event_end_time"),
                 "venue_name": display.get("venue_name"),
                 "raw_venue_name": display.get("raw_venue_name"),
@@ -420,7 +674,9 @@ def consolidate_events(records: list[dict[str, Any]]) -> tuple[list[dict[str, An
                 "display_source_id": display.get("source_id"),
                 "display_source_class": display.get("source_class"),
                 "display_source_label": display.get("source_label"),
-                "source_priority": SOURCE_PRIORITY.get(str(display.get("source_id") or ""), 999),
+                "source_priority": SOURCE_PRIORITY.get(
+                    str(display.get("source_id") or ""), 999
+                ),
                 "first_seen_at_utc": display.get("first_seen_at_utc"),
                 "updated_at_utc": display.get("updated_at_utc"),
                 "supporting_sources": supporting_sources,
@@ -431,10 +687,16 @@ def consolidate_events(records: list[dict[str, Any]]) -> tuple[list[dict[str, An
             str(row.get("event_date") or ""),
             str(row.get("venue_name") or ""),
             str(row.get("artist_name") or ""),
+            normalize_event_start_time(row.get("event_start_time")),
             str(row.get("display_source_id") or ""),
+            str(row.get("event_key") or ""),
         )
     )
-    return rows, suppressed_event_count
+    return rows, {
+        "suppressed_event_count": suppressed_event_count,
+        **supplemental_metrics,
+        **split_metrics,
+    }
 
 
 def source_summary(row: dict[str, Any]) -> dict[str, Any]:
@@ -463,7 +725,11 @@ def build_lp_events(
     if past_days < 0:
         raise ValueError("past_days must be zero or greater")
     reference_date = as_of_date or date.today()
-    history_start_date = None if include_past else (reference_date - timedelta(days=past_days)).isoformat()
+    history_start_date = (
+        None
+        if include_past
+        else (reference_date - timedelta(days=past_days)).isoformat()
+    )
     artist_keep_map, artist_compact_map = load_artist_lookup_maps()
     venue_keep_map, venue_compact_map = load_venue_lookup_maps()
     official = load_official_events(
@@ -491,11 +757,13 @@ def build_lp_events(
                 f"record_id={record.get('record_id')} url={record.get('url')}"
             ),
         )
-    events, suppressed_event_count = consolidate_events(records)
+    events, consolidation_metrics = consolidate_events(records)
     counts_by_display_source: dict[str, int] = {}
     for event in events:
         source_id = str(event.get("display_source_id") or "")
-        counts_by_display_source[source_id] = counts_by_display_source.get(source_id, 0) + 1
+        counts_by_display_source[source_id] = (
+            counts_by_display_source.get(source_id, 0) + 1
+        )
     return {
         "schema_version": 1,
         "generated_at_utc": now_utc_z(),
@@ -513,14 +781,16 @@ def build_lp_events(
         "summary": {
             "record_count_before_grouping": len(records),
             "event_count": len(events),
-            "suppressed_event_count": suppressed_event_count,
+            **consolidation_metrics,
             "counts_by_display_source": counts_by_display_source,
         },
         "events": events,
     }
 
 
-def write_lp_events(payload: dict[str, Any], output_path: Path = DEFAULT_OUTPUT_PATH) -> None:
+def write_lp_events(
+    payload: dict[str, Any], output_path: Path = DEFAULT_OUTPUT_PATH
+) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     temp_path = output_path.with_name(f".{output_path.name}.tmp")
     temp_path.write_text(
@@ -531,9 +801,13 @@ def write_lp_events(payload: dict[str, Any], output_path: Path = DEFAULT_OUTPUT_
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Build LP-ready consolidated event JSON.")
+    parser = argparse.ArgumentParser(
+        description="Build LP-ready consolidated event JSON."
+    )
     parser.add_argument("--events-db", type=Path, default=DEFAULT_EVENTS_DB_PATH)
-    parser.add_argument("--event-signals-db", type=Path, default=DEFAULT_EVENT_SIGNALS_DB_PATH)
+    parser.add_argument(
+        "--event-signals-db", type=Path, default=DEFAULT_EVENT_SIGNALS_DB_PATH
+    )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     parser.add_argument(
         "--past-days",
@@ -555,7 +829,9 @@ def main() -> int:
         past_days=args.past_days,
     )
     write_lp_events(payload, args.output)
-    print(f"lp events written: {args.output} ({payload['summary']['event_count']} events)")
+    print(
+        f"lp events written: {args.output} ({payload['summary']['event_count']} events)"
+    )
     return 0
 
 

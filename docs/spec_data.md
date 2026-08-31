@@ -117,11 +117,29 @@
 - 公式／準公式の延期・中止が下位sourceの開催予定を抑止する状態契約と `summary.suppressed_event_count` は、`docs/spec_event_status.md` を正本とする。
 - 外部アプリが「確定日程」として優先表示する場合は、まず `lp_events.json` を使う。元DBを直接使う場合も、同一日程が公式側に存在する場合は公式側を優先する。
 - 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、ニュース由来と二次流通由来を同じ信頼度として扱わない。
-- 外部アプリが同一日程を統合する場合の比較キーは、原則として `event_date + canonical venue_name + canonical artist_name` とする。
+- `lp_events.json` の同一イベント判定は、次の2段階とする。
+  1. 厳密統合: `event_date + canonical venue_name + canonical artist_name`
+  2. 補助統合: 厳密統合後も分かれたグループのうち、`event_date` とcanonical会場が同じで、開始時刻が矛盾せず、正規化タイトルが完全一致するか、双方8文字以上かつ `difflib.SequenceMatcher` の類似度が `0.80` 以上のもの
+  - 補助統合はcanonical会場の完全一致だけを使い、会場名の文字列類似だけでは統合しない。
+  - タイトルはUnicode NFKCとcasefoldを適用し、空白、引用符、括弧、句読点、ハイフンなど表示差の記号を除く。日本語、英数字、長音記号は保持する。
+  - 開始時刻はUnicode NFKC後の非空値を比較し、両方に値がある場合は一致したときだけ統合する。片方または両方が空なら矛盾なしとする。
+  - 補助統合はsource priority、`updated_at_utc`、`record_id` で決まる代表グループを基準にする。全参加グループが同じ代表グループへ直接一致し、最終グループ内の非空開始時刻が1種類以下の場合だけ統合する。A-B、B-Cだけの連鎖一致ではA-Cを統合しない。
+  - 開始時刻が空の代表グループが複数の異なる非空開始時刻へ同時に一致する場合は、任意の時刻を選ばず生成を停止する。
+  - 補助統合後の `event_key` は代表グループのキーを使い、入力順を変えても結果を変えない。
+- 厳密キー内に異なる非空開始時刻がある場合は、補助統合より前に開始時刻ごとの公演へ分割する。
+  - 開始時刻が競合しない既存グループの `event_key` は変えない。
+  - 分割対象だけ、従来の厳密キーと正規化開始時刻から決定的な時刻付き `event_key` を生成する。
+  - 同じ厳密キーに開始時刻が空のレコードもある場合、そのレコードは各時刻別公演の `supporting_sources` に保持する。表示元のレコードに時刻がなくても、出力の `event_start_time` には時刻別公演の一意な開始時刻を使う。
   - `events.sqlite` 側の `event_date` は `events.start_date` を使う。
   - `events.sqlite` 側の `canonical artist_name` は `artist_name_resolved` を優先し、空の場合のみ `performers` を使う。
   - `event_signals.sqlite` 側の `event_date` / `canonical venue_name` / `canonical artist_name` は `signals.labels_json` の `event_start_date` / `venue_name` / `artist_name` を使う。
-- `lp_events.json` は上記キーで同一イベントを統合し、表示に使うsourceを `display_source_id`、下位根拠を `supporting_sources` として保持する。
+- `lp_events.json` は上記判定で同一イベントを統合し、補助統合と開始時刻分割の後に延期・中止抑止とsource priorityを適用する。表示に使うsourceを `display_source_id`、下位根拠を `supporting_sources` として保持し、元DB行は削除しない。
+- `lp_events.json.summary` は既存項目に加え、次を保持する。
+  - `supplemental_merged_group_count`: 補助統合が発生した最終イベント数
+  - `supplemental_merged_record_count`: 補助統合によって表示行ではなくsupporting sourceになった厳密グループ数
+  - `start_time_split_group_count`: 異なる非空開始時刻により分割した従来の厳密グループ数
+  - `start_time_split_event_count`: 開始時刻分割によって増えた公演数
+- この変更のbeforeは厳密キーだけによる統合、afterは開始時刻分割を含む2段階統合である。既存fieldは削除・改名せず、追加summaryは後方互換とするため `schema_version=1` を維持する。consumer側の移行作業は不要で、`lp_events.json` の再生成だけをforward migrationとする。rollbackは実装と生成JSONを同じrevisionへ戻し、DBと旧pathは変更・削除しない。
 - 外部アプリが新着判定を行う場合、`ticketjam_events` は `published_at_utc` ではなく `first_seen_at_utc` を使う。Ticketjam の公開ページから安定した掲載日時を取得できないためである。
 - 外部アプリがデータ品質を判断する場合、少なくとも次の情報を保持する。
   - `source_id`: `events.sqlite` 由来か、ニュース由来か、二次流通由来かを判定する。

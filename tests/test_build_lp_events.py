@@ -5,8 +5,19 @@ from pathlib import Path
 
 import pytest
 
-from scripts.build_lp_events import build_lp_events
-from scripts.signals.sources.base import canonical_labels_json, compute_content_hash, compute_signal_uid
+from scripts.build_lp_events import (
+    build_lp_events,
+    consolidate_events,
+    event_group_key,
+    normalize_supplemental_title,
+    supplemental_titles_match,
+    time_qualified_event_key,
+)
+from scripts.signals.sources.base import (
+    canonical_labels_json,
+    compute_content_hash,
+    compute_signal_uid,
+)
 from scripts.signals.types import SignalRecord
 from scripts.signals.text_quality import EventTextQualityError
 
@@ -179,7 +190,9 @@ def _create_signals_db(path: Path) -> None:
         ("kstyle_music", "Kstyle MUSIC"),
         ("ticketjam_events", "Ticketjam Events"),
     ]:
-        conn.execute("INSERT INTO signal_sources VALUES (?, ?)", (source_id, source_name))
+        conn.execute(
+            "INSERT INTO signal_sources VALUES (?, ?)", (source_id, source_name)
+        )
     for rec in [
         _signal(
             "venue_web_discovery",
@@ -357,9 +370,10 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     by_artist = {row["artist_name"]: row for row in payload["events"]}
     assert by_artist["Bruno Mars"]["display_source_id"] == "official_events"
     assert by_artist["EXILE"]["display_source_id"] == "official_events"
-    assert [
-        item["source_id"] for item in by_artist["EXILE"]["supporting_sources"]
-    ] == ["official_events", "ticketjam_events"]
+    assert [item["source_id"] for item in by_artist["EXILE"]["supporting_sources"]] == [
+        "official_events",
+        "ticketjam_events",
+    ]
     assert by_artist["Stray Kids"]["display_source_id"] == "venue_web_discovery"
     assert [
         item["source_id"] for item in by_artist["Stray Kids"]["supporting_sources"]
@@ -512,9 +526,17 @@ def test_secondary_market_status_does_not_suppress_event(tmp_path: Path) -> None
     )
 
     by_artist = {row["artist_name"]: row for row in payload["events"]}
-    assert by_artist["Secondary Status Artist"]["display_source_id"] == "ticketjam_events"
-    assert by_artist["Non-official VWD Artist"]["display_source_id"] == "venue_web_discovery"
-    assert by_artist["VWD Missing Evidence Artist"]["display_source_id"] == "venue_web_discovery"
+    assert (
+        by_artist["Secondary Status Artist"]["display_source_id"] == "ticketjam_events"
+    )
+    assert (
+        by_artist["Non-official VWD Artist"]["display_source_id"]
+        == "venue_web_discovery"
+    )
+    assert (
+        by_artist["VWD Missing Evidence Artist"]["display_source_id"]
+        == "venue_web_discovery"
+    )
     assert payload["summary"]["suppressed_event_count"] == 0
 
 
@@ -575,3 +597,386 @@ def test_lp_events_rejects_negative_history_window(tmp_path: Path) -> None:
             event_signals_db_path=signals_db,
             past_days=-1,
         )
+
+
+def _event_record(
+    source_id: str,
+    record_id: str,
+    title: str,
+    artist_name: str,
+    *,
+    event_date: str = "2026-08-24",
+    venue_name: str = "Zepp Osaka Bayside",
+    event_start_time: str | None = "19:00",
+    event_status: str = "scheduled",
+    source_class: str = "general_news",
+    updated_at_utc: str = "2026-08-01T00:00:00Z",
+) -> dict[str, object]:
+    evidence_url = f"https://example.com/{source_id}/{record_id}"
+    return {
+        "source_id": source_id,
+        "source_label": source_id,
+        "source_class": source_class,
+        "record_id": record_id,
+        "event_date": event_date,
+        "event_end_date": event_date,
+        "event_start_time": event_start_time,
+        "event_end_time": None,
+        "event_status": event_status,
+        "venue_name": venue_name,
+        "raw_venue_name": venue_name,
+        "artist_name": artist_name,
+        "raw_artist_name": artist_name,
+        "title": title,
+        "event_category": "コンサート",
+        "pref_name": "大阪府",
+        "capacity": 2801,
+        "url": evidence_url,
+        "evidence_url": evidence_url,
+        "evidence_snippet": "verified evidence",
+        "first_seen_at_utc": "2026-08-01T00:00:00Z",
+        "updated_at_utc": updated_at_utc,
+        "content_extractor": "test",
+    }
+
+
+def test_supplemental_title_normalization_removes_display_only_differences() -> None:
+    assert normalize_supplemental_title(" ＡＢＣ－ツアー（2026）！ ") == "abcツアー2026"
+    assert supplemental_titles_match(
+        "Age Factory x ENTH presents「GOBLIN」TOUR 2026",
+        "Age Factory x ENTH presents GOBLIN - TOUR 2026",
+    )
+
+
+def test_supplemental_merge_combines_different_representative_artists() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "age-factory",
+            "Age Factory x ENTH x Paledusk presents「GOBLIN」TOUR 2026",
+            "Age Factory",
+            source_class="promoter_official",
+        ),
+        _event_record(
+            "kstyle_music",
+            "paledusk",
+            "Age Factory x ENTH x Paledusk presents GOBLIN TOUR 2026",
+            "Paledusk",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 1
+    assert rows[0]["event_key"] == event_group_key(
+        "2026-08-24", "Zepp Osaka Bayside", "Age Factory"
+    )
+    assert [item["source_id"] for item in rows[0]["supporting_sources"]] == [
+        "venue_web_discovery",
+        "kstyle_music",
+    ]
+    assert metrics["supplemental_merged_group_count"] == 1
+    assert metrics["supplemental_merged_record_count"] == 1
+
+
+def test_supplemental_merge_accepts_one_missing_start_time() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "with-time",
+            "Shared Event Title 2026",
+            "Artist A",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "without-time",
+            "Shared Event Title 2026",
+            "Artist B",
+            event_start_time=None,
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 1
+    assert rows[0]["event_start_time"] == "19:00"
+    assert metrics["supplemental_merged_record_count"] == 1
+
+
+def test_strict_group_splits_distinct_start_times_and_keeps_blank_support() -> None:
+    base_key = event_group_key("2026-08-24", "Zepp Osaka Bayside", "Same Artist")
+    records = [
+        _event_record(
+            "official_events",
+            "official-without-time",
+            "Same Artist Two Shows",
+            "Same Artist",
+            event_start_time=None,
+            source_class="venue_official",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "matinee",
+            "Same Artist Two Shows",
+            "Same Artist",
+            event_start_time="12:30",
+            source_class="secondary_market",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "evening",
+            "Same Artist Two Shows",
+            "Same Artist",
+            event_start_time="18:00",
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+    by_time = {row["event_start_time"]: row for row in rows}
+
+    assert set(by_time) == {"12:30", "18:00"}
+    assert by_time["12:30"]["event_key"] == time_qualified_event_key(base_key, "12:30")
+    assert by_time["18:00"]["event_key"] == time_qualified_event_key(base_key, "18:00")
+    assert {item["record_id"] for item in by_time["12:30"]["supporting_sources"]} == {
+        "official-without-time",
+        "matinee",
+    }
+    assert {item["record_id"] for item in by_time["18:00"]["supporting_sources"]} == {
+        "official-without-time",
+        "evening",
+    }
+    assert metrics["start_time_split_group_count"] == 1
+    assert metrics["start_time_split_event_count"] == 1
+
+
+def test_supplemental_merge_rejects_different_nonempty_start_times() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "matinee",
+            "Shared Event Title 2026",
+            "Artist A",
+            event_start_time="12:30",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "evening",
+            "Shared Event Title 2026",
+            "Artist B",
+            event_start_time="18:00",
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 2
+    assert metrics["supplemental_merged_group_count"] == 0
+
+
+def test_supplemental_merge_stops_when_blank_time_anchor_is_ambiguous() -> None:
+    records = [
+        _event_record(
+            "official_events",
+            "blank-anchor",
+            "Shared Event Title 2026",
+            "Artist A",
+            event_start_time=None,
+            source_class="venue_official",
+        ),
+        _event_record(
+            "venue_web_discovery",
+            "matinee",
+            "Shared Event Title 2026",
+            "Artist B",
+            event_start_time="12:30",
+            source_class="artist_official",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "evening",
+            "Shared Event Title 2026",
+            "Artist C",
+            event_start_time="18:00",
+            source_class="secondary_market",
+        ),
+    ]
+
+    with pytest.raises(
+        ValueError, match="ambiguous across multiple nonempty start times"
+    ):
+        consolidate_events(records)
+
+
+def test_supplemental_merge_requires_same_canonical_venue() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "venue-a",
+            "Shared Event Title 2026",
+            "Artist A",
+            venue_name="Zepp Osaka Bayside",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "venue-b",
+            "Shared Event Title 2026",
+            "Artist B",
+            venue_name="Zepp Namba(Osaka)",
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 2
+    assert metrics["supplemental_merged_group_count"] == 0
+
+
+def test_supplemental_merge_rejects_titles_below_threshold() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "title-a",
+            "Completely Different Concert 2026",
+            "Artist A",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "title-b",
+            "Unrelated Festival Night 2026",
+            "Artist B",
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 2
+    assert metrics["supplemental_merged_group_count"] == 0
+
+
+def test_supplemental_merge_does_not_chain_through_non_representative_group() -> None:
+    records = [
+        _event_record(
+            "official_events",
+            "anchor",
+            "xxcdefghij",
+            "Artist A",
+            source_class="venue_official",
+        ),
+        _event_record(
+            "venue_web_discovery",
+            "bridge",
+            "abcdefghij",
+            "Artist B",
+            source_class="artist_official",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "tail",
+            "abcdefghyy",
+            "Artist C",
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 2
+    assert [item["record_id"] for item in rows[0]["supporting_sources"]] == [
+        "anchor",
+        "bridge",
+    ]
+    assert metrics["supplemental_merged_group_count"] == 1
+    assert metrics["supplemental_merged_record_count"] == 1
+
+
+def test_authoritative_suppression_applies_after_supplemental_merge() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "cancelled",
+            "Shared Event Title 2026",
+            "Artist A",
+            event_status="cancelled",
+            source_class="promoter_official",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "scheduled",
+            "Shared Event Title 2026",
+            "Artist B",
+            source_class="secondary_market",
+        ),
+    ]
+
+    rows, metrics = consolidate_events(records)
+
+    assert rows == []
+    assert metrics["suppressed_event_count"] == 1
+    assert metrics["supplemental_merged_group_count"] == 1
+
+
+def test_existing_strict_merge_keeps_event_key_and_source_priority() -> None:
+    records = [
+        _event_record(
+            "ticketjam_events",
+            "lower",
+            "Lower source wording",
+            "Same Artist",
+            source_class="secondary_market",
+        ),
+        _event_record(
+            "official_events",
+            "official",
+            "Official source wording",
+            "Same Artist",
+            source_class="venue_official",
+        ),
+    ]
+    expected_key = event_group_key("2026-08-24", "Zepp Osaka Bayside", "Same Artist")
+
+    rows, metrics = consolidate_events(records)
+
+    assert len(rows) == 1
+    assert rows[0]["event_key"] == expected_key
+    assert rows[0]["display_source_id"] == "official_events"
+    assert [item["record_id"] for item in rows[0]["supporting_sources"]] == [
+        "official",
+        "lower",
+    ]
+    assert metrics["supplemental_merged_group_count"] == 0
+    assert metrics["start_time_split_group_count"] == 0
+
+
+def test_consolidation_is_independent_of_input_order() -> None:
+    records = [
+        _event_record(
+            "venue_web_discovery",
+            "age-factory",
+            "Age Factory x ENTH presents GOBLIN TOUR 2026",
+            "Age Factory",
+            source_class="promoter_official",
+        ),
+        _event_record(
+            "kstyle_music",
+            "paledusk",
+            "Age Factory x ENTH presents「GOBLIN」TOUR 2026",
+            "Paledusk",
+        ),
+        _event_record(
+            "ticketjam_events",
+            "other",
+            "Unrelated Festival Night 2026",
+            "Other Artist",
+            source_class="secondary_market",
+        ),
+    ]
+
+    forward = consolidate_events(records)
+    reverse = consolidate_events(list(reversed(records)))
+
+    assert forward == reverse

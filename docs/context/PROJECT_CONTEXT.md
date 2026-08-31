@@ -30,7 +30,7 @@
 ## Success Conditions
 
 - `events.sqlite`、`event_signals.sqlite`、`lp_events.json`、`manifest.json`、Release asset の関係が明確である。
-- LP表示用には `lp_events.json` が、同一イベントを `event_date + canonical venue_name + canonical artist_name` で統合し、最上位sourceを `display_source_id` として選ぶ。
+- LP表示用には `lp_events.json` が、厳密キーを基本に開始時刻の異なる公演を分け、同日・同canonical会場・時刻互換・高類似タイトルの補助統合を行い、最上位sourceを `display_source_id` として選ぶ。詳細契約は `docs/spec_data.md` を正とする。
 - 下位sourceは削除せず、`supporting_sources` として根拠確認や監査に使える。
 - Codex Automation は、公式/準公式根拠を確認した候補だけを `venue_web_discovery` として保存し、DB更新、LP出力再生成、manifest検証まで実行できる。
 - source priority、DB schema、Release asset契約を変える場合は、docs/spec/DECISIONS とテストを同じ変更内で同期する。
@@ -60,7 +60,7 @@ automation を進めるときは、処理対象、入力データ、分類条件
 
 市場統計とイベント情報では、公的公開統計または会場公式/準公式が確認できる公開スケジュールを優先する。
 
-イベント情報を比較するときは、`events.sqlite` の会場公式日程、`event_signals.sqlite` の公式/準公式Web検知、ニュース速報、二次流通参考を同じ種類のデータとして扱わない。統合や重複判断では、`event_date + canonical venue_name + canonical artist_name` を基本の比較キーとする。
+イベント情報を比較するときは、`events.sqlite` の会場公式日程、`event_signals.sqlite` の公式/準公式Web検知、ニュース速報、二次流通参考を同じ種類のデータとして扱わない。統合や重複判断では厳密キーを基本とし、開始時刻分割と補助統合の条件は `docs/spec_data.md` に従う。
 
 ### Consumer Impact Is Part Of The Change
 

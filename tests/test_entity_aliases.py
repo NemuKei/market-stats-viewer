@@ -61,6 +61,7 @@ class VenueAliasNormalizationTests(unittest.TestCase):
             ("東京・Club eX", "Club eX"),
             ("NHK大阪ホール", "NHK大阪ホール"),
             ("〇大阪/京セラドーム", "京セラドーム大阪"),
+            ("〇大阪公演:Zepp Osaka Bayside", "Zepp Osaka Bayside"),
             ("福岡PayPayドーム", "みずほPayPayドーム福岡"),
             ("みずほPayPayドーム", "みずほPayPayドーム福岡"),
             ("MIZUHO PayPay Dome FUKUOKA", "みずほPayPayドーム福岡"),
