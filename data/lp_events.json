@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-08-31",
+  "as_of_date": "2026-09-01",
   "events": [
     {
       "artist_name": "TWICE",
@@ -79386,6 +79386,44 @@
       "venue_name": "GLION ARENA KOBE"
     },
     {
+      "artist_name": "矢沢永吉",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-05-15",
+      "event_end_date": "2027-05-15",
+      "event_end_time": null,
+      "event_key": "bc4ce701e1af04b68360",
+      "event_start_time": null,
+      "evidence_snippet": "矢沢永吉オフィシャルファンクラブ告知は、EIKICHI YAZAWA CONCERT TOUR「GOLD RUSH 2027」を2027年5月15日、Kアリーナ横浜で開催すると掲載している。",
+      "evidence_url": "https://fc.eikichiyazawa.com/news/detail/969",
+      "first_seen_at_utc": "2026-09-01T00:14:34Z",
+      "pref_name": null,
+      "raw_artist_name": "矢沢永吉",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://fc.eikichiyazawa.com/news/detail/969",
+          "priority": 20,
+          "record_id": "3ed389d8a827589633409fd3fe22819d449101e86b90249137016b551dbec1e4",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "EIKICHI YAZAWA CONCERT TOUR「GOLD RUSH 2027」",
+          "updated_at_utc": "2026-09-01T00:14:34Z",
+          "url": "https://fc.eikichiyazawa.com/news/detail/969"
+        }
+      ],
+      "title": "EIKICHI YAZAWA CONCERT TOUR「GOLD RUSH 2027」",
+      "updated_at_utc": "2026-09-01T00:14:34Z",
+      "url": "https://fc.eikichiyazawa.com/news/detail/969",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "SEKAI NO OWARI",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -79460,6 +79498,44 @@
       "updated_at_utc": "2026-07-14T05:54:40Z",
       "url": "https://ticketjam.jp/tickets/remioromen/event/1238931",
       "venue_name": "名古屋国際会議場 センチュリーホール"
+    },
+    {
+      "artist_name": "矢沢永吉",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-05-16",
+      "event_end_date": "2027-05-16",
+      "event_end_time": null,
+      "event_key": "094b9f05685ba04c468f",
+      "event_start_time": null,
+      "evidence_snippet": "矢沢永吉オフィシャルファンクラブ告知は、EIKICHI YAZAWA CONCERT TOUR「GOLD RUSH 2027」を2027年5月16日、Kアリーナ横浜で開催すると掲載している。",
+      "evidence_url": "https://fc.eikichiyazawa.com/news/detail/969",
+      "first_seen_at_utc": "2026-09-01T00:14:34Z",
+      "pref_name": null,
+      "raw_artist_name": "矢沢永吉",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://fc.eikichiyazawa.com/news/detail/969",
+          "priority": 20,
+          "record_id": "5411c780ce579c088efa636c6b9fd0de2f42fe1cdede3c071e196fce8c9bb10d",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "EIKICHI YAZAWA CONCERT TOUR「GOLD RUSH 2027」",
+          "updated_at_utc": "2026-09-01T00:14:34Z",
+          "url": "https://fc.eikichiyazawa.com/news/detail/969"
+        }
+      ],
+      "title": "EIKICHI YAZAWA CONCERT TOUR「GOLD RUSH 2027」",
+      "updated_at_utc": "2026-09-01T00:14:34Z",
+      "url": "https://fc.eikichiyazawa.com/news/detail/969",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "SEKAI NO OWARI",
@@ -79802,6 +79878,82 @@
       "updated_at_utc": "2026-07-25T00:16:18Z",
       "url": "https://bushiroad.com/news/2026/12075",
       "venue_name": "横浜アリーナ"
+    },
+    {
+      "artist_name": "Mrs. GREEN APPLE",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-06-16",
+      "event_end_date": "2027-06-16",
+      "event_end_time": null,
+      "event_key": "364bc9ba2f57fe148b6d",
+      "event_start_time": null,
+      "evidence_snippet": "Mrs. GREEN APPLE公式告知は、『CEREMONY』2027を2027年6月16日、K Arena Yokohamaで開催すると掲載している。",
+      "evidence_url": "https://mrsgreenapple.com/news/detail/22868?lang=en",
+      "first_seen_at_utc": "2026-09-01T00:14:34Z",
+      "pref_name": null,
+      "raw_artist_name": "Mrs. GREEN APPLE",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://mrsgreenapple.com/news/detail/22868?lang=en",
+          "priority": 20,
+          "record_id": "0da0a413c617fd1fad7d00f69642c338547aadc2f2a4509f88147d04b72924d0",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Mrs. GREEN APPLE presents 『CEREMONY』 2027",
+          "updated_at_utc": "2026-09-01T00:14:34Z",
+          "url": "https://mrsgreenapple.com/news/detail/22868?lang=en"
+        }
+      ],
+      "title": "Mrs. GREEN APPLE presents 『CEREMONY』 2027",
+      "updated_at_utc": "2026-09-01T00:14:34Z",
+      "url": "https://mrsgreenapple.com/news/detail/22868?lang=en",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "Mrs. GREEN APPLE",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-06-17",
+      "event_end_date": "2027-06-17",
+      "event_end_time": null,
+      "event_key": "29841a1aba3de7fc0c59",
+      "event_start_time": null,
+      "evidence_snippet": "Mrs. GREEN APPLE公式告知は、『CEREMONY』2027を2027年6月17日、K Arena Yokohamaで開催すると掲載している。",
+      "evidence_url": "https://mrsgreenapple.com/news/detail/22868?lang=en",
+      "first_seen_at_utc": "2026-09-01T00:14:34Z",
+      "pref_name": null,
+      "raw_artist_name": "Mrs. GREEN APPLE",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://mrsgreenapple.com/news/detail/22868?lang=en",
+          "priority": 20,
+          "record_id": "8f1d2c6df059246ff8ab74ded83248b52c96a1b049a2edc9d94895f37a5c4035",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Mrs. GREEN APPLE presents 『CEREMONY』 2027",
+          "updated_at_utc": "2026-09-01T00:14:34Z",
+          "url": "https://mrsgreenapple.com/news/detail/22868?lang=en"
+        }
+      ],
+      "title": "Mrs. GREEN APPLE presents 『CEREMONY』 2027",
+      "updated_at_utc": "2026-09-01T00:14:34Z",
+      "url": "https://mrsgreenapple.com/news/detail/22868?lang=en",
+      "venue_name": "Kアリーナ横浜"
     },
     {
       "artist_name": "なとり",
@@ -80222,8 +80374,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-08-31T18:31:10Z",
-  "history_start_date": "2026-06-02",
+  "generated_at_utc": "2026-09-01T00:14:39Z",
+  "history_start_date": "2026-06-03",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -80240,10 +80392,10 @@
       "official_events": 627,
       "starto_concert": 108,
       "ticketjam_events": 986,
-      "venue_web_discovery": 173
+      "venue_web_discovery": 177
     },
-    "event_count": 1986,
-    "record_count_before_grouping": 2373,
+    "event_count": 1990,
+    "record_count_before_grouping": 2377,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 74,
     "supplemental_merged_group_count": 59,
