@@ -1,15 +1,15 @@
 # STATUS（market-stats-viewer）
 
-最終更新: 2026-08-31
+最終更新: 2026-09-02
 
 ## Current / Re-entry
 
-- Active implementation / data update task: なし。Issue #12 の同一イベント統合と開始時刻差分の分離を `4798de5` で完了し、LP向け `data/lp_events.json` は2,000件、互換重複0件となった。開催予定に加えて開催終了日が基準日の90日前以降である保存済みイベントを含む。過去分は元DBに残る公開情報の範囲であり、網羅的なアーカイブではない。
+- Active implementation / data update task: なし。Issue #12 の同一イベント統合と開始時刻差分の分離は `4798de5` で完了済みで、現在のLP向け `data/lp_events.json` は `b904e1c`、2026-09-02基準の1,885件である。開催予定に加えて開催終了日が基準日の90日前以降である保存済みイベントを含む。過去分は元DBに残る公開情報の範囲であり、網羅的なアーカイブではない。
 - Docs governance profile: Profile C。root `AGENTS.md` を作業入口とし、`PROJECT_CONTEXT.md`、`STATUS.md`、`DECISIONS.md` は責務が一致するときだけ読む optional layer とする。
-- Next re-entry: MSV Release `external-events-latest` は `4798de5` 由来の4 assetへ更新済み。SideBiz反映と公開LP反映は別repo・別ownerであり、SideBizの `Publish market portal` がGitHubの支払い失敗またはspending limitを理由にjob開始前で失敗しているため、課金状態の復旧後にSideBiz側で再公開し、本番JSONと画面をlive確認する。
+- Next re-entry: MSV Release `external-events-latest` は `b904e1c` 由来の4 assetへ更新済み。SideBizの `Publish market portal` run `33593459837` は2026-09-02に成功し、本番 `market_portal.json` は `asOfDate=2026-09-02`、1,885 eventsへ更新済みである。次は、将来のscheduled runが失敗した場合、またはMSVのReleaseがSideBiz公開JSONより新しくなった場合だけ、別repo・別ownerの公開laneとして再確認する。
 - 2026-07-26 の正式名称移行では `venue_id=fukuoka_paypay_dome` を維持し、旧「福岡PayPayドーム」と略称・英文表記をaliasへ移送した。適用判断は `D-20260726-001`、一般契約は `D-20260227-001` と該当specを正とする。
 - 2026-07-28 のcanonical移行では `venue_id=saitama_super_arena` を維持し、旧「さいたまスーパーアリーナ」と略称・英文表記をaliasへ移送した。TicketJamのraw表記は取得元監査値として保持した。
-- Unresolved risk: 公開LPの `market_portal.json` は2026-08-22生成のままで、正規化タイトル・開催日・会場・開始時刻が一致する重複が23組46行残る。MSV Releaseの更新だけではSideBizの静的成果物は更新されない。remoteはautomationで進むため、commit / push前にfresh fetchとdivergence確認が必要。
+- Unresolved risk: 2026-09-01のSideBiz scheduled runは、月次の市場インサイトが2026-05を扱う一方で日次生成データの最新月が2026-06へ進んだことを不一致として扱い、buildで停止した。SideBiz `73c620e` で月次レポートと日次公開のlifecycleを分離し、同一workflowの手動runは成功した。修正後のscheduled triggerによる初回成功はまだ未観測である。
 
 ## Current Operating State
 
@@ -42,8 +42,8 @@
 - `PRAGMA integrity_check=ok`、対象56行のcontent hash一致、旧canonical表示0件、Stray Kids 2026-10-24の新canonical会場groupとsupporting sourceをread-only assertionで確認した。
 - `dictionary-maintenance` のalias候補監査はUTF-8 modeで完走し、旧称・新正式名・略称・英文名は未解決候補に残らず、辞書監査自体の `lp_impact=none` を確認した。
 - 今回のfocused testsは 10 passed。dictionary-maintenanceのalias監査は `lp_impact=none` で完走し、GMO会場名は未解決候補に残らなかった。
-- `Publish external events assets` run `33374808762` は `main@4798de5` で成功した。Releaseから4 assetを再取得し、manifestのsource commit、size、SHA-256と実ファイルが一致すること、`lp_events.json` が2,000件であることを確認した。
-- SideBiz変換の非公開previewは2,000件、正規化タイトル・開催日・会場・開始時刻が一致する重複0組となった。一方、本番 `https://deltahelmlab.com/events/` は表示対象日2026-08-22のままで、SideBiz Actionsの課金blockにより未反映である。
+- `Publish external events assets` run `33581605726` は `main@b904e1c` で成功した。Releaseの4 assetは2026-09-02T02:01Zに更新され、`lp_events.json` は1,885件である。
+- SideBiz `Publish market portal` run `33593459837` は2026-09-02に成功した。本番 `https://deltahelmlab.com/data/market_portal.json` は `asOfDate=2026-09-02`、1,885 eventsで、SideBiz `main` のJSONとSHA-256が一致する。本番 `https://deltahelmlab.com/events/` はHTTP 200を返す。MSVとSideBizで同じ基準日と90日履歴窓を適用した件数である。
 
 ## Remaining Task Triage (ASCII)
 
