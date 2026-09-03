@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-09-02",
+  "as_of_date": "2026-09-03",
   "events": [
     {
       "artist_name": "TWICE",
@@ -4425,18 +4425,6 @@
           "source_label": "会場公式",
           "title": "桑田佳祐 夏祭りツアー 2026 supported by カンロ 桑田佳祐",
           "updated_at_utc": "2026-09-01T09:19:41Z",
-          "url": "https://k-arena.com/schedule/20260902-1/"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260902-1/",
-          "priority": 20,
-          "record_id": "99db2ca4d91e11f8989477a19cffbf7a0c0cb9d35052a36d3ba7a22d4754680b",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "桑田佳祐 夏祭りツアー 2026 supported by カンロ",
-          "updated_at_utc": "2026-07-05T00:15:49Z",
           "url": "https://k-arena.com/schedule/20260902-1/"
         }
       ],
@@ -66624,6 +66612,44 @@
       "venue_name": "GLION ARENA KOBE"
     },
     {
+      "artist_name": "tuki. / 星街すいせい",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-20",
+      "event_end_date": "2026-12-20",
+      "event_end_time": null,
+      "event_key": "b55499b4f20a0d5b7665",
+      "event_start_time": "17:30",
+      "evidence_snippet": "tuki.公式サイトは、tuki.と星街すいせいの一夜限りの対バンライブ『星降る晩餐会』を2026年12月20日、Kアリーナ横浜で開催すると掲載している（開場16:00／開演17:30）。",
+      "evidence_url": "https://tuki-official.net/contents/1104832",
+      "first_seen_at_utc": "2026-09-03T00:12:17Z",
+      "pref_name": null,
+      "raw_artist_name": "tuki. / 星街すいせい",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://tuki-official.net/contents/1104832",
+          "priority": 20,
+          "record_id": "7c3585bd65ac79ad3799b2147a821ba4b166d2be419bf3168bc5deffbce772fc",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "星降る晩餐会",
+          "updated_at_utc": "2026-09-03T00:12:17Z",
+          "url": "https://tuki-official.net/contents/1104832"
+        }
+      ],
+      "title": "星降る晩餐会",
+      "updated_at_utc": "2026-09-03T00:12:17Z",
+      "url": "https://tuki-official.net/contents/1104832",
+      "venue_name": "Kアリーナ横浜"
+    },
+    {
       "artist_name": "あらき",
       "capacity": null,
       "display_source_class": "",
@@ -76668,8 +76694,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-09-02T15:41:18Z",
-  "history_start_date": "2026-06-04",
+  "generated_at_utc": "2026-09-03T00:12:25Z",
+  "history_start_date": "2026-06-05",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -76686,9 +76712,9 @@
       "official_events": 532,
       "starto_concert": 112,
       "ticketjam_events": 982,
-      "venue_web_discovery": 171
+      "venue_web_discovery": 172
     },
-    "event_count": 1889,
+    "event_count": 1890,
     "record_count_before_grouping": 2287,
     "start_time_split_event_count": 76,
     "start_time_split_group_count": 73,

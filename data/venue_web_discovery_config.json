@@ -6969,6 +6969,29 @@
       "announced_at_utc": "2026-08-20T00:00:00Z",
       "verified_at_utc": "2026-09-01T00:13:42Z",
       "discovery_query": "Kアリーナ横浜 矢沢永吉 GOLD RUSH 2027"
+    },
+    {
+      "event_id": "tuki-hoshimachi-suisei-hoshifuru-bansankai-2026-12-20-k-arena-yokohama",
+      "enabled": true,
+      "title": "星降る晩餐会",
+      "artist_name": "tuki. / 星街すいせい",
+      "raw_artist_name": "tuki. / 星街すいせい",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "event_start_date": "2026-12-20",
+      "event_end_date": "2026-12-20",
+      "event_start_time": "17:30",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://tuki-official.net/contents/1104832",
+      "evidence_url": "https://tuki-official.net/contents/1104832",
+      "evidence_snippet": "tuki.公式サイトは、tuki.と星街すいせいの一夜限りの対バンライブ『星降る晩餐会』を2026年12月20日、Kアリーナ横浜で開催すると掲載している（開場16:00／開演17:30）。",
+      "announced_at_utc": "2026-08-30T00:00:00Z",
+      "verified_at_utc": "2026-09-03T00:10:21Z",
+      "discovery_query": "Kアリーナ横浜 tuki. 星街すいせい 星降る晩餐会"
     }
   ]
 }
