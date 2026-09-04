@@ -405,8 +405,16 @@
 ## Addendum (2026-02-25) External Events Release Assets
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:
+  - `push`（`main` の `events.sqlite` / `event_signals.sqlite` / `lp_events.json`、manifest生成script、またはpublish workflow自体が変更されたとき）
   - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
   - `workflow_dispatch`（手動再公開）
+- Trigger routing:
+  - ローカル作業またはCodex Automationが配布対象データを `main` へ直接pushした場合は `push` で公開する。
+  - upstream workflowはrepositoryの `GITHUB_TOKEN` でpushするため、そのpushから別workflowは起動しない。GitHub Actions経由の更新は従来どおり `workflow_run` で公開する。
+  - publish workflow自体を変更したmergeでも1回公開し、変更後の経路と現在のassetを同時に確認できるようにする。
+- Concurrency:
+  - Release tagは1つだけなので、固定group `external-events-release` で全triggerを直列化する。
+  - 実行中の公開はcancelせず、後続runを待機させる。
 - Release:
   - tag: `external-events-latest`
   - assets: `events.sqlite`, `event_signals.sqlite`, `lp_events.json`, `manifest.json`
@@ -417,6 +425,7 @@
 - Upload policy:
   - `gh release upload ... --clobber` を使い、同名assetを上書きして常に最新を保持する
 - 再実行手順:
-  1. upstream workflow が `main` で `success` なのに release asset が更新されていない場合は、`publish_external_events_assets.yml` を `workflow_dispatch` で手動実行する
-  2. upstream workflow が `failure` / `cancelled` / `skipped` の場合は、先に upstream workflow を復旧または再実行し、その後に `publish_external_events_assets.yml` を手動実行する
-  3. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` を見る
+  1. `main` の配布対象データ更新またはupstream workflow成功後にrelease assetが更新されていない場合は、`publish_external_events_assets.yml` の該当runを確認する
+  2. publish workflowが `failure` / `cancelled` / `skipped` の場合は原因を復旧し、`workflow_dispatch` で手動再公開する
+  3. upstream workflowが `failure` / `cancelled` / `skipped` の場合は、先にupstream workflowを復旧または再実行し、その後に必要なら手動再公開する
+  4. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` / `source_commit_sha` を見る
