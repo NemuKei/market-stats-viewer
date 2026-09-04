@@ -31,5 +31,6 @@ def test_publish_workflow_retains_fallbacks_and_serializes_release_updates():
 
     assert "  workflow_dispatch:\n" in workflow
     assert "  workflow_run:\n" in workflow
-    assert "group: external-events-latest" in workflow
+    assert "github.event_name == 'workflow_run' &&" in workflow
+    assert "group: external-events-release" in workflow
     assert "cancel-in-progress: false" in workflow
