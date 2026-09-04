@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-09-03",
+  "as_of_date": "2026-09-04",
   "events": [
-    {
-      "artist_name": "TWICE",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-05",
-      "event_end_date": "2026-06-05",
-      "event_end_time": null,
-      "event_key": "2092b95f5a432e5263f8",
-      "event_start_time": null,
-      "evidence_snippet": "会場: TOYOTA ARENA TOKYO 他 / 日時: 2026-06-05 / 開催ウィーク:2026年6月5日(金)~6月13日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279731",
-      "first_seen_at_utc": "2026-08-28T21:40:56Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "TWICE",
-      "raw_venue_name": "TOYOTA ARENA TOKYO 他",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279731",
-          "priority": 30,
-          "record_id": "232c0e55b0b254108a0832df1490576cb09dff0795eae7ca85f4f72307f175b6",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "MUSIC AWARDS JAPAN 2026",
-          "updated_at_utc": "2026-08-28T21:40:56Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279731"
-        }
-      ],
-      "title": "MUSIC AWARDS JAPAN 2026",
-      "updated_at_utc": "2026-08-28T21:40:56Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279731",
-      "venue_name": "TOYOTA ARENA TOKYO 他"
-    },
     {
       "artist_name": "EXO",
       "capacity": null,
@@ -4501,18 +4463,6 @@
           "source_label": "会場公式",
           "title": "桑田佳祐 夏祭りツアー 2026 supported by カンロ 桑田佳祐",
           "updated_at_utc": "2026-09-01T09:19:41Z",
-          "url": "https://k-arena.com/schedule/20260903-1/"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260903-1/",
-          "priority": 20,
-          "record_id": "712a75b7140e9cc9d9056cc038218299d2c6d7c0f3f7af4db356325b1af52450",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "桑田佳祐 夏祭りツアー 2026 supported by カンロ",
-          "updated_at_utc": "2026-07-05T00:15:49Z",
           "url": "https://k-arena.com/schedule/20260903-1/"
         }
       ],
@@ -66144,6 +66094,44 @@
       "venue_name": "GLION ARENA KOBE"
     },
     {
+      "artist_name": "LE SSERAFIM",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-19",
+      "event_end_date": "2026-12-19",
+      "event_end_time": null,
+      "event_key": "aabc6a5cad60ebde1a1b",
+      "event_start_time": "17:00",
+      "evidence_snippet": "LE SSERAFIM公式サイトの告知は、『2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA』を2026年12月19日、京セラドーム大阪で開催すると掲載している（開場15:00／開演17:00）。",
+      "evidence_url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "first_seen_at_utc": "2026-09-04T00:11:23Z",
+      "pref_name": null,
+      "raw_artist_name": "LE SSERAFIM",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+          "priority": 20,
+          "record_id": "625c6dec9cb7eea61e2b308cfa43211808340d685d010d9051b369c557072e98",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA",
+          "updated_at_utc": "2026-09-04T00:11:23Z",
+          "url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c"
+        }
+      ],
+      "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA",
+      "updated_at_utc": "2026-09-04T00:11:23Z",
+      "url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "venue_name": "京セラドーム大阪"
+    },
+    {
       "artist_name": "THE IDOLM@STER SHINY COLORS（アイドルマスターシャイニーカラーズ）",
       "capacity": null,
       "display_source_class": "",
@@ -66420,6 +66408,44 @@
       "updated_at_utc": "2026-09-01T09:22:09Z",
       "url": "https://starto.jp/s/p/live/10360",
       "venue_name": "バンテリンドームナゴヤ"
+    },
+    {
+      "artist_name": "LE SSERAFIM",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-20",
+      "event_end_date": "2026-12-20",
+      "event_end_time": null,
+      "event_key": "c556bfbbefb370d37c2d",
+      "event_start_time": "16:00",
+      "evidence_snippet": "LE SSERAFIM公式サイトの告知は、『2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA』を2026年12月20日、京セラドーム大阪で開催すると掲載している（開場14:00／開演16:00）。",
+      "evidence_url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "first_seen_at_utc": "2026-09-04T00:11:23Z",
+      "pref_name": null,
+      "raw_artist_name": "LE SSERAFIM",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+          "priority": 20,
+          "record_id": "5f8fd17d6588e999f80169ecd64fa5b89f094355a678f94167487b08373b5c27",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA",
+          "updated_at_utc": "2026-09-04T00:11:23Z",
+          "url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c"
+        }
+      ],
+      "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA",
+      "updated_at_utc": "2026-09-04T00:11:23Z",
+      "url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "THE IDOLM@STER SHINY COLORS（アイドルマスターシャイニーカラーズ）",
@@ -76390,8 +76416,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-09-03T15:33:36Z",
-  "history_start_date": "2026-06-05",
+  "generated_at_utc": "2026-09-04T00:11:28Z",
+  "history_start_date": "2026-06-06",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -76404,13 +76430,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 92,
+      "kstyle_music": 91,
       "official_events": 532,
       "starto_concert": 112,
       "ticketjam_events": 974,
-      "venue_web_discovery": 172
+      "venue_web_discovery": 174
     },
-    "event_count": 1882,
+    "event_count": 1883,
     "record_count_before_grouping": 2280,
     "start_time_split_event_count": 75,
     "start_time_split_group_count": 73,

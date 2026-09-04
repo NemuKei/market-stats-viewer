@@ -142,7 +142,8 @@
     "www.sekainoowari-tour.jp": "artist_official",
     "smtown-official.jp": "ticket_official",
     "eplus.jp": "ticket_official",
-    "appare-official.jp": "artist_official"
+    "appare-official.jp": "artist_official",
+    "www.le-sserafim.jp": "artist_official"
   },
   "preferred_domain_extractors": {
     "www.livenationhip.co.jp": "requests_bs4",
@@ -190,7 +191,8 @@
     "www.sekainoowari-tour.jp": "requests_bs4",
     "smtown-official.jp": "requests_bs4",
     "eplus.jp": "requests_bs4",
-    "appare-official.jp": "requests_bs4"
+    "appare-official.jp": "requests_bs4",
+    "www.le-sserafim.jp": "requests_bs4"
   },
   "rejected_domains": [
     "google.com",
@@ -6992,6 +6994,52 @@
       "announced_at_utc": "2026-08-30T00:00:00Z",
       "verified_at_utc": "2026-09-03T00:10:21Z",
       "discovery_query": "Kアリーナ横浜 tuki. 星街すいせい 星降る晩餐会"
+    },
+    {
+      "event_id": "le-sserafim-pureflow-2026-12-19-kyocera",
+      "enabled": true,
+      "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA",
+      "artist_name": "LE SSERAFIM",
+      "raw_artist_name": "LE SSERAFIM",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-12-19",
+      "event_end_date": "2026-12-19",
+      "event_start_time": "17:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "evidence_url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "evidence_snippet": "LE SSERAFIM公式サイトの告知は、『2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA』を2026年12月19日、京セラドーム大阪で開催すると掲載している（開場15:00／開演17:00）。",
+      "announced_at_utc": "2026-09-03T00:00:00Z",
+      "verified_at_utc": "2026-09-04T00:09:37Z",
+      "discovery_query": "京セラドーム大阪 LE SSERAFIM PUREFLOW"
+    },
+    {
+      "event_id": "le-sserafim-pureflow-2026-12-20-kyocera",
+      "enabled": true,
+      "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA",
+      "artist_name": "LE SSERAFIM",
+      "raw_artist_name": "LE SSERAFIM",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラドーム大阪",
+      "event_start_date": "2026-12-20",
+      "event_end_date": "2026-12-20",
+      "event_start_time": "16:00",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "content_extractor": "requests_bs4",
+      "confidence": "high",
+      "score": 95,
+      "url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "evidence_url": "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+      "evidence_snippet": "LE SSERAFIM公式サイトの告知は、『2026 LE SSERAFIM TOUR 'PUREFLOW' IN KYOCERA DOME OSAKA』を2026年12月20日、京セラドーム大阪で開催すると掲載している（開場14:00／開演16:00）。",
+      "announced_at_utc": "2026-09-03T00:00:00Z",
+      "verified_at_utc": "2026-09-04T00:09:37Z",
+      "discovery_query": "京セラドーム大阪 LE SSERAFIM PUREFLOW"
     }
   ]
 }
