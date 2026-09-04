@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - .github/workflows/publish_external_events_assets.yml
+      - scripts/build_external_events_manifest.py
       - data/events.sqlite
       - data/event_signals.sqlite
       - data/lp_events.json
@@ -36,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: main
+          ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v6
