@@ -23,3 +23,4 @@ def test_publish_workflow_covers_direct_main_pushes() -> None:
     assert "github.event_name == 'push'" in workflow
     assert "github.event_name == 'workflow_dispatch'" in workflow
     assert "github.event_name == 'workflow_run'" in workflow
+    assert "github.event_name == 'push' && github.sha || 'main'" in workflow
