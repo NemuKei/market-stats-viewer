@@ -406,7 +406,11 @@
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:
   - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
+  - `push`（`main` で `.github/workflows/publish_external_events_assets.yml` / `data/events.sqlite` / `data/event_signals.sqlite` / `data/lp_events.json` / `scripts/build_external_events_manifest.py` が直接更新されたとき。ローカルまたは Codex Automation からの push を含む）
   - `workflow_dispatch`（手動再公開）
+- Checkout:
+  - direct `push` では trigger commit（`github.sha`）を checkout し、後続の push が先行しても manifest と assets の参照commitを一致させる
+  - `workflow_run` / `workflow_dispatch` では従来どおり `main` を checkout する
 - Release:
   - tag: `external-events-latest`
   - assets: `events.sqlite`, `event_signals.sqlite`, `lp_events.json`, `manifest.json`
