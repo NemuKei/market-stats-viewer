@@ -405,7 +405,11 @@
 ## Addendum (2026-02-25) External Events Release Assets
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:
+  - `push`（`main` で配布入力または公開workflowが更新されたとき）
+    - 対象path: `.github/workflows/publish_external_events_assets.yml`, `scripts/build_external_events_manifest.py`, `data/events.sqlite`, `data/event_signals.sqlite`, `data/lp_events.json`
+    - ローカルcheckoutやCodex Automationから直接pushされた配布入力またはmanifest生成処理の更新を自動公開する。push起点ではtrigger commitをcheckoutして、manifestの`source_commit_sha`とasset内容を一致させる。公開workflow自身の変更も対象に含め、導入PRのmerge直後に現行assetを再公開する。
   - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
+    - GitHub Actionsが`GITHUB_TOKEN`で作成したcommitは後続の`push` workflowを起動しないため、scheduled/manualの上流workflow経路として維持する。
   - `workflow_dispatch`（手動再公開）
 - Release:
   - tag: `external-events-latest`
@@ -417,6 +421,7 @@
 - Upload policy:
   - `gh release upload ... --clobber` を使い、同名assetを上書きして常に最新を保持する
 - 再実行手順:
-  1. upstream workflow が `main` で `success` なのに release asset が更新されていない場合は、`publish_external_events_assets.yml` を `workflow_dispatch` で手動実行する
-  2. upstream workflow が `failure` / `cancelled` / `skipped` の場合は、先に upstream workflow を復旧または再実行し、その後に `publish_external_events_assets.yml` を手動実行する
-  3. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` を見る
+  1. ローカルcheckoutやCodex Automationから`main`へ対象pathを直接pushした場合は`push` run、上流GitHub Actionsが完了した場合は`workflow_run` runを確認する
+  2. publish run が `failure` / `cancelled` の場合は原因を修正して再実行する。上流workflowが `failure` / `cancelled` / `skipped` の場合は、先に上流workflowを復旧または再実行する
+  3. 対象更新後にpublish runが存在しない、またはrelease assetが更新されていない場合は、`publish_external_events_assets.yml` を `workflow_dispatch` で手動実行する
+  4. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` / `source_commit_sha` を見る
