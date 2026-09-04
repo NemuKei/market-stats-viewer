@@ -406,8 +406,8 @@
 - Workflow: `.github/workflows/publish_external_events_assets.yml`
 - Trigger:
   - `push`（`main` で配布入力または公開workflowが更新されたとき）
-    - 対象path: `.github/workflows/publish_external_events_assets.yml`, `data/events.sqlite`, `data/event_signals.sqlite`, `data/lp_events.json`
-    - ローカルcheckoutやCodex Automationから直接pushされた更新を自動公開する。公開workflow自身の変更も対象に含め、導入PRのmerge直後に現行assetを再公開する。
+    - 対象path: `.github/workflows/publish_external_events_assets.yml`, `scripts/build_external_events_manifest.py`, `data/events.sqlite`, `data/event_signals.sqlite`, `data/lp_events.json`
+    - ローカルcheckoutやCodex Automationから直接pushされた配布入力またはmanifest生成処理の更新を自動公開する。push起点ではtrigger commitをcheckoutして、manifestの`source_commit_sha`とasset内容を一致させる。公開workflow自身の変更も対象に含め、導入PRのmerge直後に現行assetを再公開する。
   - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
     - GitHub Actionsが`GITHUB_TOKEN`で作成したcommitは後続の`push` workflowを起動しないため、scheduled/manualの上流workflow経路として維持する。
   - `workflow_dispatch`（手動再公開）
