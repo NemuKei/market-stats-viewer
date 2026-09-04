@@ -17,12 +17,19 @@ class PublishExternalEventsWorkflowTest(unittest.TestCase):
         self.assertIn("    branches:\n      - main\n", push_block)
         for path in (
             ".github/workflows/publish_external_events_assets.yml",
+            "scripts/build_external_events_manifest.py",
             "data/events.sqlite",
             "data/event_signals.sqlite",
             "data/lp_events.json",
         ):
             self.assertIn(f"      - {path}\n", push_block)
         self.assertIn("github.event_name == 'push'", self.workflow)
+
+    def test_push_checkout_is_pinned_to_triggering_commit(self) -> None:
+        self.assertIn(
+            "ref: ${{ github.event_name == 'push' && github.sha || 'main' }}",
+            self.workflow,
+        )
 
     def test_existing_automatic_and_manual_routes_remain(self) -> None:
         self.assertIn("  workflow_dispatch:\n", self.workflow)
