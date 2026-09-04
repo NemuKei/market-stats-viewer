@@ -1,6 +1,15 @@
 name: Publish external events assets
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/publish_external_events_assets.yml
+      - data/events.sqlite
+      - data/event_signals.sqlite
+      - data/lp_events.json
+      - scripts/build_external_events_manifest.py
   workflow_dispatch:
   workflow_run:
     workflows:
@@ -12,7 +21,7 @@ on:
       - completed
 
 concurrency:
-  group: release-assets-${{ github.ref }}
+  group: external-events-release
   cancel-in-progress: false
 
 permissions:
@@ -21,6 +30,7 @@ permissions:
 jobs:
   publish:
     if: >-
+      github.event_name == 'push' ||
       github.event_name == 'workflow_dispatch' ||
       (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
