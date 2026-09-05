@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-09-04",
+  "as_of_date": "2026-09-05",
   "events": [
     {
       "artist_name": "EXO",
@@ -5874,35 +5874,23 @@
     {
       "artist_name": "水曜どうでしょう祭",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "その他",
       "event_date": "2026-09-04",
       "event_end_date": "2026-09-04",
       "event_end_time": null,
       "event_key": "ddcd2738cdb55f58c2fd",
       "event_start_time": "11:00",
-      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、水曜どうでしょう祭UNITE2026 前日祭を2026年9月4日、大和ハウス プレミストドームで開催すると掲載している。",
-      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
-      "first_seen_at_utc": "2026-08-19T00:18:39Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-09-04 11:00 / 北海道 札幌ドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127374",
+      "first_seen_at_utc": "2026-04-06T05:49:28Z",
+      "pref_name": "北海道",
       "raw_artist_name": "水曜どうでしょう祭",
-      "raw_venue_name": "大和ハウス プレミストドーム",
-      "source_priority": 20,
+      "raw_venue_name": "札幌ドーム",
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
-          "priority": 20,
-          "record_id": "7f06c48bde2e643d84a1345befdea8f5397aea79593d9f0c5e62901ba2969d38",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "水曜どうでしょう祭UNITE2026 前日祭",
-          "updated_at_utc": "2026-08-19T00:18:39Z",
-          "url": "https://www.sapporo-dome.co.jp/schedule/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127374",
@@ -5917,8 +5905,8 @@
         }
       ],
       "title": "水曜どうでしょう祭UNITE2026 前日祭",
-      "updated_at_utc": "2026-08-19T00:18:39Z",
-      "url": "https://www.sapporo-dome.co.jp/schedule/",
+      "updated_at_utc": "2026-04-06T05:49:28Z",
+      "url": "https://ticketjam.jp/tickets/unite2013/event/1127374",
       "venue_name": "札幌ドーム"
     },
     {
@@ -76762,8 +76750,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-09-04T15:31:05Z",
-  "history_start_date": "2026-06-06",
+  "generated_at_utc": "2026-09-05T00:05:12Z",
+  "history_start_date": "2026-06-07",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -76779,11 +76767,11 @@
       "kstyle_music": 89,
       "official_events": 544,
       "starto_concert": 112,
-      "ticketjam_events": 973,
-      "venue_web_discovery": 176
+      "ticketjam_events": 974,
+      "venue_web_discovery": 175
     },
     "event_count": 1894,
-    "record_count_before_grouping": 2285,
+    "record_count_before_grouping": 2284,
     "start_time_split_event_count": 75,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 59,
