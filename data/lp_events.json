@@ -38846,44 +38846,6 @@
       "venue_name": "GORILLA HALL OSAKA"
     },
     {
-      "artist_name": "キム・キュジョン",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-10",
-      "event_end_date": "2026-10-10",
-      "event_end_time": null,
-      "event_key": "b5bef6bba7ef8209fe12",
-      "event_start_time": null,
-      "evidence_snippet": "会場: I'M A SHOW(アイマショウ) / 日時: 2026-10-10 / 公演日程:2026年10月10日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283298",
-      "first_seen_at_utc": "2026-08-29T16:00:53Z",
-      "pref_name": null,
-      "raw_artist_name": "キム・キュジョン",
-      "raw_venue_name": "I'M A SHOW(アイマショウ)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283298",
-          "priority": 30,
-          "record_id": "0c894384352bf4192abde35edd2abfe512d9a9ef1e06e7c455002c9939c4e9c8",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "キム・キュジョン ファンコン 2026 ~Our life is like a puzzle~",
-          "updated_at_utc": "2026-08-29T16:00:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283298"
-        }
-      ],
-      "title": "キム・キュジョン ファンコン 2026 ~Our life is like a puzzle~",
-      "updated_at_utc": "2026-08-29T16:00:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283298",
-      "venue_name": "I'M A SHOW(アイマショウ)"
-    },
-    {
       "artist_name": "佐伯イッテツ / 赤城ウェン / 宇佐美リト / 緋八マナ / 星導ショウ / 叢雲カゲツ / 小柳ロウ / 伊波ライ",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -76750,7 +76712,7 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-09-05T08:32:53Z",
+  "generated_at_utc": "2026-09-05T14:18:34Z",
   "history_start_date": "2026-06-07",
   "history_window_days": 90,
   "include_past": true,
@@ -76764,14 +76726,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 89,
+      "kstyle_music": 88,
       "official_events": 544,
       "starto_concert": 112,
       "ticketjam_events": 974,
       "venue_web_discovery": 175
     },
-    "event_count": 1894,
-    "record_count_before_grouping": 2284,
+    "event_count": 1893,
+    "record_count_before_grouping": 2283,
     "start_time_split_event_count": 75,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 59,
