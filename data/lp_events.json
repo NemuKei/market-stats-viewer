@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-09-05",
+  "as_of_date": "2026-09-06",
   "events": [
     {
       "artist_name": "EXO",
@@ -6238,37 +6238,25 @@
       "venue_name": "KT Zepp Yokohama"
     },
     {
-      "artist_name": "Byeon WooSeok",
+      "artist_name": "Byeon Wooseok（ビョン・ウソク）",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-09-05",
       "event_end_date": "2026-09-05",
       "event_end_time": null,
-      "event_key": "41d1d8d0b6516c47a1f4",
+      "event_key": "2ce75e4e1fb4b22a4050",
       "event_start_time": "18:30",
-      "evidence_snippet": "K Arena Yokohama official schedule lists 2026 ByeonWooSeok Asia Fanmeeting Tour in Yokohama 〈The Secret Library〉 on 2026.09.05 with ARTIST Byeon WooSeok.",
-      "evidence_url": "https://k-arena.com/schedule/20260905-1/",
-      "first_seen_at_utc": "2026-07-05T00:15:49Z",
-      "pref_name": null,
-      "raw_artist_name": "Byeon WooSeok",
+      "evidence_snippet": "2026-09-05 18:30 / 神奈川県 Kアリーナ横浜",
+      "evidence_url": "https://ticketjam.jp/tickets/byeon-wooseok/event/1212766",
+      "first_seen_at_utc": "2026-07-10T07:09:46Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "Byeon Wooseok（ビョン・ウソク）",
       "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260905-1/",
-          "priority": 20,
-          "record_id": "e111ea841c2eb82c3ee20fa6c4bc87448649802b37f0dd9f3c7e533762f8e274",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 ByeonWooSeok Asia Fanmeeting Tour in Yokohama 〈The Secret Library〉",
-          "updated_at_utc": "2026-07-05T00:15:49Z",
-          "url": "https://k-arena.com/schedule/20260905-1/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/byeon-wooseok/event/1212766",
@@ -6282,9 +6270,9 @@
           "url": "https://ticketjam.jp/tickets/byeon-wooseok/event/1212766"
         }
       ],
-      "title": "2026 ByeonWooSeok Asia Fanmeeting Tour in Yokohama 〈The Secret Library〉",
-      "updated_at_utc": "2026-07-05T00:15:49Z",
-      "url": "https://k-arena.com/schedule/20260905-1/",
+      "title": "2026 ByeonWooSeok Asia Fanmeeting Tour in Yokohama <The Secret Library>",
+      "updated_at_utc": "2026-07-10T07:09:46Z",
+      "url": "https://ticketjam.jp/tickets/byeon-wooseok/event/1212766",
       "venue_name": "Kアリーナ横浜"
     },
     {
@@ -7114,18 +7102,6 @@
           "url": "https://www.straykidsjapan.com/runitjapan/"
         },
         {
-          "content_extractor": "crawl4ai",
-          "evidence_url": "https://www.straykidsjapan.com/runitjapan/",
-          "priority": 20,
-          "record_id": "86e53f962ba8b44ac153f156708c717869e6a2c08891b7434ee8de332112c183",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "Stray Kids World Tour <RUN IT JAPAN>",
-          "updated_at_utc": "2026-06-25T06:44:42Z",
-          "url": "https://www.straykidsjapan.com/runitjapan/"
-        },
-        {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/straykids/event/1219291",
           "priority": 40,
@@ -7260,35 +7236,23 @@
     {
       "artist_name": "&TEAM",
       "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "コンサート",
       "event_date": "2026-09-05",
       "event_end_date": "2026-09-05",
       "event_end_time": null,
       "event_key": "be744b51ab2ab1f3eb35",
       "event_start_time": "17:00",
-      "evidence_snippet": "HYBE JAPAN CONCERT official page lists 2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE at ベルーナドーム on 2026-09-05.",
-      "evidence_url": "https://www.hybejapan-concert.com/statics/andteam_blaze_the_way_encore",
-      "first_seen_at_utc": "2026-06-28T00:10:44Z",
-      "pref_name": null,
-      "raw_artist_name": "&TEAM",
+      "evidence_snippet": "2026-09-05 17:00 / 埼玉県 ベルーナドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/andteam/event/1199622",
+      "first_seen_at_utc": "2026-06-06T06:50:34Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "＆TEAM（エンティーム）",
       "raw_venue_name": "ベルーナドーム",
-      "source_priority": 20,
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/andteam_blaze_the_way_encore",
-          "priority": 20,
-          "record_id": "47f934eb1b8a254d81995c9bae98a7d7e6c8f07ec7e71dfa1e69d37af27522c7",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
-          "updated_at_utc": "2026-06-28T00:10:44Z",
-          "url": "https://www.hybejapan-concert.com/statics/andteam_blaze_the_way_encore"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/andteam/event/1199622",
@@ -7303,8 +7267,8 @@
         }
       ],
       "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
-      "updated_at_utc": "2026-06-28T00:10:44Z",
-      "url": "https://www.hybejapan-concert.com/statics/andteam_blaze_the_way_encore",
+      "updated_at_utc": "2026-06-06T06:50:34Z",
+      "url": "https://ticketjam.jp/tickets/andteam/event/1199622",
       "venue_name": "ベルーナドーム"
     },
     {
@@ -7824,35 +7788,23 @@
     {
       "artist_name": "水曜どうでしょう祭",
       "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "display_source_class": "",
+      "display_source_id": "ticketjam_events",
+      "display_source_label": "Ticketjam Events (Secondary)",
       "event_category": "その他",
       "event_date": "2026-09-05",
       "event_end_date": "2026-09-05",
       "event_end_time": null,
       "event_key": "64595610d6c6211427d5",
       "event_start_time": "10:00",
-      "evidence_snippet": "大和ハウス プレミストドーム公式スケジュールは、水曜どうでしょう祭UNITE2026 本祭を2026年9月5日、大和ハウス プレミストドームで開催すると掲載している。",
-      "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
-      "first_seen_at_utc": "2026-08-19T00:18:39Z",
-      "pref_name": null,
+      "evidence_snippet": "2026-09-05 10:00 / 北海道 札幌ドーム",
+      "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127375",
+      "first_seen_at_utc": "2026-04-19T05:52:34Z",
+      "pref_name": "北海道",
       "raw_artist_name": "水曜どうでしょう祭",
-      "raw_venue_name": "大和ハウス プレミストドーム",
-      "source_priority": 20,
+      "raw_venue_name": "札幌ドーム",
+      "source_priority": 40,
       "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.sapporo-dome.co.jp/schedule/",
-          "priority": 20,
-          "record_id": "aef17b32b21b00099dd62b4e1d40f9479fab002e51bf49718a8613d4c7ed398f",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "水曜どうでしょう祭UNITE2026 本祭",
-          "updated_at_utc": "2026-08-19T00:18:39Z",
-          "url": "https://www.sapporo-dome.co.jp/schedule/"
-        },
         {
           "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/unite2013/event/1127375",
@@ -7866,9 +7818,9 @@
           "url": "https://ticketjam.jp/tickets/unite2013/event/1127375"
         }
       ],
-      "title": "水曜どうでしょう祭UNITE2026 本祭",
-      "updated_at_utc": "2026-08-19T00:18:39Z",
-      "url": "https://www.sapporo-dome.co.jp/schedule/",
+      "title": "水曜どうでしょう祭UNITE2026【1日券】",
+      "updated_at_utc": "2026-04-19T05:52:34Z",
+      "url": "https://ticketjam.jp/tickets/unite2013/event/1127375",
       "venue_name": "札幌ドーム"
     },
     {
@@ -76712,8 +76664,8 @@
       "venue_name": "真駒内セキスイハイムアイスアリーナ"
     }
   ],
-  "generated_at_utc": "2026-09-05T14:18:34Z",
-  "history_start_date": "2026-06-07",
+  "generated_at_utc": "2026-09-06T00:05:45Z",
+  "history_start_date": "2026-06-08",
   "history_window_days": 90,
   "include_past": true,
   "schema_version": 1,
@@ -76729,15 +76681,15 @@
       "kstyle_music": 88,
       "official_events": 544,
       "starto_concert": 112,
-      "ticketjam_events": 974,
-      "venue_web_discovery": 175
+      "ticketjam_events": 977,
+      "venue_web_discovery": 172
     },
     "event_count": 1893,
-    "record_count_before_grouping": 2283,
+    "record_count_before_grouping": 2279,
     "start_time_split_event_count": 75,
     "start_time_split_group_count": 73,
-    "supplemental_merged_group_count": 59,
-    "supplemental_merged_record_count": 60,
+    "supplemental_merged_group_count": 58,
+    "supplemental_merged_record_count": 59,
     "suppressed_event_count": 1
   }
 }
