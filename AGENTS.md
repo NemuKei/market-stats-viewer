@@ -50,7 +50,7 @@
 
 - 明示承認なしで行わない: `data/**`更新、SQLite / JSON生成物更新、workflow dispatch、Release publish、live hook / config apply、DB schema変更、dependency追加 / 更新、credential / secret / 権限変更、SideBiz反映。
 - secret、Cookie、token、PII、raw log全文、端末固有cacheをrepo管理対象へ入れない。`.chatgpt/`はlocal-only metadataとして扱う。
-- `.agents/skills/`にはrepo固有手順だけを置き、共有Skillを複製しない。docs配置には`docs-governance`、spec影響が不明な場合は`spec-governance`、GUI / UXには`frontend-skill`を必要時だけ使う。
+- `.agents/skills/`にはrepo固有手順だけを置き、共有Skillを複製しない。Docsは関連する既存文書へ直接反映し、仕様・使い方・制約を変えたら同じ変更で説明と必要な理由を更新する。契約に影響する未決事項は該当する変更の前に解消する。GUI / UXには`frontend-skill`を必要時だけ使う。
 - `docs/ai/`へ後続連携資産を置く場合も、secret / PII / raw log / 巨大一時出力がないことを確認し、現在taskのfileだけをstage対象にする。
 
 ## Verification And Closeout
