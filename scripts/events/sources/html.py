@@ -749,8 +749,12 @@ class _TokyoDomeCalendar(_BaseStrategy):
                     if not event_url.startswith("http"):
                         event_url = f"https://www.tokyo-dome.co.jp{href}"
                     event_url = self._prefer_venue_official_url(event_url, venue.source_url)
-                    # Extract times from surrounding text
-                    row_text = detail_td.get_text(" ", strip=True)
+                    # A date cell can contain a tour and a game. Only use the
+                    # time attached to this event, not its neighbouring event.
+                    event_block = a_tag.find_parent(
+                        class_="c-mod-calender__detail-in"
+                    )
+                    row_text = (event_block or detail_td).get_text(" ", strip=True)
                     start_time = self._extract_time(row_text)
                     source_key = _source_key_with_schedule(
                         href, start_date, start_time
@@ -857,10 +861,7 @@ class _TokyoDomeCalendar(_BaseStrategy):
     @staticmethod
     def _extract_time(text: str) -> str | None:
         """Extract start time from text like '開演 17:30' or '開場 15:00／開演 17:30'."""
-        m = re.search(r"(?:開演|START)\s*(\d{1,2}:\d{2})", text, re.IGNORECASE)
-        if m:
-            return _normalise_time(m.group(1))
-        m = re.search(r"(?:開場|OPEN)\s*(\d{1,2}:\d{2})", text, re.IGNORECASE)
+        m = re.search(r"(?:開演|開始|START)\s*[:：]?\s*(\d{1,2}:\d{2})", text, re.IGNORECASE)
         if m:
             return _normalise_time(m.group(1))
         return None
@@ -2520,9 +2521,10 @@ class _NissanStadiumCalendar(_BaseStrategy):
         if tm:
             start_time = _normalise_time(f"{tm.group(1)}:{tm.group(2)}")
         if not start_time:
-            tm2 = re.search(r"(\d{1,2})\s*時", time_text)
+            tm2 = re.search(r"(\d{1,2})\s*時(?:\s*(\d{1,2})\s*分)?", time_text)
             if tm2:
-                start_time = _normalise_time(f"{int(tm2.group(1)):02d}:00")
+                minutes = int(tm2.group(2) or 0)
+                start_time = _normalise_time(f"{int(tm2.group(1)):02d}:{minutes:02d}")
 
         source_key = detail_url
         uid = compute_event_uid(
@@ -2560,7 +2562,7 @@ class _NissanStadiumCalendar(_BaseStrategy):
 
 
 # ---------------------------------------------------------------------------
-# MUFG Stadium (Ajinomoto Stadium) schedule
+# Ajinomoto Stadium schedule (legacy strategy identifier retained)
 # ---------------------------------------------------------------------------
 @_register("mufg_stadium_schedule")
 class _MufgStadiumSchedule(_BaseStrategy):
@@ -2639,9 +2641,7 @@ class _MufgStadiumSchedule(_BaseStrategy):
 
             start_time = detail_start_time
             if not start_time:
-                tm = re.search(r"(\d{1,2}:\d{2})", raw_text)
-                if tm:
-                    start_time = _normalise_time(tm.group(1))
+                start_time = self._extract_explicit_start_time(raw_text)
 
             source_key = href
             uid = compute_event_uid(
@@ -2717,18 +2717,20 @@ class _MufgStadiumSchedule(_BaseStrategy):
                 if mt:
                     title = mt.group(1).strip()
 
-        start_time = None
+        return title, _MufgStadiumSchedule._extract_explicit_start_time(text)
+
+    @staticmethod
+    def _extract_explicit_start_time(text: str) -> str | None:
         for pattern in [
-            r"(?:キックオフ|開演|開始|OPEN|START)\s*[:：]?\s*(\d{1,2}:\d{2})",
-            r"(\d{1,2}:\d{2})",
+            r"(?:キックオフ|開演|開始|START)\s*[:：]?\s*(\d{1,2}[:：]\d{2})",
+            r"(\d{1,2}[:：]\d{2})\s*(?:キックオフ|開演|開始|START)",
         ]:
             tm = re.search(pattern, text, re.IGNORECASE)
             if tm:
-                normalized = _normalise_time(tm.group(1))
+                normalized = _normalise_time(tm.group(1).replace("：", ":"))
                 if normalized:
-                    start_time = normalized
-                    break
-        return title, start_time
+                    return normalized
+        return None
 
 
 # ---------------------------------------------------------------------------

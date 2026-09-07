@@ -42,7 +42,7 @@ class VenueAliasNormalizationTests(unittest.TestCase):
             ("IGアリーナ", "IGアリーナ"),
             ("愛知/IGアリーナ", "IGアリーナ"),
             ("IG ARENA", "IGアリーナ"),
-            ("MUFG STADIUM(国立競技場)", "MUFGスタジアム"),
+            ("MUFG STADIUM(国立競技場)", "国立競技場"),
             (
                 "FC LIVE TOKYO HALL(東京都新宿区大久保2-18-14 )",
                 "FC LIVE TOKYO HALL",
@@ -78,6 +78,17 @@ class VenueAliasNormalizationTests(unittest.TestCase):
         for raw_value, expected in cases:
             with self.subTest(raw_value=raw_value):
                 self.assertVenueNormalized(raw_value, expected)
+
+    def test_ajinomoto_and_national_stadium_are_distinct_venues(self) -> None:
+        for raw_value in [
+            "味の素スタジアム",
+            "味スタ",
+            "Ajinomoto Stadium",
+            "東京スタジアム",
+        ]:
+            self.assertVenueNormalized(raw_value, "味の素スタジアム")
+        for raw_value in ["国立競技場", "MUFGスタジアム", "MUFG STADIUM（国立競技場）"]:
+            self.assertVenueNormalized(raw_value, "国立競技場")
 
     def test_fukuoka_venue_rename_keeps_id_and_old_name_as_alias(self) -> None:
         data_dir = Path(__file__).resolve().parents[1] / "data"

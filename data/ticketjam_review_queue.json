@@ -1545,7 +1545,9 @@
       "event_end_date": "2026-09-05",
       "event_key": "be744b51ab2ab1f3eb35",
       "event_start_time": "17:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "be744b51ab2ab1f3eb35"
+      ],
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "review_due": false,
@@ -1553,7 +1555,9 @@
       "status": "expired",
       "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
       "venue_name": "ベルーナドーム",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.hybejapan-concert.com/statics/andteam_blaze_the_way_encore#"
+      ]
     },
     {
       "artist_name": "オリックス・バファローズ",
@@ -1762,6 +1766,24 @@
       ]
     },
     {
+      "artist_name": "FC東京",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/fctokyo/event/1243737",
+      "event_date": "2026-09-06",
+      "event_end_date": "2026-09-06",
+      "event_key": "185141a5d24582691b43",
+      "event_start_time": "19:30",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "review_due": false,
+      "search_queries": [],
+      "status": "expired",
+      "title": "FC東京 vs 京都サンガF.C.",
+      "venue_name": "国立競技場",
+      "verification_urls": []
+    },
+    {
       "artist_name": "&TEAM",
       "capacity": 33556,
       "discovery_url": "https://ticketjam.jp/tickets/andteam/event/1199670",
@@ -1769,7 +1791,9 @@
       "event_end_date": "2026-09-06",
       "event_key": "1cf6db9ec1ef4b37f13f",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "1cf6db9ec1ef4b37f13f"
+      ],
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "review_due": false,
@@ -1777,7 +1801,9 @@
       "status": "expired",
       "title": "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' ENCORE in BELLUNA DOME",
       "venue_name": "ベルーナドーム",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.hybejapan-concert.com/statics/andteam_blaze_the_way_encore#"
+      ]
     },
     {
       "artist_name": "黒夢",
@@ -1836,24 +1862,6 @@
       "verification_urls": [
         "https://starto.jp/s/p/live/10520"
       ]
-    },
-    {
-      "artist_name": "FC東京",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/fctokyo/event/1243737",
-      "event_date": "2026-09-06",
-      "event_end_date": "2026-09-06",
-      "event_key": "39d47ec1f909a4028d14",
-      "event_start_time": "19:30",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": false,
-      "search_queries": [],
-      "status": "expired",
-      "title": "FC東京 vs 京都サンガF.C.",
-      "venue_name": "MUFGスタジアム",
-      "verification_urls": []
     },
     {
       "artist_name": "氷川きよし",
@@ -2756,18 +2764,24 @@
       "event_end_date": "2026-09-08",
       "event_key": "2167954b2149c2859ba9",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "2167954b2149c2859ba9"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "亀梨和也 福岡サンパレス 2026-09-08 公式",
-        "亀梨和也 福岡サンパレス 2026-09-08 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "KAZUYA KAMENASHI LIVE TOUR 2026 -FROM HERE-",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "読売日本交響楽団",
@@ -2825,18 +2839,24 @@
       "event_end_date": "2026-09-08",
       "event_key": "56848eace6ac5512b61f",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "56848eace6ac5512b61f"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "クリープハイプ 札幌文化芸術劇場 hitaru 2026-09-08 公式",
-        "クリープハイプ 札幌文化芸術劇場 hitaru 2026-09-08 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "クリープハイプの日2026",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5260"
+      ]
     },
     {
       "artist_name": "うたコン",
@@ -2984,18 +3004,24 @@
       "event_end_date": "2026-09-08",
       "event_key": "92e7bc4551823b4713f5",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "92e7bc4551823b4713f5"
+      ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "横浜ビー・コルセアーズ 横浜BUNTAI 2026-09-08 公式",
-        "横浜ビー・コルセアーズ 横浜BUNTAI 2026-09-08 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "横浜ビー・コルセアーズ vs 横浜エクセレンス",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "福岡ソフトバンクホークス",
@@ -3035,7 +3061,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -3050,18 +3081,24 @@
       "event_end_date": "2026-09-08",
       "event_key": "9d1760ccad374dff05fb",
       "event_start_time": "",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "9d1760ccad374dff05fb"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "Palette Parade LINE CUBE SHIBUYA 2026-09-08 公式",
-        "Palette Parade LINE CUBE SHIBUYA 2026-09-08 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Palette Parade 5周年ライブ",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "阪神タイガース",
@@ -3098,18 +3135,24 @@
       "event_end_date": "2026-09-08",
       "event_key": "a11d47290b59e4859649",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "a11d47290b59e4859649"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "サカナクション 日本武道館 2026-09-08 公式",
-        "サカナクション 日本武道館 2026-09-08 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "SAKANAQUARIUM 2026-2027 “透明”",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://sakanaction.jp/feature/tour2026-2027"
+      ]
     },
     {
       "artist_name": "陰陽座",
@@ -3176,15 +3219,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "Midnight Grand Orchestra（ミッドナイトグランドオーケストラ） Kアリーナ横浜 2026-09-08 公式",
-        "Midnight Grand Orchestra（ミッドナイトグランドオーケストラ） Kアリーナ横浜 2026-09-08 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "conflict"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "HOSHIMACHI SUISEI ARENA TOUR 2026 Once Upon a Stellar",
       "venue_name": "Kアリーナ横浜",
-      "verification_urls": []
+      "verification_urls": [
+        "https://k-arena.com/schedule/"
+      ]
     },
     {
       "artist_name": "読売ジャイアンツ（巨人）",
@@ -3242,18 +3289,24 @@
       "event_end_date": "2026-09-08",
       "event_key": "f65b94ca43b4b9810dbb",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "f65b94ca43b4b9810dbb"
+      ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
-      "search_queries": [
-        "水谷千重子 フェスティバルホール 2026-09-08 公式",
-        "水谷千重子 フェスティバルホール 2026-09-08 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:59:30Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "宴ジョインコンサート2026",
       "venue_name": "フェスティバルホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.festivalhall.jp/events/6088/"
+      ]
     },
     {
       "artist_name": "サカナクション",
@@ -3263,18 +3316,24 @@
       "event_end_date": "2026-09-09",
       "event_key": "070732f60c82ccbd14b3",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "070732f60c82ccbd14b3"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "サカナクション 日本武道館 2026-09-09 公式",
-        "サカナクション 日本武道館 2026-09-09 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "SAKANAQUARIUM 2026-2027 “透明”",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://sakanaction.jp/feature/tour2026-2027"
+      ]
     },
     {
       "artist_name": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
@@ -3395,7 +3454,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -3410,18 +3474,24 @@
       "event_end_date": "2026-09-09",
       "event_key": "794d8af8da14ee3f45ae",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "794d8af8da14ee3f45ae"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "岩橋玄樹 LINE CUBE SHIBUYA 2026-09-09 公式",
-        "岩橋玄樹 LINE CUBE SHIBUYA 2026-09-09 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "GENKI IWAHASHI TOUR 2026 “LAzarus”",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "KO1KEYZ（コイキーズ）",
@@ -3500,18 +3570,24 @@
       "event_end_date": "2026-09-09",
       "event_key": "ac21f85de114a4a8447d",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "ac21f85de114a4a8447d"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "亀梨和也 福岡サンパレス 2026-09-09 公式",
-        "亀梨和也 福岡サンパレス 2026-09-09 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "KAZUYA KAMENASHI LIVE TOUR 2026 -FROM HERE-",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "岩橋玄樹",
@@ -3521,18 +3597,24 @@
       "event_end_date": "2026-09-09",
       "event_key": "b9ab5408aad6a0985f6d",
       "event_start_time": "14:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "b9ab5408aad6a0985f6d"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "岩橋玄樹 LINE CUBE SHIBUYA 2026-09-09 公式",
-        "岩橋玄樹 LINE CUBE SHIBUYA 2026-09-09 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "GENKI IWAHASHI TOUR 2026 “LAzarus”",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "AsIs",
@@ -3620,15 +3702,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "Midnight Grand Orchestra（ミッドナイトグランドオーケストラ） Kアリーナ横浜 2026-09-09 公式",
-        "Midnight Grand Orchestra（ミッドナイトグランドオーケストラ） Kアリーナ横浜 2026-09-09 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "conflict"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "HOSHIMACHI SUISEI ARENA TOUR 2026 Once Upon a Stellar",
       "venue_name": "Kアリーナ横浜",
-      "verification_urls": []
+      "verification_urls": [
+        "https://k-arena.com/schedule/"
+      ]
     },
     {
       "artist_name": "BOYNEXTDOOR",
@@ -3842,18 +3928,24 @@
       "event_end_date": "2026-09-10",
       "event_key": "48f0e047db2a7b403ee8",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "48f0e047db2a7b403ee8"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "離婚伝説 日本武道館 2026-09-10 公式",
-        "離婚伝説 日本武道館 2026-09-10 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "離婚伝説 日本武道館 ワンマンライブ",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020"
+      ]
     },
     {
       "artist_name": "Nia Archives（ニア・アーカイヴス）",
@@ -3965,18 +4057,24 @@
       "event_end_date": "2026-09-10",
       "event_key": "799e2d99e14077b14ee4",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "799e2d99e14077b14ee4"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "SUPER BEAVER 札幌文化芸術劇場 hitaru 2026-09-10 公式",
-        "SUPER BEAVER 札幌文化芸術劇場 hitaru 2026-09-10 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5195"
+      ]
     },
     {
       "artist_name": "阪神タイガース",
@@ -4043,7 +4141,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -4163,15 +4266,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "吉野北人 神戸国際会館 こくさいホール 2026-09-10 公式",
-        "吉野北人 神戸国際会館 こくさいホール 2026-09-10 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "HOKUTO 1st LIVE TOUR 2026 \"JUKE BOX LAND\"",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2216"
+      ]
     },
     {
       "artist_name": "ライブナタリー",
@@ -4184,15 +4291,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "ライブナタリー LINE CUBE SHIBUYA 2026-09-10 公式",
-        "ライブナタリー LINE CUBE SHIBUYA 2026-09-10 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ライブナタリー “真心ブラザーズ × ハンバート ハンバート”",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "カネコアヤノ",
@@ -4432,18 +4543,24 @@
       "event_end_date": "2026-09-11",
       "event_key": "4941230ff382bd54a2d8",
       "event_start_time": "15:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "4941230ff382bd54a2d8"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-11 公式",
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-11 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "兵庫芸術文化センター管弦楽団 定期演奏会",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "ClariS",
@@ -4534,18 +4651,24 @@
       "event_end_date": "2026-09-11",
       "event_key": "6dcb6378fb22e701eb73",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "6dcb6378fb22e701eb73"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "吉川晃司 札幌文化芸術劇場 hitaru 2026-09-11 公式",
-        "吉川晃司 札幌文化芸術劇場 hitaru 2026-09-11 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "KIKKAWA KOJI LIVE 2026 Higher & Higher Tour",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5196"
+      ]
     },
     {
       "artist_name": "ヴィッセル神戸",
@@ -4576,18 +4699,24 @@
       "event_end_date": "2026-09-11",
       "event_key": "79b03d7cce61080a5810",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "79b03d7cce61080a5810"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "千葉ジェッツ ららアリーナ 東京ベイ 2026-09-11 公式",
-        "千葉ジェッツ ららアリーナ 東京ベイ 2026-09-11 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "千葉ジェッツ 新シーズン決起会 Presented by L.A.DEPO Chiba",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "ペルソナ（Persona）",
@@ -4624,18 +4753,24 @@
       "event_end_date": "2026-09-11",
       "event_key": "8757c48ffd22965ac0c5",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "8757c48ffd22965ac0c5"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "離婚伝説 日本武道館 2026-09-11 公式",
-        "離婚伝説 日本武道館 2026-09-11 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "離婚伝説 日本武道館 ワンマンライブ",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020"
+      ]
     },
     {
       "artist_name": "カウントダウンTV（CDTV）",
@@ -4648,15 +4783,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "カウントダウンTV（CDTV） 東京ガーデンシアター 2026-09-11 公式",
-        "カウントダウンTV（CDTV） 東京ガーデンシアター 2026-09-11 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
       "venue_name": "東京ガーデンシアター",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/"
+      ]
     },
     {
       "artist_name": "日本フィルハーモニー交響楽団",
@@ -4690,15 +4829,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "Thai Festival（タイフェスティバル） LINE CUBE SHIBUYA 2026-09-11 公式",
-        "Thai Festival（タイフェスティバル） LINE CUBE SHIBUYA 2026-09-11 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "THAI ON FESTIVAL 2026 -タイ⾳楽祭-【1日券】",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "KengNamping（ケンナンピン）",
@@ -4761,7 +4904,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Yngwie Malmsteen Legendary Weekend in Japan",
@@ -4808,7 +4956,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "中日ドラゴンズ【バンテリンドームナゴヤ駐車場券】",
@@ -4849,7 +5002,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "LIVE TOUR 2026「INFERNO」",
@@ -4944,15 +5102,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "TVアニメ『シャインポスト』 ぴあアリーナMM 2026-09-12 公式",
-        "TVアニメ『シャインポスト』 ぴあアリーナMM 2026-09-12 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "シャインポスト BRiGHT STARS FESTIVAL 2026",
       "venue_name": "ぴあアリーナMM",
-      "verification_urls": []
+      "verification_urls": [
+        "https://pia-arena-mm.jp/event/6944.html"
+      ]
     },
     {
       "artist_name": "THE ORAL CIGARETTES",
@@ -4962,18 +5124,24 @@
       "event_end_date": "2026-09-12",
       "event_key": "351a98fc3f95ec941713",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "351a98fc3f95ec941713"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "THE ORAL CIGARETTES カナモトホール（札幌市民ホール） 2026-09-12 公式",
-        "THE ORAL CIGARETTES カナモトホール（札幌市民ホール） 2026-09-12 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Home Sweet Home TOUR 2026",
       "venue_name": "カナモトホール（札幌市民ホール）",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-shiminhall.org/event/"
+      ]
     },
     {
       "artist_name": "ME:I",
@@ -5034,15 +5202,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "カウントダウンTV（CDTV） 東京ガーデンシアター 2026-09-12 公式",
-        "カウントダウンTV（CDTV） 東京ガーデンシアター 2026-09-12 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
       "venue_name": "東京ガーデンシアター",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/"
+      ]
     },
     {
       "artist_name": "福岡ソフトバンクホークス",
@@ -5155,15 +5327,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "ONE SAMURAI（ワンサムライ） 横浜BUNTAI 2026-09-12 公式",
-        "ONE SAMURAI（ワンサムライ） 横浜BUNTAI 2026-09-12 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "conflict"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ONE SAMURAI 3",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "ガンバ大阪",
@@ -5475,7 +5651,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TENRIN3大都市ツアー 転地開闢",
@@ -5519,18 +5700,24 @@
       "event_end_date": "2026-09-12",
       "event_key": "b653a80f0380825706eb",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "b653a80f0380825706eb"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "松任谷由実 福岡サンパレス 2026-09-12 公式",
-        "松任谷由実 福岡サンパレス 2026-09-12 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "THE WORMHOLE TOUR 2025-26",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "兵庫芸術文化センター管弦楽団",
@@ -5540,18 +5727,24 @@
       "event_end_date": "2026-09-12",
       "event_key": "b87e0d16bd4e5f380ffa",
       "event_start_time": "15:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "b87e0d16bd4e5f380ffa"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-12 公式",
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-12 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "兵庫芸術文化センター管弦楽団 定期演奏会",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "オリックス・バファローズ",
@@ -5609,18 +5802,24 @@
       "event_end_date": "2026-09-12",
       "event_key": "c238031926e435fccd6f",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "c238031926e435fccd6f"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "德永英明 札幌文化芸術劇場 hitaru 2026-09-12 公式",
-        "德永英明 札幌文化芸術劇場 hitaru 2026-09-12 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Hideaki Tokunaga Concert Tour 2026",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5237"
+      ]
     },
     {
       "artist_name": "Flare U",
@@ -5726,18 +5925,24 @@
       "event_end_date": "2026-09-12",
       "event_key": "fc07b800a3ba03b48d64",
       "event_start_time": "17:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "fc07b800a3ba03b48d64"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "ゴスペラーズ 神戸国際会館 こくさいホール 2026-09-12 公式",
-        "ゴスペラーズ 神戸国際会館 こくさいホール 2026-09-12 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "ゴスペラーズ坂ツアー2026 “UNIVER5OUL”",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2134"
+      ]
     },
     {
       "artist_name": "SD.LEAGUE（エスディー・リーグ）",
@@ -5819,15 +6024,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "TVアニメ『シャインポスト』 ぴあアリーナMM 2026-09-13 公式",
-        "TVアニメ『シャインポスト』 ぴあアリーナMM 2026-09-13 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "シャインポスト BRiGHT STARS FESTIVAL 2026",
       "venue_name": "ぴあアリーナMM",
-      "verification_urls": []
+      "verification_urls": [
+        "https://pia-arena-mm.jp/event/6946.html"
+      ]
     },
     {
       "artist_name": "オトメイト",
@@ -5861,15 +6070,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "つば男 豊洲PIT 2026-09-13 公式",
-        "つば男 豊洲PIT 2026-09-13 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "つば男FES 2026 – Premium Live Sound -",
       "venue_name": "豊洲PIT",
-      "verification_urls": []
+      "verification_urls": [
+        "https://toyosu.pia-pit.jp/schedule/202606/8566.html"
+      ]
     },
     {
       "artist_name": "TWS",
@@ -5906,18 +6119,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "1d1483e8ba53f70fa537",
       "event_start_time": "15:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "1d1483e8ba53f70fa537"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-13 公式",
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "兵庫芸術文化センター管弦楽団 定期演奏会",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "ME:I",
@@ -5974,7 +6193,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "LIVE TOUR 2026「INFERNO」",
@@ -6139,15 +6363,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "Ichiro 東京ドーム 2026-09-13 公式",
-        "Ichiro 東京ドーム 2026-09-13 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:04:14Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "高校野球女子選抜 vs イチロー選抜 KOBE CHIBEN",
       "venue_name": "東京ドーム",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
+      ]
     },
     {
       "artist_name": "ジェジュン",
@@ -6157,18 +6385,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "63fce3254a3f997e99f1",
       "event_start_time": "",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "63fce3254a3f997e99f1"
+      ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "ジェジュン 横浜BUNTAI 2026-09-13 公式",
-        "ジェジュン 横浜BUNTAI 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "2026 KIM JAE JOONG CONCERT THE WAVE",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "埼玉西武ライオンズ",
@@ -6246,27 +6480,6 @@
       "verification_urls": []
     },
     {
-      "artist_name": "東京ヴェルディ（サッカー）",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/verdy/event/1244878",
-      "event_date": "2026-09-13",
-      "event_end_date": "2026-09-13",
-      "event_key": "70bce980a4d654aa4cbd",
-      "event_start_time": "18:00",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "東京ヴェルディ（サッカー） MUFGスタジアム 2026-09-13 公式",
-        "東京ヴェルディ（サッカー） MUFGスタジアム 2026-09-13 主催"
-      ],
-      "status": "pending_official",
-      "title": "東京ヴェルディ vs ジェフユナイテッド千葉",
-      "venue_name": "MUFGスタジアム",
-      "verification_urls": []
-    },
-    {
       "artist_name": "布袋寅泰",
       "capacity": 2302,
       "discovery_url": "https://ticketjam.jp/tickets/hotei-tomoyasu/event/1198702",
@@ -6274,18 +6487,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "7324402f0e4cbe2bf1be",
       "event_start_time": "17:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "7324402f0e4cbe2bf1be"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "布袋寅泰 札幌文化芸術劇場 hitaru 2026-09-13 公式",
-        "布袋寅泰 札幌文化芸術劇場 hitaru 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "HOTEI the LIVE 2026 \"45th Celebration GIGS\" STAY WILD TOUR",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5342"
+      ]
     },
     {
       "artist_name": "ペルソナ（Persona）",
@@ -6322,18 +6541,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "86c8bacdce6b62de4356",
       "event_start_time": "11:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "86c8bacdce6b62de4356"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-13 公式",
-        "兵庫芸術文化センター管弦楽団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "PACシーズン・オープニング室内楽",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "Yngwie Malmsteen（イングヴェイ・マルムスティーン）",
@@ -6355,6 +6580,31 @@
       "title": "Yngwie Malmsteen Legendary Weekend in Japan",
       "venue_name": "パシフィコ横浜 国立大ホール",
       "verification_urls": []
+    },
+    {
+      "artist_name": "東京ヴェルディ（サッカー）",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/verdy/event/1244878",
+      "event_date": "2026-09-13",
+      "event_end_date": "2026-09-13",
+      "event_key": "9216b19d999f746fffae",
+      "event_start_time": "18:00",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:20:46Z",
+        "next_check_date": "2026-09-09",
+        "status": "conflict"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "pending_official",
+      "title": "東京ヴェルディ vs ジェフユナイテッド千葉",
+      "venue_name": "国立競技場",
+      "verification_urls": [
+        "https://www.ajinomotostadium.com/schedule/"
+      ]
     },
     {
       "artist_name": "福岡ソフトバンクホークス",
@@ -6445,18 +6695,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "af318ae12296332375ae",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "af318ae12296332375ae"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "松任谷由実 福岡サンパレス 2026-09-13 公式",
-        "松任谷由実 福岡サンパレス 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "THE WORMHOLE TOUR 2025-26",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "阪神タイガース",
@@ -6565,15 +6821,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "カウントダウンTV（CDTV） 東京ガーデンシアター 2026-09-13 公式",
-        "カウントダウンTV（CDTV） 東京ガーデンシアター 2026-09-13 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
       "venue_name": "東京ガーデンシアター",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/"
+      ]
     },
     {
       "artist_name": "千葉ジェッツ",
@@ -6583,18 +6843,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "c4ff53f1a4126c66e217",
       "event_start_time": "14:10",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "c4ff53f1a4126c66e217"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "千葉ジェッツ ららアリーナ 東京ベイ 2026-09-13 公式",
-        "千葉ジェッツ ららアリーナ 東京ベイ 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "千葉ジェッツ vs アルティーリ千葉",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
@@ -6748,18 +7014,24 @@
       "event_end_date": "2026-09-13",
       "event_key": "ffe85442fd1d25321504",
       "event_start_time": "17:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "ffe85442fd1d25321504"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "山崎育三郎 神戸国際会館 こくさいホール 2026-09-13 公式",
-        "山崎育三郎 神戸国際会館 こくさいホール 2026-09-13 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "山崎育三郎LIVE TOUR 2026「19BOX 〜STAR MAN〜」",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2167"
+      ]
     },
     {
       "artist_name": "SiM",
@@ -6898,18 +7170,24 @@
       "event_end_date": "2026-09-14",
       "event_key": "b811b5f2267a24dd6ed5",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "b811b5f2267a24dd6ed5"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "スキマスイッチ 札幌文化芸術劇場 hitaru 2026-09-14 公式",
-        "スキマスイッチ 札幌文化芸術劇場 hitaru 2026-09-14 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "スキマスイッチ TOUR 2026 “POPMAN’S CARNIVAL vol.3”",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5167"
+      ]
     },
     {
       "artist_name": "横浜DeNAベイスターズ",
@@ -6994,18 +7272,24 @@
       "event_end_date": "2026-09-15",
       "event_key": "38d3abedde1f344e659d",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "38d3abedde1f344e659d"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "ヨルシカ ららアリーナ 東京ベイ 2026-09-15 公式",
-        "ヨルシカ ららアリーナ 東京ベイ 2026-09-15 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "LIVE TOUR 2026「一人称」",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "阪神タイガース",
@@ -7240,18 +7524,24 @@
       "event_end_date": "2026-09-15",
       "event_key": "bfc4f69d8fe3177e8941",
       "event_start_time": "14:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "bfc4f69d8fe3177e8941"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "氷川きよし 神戸国際会館 こくさいホール 2026-09-15 公式",
-        "氷川きよし 神戸国際会館 こくさいホール 2026-09-15 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-09",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "氷川きよしコンサートツアー2026-27〜KIINA'S LAND2〜",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2163"
+      ]
     },
     {
       "artist_name": "北海道日本ハムファイターズ 駐車場券",
@@ -7264,7 +7554,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【レ・ジェイド北海道ボールパーク立体駐車場】",
@@ -7400,18 +7695,24 @@
       "event_end_date": "2026-09-16",
       "event_key": "3ab23d1985c975b28c0e",
       "event_start_time": "13:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "3ab23d1985c975b28c0e"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "氷川きよし 神戸国際会館 こくさいホール 2026-09-16 公式",
-        "氷川きよし 神戸国際会館 こくさいホール 2026-09-16 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "氷川きよしコンサートツアー2026-27〜KIINA'S LAND2〜",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2163"
+      ]
     },
     {
       "artist_name": "アジア競技大会",
@@ -7442,18 +7743,24 @@
       "event_end_date": "2026-09-16",
       "event_key": "821bf91cb8a2c3dd908e",
       "event_start_time": "17:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "821bf91cb8a2c3dd908e"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "Royz 日本武道館 2026-09-16 公式",
-        "Royz 日本武道館 2026-09-16 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "「GIANT KILLER」-下剋上、その先へ-",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://royz-web.net/schedule_detail/83255"
+      ]
     },
     {
       "artist_name": "HANA（ハナ）",
@@ -7547,7 +7854,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -7562,18 +7874,24 @@
       "event_end_date": "2026-09-16",
       "event_key": "bd44e26d61baba31ec3c",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "bd44e26d61baba31ec3c"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "ヨルシカ ららアリーナ 東京ベイ 2026-09-16 公式",
-        "ヨルシカ ららアリーナ 東京ベイ 2026-09-16 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "LIVE TOUR 2026「一人称」",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "Hans Zimmer（ハンス・ジマー）",
@@ -7583,18 +7901,24 @@
       "event_end_date": "2026-09-16",
       "event_key": "d91a785a5fc35eb392fc",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "c8f23031cd9bfc2a3697"
+      ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "Hans Zimmer（ハンス・ジマー） ぴあアリーナMM 2026-09-16 公式",
-        "Hans Zimmer（ハンス・ジマー） ぴあアリーナMM 2026-09-16 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Hans Zimmer Live – The Next Level",
       "venue_name": "ぴあアリーナMM",
-      "verification_urls": []
+      "verification_urls": [
+        "https://pia-arena-mm.jp/event/6971.html"
+      ]
     },
     {
       "artist_name": "Xリーグ（アメフト）",
@@ -7703,7 +8027,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【レ・ジェイド北海道ボールパーク立体駐車場】",
@@ -7718,18 +8047,24 @@
       "event_end_date": "2026-09-17",
       "event_key": "4a4abad1543415e570d3",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "4a4abad1543415e570d3"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "斉藤由貴 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-17 公式",
-        "斉藤由貴 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-17 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "billboard classics「斉藤由貴 Premium Orchestra Concert」～produced by 武部聡志",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "アジア競技大会",
@@ -7943,18 +8278,24 @@
       "event_end_date": "2026-09-18",
       "event_key": "0fec23d193e71b17a018",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "0fec23d193e71b17a018"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "サカナクション 日本武道館 2026-09-18 公式",
-        "サカナクション 日本武道館 2026-09-18 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "SAKANAQUARIUM 2026-2027 “透明”",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://sakanaction.jp/feature/tour2026-2027"
+      ]
     },
     {
       "artist_name": "Gero",
@@ -7964,18 +8305,24 @@
       "event_end_date": "2026-09-18",
       "event_key": "1cb43b16158d7f16290e",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "1cb43b16158d7f16290e"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "Gero 神戸国際会館 こくさいホール 2026-09-18 公式",
-        "Gero 神戸国際会館 こくさいホール 2026-09-18 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Gero Live Tour 2026 ECHOES",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2138"
+      ]
     },
     {
       "artist_name": "MADRA（マドラ）",
@@ -8033,18 +8380,24 @@
       "event_end_date": "2026-09-18",
       "event_key": "46f2ea2eea3e195d31cd",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "46f2ea2eea3e195d31cd"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "JUJU 福岡サンパレス 2026-09-18 公式",
-        "JUJU 福岡サンパレス 2026-09-18 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "JUJU HALL TOUR 2026 純喫茶JUJU「時間旅行」",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "My Hair is Bad",
@@ -8128,7 +8481,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Rockon Social Club Tour 2026 The Warriors",
@@ -8445,18 +8803,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "037eba27888ecb70f580",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "037eba27888ecb70f580"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "緑黄色社会 ららアリーナ 東京ベイ 2026-09-19 公式",
-        "緑黄色社会 ららアリーナ 東京ベイ 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "緑黄色社会アリーナツアー2026",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "サカナクション",
@@ -8466,18 +8830,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "094e24600b8a42786724",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "094e24600b8a42786724"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "サカナクション 日本武道館 2026-09-19 公式",
-        "サカナクション 日本武道館 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "SAKANAQUARIUM 2026-2027 “透明”",
       "venue_name": "日本武道館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://sakanaction.jp/feature/tour2026-2027"
+      ]
     },
     {
       "artist_name": "Cornelius（コーネリアス）",
@@ -8514,18 +8884,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "1538b3881e4127fc3d33",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "1538b3881e4127fc3d33"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "FTISLAND 神戸国際会館 こくさいホール 2026-09-19 公式",
-        "FTISLAND 神戸国際会館 こくさいホール 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "2026 FTISLAND TOUR 0 — XIX — III ‘FaTe’ in JAPAN",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2184"
+      ]
     },
     {
       "artist_name": "東京ゲームショウ（TGS）",
@@ -8577,18 +8953,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "1b299e2f5ba5d9bca8bc",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "1b299e2f5ba5d9bca8bc"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "JUJU 福岡サンパレス 2026-09-19 公式",
-        "JUJU 福岡サンパレス 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "JUJU HALL TOUR 2026 純喫茶JUJU「時間旅行」",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "北海道日本ハムファイターズ（日ハム）",
@@ -8672,7 +9054,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "THE DAMNED Final Damnation 50 Japan",
@@ -8740,7 +9127,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -8801,7 +9193,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【中山機械(株)駐車】",
@@ -9082,15 +9479,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "マンゲキフェス LINE CUBE SHIBUYA 2026-09-19 公式",
-        "マンゲキフェス LINE CUBE SHIBUYA 2026-09-19 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "トーキョーマンゲキフェス2026ー渋神三世代決戦ー",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "横浜DeNAベイスターズ",
@@ -9127,18 +9528,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "8c652d4be2709462859d",
       "event_start_time": "14:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "8c652d4be2709462859d"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "北海道コンサドーレ札幌 札幌ドーム 2026-09-19 公式",
-        "北海道コンサドーレ札幌 札幌ドーム 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "北海道コンサドーレ札幌 vs 大分トリニータ",
       "venue_name": "札幌ドーム",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260919"
+      ]
     },
     {
       "artist_name": "浦和レッズ",
@@ -9169,18 +9576,49 @@
       "event_end_date": "2026-09-19",
       "event_key": "a2fc476827b7a274d2d7",
       "event_start_time": "17:30",
+      "matching_event_keys": [
+        "6e7ffdff8ef1804f3105"
+      ],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
+      "title": "THE IDOLM@STER MILLION LIVE! 14thLIVE",
+      "venue_name": "国立代々木競技場第一体育館",
+      "verification_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6095&etype=1"
+      ]
+    },
+    {
+      "artist_name": "SixTONES",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/six-tones/event/1218358",
+      "event_date": "2026-09-19",
+      "event_end_date": "2026-09-19",
+      "event_key": "a7538da9f2e52e74011a",
+      "event_start_time": "17:30",
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "THE IDOLM@STER MILLION LIVE!（アイドルマスター ミリオンライブ!） 国立代々木競技場第一体育館 2026-09-19 公式",
-        "THE IDOLM@STER MILLION LIVE!（アイドルマスター ミリオンライブ!） 国立代々木競技場第一体育館 2026-09-19 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:20:46Z",
+        "next_check_date": "2026-09-09",
+        "status": "conflict"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
-      "title": "THE IDOLM@STER MILLION LIVE! 14thLIVE",
-      "venue_name": "国立代々木競技場第一体育館",
-      "verification_urls": []
+      "title": "SixTONES LIVE TOUR 2026「MILESixTONES」(スタジアムツアー)",
+      "venue_name": "国立競技場",
+      "verification_urls": [
+        "https://www.ajinomotostadium.com/schedule/2026/0919_16242.php"
+      ]
     },
     {
       "artist_name": "Nissy",
@@ -9217,18 +9655,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "b1bef08bdba622f218a1",
       "event_start_time": "14:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "b1bef08bdba622f218a1"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "東京バレエ団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-19 公式",
-        "東京バレエ団 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "東京バレエ団 ブルメイステル版『白鳥の湖』",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "東京ガールズコレクション（TGC）",
@@ -9447,18 +9891,24 @@
       "event_end_date": "2026-09-19",
       "event_key": "edd5f07d1154d070643a",
       "event_start_time": "19:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "edd5f07d1154d070643a"
+      ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "横浜F・マリノス 日産スタジアム 2026-09-19 公式",
-        "横浜F・マリノス 日産スタジアム 2026-09-19 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "横浜Ｆ・マリノス vs 水戸ホーリーホック",
       "venue_name": "日産スタジアム",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.nissan-stadium.jp/calendar/detail.php?id6a44b418f1962"
+      ]
     },
     {
       "artist_name": "ディズニーオンアイス",
@@ -9479,27 +9929,6 @@
       "status": "pending_official",
       "title": "ディズニー･オン･アイス 2026",
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
-      "verification_urls": []
-    },
-    {
-      "artist_name": "SixTONES",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/six-tones/event/1218358",
-      "event_date": "2026-09-19",
-      "event_end_date": "2026-09-19",
-      "event_key": "ff90cd95dcd2cea257c9",
-      "event_start_time": "17:30",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "SixTONES MUFGスタジアム 2026-09-19 公式",
-        "SixTONES MUFGスタジアム 2026-09-19 主催"
-      ],
-      "status": "pending_official",
-      "title": "SixTONES LIVE TOUR 2026「MILESixTONES」(スタジアムツアー)",
-      "venue_name": "MUFGスタジアム",
       "verification_urls": []
     },
     {
@@ -9530,6 +9959,31 @@
       ]
     },
     {
+      "artist_name": "SixTONES",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/six-tones/event/1218361",
+      "event_date": "2026-09-20",
+      "event_end_date": "2026-09-20",
+      "event_key": "11247be3b76a9b93499b",
+      "event_start_time": "17:30",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:20:46Z",
+        "next_check_date": "2026-09-09",
+        "status": "conflict"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "pending_official",
+      "title": "SixTONES LIVE TOUR 2026「MILESixTONES」(スタジアムツアー)",
+      "venue_name": "国立競技場",
+      "verification_urls": [
+        "https://www.ajinomotostadium.com/schedule/2026/0919_16242.php"
+      ]
+    },
+    {
       "artist_name": "羊文学",
       "capacity": 2316,
       "discovery_url": "https://ticketjam.jp/tickets/hituzibunngaku-/event/1127612",
@@ -9537,18 +9991,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "113a6e05b23e3b741e07",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "113a6e05b23e3b741e07"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "羊文学 福岡サンパレス 2026-09-20 公式",
-        "羊文学 福岡サンパレス 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "羊文学 TOUR 2026 “すーーーはーーー”",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "阪神タイガース",
@@ -9676,11 +10136,16 @@
       "event_key": "352c1e0f2ac2ae46cde4",
       "event_start_time": "14:00",
       "matching_event_keys": [
-        "623a26cb6ebb616f2056"
+        "352c1e0f2ac2ae46cde4"
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Nissy Entertainment Variety Show 〜歌えなくても、エンタメってあったじゃん！〜",
@@ -9700,15 +10165,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 公式",
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ANA presents Na Pookela 2026",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "中日ドラゴンズ 駐車場券",
@@ -9721,7 +10190,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "中日ドラゴンズ【バンテリンドームナゴヤ駐車場券】",
@@ -9736,18 +10210,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "3fa6f484423873d34c70",
       "event_start_time": "16:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "bb74a14e130acfbb1c51"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "THE IDOLM@STER MILLION LIVE!（アイドルマスター ミリオンライブ!） 国立代々木競技場第一体育館 2026-09-20 公式",
-        "THE IDOLM@STER MILLION LIVE!（アイドルマスター ミリオンライブ!） 国立代々木競技場第一体育館 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "THE IDOLM@STER MILLION LIVE! 14thLIVE",
       "venue_name": "国立代々木競技場第一体育館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6096&etype=1"
+      ]
     },
     {
       "artist_name": "中森明菜",
@@ -9778,18 +10258,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "4acdac8c5941f349a396",
       "event_start_time": "15:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "4acdac8c5941f349a396"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "12人のヴァイオリニスト 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-20 公式",
-        "12人のヴァイオリニスト 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "結成20周年記念 高嶋ちさ子 12人のヴァイオリニスト コンサートツアー 2026～2027",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "千葉ロッテマリーンズ",
@@ -9947,7 +10433,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【VIP2 PARKING 駐車券】",
@@ -9962,18 +10453,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "8aabdfb518eeb45be064",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "8aabdfb518eeb45be064"
+      ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "Nissy ぴあアリーナMM 2026-09-20 公式",
-        "Nissy ぴあアリーナMM 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Nissy Entertainment Variety Show 〜歌えなくても、エンタメってあったじゃん！〜",
       "venue_name": "ぴあアリーナMM",
-      "verification_urls": []
+      "verification_urls": [
+        "https://pia-arena-mm.jp/event/7203.html"
+      ]
     },
     {
       "artist_name": "松田聖子",
@@ -10165,18 +10662,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "cd8476ab31165b227869",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "cd8476ab31165b227869"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "莉犬 東京ガーデンシアター 2026-09-20 公式",
-        "莉犬 東京ガーデンシアター 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "莉犬のSTPRadio! Presents STPR文化祭",
       "venue_name": "東京ガーデンシアター",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5168/"
+      ]
     },
     {
       "artist_name": "緑黄色社会",
@@ -10186,18 +10689,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "d0ee1e49c79d62795649",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "d0ee1e49c79d62795649"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "緑黄色社会 ららアリーナ 東京ベイ 2026-09-20 公式",
-        "緑黄色社会 ららアリーナ 東京ベイ 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "緑黄色社会アリーナツアー2026",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "FANTASTICS",
@@ -10232,7 +10741,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -10295,18 +10809,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "ead0f0074b8bab3292fb",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "70c4b47ac46133176001"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "KIM JAE WON（キム・ジェウォン） LINE CUBE SHIBUYA 2026-09-20 公式",
-        "KIM JAE WON（キム・ジェウォン） LINE CUBE SHIBUYA 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "2026 KIM JAE WON WORLD TOUR FANMEETING < THE MOMENT WE MET-Episode 2:Propose in Japan >",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "ナーポオケラ",
@@ -10319,15 +10839,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 公式",
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ANA presents Na Pookela 2026",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "北海道日本ハムファイターズ（日ハム）",
@@ -10355,27 +10879,6 @@
       "verification_urls": [
         "https://npb.jp/games/2026/schedule_09_detail.html"
       ]
-    },
-    {
-      "artist_name": "SixTONES",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/six-tones/event/1218361",
-      "event_date": "2026-09-20",
-      "event_end_date": "2026-09-20",
-      "event_key": "fa08a134b73e2eb5227c",
-      "event_start_time": "17:30",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "SixTONES MUFGスタジアム 2026-09-20 公式",
-        "SixTONES MUFGスタジアム 2026-09-20 主催"
-      ],
-      "status": "pending_official",
-      "title": "SixTONES LIVE TOUR 2026「MILESixTONES」(スタジアムツアー)",
-      "venue_name": "MUFGスタジアム",
-      "verification_urls": []
     },
     {
       "artist_name": "北山宏光",
@@ -10428,18 +10931,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "fe01095289b201e63404",
       "event_start_time": "13:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "fe01095289b201e63404"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "莉犬 東京ガーデンシアター 2026-09-20 公式",
-        "莉犬 東京ガーデンシアター 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "莉犬のSTPRadio! Presents STPR文化祭",
       "venue_name": "東京ガーデンシアター",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5168/"
+      ]
     },
     {
       "artist_name": "アジア競技大会",
@@ -10539,18 +11048,24 @@
       "event_end_date": "2026-09-21",
       "event_key": "5b3554485e1d13e7a25c",
       "event_start_time": "17:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "5b3554485e1d13e7a25c"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "長渕剛 札幌文化芸術劇場 hitaru 2026-09-21 公式",
-        "長渕剛 札幌文化芸術劇場 hitaru 2026-09-21 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "TSUYOSHI NAGABUCHI ACOUSTIC HALL TOUR 2026 “JUST ONE”",
       "venue_name": "札幌文化芸術劇場 hitaru",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.sapporo-community-plaza.jp/event.php?num=5239"
+      ]
     },
     {
       "artist_name": "千葉ロッテマリーンズ",
@@ -10711,15 +11226,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "ナーポオケラ 横浜BUNTAI 2026-09-21 公式",
-        "ナーポオケラ 横浜BUNTAI 2026-09-21 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ANA presents Na Pookela 2026",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "北海道日本ハムファイターズ（日ハム）",
@@ -10759,7 +11278,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -10828,18 +11352,24 @@
       "event_end_date": "2026-09-21",
       "event_key": "d44f1e9e8a8162a30ca4",
       "event_start_time": "17:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "d44f1e9e8a8162a30ca4"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "fripSide LINE CUBE SHIBUYA 2026-09-21 公式",
-        "fripSide LINE CUBE SHIBUYA 2026-09-21 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "animeblast presents fripSide Concert Tour 2026-2027 -infinite Resonance 4-",
       "venue_name": "LINE CUBE SHIBUYA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://linecubeshibuya.com/category/event/event202609"
+      ]
     },
     {
       "artist_name": "ナーポオケラ",
@@ -10852,15 +11382,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "ナーポオケラ 横浜BUNTAI 2026-09-21 公式",
-        "ナーポオケラ 横浜BUNTAI 2026-09-21 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ANA presents Na Pookela 2026",
       "venue_name": "横浜BUNTAI",
-      "verification_urls": []
+      "verification_urls": [
+        "https://yokohama-buntai.jp/event"
+      ]
     },
     {
       "artist_name": "道新・秋華火",
@@ -10895,7 +11429,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【フレップパーキング】",
@@ -10991,18 +11530,24 @@
       "event_end_date": "2026-09-22",
       "event_key": "133e6a258fce66e39b35",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "133e6a258fce66e39b35"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "いれいす ららアリーナ 東京ベイ 2026-09-22 公式",
-        "いれいす ららアリーナ 東京ベイ 2026-09-22 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:15:42Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "いれいす Summer Tour 2026 Irregular Vacation -Colorful Street-",
       "venue_name": "ららアリーナ 東京ベイ",
-      "verification_urls": []
+      "verification_urls": [
+        "https://lalaarenatokyo-bay.com/event/"
+      ]
     },
     {
       "artist_name": "Cornelius（コーネリアス）",
@@ -11042,7 +11587,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【えふたんパーキング】",
@@ -11057,18 +11607,24 @@
       "event_end_date": "2026-09-22",
       "event_key": "256a2637e35e11a262b2",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "256a2637e35e11a262b2"
+      ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "LUNA SEA 福岡サンパレス 2026-09-22 公式",
-        "LUNA SEA 福岡サンパレス 2026-09-22 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:56:56Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "LUNA SEA TOUR 2026 UNENDING JOURNEY -FOREVER-",
       "venue_name": "福岡サンパレス",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.f-sunpalace.com/hall/"
+      ]
     },
     {
       "artist_name": "德永英明",
@@ -11078,18 +11634,24 @@
       "event_end_date": "2026-09-22",
       "event_key": "276d2d6b1b4bd8b3a456",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "276d2d6b1b4bd8b3a456"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "德永英明 神戸国際会館 こくさいホール 2026-09-22 公式",
-        "德永英明 神戸国際会館 こくさいホール 2026-09-22 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T22:10:17Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "Hideaki Tokunaga Concert Tour 2026",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2185"
+      ]
     },
     {
       "artist_name": "スピッツ",
@@ -11150,7 +11712,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-09",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -11207,18 +11774,24 @@
       "event_end_date": "2026-09-22",
       "event_key": "608675ac852dc6d16fc5",
       "event_start_time": "17:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "608675ac852dc6d16fc5"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "モンスターハンター（モンハン） 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-22 公式",
-        "モンスターハンター（モンハン） 兵庫県立芸術文化センター KOBELCO 大ホール 2026-09-22 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:41:28Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "モンスターハンターオーケストラコンサート 〜狩猟音楽祭2026〜",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
+      ]
     },
     {
       "artist_name": "横浜DeNAベイスターズ",
@@ -11360,15 +11933,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "水樹奈々 国立代々木競技場第一体育館 2026-09-22 公式",
-        "水樹奈々 国立代々木競技場第一体育館 2026-09-22 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "NANA MIZUKI LIVE GRACE 2026 -OPUS Ⅳ-",
       "venue_name": "国立代々木競技場第一体育館",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6097&etype=1"
+      ]
     },
     {
       "artist_name": "オニュ",
@@ -11553,18 +12130,24 @@
       "event_end_date": "2026-09-22",
       "event_key": "e094b8592530a3e06d95",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "e094b8592530a3e06d95"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
-      "search_queries": [
-        "My Hair is Bad Zepp札幌 2026-09-22 公式",
-        "My Hair is Bad Zepp札幌 2026-09-22 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-07T21:48:22Z",
+        "next_check_date": "2026-09-11",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "My Hair is Bad presents「ノーブルホームランツアー」",
       "venue_name": "Zepp札幌",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156642"
+      ]
     },
     {
       "artist_name": "ZASSO.（ザッソー）",
@@ -14291,7 +14874,9 @@
       "event_end_date": "2026-09-29",
       "event_key": "09f6057a3a44bff3be32",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "09f6057a3a44bff3be32"
+      ],
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
@@ -14301,7 +14886,7 @@
       },
       "review_due": false,
       "search_queries": [],
-      "status": "pending_official",
+      "status": "possible_existing_match",
       "title": "ROCK FOR YOU LIVE TOUR",
       "venue_name": "Zepp札幌",
       "verification_urls": [
@@ -16469,6 +17054,27 @@
       "verification_urls": []
     },
     {
+      "artist_name": "FC東京",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/fctokyo/event/1261356",
+      "event_date": "2026-10-10",
+      "event_end_date": "2026-10-10",
+      "event_key": "272f37cde642df9e5648",
+      "event_start_time": "15:00",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "review_due": true,
+      "search_queries": [
+        "FC東京 国立競技場 2026-10-10 公式",
+        "FC東京 国立競技場 2026-10-10 主催"
+      ],
+      "status": "pending_official",
+      "title": "FC東京 vs 浦和レッズ",
+      "venue_name": "国立競技場",
+      "verification_urls": []
+    },
+    {
       "artist_name": "Saucy Dog",
       "capacity": 10024,
       "discovery_url": "https://ticketjam.jp/tickets/saucydog/event/1058499",
@@ -16487,27 +17093,6 @@
       "status": "pending_official",
       "title": "Saucy Dog ARENA TOUR 2026-2027 NEW GAME ＋",
       "venue_name": "真駒内セキスイハイムアイスアリーナ",
-      "verification_urls": []
-    },
-    {
-      "artist_name": "FC東京",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/fctokyo/event/1261356",
-      "event_date": "2026-10-10",
-      "event_end_date": "2026-10-10",
-      "event_key": "361fcc28869f52304945",
-      "event_start_time": "15:00",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "FC東京 MUFGスタジアム 2026-10-10 公式",
-        "FC東京 MUFGスタジアム 2026-10-10 主催"
-      ],
-      "status": "pending_official",
-      "title": "FC東京 vs 浦和レッズ",
-      "venue_name": "MUFGスタジアム",
       "verification_urls": []
     },
     {
@@ -17011,6 +17596,27 @@
       "verification_urls": []
     },
     {
+      "artist_name": "東京ヴェルディ（サッカー）",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/verdy/event/1261373",
+      "event_date": "2026-10-11",
+      "event_end_date": "2026-10-11",
+      "event_key": "44166f2695a42153d709",
+      "event_start_time": "15:00",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "review_due": true,
+      "search_queries": [
+        "東京ヴェルディ（サッカー） 国立競技場 2026-10-11 公式",
+        "東京ヴェルディ（サッカー） 国立競技場 2026-10-11 主催"
+      ],
+      "status": "pending_official",
+      "title": "東京ヴェルディ vs サンフレッチェ広島",
+      "venue_name": "国立競技場",
+      "verification_urls": []
+    },
+    {
       "artist_name": "硬派弦楽アンサンブル石田組",
       "capacity": 16000,
       "discovery_url": "https://ticketjam.jp/tickets/souichi-sakuma/event/933618",
@@ -17104,27 +17710,6 @@
       "status": "pending_official",
       "title": "ジェフユナイテッド千葉 vs V・ファーレン長崎",
       "venue_name": "フクダ電子アリーナ",
-      "verification_urls": []
-    },
-    {
-      "artist_name": "東京ヴェルディ（サッカー）",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/verdy/event/1261373",
-      "event_date": "2026-10-11",
-      "event_end_date": "2026-10-11",
-      "event_key": "7f26dd68013f4097a2a3",
-      "event_start_time": "15:00",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "東京ヴェルディ（サッカー） MUFGスタジアム 2026-10-11 公式",
-        "東京ヴェルディ（サッカー） MUFGスタジアム 2026-10-11 主催"
-      ],
-      "status": "pending_official",
-      "title": "東京ヴェルディ vs サンフレッチェ広島",
-      "venue_name": "MUFGスタジアム",
       "verification_urls": []
     },
     {
@@ -17962,27 +18547,6 @@
       ]
     },
     {
-      "artist_name": "東京ヴェルディ（サッカー）",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/verdy/event/1268929",
-      "event_date": "2026-10-17",
-      "event_end_date": "2026-10-17",
-      "event_key": "413bd90f42a315ed32ea",
-      "event_start_time": "14:00",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "東京ヴェルディ（サッカー） MUFGスタジアム 2026-10-17 公式",
-        "東京ヴェルディ（サッカー） MUFGスタジアム 2026-10-17 主催"
-      ],
-      "status": "pending_official",
-      "title": "東京ヴェルディ vs FC東京",
-      "venue_name": "MUFGスタジアム",
-      "verification_urls": []
-    },
-    {
       "artist_name": "北海道コンサドーレ札幌",
       "capacity": 53000,
       "discovery_url": "https://ticketjam.jp/tickets/consadole-sapporo/event/1278136",
@@ -18223,6 +18787,27 @@
       "status": "pending_official",
       "title": "milet Hall Tour 2026",
       "venue_name": "東京ガーデンシアター",
+      "verification_urls": []
+    },
+    {
+      "artist_name": "東京ヴェルディ（サッカー）",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/verdy/event/1268929",
+      "event_date": "2026-10-17",
+      "event_end_date": "2026-10-17",
+      "event_key": "ffc030a3a534671d9be6",
+      "event_start_time": "14:00",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "review_due": true,
+      "search_queries": [
+        "東京ヴェルディ（サッカー） 国立競技場 2026-10-17 公式",
+        "東京ヴェルディ（サッカー） 国立競技場 2026-10-17 主催"
+      ],
+      "status": "pending_official",
+      "title": "東京ヴェルディ vs FC東京",
+      "venue_name": "国立競技場",
       "verification_urls": []
     },
     {
@@ -18896,27 +19481,6 @@
       "verification_urls": []
     },
     {
-      "artist_name": "FC東京",
-      "capacity": 49970,
-      "discovery_url": "https://ticketjam.jp/tickets/fctokyo/event/1268955",
-      "event_date": "2026-10-21",
-      "event_end_date": "2026-10-21",
-      "event_key": "1c59297497527a48b638",
-      "event_start_time": "19:00",
-      "matching_event_keys": [],
-      "official_confirmed": false,
-      "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "FC東京 MUFGスタジアム 2026-10-21 公式",
-        "FC東京 MUFGスタジアム 2026-10-21 主催"
-      ],
-      "status": "pending_official",
-      "title": "FC東京 vs 柏レイソル",
-      "venue_name": "MUFGスタジアム",
-      "verification_urls": []
-    },
-    {
       "artist_name": "レバンガ北海道",
       "capacity": 10000,
       "discovery_url": "https://ticketjam.jp/tickets/levanga/event/1283994",
@@ -19074,6 +19638,27 @@
       "status": "pending_official",
       "title": "石田泰尚プロデュース「サロンdeストリングス」（全3回）【単日券】",
       "venue_name": "横浜みなとみらいホール",
+      "verification_urls": []
+    },
+    {
+      "artist_name": "FC東京",
+      "capacity": 49970,
+      "discovery_url": "https://ticketjam.jp/tickets/fctokyo/event/1268955",
+      "event_date": "2026-10-21",
+      "event_end_date": "2026-10-21",
+      "event_key": "bf3d3933cc359f767014",
+      "event_start_time": "19:00",
+      "matching_event_keys": [],
+      "official_confirmed": false,
+      "pref_name": "東京都",
+      "review_due": true,
+      "search_queries": [
+        "FC東京 国立競技場 2026-10-21 公式",
+        "FC東京 国立競技場 2026-10-21 主催"
+      ],
+      "status": "pending_official",
+      "title": "FC東京 vs 柏レイソル",
+      "venue_name": "国立競技場",
       "verification_urls": []
     },
     {
@@ -22538,7 +23123,9 @@
       "event_end_date": "2026-11-09",
       "event_key": "79c0b8100d32e53688c0",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "79c0b8100d32e53688c0"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
@@ -22548,7 +23135,7 @@
       },
       "review_due": false,
       "search_queries": [],
-      "status": "pending_official",
+      "status": "possible_existing_match",
       "title": "新しい学校のリーダーズ「From AG! with Love 〜ライブハウスより愛を込めて〜」",
       "venue_name": "Zepp DiverCity(Tokyo)",
       "verification_urls": [
@@ -23112,7 +23699,7 @@
       "title": "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
       "venue_name": "ベルーナドーム",
       "verification_urls": [
-        "https://exile.jp/news/detail.php?id=1132920"
+        "https://www.ldh-liveschedule.jp/sys/exile-25th-anniversary-best-live/"
       ]
     },
     {
@@ -23316,7 +23903,7 @@
       "title": "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
       "venue_name": "ベルーナドーム",
       "verification_urls": [
-        "https://exile.jp/news/detail.php?id=1132920"
+        "https://www.ldh-liveschedule.jp/sys/exile-25th-anniversary-best-live/"
       ]
     },
     {
@@ -28044,15 +28631,15 @@
     }
   ],
   "schema_version": 1,
-  "source_generated_at_utc": "2026-09-07T16:56:53Z",
+  "source_generated_at_utc": "2026-09-07T22:20:47Z",
   "summary": {
     "candidate_count": 1239,
     "counts_by_status": {
       "ancillary_ticket": 23,
       "expired": 146,
-      "pending_official": 608,
-      "possible_existing_match": 462
+      "pending_official": 544,
+      "possible_existing_match": 526
     },
-    "due_count": 720
+    "due_count": 613
   }
 }

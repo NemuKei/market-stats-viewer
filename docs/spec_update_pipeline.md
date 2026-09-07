@@ -111,6 +111,9 @@
   - 2026-03-11 追加: `panasonic_stadium_suita_schedule`（`/schedule/index/year/YYYY/month/MM/` の月次HTML表）
   - 2026-03-11 追加: `edion_arena_osaka_pdf_schedule`（トップページに掲載される `monthlyYYMM.pdf` を取得し、第1競技場のみ抽出）
   - 署名 no-op 補足: `data_hash` が同じでも `artist_name_resolved` / `artist_confidence` / `event_category` が変わった場合は導出列だけ再同期する
+  - `nissan_stadium_calendar` は開始欄の `19時30分` を `19:30` と解釈し、分を落とさない。
+  - `tokyo_dome_calendar` は `開演` / `開始` / `START` を使い、開場時刻だけでは開始時刻を補完しない。開始時刻を含むsource keyが訂正される場合は、同じURL・日付・公演の旧行を訂正後のkeyへ移し、二重登録を防ぐ。利用側は更新済みsnapshotの全件再取込で同期する。
+  - `mufg_stadium_schedule` は互換のため残す旧識別子で、実際の取得元は味の素スタジアム。開演・開始・START・キックオフの明示時刻だけを採用し、OPENや問い合わせ受付時間で補わない。
 
 ## Addendum (2026-02-25) Event Artist Inference
 - `python -m scripts.update_events_data` 実行後に、`python -m scripts.build_events_artist_inferred` を自動実行して `data/events_artist_inferred.csv` を更新する。
@@ -122,6 +125,8 @@
   - `performers` が空で推論成功の場合: `artist_name_resolved` は推論名、`artist_confidence` は `high` or `medium`
   - どちらもない場合: `artist_name_resolved` は空、`artist_confidence` は `low`
 - 誤補完低減のため、`DOME` など汎用語エイリアスと、`ベン/たま/ナビ` 等の曖昧短縮aliasを補完候補から除外する。
+- カタカナ語の途中にある辞書名は照合しない（例: `ジョイン` 内の `ジョイ`、`コンサート` 内の `コーン`）。長音・記号を圧縮する照合でも、この条件を維持する。
+- 3文字以下の名前、または6文字以下の英数字名は、本文内に出現しただけでは出演者と確定しない。先頭の年号・会場側の `コンサート` 見出しを除いた先頭一致、またはcanonical名への明示的な出演表現（`presents`、`LIVE ... WITH`、`This is`）を必要とする。最良候補が曖昧なら別のタイトル語へ繰り上げず、未解決へ戻す。
 - `title` 単体推論は音楽イベントキーワードに一致する場合のみ採用し、就活/展示会/スポーツ系の非音楽キーワードを含むタイトルは除外する。
 - 例外として、音楽イベントキーワードがなくても、辞書の canonical artist name がタイトル先頭に高信頼で一致し、かつ非音楽キーワードを含まない場合は `title` 単体推論を採用する。alias だけがタイトル先頭に一致する場合は採用しない。
 

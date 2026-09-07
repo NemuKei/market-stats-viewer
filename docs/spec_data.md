@@ -98,6 +98,7 @@
 - `capacity`: イベント固有があればそれ、なければ会場キャパを COALESCE で利用
 - 会場定義: `data/venue_registry.csv`（1行=1会場、追加は1行追加のみ）
 - `artist_name_resolved`: BCL/表示向けの解決済みアーティスト名（`performers` は取得元生値を保持）
+- 辞書照合の修正時は `events_artist_inferred.csv` と解決済み列を再計算し、未解決の旧推定名を残さない。取得元の `performers`、元イベント行、初回取得日時は保持する。例: `水谷千重子の宴ジョインコンサート2026` の旧推定 `ジョイ` は、公式表記で追加した辞書名 `水谷千重子` へ訂正する。表示名の訂正に伴ってLPの統合キー・件数が変わり得るため、JSON再生成・manifest検証・利用側表示確認を同時に行う。保存shapeやsource優先順位は変更しない。ロールバックは照合コード・辞書・導出dataを同じ検証済みrevisionへ戻し、Releaseを再生成する。
 - `artist_confidence`: `source` / `source_normalized` / `high` / `medium` / `low`
 
 ### 外部アプリ向けのイベントデータ契約
@@ -235,6 +236,7 @@
   - 別名辞書: `data/venue_aliases.csv`
   - Ticketjam 会場ページ対応: `data/ticketjam_venue_pages.csv`
   - 解決優先順: `venue_registry` の正式名 + `venue_aliases` の別名（`venue_id` 単位で後勝ち）
+  - 味の素スタジアムと国立競技場（MUFGスタジアム）は別施設。`mufg_stadium` は既存ID互換のため名称を残すが、取得元・実体は味の素スタジアムでありcanonical名も `味の素スタジアム` とする。`MUFGスタジアム` / `MUFG STADIUM` の別名は `national_stadium`（canonical `国立競技場`）だけに対応させる。2026-09-08の誤対応訂正ではvenue ID・event UIDを保持し、会場マスターとLPを再同期する。元候補に会場不一致が残る場合は公式確認まで非掲載とする。根拠: [味の素スタジアム施設案内](https://www.ajinomotostadium.com/overview/stadium.php)、[MUFGの施設表記](https://www.mufg.jp/profile/japan_rugby_league_one/mufgonepark/index.html)。
   - 対象範囲:
     - 基本対象: `capacity >= 10000` の会場は、会場公式ソースの実装有無に関わらず辞書へ保持する。公式取得未対応でも `is_enabled=0` の辞書用途で先行登録してよい。
     - 重点会場: `1000 <= capacity < 10000` の会場は、ユーザー影響が高いものだけを対象にする。判断基準は「会場公式イベントの取得対象である」または「`ticketjam_events` の採用/未解決候補で継続的に出現し、GUI確認や辞書照合KPIに影響する」のいずれか。

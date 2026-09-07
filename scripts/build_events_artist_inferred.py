@@ -315,9 +315,11 @@ def load_target_events(events_db_path: Path, limit: int = 0) -> list[dict[str, s
 def _infer_from_text(
     text: str, artist_index: dict[str, object]
 ) -> tuple[str, str, str] | None:
+    match_text = normalize_text(text, mode="keep")
+    match_text = re.sub(r"^(?:(?:20\d{2}|コンサ[-ー]ト)(?=\s|=)\s*)+", "", match_text)
     matches = [
         match
-        for match in match_artists_in_title(text, artist_index)
+        for match in match_artists_in_title(match_text, artist_index)
         if _is_valid_match(
             str(match.get("canonical_name", "")).strip(),
             str(match.get("matched_alias", "")).strip(),
@@ -329,6 +331,29 @@ def _infer_from_text(
     canonical_name = str(primary.get("canonical_name", "")).strip()
     matched_alias = str(primary.get("matched_alias", "")).strip()
     if not canonical_name or not matched_alias:
+        return None
+    compact_alias = normalize_text(matched_alias, mode="compact")
+    is_prefix = any(
+        match.get("canonical_name") == canonical_name
+        and match.get("matched_alias") == matched_alias
+        and int(match.get("pos", -1)) == 0
+        for match in matches
+    )
+    is_explicit_performer = any(
+        match.get("canonical_name") == canonical_name
+        and match.get("is_canonical_match")
+        and match.get("match_mode") == "keep"
+        and re.search(
+            r"(?:(?<![a-z])presents|\bthis\s+is|\blive(?:\s+\w+){0,3}\s+with)$",
+            match_text[: int(match["pos"])].rstrip(),
+        )
+        for match in matches
+    )
+    # Validate the chosen name before accepting it; do not select a different
+    # title word or increase its confidence after removing an ambiguous name.
+    if not (is_prefix or is_explicit_performer) and (
+        len(compact_alias) <= 3 or re.fullmatch(r"[a-z0-9]{1,6}", compact_alias)
+    ):
         return None
     if confidence != "high":
         if confidence != "medium":

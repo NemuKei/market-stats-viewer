@@ -39,7 +39,9 @@ class BuildEventsArtistInferredTests(unittest.TestCase):
 
         self.assertIsNone(inferred)
 
-    def test_do_not_infer_alias_prefix_without_canonical_prefix_or_music_hint(self) -> None:
+    def test_do_not_infer_alias_prefix_without_canonical_prefix_or_music_hint(
+        self,
+    ) -> None:
         artist_index = build_artist_index(
             [
                 ArtistEntry(
@@ -107,6 +109,100 @@ class BuildEventsArtistInferredTests(unittest.TestCase):
         ]:
             with self.subTest(title=title):
                 self.assertIsNone(infer_event_artist(title, "", artist_index))
+
+    def test_do_not_infer_artist_from_inside_a_katakana_word(self) -> None:
+        artist_index = build_artist_index(
+            [
+                ArtistEntry("test:joy", "ジョイ", (), "test", True),
+                ArtistEntry("test:korn", "コーン", (), "test", True),
+            ]
+        )
+
+        for title in [
+            "水谷千重子の宴ジョインコンサート2026",
+            "スーパージョイ LIVE 2026",
+            "ジョインコンサート2026",
+        ]:
+            with self.subTest(title=title):
+                self.assertIsNone(infer_event_artist(title, "", artist_index))
+
+    def test_infer_katakana_artist_when_the_name_is_separated(self) -> None:
+        artist_index = build_artist_index(
+            [ArtistEntry("test:joy", "ジョイ", (), "test", True)]
+        )
+
+        for title in ["ジョイ LIVE 2026", "ジョイ コンサート", "ジョイ・コンサート"]:
+            with self.subTest(title=title):
+                self.assertEqual(
+                    infer_event_artist(title, "", artist_index),
+                    ("ジョイ", "high", "ジョイ", "title"),
+                )
+
+    def test_do_not_promote_another_ambiguous_title_word_after_rejecting_a_match(
+        self,
+    ) -> None:
+        artist_index = build_artist_index(
+            [
+                ArtistEntry("test:bright", "BRIGHT", (), "test", True),
+                ArtistEntry("test:amaterasu", "天照", (), "test", True),
+                ArtistEntry("test:yohan", "ヨハン", (), "test", True),
+            ]
+        )
+
+        for title in [
+            "シャインポスト BRiGHT STARS FESTIVAL 2026 TINGS LIVE JOURNEY",
+            "キズ Zepp TOUR 『天照焔巡』",
+            "ウィーン・ヨハン・シュトラウス管弦楽団 ニューイヤーコンサート",
+        ]:
+            with self.subTest(title=title):
+                self.assertIsNone(infer_event_artist(title, "", artist_index))
+
+        self.assertEqual(
+            infer_event_artist("BRIGHT LIVE 2026", "", artist_index),
+            ("BRIGHT", "high", "BRIGHT", "title"),
+        )
+
+    def test_year_and_venue_category_prefix_do_not_hide_the_performer(self) -> None:
+        artist_index = build_artist_index(
+            [
+                ArtistEntry("test:ini", "INI", (), "test", True),
+                ArtistEntry("test:nct127", "NCT 127", (), "test", True),
+            ]
+        )
+        for title, artist in [
+            ("2026 INI 5TH ANNIVERSARY DOME TOUR", "INI"),
+            ("コンサート NCT 127 5TH TOUR", "NCT 127"),
+        ]:
+            with self.subTest(title=title):
+                self.assertEqual(
+                    infer_event_artist(title, "", artist_index),
+                    (artist, "high", artist, "title"),
+                )
+
+    def test_explicit_performer_attribution_preserves_short_canonical_names(
+        self,
+    ) -> None:
+        artist_index = build_artist_index(
+            [
+                ArtistEntry("test:" + name, name, (), "test", True)
+                for name in ["sumika", "toe", "PEDRO", "LOVE"]
+            ]
+        )
+        for title, artist in [
+            ("テレビ朝日presents sumika × 瑠東東一郎 CINEMA＆LIVE “SCENE”", "sumika"),
+            ("街を嚥む、今宵の月 - HARVEST SPECIAL LIVE NIGHT WITH toe -", "toe"),
+            ("This is PEDRO TOUR final 「ROMANTIC PLANET」", "PEDRO"),
+        ]:
+            with self.subTest(title=title):
+                self.assertEqual(
+                    infer_event_artist(title, "", artist_index),
+                    (artist, "high", artist, "title"),
+                )
+        self.assertIsNone(
+            infer_event_artist(
+                "From AG! with Love 〜ライブハウスより愛を込めて〜", "", artist_index
+            )
+        )
 
 
 if __name__ == "__main__":

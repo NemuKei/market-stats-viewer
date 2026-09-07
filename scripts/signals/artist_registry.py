@@ -253,6 +253,20 @@ def _needs_word_boundary(key: str, mode: str) -> bool:
     return len(key) <= 4
 
 
+def _katakana_word_boundary_ok(text: str, key: str, start: int) -> bool:
+    # normalize_text maps the prolonged sound mark to "-". Include it here
+    # so names such as ジョイ cannot match inside スーパージョイ or ジョイン.
+    def is_word_char(char: str) -> bool:
+        return "ァ" <= char <= "ヺ" or char in "ー-"
+
+    end = start + len(key)
+    if start and is_word_char(key[0]) and is_word_char(text[start - 1]):
+        return False
+    if end < len(text) and is_word_char(key[-1]) and is_word_char(text[end]):
+        return False
+    return True
+
+
 def _match_with_mode(
     normalized_title: str,
     index_map: object,
@@ -308,6 +322,9 @@ def _match_with_mode(
 
         start = normalized_title.find(key)
         while start != -1:
+            if not _katakana_word_boundary_ok(normalized_title, key, start):
+                start = normalized_title.find(key, start + 1)
+                continue
             for entry in entries:
                 out.append(
                     {
