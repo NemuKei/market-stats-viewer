@@ -1,13 +1,14 @@
 # PROJECT_CONTEXT（market-stats-viewer）
 
-最終更新: 2026-06-29
+最終更新: 2026-09-08
 
 ## Always Read Block
 
 - このrepoの目的は、市場統計と大型イベント情報を、外部LPや需要判断に使える配布データとして安定提供すること。
 - イベント情報の本質ゴールは、検知した大型イベントがLPのイベント一覧に自然に載ること。DB更新はそのための手段である。
 - LP向けイベント表示は、重複統合済みの `data/lp_events.json` をデータ側で生成し、LP側は原則としてその一覧を読むだけにする。
-- 同一イベントの表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。
+- LP生成の既定はTicketjamを掲載用統合から分離し、公式確認の発見導線に使う。未確認候補を表示元・時刻補完に使わない。詳細は `docs/spec_data.md` のdiscovery契約に従う。
+- 同一イベントの表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music` とする。
 - Web検知でDB/LP掲載してよい根拠は、公式/準公式ページ本文に限る。検索結果、AI概要、一般ニュース、SNS単体、二次流通単体はDB更新根拠にしない。
 - 本文抽出providerや実行commandは実装詳細であり、上位文脈ではなく `docs/spec_update_pipeline.md` の pipeline 契約に置く。採用根拠は常に公式/準公式URLと本文根拠である。
 - 自動化方針は、人間が毎回候補を読む運用ではなく、Codex Automation が根拠、分類、変更、verify、LP影響を出して、DB/LP出力更新まで進めること。

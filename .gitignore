@@ -73,3 +73,5 @@ assets/*
 # SQLite sidecar files are local runtime artifacts; keep tracked *.sqlite DB files visible.
 *.sqlite-shm
 *.sqlite-wal
+# Rebuilt and validated from the immutable checkout immediately before Release upload.
+/data/manifest.json

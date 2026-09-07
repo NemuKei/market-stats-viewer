@@ -60,6 +60,14 @@ uv run streamlit run app.py
 - Docs-only whitespace / merge-marker check:
   - `git diff --check`
 
+## Ticketjamを入口にした公式確認
+
+LP生成は `uv run python -m scripts.build_lp_events`。Ticketjamを掲載用の統合から分離し、確認待ち一覧へ送ります。上位sourceのない候補は公式確認後に既存のvenue_web_discovery経路へ登録します。
+
+- `uv run python -m scripts.prepare_ticketjam_review --resolve-covered --output /tmp/ticketjam-plan.json`: 既存一致を照合し、再確認期日を考慮した作業一覧を生成。
+- `uv run python -m scripts.validate_external_events`: 配布データと生成済みmanifestの整合性を検証。
+- 定期運用と公開までの手順: [Ticketjam公式確認の定期運用](docs/ticketjam_official_review_automation.md)。
+
 ## リリースZIP作成
 - 実行コマンド: `python make_release_zip.py`
 - デフォルトで `data/` フォルダを同梱

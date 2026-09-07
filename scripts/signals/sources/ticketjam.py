@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+from functools import cached_property
 import gzip
 import json
 import logging
@@ -16,6 +17,7 @@ from xml.etree import ElementTree as ET
 from bs4 import BeautifulSoup
 
 from ..types import SignalRecord, SignalSourceRecord
+from ..entity_aliases import load_venue_lookup_maps, normalize_venue_with_lookup
 from .base import (
     JST,
     SignalSource,
@@ -47,6 +49,18 @@ class TicketjamEventsSource(SignalSource):
     )
     _VENUE_PAGE_EVENT_LINK_SELECTOR = "a.p-event-min__link[href]"
     _SKIP_EVENT_HINTS = ("駐車場券", "駐車券", "駐車場")
+
+    @cached_property
+    def _context_venue_maps(self):
+        return load_venue_lookup_maps()
+
+    def _context_venues_agree(self, candidate: str, headline: str) -> bool:
+        if candidate == headline:
+            return True
+        keep, compact = self._context_venue_maps
+        left, _ = normalize_venue_with_lookup(candidate, keep, compact)
+        right, _ = normalize_venue_with_lookup(headline, keep, compact)
+        return left == right
 
     @staticmethod
     def _decode_html_response(resp, *, url: str) -> str:
@@ -914,6 +928,17 @@ class TicketjamEventsSource(SignalSource):
             soup,
             default_year=(candidate_start_date or payload_start_date)[:4],
         )
+
+        conflicts = []
+        if candidate_start_date and page_start_date and candidate_start_date != page_start_date:
+            conflicts.append("date")
+        if candidate_start_time and page_start_time and candidate_start_time != page_start_time:
+            conflicts.append("time")
+        if candidate_venue_name and page_venue_name and not self._context_venues_agree(candidate_venue_name, page_venue_name):
+            conflicts.append("venue")
+        if conflicts:
+            logger.warning("ticketjam: candidate/headline conflict %s: %s", event_url, ",".join(conflicts))
+            return None
 
         start_date = candidate_start_date or page_start_date or payload_start_date
         start_time = candidate_start_time or page_start_time or payload_start_time

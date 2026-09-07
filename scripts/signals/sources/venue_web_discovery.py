@@ -8,14 +8,17 @@ only persists confirmed events from data/venue_web_discovery_config.json.
 from __future__ import annotations
 
 import json
+from functools import cached_property
 import logging
 import re
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 
 from ...events.category import classify_event_category
+from ..entity_aliases import load_venue_lookup_maps, load_venue_prefecture_map, normalize_venue_with_lookup
 from ..types import SignalRecord, SignalSourceRecord
 from .base import (
+    JST,
     SignalSource,
     canonical_labels_json,
     compute_content_hash,
@@ -33,7 +36,7 @@ ACCEPTED_SOURCE_CLASSES = {
     "promoter_official",
     "ticket_official",
 }
-CONTENT_EXTRACTORS = {"requests_bs4", "crawl4ai"}
+CONTENT_EXTRACTORS = {"requests_bs4", "crawl4ai", "browser"}
 CONFIDENCE_SCORES = {
     "high": 95,
     "medium": 75,
@@ -48,6 +51,15 @@ EVENT_STATUSES = {EVENT_STATUS_SCHEDULED} | EVENT_STATUS_SUPPRESSING
 class VenueWebDiscoverySource(SignalSource):
     """Load Codex-confirmed official/semi-official event signals from config."""
 
+    @cached_property
+    def _venue_locations(self):
+        return load_venue_prefecture_map(), load_venue_lookup_maps()
+
+    def _known_prefecture(self, venue_name: str) -> str:
+        locations, (keep, compact) = self._venue_locations
+        canonical, _ = normalize_venue_with_lookup(venue_name, keep, compact)
+        return locations.get(canonical) or locations.get(venue_name) or ""
+
     def fetch_signals(self, source: SignalSourceRecord) -> list[SignalRecord]:
         cfg = self._load_runtime_config(source.config_json)
         source_classes = self._accepted_source_classes(cfg)
@@ -57,7 +69,7 @@ class VenueWebDiscoverySource(SignalSource):
             if str(value).strip()
         }
         future_only = bool(cfg.get("future_only", True))
-        today_iso = date.today().isoformat()
+        today_iso = datetime.now(JST).date().isoformat()
 
         records: list[SignalRecord] = []
         for event in cfg.get("confirmed_events", []):
@@ -157,6 +169,12 @@ class VenueWebDiscoverySource(SignalSource):
             logger.warning("venue_web_discovery: skip incomplete event_id=%s", event.get("event_id"))
             return None
 
+        known_pref = self._known_prefecture(venue_name)
+        explicit_pref = str(event.get("pref_name") or "").strip()
+        if known_pref and explicit_pref and known_pref != explicit_pref:
+            raise ValueError(f"official event prefecture conflicts with registered venue: {event.get('event_id')}")
+        pref_name = explicit_pref or known_pref
+
         description = str(event.get("event_info") or evidence_snippet or "").strip()
         event_category = str(event.get("event_category") or "").strip() or classify_event_category(
             title,
@@ -179,6 +197,7 @@ class VenueWebDiscoverySource(SignalSource):
             "raw_artist_name": str(event.get("raw_artist_name") or artist_name).strip(),
             "event_category": event_category,
             "source_class": source_class,
+            "pref_name": pref_name,
             "confidence": confidence,
             "content_extractor": content_extractor,
             "evidence_url": evidence_url,
@@ -192,6 +211,7 @@ class VenueWebDiscoverySource(SignalSource):
             "event_info",
             "pref_name",
             "discovery_query",
+            "discovery_event_key",
             "verified_at_utc",
             "announced_at_utc",
         ):

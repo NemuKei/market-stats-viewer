@@ -113,7 +113,7 @@
   - `event_signals.sqlite` の `venue_web_discovery`: Codex Automation が公式/準公式ページ本文を根拠確認した大型会場イベント検知。LP掲載候補として扱う。
   - `event_signals.sqlite` の `starto_concert` / `kstyle_music`: ニュース記事または公式に近い告知ページから抽出した速報。興行決定や追加公演の早期検知に使う。
   - `event_signals.sqlite` の `ticketjam_events`: 二次流通サイト上で確認できる参考日程。公式取得が弱い会場やニュースで拾いにくいアーティストの補完に使う。
-- 同一イベントのLP表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。
+- 同一イベントのLP表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music`。TicketjamはLP表示元にせず発見用候補とする とする。
 - 公式／準公式の延期・中止が下位sourceの開催予定を抑止する状態契約と `summary.suppressed_event_count` は、`docs/spec_event_status.md` を正本とする。
 - 外部アプリが「確定日程」として優先表示する場合は、まず `lp_events.json` を使う。元DBを直接使う場合も、同一日程が公式側に存在する場合は公式側を優先する。
 - 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、ニュース由来と二次流通由来を同じ信頼度として扱わない。
@@ -170,7 +170,7 @@
   - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
   - `venue_web_discovery` は `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する
   - `venue_web_discovery` の `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` に限定する
-  - `venue_web_discovery` の `content_extractor` は `requests_bs4` / `crawl4ai` のどちらで本文確認したかを示す監査用ラベルであり、DB採用根拠そのものではない
+  - `venue_web_discovery` の `content_extractor` は `requests_bs4` / `crawl4ai` / `browser` のどの方法で本文・公式公演表を確認したかを示す監査用ラベルであり、DB採用根拠そのものではない
   - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
   - `ticketjam_events` は 1日程=1データを原則とし、複数日開催のシリーズでも日別ページ単位で保存する
   - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する
@@ -251,3 +251,23 @@
 - 一意性ルール:
   - 正規化キー（keep/compact）が複数 canonical に衝突する場合、そのキーは自動適用しない。
   - 自動適用は一意に解決できるキーのみ。
+
+### Ticketjam発見用データと確認履歴 v1
+
+LPの既定は `ticketjam_policy=discovery`。Ticketjamを掲載用の統合入力から除外し、上位sourceのみで公演を分割・統合する。Ticketjamは別に統合して確認待ち一覧へ送り、元DBを保持する。未確認の時刻、会場、出演者を公式行へ補完しない。
+
+- 掲載schema_version=1を維持。source_priorityは掲載可能な4sourceだけ。discovery_source_idsはticketjam_eventsを示す。summaryにticketjam_discovery_record_count、ticketjam_review_candidate_count、ticketjam_verified_support_count、ticketjam_promoted_held_record_countを追加する。統合metricsは掲載用入力の処理件数。
+- 確認済み・重複確認済みのTicketjam根拠だけ、掲載行の日付・会場・時刻と一致するときにsupporting_sourcesへ後付けする。表示値やevent_keyを変更しない。未確認の根拠はDBとqueueに残す。
+- `ticketjam_review_queue.json` はschema_version/as_of_date/source_generated_at_utc/summary/candidates/official_rechecksを持つ。候補はevent_key、日付・時刻・会場・出演者・title・pref_name・capacity、discovery_url、matching_event_keys、search_queries、verification_urls、status、review_due、previous_reviewを保持。statusはpending_official/possible_existing_match/ancillary_ticket/expired。公式昇格後も公式URLからの再確認を維持する。配布対象外。
+- `ticketjam_review_state.json` はschema_version=1とevents（event_keyをkeyにしたobject）を持つ。各recordはcandidate_fingerprint、candidate_snapshot、追記型history。判断のstatusはconfirmed/insufficient/conflict/fetch_failed/duplicate/ancillary。誤判断は訂正を追記し、古い履歴を消さない。配布対象外。
+- confirmedのofficial_eventは既存confirmed_events形式。discovery_event_keyで派生元を追跡し、表示名・URLが変わっても最新の不一致判断を反映する。画像化された公式公演表の実表示確認はcontent_extractor=browserと記録する。
+- conflictはofficial_valuesに実際の異なる値を持つ。複数の公演時刻は配列で保持し、候補がその集合に含まれていれば不一致扱いしない。duplicateはduplicate_of_event_keyとduplicate_target_fingerprintを保持。対象消失・変更で再確認へ戻す。
+- review判断の書込は現在候補のfingerprint一致を必須とする。既存公式configの意味変更はreplaces_config_fingerprintで変更前の完全一致を確認した同一originだけ。schema変更時は履歴migrationを別途用意する。
+
+既存のdisplay/reviewed modeは比較用に残す。全国切替のforward手順はコード・履歴・公式configを一緒に反映し、DB→LP→manifestを再生成して検証すること。公開のrollbackには直前の検証済みdiscovery版assetを使う。旧modeの削除予定はない。運用commandはspec_update_pipelineとticketjam_official_review_automationに従う。
+
+#### 国内所在地の完全性
+
+公開LPのpref_nameは国内47都道府県のいずれかを必須とする。公式確認した会場の所在地が省略されている場合は会場マスターの一致する所在地だけを補う。明示値とマスターが矛盾する場合は黙って置換しない。未登録会場は公式住所に基づく明示値が必要。
+
+国内所在地が確定できない上位sourceの行は統合入力から保留し、location_held_recordsにsource_id/record_id/reason、summary.location_held_record_countに件数を持つ。元DBは保持する。会場名らしい文字列やアーティストから所在地を推測しない。公開validatorが欠落・不正な都道府県を拒否し、公開JSONにあるのに国内検索から落ちる状態を防ぐ。

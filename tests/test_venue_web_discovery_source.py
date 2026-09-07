@@ -120,3 +120,41 @@ def test_venue_web_discovery_loads_only_accepted_confirmed_events(tmp_path: Path
     assert cancelled_labels["source_class"] == "artist_official"
     assert "Disabled event without authoritative status" not in by_title
     assert "News-only event" not in by_title
+
+
+def test_browser_observed_official_calendar_retains_its_evidence_method():
+    plugin = VenueWebDiscoverySource(requests.Session())
+    event = {'event_id': 'calendar', 'title': 'Calendar concert', 'artist_name': 'Artist',
+             'venue_name': 'Hall', 'event_start_date': '2026-11-06', 'event_start_time': '18:00',
+             'source_class': 'promoter_official', 'content_extractor': 'browser',
+             'url': 'https://official.example/ticket/', 'evidence_url': 'https://official.example/calendar.svg',
+             'evidence_snippet': 'Official visual timetable shows November 6 at 18:00.'}
+    result = plugin._event_to_signal(source_id='venue_web_discovery', event=event,
+        accepted_source_classes={'promoter_official'}, rejected_source_classes=set(),
+        future_only=False, today_iso='2026-09-08')
+    assert json.loads(result.labels_json)['content_extractor'] == 'browser'
+
+
+def test_confirmed_venue_supplies_missing_prefecture_for_public_search():
+    plugin = VenueWebDiscoverySource(requests.Session())
+    event = {'event_id': 'osaka', 'title': 'Concert', 'artist_name': 'Artist',
+             'venue_name': 'Zepp Namba(Osaka)', 'event_start_date': '2026-09-13',
+             'source_class': 'venue_official', 'url': 'https://www.zepp.co.jp/hall/namba/schedule/',
+             'evidence_snippet': 'Official schedule confirms the event.'}
+    result = plugin._event_to_signal(source_id='venue_web_discovery', event=event,
+        accepted_source_classes={'venue_official'}, rejected_source_classes=set(),
+        future_only=False, today_iso='2026-09-08')
+    assert json.loads(result.labels_json)['pref_name'] == '大阪府'
+
+
+def test_conflicting_explicit_prefecture_is_not_silently_replaced():
+    import pytest
+    plugin = VenueWebDiscoverySource(requests.Session())
+    event = {'event_id': 'conflict', 'title': 'Concert', 'artist_name': 'Artist',
+             'venue_name': 'Zepp Namba(Osaka)', 'pref_name': '東京都', 'event_start_date': '2026-09-13',
+             'source_class': 'venue_official', 'url': 'https://www.zepp.co.jp/hall/namba/schedule/',
+             'evidence_snippet': 'Official schedule confirms the event.'}
+    with pytest.raises(ValueError, match='prefecture conflicts'):
+        plugin._event_to_signal(source_id='venue_web_discovery', event=event,
+            accepted_source_classes={'venue_official'}, rejected_source_classes=set(),
+            future_only=False, today_iso='2026-09-08')

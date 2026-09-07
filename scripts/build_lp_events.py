@@ -77,6 +77,10 @@ VENUE_WEB_DISCOVERY_STATUS_SOURCE_CLASSES = {
 }
 
 
+def today_jst() -> date:
+    return datetime.now(timezone(timedelta(hours=9))).date()
+
+
 def now_utc_z() -> str:
     return (
         datetime.now(timezone.utc)
@@ -398,6 +402,7 @@ def load_signal_events(
                 "source_label": str(row["source_name"] or row["source_id"] or ""),
                 "source_class": str(labels.get("source_class") or "").strip(),
                 "record_id": str(row["signal_uid"] or ""),
+                "discovery_event_key": str(labels.get("discovery_event_key") or ""),
                 "event_date": event_date,
                 "event_end_date": event_end_date,
                 "event_start_time": labels.get("event_start_time"),
@@ -417,7 +422,7 @@ def load_signal_events(
                     labels.get("evidence_snippet") or row["snippet"] or ""
                 ).strip(),
                 "pref_name": labels.get("pref_name"),
-                "capacity": labels.get("capacity"),
+                "capacity": labels.get("capacity") or labels.get("venue_capacity"),
                 "first_seen_at_utc": row["first_seen_at_utc"],
                 "updated_at_utc": row["updated_at_utc"],
                 "published_at_utc": row["published_at_utc"],
@@ -714,17 +719,17 @@ def source_summary(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_lp_events(
+def load_lp_records(
     *,
     events_db_path: Path = DEFAULT_EVENTS_DB_PATH,
     event_signals_db_path: Path = DEFAULT_EVENT_SIGNALS_DB_PATH,
     include_past: bool = False,
     past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
     as_of_date: date | None = None,
-) -> dict[str, Any]:
+) -> list[dict[str, Any]]:
     if past_days < 0:
         raise ValueError("past_days must be zero or greater")
-    reference_date = as_of_date or date.today()
+    reference_date = as_of_date or today_jst()
     history_start_date = (
         None
         if include_past
@@ -757,6 +762,15 @@ def build_lp_events(
                 f"record_id={record.get('record_id')} url={record.get('url')}"
             ),
         )
+    return records
+
+
+def assemble_lp_payload(
+    records: list[dict[str, Any]], *, as_of_date: date | None = None,
+    include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
+) -> dict[str, Any]:
+    reference_date = as_of_date or today_jst()
+    history_start_date = None if include_past else (reference_date - timedelta(days=past_days)).isoformat()
     events, consolidation_metrics = consolidate_events(records)
     counts_by_display_source: dict[str, int] = {}
     for event in events:
@@ -786,6 +800,20 @@ def build_lp_events(
         },
         "events": events,
     }
+
+def build_lp_events(
+    *, events_db_path: Path = DEFAULT_EVENTS_DB_PATH,
+    event_signals_db_path: Path = DEFAULT_EVENT_SIGNALS_DB_PATH,
+    include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
+    as_of_date: date | None = None,
+) -> dict[str, Any]:
+    reference_date = as_of_date or today_jst()
+    records = load_lp_records(events_db_path=events_db_path,
+        event_signals_db_path=event_signals_db_path, include_past=include_past,
+        past_days=past_days, as_of_date=reference_date)
+    return assemble_lp_payload(records, as_of_date=reference_date,
+        include_past=include_past, past_days=past_days)
+
 
 
 def write_lp_events(
@@ -820,14 +848,44 @@ def main() -> int:
         action="store_true",
         help="Include all past events retained in the source databases.",
     )
-    args = parser.parse_args()
-
-    payload = build_lp_events(
-        events_db_path=args.events_db,
-        event_signals_db_path=args.event_signals_db,
-        include_past=bool(args.include_past),
-        past_days=args.past_days,
+    parser.add_argument(
+        "--ticketjam-policy", choices=("display", "discovery", "reviewed"), default="discovery",
+        help="discovery (default) excludes Ticketjam before publication grouping; reviewed/display are migration rollback modes.",
     )
+    parser.add_argument("--review-output", type=Path, help="Write official-verification candidates before filtering.")
+    parser.add_argument("--review-state", type=Path, help="Existing review history for due-date filtering.")
+    args = parser.parse_args()
+    if args.ticketjam_policy in {"reviewed", "discovery"}:
+        args.review_state = args.review_state or DATA_DIR / "ticketjam_review_state.json"
+        args.review_output = args.review_output or args.output.with_name("ticketjam_review_queue.json")
+    if args.review_output and args.review_output.resolve() == args.output.resolve():
+        parser.error("--review-output must differ from --output")
+
+    if args.review_state and any(
+        path and path.resolve() == args.review_state.resolve()
+        for path in (args.output, args.review_output)
+    ):
+        parser.error("outputs must not overwrite review state")
+
+    review_state = json.loads(args.review_state.read_text(encoding="utf-8")) if args.review_state else None
+    build_args = dict(events_db_path=args.events_db, event_signals_db_path=args.event_signals_db,
+                      include_past=bool(args.include_past), past_days=args.past_days)
+    if args.ticketjam_policy == "discovery":
+        from .ticketjam_discovery import build_discovery_bundle
+
+        reference_date = today_jst()
+        records = load_lp_records(**build_args, as_of_date=reference_date)
+        payload, queue = build_discovery_bundle(records, as_of_date=reference_date,
+            review_state=review_state, include_past=bool(args.include_past), past_days=args.past_days)
+        write_lp_events(queue, args.review_output)
+    else:
+        from .ticketjam_discovery import apply_reviewed_policy, build_review_queue
+
+        payload = build_lp_events(**build_args)
+        if args.review_output:
+            write_lp_events(build_review_queue(payload, review_state), args.review_output)
+        if args.ticketjam_policy == "reviewed":
+            payload = apply_reviewed_policy(payload, review_state)
     write_lp_events(payload, args.output)
     print(
         f"lp events written: {args.output} ({payload['summary']['event_count']} events)"

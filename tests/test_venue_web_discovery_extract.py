@@ -25,3 +25,15 @@ def test_crawl4ai_links_accepts_grouped_links():
     )()
 
     assert _crawl4ai_links(result) == ["https://example.com/a", "https://example.org/b"]
+
+
+def test_declared_html_charset_overrides_requests_latin1_default():
+    from requests import Response
+    from scripts.venue_web_discovery_extract import extract_with_requests_bs4
+    response = Response()
+    response.status_code = 200
+    response.encoding = 'ISO-8859-1'
+    response._content = '<meta charset="utf-8"><p>大阪公演 ペルソナ 2026年9月13日</p>'.encode()
+    session = type('Session', (), {'get': lambda self, *a, **kw: response})()
+    result = extract_with_requests_bs4('https://example.com', session=session)
+    assert '大阪公演 ペルソナ' in result.text

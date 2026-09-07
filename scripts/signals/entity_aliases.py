@@ -270,3 +270,18 @@ def _strip_trailing_parenthetical_suffix(text: str) -> str:
             break
         candidate = updated
     return candidate
+
+
+def load_venue_prefecture_map(path: Path = VENUE_REGISTRY_PATH) -> dict[str, str]:
+    """Read location metadata without guessing from event or artist text."""
+    result: dict[str, str] = {}
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        for row in csv.DictReader(handle):
+            name = str(row.get("venue_name") or "").strip()
+            pref = str(row.get("pref_name") or "").strip()
+            if not name or not pref:
+                continue
+            if name in result and result[name] != pref:
+                raise ValueError(f"ambiguous registered venue location: {name}")
+            result[name] = pref
+    return result

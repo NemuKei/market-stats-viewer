@@ -158,7 +158,7 @@
     - DB schema は増やさず、設定ファイルと `labels_json` で運用する。
     - `event_status=postponed|cancelled` の保存、LP表示抑止、振替公演、Release gateは `docs/spec_event_status.md` を正本とする。
     - Skill本文は自動編集しない。Codex Automation が自動調整してよいのは `data/venue_web_discovery_config.json` の設定と confirmed event rows のみ。
-    - 本文抽出providerは `content_extractor=requests_bs4|crawl4ai` とする。既定は `requests_bs4`、`crawl4ai` は optional fallback provider であり、JS生成ページ、`requests_bs4` 失敗ページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトだけに使う。
+    - 本文抽出providerは `content_extractor=requests_bs4|crawl4ai|browser` とする。既定は `requests_bs4`、`crawl4ai` は optional fallback provider であり、JS生成ページ、`requests_bs4` 失敗ページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトだけに使う。
     - `crawl4ai` は optional dependency とし、通常の `uv sync --frozen` では必須にしない。必要な環境だけ `uv sync --extra crawl4ai`、`uv run crawl4ai-setup`、`uv run crawl4ai-doctor` を実行する。
     - Firecrawl は将来の paid optional provider として保留し、browser-use は調査・Skill改善・例外調査用に保留する。
     - `content_extractor` は確認に使った抽出providerの監査ラベルであり、DB採用根拠そのものではない。採用根拠は常に公式/準公式URLと本文根拠である。
@@ -276,7 +276,7 @@
   - 履歴判定は開催開始日ではなく `event_end_date` を使い、基準日時点で開催中の複数日イベントを過去扱いしない。
   - payloadは `include_past`、`history_window_days`、`history_start_date` を持つ。通常生成は `include_past=true`、`history_window_days=90` とする。
   - Grouping key: `event_date + canonical venue_name + canonical artist_name`
-  - Display source priority: `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events`
+  - Display source priority: `official_events > venue_web_discovery > starto_concert/kstyle_music`。Ticketjamは発見用に分離する
   - Lower-priority matches are retained in `supporting_sources`.
 - Workflow:
   - `.github/workflows/update_signals_venue_web_discovery.yml`（公式/準公式Web検知: `venue_web_discovery`）
@@ -425,3 +425,21 @@
   2. publish run が `failure` / `cancelled` の場合は原因を修正して再実行する。上流workflowが `failure` / `cancelled` / `skipped` の場合は、先に上流workflowを復旧または再実行する
   3. 対象更新後にpublish runが存在しない、またはrelease assetが更新されていない場合は、`publish_external_events_assets.yml` を `workflow_dispatch` で手動実行する
   4. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` / `source_commit_sha` を見る
+
+### Ticketjam公式確認からLP配布への継続運用
+
+運用手順・許可範囲・再確認・公開確認は [ticketjam_official_review_automation.md](ticketjam_official_review_automation.md) を正本とする。
+
+- `build_lp_events` CLI既定は `discovery`。同じDB入力から、上位sourceのみの掲載用データと、Ticketjamのみを別に統合した発見用データを作る。未確認のTicketjamを掲載用の公演分割・時刻補完・表示元に使わない。
+- `data/ticketjam_review_state.json` を読み、出力先と同じdirectoryへ `ticketjam_review_queue.json` を生成する。`--review-state` / `--review-output` で変更可能。入出力で履歴を上書きする指定を拒否する。履歴がないときは暗黙に旧modeへ戻さない。
+- `build_lp_events()` は移行比較用の保留前payloadを返す。公開にはCLIまたは `build_discovery_bundle` を使う。`reviewed` / `display` は比較用互換modeとして残す。
+- `prepare_ticketjam_review` は再確認期日と候補内容を確認し、boundedなplanを生成する。`--resolve-covered` は上位sourceの厳密キー・会場・日付・出演者・時刻が一致する場合だけ既存一致を記録する。新しいWeb確認の主張ではない。
+- `ticketjam_official_checks` はNPBとZeppの公式予定表を照合する。年、日付区間、会場、公演、出演者、STARTを一致確認し、古いqueueやOPENだけでconfirmedを出力しない。未対応・未一致の候補はCodexの公式探索へ回す。
+- `ticketjam_review_state` はcandidate_fingerprint付き判断を追記する。同一判断は冪等。古い判断、日付矛盾、実際の差がないconflict、別originのconfig変更を拒否する。明示的なconfig訂正は変更前のreplaces_config_fingerprintが一致する場合のみ。
+- `venue_web_discovery` のsignalにdiscovery_event_keyを保持する。最新判断がconflict/ancillaryになった派生公式行は公開から保留する。元DB行は消さない。取得失敗で最後の成功を取り消さず、確認URLと再試行履歴を保持する。
+- 本文はHTML bytesからcharsetを認識する。確認methodはrequests_bs4/crawl4ai/browser。browserはCodexが実表示で公式公演表を読んだ場合の監査値で、Python extractorの自動実行modeではない。
+- Ticketjam collectorでは候補リストと個別ページ見出しの日時・会場が矛盾する候補を採用しない。既知の会場aliasは同一性判定に使い、未知の別名は推測一致させない。
+- `as_of_date` の既定はAsia/Tokyoの日付。UTCのgenerated_at_utcと混同しない。
+- `data/manifest.json` はGit管理せずRelease時にcheckoutの実commitから生成する。`validate_external_events` を通してからassetを上書きする。候補・履歴はRelease assetに追加しない。
+
+- 公式登録では会場マスターの確定済み所在地を補完し、明示所在地との矛盾を拒否する。LP組立では国内所在地の確定できない上位sourceも保留する。validatorは47都道府県の完全一致を検証する。

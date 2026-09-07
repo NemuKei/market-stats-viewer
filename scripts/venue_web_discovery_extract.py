@@ -50,7 +50,8 @@ def extract_with_requests_bs4(
     active_session = session or requests.Session()
     response = active_session.get(url, timeout=timeout_sec)
     response.raise_for_status()
-    soup = BeautifulSoup(response.text, "html.parser")
+    # Parse bytes so HTML charset declarations survive requests' Latin-1 default.
+    soup = BeautifulSoup(response.content, "html.parser")
     for tag in soup(["script", "style", "noscript", "svg"]):
         tag.decompose()
     text = compact_text(soup.get_text(" "))

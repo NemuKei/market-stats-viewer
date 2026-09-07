@@ -48,7 +48,7 @@ jobs:
 
       - name: Validate venue web discovery outputs
         run: |
-          uv run python -m pytest tests/test_venue_web_discovery_source.py tests/test_venue_web_discovery_extract.py tests/test_build_lp_events.py tests/test_build_external_events_manifest.py
+          uv run python -m pytest tests/test_venue_web_discovery_source.py tests/test_venue_web_discovery_extract.py tests/test_build_lp_events.py tests/test_build_external_events_manifest.py tests/test_ticketjam_publication.py tests/test_ticketjam_review_state.py tests/test_prepare_ticketjam_review.py tests/test_ticketjam_official_checks.py tests/test_validate_external_events.py
           uv run python -m scripts.venue_web_discovery_extract --help
           mkdir -p tmp
           uv run python -m scripts.build_external_events_manifest --release-tag external-events-latest --output tmp/manifest.json
@@ -60,7 +60,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git config merge.ours.driver true
-            git add data/event_signals.sqlite data/lp_events.json data/venue_web_discovery_config.json
+            git add data/event_signals.sqlite data/lp_events.json data/venue_web_discovery_config.json data/ticketjam_review_queue.json
             git commit -m "chore: update event signals data (venue web discovery)"
             branch="${GITHUB_REF_NAME:-main}"
             for i in 1 2 3; do

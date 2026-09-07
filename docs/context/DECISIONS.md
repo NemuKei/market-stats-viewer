@@ -108,3 +108,7 @@
 - D-20260731-001 | LP向け`lp_events.json`の通常生成は、開催予定に加えて開催終了日が基準日の90日前以降であるイベントを含める。過去分は元DBに保存されている公開情報の範囲に限り、網羅的なアーカイブとは表現しない。Ticketjamの未来開催のみ保持する方針は維持する | status: applied | spec_link: docs/spec_data.md; docs/spec_update_pipeline.md
 - D-20260806-001 | root `AGENTS.md` は `repo-template-codex@8877297d` の `solo-product` を基礎に、`data-contract-and-migration` と `architecture-and-dependencies` を採用する。D-20260723-001の「Profile C」という旧分類名だけをsupersedeし、AGENTS-first、retained optional context、現役repo-local Skill、CLAUDE互換入口、current `STATUS`の境界は維持する。共通policyは複製せず、MSV固有のsource、LP、data contract、approval、verificationだけをrootに置く | status: applied | spec_link: AGENTS.md
 - D-20260905-001 | 外部イベント配布は GitHub Release assets（tag: `external-events-latest`）を正とする。GitHub Actions内の更新は `workflow_run`、ローカルcheckoutやCodex Automationから`main`へ直接pushされた配布入力またはmanifest生成処理の更新はpath限定の `push` で自動公開し、push起点ではtrigger commitへ固定する。`workflow_dispatch` は手動復旧経路として残す | status: applied | spec_link: docs/spec_update_pipeline.md
+
+- D-20260907-001 | Ticketjamは公式探索の候補として活用し、段階移行中のLP生成では審査済みの重複・付随券・不一致だけを保留するreviewed modeをCLI既定とする。内容変更のある古い審査は適用せず、元DBと証跡を保持する。全国単独掲載の一括停止は別途検証する | status: superseded_by_D-20260908-001 | spec_link: docs/spec_data.md
+
+- D-20260908-001 | Ticketjamは全国で発見用に分離し、LPの統合・時刻補完・表示元に直接使わない。公式確認の履歴、再確認、既存一致の照合、boundedなCodex定期処理と公開検証を継続運用へ接続する。上位sourceからのみ掲載を組み立て、未確認候補はqueueに保持する | status: applied | spec_link: docs/spec_data.md
