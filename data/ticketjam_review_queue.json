@@ -12536,7 +12536,9 @@
       "event_end_date": "2026-09-22",
       "event_key": "9d231590de1278fda4f1",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "9d231590de1278fda4f1"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
@@ -12546,7 +12548,7 @@
       },
       "review_due": false,
       "search_queries": [],
-      "status": "pending_official",
+      "status": "possible_existing_match",
       "title": "NANA MIZUKI LIVE GRACE 2026 -OPUS Ⅳ-",
       "venue_name": "国立代々木競技場第一体育館",
       "verification_urls": [
@@ -18789,7 +18791,9 @@
       "event_end_date": "2026-10-13",
       "event_key": "f0a23846197abef71786",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "f18509b31d8e1a0dc9d9"
+      ],
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
@@ -18799,11 +18803,12 @@
       },
       "review_due": false,
       "search_queries": [],
-      "status": "pending_official",
+      "status": "possible_existing_match",
       "title": "HOW DID WE GET HERE? WORLD TOUR 2026 JAPAN",
       "venue_name": "Zepp Namba(Osaka)",
       "verification_urls": [
-        "https://www.zepp.co.jp/hall/namba/schedule/?_y=2026&_m=10"
+        "https://www.zepp.co.jp/hall/namba/schedule/?_y=2026&_m=10",
+        "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=166532"
       ]
     },
     {
@@ -29273,14 +29278,14 @@
     }
   ],
   "schema_version": 1,
-  "source_generated_at_utc": "2026-09-08T00:34:16Z",
+  "source_generated_at_utc": "2026-09-08T00:48:10Z",
   "summary": {
     "candidate_count": 1239,
     "counts_by_status": {
       "ancillary_ticket": 23,
       "expired": 146,
-      "pending_official": 467,
-      "possible_existing_match": 603
+      "pending_official": 465,
+      "possible_existing_match": 605
     },
     "due_count": 496
   }

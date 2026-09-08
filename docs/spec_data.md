@@ -98,6 +98,7 @@
 - `capacity`: イベント固有があればそれ、なければ会場キャパを COALESCE で利用
 - 会場定義: `data/venue_registry.csv`（1行=1会場、追加は1行追加のみ）
 - `artist_name_resolved`: BCL/表示向けの解決済みアーティスト名（`performers` は取得元生値を保持）
+- タイトル先頭の短い英字単語だけでは出演者を確定しない。6文字以下の英数字aliasは、名称全体との一致、明示的な出演者表記、または名称に続く公演表記を要する。会場語だけでは根拠にしない。例: `LOVE JAZZ TIME` の `LOVE`、`IDOL RUNWAY COLLECTION` の `IDOL` は未解決とし、`LOVE LIVE` や `HANA 1st LIVE TOUR` は公演表記を照合する。
 - 辞書照合の修正時は `events_artist_inferred.csv` と解決済み列を再計算し、未解決の旧推定名を残さない。取得元の `performers`、元イベント行、初回取得日時は保持する。例: `水谷千重子の宴ジョインコンサート2026` の旧推定 `ジョイ` は、公式表記で追加した辞書名 `水谷千重子` へ訂正する。表示名の訂正に伴ってLPの統合キー・件数が変わり得るため、JSON再生成・manifest検証・利用側表示確認を同時に行う。保存shapeやsource優先順位は変更しない。ロールバックは照合コード・辞書・導出dataを同じ検証済みrevisionへ戻し、Releaseを再生成する。
 - `artist_confidence`: `source` / `source_normalized` / `high` / `medium` / `low`
 

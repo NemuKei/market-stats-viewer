@@ -179,6 +179,46 @@ class BuildEventsArtistInferredTests(unittest.TestCase):
                     (artist, "high", artist, "title"),
                 )
 
+    def test_short_english_prefix_needs_performer_context(self) -> None:
+        artist_index = build_artist_index(
+            [
+                ArtistEntry("test:" + name, name, (), "test", True)
+                for name in [
+                    "IDOL", "LOVE", "Ado", "HANA", "Nissy", "Chage", "angela", "tuki.",
+                    "KAI", "JUJU", "TWICE", "CORTIS", "ReoNa", "HAGANE"
+                ]
+            ]
+        )
+        for title in [
+            "IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER AGESTOCK2026 in 横浜アリーナ",
+            "IDOL RUNWAY COLLECTION in YOKOHAMA ARENA",
+            "LOVE JAZZ TIME 2026",
+            "KAI YOSHIHIRO ホームカミングツアー 2026",
+        ]:
+            with self.subTest(title=title):
+                self.assertIsNone(infer_event_artist(title, "", artist_index))
+        for title, artist in [
+            ("LOVE", "LOVE"),
+            ("LOVE LIVE 2026", "LOVE"),
+            ("Ado WORLD TOUR 2026", "Ado"),
+            ("HANA 1st LIVE TOUR 2026", "HANA"),
+            ("Nissy Nissy Entertainment Variety Show", "Nissy"),
+            ("ChageLiveTour2026 One Love", "Chage"),
+            ("angela政府公認路上ライヴ", "angela"),
+            ("tuki.『秋の修学旅行〜天体観測〜』", "tuki."),
+            ("JUJU HALL TOUR 2026", "JUJU"),
+            ("TWICE ＜THIS IS FOR＞ WORLD TOUR IN JAPAN", "TWICE"),
+            ("CORTIS 2026 CORTIS TOUR <PUT YOUR PHONE DOWN> IN JAPAN", "CORTIS"),
+            ("ReoNa ReoNa ONE-MAN Concert 2027", "ReoNa"),
+            ("HAGANE New Album Release Tour", "HAGANE"),
+        ]:
+            with self.subTest(title=title):
+                confidence = "medium" if title == "ChageLiveTour2026 One Love" else "high"
+                self.assertEqual(
+                    infer_event_artist(title, "", artist_index),
+                    (artist, confidence, artist, "title"),
+                )
+
     def test_explicit_performer_attribution_preserves_short_canonical_names(
         self,
     ) -> None:

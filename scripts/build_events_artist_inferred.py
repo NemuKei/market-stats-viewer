@@ -312,6 +312,35 @@ def load_target_events(events_db_path: Path, limit: int = 0) -> list[dict[str, s
     return out
 
 
+def _has_prefix_performer_context(text: str, alias: str) -> bool:
+    alias_keep = normalize_text(alias, mode="keep")
+    suffix = text[len(alias_keep) :].lstrip()
+    # Some venue pages concatenate an artist heading and an event title.
+    suffix = re.sub(r"^20\d{2}\s+", "", suffix)
+    if suffix.startswith(alias_keep + " "):
+        suffix = suffix[len(alias_keep) :].lstrip()
+    suffix = re.sub(r'^[<＜「『\["][^>＞」』\]"]*[>＞」』\]"]\s*', "", suffix)
+    performance = (
+        r"(?:live(?:\s*tour)?|tour|concert|one[-\s]*man|anniversary|presents|show|fan\s*meeting)"
+    )
+    qualifier = (
+        r"(?:world|japan|asia|arena|hall|dome|band|fan|the|new|album|release"
+        r"|entertainment|variety|\d+(?:st|nd|rd|th)?)"
+    )
+    return bool(
+        re.match(
+            rf"^(?:{qualifier}\s+){{0,5}}{performance}(?=$|\W|\d)",
+            suffix,
+        )
+        or re.match(r"^(?:with\b|zepp\b).{0,60}" + performance, suffix)
+        or re.match(r"^zepp\b.{0,40}(?:ライ[ブヴ]|コンサート|ツア[-ー]|ワンマン)", suffix)
+        or re.match(
+            r"^[^a-z]{0,20}(?:ライ[ブヴ]|コンサート|ツア[-ー]|ワンマン|リサイタル|ファンミ)",
+            suffix,
+        )
+    )
+
+
 def _infer_from_text(
     text: str, artist_index: dict[str, object]
 ) -> tuple[str, str, str] | None:
@@ -349,6 +378,17 @@ def _infer_from_text(
         )
         for match in matches
     )
+    is_short_english_name = bool(re.fullmatch(r"[A-Za-z0-9]{1,6}", matched_alias))
+    is_exact_name = normalize_text(match_text, mode="compact") in {
+        compact_alias,
+        normalize_text(canonical_name, mode="compact"),
+    }
+    if is_short_english_name and not (
+        is_exact_name
+        or is_explicit_performer
+        or (is_prefix and _has_prefix_performer_context(match_text, matched_alias))
+    ):
+        return None
     # Validate the chosen name before accepting it; do not select a different
     # title word or increase its confidence after removing an ambiguous name.
     if not (is_prefix or is_explicit_performer) and (
