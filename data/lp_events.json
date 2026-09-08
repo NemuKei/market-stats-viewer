@@ -5545,6 +5545,44 @@
       "venue_name": "Zepp Fukuoka"
     },
     {
+      "artist_name": "GILTY×GILTY",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-08",
+      "event_end_date": "2026-09-08",
+      "event_end_time": null,
+      "event_key": "df244fd2eb1254ff5942",
+      "event_start_time": "17:30",
+      "evidence_snippet": "2026-09-08 Zepp Haneda(Tokyo)。GILTY×GILTY 4th anniversary LIVE JUDGMENT X、開始17:30を公式情報で確認。",
+      "evidence_url": "https://heroines.jp/news/public/_/8fyq7orezc6yjjqi.html",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "GILTY×GILTY",
+      "raw_venue_name": "Zepp Haneda(Tokyo)",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://heroines.jp/news/public/_/8fyq7orezc6yjjqi.html",
+          "priority": 20,
+          "record_id": "144f211ccc93692e4a80ea34c40e6c8db0175e5dde26bf6edc1cdd920467dbe2",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "GILTY×GILTY 4th anniversary LIVE JUDGMENT X",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://heroines.jp/news/public/_/8fyq7orezc6yjjqi.html"
+        }
+      ],
+      "title": "GILTY×GILTY 4th anniversary LIVE JUDGMENT X",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://heroines.jp/news/public/_/8fyq7orezc6yjjqi.html",
+      "venue_name": "Zepp Haneda(Tokyo)"
+    },
+    {
       "artist_name": "サークルライチ",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -5785,7 +5823,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs 西武",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -5802,7 +5840,7 @@
         }
       ],
       "title": "オリックス vs 西武",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -8903,7 +8941,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs 西武",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -8920,7 +8958,7 @@
         }
       ],
       "title": "オリックス vs 西武",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -9341,7 +9379,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "PUNKTUARY 2026",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://gorillahall.jp/archives/schedule-date/2026-9"
         },
         {
@@ -9358,7 +9396,7 @@
         }
       ],
       "title": "PUNKTUARY 2026",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://gorillahall.jp/archives/schedule-date/2026-9",
       "venue_name": "GORILLA HALL OSAKA"
     },
@@ -9541,7 +9579,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ガンバ大阪 vs FC東京",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://www.gamba-osaka.net/game/?log=side_menu_sp"
         },
         {
@@ -9558,7 +9596,7 @@
         }
       ],
       "title": "ガンバ大阪 vs FC東京",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://www.gamba-osaka.net/game/?log=side_menu_sp",
       "venue_name": "Panasonic Stadium Suita"
     },
@@ -9805,7 +9843,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://sd.dleague.co.jp/schedule/2026/west-26/"
         },
         {
@@ -9822,7 +9860,7 @@
         }
       ],
       "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://sd.dleague.co.jp/schedule/2026/west-26/",
       "venue_name": "Zepp Namba(Osaka)"
     },
@@ -9855,7 +9893,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://sd.dleague.co.jp/schedule/2026/west-26/"
         },
         {
@@ -9872,7 +9910,7 @@
         }
       ],
       "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://sd.dleague.co.jp/schedule/2026/west-26/",
       "venue_name": "Zepp Namba(Osaka)"
     },
@@ -9905,7 +9943,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "大阪爆音漫才選集",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/"
         },
         {
@@ -9922,7 +9960,7 @@
         }
       ],
       "title": "大阪爆音漫才選集",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/",
       "venue_name": "Zepp Osaka Bayside"
     },
@@ -9955,7 +9993,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "大阪爆音漫才選集",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/"
         },
         {
@@ -9972,7 +10010,7 @@
         }
       ],
       "title": "大阪爆音漫才選集",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/",
       "venue_name": "Zepp Osaka Bayside"
     },
@@ -10443,7 +10481,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs 楽天",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -10460,7 +10498,7 @@
         }
       ],
       "title": "オリックス vs 楽天",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -11443,7 +11481,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "2026/27 U-21Jリーグ ガンバ大阪 vs ヴィッセル神戸",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://www.jleague.jp/u-21/match/search-list/?enddate=2026-09-13&period=week&startdate=2026-09-07"
         },
         {
@@ -11460,7 +11498,7 @@
         }
       ],
       "title": "2026/27 U-21Jリーグ ガンバ大阪 vs ヴィッセル神戸",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://www.jleague.jp/u-21/match/search-list/?enddate=2026-09-13&period=week&startdate=2026-09-07",
       "venue_name": "Panasonic Stadium Suita"
     },
@@ -11747,16 +11785,16 @@
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=165885"
         },
         {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/hiroineslive/event/1274785",
-          "priority": 40,
-          "record_id": "e9c8d0578a66d709a5d5f89f82299a3c138fc29719053a61697b8f43b5d154c4",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "HEROINES主催公演 「HEROINES LIVE inOSAKA」",
-          "updated_at_utc": "2026-08-25T04:13:49Z",
-          "url": "https://ticketjam.jp/tickets/hiroineslive/event/1274785"
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/",
+          "priority": 20,
+          "record_id": "6aafd7358f39e6cd76d2d4876526386854238f2bd50bdbdd19a501b7d2cd5aed",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HEROINES LIVE in OSAKA",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/"
         }
       ],
       "title": "HEROINES LIVE in OSAKA",
@@ -13585,7 +13623,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第20回アジア競技大会 サッカー",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
           "url": "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html"
         },
         {
@@ -13602,7 +13640,7 @@
         }
       ],
       "title": "第20回アジア競技大会 サッカー",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
       "url": "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html",
       "venue_name": "ヤンマースタジアム長居"
     },
@@ -14841,16 +14879,16 @@
           "url": "https://www.sound-c.co.jp/schedule/detail/10254/"
         },
         {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/hana-b-rave/event/1182442",
-          "priority": 40,
-          "record_id": "7297de23af071992f4a8c17854a512052590aa2f15cc03e76cf359e3e0a62c60",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "HANA 1st TOUR 2026 “Born to Bloom”",
-          "updated_at_utc": "2026-08-30T09:27:03Z",
-          "url": "https://ticketjam.jp/tickets/hana-b-rave/event/1182442"
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sound-c.co.jp/schedule/detail/10254/",
+          "priority": 20,
+          "record_id": "d3b22d0bd050178dbf6ee9ca51b5abc1596195aec6f6933715d67488b9baa7b0",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HANA 1st TOUR 2026 Born to Bloom 追加公演",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.sound-c.co.jp/schedule/detail/10254/"
         }
       ],
       "title": "HANA",
@@ -15429,16 +15467,16 @@
           "url": "https://www.sound-c.co.jp/schedule/detail/10254/"
         },
         {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/hana-b-rave/event/1182443",
-          "priority": 40,
-          "record_id": "78515ebcab69ea5cf3956975f1672e9a7d5cc0b388b74cf0e632b5ea107f49f7",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "HANA 1st TOUR 2026 “Born to Bloom”",
-          "updated_at_utc": "2026-08-31T09:56:47Z",
-          "url": "https://ticketjam.jp/tickets/hana-b-rave/event/1182443"
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.sound-c.co.jp/schedule/detail/10254/",
+          "priority": 20,
+          "record_id": "13ff30cbc9dd67d2a94d41e97cc05da2dc6b9ead28ca01eee2a7bae783b0c010",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HANA 1st TOUR 2026 Born to Bloom 追加公演",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.sound-c.co.jp/schedule/detail/10254/"
         }
       ],
       "title": "HANA",
@@ -23685,6 +23723,56 @@
       "venue_name": "福岡サンパレス"
     },
     {
+      "artist_name": "熱闘 JAM",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "14d6dfba644c70fea7ec",
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-09-23 GLION ARENA KOBE。熱闘 JAM 2026、開始15:00を公式情報で確認。",
+      "evidence_url": "https://www.totteikobe.jp/event/article/25952",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "兵庫県",
+      "raw_artist_name": "熱闘 JAM",
+      "raw_venue_name": "GLION ARENA KOBE",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.totteikobe.jp/event/article/25952",
+          "priority": 20,
+          "record_id": "5c7da4ce921325f7208d3310602d381deeed019509f8cc1930b75dc616c9f2c8",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "熱闘 JAM 2026",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.totteikobe.jp/event/article/25952"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/netto_jam/event/1168189",
+          "priority": 40,
+          "record_id": "57e4f80ec6cfeb0fa8eb1eb9bbb72c53e48a6a7eb7faa15b58a77e249987a01c",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "熱闘 JAM 2026",
+          "updated_at_utc": "2026-08-30T09:27:03Z",
+          "url": "https://ticketjam.jp/tickets/netto_jam/event/1168189"
+        }
+      ],
+      "title": "熱闘 JAM 2026",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.totteikobe.jp/event/article/25952",
+      "venue_name": "GLION ARENA KOBE"
+    },
+    {
       "artist_name": "オン・ソンウ",
       "capacity": null,
       "display_source_class": "",
@@ -23733,7 +23821,7 @@
       "event_end_date": "2026-09-23",
       "event_end_time": null,
       "event_key": "ab7bea2d5e8f244a13e5",
-      "event_start_time": null,
+      "event_start_time": "18:30",
       "evidence_snippet": "K Arena Yokohama official schedule lists HiGH&LOW 10th ANNIVERSARY FEVER on 2026.09.23 with ARTIST EXILE THE SECOND / DOBERMAN INFINITY / THE RAMPAGE / FANTASTICS / BALLISTIK BOYZ…",
       "evidence_url": "https://k-arena.com/schedule/20260923-1/",
       "first_seen_at_utc": "2026-07-05T00:15:49Z",
@@ -23753,12 +23841,124 @@
           "title": "HiGH&LOW 10th ANNIVERSARY FEVER",
           "updated_at_utc": "2026-09-07T16:27:55Z",
           "url": "https://k-arena.com/schedule/20260923-1/"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.ldh.co.jp/news/detail.php?lang=jpn&newsid=0000054725&site=LDH",
+          "priority": 20,
+          "record_id": "882a5b9c7ad44f384c847fc16df07c60e8066c55af18da8b7162537dcd73e32c",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HiGH&LOW 10th ANNIVERSARY FEVER",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.ldh.co.jp/news/detail.php?lang=jpn&newsid=0000054725&site=LDH"
         }
       ],
       "title": "HiGH&LOW 10th ANNIVERSARY FEVER",
       "updated_at_utc": "2026-09-07T16:27:55Z",
       "url": "https://k-arena.com/schedule/20260923-1/",
       "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "藤井隆",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "23a0d4bf456c6275940c",
+      "event_start_time": "17:00",
+      "evidence_snippet": "2026-09-23 LINE CUBE SHIBUYA。SLENDERIE RECORD ファミリーコンサート2026 MUSIC POWER、開始17:00を公式情報で確認。",
+      "evidence_url": "https://linecubeshibuya.com/category/event/event202609",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "藤井隆",
+      "raw_venue_name": "LINE CUBE SHIBUYA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://linecubeshibuya.com/category/event/event202609",
+          "priority": 20,
+          "record_id": "d9201639ec1ae705f00e3c001cff4fb3156b398c11fba69bc23afa8f2c7fc9e0",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "SLENDERIE RECORD ファミリーコンサート2026 MUSIC POWER",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://linecubeshibuya.com/category/event/event202609"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tanaka-naoki-cocorico/event/1088313",
+          "priority": 40,
+          "record_id": "552704304af1095d9966fef566ab45ddbea1c5963103bc1401262c4864f0c284",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "SLENDERIE RECORD ファミリーコンサート2026 MUSIC POWER",
+          "updated_at_utc": "2026-06-04T08:13:37Z",
+          "url": "https://ticketjam.jp/tickets/tanaka-naoki-cocorico/event/1088313"
+        }
+      ],
+      "title": "SLENDERIE RECORD ファミリーコンサート2026 MUSIC POWER",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://linecubeshibuya.com/category/event/event202609",
+      "venue_name": "LINE CUBE SHIBUYA"
+    },
+    {
+      "artist_name": "田原俊彦",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "752b6d2272ebdb70432d",
+      "event_start_time": "17:30",
+      "evidence_snippet": "2026-09-23 NHKホール。TOSHIHIKO TAHARA DOUBLE T TOUR 2026 Dance with KING of IDOL パーティーはこれからだ！、開始17:30を公式情報で確認。",
+      "evidence_url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "田原俊彦",
+      "raw_venue_name": "NHKホール",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
+          "priority": 20,
+          "record_id": "8223456ef7908e499912a0b923818ad5913a839c98fb735e729c8513f21c5cec",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "TOSHIHIKO TAHARA DOUBLE T TOUR 2026 Dance with KING of IDOL パーティーはこれからだ！",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tahara-toshihiko/event/1139742",
+          "priority": 40,
+          "record_id": "2816bfb700c82de74e9d929298bc908038f8ece2e15a6b23ceffd80f5a0c14cc",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "田原俊彦 Dance with KING of IDOL 2026 〜パーティーはこれからだ!〜",
+          "updated_at_utc": "2026-07-11T06:04:07Z",
+          "url": "https://ticketjam.jp/tickets/tahara-toshihiko/event/1139742"
+        }
+      ],
+      "title": "TOSHIHIKO TAHARA DOUBLE T TOUR 2026 Dance with KING of IDOL パーティーはこれからだ！",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
+      "venue_name": "NHKホール"
     },
     {
       "artist_name": "横山裕",
@@ -23949,6 +24149,94 @@
       "venue_name": "Zepp Haneda(Tokyo)"
     },
     {
+      "artist_name": "Masato Hayashi",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "03776422ac72f065f196",
+      "event_start_time": "18:30",
+      "evidence_snippet": "2026-09-23 Zepp Shinjuku(TOKYO)。Masato Hayashi ONE MAN LIVE in Shinjuku 暴走東京、開始18:30を公式情報で確認。",
+      "evidence_url": "https://www.zepp.co.jp/hall/shinjuku/schedule/?_y=2026&_m=9",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Masato Hayashi",
+      "raw_venue_name": "Zepp Shinjuku(TOKYO)",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.zepp.co.jp/hall/shinjuku/schedule/?_y=2026&_m=9",
+          "priority": 20,
+          "record_id": "1145eaff96e0107ccaf37e53da2455c2df0d918a6942b8f5900fd74ed9d7b6d9",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Masato Hayashi ONE MAN LIVE in Shinjuku 暴走東京",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/?_y=2026&_m=9"
+        }
+      ],
+      "title": "Masato Hayashi ONE MAN LIVE in Shinjuku 暴走東京",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/?_y=2026&_m=9",
+      "venue_name": "Zepp Shinjuku(TOKYO)"
+    },
+    {
+      "artist_name": "My Hair is Bad",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "202a9bd089177f3abaad",
+      "event_start_time": "17:00",
+      "evidence_snippet": "2026-09-23 Zepp札幌。My Hair is Bad ノーブルホームランツアー、開始17:00を公式情報で確認。",
+      "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "北海道",
+      "raw_artist_name": "My Hair is Bad",
+      "raw_venue_name": "Zepp札幌",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/",
+          "priority": 20,
+          "record_id": "c43c77b06a2c0c4f0d887684e594f87a93b91e8207afe709ac15c0d90fc11109",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "My Hair is Bad ノーブルホームランツアー",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.zepp.co.jp/hall/sapporo/schedule/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/my-hair-is-bad/event/1184944",
+          "priority": 40,
+          "record_id": "d6742ff75887012c5152f4818fa46ac76de80460e7266785758b87cd641e0271",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "My Hair is Bad presents「ノーブルホームランツアー」",
+          "updated_at_utc": "2026-08-30T09:27:03Z",
+          "url": "https://ticketjam.jp/tickets/my-hair-is-bad/event/1184944"
+        }
+      ],
+      "title": "My Hair is Bad ノーブルホームランツアー",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.zepp.co.jp/hall/sapporo/schedule/",
+      "venue_name": "Zepp札幌"
+    },
+    {
       "artist_name": "Nissy",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -24137,25 +24425,37 @@
       "venue_name": "フェスティバルホール"
     },
     {
-      "artist_name": "&TEAM",
+      "artist_name": "INKIGAYO LIVE in TOKYO",
       "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
       "event_category": "コンサート",
       "event_date": "2026-09-23",
       "event_end_date": "2026-09-23",
       "event_end_time": null,
-      "event_key": "9fe21f6743fd0021e2ea",
-      "event_start_time": null,
-      "evidence_snippet": "会場: ベルーナドーム(埼玉県所沢市) / 日時: 2026-09-23 / 2026年9月23日(水・祝)開場16:00/開演18:00(予定)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280783",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
+      "event_key": "ce6abe99ef59e0447c96",
+      "event_start_time": "18:00",
+      "evidence_snippet": "2026-09-23 ベルーナドーム。INKIGAYO LIVE in TOKYO、開始18:00を公式情報で確認。",
+      "evidence_url": "https://inkigayo-live.jp/",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
       "pref_name": "埼玉県",
-      "raw_artist_name": "&TEAM",
-      "raw_venue_name": "ベルーナドーム(埼玉県所沢市)",
-      "source_priority": 30,
+      "raw_artist_name": "INKIGAYO LIVE in TOKYO",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 20,
       "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://inkigayo-live.jp/",
+          "priority": 20,
+          "record_id": "0f5626b3f7b7a1f094ae213954cae02656c11359a59729377508cc1e78a6f747",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://inkigayo-live.jp/"
+        },
         {
           "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2280783",
@@ -24170,8 +24470,8 @@
         }
       ],
       "title": "INKIGAYO LIVE in TOKYO",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2280783",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://inkigayo-live.jp/",
       "venue_name": "ベルーナドーム"
     },
     {
@@ -24261,6 +24561,144 @@
       "venue_name": "京セラドーム大阪"
     },
     {
+      "artist_name": "モンスターハンター",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "031ded33b67b2f743d2a",
+      "event_start_time": "13:00",
+      "evidence_snippet": "2026-09-23 兵庫県立芸術文化センター KOBELCO 大ホール。モンスターハンター オーケストラコンサート 〜狩猟音楽祭2026〜、開始13:00を公式情報で確認。",
+      "evidence_url": "https://www.promax.co.jp/mhoc/2026/",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "兵庫県",
+      "raw_artist_name": "モンスターハンター",
+      "raw_venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.promax.co.jp/mhoc/2026/",
+          "priority": 20,
+          "record_id": "069749c882c9547a324902258b96147a136166be541e2ae313f61dee8e719f9e",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "モンスターハンター オーケストラコンサート 〜狩猟音楽祭2026〜",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.promax.co.jp/mhoc/2026/"
+        }
+      ],
+      "title": "モンスターハンター オーケストラコンサート 〜狩猟音楽祭2026〜",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.promax.co.jp/mhoc/2026/",
+      "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール"
+    },
+    {
+      "artist_name": "水樹奈々",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "97588cba44e7b646bd8b",
+      "event_start_time": "16:00",
+      "evidence_snippet": "2026-09-23 国立代々木競技場第一体育館。NANA MIZUKI LIVE GRACE 2026 -OPUS Ⅳ-、開始16:00を公式情報で確認。",
+      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6098&etype=1",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "水樹奈々",
+      "raw_venue_name": "国立代々木競技場第一体育館",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6098&etype=1",
+          "priority": 20,
+          "record_id": "ece6e79e583aa24ed6749365d13012c705ebaffdf424948ecaf836b547ad4c93",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "NANA MIZUKI LIVE GRACE 2026 -OPUS Ⅳ-",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6098&etype=1"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/mizuki-nana/event/1211084",
+          "priority": 40,
+          "record_id": "77ae09c794c85456e2a6fce55bd3d0ced0181e856d76fcc333b8900b017309b9",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "NANA MIZUKI LIVE GRACE 2026 -OPUS Ⅳ-",
+          "updated_at_utc": "2026-08-24T04:19:45Z",
+          "url": "https://ticketjam.jp/tickets/mizuki-nana/event/1211084"
+        }
+      ],
+      "title": "NANA MIZUKI LIVE GRACE 2026 -OPUS Ⅳ-",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6098&etype=1",
+      "venue_name": "国立代々木競技場第一体育館"
+    },
+    {
+      "artist_name": "島袋寛子",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "21f79d0eaadd3b1b4c52",
+      "event_start_time": "17:00",
+      "evidence_snippet": "2026-09-23 大宮ソニックシティ 大ホール。HIROKO SHIMABUKURO 30th Anniversary Live 2026 -SPEED WAY-、開始17:00を公式情報で確認。",
+      "evidence_url": "https://rising-pro.jp/artist/hiro/special/30thlive-speedway/",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "島袋寛子",
+      "raw_venue_name": "大宮ソニックシティ 大ホール",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://rising-pro.jp/artist/hiro/special/30thlive-speedway/",
+          "priority": 20,
+          "record_id": "09a1625cf75066e2330c8fbc78c7439cd2047ac524eba26615520708f75c5a67",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HIROKO SHIMABUKURO 30th Anniversary Live 2026 -SPEED WAY-",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://rising-pro.jp/artist/hiro/special/30thlive-speedway/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/placeholder_nuheopvhiiuqopvhmghu/event/1230001",
+          "priority": 40,
+          "record_id": "48b1f9e7b1e2015d668672638a7a3c521a529ca1f4b4dfaab8a4d7842ffc49ce",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "HIROKO SHIMABUKURO 30th Anniversary Live 2026 -SPEED WAY-",
+          "updated_at_utc": "2026-07-21T06:21:15Z",
+          "url": "https://ticketjam.jp/tickets/placeholder_nuheopvhiiuqopvhmghu/event/1230001"
+        }
+      ],
+      "title": "HIROKO SHIMABUKURO 30th Anniversary Live 2026 -SPEED WAY-",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://rising-pro.jp/artist/hiro/special/30thlive-speedway/",
+      "venue_name": "大宮ソニックシティ 大ホール"
+    },
+    {
       "artist_name": "LIVE『君と歩いた青春』",
       "capacity": null,
       "display_source_class": "promoter_official",
@@ -24309,6 +24747,156 @@
       "updated_at_utc": "2026-09-07T16:27:55Z",
       "url": "https://kyodo-osaka.co.jp/search/detail/13250",
       "venue_name": "大阪城ホール"
+    },
+    {
+      "artist_name": "アジア競技大会",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "d758c62bd902e67621e5",
+      "event_start_time": "13:00",
+      "evidence_snippet": "2026-09-23 日本ガイシホール。第20回アジア競技大会 体操 男子個人決勝 GYM03、開始13:00を公式情報で確認。",
+      "evidence_url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "愛知県",
+      "raw_artist_name": "アジア競技大会",
+      "raw_venue_name": "日本ガイシホール",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "browser",
+          "evidence_url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80",
+          "priority": 20,
+          "record_id": "4c24a8899e2857637ddc13349a5e20e8cb4f2eb9abdd7dbd298f5e5bbdd14dff",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "第20回アジア競技大会 体操 男子個人決勝 GYM03",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/asian-games/event/1171287",
+          "priority": 40,
+          "record_id": "2dbcca42dc0282e4efca897c9c7edc22a581b13faa608375d43f08826cc7b2be",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "第20回アジア競技大会 体操",
+          "updated_at_utc": "2026-08-03T06:48:33Z",
+          "url": "https://ticketjam.jp/tickets/asian-games/event/1171287"
+        }
+      ],
+      "title": "第20回アジア競技大会 体操 男子個人決勝 GYM03",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80",
+      "venue_name": "日本ガイシホール"
+    },
+    {
+      "artist_name": "アジア競技大会",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "dcb617c3792182370ff4",
+      "event_start_time": "19:00",
+      "evidence_snippet": "2026-09-23 日本ガイシホール。第20回アジア競技大会 体操 女子個人決勝 GYM04、開始19:00を公式情報で確認。",
+      "evidence_url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "愛知県",
+      "raw_artist_name": "アジア競技大会",
+      "raw_venue_name": "日本ガイシホール",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "browser",
+          "evidence_url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80",
+          "priority": 20,
+          "record_id": "054d662aeb689db599adc5b50c79efe48e3ad96707ef04b1b94d0b9d1ec1a947",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "第20回アジア競技大会 体操 女子個人決勝 GYM04",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/asian-games/event/1171288",
+          "priority": 40,
+          "record_id": "67c17d1e0d8b30c07ad63fc7d5acac4fd53b86d86b124dd9829b4cd470dea060",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "第20回アジア競技大会 体操",
+          "updated_at_utc": "2026-08-03T06:48:33Z",
+          "url": "https://ticketjam.jp/tickets/asian-games/event/1171288"
+        }
+      ],
+      "title": "第20回アジア競技大会 体操 女子個人決勝 GYM04",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=80",
+      "venue_name": "日本ガイシホール"
+    },
+    {
+      "artist_name": "大石昌良",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "5287c31428990f02a7d5",
+      "event_start_time": "16:00",
+      "evidence_snippet": "2026-09-23 日本武道館。大石武道館 ～大石昌良 弾き語りワンマンライブ at 日本武道館～、開始16:00を公式情報で確認。",
+      "evidence_url": "https://www.014014.jp/schedules/7268",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "大石昌良",
+      "raw_venue_name": "日本武道館",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "browser",
+          "evidence_url": "https://www.014014.jp/schedules/7268",
+          "priority": 20,
+          "record_id": "8f848faee98ae247face01cbbd991095bf715cca0780a9154b32012567a6ddde",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "大石武道館 ～大石昌良 弾き語りワンマンライブ at 日本武道館～",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.014014.jp/schedules/7268"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/oi-masayoshi/event/981366",
+          "priority": 40,
+          "record_id": "95bfd16fabf87272b58c60fdd05ebd8057947c68dbeea784a168941c4353f9f8",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "大石武道館 ～大石昌良 弾き語りワンマンライブ at 日本武道館～",
+          "updated_at_utc": "2026-08-08T04:36:11Z",
+          "url": "https://ticketjam.jp/tickets/oi-masayoshi/event/981366"
+        }
+      ],
+      "title": "大石武道館 ～大石昌良 弾き語りワンマンライブ at 日本武道館～",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.014014.jp/schedules/7268",
+      "venue_name": "日本武道館"
     },
     {
       "artist_name": "SUPER BEAVER",
@@ -24411,6 +24999,106 @@
       "venue_name": "東京・KEIO ARENA TOKYO"
     },
     {
+      "artist_name": "オニュ",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "79053d41ae15eeac1976",
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-09-23 東京体育館。2026 ONEW CONCERT［ONEW THE LIVE：Q］IN JAPAN、開始15:00を公式情報で確認。",
+      "evidence_url": "https://onew-fc.jp/contents/1100275",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ONEW",
+      "raw_venue_name": "東京体育館",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://onew-fc.jp/contents/1100275",
+          "priority": 20,
+          "record_id": "d22fd3c112e5f91d18dc670298ab3199232e66991a61e0e97bfc2ef2fb19ab85",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 ONEW CONCERT［ONEW THE LIVE：Q］IN JAPAN",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://onew-fc.jp/contents/1100275"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/onew/event/1243253",
+          "priority": 40,
+          "record_id": "8c90cca2abd5b7ec4b1c9af1b9736fb789acc897b9444002bbb9232920fa275a",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "2026 ONEW CONCERT［ONEW THE LIVE：Q］IN JAPAN",
+          "updated_at_utc": "2026-07-18T05:51:17Z",
+          "url": "https://ticketjam.jp/tickets/onew/event/1243253"
+        }
+      ],
+      "title": "2026 ONEW CONCERT［ONEW THE LIVE：Q］IN JAPAN",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://onew-fc.jp/contents/1100275",
+      "venue_name": "東京体育館"
+    },
+    {
+      "artist_name": "ICEx",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "fe9c3e9dfca8005b7cdb",
+      "event_start_time": "17:30",
+      "evidence_snippet": "2026-09-23 東京国際フォーラム。ICEx Fourth Concert Tour 2026 FRESHest!!、開始17:30を公式情報で確認。",
+      "evidence_url": "https://icex.jp/contents/1058681",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ICEx",
+      "raw_venue_name": "東京国際フォーラム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://icex.jp/contents/1058681",
+          "priority": 20,
+          "record_id": "468e51073dd9b2509525da93a26e2b224cd863d18e8873dc75fa805124946c6c",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ICEx Fourth Concert Tour 2026 FRESHest!!",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://icex.jp/contents/1058681"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/icex/event/1131549",
+          "priority": 40,
+          "record_id": "c31127373dddd17973c9dd5d2519091856a2040b423162110be3b62e9270531c",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "ICEx Fourth Concert Tour 2026 ''FRESHest!!''",
+          "updated_at_utc": "2026-06-29T08:40:04Z",
+          "url": "https://ticketjam.jp/tickets/icex/event/1131549"
+        }
+      ],
+      "title": "ICEx Fourth Concert Tour 2026 FRESHest!!",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://icex.jp/contents/1058681",
+      "venue_name": "東京国際フォーラム"
+    },
+    {
       "artist_name": "CUTIE STREET",
       "capacity": 17000,
       "display_source_class": "venue_official",
@@ -24497,6 +25185,156 @@
       "updated_at_utc": "2026-09-07T15:04:17Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
+    },
+    {
+      "artist_name": "德永英明",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "4847658720bce493d098",
+      "event_start_time": "15:00",
+      "evidence_snippet": "2026-09-23 神戸国際会館 こくさいホール。Hideaki Tokunaga Concert Tour 2026 COVERS & BEST、開始15:00を公式情報で確認。",
+      "evidence_url": "https://columbia.jp/tokunagahideaki/live.html",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "兵庫県",
+      "raw_artist_name": "德永英明",
+      "raw_venue_name": "神戸国際会館 こくさいホール",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://columbia.jp/tokunagahideaki/live.html",
+          "priority": 20,
+          "record_id": "499ec4528287681224b24c7fe012f308a6048d82075c86eaa932e4eda7eb88af",
+          "source_class": "artist_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Hideaki Tokunaga Concert Tour 2026 COVERS & BEST",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://columbia.jp/tokunagahideaki/live.html"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tokunagahideaki/event/1149371",
+          "priority": 40,
+          "record_id": "91915d2b9a818882693a322ae1a20aa4c751510564bdf0896aee08e12981a744",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "Hideaki Tokunaga Concert Tour 2026",
+          "updated_at_utc": "2026-08-09T04:50:29Z",
+          "url": "https://ticketjam.jp/tickets/tokunagahideaki/event/1149371"
+        }
+      ],
+      "title": "Hideaki Tokunaga Concert Tour 2026 COVERS & BEST",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://columbia.jp/tokunagahideaki/live.html",
+      "venue_name": "神戸国際会館 こくさいホール"
+    },
+    {
+      "artist_name": "LUNA SEA",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "b1c514e9c7efce51b0fd",
+      "event_start_time": "16:00",
+      "evidence_snippet": "2026-09-23 福岡サンパレス。LUNA SEA、開始16:00を公式情報で確認。",
+      "evidence_url": "https://www.f-sunpalace.com/hall/",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "LUNA SEA",
+      "raw_venue_name": "福岡サンパレス",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.f-sunpalace.com/hall/",
+          "priority": 20,
+          "record_id": "2dcfb00554471cc9d52bbb15f89225a95668fe622a8ec8b46d272c10b88ad376",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "LUNA SEA",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://www.f-sunpalace.com/hall/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/luna-sea/event/1119445",
+          "priority": 40,
+          "record_id": "09cccc6f0743f435ce2aa62e0b975e044a823c9f6379e14d6903ed539cc77a95",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "LUNA SEA TOUR 2026 UNENDING JOURNEY -FOREVER-",
+          "updated_at_utc": "2026-09-02T08:08:33Z",
+          "url": "https://ticketjam.jp/tickets/luna-sea/event/1119445"
+        }
+      ],
+      "title": "LUNA SEA",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://www.f-sunpalace.com/hall/",
+      "venue_name": "福岡サンパレス"
+    },
+    {
+      "artist_name": "アジア競技大会",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "",
+      "event_date": "2026-09-23",
+      "event_end_date": "2026-09-23",
+      "event_end_time": null,
+      "event_key": "b02e1e4086cdd0e6f2e8",
+      "event_start_time": "14:30",
+      "evidence_snippet": "2026-09-23 豊田スタジアム。第20回アジア競技大会 サッカー FBL23、開始14:30を公式情報で確認。",
+      "evidence_url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=76",
+      "first_seen_at_utc": "2026-09-08T01:41:30Z",
+      "pref_name": "愛知県",
+      "raw_artist_name": "アジア競技大会",
+      "raw_venue_name": "豊田スタジアム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "browser",
+          "evidence_url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=76",
+          "priority": 20,
+          "record_id": "4883c079d1cfd65090ef65f4031c140555235231fd009be65b3895bb0031d82a",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "第20回アジア競技大会 サッカー FBL23",
+          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=76"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/asian-games/event/1240308",
+          "priority": 40,
+          "record_id": "24a99d2932b32dc547b44e35cfc9e95a2e5f1147a0b91c4138d23b1d75cf606d",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "第20回アジア競技大会 サッカー",
+          "updated_at_utc": "2026-07-15T05:56:45Z",
+          "url": "https://ticketjam.jp/tickets/asian-games/event/1240308"
+        }
+      ],
+      "title": "第20回アジア競技大会 サッカー FBL23",
+      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "url": "https://lp-ag.tickets-aichi-nagoya2026.org/ticketingguide.pdf#page=76",
+      "venue_name": "豊田スタジアム"
     },
     {
       "artist_name": "SUPER★DRAGON",
@@ -56909,7 +57747,7 @@
       "venue_name": "GMOアリーナさいたま"
     }
   ],
-  "generated_at_utc": "2026-09-08T00:48:10Z",
+  "generated_at_utc": "2026-09-08T01:42:29Z",
   "history_start_date": "2026-06-10",
   "history_window_days": 90,
   "include_past": true,
@@ -57069,23 +57907,23 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 64,
+      "kstyle_music": 63,
       "official_events": 525,
       "starto_concert": 101,
-      "venue_web_discovery": 600
+      "venue_web_discovery": 618
     },
-    "event_count": 1290,
+    "event_count": 1307,
     "location_held_record_count": 29,
-    "record_count_before_grouping": 1434,
-    "start_time_split_event_count": 41,
-    "start_time_split_group_count": 40,
-    "supplemental_merged_group_count": 5,
-    "supplemental_merged_record_count": 5,
+    "record_count_before_grouping": 1456,
+    "start_time_split_event_count": 42,
+    "start_time_split_group_count": 41,
+    "supplemental_merged_group_count": 7,
+    "supplemental_merged_record_count": 7,
     "suppressed_event_count": 3,
     "ticketjam_discovery_record_count": 1263,
     "ticketjam_promoted_held_record_count": 0,
     "ticketjam_review_candidate_count": 1239,
-    "ticketjam_verified_support_count": 514
+    "ticketjam_verified_support_count": 525
   },
   "ticketjam_policy": "discovery",
   "ticketjam_promoted_held_records": []
