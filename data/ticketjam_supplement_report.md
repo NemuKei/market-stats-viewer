@@ -2,9 +2,9 @@
 
 ## Summary
 - ticketjam_unique_schedules: 1156
-- additional_unique_schedules: 6
-- overlap_unique_schedules: 2
-- noise_rate: 0.25
+- additional_unique_schedules: 4
+- overlap_unique_schedules: 4
+- noise_rate: 0.5
 - out_of_scope_rate: 0.9931
 - ticketjam_category_counts: {"その他": 136, "コンサート": 896, "野球": 124}
 
@@ -16,8 +16,8 @@
 | S | サザンオールスターズ | 0 | 0 | 0 | 0.0000 |  |
 | A | 三代目 J SOUL BROTHERS from EXILE TRIBE | 2 | 2 | 0 | 0.0000 | ヤンマースタジアム長居 |
 | A | B'z | 0 | 0 | 0 | 0.0000 |  |
-| B | EXILE | 4 | 2 | 2 | 0.5000 | ベルーナドーム, 京セラドーム大阪 |
 | B | GLAY | 2 | 2 | 0 | 0.0000 | 北海道立総合体育センター 北海きたえーる |
+| B | EXILE | 4 | 0 | 4 | 1.0000 | ベルーナドーム, 京セラドーム大阪 |
 | B | Ado | 0 | 0 | 0 | 0.0000 |  |
 | B | 福山雅治 | 0 | 0 | 0 | 0.0000 |  |
 
@@ -29,9 +29,9 @@
 ## Inputs
 
 - ticketjam_source_updated_at_utc: 2026-09-03T08:16:20Z
-- starto_source_updated_at_utc: 2026-08-30T15:48:00Z
+- starto_source_updated_at_utc: 2026-09-08T02:06:35Z
 - kstyle_source_updated_at_utc: 2026-09-06T14:41:33Z
-- events_db_modified_at_utc: 2026-09-07T16:49:33Z
+- events_db_modified_at_utc: 2026-09-08T01:59:08Z
 
 ## Methodology
 
