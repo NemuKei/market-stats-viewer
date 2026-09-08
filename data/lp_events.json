@@ -1,47 +1,9 @@
 {
-  "as_of_date": "2026-09-08",
+  "as_of_date": "2026-09-09",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "EXO",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-10",
-      "event_end_date": "2026-06-10",
-      "event_end_time": null,
-      "event_key": "61a01b275ac5389f5d70",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京ガーデンシアター(東京都江東区有明2-1-6) / 日時: 2026-06-10 / 2026年6月10日(水)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279305",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "EXO",
-      "raw_venue_name": "東京ガーデンシアター(東京都江東区有明2-1-6)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279305",
-          "priority": 30,
-          "record_id": "bd4e336c7e7203cac8f84ce20483f5776e8927ab55940d1c5afb2f2c2a489901",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "ASIA CULTURE FESTIVAL 2026(ACF2026)",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279305"
-        }
-      ],
-      "title": "ASIA CULTURE FESTIVAL 2026(ACF2026)",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279305",
-      "venue_name": "東京ガーデンシアター"
-    },
     {
       "artist_name": "TWICE",
       "capacity": null,
@@ -59135,8 +59097,8 @@
       "venue_name": "GMOアリーナさいたま"
     }
   ],
-  "generated_at_utc": "2026-09-08T09:02:40Z",
-  "history_start_date": "2026-06-10",
+  "generated_at_utc": "2026-09-08T15:45:31Z",
+  "history_start_date": "2026-06-11",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -59295,14 +59257,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 63,
+      "kstyle_music": 62,
       "official_events": 525,
       "starto_concert": 101,
       "venue_web_discovery": 646
     },
-    "event_count": 1335,
+    "event_count": 1334,
     "location_held_record_count": 29,
-    "record_count_before_grouping": 1490,
+    "record_count_before_grouping": 1489,
     "start_time_split_event_count": 43,
     "start_time_split_group_count": 42,
     "supplemental_merged_group_count": 8,
