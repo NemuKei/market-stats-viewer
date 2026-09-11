@@ -5215,194 +5215,6 @@
       "venue_name": "Zepp DiverCity(Tokyo)"
     },
     {
-      "artist_name": "Cornelius（コーネリアス）",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "a9ed5445410b47de76d7",
-      "event_start_time": "19:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 KT Zepp Yokohama CORNELIUS REFRACTIONS TOUR 2026 開始19:00。",
-      "evidence_url": "https://www.zepp.co.jp/hall/yokohama/schedule/?_y=2026&_m=9",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "Cornelius（コーネリアス）",
-      "raw_venue_name": "KT Zepp Yokohama",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.zepp.co.jp/hall/yokohama/schedule/?_y=2026&_m=9",
-          "priority": 20,
-          "record_id": "8c05cf599a947d77753d7019d1f8ad4165c2838faac6257f60fd8289e0b280dd",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "CORNELIUS REFRACTIONS TOUR 2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156330"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/cor-nelius/event/1194096",
-          "priority": 40,
-          "record_id": "7d57bd7009326a53c533348a374b282f736167ff8c5ea3b8ace58a890e1e1b72",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "CORNELIUS REFRACTIONS TOUR 2026",
-          "updated_at_utc": "2026-08-30T09:27:03Z",
-          "url": "https://ticketjam.jp/tickets/cor-nelius/event/1194096"
-        }
-      ],
-      "title": "CORNELIUS REFRACTIONS TOUR 2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156330",
-      "venue_name": "KT Zepp Yokohama"
-    },
-    {
-      "artist_name": "真心ブラザーズ / ハンバート ハンバート",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "3a770a69cc04e0a45de7",
-      "event_start_time": "19:00",
-      "evidence_snippet": "2026-09-10 LINE CUBE SHIBUYA。ライブナタリー “真心ブラザーズ × ハンバート ハンバート”、開演19:00。",
-      "evidence_url": "https://linecubeshibuya.com/category/event/event202609",
-      "first_seen_at_utc": "2026-09-07T22:18:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "真心ブラザーズ / ハンバート ハンバート",
-      "raw_venue_name": "LINE CUBE SHIBUYA",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://linecubeshibuya.com/category/event/event202609",
-          "priority": 20,
-          "record_id": "72230e0426f07de7916012948c2061b4f5d537433f95efcb7a04cf982ed78e43",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ライブナタリー “真心ブラザーズ × ハンバート ハンバート”",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://linecubeshibuya.com/category/event/event202609"
-        }
-      ],
-      "title": "ライブナタリー “真心ブラザーズ × ハンバート ハンバート”",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://linecubeshibuya.com/category/event/event202609",
-      "venue_name": "LINE CUBE SHIBUYA"
-    },
-    {
-      "artist_name": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "0264f702399d9c44c53c",
-      "event_start_time": "13:00",
-      "evidence_snippet": "公式公演表確認: 2026-09-10 Kanadevia Hall（TOKYO DOME CITY HALL） ミュージカル『刀剣乱舞』〜月夜一縷〜 開演 13:00。",
-      "evidence_url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
-      "first_seen_at_utc": "2026-09-07T15:33:00Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-      "raw_venue_name": "Kanadevia Hall",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
-          "priority": 20,
-          "record_id": "52f68aa4cd1cd8f84dc3da9df7e41c86264ae95b294471275c4824019aecdf3d",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/tsukiyoitsuru-tourabu/event/1211388",
-          "priority": 40,
-          "record_id": "099c924446f8cd7406ff976e476f1a86fb608821df40d26850612cae9760d6dd",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "ミュージカル『刀剣乱舞 〜月夜一縷〜』全国公演",
-          "updated_at_utc": "2026-07-14T05:54:40Z",
-          "url": "https://ticketjam.jp/tickets/tsukiyoitsuru-tourabu/event/1211388"
-        }
-      ],
-      "title": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
-      "venue_name": "TOKYO DOME CITY HALL"
-    },
-    {
-      "artist_name": "千葉ロッテマリーンズ",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "野球",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "65ef4b092699079e4f57",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 ZOZOマリンスタジアム ロッテ vs 楽天 開始18:00。",
-      "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "千葉県",
-      "raw_artist_name": "千葉ロッテマリーンズ",
-      "raw_venue_name": "ZOZOマリンスタジアム",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-          "priority": 20,
-          "record_id": "def0147fda5c33f2e7d1ea88ee192d6d3752773f4fa37f75f5d2d08c4f8b5655",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ロッテ vs 楽天",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://npb.jp/games/2026/schedule_09_detail.html"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/marines/event/1040533",
-          "priority": 40,
-          "record_id": "3f4efb5233f549d3fd52f9934eafda38355969900515704d413793bfd9e831e9",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "ロッテ vs 楽天",
-          "updated_at_utc": "2026-08-28T15:34:29Z",
-          "url": "https://ticketjam.jp/tickets/marines/event/1040533"
-        }
-      ],
-      "title": "ロッテ vs 楽天",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "venue_name": "ZOZOマリンスタジアム"
-    },
-    {
       "artist_name": "kanekoayano",
       "capacity": 2473,
       "display_source_class": "venue_official",
@@ -5433,74 +5245,12 @@
           "title": "「kanekoayano World Tour 2026」",
           "updated_at_utc": "2026-09-10T09:05:18Z",
           "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158526"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.zepp.co.jp/hall/divercity/schedule/?_y=2026&_m=9",
-          "priority": 20,
-          "record_id": "32af7c7a2b16248229a231ca94cebb34d934d7b42143e890aa1b193fdefcc958",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "「kanekoayano World Tour 2026」",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158526"
         }
       ],
       "title": "「kanekoayano World Tour 2026」",
       "updated_at_utc": "2026-09-10T09:05:18Z",
       "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158526",
       "venue_name": "Zepp DiverCity(Tokyo)"
-    },
-    {
-      "artist_name": "10-FEET",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "1611d8fd81786d37111a",
-      "event_start_time": "19:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 Zepp Fukuoka 10-FEET \"壊れて消えるまで\" ONE-MAN TOUR 2026 開始19:00。",
-      "evidence_url": "https://www.zepp.co.jp/hall/fukuoka/schedule/?_y=2026&_m=9",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "福岡県",
-      "raw_artist_name": "10-FEET",
-      "raw_venue_name": "Zepp Fukuoka",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.zepp.co.jp/hall/fukuoka/schedule/?_y=2026&_m=9",
-          "priority": 20,
-          "record_id": "d76576488e9bfb8378110c92a4f1167f1d1f788687843387471e0feed7c048e8",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "10-FEET \"壊れて消えるまで\" ONE-MAN TOUR 2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=159785"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/10-feet/event/1117956",
-          "priority": 40,
-          "record_id": "ae0122826e7177aafd4c185a92d3e776d1700f82f1dae41c07e2480ab7da37ff",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "10-FEET \"壊れて消えるまで\" ONE-MAN TOUR 2026",
-          "updated_at_utc": "2026-08-26T04:17:40Z",
-          "url": "https://ticketjam.jp/tickets/10-feet/event/1117956"
-        }
-      ],
-      "title": "10-FEET \"壊れて消えるまで\" ONE-MAN TOUR 2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=159785",
-      "venue_name": "Zepp Fukuoka"
     },
     {
       "artist_name": "陰陽座",
@@ -5553,144 +5303,6 @@
       "venue_name": "Zepp Namba(Osaka)"
     },
     {
-      "artist_name": "NIA ARCHIVES",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "4cca4e18e038c8665917",
-      "event_start_time": "19:00",
-      "evidence_snippet": "2026-09-10 Zepp Shinjuku(TOKYO)。NIA ARCHIVES、START 19:00。",
-      "evidence_url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=164029",
-      "first_seen_at_utc": "2026-09-08T00:33:56Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "NIA ARCHIVES",
-      "raw_venue_name": "Zepp Shinjuku(TOKYO)",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=164029",
-          "priority": 20,
-          "record_id": "82ada788069baf6219b01f3242021b05787436b6fd47ef68d7ab20d1f1be44c1",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "NIA ARCHIVES",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=164029"
-        }
-      ],
-      "title": "NIA ARCHIVES",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=164029",
-      "venue_name": "Zepp Shinjuku(TOKYO)"
-    },
-    {
-      "artist_name": "福岡ソフトバンクホークス",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "野球",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "6c491723e56e710c4c43",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 みずほPayPayドーム福岡 ソフトバンク vs 日本ハム 開始18:00。",
-      "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "福岡県",
-      "raw_artist_name": "福岡ソフトバンクホークス",
-      "raw_venue_name": "みずほPayPayドーム福岡",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-          "priority": 20,
-          "record_id": "93b236ccda0922b637a1ed6a47979de1ad84c8f73b385bbf515dda169a458771",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ソフトバンク vs 日本ハム",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://npb.jp/games/2026/schedule_09_detail.html"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/softbankhawks/event/1040706",
-          "priority": 40,
-          "record_id": "a82b3e9a5879fc4099736d5b576111d563b5b7f35bef6381aff414e604442a0b",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "ソフトバンク vs 日本ハム",
-          "updated_at_utc": "2026-09-09T08:22:02Z",
-          "url": "https://ticketjam.jp/tickets/softbankhawks/event/1040706"
-        }
-      ],
-      "title": "ソフトバンク vs 日本ハム",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "venue_name": "みずほPayPayドーム福岡"
-    },
-    {
-      "artist_name": "反田恭平",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "44da77c7f8b548bac3a1",
-      "event_start_time": "19:00",
-      "evidence_snippet": "2026-09-10 サントリーホール大ホール。反田恭平＆ジャパン・ナショナル・オーケストラ 夏ツアー2026、19:00開演。",
-      "evidence_url": "https://www.suntory.co.jp/suntoryhall/schedule/detail/20260910_M_3.html",
-      "first_seen_at_utc": "2026-09-08T00:33:56Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "反田恭平",
-      "raw_venue_name": "サントリーホール",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "browser",
-          "evidence_url": "https://www.suntory.co.jp/suntoryhall/schedule/detail/20260910_M_3.html",
-          "priority": 20,
-          "record_id": "55dd9d583a1294a443e4c9f8858eae1af7d6f867ba3600ed5b90ccc816acdbdb",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "反田恭平＆ジャパン・ナショナル・オーケストラ 夏ツアー2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.suntory.co.jp/suntoryhall/schedule/detail/20260910_M_3.html"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/japan-national-orchestra/event/1147446",
-          "priority": 40,
-          "record_id": "e9f2393e37587ea06ab35b0dc6c606574f67e75c0375e7ce010d20c76ee2ff03",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "反田恭平＆ジャパン・ナショナル・オーケストラ 夏ツアー2026",
-          "updated_at_utc": "2026-07-30T06:07:42Z",
-          "url": "https://ticketjam.jp/tickets/japan-national-orchestra/event/1147446"
-        }
-      ],
-      "title": "反田恭平＆ジャパン・ナショナル・オーケストラ 夏ツアー2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.suntory.co.jp/suntoryhall/schedule/detail/20260910_M_3.html",
-      "venue_name": "サントリーホール"
-    },
-    {
       "artist_name": "鈴木雅之",
       "capacity": 2700,
       "display_source_class": "venue_official",
@@ -5741,132 +5353,6 @@
       "venue_name": "フェスティバルホール"
     },
     {
-      "artist_name": "KO1KEYZ",
-      "capacity": null,
-      "display_source_class": "artist_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "9f5d464f1f4d4d246894",
-      "event_start_time": "13:30",
-      "evidence_snippet": "2026-09-10 ワールド記念ホール。2026 KO1KEYZ 1ST FAN MEETING、開演13:30。",
-      "evidence_url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
-      "first_seen_at_utc": "2026-09-08T00:33:56Z",
-      "pref_name": "兵庫県",
-      "raw_artist_name": "KO1KEYZ",
-      "raw_venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
-          "priority": 20,
-          "record_id": "2e911bf763547cafc9a44696587321a9596dfc674af12ccf8fb236f026c23af0",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 KO1KEYZ 1ST FAN MEETING",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14"
-        }
-      ],
-      "title": "2026 KO1KEYZ 1ST FAN MEETING",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
-      "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）"
-    },
-    {
-      "artist_name": "KO1KEYZ",
-      "capacity": null,
-      "display_source_class": "artist_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "bd08351958e049946a07",
-      "event_start_time": "18:30",
-      "evidence_snippet": "2026-09-10 ワールド記念ホール。2026 KO1KEYZ 1ST FAN MEETING、開演18:30。",
-      "evidence_url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
-      "first_seen_at_utc": "2026-09-08T00:33:56Z",
-      "pref_name": "兵庫県",
-      "raw_artist_name": "KO1KEYZ",
-      "raw_venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
-          "priority": 20,
-          "record_id": "2e57f9656df00a7b54bb61a94e0d78ba9c3d930b33ce69c72cd8b6d75d7ea974",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 KO1KEYZ 1ST FAN MEETING",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14"
-        }
-      ],
-      "title": "2026 KO1KEYZ 1ST FAN MEETING",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
-      "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）"
-    },
-    {
-      "artist_name": "RIZIN（ライジン）",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "974006c0dccb59cd997e",
-      "event_start_time": "16:00",
-      "evidence_snippet": "公式本文確認: 2026-09-10 京セラドーム大阪 超RIZIN.5 浪速の超復活祭り 開始 16:00。",
-      "evidence_url": "https://jp.rizinff.com/_ct/17834937",
-      "first_seen_at_utc": "2026-09-07T13:50:14Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "RIZIN（ライジン）",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://jp.rizinff.com/_ct/17834937",
-          "priority": 20,
-          "record_id": "6f958e57e1c3b910008e54aed796a596520c71c37843c6291d2fd64c02047061",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "超RIZIN.5 浪速の超復活祭り",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://jp.rizinff.com/_ct/17834937"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/rizin/event/1163050",
-          "priority": 40,
-          "record_id": "7140e21b2f26c8f561c7447c27affffcb41c2a4f149ee9c42cb3ec8ba4a45e25",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "超RIZIN.5 浪速の超復活祭り",
-          "updated_at_utc": "2026-09-09T08:22:02Z",
-          "url": "https://ticketjam.jp/tickets/rizin/event/1163050"
-        }
-      ],
-      "title": "超RIZIN.5 浪速の超復活祭り",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://jp.rizinff.com/_ct/17834937",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
       "artist_name": "BOYNEXTDOOR",
       "capacity": 16000,
       "display_source_class": "venue_official",
@@ -5915,294 +5401,6 @@
       "updated_at_utc": "2026-09-10T08:55:15Z",
       "url": "https://kyodo-osaka.co.jp/search/detail/12952",
       "venue_name": "大阪城ホール"
-    },
-    {
-      "artist_name": "離婚伝説",
-      "capacity": null,
-      "display_source_class": "artist_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "48f0e047db2a7b403ee8",
-      "event_start_time": "18:30",
-      "evidence_snippet": "2026-09-10 日本武道館。離婚伝説 2026 ONEMAN LIVE『愛が一層メロウ』、開演18:30。",
-      "evidence_url": "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020",
-      "first_seen_at_utc": "2026-09-07T22:00:16Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "離婚伝説",
-      "raw_venue_name": "日本武道館",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020",
-          "priority": 20,
-          "record_id": "6aaff05e29395d4f1631406f2ce98144920d7ce9ad3ce907c293e2e39889dfe8",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "離婚伝説 2026 ONEMAN LIVE『愛が一層メロウ』",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/rikon-densetsu/event/1030818",
-          "priority": 40,
-          "record_id": "86ba4c4948a531364bb79ea00dfd0bcbb9c519b23b00b9fd4dbb930d0e0fe2b1",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "離婚伝説 日本武道館 ワンマンライブ",
-          "updated_at_utc": "2026-03-09T07:46:04Z",
-          "url": "https://ticketjam.jp/tickets/rikon-densetsu/event/1030818"
-        }
-      ],
-      "title": "離婚伝説 2026 ONEMAN LIVE『愛が一層メロウ』",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020",
-      "venue_name": "日本武道館"
-    },
-    {
-      "artist_name": "SUPER BEAVER",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "799e2d99e14077b14ee4",
-      "event_start_time": "18:30",
-      "evidence_snippet": "2026-09-10 札幌文化芸術劇場hitaru。出演SUPER BEAVER、開演18:30。",
-      "evidence_url": "https://www.sapporo-community-plaza.jp/event.php?num=5195",
-      "first_seen_at_utc": "2026-09-07T22:18:53Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "SUPER BEAVER",
-      "raw_venue_name": "札幌文化芸術劇場 hitaru",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.sapporo-community-plaza.jp/event.php?num=5195",
-          "priority": 20,
-          "record_id": "ee647d37f7b5d313bfb5d97ccfe23707b738f6e687015a21746499abe376f7a3",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.sapporo-community-plaza.jp/event.php?num=5195"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/super-beaver/event/1132996",
-          "priority": 40,
-          "record_id": "a1838d1d2753d0bb38ba3c9b1ed41ef2107c54aaef04233e695ee16314f55af8",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
-          "updated_at_utc": "2026-08-19T04:13:18Z",
-          "url": "https://ticketjam.jp/tickets/super-beaver/event/1132996"
-        }
-      ],
-      "title": "SUPER BEAVER 都会のラクダ TOUR 2026-2027 〜ラクダの人生、ゴーゴーゴー〜",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.sapporo-community-plaza.jp/event.php?num=5195",
-      "venue_name": "札幌文化芸術劇場 hitaru"
-    },
-    {
-      "artist_name": "読売ジャイアンツ（巨人）",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "野球",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "c62e78a35267e171842d",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 東京ドーム 巨人 vs 中日 開始18:00。",
-      "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "読売ジャイアンツ（巨人）",
-      "raw_venue_name": "東京ドーム",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-          "priority": 20,
-          "record_id": "abe0999aafb296222be0e0a8f036c59cf621e78a95da0c14683484923bda373e",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "巨人 vs 中日",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://npb.jp/games/2026/schedule_09_detail.html"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/giants/event/1040398",
-          "priority": 40,
-          "record_id": "8a022e1e145deb595bdd8b8676aa4e5b5846253d011ecd9f7e7c8e141c065cf0",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "巨人 vs 中日",
-          "updated_at_utc": "2026-09-09T08:22:02Z",
-          "url": "https://ticketjam.jp/tickets/giants/event/1040398"
-        }
-      ],
-      "title": "巨人 vs 中日",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "venue_name": "東京ドーム"
-    },
-    {
-      "artist_name": "横浜DeNAベイスターズ",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "野球",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "1558e50c8806872361cf",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 横浜スタジアム DeNA vs ヤクルト 開始18:00。",
-      "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "横浜DeNAベイスターズ",
-      "raw_venue_name": "横浜スタジアム",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-          "priority": 20,
-          "record_id": "476979c0cc094e9ec1d01d9c08dc35f3574400851fd049bd9e0f543313564f5a",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "DeNA vs ヤクルト",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://npb.jp/games/2026/schedule_09_detail.html"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/baystars/event/1040407",
-          "priority": 40,
-          "record_id": "aea365cc390645ed850899f24b47b53952a1456cea60eab1f8fb14791175fda0",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "DeNA vs ヤクルト",
-          "updated_at_utc": "2026-08-28T15:34:29Z",
-          "url": "https://ticketjam.jp/tickets/baystars/event/1040407"
-        }
-      ],
-      "title": "DeNA vs ヤクルト",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "venue_name": "横浜スタジアム"
-    },
-    {
-      "artist_name": "HOKUTO",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "8d5c3fcb0765de05d880",
-      "event_start_time": "18:30",
-      "evidence_snippet": "2026-09-10 神戸国際会館こくさいホール。HOKUTO 1st LIVE TOUR 2026 \"JUKE BOX LAND\"、日時欄18:30。",
-      "evidence_url": "https://www.kih.co.jp/kokusaihall/event/detail/2216",
-      "first_seen_at_utc": "2026-09-07T22:18:53Z",
-      "pref_name": "兵庫県",
-      "raw_artist_name": "HOKUTO",
-      "raw_venue_name": "神戸国際会館 こくさいホール",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.kih.co.jp/kokusaihall/event/detail/2216",
-          "priority": 20,
-          "record_id": "bc4f7b7224f1ada3cdaf5dd5a7b62e021b241d200ee45ed811a8fe6382486f6d",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "HOKUTO 1st LIVE TOUR 2026 \"JUKE BOX LAND\"",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://www.kih.co.jp/kokusaihall/event/detail/2216"
-        }
-      ],
-      "title": "HOKUTO 1st LIVE TOUR 2026 \"JUKE BOX LAND\"",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://www.kih.co.jp/kokusaihall/event/detail/2216",
-      "venue_name": "神戸国際会館 こくさいホール"
-    },
-    {
-      "artist_name": "阪神タイガース",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "野球",
-      "event_date": "2026-09-10",
-      "event_end_date": "2026-09-10",
-      "event_end_time": null,
-      "event_key": "8888f60f9039e6f4a110",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-10 阪神甲子園球場 阪神 vs 広島 開始18:00。",
-      "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "兵庫県",
-      "raw_artist_name": "阪神タイガース",
-      "raw_venue_name": "阪神甲子園球場",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-          "priority": 20,
-          "record_id": "e2bea4504e5420c1847020ced2568c21bd146dc94b8818d8c4ecef4db1691f20",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "阪神 vs 広島",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
-          "url": "https://npb.jp/games/2026/schedule_09_detail.html"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://ticketjam.jp/tickets/hanshintigers/event/1040780",
-          "priority": 40,
-          "record_id": "dc04a6dc86701793fb80920a103d943e6586a1dddc722842908553294fae0f8b",
-          "source_class": "",
-          "source_id": "ticketjam_events",
-          "source_label": "Ticketjam Events (Secondary)",
-          "title": "阪神 vs 広島",
-          "updated_at_utc": "2026-08-21T04:15:12Z",
-          "url": "https://ticketjam.jp/tickets/hanshintigers/event/1040780"
-        }
-      ],
-      "title": "阪神 vs 広島",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
-      "url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "venue_name": "阪神甲子園球場"
     },
     {
       "artist_name": "横山裕",
@@ -6271,12 +5469,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "MA55IVE THE RAMPAGE 3rd LIVE TOUR 2026 \"M5V\" ～DEPARTURE～",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.ldh-liveschedule.jp/sys/tour/43235/?lang=en"
         }
       ],
       "title": "MA55IVE THE RAMPAGE 3rd LIVE TOUR 2026 \"M5V\" ～DEPARTURE～",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.ldh-liveschedule.jp/sys/tour/43235/?lang=en",
       "venue_name": "GORILLA HALL OSAKA"
     },
@@ -6309,7 +5507,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "WHITE SCORPION 5th ONEMAN LIVE",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=161406"
         },
         {
@@ -6326,7 +5524,7 @@
         }
       ],
       "title": "WHITE SCORPION 5th ONEMAN LIVE",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=161406",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -6359,12 +5557,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "THAI ON FESTIVAL 2026 -タイ音楽祭-",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://linecubeshibuya.com/category/event/event202609"
         }
       ],
       "title": "THAI ON FESTIVAL 2026 -タイ音楽祭-",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://linecubeshibuya.com/category/event/event202609",
       "venue_name": "LINE CUBE SHIBUYA"
     },
@@ -6397,12 +5595,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "YORU-FES vol.11 ~0915TourFinal決起会SP~",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://shibuya-o.com/east/schedule/yoru-fes-vol-11-0915tourfinal%E6%B1%BA%E8%B5%B7%E4%BC%9Asp/"
         }
       ],
       "title": "YORU-FES vol.11 ~0915TourFinal決起会SP~",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://shibuya-o.com/east/schedule/yoru-fes-vol-11-0915tourfinal%E6%B1%BA%E8%B5%B7%E4%BC%9Asp/",
       "venue_name": "Spotify O-EAST"
     },
@@ -6435,7 +5633,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/"
         },
         {
@@ -6452,7 +5650,7 @@
         }
       ],
       "title": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
       "venue_name": "TOKYO DOME CITY HALL"
     },
@@ -6497,7 +5695,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "つばきファクトリー CONCERT TOUR 2026 AUTUMN ～Bloomy Groovy Story～",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158485"
         },
         {
@@ -6547,7 +5745,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "つばきファクトリー CONCERT TOUR 2026 AUTUMN ～Bloomy Groovy Story～",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158485"
         },
         {
@@ -6564,7 +5762,7 @@
         }
       ],
       "title": "つばきファクトリー CONCERT TOUR 2026 AUTUMN ～Bloomy Groovy Story～",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158485",
       "venue_name": "Zepp DiverCity(Tokyo)"
     },
@@ -6597,7 +5795,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "PERSONA LIVE TOUR 2026 - Resonance -",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=161107"
         },
         {
@@ -6614,7 +5812,7 @@
         }
       ],
       "title": "PERSONA LIVE TOUR 2026 - Resonance -",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=161107",
       "venue_name": "Zepp Fukuoka"
     },
@@ -6647,7 +5845,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "KengNamping 1ST FANMEETING IN JAPAN",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160775"
         },
         {
@@ -6664,7 +5862,7 @@
         }
       ],
       "title": "KengNamping 1ST FANMEETING IN JAPAN",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160775",
       "venue_name": "Zepp Haneda(Tokyo)"
     },
@@ -6697,7 +5895,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "KengNamping 1ST FANMEETING IN JAPAN",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160775"
         },
         {
@@ -6714,7 +5912,7 @@
         }
       ],
       "title": "KengNamping 1ST FANMEETING IN JAPAN",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160775",
       "venue_name": "Zepp Haneda(Tokyo)"
     },
@@ -6747,7 +5945,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ClariSコンサートツアー「ClariS 15th Thanks Tour 〜 一夏灯祭 〜」",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=157282"
         },
         {
@@ -6764,7 +5962,7 @@
         }
       ],
       "title": "ClariSコンサートツアー「ClariS 15th Thanks Tour 〜 一夏灯祭 〜」",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=157282",
       "venue_name": "Zepp Nagoya"
     },
@@ -6797,12 +5995,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "LOVEBITES「Outstanding Tour」",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=159009"
         }
       ],
       "title": "LOVEBITES「Outstanding Tour」",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=159009",
       "venue_name": "Zepp札幌"
     },
@@ -6835,7 +6033,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ソフトバンク vs ロッテ",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -6852,7 +6050,7 @@
         }
       ],
       "title": "ソフトバンク vs ロッテ",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -6885,7 +6083,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "千葉ジェッツ 新シーズン決起会 Presented by L.A.DEPO Chiba",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://lalaarenatokyo-bay.com/event/"
         },
         {
@@ -6902,7 +6100,7 @@
         }
       ],
       "title": "千葉ジェッツ 新シーズン決起会 Presented by L.A.DEPO Chiba",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://lalaarenatokyo-bay.com/event/",
       "venue_name": "ららアリーナ 東京ベイ"
     },
@@ -6935,7 +6133,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本フィルハーモニー交響楽団 第783回定期演奏会",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.suntory.co.jp/suntoryhall/schedule/detail/20260911_M_3.html"
         },
         {
@@ -6952,7 +6150,7 @@
         }
       ],
       "title": "日本フィルハーモニー交響楽団 第783回定期演奏会",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.suntory.co.jp/suntoryhall/schedule/detail/20260911_M_3.html",
       "venue_name": "サントリーホール"
     },
@@ -6985,7 +6183,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ヴィッセル神戸 vs 鹿島アントラーズ",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.vissel-kobe.co.jp/news/article/26829.html"
         },
         {
@@ -7002,7 +6200,7 @@
         }
       ],
       "title": "ヴィッセル神戸 vs 鹿島アントラーズ",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.vissel-kobe.co.jp/news/article/26829.html",
       "venue_name": "ノエビアスタジアム神戸"
     },
@@ -7035,7 +6233,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "THE JET BOY BANGERZ LIVE TOUR 2026 ～JET BANGIN'～ THE FINAL",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.ldh-liveschedule.jp/sys/tour/43237/?lang=en"
         },
         {
@@ -7052,7 +6250,7 @@
         }
       ],
       "title": "THE JET BOY BANGERZ LIVE TOUR 2026 ～JET BANGIN'～ THE FINAL",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.ldh-liveschedule.jp/sys/tour/43237/?lang=en",
       "venue_name": "パシフィコ横浜 国立大ホール"
     },
@@ -7135,7 +6333,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs 西武",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -7152,7 +6350,7 @@
         }
       ],
       "title": "オリックス vs 西武",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -7185,7 +6383,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第171回定期演奏会 佐渡裕 ショスタコーヴィチ10番",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026"
         },
         {
@@ -7202,7 +6400,7 @@
         }
       ],
       "title": "第171回定期演奏会 佐渡裕 ショスタコーヴィチ10番",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026",
       "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール"
     },
@@ -7235,7 +6433,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "離婚伝説 2026 ONEMAN LIVE『愛が一層メロウ』",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020"
         },
         {
@@ -7252,7 +6450,7 @@
         }
       ],
       "title": "離婚伝説 2026 ONEMAN LIVE『愛が一層メロウ』",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.sonymusic.co.jp/PR/rkndnsts-sub/info/585020",
       "venue_name": "日本武道館"
     },
@@ -7347,7 +6545,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "KIKKAWA KOJI LIVE 2026 Higher and Higher Tour",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.sapporo-community-plaza.jp/event.php?num=5196"
         },
         {
@@ -7364,7 +6562,7 @@
         }
       ],
       "title": "KIKKAWA KOJI LIVE 2026 Higher and Higher Tour",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.sapporo-community-plaza.jp/event.php?num=5196",
       "venue_name": "札幌文化芸術劇場 hitaru"
     },
@@ -7435,12 +6633,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/"
         }
       ],
       "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/",
       "venue_name": "東京ガーデンシアター"
     },
@@ -7485,7 +6683,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Yngwie Malmsteen Legendary Weekend in Japan",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://toyosu.pia-pit.jp/schedule/202609/8801.html"
         }
       ],
@@ -7523,7 +6721,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "超ときめき♡宣伝部のきみのハートにロックオンTOUR 2026",
-          "updated_at_utc": "2026-09-08T00:33:56Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.totteikobe.jp/event/article/25177"
         },
         {
@@ -7540,7 +6738,7 @@
         }
       ],
       "title": "超ときめき♡宣伝部のきみのハートにロックオンTOUR 2026",
-      "updated_at_utc": "2026-09-08T00:33:56Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.totteikobe.jp/event/article/25177",
       "venue_name": "GLION ARENA KOBE"
     },
@@ -7623,7 +6821,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "HANAZAWA KANA Live 2026 “Clematis”",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=160316"
         },
         {
@@ -7640,7 +6838,7 @@
         }
       ],
       "title": "HANAZAWA KANA Live 2026 “Clematis”",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=160316",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -7723,7 +6921,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "N響100年特別企画 NHK交響楽団 第2069回 定期公演Aプログラム",
-          "updated_at_utc": "2026-09-08T00:33:56Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html"
         },
         {
@@ -7740,7 +6938,7 @@
         }
       ],
       "title": "N響100年特別企画 NHK交響楽団 第2069回 定期公演Aプログラム",
-      "updated_at_utc": "2026-09-08T00:33:56Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
       "venue_name": "NHKホール"
     },
@@ -7773,7 +6971,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ガンバ大阪 vs FC東京",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.gamba-osaka.net/game/?log=side_menu_sp"
         },
         {
@@ -7790,7 +6988,7 @@
         }
       ],
       "title": "ガンバ大阪 vs FC東京",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.gamba-osaka.net/game/?log=side_menu_sp",
       "venue_name": "Panasonic Stadium Suita"
     },
@@ -7823,12 +7021,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/"
         }
       ],
       "title": "ミュージカル『刀剣乱舞』〜月夜一縷〜",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
       "venue_name": "TOKYO DOME CITY HALL"
     },
@@ -7861,7 +7059,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "Hello! Project 研修生発表会 2026 9月 ～新風～",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159334"
         },
         {
@@ -7878,7 +7076,7 @@
         }
       ],
       "title": "Hello! Project 研修生発表会 2026 9月 ～新風～",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159334",
       "venue_name": "Zepp DiverCity(Tokyo)"
     },
@@ -7999,7 +7197,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "GO-AheadZ FutureZ",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=167142"
         },
         {
@@ -8016,7 +7214,7 @@
         }
       ],
       "title": "GO-AheadZ FutureZ",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=167142",
       "venue_name": "Zepp Haneda(Tokyo)"
     },
@@ -8099,7 +7297,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://sd.dleague.co.jp/schedule/2026/west-26/"
         },
         {
@@ -8116,7 +7314,7 @@
         }
       ],
       "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://sd.dleague.co.jp/schedule/2026/west-26/",
       "venue_name": "Zepp Namba(Osaka)"
     },
@@ -8149,7 +7347,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-          "updated_at_utc": "2026-09-08T01:41:30Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://sd.dleague.co.jp/schedule/2026/west-26/"
         },
         {
@@ -8166,7 +7364,7 @@
         }
       ],
       "title": "第一生命 SD.LEAGUE 2026 西日本予選",
-      "updated_at_utc": "2026-09-08T01:41:30Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://sd.dleague.co.jp/schedule/2026/west-26/",
       "venue_name": "Zepp Namba(Osaka)"
     },
@@ -8199,7 +7397,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "大阪爆音漫才選集",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/"
         },
         {
@@ -8216,7 +7414,7 @@
         }
       ],
       "title": "大阪爆音漫才選集",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/",
       "venue_name": "Zepp Osaka Bayside"
     },
@@ -8249,7 +7447,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "大阪爆音漫才選集",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/"
         },
         {
@@ -8266,7 +7464,7 @@
         }
       ],
       "title": "大阪爆音漫才選集",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/",
       "venue_name": "Zepp Osaka Bayside"
     },
@@ -8299,7 +7497,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "キズ Zepp TOUR 『天照焔巡』",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156297"
         },
         {
@@ -8316,7 +7514,7 @@
         }
       ],
       "title": "キズ Zepp TOUR 『天照焔巡』",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156297",
       "venue_name": "Zepp札幌"
     },
@@ -8349,12 +7547,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "シャインポスト BRiGHT STARS FESTIVAL 2026 TINGS LIVE JOURNEY ep.03 \"Re:Union\"",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://pia-arena-mm.jp/event/6944.html"
         }
       ],
       "title": "シャインポスト BRiGHT STARS FESTIVAL 2026 TINGS LIVE JOURNEY ep.03 \"Re:Union\"",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://pia-arena-mm.jp/event/6944.html",
       "venue_name": "ぴあアリーナMM"
     },
@@ -8387,7 +7585,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ソフトバンク vs ロッテ",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -8404,9 +7602,59 @@
         }
       ],
       "title": "ソフトバンク vs ロッテ",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "みずほPayPayドーム福岡"
+    },
+    {
+      "artist_name": "千葉ジェッツ",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-09-12",
+      "event_end_date": "2026-09-12",
+      "event_end_time": null,
+      "event_key": "b5eb77ae29e3e73084fb",
+      "event_start_time": "14:10",
+      "evidence_snippet": "千葉ジェッツ公式：2026年9月12日、LaLa arena TOKYO-BAY、千葉ジェッツ対長崎ヴェルカ、14:10 TIPOFF。9月10日の公式告知で8分×4クォーターへの試合形式変更を確認。",
+      "evidence_url": "https://chibajets.jp/lp/game_20260912_20260913/",
+      "first_seen_at_utc": "2026-09-11T03:13:00Z",
+      "pref_name": "千葉県",
+      "raw_artist_name": "千葉ジェッツ",
+      "raw_venue_name": "ららアリーナ 東京ベイ",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://chibajets.jp/lp/game_20260912_20260913/",
+          "priority": 20,
+          "record_id": "ce9c31aa39e595f58aba44cd764d0a50d346533f5d8e29254fc3d943ed9b3b37",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ちばぎん PRESEASON GAME 2026 千葉ジェッツ vs 長崎ヴェルカ",
+          "updated_at_utc": "2026-09-11T03:17:33Z",
+          "url": "https://chibajets.jp/lp/game_20260912_20260913/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/chiba-jets/event/1288896",
+          "priority": 40,
+          "record_id": "1d8c3f17252c404957946d12ebde4615d14227799f9ecd1a08c0e4970a6db9aa",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "千葉ジェッツ vs 長崎ヴェルカ",
+          "updated_at_utc": "2026-09-09T08:22:02Z",
+          "url": "https://ticketjam.jp/tickets/chiba-jets/event/1288896"
+        }
+      ],
+      "title": "ちばぎん PRESEASON GAME 2026 千葉ジェッツ vs 長崎ヴェルカ",
+      "updated_at_utc": "2026-09-11T03:17:33Z",
+      "url": "https://chibajets.jp/lp/game_20260912_20260913/",
+      "venue_name": "ららアリーナ 東京ベイ"
     },
     {
       "artist_name": "THE ORAL CIGARETTES",
@@ -8537,7 +7785,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "中日 vs ヤクルト",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -8554,7 +7802,7 @@
         }
       ],
       "title": "中日 vs ヤクルト",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "バンテリンドームナゴヤ"
     },
@@ -8587,7 +7835,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "西武 vs 日本ハム",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -8604,7 +7852,7 @@
         }
       ],
       "title": "西武 vs 日本ハム",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ベルーナドーム"
     },
@@ -8637,7 +7885,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "高嶋ちさ子のザワつく！昭和歌謡祭2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://zawatsuku-concert.com/"
         },
         {
@@ -8654,7 +7902,7 @@
         }
       ],
       "title": "高嶋ちさ子のザワつく！昭和歌謡祭2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://zawatsuku-concert.com/",
       "venue_name": "マリンメッセ福岡"
     },
@@ -8687,7 +7935,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "2026 ME:I 2ND ARENA LIVE TOUR \"ME:I WAY\"",
-          "updated_at_utc": "2026-09-08T00:33:56Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://me-i.jp/feature/me-i_way_2026?direct=true"
         },
         {
@@ -8704,7 +7952,7 @@
         }
       ],
       "title": "2026 ME:I 2ND ARENA LIVE TOUR \"ME:I WAY\"",
-      "updated_at_utc": "2026-09-08T00:33:56Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://me-i.jp/feature/me-i_way_2026?direct=true",
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）"
     },
@@ -8737,7 +7985,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs 楽天",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -8754,7 +8002,7 @@
         }
       ],
       "title": "オリックス vs 楽天",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -8837,7 +8085,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "第55回マーチングバンド千葉県大会",
-          "updated_at_utc": "2026-09-08T00:33:56Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://chibamb.org/files/2026/2026Mflyer.pdf"
         },
         {
@@ -8854,7 +8102,7 @@
         }
       ],
       "title": "第55回マーチングバンド千葉県大会",
-      "updated_at_utc": "2026-09-08T00:33:56Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://chibamb.org/files/2026/2026Mflyer.pdf",
       "venue_name": "千葉ポートアリーナ メインアリーナ"
     },
@@ -8899,7 +8147,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ONE N' ONLY LIVE TOUR 2026 「INFERNO」",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6087&etype=1"
         },
         {
@@ -8949,7 +8197,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "FC町田ゼルビア vs 横浜F・マリノス",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zelvia.co.jp/news/news-354851/"
         },
         {
@@ -8966,7 +8214,7 @@
         }
       ],
       "title": "FC町田ゼルビア vs 横浜F・マリノス",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zelvia.co.jp/news/news-354851/",
       "venue_name": "国立競技場"
     },
@@ -9099,7 +8347,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "NEWS LIVE TOUR 2026 /// KMK",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://ariake-arena.tokyo/event/"
         },
         {
@@ -9211,12 +8459,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
-          "updated_at_utc": "2026-09-07T22:00:16Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/"
         }
       ],
       "title": "CDTVライブ！ライブ！秋の大感謝祭2026",
-      "updated_at_utc": "2026-09-07T22:00:16Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/",
       "venue_name": "東京ガーデンシアター"
     },
@@ -9249,7 +8497,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "巨人 vs 阪神",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -9266,7 +8514,7 @@
         }
       ],
       "title": "巨人 vs 阪神",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "東京ドーム"
     },
@@ -9299,12 +8547,12 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オトメイトパーティー2026",
-          "updated_at_utc": "2026-09-08T00:33:56Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.t-i-forum.co.jp/visitors/event/detail.html?id=20260912Fr-H202609015"
         }
       ],
       "title": "オトメイトパーティー2026",
-      "updated_at_utc": "2026-09-08T00:33:56Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.t-i-forum.co.jp/visitors/event/detail.html?id=20260912Fr-H202609015",
       "venue_name": "東京国際フォーラム"
     },
@@ -9487,7 +8735,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "TENRIN3大都市ツアー - 転地開闢 -",
-          "updated_at_utc": "2026-09-07T22:00:16Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://toyosu.pia-pit.jp/schedule/202608/8772.html"
         },
         {
@@ -9887,7 +9135,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "CORNELIUS REFRACTIONS TOUR 2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=156327"
         },
         {
@@ -9904,7 +9152,7 @@
         }
       ],
       "title": "CORNELIUS REFRACTIONS TOUR 2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=156327",
       "venue_name": "Zepp Fukuoka"
     },
@@ -10149,7 +9397,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "のんふぃく！全国ツアー『FICTIONAL JAPAN ROAD 2026』",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156298"
         },
         {
@@ -10237,7 +9485,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ソフトバンク vs ロッテ",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -10254,7 +9502,7 @@
         }
       ],
       "title": "ソフトバンク vs ロッテ",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -10463,7 +9711,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "西武 vs 日本ハム",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -10480,7 +9728,7 @@
         }
       ],
       "title": "西武 vs 日本ハム",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ベルーナドーム"
     },
@@ -11353,7 +10601,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 巨人",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -11370,7 +10618,7 @@
         }
       ],
       "title": "DeNA vs 巨人",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -11553,7 +10801,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs 中日",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -11570,7 +10818,7 @@
         }
       ],
       "title": "阪神 vs 中日",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -11641,7 +10889,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ROCK FOR YOU LIVE TOUR",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=160828"
         },
         {
@@ -11670,7 +10918,7 @@
         }
       ],
       "title": "ROCK FOR YOU LIVE TOUR",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=160828",
       "venue_name": "Zepp Fukuoka"
     },
@@ -11703,7 +10951,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "SHO-SENSEI!! Asia Tour 2026",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=165411"
         },
         {
@@ -11720,7 +10968,7 @@
         }
       ],
       "title": "SHO-SENSEI!! Asia Tour 2026",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=165411",
       "venue_name": "Zepp Shinjuku(TOKYO)"
     },
@@ -11979,7 +11227,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 巨人",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -11996,7 +11244,7 @@
         }
       ],
       "title": "DeNA vs 巨人",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -12029,7 +11277,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs 中日",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -12046,7 +11294,7 @@
         }
       ],
       "title": "阪神 vs 中日",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -12217,7 +11465,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ROCK FOR YOU LIVE TOUR",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=160829"
         },
         {
@@ -12246,7 +11494,7 @@
         }
       ],
       "title": "ROCK FOR YOU LIVE TOUR",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=160829",
       "venue_name": "Zepp Fukuoka"
     },
@@ -12429,7 +11677,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs ロッテ",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -12446,7 +11694,7 @@
         }
       ],
       "title": "日本ハム vs ロッテ",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -12555,7 +11803,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs ソフトバンク",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -12572,7 +11820,7 @@
         }
       ],
       "title": "オリックス vs ソフトバンク",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -12655,7 +11903,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 巨人",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -12672,7 +11920,7 @@
         }
       ],
       "title": "DeNA vs 巨人",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -12805,7 +12053,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs 中日",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -12822,7 +12070,7 @@
         }
       ],
       "title": "阪神 vs 中日",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -12855,7 +12103,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -12872,7 +12120,7 @@
         }
       ],
       "title": "ロッテ vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -13081,7 +12329,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "オリックス vs ソフトバンク",
-          "updated_at_utc": "2026-09-10T03:22:59Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -13098,7 +12346,7 @@
         }
       ],
       "title": "オリックス vs ソフトバンク",
-      "updated_at_utc": "2026-09-10T03:22:59Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "京セラドーム大阪"
     },
@@ -13419,7 +12667,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -13436,7 +12684,7 @@
         }
       ],
       "title": "ロッテ vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -13519,7 +12767,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs  西武",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -13536,7 +12784,7 @@
         }
       ],
       "title": "日本ハム vs  西武",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -13857,7 +13105,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs 広島",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -13874,7 +13122,7 @@
         }
       ],
       "title": "阪神 vs 広島",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -13957,7 +13205,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156645"
         },
         {
@@ -13974,7 +13222,7 @@
         }
       ],
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156645",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -14157,7 +13405,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "My Hair is Bad presents「ノーブルホームランツアー」",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156649"
         },
         {
@@ -14174,7 +13422,7 @@
         }
       ],
       "title": "My Hair is Bad presents「ノーブルホームランツアー」",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156649",
       "venue_name": "Zepp Nagoya"
     },
@@ -14307,7 +13555,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "MADRA FIRST ONE MAN SHOW \"THE MEIDAY\"",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=164637"
         },
         {
@@ -14324,7 +13572,7 @@
         }
       ],
       "title": "MADRA FIRST ONE MAN SHOW \"THE MEIDAY\"",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=164637",
       "venue_name": "Zepp Shinjuku(TOKYO)"
     },
@@ -14633,7 +13881,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "巨人 vs 中日",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -14650,7 +13898,7 @@
         }
       ],
       "title": "巨人 vs 中日",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "東京ドーム"
     },
@@ -14733,7 +13981,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs ヤクルト",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -14750,7 +13998,7 @@
         }
       ],
       "title": "DeNA vs ヤクルト",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -14945,7 +14193,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs 広島",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -14962,7 +14210,7 @@
         }
       ],
       "title": "阪神 vs 広島",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -15045,7 +14293,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156646"
         },
         {
@@ -15062,7 +14310,7 @@
         }
       ],
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156646",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -15283,7 +14531,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs 西武",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -15300,7 +14548,7 @@
         }
       ],
       "title": "ロッテ vs 西武",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -15545,7 +14793,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "My Hair is Bad presents「ノーブルホームランツアー」",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156650"
         },
         {
@@ -15562,7 +14810,7 @@
         }
       ],
       "title": "My Hair is Bad presents「ノーブルホームランツアー」",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156650",
       "venue_name": "Zepp Nagoya"
     },
@@ -15695,7 +14943,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "CORNELIUS REFRACTIONS TOUR 2026",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156408"
         },
         {
@@ -15712,7 +14960,7 @@
         }
       ],
       "title": "CORNELIUS REFRACTIONS TOUR 2026",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156408",
       "venue_name": "Zepp札幌"
     },
@@ -15883,7 +15131,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs オリックス",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -15900,7 +15148,7 @@
         }
       ],
       "title": "日本ハム vs オリックス",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -17083,7 +16331,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "巨人 vs 中日",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -17100,7 +16348,7 @@
         }
       ],
       "title": "巨人 vs 中日",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "東京ドーム"
     },
@@ -17271,7 +16519,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs ヤクルト",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -17288,7 +16536,7 @@
         }
       ],
       "title": "DeNA vs ヤクルト",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -17521,7 +16769,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs 広島",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -17538,7 +16786,7 @@
         }
       ],
       "title": "阪神 vs 広島",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -17771,7 +17019,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs 西武",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -17788,7 +17036,7 @@
         }
       ],
       "title": "ロッテ vs 西武",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -18221,7 +17469,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs オリックス",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -18238,7 +17486,7 @@
         }
       ],
       "title": "日本ハム vs オリックス",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -18321,7 +17569,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "中日 vs 広島",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -18338,7 +17586,7 @@
         }
       ],
       "title": "中日 vs 広島",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "バンテリンドームナゴヤ"
     },
@@ -19183,7 +18431,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "巨人 vs ヤクルト",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -19200,7 +18448,7 @@
         }
       ],
       "title": "巨人 vs ヤクルト",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "東京ドーム"
     },
@@ -19573,7 +18821,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs DeNA",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -19590,7 +18838,7 @@
         }
       ],
       "title": "阪神 vs DeNA",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -19723,7 +18971,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs 西武",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -19740,7 +18988,7 @@
         }
       ],
       "title": "ロッテ vs 西武",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -20161,7 +19409,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs オリックス",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -20178,7 +19426,7 @@
         }
       ],
       "title": "日本ハム vs オリックス",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -20211,7 +19459,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "中日 vs 広島",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -20228,7 +19476,7 @@
         }
       ],
       "title": "中日 vs 広島",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "バンテリンドームナゴヤ"
     },
@@ -20737,7 +19985,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "阪神 vs DeNA",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -20754,7 +20002,7 @@
         }
       ],
       "title": "阪神 vs DeNA",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "阪神甲子園球場"
     },
@@ -20837,7 +20085,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "キズ Zepp TOUR『天照焔巡』",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156299"
         },
         {
@@ -20854,7 +20102,7 @@
         }
       ],
       "title": "キズ Zepp TOUR『天照焔巡』",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=156299",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -20975,7 +20223,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs オリックス",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -20992,7 +20240,7 @@
         }
       ],
       "title": "ロッテ vs オリックス",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -21075,7 +20323,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "CORNELIUS REFRACTIONS TOUR 2026",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156409"
         },
         {
@@ -21092,7 +20340,7 @@
         }
       ],
       "title": "CORNELIUS REFRACTIONS TOUR 2026",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156409",
       "venue_name": "Zepp Nagoya"
     },
@@ -21163,7 +20411,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "PEAK SPOT JOIN vol.10",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=168457"
         },
         {
@@ -21180,7 +20428,7 @@
         }
       ],
       "title": "PEAK SPOT JOIN vol.10",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/shinjuku/schedule/single/?rid=168457",
       "venue_name": "Zepp Shinjuku(TOKYO)"
     },
@@ -21351,7 +20599,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ソフトバンク vs 西武",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -21368,7 +20616,7 @@
         }
       ],
       "title": "ソフトバンク vs 西武",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -21439,7 +20687,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -21456,7 +20704,7 @@
         }
       ],
       "title": "日本ハム vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -22215,7 +21463,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 中日",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -22232,7 +21480,7 @@
         }
       ],
       "title": "DeNA vs 中日",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -22641,7 +21889,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ロッテ vs オリックス",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -22658,7 +21906,7 @@
         }
       ],
       "title": "ロッテ vs オリックス",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ZOZOマリンスタジアム"
     },
@@ -22979,7 +22227,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ソフトバンク vs 西武",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -22996,7 +22244,7 @@
         }
       ],
       "title": "ソフトバンク vs 西武",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -23029,7 +22277,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -23046,7 +22294,7 @@
         }
       ],
       "title": "日本ハム vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -23829,7 +23077,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 中日",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -23846,7 +23094,7 @@
         }
       ],
       "title": "DeNA vs 中日",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -24069,6 +23317,18 @@
           "title": "SUPER★DRAGON DRA FES 2026",
           "updated_at_utc": "2026-09-10T09:04:57Z",
           "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=159522"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/ikeda-hyoma/event/1214474",
+          "priority": 40,
+          "record_id": "396233b60d429005250ada453bd20012adb481167e668ff56388da85070b058b",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "SUPER★DRAGON DRA FES 2026",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/ikeda-hyoma/event/1214474"
         }
       ],
       "title": "SUPER★DRAGON DRA FES 2026",
@@ -24105,7 +23365,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "陰陽座 ツアー2026『流転の現に夢喰らう也』",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=163703"
         },
         {
@@ -24122,7 +23382,7 @@
         }
       ],
       "title": "陰陽座 ツアー2026『流転の現に夢喰らう也』",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=163703",
       "venue_name": "Zepp Nagoya"
     },
@@ -24243,7 +23503,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "日本ハム vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -24260,7 +23520,7 @@
         }
       ],
       "title": "日本ハム vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "エスコンフィールドHOKKAIDO"
     },
@@ -24595,7 +23855,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "UVERworld LIVE “危ない” TOUR 2026 ~誠果 生誕祭～",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=160095"
         },
         {
@@ -24612,7 +23872,7 @@
         }
       ],
       "title": "UVERworld LIVE “危ない” TOUR 2026 ~誠果 生誕祭～",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=160095",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -24733,7 +23993,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "山﨑晶吾 10th ANNIVERSARY LIVE TOUR2026「Midnight Drift」",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159649"
         },
         {
@@ -24750,7 +24010,7 @@
         }
       ],
       "title": "山﨑晶吾 10th ANNIVERSARY LIVE TOUR2026「Midnight Drift」",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159649",
       "venue_name": "Zepp DiverCity(Tokyo)"
     },
@@ -24783,7 +24043,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "のんふぃく！全国ツアー『FICTIONAL JAPAN ROAD 2026』",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=162013"
         },
         {
@@ -24800,7 +24060,7 @@
         }
       ],
       "title": "のんふぃく！全国ツアー『FICTIONAL JAPAN ROAD 2026』",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/fukuoka/schedule/single/?rid=162013",
       "venue_name": "Zepp Fukuoka"
     },
@@ -24833,7 +24093,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156647"
         },
         {
@@ -24850,7 +24110,7 @@
         }
       ],
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=156647",
       "venue_name": "Zepp Nagoya"
     },
@@ -25071,7 +24331,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "西武 vs ロッテ",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -25088,7 +24348,7 @@
         }
       ],
       "title": "西武 vs ロッテ",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ベルーナドーム"
     },
@@ -25321,7 +24581,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 阪神",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -25338,7 +24598,7 @@
         }
       ],
       "title": "DeNA vs 阪神",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -25923,7 +25183,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "ソフトバンク vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -25940,7 +25200,7 @@
         }
       ],
       "title": "ソフトバンク vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "みずほPayPayドーム福岡"
     },
@@ -26123,7 +25383,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "西武 vs ロッテ",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -26140,7 +25400,7 @@
         }
       ],
       "title": "西武 vs ロッテ",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ベルーナドーム"
     },
@@ -26661,7 +25921,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "DeNA vs 阪神",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -26678,7 +25938,7 @@
         }
       ],
       "title": "DeNA vs 阪神",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "横浜スタジアム"
     },
@@ -26949,7 +26209,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "伊藤 蘭 Special Premium Live ～Don’t Stop The Music! ～ vol.3",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=164507"
         },
         {
@@ -26966,7 +26226,7 @@
         }
       ],
       "title": "伊藤 蘭 Special Premium Live ～Don’t Stop The Music! ～ vol.3",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://www.zepp.co.jp/hall/yokohama/schedule/single/?rid=164507",
       "venue_name": "KT Zepp Yokohama"
     },
@@ -27577,7 +26837,7 @@
           "source_id": "venue_web_discovery",
           "source_label": "Venue Web Discovery (Official/Semi-official)",
           "title": "西武 vs 楽天",
-          "updated_at_utc": "2026-09-07T15:04:17Z",
+          "updated_at_utc": "2026-09-11T03:13:00Z",
           "url": "https://npb.jp/games/2026/schedule_09_detail.html"
         },
         {
@@ -27594,7 +26854,7 @@
         }
       ],
       "title": "西武 vs 楽天",
-      "updated_at_utc": "2026-09-07T15:04:17Z",
+      "updated_at_utc": "2026-09-11T03:13:00Z",
       "url": "https://npb.jp/games/2026/schedule_09_detail.html",
       "venue_name": "ベルーナドーム"
     },
@@ -29107,6 +28367,18 @@
           "title": "THE PREDATORS TOUR 2026 Rock’n’Roll Undercover",
           "updated_at_utc": "2026-09-10T09:05:18Z",
           "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=160633"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/yamanaka-sawao/event/1226033",
+          "priority": 40,
+          "record_id": "e64807672987aadfb821eca83e438633a8b8333b93d145153fe949cbb3ff02f9",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "THE PREDATORS TOUR 2026「Rock'n'Roll Undercover」",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/yamanaka-sawao/event/1226033"
         }
       ],
       "title": "THE PREDATORS TOUR 2026 Rock’n’Roll Undercover",
@@ -30929,6 +30201,18 @@
           "title": "TMG LIVE 2026 “SAYONARA”",
           "updated_at_utc": "2026-09-10T09:04:57Z",
           "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157019"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tmg/event/1173523",
+          "priority": 40,
+          "record_id": "b3b827d6aaf2bd9ae23ab7e8e6cda9eed3537f7b6ae292fa6c8ff1045a118d4d",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "TMG LIVE 2026 “SAYONARA”",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/tmg/event/1173523"
         }
       ],
       "title": "TMG LIVE 2026 “SAYONARA”",
@@ -33519,6 +32803,18 @@
           "title": "TMG LIVE 2026 “SAYONARA”",
           "updated_at_utc": "2026-09-10T09:06:24Z",
           "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156564"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/tmg/event/1173525",
+          "priority": 40,
+          "record_id": "82cbfc0383462e23b7463c6e3632da1495e03b006e60e2c362592400e84da82b",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "TMG LIVE 2026 “SAYONARA”",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/tmg/event/1173525"
         }
       ],
       "title": "TMG LIVE 2026 “SAYONARA”",
@@ -38689,6 +37985,18 @@
           "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
           "updated_at_utc": "2026-08-14T12:47:15Z",
           "url": "https://starto.jp/s/p/live/10578"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/snow-man/event/1295373",
+          "priority": 40,
+          "record_id": "8eb64019bbd8117ca3ba21bc9bff086e00be26709ac7bed0cde4c5072415f7e3",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/snow-man/event/1295373"
         }
       ],
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -39091,6 +38399,18 @@
           "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
           "updated_at_utc": "2026-08-14T12:47:15Z",
           "url": "https://starto.jp/s/p/live/10578"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/snow-man/event/1295372",
+          "priority": 40,
+          "record_id": "6fee687d7e63ad0dbfd2259b36147e9f6ec8ea72411f701a3c7cadf916269f3a",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/snow-man/event/1295372"
         }
       ],
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -45745,6 +45065,18 @@
           "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
           "updated_at_utc": "2026-08-14T12:47:15Z",
           "url": "https://starto.jp/s/p/live/10578"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://ticketjam.jp/tickets/snow-man/event/1295367",
+          "priority": 40,
+          "record_id": "6fd7a23082357ed509fc1bf0adeae6df3ce35eb5c77a24c93c75956d3742a18f",
+          "source_class": "",
+          "source_id": "ticketjam_events",
+          "source_label": "Ticketjam Events (Secondary)",
+          "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
+          "updated_at_utc": "2026-09-10T08:21:20Z",
+          "url": "https://ticketjam.jp/tickets/snow-man/event/1295367"
         }
       ],
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -58553,7 +57885,7 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-11T02:06:25Z",
+  "generated_at_utc": "2026-09-11T03:17:34Z",
   "history_start_date": "2026-06-13",
   "history_window_days": 90,
   "include_past": true,
@@ -58696,20 +58028,20 @@
       "kstyle_music": 65,
       "official_events": 532,
       "starto_concert": 97,
-      "venue_web_discovery": 632
+      "venue_web_discovery": 616
     },
-    "event_count": 1326,
+    "event_count": 1310,
     "location_held_record_count": 25,
-    "record_count_before_grouping": 1470,
-    "start_time_split_event_count": 42,
-    "start_time_split_group_count": 41,
+    "record_count_before_grouping": 1453,
+    "start_time_split_event_count": 41,
+    "start_time_split_group_count": 40,
     "supplemental_merged_group_count": 11,
     "supplemental_merged_record_count": 11,
     "suppressed_event_count": 3,
     "ticketjam_discovery_record_count": 1204,
     "ticketjam_promoted_held_record_count": 0,
     "ticketjam_review_candidate_count": 1177,
-    "ticketjam_verified_support_count": 537
+    "ticketjam_verified_support_count": 533
   },
   "ticketjam_policy": "discovery",
   "ticketjam_promoted_held_records": []
