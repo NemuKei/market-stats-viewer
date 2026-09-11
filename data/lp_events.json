@@ -1,47 +1,9 @@
 {
-  "as_of_date": "2026-09-11",
+  "as_of_date": "2026-09-12",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "TWICE",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-13",
-      "event_end_date": "2026-06-13",
-      "event_end_time": null,
-      "event_key": "3263007b4e084ea2f1e8",
-      "event_start_time": null,
-      "evidence_snippet": "会場: TOYOTA ARENA TOKYO 他 / 日時: 2026-06-13 / 開催ウィーク:2026年6月5日(金)~6月13日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279731",
-      "first_seen_at_utc": "2026-08-28T21:40:56Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "TWICE",
-      "raw_venue_name": "TOYOTA ARENA TOKYO 他",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279731",
-          "priority": 30,
-          "record_id": "a47a68e4087887e480e47663b9013c89a208ba842eff27a639f888e433b30a44",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "MUSIC AWARDS JAPAN 2026",
-          "updated_at_utc": "2026-08-28T21:40:56Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279731"
-        }
-      ],
-      "title": "MUSIC AWARDS JAPAN 2026",
-      "updated_at_utc": "2026-08-28T21:40:56Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279731",
-      "venue_name": "TOYOTA ARENA TOKYO 他"
-    },
     {
       "artist_name": "DJ DRAGON",
       "capacity": null,
@@ -765,44 +727,6 @@
       "venue_name": "大阪城ホール"
     },
     {
-      "artist_name": "YURI",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-07-10",
-      "event_end_date": "2026-07-10",
-      "event_end_time": null,
-      "event_key": "6586e5b8bf2530011aa9",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京都内 LIVE HOUSE / 日時: 2026-07-10 / 2026年7月10日(金)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279275",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "YURI",
-      "raw_venue_name": "東京都内 LIVE HOUSE",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279275",
-          "priority": 30,
-          "record_id": "eb6c526a5661ab3d031751cbfb45ae46b5949db5753c3f63a90e39c11efca632",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "LEE YURI FAN MEETING IN TOKYO『Our Scene』",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279275"
-        }
-      ],
-      "title": "LEE YURI FAN MEETING IN TOKYO『Our Scene』",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279275",
-      "venue_name": "東京都内 LIVE HOUSE"
-    },
-    {
       "artist_name": "なにわ男子",
       "capacity": null,
       "display_source_class": "",
@@ -839,44 +763,6 @@
       "updated_at_utc": "2026-07-27T18:52:51Z",
       "url": "https://starto.jp/s/p/live/10489",
       "venue_name": "北海道立総合体育センター 北海きたえーる"
-    },
-    {
-      "artist_name": "YURI",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-07-11",
-      "event_end_date": "2026-07-11",
-      "event_end_time": null,
-      "event_key": "9823048a70ea02c3ab15",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京都内 LIVE HOUSE / 日時: 2026-07-11 / 2026年7月11日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279275",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "YURI",
-      "raw_venue_name": "東京都内 LIVE HOUSE",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279275",
-          "priority": 30,
-          "record_id": "9e80156e939d4a65ddaa27d8c147428945a919e1c2a27d247a305c582cdc1f1b",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "LEE YURI FAN MEETING IN TOKYO『Our Scene』",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279275"
-        }
-      ],
-      "title": "LEE YURI FAN MEETING IN TOKYO『Our Scene』",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279275",
-      "venue_name": "東京都内 LIVE HOUSE"
     },
     {
       "artist_name": "なにわ男子",
@@ -2319,6 +2205,44 @@
       "updated_at_utc": "2026-08-10T12:49:45Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2281602",
       "venue_name": "iBIG HALL"
+    },
+    {
+      "artist_name": "SAICO",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-08-13",
+      "event_end_date": "2026-08-13",
+      "event_end_time": null,
+      "event_key": "f5fe5619f41fe82944ad",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 京セラドーム大阪 / 日時: 2026-08-13 / 開催日程:2026年8月13日(木)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281196",
+      "first_seen_at_utc": "2026-09-11T15:35:33Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "SAICO",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281196",
+          "priority": 30,
+          "record_id": "3e166dfd44dc5a3d999d446dd39a994a2ddf734f0bd095f593a729db31b08001",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "KANSAI COLLECTION 2026 AUTUMN&WINTER",
+          "updated_at_utc": "2026-09-11T15:35:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281196"
+        }
+      ],
+      "title": "KANSAI COLLECTION 2026 AUTUMN&WINTER",
+      "updated_at_utc": "2026-09-11T15:35:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2281196",
+      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "Big O!cean",
@@ -4621,6 +4545,44 @@
       "venue_name": "GLION ARENA KOBE"
     },
     {
+      "artist_name": "Hyunjae",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-06",
+      "event_end_date": "2026-09-06",
+      "event_end_time": null,
+      "event_key": "8579d16e92d4a0c6c4aa",
+      "event_start_time": null,
+      "evidence_snippet": "会場: YOANI LIVE STATION(東京都新宿区大久保1-11-3 B1F) / 日時: 2026-09-06 / 日程:2026年9月6日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2282730",
+      "first_seen_at_utc": "2026-09-11T15:35:33Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Hyunjae",
+      "raw_venue_name": "YOANI LIVE STATION(東京都新宿区大久保1-11-3 B1F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2282730",
+          "priority": 30,
+          "record_id": "1c3df6b7e68fa98d2f3487766d37d94d06ae8aa5dfaf16c00aeb763db5258565",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "LEE HYUNJAE 1st FAN MEETING “With You” in TOKYO",
+          "updated_at_utc": "2026-09-11T15:35:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2282730"
+        }
+      ],
+      "title": "LEE HYUNJAE 1st FAN MEETING “With You” in TOKYO",
+      "updated_at_utc": "2026-09-11T15:35:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2282730",
+      "venue_name": "YOANI LIVE STATION(東京都新宿区大久保1-11-3 B1F)"
+    },
+    {
       "artist_name": "アルルカン",
       "capacity": 2886,
       "display_source_class": "venue_official",
@@ -5099,6 +5061,44 @@
       "updated_at_utc": "2026-09-10T09:07:01Z",
       "url": "https://www.festivalhall.jp/events/6087/",
       "venue_name": "フェスティバルホール"
+    },
+    {
+      "artist_name": "HANRORO",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-08",
+      "event_end_date": "2026-09-08",
+      "event_end_time": null,
+      "event_key": "867ae00f9fe56f669df2",
+      "event_start_time": null,
+      "evidence_snippet": "会場: SHIBUYA PLEASURE PLEASURE(東京都渋谷区道玄坂2-29-5 渋谷プライム 6F) / 日時: 2026-09-08 / 日程:2026年9月8日(火)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2282746",
+      "first_seen_at_utc": "2026-09-11T15:35:33Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "HANRORO",
+      "raw_venue_name": "SHIBUYA PLEASURE PLEASURE(東京都渋谷区道玄坂2-29-5 渋谷プライム 6F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2282746",
+          "priority": 30,
+          "record_id": "1975b7b44249d78b95bb0cb7904d9f7aea94427aec35e7cd2629a9919778d6d4",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "HANRORO 1st Live in Tokyo",
+          "updated_at_utc": "2026-09-11T15:35:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2282746"
+        }
+      ],
+      "title": "HANRORO 1st Live in Tokyo",
+      "updated_at_utc": "2026-09-11T15:35:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2282746",
+      "venue_name": "SHIBUYA PLEASURE PLEASURE(東京都渋谷区道玄坂2-29-5 渋谷プライム 6F)"
     },
     {
       "artist_name": "水谷千重子",
@@ -20806,18 +20806,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281412",
-          "priority": 30,
-          "record_id": "4fb4357c1c2235fd1b0327c10249901c744ccd31d0da3b0d0f52bf5d511099d5",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN SPECIAL LIVE AT KYOCERA DOME OSAKA",
-          "updated_at_utc": "2026-07-31T13:36:02Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281412"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/babymonster/event/1125915",
           "priority": 40,
           "record_id": "e565fc072d10cfbd8189921c955d9c77d5216ecbff04fa7c8c2cdc86e2e087db",
@@ -21397,6 +21385,44 @@
       "updated_at_utc": "2026-09-08T00:33:56Z",
       "url": "https://www.t-i-forum.co.jp/visitors/event/detail.html?id=20260922_1224",
       "venue_name": "東京国際フォーラム"
+    },
+    {
+      "artist_name": "Kim A-in",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-22",
+      "event_end_date": "2026-09-22",
+      "event_end_time": null,
+      "event_key": "06cfe3262066a11cab01",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 横浜BUNTAI(神奈川県横浜市中区不老町2丁目7番1) / 日時: 2026-09-22 / 日時:2026年9月22日(火・祝日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283893",
+      "first_seen_at_utc": "2026-09-11T15:35:33Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "Kim A-in",
+      "raw_venue_name": "横浜BUNTAI(神奈川県横浜市中区不老町2丁目7番1)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283893",
+          "priority": 30,
+          "record_id": "7ce1521ca0f0653a0f2ee4b53f428cb574eeea735762c40ed9981a90b9d80116",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 NA-IN WOO Fanmeeting [LOVER : Falling in love] in Japan",
+          "updated_at_utc": "2026-09-11T15:35:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283893"
+        }
+      ],
+      "title": "2026 NA-IN WOO Fanmeeting [LOVER : Falling in love] in Japan",
+      "updated_at_utc": "2026-09-11T15:35:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283893",
+      "venue_name": "横浜BUNTAI"
     },
     {
       "artist_name": "横浜DeNAベイスターズ",
@@ -22393,18 +22419,6 @@
           "title": "2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN",
           "updated_at_utc": "2026-09-07T16:27:55Z",
           "url": "https://yg-babymonster-official.jp/live/2026-2027_worldtour_in_japan/"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281412",
-          "priority": 30,
-          "record_id": "68c8e5cb09f598f715d7a84eb2d1b3bdecef3566e8584b7895bffdfc7945f948",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN SPECIAL LIVE AT KYOCERA DOME OSAKA",
-          "updated_at_utc": "2026-07-31T13:36:02Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281412"
         },
         {
           "content_extractor": null,
@@ -48463,6 +48477,44 @@
       "venue_name": "京セラドーム大阪"
     },
     {
+      "artist_name": "Bank",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-12-12",
+      "event_end_date": "2026-12-12",
+      "event_end_time": null,
+      "event_key": "2607f80e417e9e6e249d",
+      "event_start_time": null,
+      "evidence_snippet": "会場: MUFGスタジアム(国立競技場) / 日時: 2026-12-12 / 2026年12月12日(土)・13日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
+      "first_seen_at_utc": "2026-09-11T15:35:33Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Bank",
+      "raw_venue_name": "MUFGスタジアム(国立競技場)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
+          "priority": 30,
+          "record_id": "b4c2c04f9def1f4b8db76dd78bd5ae82e1410cdebd4549cd695a2b1896b30e0b",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+          "updated_at_utc": "2026-09-11T15:35:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283901"
+        }
+      ],
+      "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "updated_at_utc": "2026-09-11T15:35:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283901",
+      "venue_name": "国立競技場"
+    },
+    {
       "artist_name": "KAWAII LAB.",
       "capacity": 15000,
       "display_source_class": "venue_official",
@@ -48587,6 +48639,44 @@
       "updated_at_utc": "2026-03-02T07:09:01Z",
       "url": "https://hehn.fujiikaze.com/pwt/",
       "venue_name": "京セラドーム大阪"
+    },
+    {
+      "artist_name": "Bank",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-12-13",
+      "event_end_date": "2026-12-13",
+      "event_end_time": null,
+      "event_key": "43bf5459afa2fe9d6284",
+      "event_start_time": null,
+      "evidence_snippet": "会場: MUFGスタジアム(国立競技場) / 日時: 2026-12-13 / 2026年12月12日(土)・13日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
+      "first_seen_at_utc": "2026-09-11T15:35:33Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Bank",
+      "raw_venue_name": "MUFGスタジアム(国立競技場)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
+          "priority": 30,
+          "record_id": "d2d4aa4f44a98619db27de1e3261be4e320a3113ef693fb8ce62c7d75337a77d",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+          "updated_at_utc": "2026-09-11T15:35:33Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283901"
+        }
+      ],
+      "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "updated_at_utc": "2026-09-11T15:35:33Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283901",
+      "venue_name": "国立競技場"
     },
     {
       "artist_name": "-真天地開闢集団-ジグザグ",
@@ -57849,8 +57939,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-11T09:05:45Z",
-  "history_start_date": "2026-06-13",
+  "generated_at_utc": "2026-09-11T15:36:33Z",
+  "history_start_date": "2026-06-14",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -57921,52 +58011,17 @@
     },
     {
       "reason": "unresolved_domestic_location",
+      "record_id": "ab90bd356e7cd2a133570aab03d7f394c17fd644e050b96a0fcfc577d8e91ccc",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
       "record_id": "4996b3f8b859a8d0231c8f91de8943249305d029c0457f9178dd8d02cdae4e2b",
       "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
       "record_id": "1984dc10d51296eec8f5e3bb3907140c971bc0d90b80390d500c5fa9140b8cf7",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "d421441edf43b5dc3ce9241b51a623d73bdddfa3e24a17916605314e0f31532b",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "b7b5510f145e878aea146a7cf5575b4ebbb4bb9becd78e94b90a14cc7a68a876",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "32e05ede67a9e9ebda6f8f2c64a467444828bd5e7794e7afffde44839dc2b1ce",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "7502f5ab98637e267ce7434535400ffee7774a22dc63b62eac2ac28f72a0379b",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "3274c943d22ec8451d89f93eb945ea48439d2587c763682b56cfb0ac0e4fb9b6",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "104d5b762c704b9762e3a9ef667ebefc421d3e962f1b7a3d39926ce1bc7bf8e0",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "559c629d90762193508002174f0867b25b391eada14367ec0b7820949440eacf",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "70d8611f20ffbd99fa066ad82b928cad55d17ac4a897c218808cf822ddcb170f",
       "source_id": "kstyle_music"
     },
     {
@@ -57989,14 +58044,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 65,
+      "kstyle_music": 68,
       "official_events": 532,
       "starto_concert": 97,
       "venue_web_discovery": 616
     },
-    "event_count": 1310,
-    "location_held_record_count": 25,
-    "record_count_before_grouping": 1453,
+    "event_count": 1313,
+    "location_held_record_count": 18,
+    "record_count_before_grouping": 1454,
     "start_time_split_event_count": 41,
     "start_time_split_group_count": 40,
     "supplemental_merged_group_count": 11,
