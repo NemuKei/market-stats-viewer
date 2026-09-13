@@ -1875,18 +1875,19 @@
       "event_end_date": "2026-09-15",
       "event_key": "ae48c2ba4c6145626f89",
       "event_start_time": "",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "ae48c2ba4c6145626f89"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
       "review_due": true,
-      "search_queries": [
-        "桜木心菜 Zepp DiverCity(Tokyo) 2026-09-15 公式",
-        "桜木心菜 Zepp DiverCity(Tokyo) 2026-09-15 主催"
-      ],
-      "status": "pending_official",
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "桜木心菜 生誕ソロライブ",
       "venue_name": "Zepp DiverCity(Tokyo)",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=162254"
+      ]
     },
     {
       "artist_name": "うたコン",
@@ -30726,13 +30727,13 @@
     }
   ],
   "schema_version": 1,
-  "source_generated_at_utc": "2026-09-13T08:31:25Z",
+  "source_generated_at_utc": "2026-09-13T09:42:33Z",
   "summary": {
     "candidate_count": 1170,
     "counts_by_status": {
       "ancillary_ticket": 20,
-      "pending_official": 551,
-      "possible_existing_match": 599
+      "pending_official": 550,
+      "possible_existing_match": 600
     },
     "due_count": 893
   }
