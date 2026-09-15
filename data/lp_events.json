@@ -1,47 +1,9 @@
 {
-  "as_of_date": "2026-09-15",
+  "as_of_date": "2026-09-16",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "DJ DRAGON",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-17",
-      "event_end_date": "2026-06-17",
-      "event_end_time": null,
-      "event_key": "2697b2a8b7e6ef3113e9",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 渋谷WWW / 日時: 2026-06-17 / 〇2026年6月17日(水)OPEN 18:00 / START 18:30",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279512",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "DJ DRAGON",
-      "raw_venue_name": "渋谷WWW",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279512",
-          "priority": 30,
-          "record_id": "5ec353aea6afeb8f93b27dc273b4be9a0ec24eb0b06414fa1dedee36d1876d51",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "DRAGON PONY 2026 Run To Run JAPAN TOUR",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279512"
-        }
-      ],
-      "title": "DRAGON PONY 2026 Run To Run JAPAN TOUR",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279512",
-      "venue_name": "渋谷WWW"
-    },
     {
       "artist_name": "SUPER JUNIOR",
       "capacity": null,
@@ -2915,6 +2877,44 @@
       "venue_name": "エコパアリーナ"
     },
     {
+      "artist_name": "Stray Kids",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-08-29",
+      "event_end_date": "2026-08-29",
+      "event_end_time": null,
+      "event_key": "53f0fe57a2a8d6825ace",
+      "event_start_time": null,
+      "evidence_snippet": "会場: MUFG STADIUM(国立競技場) / 日時: 2026-08-29 / 2026年8月29日(土)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Stray Kids",
+      "raw_venue_name": "MUFG STADIUM(国立競技場)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "8f229d2d23b0e7d1d7c643535bb8d6f88fbf4b40d8715ea2fb6945fbdb2df68e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
+        }
+      ],
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283276",
+      "venue_name": "国立競技場"
+    },
+    {
       "artist_name": "NEWS",
       "capacity": null,
       "display_source_class": "",
@@ -2951,6 +2951,44 @@
       "updated_at_utc": "2026-07-27T18:52:51Z",
       "url": "https://starto.jp/s/p/live/10507",
       "venue_name": "エコパアリーナ"
+    },
+    {
+      "artist_name": "Stray Kids",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-08-30",
+      "event_end_date": "2026-08-30",
+      "event_end_time": null,
+      "event_key": "582abb522b2940209748",
+      "event_start_time": null,
+      "evidence_snippet": "会場: MUFG STADIUM(国立競技場) / 日時: 2026-08-30 / 2026年8月30日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Stray Kids",
+      "raw_venue_name": "MUFG STADIUM(国立競技場)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "5e98d5cb624ea9ab45aacdfedb89b9cc65959c00a2add082b17221bec0b721bc",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
+        }
+      ],
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283276",
+      "venue_name": "国立競技場"
     },
     {
       "artist_name": "横山裕",
@@ -3919,6 +3957,18 @@
           "title": "Stray Kids World Tour ＜RUN IT JAPAN＞",
           "updated_at_utc": "2026-09-13T09:25:47Z",
           "url": "https://www.straykidsjapan.com/runitjapan/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "58023fd501c8dfb310feef635416727ff71d2e8fac01aa2063d0f9cc7315dbb8",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
         }
       ],
       "title": "Stray Kids World Tour ＜RUN IT JAPAN＞",
@@ -4487,6 +4537,18 @@
           "title": "Stray Kids World Tour ＜RUN IT JAPAN＞",
           "updated_at_utc": "2026-09-13T09:25:47Z",
           "url": "https://www.straykidsjapan.com/runitjapan/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "3bf8bd877aa4d9b4970bc8d87a85a86a0f5f207c1818c692759f3c56253dd998",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
         }
       ],
       "title": "Stray Kids World Tour ＜RUN IT JAPAN＞",
@@ -10302,6 +10364,18 @@
         },
         {
           "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "7550f656ad652b75a682e4962aa44dec38a94eec8f61ca9fa40d5707a55d2d5f",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
+        },
+        {
+          "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/straykids/event/1219293",
           "priority": 40,
           "record_id": "83452caa230d54bb993f4b92d96526586a38da3bfcc3ab00343114b5775bd2b7",
@@ -12699,6 +12773,18 @@
           "title": "Stray Kids World Tour <RUN IT JAPAN>",
           "updated_at_utc": "2026-09-07T16:27:55Z",
           "url": "https://www.straykidsjapan.com/runitjapan/"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "f323e3c1ccf1119363b0deb473bdfa716cb7fb47978dc6caea64502d721e4a9c",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
         },
         {
           "content_extractor": null,
@@ -31430,6 +31516,18 @@
         },
         {
           "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283276",
+          "priority": 30,
+          "record_id": "f99291771255b232dd9ff96cd8621b1b7dc91ce804f2672eb8d89d656d3aa8ce",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283276"
+        },
+        {
+          "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/straykids/event/1219295",
           "priority": 40,
           "record_id": "39baf303be161c4050f7dc26a6552cddf93e0ca8e5802e2a4d0a0666f4f1d83e",
@@ -33863,7 +33961,7 @@
       "venue_name": "ヤンマースタジアム長居"
     },
     {
-      "artist_name": "SUPER EIGHT WEST. なにわ男子 Aぇ! group 関西ジュニア",
+      "artist_name": "SUPER EIGHT なにわ男子 Aぇ! group 関西ジュニア",
       "capacity": null,
       "display_source_class": "",
       "display_source_id": "starto_concert",
@@ -33872,32 +33970,32 @@
       "event_date": "2026-10-31",
       "event_end_date": "2026-10-31",
       "event_end_time": null,
-      "event_key": "b3f348e27eb5b2cd0602",
+      "event_key": "9ca0261b179c96823664",
       "event_start_time": null,
       "evidence_snippet": "2026-10-31 / [大阪府] 万博記念公園",
-      "evidence_url": "https://starto.jp/s/p/live/10545",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
+      "evidence_url": "https://starto.jp/s/p/live/10587",
+      "first_seen_at_utc": "2026-09-15T16:00:07Z",
       "pref_name": "大阪府",
-      "raw_artist_name": "SUPER EIGHT WEST. なにわ男子 Aぇ! group 関西ジュニア",
+      "raw_artist_name": "SUPER EIGHT なにわ男子 Aぇ! group 関西ジュニア",
       "raw_venue_name": "万博記念公園",
       "source_priority": 30,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10545",
+          "evidence_url": "https://starto.jp/s/p/live/10587",
           "priority": 30,
-          "record_id": "6b44f1944285d2fda7e26d16a6d2b98d9895dc56bbd8b33d6d0f2b042e3152de",
+          "record_id": "e13fb98ca325ec92f0521b3475b94bcb96cfeeab62dd129bbbffecee2ba1c687",
           "source_class": "",
           "source_id": "starto_concert",
           "source_label": "STARTO NEWS (CONCERT)",
           "title": "KAMIGATA EXPO PARK FES 2026",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10545"
+          "updated_at_utc": "2026-09-15T16:00:07Z",
+          "url": "https://starto.jp/s/p/live/10587"
         }
       ],
       "title": "KAMIGATA EXPO PARK FES 2026",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10545",
+      "updated_at_utc": "2026-09-15T16:00:07Z",
+      "url": "https://starto.jp/s/p/live/10587",
       "venue_name": "万博記念公園"
     },
     {
@@ -34427,7 +34525,7 @@
       "venue_name": "ヤンマースタジアム長居"
     },
     {
-      "artist_name": "SUPER EIGHT WEST. なにわ男子 Aぇ! group 関西ジュニア",
+      "artist_name": "SUPER EIGHT なにわ男子 Aぇ! group 関西ジュニア",
       "capacity": null,
       "display_source_class": "",
       "display_source_id": "starto_concert",
@@ -34436,32 +34534,32 @@
       "event_date": "2026-11-01",
       "event_end_date": "2026-11-01",
       "event_end_time": null,
-      "event_key": "54dc4e18eaac8a5b8ec9",
+      "event_key": "b2d413624f0041b82eb0",
       "event_start_time": null,
       "evidence_snippet": "2026-11-01 / [大阪府] 万博記念公園",
-      "evidence_url": "https://starto.jp/s/p/live/10545",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
+      "evidence_url": "https://starto.jp/s/p/live/10587",
+      "first_seen_at_utc": "2026-09-15T16:00:07Z",
       "pref_name": "大阪府",
-      "raw_artist_name": "SUPER EIGHT WEST. なにわ男子 Aぇ! group 関西ジュニア",
+      "raw_artist_name": "SUPER EIGHT なにわ男子 Aぇ! group 関西ジュニア",
       "raw_venue_name": "万博記念公園",
       "source_priority": 30,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10545",
+          "evidence_url": "https://starto.jp/s/p/live/10587",
           "priority": 30,
-          "record_id": "76b832daf75c2c28188ae17d6fdbbf9140f102288bdd53a0bde2053e1f066990",
+          "record_id": "95c452f8157fe60afa2c6d9e1585929fc718de5924b5d7dbb190c91fb1c80699",
           "source_class": "",
           "source_id": "starto_concert",
           "source_label": "STARTO NEWS (CONCERT)",
           "title": "KAMIGATA EXPO PARK FES 2026",
-          "updated_at_utc": "2026-07-27T18:52:51Z",
-          "url": "https://starto.jp/s/p/live/10545"
+          "updated_at_utc": "2026-09-15T16:00:07Z",
+          "url": "https://starto.jp/s/p/live/10587"
         }
       ],
       "title": "KAMIGATA EXPO PARK FES 2026",
-      "updated_at_utc": "2026-07-27T18:52:51Z",
-      "url": "https://starto.jp/s/p/live/10545",
+      "updated_at_utc": "2026-09-15T16:00:07Z",
+      "url": "https://starto.jp/s/p/live/10587",
       "venue_name": "万博記念公園"
     },
     {
@@ -45847,6 +45945,44 @@
       "venue_name": "豊洲PIT"
     },
     {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-12-19",
+      "event_end_date": "2026-12-19",
+      "event_end_time": null,
+      "event_key": "32ca79d24d710302797b",
+      "event_start_time": null,
+      "evidence_snippet": "会場: [福岡] みずほPayPayドーム福岡 / 日時: 2026-12-19 / 2026年12月19日(土) 開場 15:00/開演 17:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "[福岡] みずほPayPayドーム福岡",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "03340177fb1608364174b4458c46ccbfd2c7a6e334675773b2096e128f8c994e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "venue_name": "みずほPayPayドーム福岡"
+    },
+    {
       "artist_name": "LE SSERAFIM",
       "capacity": 55000,
       "display_source_class": "venue_official",
@@ -46021,6 +46157,44 @@
       "updated_at_utc": "2026-09-07T16:27:55Z",
       "url": "https://tuki-official.net/contents/1104832",
       "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-12-20",
+      "event_end_date": "2026-12-20",
+      "event_end_time": null,
+      "event_key": "7c449f6084fe6e46b77d",
+      "event_start_time": null,
+      "evidence_snippet": "会場: [福岡] みずほPayPayドーム福岡 / 日時: 2026-12-20 / 2026年12月20日(日) 開場 14:00/開演 16:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "[福岡] みずほPayPayドーム福岡",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "ed7e3bad56bc425559fea045f7e6fa7e8d3ffcb74e335e4dfba186b04fc8af7e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "venue_name": "みずほPayPayドーム福岡"
     },
     {
       "artist_name": "Hey! Say! JUMP",
@@ -48465,6 +48639,44 @@
       "venue_name": "京セラドーム大阪"
     },
     {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2027-01-07",
+      "event_end_date": "2027-01-07",
+      "event_end_time": null,
+      "event_key": "43093d4e19a254993fc6",
+      "event_start_time": null,
+      "evidence_snippet": "会場: [東京] 東京ドーム / 日時: 2027-01-07 / 2027年1月7日(木) 開場 16:00/開演 18:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "[東京] 東京ドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "11e3f9d11f1cb05445826c346fd1f2142419ea4cec29a2a81883effdd3ed45b8",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "Gero",
       "capacity": 16000,
       "display_source_class": "venue_official",
@@ -48501,6 +48713,44 @@
       "updated_at_utc": "2026-09-13T09:25:44Z",
       "url": "https://www.yumebanchi.jp/event/55937/",
       "venue_name": "大阪城ホール"
+    },
+    {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2027-01-08",
+      "event_end_date": "2027-01-08",
+      "event_end_time": null,
+      "event_key": "c2e9148c2143dce513ed",
+      "event_start_time": null,
+      "evidence_snippet": "会場: [東京] 東京ドーム / 日時: 2027-01-08 / 2027年1月8日(金) 開場 16:00/開演 18:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "[東京] 東京ドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "e75e6a28c48fed5bebb0163fc1f5c50937089789a5a5d017b760e11e8ad1df5e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "aiko",
@@ -50717,6 +50967,18 @@
           "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
           "updated_at_utc": "2026-09-07T16:27:55Z",
           "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "961a27c894a1aa94fd7cf853933c0ec86ab28e8208ce0f635c76219b37924b75",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
         }
       ],
       "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
@@ -50945,6 +51207,18 @@
           "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
           "updated_at_utc": "2026-09-07T16:27:55Z",
           "url": "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "0c027a9dfedd31c58ea348c6c89b6120339a7cdeb24b9c11b9372e17020271df",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
         }
       ],
       "title": "TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞",
@@ -52137,6 +52411,44 @@
       "venue_name": "京セラドーム大阪"
     },
     {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2027-02-20",
+      "event_end_date": "2027-02-20",
+      "event_end_time": null,
+      "event_key": "1a19eac7277965ce5b31",
+      "event_start_time": null,
+      "evidence_snippet": "会場: [愛知] バンテリンドーム ナゴヤ / 日時: 2027-02-20 / 2027年2月20日(土) 開場 15:00/開演 17:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "愛知県",
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "[愛知] バンテリンドーム ナゴヤ",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "3b3d9dba5362fdeec01811282317d8a84d976b6d5a1153d3ee915030c1087ae1",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "venue_name": "バンテリンドームナゴヤ"
+    },
+    {
       "artist_name": "ENHYPEN",
       "capacity": 55000,
       "display_source_class": "venue_official",
@@ -52261,6 +52573,44 @@
       "updated_at_utc": "2026-09-13T09:35:36Z",
       "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=160051",
       "venue_name": "Zepp DiverCity(Tokyo)"
+    },
+    {
+      "artist_name": "TOMORROW X TOGETHER",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2027-02-21",
+      "event_end_date": "2027-02-21",
+      "event_end_time": null,
+      "event_key": "29d08009f23ad75ee4d9",
+      "event_start_time": null,
+      "evidence_snippet": "会場: [愛知] バンテリンドーム ナゴヤ / 日時: 2027-02-21 / 2027年2月21日(日) 開場 15:00/開演 17:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "first_seen_at_utc": "2026-09-15T15:59:09Z",
+      "pref_name": "愛知県",
+      "raw_artist_name": "TOMORROW X TOGETHER",
+      "raw_venue_name": "[愛知] バンテリンドーム ナゴヤ",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284007",
+          "priority": 30,
+          "record_id": "39501e8908e60d0e13a26a89d3b961e6232571da273d716fc9c30cb1bb2e328f",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+          "updated_at_utc": "2026-09-15T15:59:09Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284007"
+        }
+      ],
+      "title": "TOMORROW X TOGETHER WORLD TOUR <STEAL THE WIND> IN JAPAN",
+      "updated_at_utc": "2026-09-15T15:59:09Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284007",
+      "venue_name": "バンテリンドームナゴヤ"
     },
     {
       "artist_name": "GLAY",
@@ -54941,8 +55291,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-15T09:34:30Z",
-  "history_start_date": "2026-06-17",
+  "generated_at_utc": "2026-09-15T16:00:09Z",
+  "history_start_date": "2026-06-18",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -55086,14 +55436,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 85,
+      "kstyle_music": 92,
       "official_events": 550,
       "starto_concert": 99,
       "venue_web_discovery": 526
     },
-    "event_count": 1260,
+    "event_count": 1267,
     "location_held_record_count": 26,
-    "record_count_before_grouping": 1387,
+    "record_count_before_grouping": 1401,
     "start_time_split_event_count": 33,
     "start_time_split_group_count": 32,
     "supplemental_merged_group_count": 9,

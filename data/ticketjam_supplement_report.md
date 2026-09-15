@@ -29,9 +29,9 @@
 ## Inputs
 
 - ticketjam_source_updated_at_utc: 2026-09-15T08:53:50Z
-- starto_source_updated_at_utc: 2026-09-08T02:06:35Z
-- kstyle_source_updated_at_utc: 2026-09-14T17:19:11Z
-- events_db_modified_at_utc: 2026-09-15T08:37:21Z
+- starto_source_updated_at_utc: 2026-09-15T16:00:07Z
+- kstyle_source_updated_at_utc: 2026-09-15T15:59:09Z
+- events_db_modified_at_utc: 2026-09-15T15:52:58Z
 
 ## Methodology
 
