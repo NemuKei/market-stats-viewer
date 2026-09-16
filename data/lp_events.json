@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-09-16",
+  "as_of_date": "2026-09-17",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
@@ -5899,82 +5899,6 @@
       "venue_name": "フェスティバルホール"
     },
     {
-      "artist_name": "うたコン",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-15",
-      "event_end_date": "2026-09-15",
-      "event_end_time": null,
-      "event_key": "b77f3fa9628f016015c0",
-      "event_start_time": "19:45",
-      "evidence_snippet": "2026年9月NHKホール予定表。2026-09-15 うたコン、開演19:45。",
-      "evidence_url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
-      "first_seen_at_utc": "2026-09-08T00:33:56Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "うたコン",
-      "raw_venue_name": "NHKホール",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
-          "priority": 20,
-          "record_id": "e6cb8412f9289d8e3ad9c1b5370a7392c743cc634e4926c842282ff6bd92d2f0",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "うたコン",
-          "updated_at_utc": "2026-09-14T03:19:46Z",
-          "url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html"
-        }
-      ],
-      "title": "うたコン",
-      "updated_at_utc": "2026-09-14T03:19:46Z",
-      "url": "https://www.nhk-fdn.or.jp/nhk_hall/event.html",
-      "venue_name": "NHKホール"
-    },
-    {
-      "artist_name": "ガンバ大阪",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-15",
-      "event_end_date": "2026-09-15",
-      "event_end_time": null,
-      "event_key": "a8ae2daa7bb255ee7958",
-      "event_start_time": "19:00",
-      "evidence_snippet": "公式本文確認: 2026-09-15 Panasonic Stadium Suita AFCチャンピオンズリーグエリートリーグステージ ガンバ大阪 vs コンアン・ハノイ 開始 19:00。",
-      "evidence_url": "https://www.gamba-osaka.net/game/?log=side_menu_sp",
-      "first_seen_at_utc": "2026-09-07T14:09:22Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "ガンバ大阪",
-      "raw_venue_name": "Panasonic Stadium Suita",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.gamba-osaka.net/game/?log=side_menu_sp",
-          "priority": 20,
-          "record_id": "20962e9e40b4b83a7bef83f0037fb5c29ae16d2e126909419e1c17a4d5af6d75",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "AFCチャンピオンズリーグエリートリーグステージ ガンバ大阪 vs コンアン・ハノイ",
-          "updated_at_utc": "2026-09-14T03:19:46Z",
-          "url": "https://www.gamba-osaka.net/game/?log=side_menu_sp"
-        }
-      ],
-      "title": "AFCチャンピオンズリーグエリートリーグステージ ガンバ大阪 vs コンアン・ハノイ",
-      "updated_at_utc": "2026-09-14T03:19:46Z",
-      "url": "https://www.gamba-osaka.net/game/?log=side_menu_sp",
-      "venue_name": "Panasonic Stadium Suita"
-    },
-    {
       "artist_name": "夜光性アミューズ",
       "capacity": 3120,
       "display_source_class": "venue_official",
@@ -6004,18 +5928,6 @@
           "source_label": "会場公式",
           "title": "夜光性アミューズ SUMMER TOUR2026 TOUR FINAL「NIGHT DAY LIGHT」",
           "updated_at_utc": "2026-09-16T09:29:19Z",
-          "url": "https://heroines.jp/news/public/_/p9t1hvg2rdfgkq9e.html"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://heroines.jp/news/public/_/p9t1hvg2rdfgkq9e.html",
-          "priority": 20,
-          "record_id": "0b4dd4aa9ca3989b5c254b69b1152956cf4fd735f46683114ff436063b60eed8",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "夜光性アミューズ SUMMER TOUR2026 TOUR FINAL NIGHT DAY LIGHT",
-          "updated_at_utc": "2026-09-08T00:33:56Z",
           "url": "https://heroines.jp/news/public/_/p9t1hvg2rdfgkq9e.html"
         }
       ],
@@ -55373,8 +55285,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-16T09:33:28Z",
-  "history_start_date": "2026-06-18",
+  "generated_at_utc": "2026-09-16T15:51:56Z",
+  "history_start_date": "2026-06-19",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -55520,12 +55432,12 @@
     "counts_by_display_source": {
       "kstyle_music": 90,
       "official_events": 572,
-      "starto_concert": 99,
-      "venue_web_discovery": 522
+      "starto_concert": 100,
+      "venue_web_discovery": 508
     },
-    "event_count": 1283,
+    "event_count": 1270,
     "location_held_record_count": 26,
-    "record_count_before_grouping": 1423,
+    "record_count_before_grouping": 1407,
     "start_time_split_event_count": 33,
     "start_time_split_group_count": 32,
     "supplemental_merged_group_count": 10,
