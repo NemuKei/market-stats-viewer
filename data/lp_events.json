@@ -1,47 +1,9 @@
 {
-  "as_of_date": "2026-09-17",
+  "as_of_date": "2026-09-18",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "SUPER JUNIOR",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-19",
-      "event_end_date": "2026-06-19",
-      "event_end_time": null,
-      "event_key": "587c32fec43e3719f177",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京国際フォーラム ホールA / 日時: 2026-06-19 / 2026年6月19日(金)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2277661",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "SUPER JUNIOR",
-      "raw_venue_name": "東京国際フォーラム ホールA",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2277661",
-          "priority": 30,
-          "record_id": "302bf3e86e7d5d936815d9414d84b521352edd9ed7fb3c8b55a4f56a2dbdb8fb",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026年6月19日(金)",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2277661"
-        }
-      ],
-      "title": "2026年6月19日(金)",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277661",
-      "venue_name": "東京国際フォーラム"
-    },
     {
       "artist_name": "H//PE Princess",
       "capacity": null,
@@ -54885,8 +54847,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-17T09:37:37Z",
-  "history_start_date": "2026-06-19",
+  "generated_at_utc": "2026-09-17T15:58:45Z",
+  "history_start_date": "2026-06-20",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -55030,14 +54992,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 90,
+      "kstyle_music": 89,
       "official_events": 572,
       "starto_concert": 100,
       "venue_web_discovery": 500
     },
-    "event_count": 1262,
+    "event_count": 1261,
     "location_held_record_count": 26,
-    "record_count_before_grouping": 1398,
+    "record_count_before_grouping": 1397,
     "start_time_split_event_count": 33,
     "start_time_split_group_count": 32,
     "supplemental_merged_group_count": 10,
