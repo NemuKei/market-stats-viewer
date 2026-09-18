@@ -1,161 +1,9 @@
 {
-  "as_of_date": "2026-09-18",
+  "as_of_date": "2026-09-19",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "H//PE Princess",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-20",
-      "event_end_date": "2026-06-20",
-      "event_end_time": null,
-      "event_key": "61bac242f233129ca809",
-      "event_start_time": null,
-      "evidence_snippet": "会場: Zepp Haneda(TOKYO) / 日時: 2026-06-20 / 【日時】2026年6月20日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279962",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "H//PE Princess",
-      "raw_venue_name": "Zepp Haneda(TOKYO)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279962",
-          "priority": 30,
-          "record_id": "b8758f65d0b7ecd1f6629f0f5ccda643d0f8e8bd657b53bc5a3866e16179de54",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 H//PE Princess 1st Fanmeeting <H//PE ZONE : 17.7>",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279962"
-        }
-      ],
-      "title": "2026 H//PE Princess 1st Fanmeeting <H//PE ZONE : 17.7>",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279962",
-      "venue_name": "Zepp Haneda(Tokyo)"
-    },
-    {
-      "artist_name": "NTX",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-20",
-      "event_end_date": "2026-06-20",
-      "event_end_time": null,
-      "event_key": "8c60311b5b46804f3f49",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-06-20 / 2026年6月20日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279740",
-      "first_seen_at_utc": "2026-09-06T14:41:33Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "NTX",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279740",
-          "priority": 30,
-          "record_id": "5538f1e2631f309abf63fd302b30a3f330e138f660c00daae0ada087e49415df",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 NTX SPECIAL LIVE IN TOKYO RED HEART",
-          "updated_at_utc": "2026-09-06T14:41:33Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279740"
-        }
-      ],
-      "title": "2026 NTX SPECIAL LIVE IN TOKYO RED HEART",
-      "updated_at_utc": "2026-09-06T14:41:33Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279740",
-      "venue_name": "iBIG HALL"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-06-20",
-      "event_end_date": "2026-06-20",
-      "event_end_time": null,
-      "event_key": "bb52d2e9014d7c14271c",
-      "event_start_time": null,
-      "evidence_snippet": "2026-06-20 18:30 / [北海道] 北海道立総合体育センター（北海きたえーる）",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "北海道立総合体育センター（北海きたえーる）",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "d614f5415891b9f3626cfa1150937072d1c9392ea69746a9f411cdfa158103ee",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "北海道立総合体育センター 北海きたえーる"
-    },
-    {
-      "artist_name": "i-dle",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-20",
-      "event_end_date": "2026-06-20",
-      "event_end_time": null,
-      "event_key": "2a8ff79a5bb644cc6cde",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14) / 日時: 2026-06-20 / 2026年6月20日 (土) 16:30開場 / 18:00開演",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "i-dle",
-      "raw_venue_name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2276235",
-          "priority": 30,
-          "record_id": "ab0222e35961f847dfa818cfa801d5ff4bb875465e29ec8fa0b51113151f07e4",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 i-dle WORLD TOUR [Syncopation] IN YOKOHAMA",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2276235"
-        }
-      ],
-      "title": "2026 i-dle WORLD TOUR [Syncopation] IN YOKOHAMA",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "venue_name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)"
-    },
     {
       "artist_name": "NTX",
       "capacity": null,
@@ -14773,44 +14621,6 @@
       "updated_at_utc": "2026-09-08T00:33:56Z",
       "url": "https://www.t-i-forum.co.jp/visitors/event/detail.html?id=20260922_1224",
       "venue_name": "東京国際フォーラム"
-    },
-    {
-      "artist_name": "Kim A-in",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-09-22",
-      "event_end_date": "2026-09-22",
-      "event_end_time": null,
-      "event_key": "06cfe3262066a11cab01",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 横浜BUNTAI(神奈川県横浜市中区不老町2丁目7番1) / 日時: 2026-09-22 / 日時:2026年9月22日(火・祝日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283893",
-      "first_seen_at_utc": "2026-09-11T15:35:33Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "Kim A-in",
-      "raw_venue_name": "横浜BUNTAI(神奈川県横浜市中区不老町2丁目7番1)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283893",
-          "priority": 30,
-          "record_id": "7ce1521ca0f0653a0f2ee4b53f428cb574eeea735762c40ed9981a90b9d80116",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 NA-IN WOO Fanmeeting [LOVER : Falling in love] in Japan",
-          "updated_at_utc": "2026-09-11T15:35:33Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283893"
-        }
-      ],
-      "title": "2026 NA-IN WOO Fanmeeting [LOVER : Falling in love] in Japan",
-      "updated_at_utc": "2026-09-11T15:35:33Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283893",
-      "venue_name": "横浜BUNTAI"
     },
     {
       "artist_name": "横浜DeNAベイスターズ",
@@ -44105,44 +43915,6 @@
       "venue_name": "京セラドーム大阪"
     },
     {
-      "artist_name": "Bank",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-12-12",
-      "event_end_date": "2026-12-12",
-      "event_end_time": null,
-      "event_key": "2607f80e417e9e6e249d",
-      "event_start_time": null,
-      "evidence_snippet": "会場: MUFGスタジアム(国立競技場) / 日時: 2026-12-12 / 2026年12月12日(土)・13日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
-      "first_seen_at_utc": "2026-09-11T15:35:33Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "Bank",
-      "raw_venue_name": "MUFGスタジアム(国立競技場)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
-          "priority": 30,
-          "record_id": "b4c2c04f9def1f4b8db76dd78bd5ae82e1410cdebd4549cd695a2b1896b30e0b",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
-          "updated_at_utc": "2026-09-11T15:35:33Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283901"
-        }
-      ],
-      "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
-      "updated_at_utc": "2026-09-11T15:35:33Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283901",
-      "venue_name": "国立競技場"
-    },
-    {
       "artist_name": "KAWAII LAB.",
       "capacity": 15000,
       "display_source_class": "venue_official",
@@ -44267,44 +44039,6 @@
       "updated_at_utc": "2026-03-02T07:09:01Z",
       "url": "https://hehn.fujiikaze.com/pwt/",
       "venue_name": "京セラドーム大阪"
-    },
-    {
-      "artist_name": "Bank",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-12-13",
-      "event_end_date": "2026-12-13",
-      "event_end_time": null,
-      "event_key": "43bf5459afa2fe9d6284",
-      "event_start_time": null,
-      "evidence_snippet": "会場: MUFGスタジアム(国立競技場) / 日時: 2026-12-13 / 2026年12月12日(土)・13日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
-      "first_seen_at_utc": "2026-09-11T15:35:33Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "Bank",
-      "raw_venue_name": "MUFGスタジアム(国立競技場)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283901",
-          "priority": 30,
-          "record_id": "d2d4aa4f44a98619db27de1e3261be4e320a3113ef693fb8ce62c7d75337a77d",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
-          "updated_at_utc": "2026-09-11T15:35:33Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283901"
-        }
-      ],
-      "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
-      "updated_at_utc": "2026-09-11T15:35:33Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283901",
-      "venue_name": "国立競技場"
     },
     {
       "artist_name": "-真天地開闢集団-ジグザグ",
@@ -54397,8 +54131,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-18T09:09:59Z",
-  "history_start_date": "2026-06-20",
+  "generated_at_utc": "2026-09-18T15:31:43Z",
+  "history_start_date": "2026-06-21",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -54542,14 +54276,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 89,
+      "kstyle_music": 83,
       "official_events": 572,
-      "starto_concert": 100,
+      "starto_concert": 99,
       "venue_web_discovery": 491
     },
-    "event_count": 1252,
+    "event_count": 1245,
     "location_held_record_count": 26,
-    "record_count_before_grouping": 1386,
+    "record_count_before_grouping": 1379,
     "start_time_split_event_count": 33,
     "start_time_split_group_count": 32,
     "supplemental_merged_group_count": 10,
