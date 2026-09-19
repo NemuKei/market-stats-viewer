@@ -1,161 +1,9 @@
 {
-  "as_of_date": "2026-09-19",
+  "as_of_date": "2026-09-20",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "NTX",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-21",
-      "event_end_date": "2026-06-21",
-      "event_end_time": null,
-      "event_key": "d832f6d2bf0bdfde549f",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-06-21 / 2026年6月21日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279740",
-      "first_seen_at_utc": "2026-09-06T14:41:33Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "NTX",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279740",
-          "priority": 30,
-          "record_id": "74bc57e5b32f2be24dce5f84fac13fa53f695ecf5928b1f060a6e3d4a7351b05",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 NTX SPECIAL LIVE IN TOKYO RED HEART",
-          "updated_at_utc": "2026-09-06T14:41:33Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279740"
-        }
-      ],
-      "title": "2026 NTX SPECIAL LIVE IN TOKYO RED HEART",
-      "updated_at_utc": "2026-09-06T14:41:33Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279740",
-      "venue_name": "iBIG HALL"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-06-21",
-      "event_end_date": "2026-06-21",
-      "event_end_time": null,
-      "event_key": "b938c2c88a69d972263e",
-      "event_start_time": null,
-      "evidence_snippet": "2026-06-21 13:00 / [北海道] 北海道立総合体育センター（北海きたえーる） | 2026-06-21 18:30 / [北海道] 北海道立総合体育センター（北海きたえーる）",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "北海道立総合体育センター（北海きたえーる）",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "2fca2d02a276624bf354bc7cb8f6203dbb63426761394dee1f4c1c8947a19105",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "北海道立総合体育センター 北海きたえーる"
-    },
-    {
-      "artist_name": "DJ DRAGON",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-21",
-      "event_end_date": "2026-06-21",
-      "event_end_time": null,
-      "event_key": "e78eac97778b2805daae",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 渋谷WWW / 日時: 2026-06-21 / 〇2026年6月21日(日)OPEN 15:30 / START 16:00",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279512",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "DJ DRAGON",
-      "raw_venue_name": "渋谷WWW",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279512",
-          "priority": 30,
-          "record_id": "03b4d326614cfb6d5e0995a0569c98c7a81b5463193a2fb52c616655a3ecc551",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "DRAGON PONY 2026 Run To Run JAPAN TOUR",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279512"
-        }
-      ],
-      "title": "DRAGON PONY 2026 Run To Run JAPAN TOUR",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2279512",
-      "venue_name": "渋谷WWW"
-    },
-    {
-      "artist_name": "i-dle",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-06-21",
-      "event_end_date": "2026-06-21",
-      "event_end_time": null,
-      "event_key": "3caf3509c0ca2517a0ba",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14) / 日時: 2026-06-21 / 2026年6月21日 (日) 15:30開場 / 17:00開演",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "i-dle",
-      "raw_venue_name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2276235",
-          "priority": 30,
-          "record_id": "011a09034dafebed748db31757b73bed91bc7ae4ae5b7f3aaf2ae226b63c98e4",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 i-dle WORLD TOUR [Syncopation] IN YOKOHAMA",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2276235"
-        }
-      ],
-      "title": "2026 i-dle WORLD TOUR [Syncopation] IN YOKOHAMA",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276235",
-      "venue_name": "神奈川・Kアリーナ横浜(〒220-8507 横浜市西区みなとみらい6-2-14)"
-    },
     {
       "artist_name": "Kis-My-Ft2",
       "capacity": null,
@@ -21891,44 +21739,6 @@
       "venue_name": "東京ガーデンシアター"
     },
     {
-      "artist_name": "イ・シア",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-03",
-      "event_end_date": "2026-10-03",
-      "event_end_time": null,
-      "event_key": "d03db8d817c27c8a5d3f",
-      "event_start_time": null,
-      "evidence_snippet": "会場: K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F) / 日時: 2026-10-03 / 10/3(土) 18:00",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "イ・シア",
-      "raw_venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-          "priority": 30,
-          "record_id": "e741442d231093d8070115895b382a1434e69a4e0e37dc01943497a2344ce7bd",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "EASTSHINE JAPAN LIVE 2026",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283926"
-        }
-      ],
-      "title": "EASTSHINE JAPAN LIVE 2026",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)"
-    },
-    {
       "artist_name": "ミュージカル『新テニスの王子様』",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -22367,44 +22177,6 @@
       "updated_at_utc": "2026-09-13T03:15:23Z",
       "url": "https://npb.jp/games/2026/schedule_10_detail.html",
       "venue_name": "東京ドーム"
-    },
-    {
-      "artist_name": "イ・シア",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-04",
-      "event_end_date": "2026-10-04",
-      "event_end_time": null,
-      "event_key": "755fef8c697b8d3a302c",
-      "event_start_time": null,
-      "evidence_snippet": "会場: K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F) / 日時: 2026-10-04 / 10/4(日) 18:00☆LUMIN DAY",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "イ・シア",
-      "raw_venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-          "priority": 30,
-          "record_id": "1a62f418a2ff8f5a9ce74a14d74dbe5104a3ed0edeeb8291575ae820409b59c0",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "EASTSHINE JAPAN LIVE 2026",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283926"
-        }
-      ],
-      "title": "EASTSHINE JAPAN LIVE 2026",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)"
     },
     {
       "artist_name": "カラフルピーチ",
@@ -22885,44 +22657,6 @@
       "venue_name": "Zepp Namba(Osaka)"
     },
     {
-      "artist_name": "イ・シア",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-06",
-      "event_end_date": "2026-10-06",
-      "event_end_time": null,
-      "event_key": "44fa5bbc1c8fc7254dd6",
-      "event_start_time": null,
-      "evidence_snippet": "会場: K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F) / 日時: 2026-10-06 / 10/6(火) 20:00",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "イ・シア",
-      "raw_venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-          "priority": 30,
-          "record_id": "e0a17924d7a1e8b5cf538deec5e07d191b556be691587b4be96e40b538aafa11",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "EASTSHINE JAPAN LIVE 2026",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283926"
-        }
-      ],
-      "title": "EASTSHINE JAPAN LIVE 2026",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)"
-    },
-    {
       "artist_name": "ミュージカル『新テニスの王子様』",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -23211,44 +22945,6 @@
       "updated_at_utc": "2026-07-27T18:52:51Z",
       "url": "https://starto.jp/s/p/live/10507",
       "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "イ・シア",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-07",
-      "event_end_date": "2026-10-07",
-      "event_end_time": null,
-      "event_key": "ce7f791aa8817e99b600",
-      "event_start_time": null,
-      "evidence_snippet": "会場: K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F) / 日時: 2026-10-07 / 10/7(水) 20:00☆DONGJAE DAY",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "イ・シア",
-      "raw_venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-          "priority": 30,
-          "record_id": "a8381abdd01a8e499daebdfe6dc2c921586242818705ce6f1953d5ce42b3a606",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "EASTSHINE JAPAN LIVE 2026",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283926"
-        }
-      ],
-      "title": "EASTSHINE JAPAN LIVE 2026",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)"
     },
     {
       "artist_name": "ミュージカル『新テニスの王子様』",
@@ -23903,44 +23599,6 @@
       "updated_at_utc": "2026-09-19T08:43:39Z",
       "url": "https://www.yokohama-arena.co.jp/event/detail/news-live-tour-2026-kmk",
       "venue_name": "横浜アリーナ"
-    },
-    {
-      "artist_name": "イ・シア",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-09",
-      "event_end_date": "2026-10-09",
-      "event_end_time": null,
-      "event_key": "1b8e4bc1007327b235f2",
-      "event_start_time": null,
-      "evidence_snippet": "会場: K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F) / 日時: 2026-10-09 / 10/9(金) 20:00",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "イ・シア",
-      "raw_venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-          "priority": 30,
-          "record_id": "e0ac9a79af62553cdf96faaeb29b5c619aa2ca79d848c8f1520b8ab62448ed2a",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "EASTSHINE JAPAN LIVE 2026",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283926"
-        }
-      ],
-      "title": "EASTSHINE JAPAN LIVE 2026",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)"
     },
     {
       "artist_name": "ミュージカル『新テニスの王子様』",
@@ -29549,44 +29207,6 @@
       "venue_name": "Asueアリーナ大阪"
     },
     {
-      "artist_name": "イ・シア",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-25",
-      "event_end_date": "2026-10-25",
-      "event_end_time": null,
-      "event_key": "d9b742b5cf97de78d019",
-      "event_start_time": null,
-      "evidence_snippet": "会場: K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F) / 日時: 2026-10-25 / 公演日程:2026年10月3日(土)~10月25日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "イ・シア",
-      "raw_venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283926",
-          "priority": 30,
-          "record_id": "53634a956d803d3538ce0a2830b6a3e3dcafa759000edd2ab52fab6e60dbfe95",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "EASTSHINE JAPAN LIVE 2026",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283926"
-        }
-      ],
-      "title": "EASTSHINE JAPAN LIVE 2026",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283926",
-      "venue_name": "K-Stage O!(東京都新宿区大久保1-8-4 K-SQUARE 3F)"
-    },
-    {
       "artist_name": "ゆず",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -31487,44 +31107,6 @@
       "venue_name": "Zepp札幌"
     },
     {
-      "artist_name": "OMEGA X",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-31",
-      "event_end_date": "2026-10-31",
-      "event_end_time": null,
-      "event_key": "ab8f40d80971e3430998",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-10-31 / 2026年10月31日(土)・11月1日(日)・11月3日(祝・火)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "OMEGA X",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-          "priority": 30,
-          "record_id": "fc8970e92bc3f2ebea876d2bdde19d816614bd3af66a1d264604ab7d2a7aa4fb",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
-        }
-      ],
-      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "venue_name": "iBIG HALL"
-    },
-    {
       "artist_name": "コブクロ",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -31987,44 +31569,6 @@
       "updated_at_utc": "2026-09-19T08:44:28Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156657",
       "venue_name": "Zepp札幌"
-    },
-    {
-      "artist_name": "OMEGA X",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-11-01",
-      "event_end_date": "2026-11-01",
-      "event_end_time": null,
-      "event_key": "d7c69e7c7d98c855c295",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-01 / 2026年10月31日(土)・11月1日(日)・11月3日(祝・火)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "OMEGA X",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-          "priority": 30,
-          "record_id": "c2be57b9ac7fc4eca6b48a3574950d923095dfbf5f3c5d8925a2ea1c21bbf669",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
-        }
-      ],
-      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "venue_name": "iBIG HALL"
     },
     {
       "artist_name": "コブクロ",
@@ -32743,44 +32287,6 @@
       "updated_at_utc": "2026-09-19T08:44:28Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156821",
       "venue_name": "Zepp札幌"
-    },
-    {
-      "artist_name": "OMEGA X",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-11-03",
-      "event_end_date": "2026-11-03",
-      "event_end_time": null,
-      "event_key": "e44abb4400db880bcb9c",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-03 / 2026年10月31日(土)・11月1日(日)・11月3日(祝・火)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "OMEGA X",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-          "priority": 30,
-          "record_id": "3fe0e3a523a1ac790c07a3c416ba695fa86b294938f46cbfb4b1c3d0031fd505",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
-        }
-      ],
-      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "venue_name": "iBIG HALL"
     },
     {
       "artist_name": "indigo la End",
@@ -33589,44 +33095,6 @@
       "venue_name": "Zepp札幌"
     },
     {
-      "artist_name": "OMEGA X",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-11-07",
-      "event_end_date": "2026-11-07",
-      "event_end_time": null,
-      "event_key": "1b0e10b3bd5ab2d028c9",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-07 / 2026年11月7日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "OMEGA X",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-          "priority": 30,
-          "record_id": "af9591c5c305b9d716eb0b7541ddf3a50e9657b90d59506004240af4a4067f3e",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
-        }
-      ],
-      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "venue_name": "iBIG HALL"
-    },
-    {
       "artist_name": "YOASOBI",
       "capacity": 49427,
       "display_source_class": "venue_official",
@@ -34041,44 +33509,6 @@
       "updated_at_utc": "2026-09-19T08:56:18Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157342",
       "venue_name": "Zepp Haneda(Tokyo)"
-    },
-    {
-      "artist_name": "OMEGA X",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-11-08",
-      "event_end_date": "2026-11-08",
-      "event_end_time": null,
-      "event_key": "d7ebbc7564ebb6e8dcb0",
-      "event_start_time": null,
-      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-08 / 2026年11月8日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "first_seen_at_utc": "2026-09-12T14:42:59Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "OMEGA X",
-      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
-          "priority": 30,
-          "record_id": "45ef753347c4db334da86cc52ce89a675c36c5f2ed314120a0b97aa676d277d7",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-          "updated_at_utc": "2026-09-12T14:42:59Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
-        }
-      ],
-      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
-      "updated_at_utc": "2026-09-12T14:42:59Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
-      "venue_name": "iBIG HALL"
     },
     {
       "artist_name": "舞台『ノッキンオン・ロックドドア』",
@@ -53279,8 +52709,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-19T09:03:46Z",
-  "history_start_date": "2026-06-21",
+  "generated_at_utc": "2026-09-19T15:07:27Z",
+  "history_start_date": "2026-06-22",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -53298,61 +52728,6 @@
       "reason": "unresolved_domestic_location",
       "record_id": "8ed32caecdc741e70d885585bc20ab66e5a344622987027e72a9be3f2ab105ef",
       "source_id": "starto_concert"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "5c5da8823f91d96a266b340f50ad49d568abef723f5d7225e36bf377086f3e84",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "fa2fd1a5af046182feb18761f82dbe5a75bbe84a31abfe5450bef009d9e9825f",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "625df776eb684332c36baee26ffaa6fafd38a0d0b4895b44df4207138be461d0",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "2218d1df821dad2af36995628e6fc9aa7385d615026dc9b661c47ab8a45fcaf2",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "4706e17a0235baf67c069861a7ca0fb64f85251e55b295368aee73fc008767a7",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "719c235ac9347c68a5e412a9a1756d9c9dc0c56756c8becd92e43466ef601f33",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "0d1c6b618bea76841d9c49d911c429d94eee67046e8c1424c66db8bc43376b80",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "65ccef74be7ed4ad6df21c13e304302713723aee6cc2cffdf20e70a048ec79b6",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "751730811927c94fb435b9db2e571c0371fc176d9c33d4cb6e13ad76ba2b88eb",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "77617caf5867acc3762dd364df668feeaf8a6c06884dc803137bf3015ad6db82",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "a7b6bf3f60178eb3886f630f648abe7013a0c959bd76dd1471dc014651784019",
-      "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
@@ -53424,18 +52799,18 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 79,
+      "kstyle_music": 65,
       "official_events": 579,
       "starto_concert": 99,
-      "venue_web_discovery": 487
+      "venue_web_discovery": 469
     },
-    "event_count": 1244,
-    "location_held_record_count": 26,
-    "record_count_before_grouping": 1386,
-    "start_time_split_event_count": 33,
-    "start_time_split_group_count": 32,
-    "supplemental_merged_group_count": 10,
-    "supplemental_merged_record_count": 10,
+    "event_count": 1212,
+    "location_held_record_count": 15,
+    "record_count_before_grouping": 1352,
+    "start_time_split_event_count": 32,
+    "start_time_split_group_count": 31,
+    "supplemental_merged_group_count": 9,
+    "supplemental_merged_record_count": 9,
     "suppressed_event_count": 1,
     "ticketjam_discovery_record_count": 1235,
     "ticketjam_promoted_held_record_count": 0,
