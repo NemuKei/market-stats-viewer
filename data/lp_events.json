@@ -1,123 +1,9 @@
 {
-  "as_of_date": "2026-09-20",
+  "as_of_date": "2026-09-21",
   "discovery_source_ids": [
     "ticketjam_events"
   ],
   "events": [
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-06-27",
-      "event_end_date": "2026-06-27",
-      "event_end_time": null,
-      "event_key": "fe5757327ec8c5cc3ba3",
-      "event_start_time": null,
-      "evidence_snippet": "2026-06-27 18:30 / [宮城県] セキスイハイムスーパーアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "宮城県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "セキスイハイムスーパーアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "825e6b3b9092a53d41bb26e4faa2d820f52ceaa00e76c7638dfd6cbf99459a5d",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "セキスイハイムスーパーアリーナ"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-06-28",
-      "event_end_date": "2026-06-28",
-      "event_end_time": null,
-      "event_key": "9b9ef77c4fee5fa75cc9",
-      "event_start_time": null,
-      "evidence_snippet": "2026-06-28 13:00 / [宮城県] セキスイハイムスーパーアリーナ | 2026-06-28 18:30 / [宮城県] セキスイハイムスーパーアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "宮城県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "セキスイハイムスーパーアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "1603d0710781586406b86cf5b40bfb83faddd728769fc602a519662f1620b75e",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "セキスイハイムスーパーアリーナ"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-07-04",
-      "event_end_date": "2026-07-04",
-      "event_end_time": null,
-      "event_key": "78a534d4a100c0d85c95",
-      "event_start_time": null,
-      "evidence_snippet": "2026-07-04 13:00 / [福岡県] マリンメッセ福岡A館 | 2026-07-04 18:30 / [福岡県] マリンメッセ福岡A館",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "福岡県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "マリンメッセ福岡A館",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "9a56a3f4815cecbfd2c4e16610e2e3d52be74f21c140a1b818ea7f20623ddc52",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "マリンメッセ福岡"
-    },
     {
       "artist_name": "KARA",
       "capacity": null,
@@ -155,44 +41,6 @@
       "updated_at_utc": "2026-07-27T18:51:53Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2277247",
       "venue_name": "東京・TOYOTA ARENA TOKYO"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-07-05",
-      "event_end_date": "2026-07-05",
-      "event_end_time": null,
-      "event_key": "ed0e2825ab9784ec9fd9",
-      "event_start_time": null,
-      "evidence_snippet": "2026-07-05 14:00 / [福岡県] マリンメッセ福岡A館",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "福岡県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "マリンメッセ福岡A館",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "e662467e8e15e44487535085a435953b48c6ebccfe49a48db39c2e4734ccaefe",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "マリンメッセ福岡"
     },
     {
       "artist_name": "KARA",
@@ -1005,82 +853,6 @@
       "venue_name": "北海道立総合体育センター 北海きたえーる"
     },
     {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-03",
-      "event_end_date": "2026-08-03",
-      "event_end_time": null,
-      "event_key": "e38f7ad8a4521aa8aee6",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-03 18:30 / [大阪府] 大阪城ホール",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "大阪城ホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "c9b8828083d8bfd385dd9354587d22c0b6c393c36da8e1e7a4c859e0527feab4",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "大阪城ホール"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-04",
-      "event_end_date": "2026-08-04",
-      "event_end_time": null,
-      "event_key": "006ea5c7737b0b3d8834",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-04 13:00 / [大阪府] 大阪城ホール | 2026-08-04 18:30 / [大阪府] 大阪城ホール",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "大阪城ホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "d4d318ed64b3c7bff9fc0f2f7559bdeca92809bd2803bb6d379b41dd73750bdf",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "大阪城ホール"
-    },
-    {
       "artist_name": "なにわ男子",
       "capacity": null,
       "display_source_class": "",
@@ -1309,44 +1081,6 @@
       "venue_name": "iBIG HALL"
     },
     {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-10",
-      "event_end_date": "2026-08-10",
-      "event_end_time": null,
-      "event_key": "7d7da0c223903e16d22e",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-10 13:00 / [神奈川県] 横浜アリーナ | 2026-08-10 18:30 / [神奈川県] 横浜アリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "f588184cac9551d1625502340b169e19450bf438b11285aa868039b8c374e0ae",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "横浜アリーナ"
-    },
-    {
       "artist_name": "NEWS",
       "capacity": null,
       "display_source_class": "",
@@ -1421,44 +1155,6 @@
       "updated_at_utc": "2026-08-16T12:23:45Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2281765",
       "venue_name": "東京・大手町三井ホール"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-11",
-      "event_end_date": "2026-08-11",
-      "event_end_time": null,
-      "event_key": "c5b0d10df6d835e30a39",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-11 14:00 / [神奈川県] 横浜アリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "7036643b19287498581d6237791bd299e3e223b21d0b8ff350fafda13a6f7cd2",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "横浜アリーナ"
     },
     {
       "artist_name": "Big O!cean",
@@ -1912,18 +1608,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281906",
-          "priority": 30,
-          "record_id": "39bb410331ec57719778169c844f83e9461c5fa96c2f9155451ee0da33c9036e",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281906"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281952",
           "priority": 30,
           "record_id": "3b88e86f94f8aafaf586bba220245c4a2c18820dbe3085f6fb370eecbcf63028",
@@ -1974,18 +1658,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281906",
-          "priority": 30,
-          "record_id": "15f94818ba939ff9e1cbfed67a1363f372992796ce4d6cd2cb42eb6345c5a44b",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281906"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281952",
           "priority": 30,
           "record_id": "acb277d8e2c718b99f0428de180b35afa13f72943b9d7206d95015e18307b7f7",
@@ -2001,44 +1673,6 @@
       "updated_at_utc": "2026-07-27T18:51:53Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2279484",
       "venue_name": "Zepp Osaka Bayside"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-22",
-      "event_end_date": "2026-08-22",
-      "event_end_time": null,
-      "event_key": "3e158378c25c9352fe52",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-22 13:00 / [静岡県] エコパアリーナ | 2026-08-22 18:30 / [静岡県] エコパアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "静岡県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "エコパアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "678377da110f67548fc5d361049e85333a3d1e1f465de461d3c4f8843a9d24ab",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "エコパアリーナ"
     },
     {
       "artist_name": "TREASURE",
@@ -2077,44 +1711,6 @@
       "updated_at_utc": "2026-07-27T18:51:53Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2276584",
       "venue_name": "マリンメッセ福岡"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-08-23",
-      "event_end_date": "2026-08-23",
-      "event_end_time": null,
-      "event_key": "9316c03f97e460177c93",
-      "event_start_time": null,
-      "evidence_snippet": "2026-08-23 14:00 / [静岡県] エコパアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "静岡県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "エコパアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "557aa91d5242ecd5e73942b55edecf1f81ccd1a4a85107c66c24f94a64f7dcc1",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "エコパアリーナ"
     },
     {
       "artist_name": "TWICE",
@@ -3219,44 +2815,6 @@
       "venue_name": "ぴあアリーナMM"
     },
     {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-04",
-      "event_end_date": "2026-09-04",
-      "event_end_time": null,
-      "event_key": "17ad8a519caf97f069f8",
-      "event_start_time": null,
-      "evidence_snippet": "2026-09-04 18:30 / [千葉県] ららアリーナ 東京ベイ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "千葉県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "ららアリーナ 東京ベイ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "efa5df45db5a7dd0e0520e6ca1286a25cd8d61b417cdc3f9092bec16f927dc7a",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "ららアリーナ 東京ベイ"
-    },
-    {
       "artist_name": "JUJU",
       "capacity": 2700,
       "display_source_class": "venue_official",
@@ -3442,18 +3000,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281906",
-          "priority": 30,
-          "record_id": "47d8ba64ff10411bba789c19087c5d9f549a50d0812c0893c2e79cdf56469ab6",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281906"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281952",
           "priority": 30,
           "record_id": "86f47474f3de31b5d49eacdfa203b4930b09b3bbc49c9f051fe39d494536dc87",
@@ -3507,44 +3053,6 @@
       "updated_at_utc": "2026-09-19T08:51:34Z",
       "url": "https://pia-arena-mm.jp/event/6958.html",
       "venue_name": "ぴあアリーナMM"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-05",
-      "event_end_date": "2026-09-05",
-      "event_end_time": null,
-      "event_key": "9207d606efe65d308b6b",
-      "event_start_time": null,
-      "evidence_snippet": "2026-09-05 13:00 / [千葉県] ららアリーナ 東京ベイ | 2026-09-05 18:30 / [千葉県] ららアリーナ 東京ベイ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "千葉県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "ららアリーナ 東京ベイ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "8d8c0e636288621009bc282e1e6ead0c928a7aae318e11bc9af82dbbcf12ed5b",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "ららアリーナ 東京ベイ"
     },
     {
       "artist_name": "NEWS",
@@ -4022,18 +3530,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281906",
-          "priority": 30,
-          "record_id": "a48cc209a206643fea09f367ef78f9dde8b711c269ba8a58394fb678dab5086d",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281906"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281952",
           "priority": 30,
           "record_id": "60359f47ce9cff85287b77c484e3016a50604b3282bad1753dacb35223976a34",
@@ -4087,44 +3583,6 @@
       "updated_at_utc": "2026-09-19T08:51:34Z",
       "url": "https://pia-arena-mm.jp/event/6960.html",
       "venue_name": "ぴあアリーナMM"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-06",
-      "event_end_date": "2026-09-06",
-      "event_end_time": null,
-      "event_key": "6af823318c70fa68ba6d",
-      "event_start_time": null,
-      "evidence_snippet": "2026-09-06 14:00 / [千葉県] ららアリーナ 東京ベイ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "千葉県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "ららアリーナ 東京ベイ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "5f456f0e447ebc95418260269d30d8603bc3c5fe4907e4dc33234395fa438ec4",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "ららアリーナ 東京ベイ"
     },
     {
       "artist_name": "NEWS",
@@ -4987,44 +4445,6 @@
       "venue_name": "国立代々木競技場第一体育館"
     },
     {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-12",
-      "event_end_date": "2026-09-12",
-      "event_end_time": null,
-      "event_key": "3a6d0141b66f90ae2cf5",
-      "event_start_time": null,
-      "evidence_snippet": "2026-09-12 13:00 / [広島県] 広島グリーンアリーナ | 2026-09-12 18:30 / [広島県] 広島グリーンアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "広島県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "広島グリーンアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "01e0c0f5ad8dfd5b982ad12e5818698c2519c4c370333a452665f5d6352330cd",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "広島グリーンアリーナ"
-    },
-    {
       "artist_name": "NEWS",
       "capacity": null,
       "display_source_class": "",
@@ -5251,44 +4671,6 @@
       "updated_at_utc": "2026-09-19T08:58:38Z",
       "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6088&etype=1",
       "venue_name": "国立代々木競技場第一体育館"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-13",
-      "event_end_date": "2026-09-13",
-      "event_end_time": null,
-      "event_key": "93d68918ba205626d31e",
-      "event_start_time": null,
-      "evidence_snippet": "2026-09-13 14:00 / [広島県] 広島グリーンアリーナ",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "広島県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "広島グリーンアリーナ",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "fe4efa9f4601cda0464cce73d07bcb4c24fc820448e9cb3a141dd0471103ca98",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "広島グリーンアリーナ"
     },
     {
       "artist_name": "NEWS",
@@ -6453,44 +5835,6 @@
       "updated_at_utc": "2026-09-19T08:46:08Z",
       "url": "https://kyodo-osaka.co.jp/search/detail/13371",
       "venue_name": "大阪城ホール"
-    },
-    {
-      "artist_name": "Kis-My-Ft2",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "starto_concert",
-      "display_source_label": "STARTO NEWS (CONCERT)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-19",
-      "event_end_date": "2026-09-19",
-      "event_end_time": null,
-      "event_key": "e3125f3e601ae9f1a405",
-      "event_start_time": null,
-      "evidence_snippet": "2026-09-19 13:00 / [新潟県] 朱鷺メッセ 新潟コンベンションセンター | 2026-09-19 18:30 / [新潟県] 朱鷺メッセ 新潟コンベンションセンター",
-      "evidence_url": "https://starto.jp/s/p/live/10460",
-      "first_seen_at_utc": "2026-07-27T18:52:51Z",
-      "pref_name": "新潟県",
-      "raw_artist_name": "Kis-My-Ft2",
-      "raw_venue_name": "朱鷺メッセ 新潟コンベンションセンター",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "97e37301ac9008bd953e6fc7871dcd97925272b6ff3d59e3d59a0d4d44e8f639",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
-        }
-      ],
-      "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-      "updated_at_utc": "2026-08-10T12:50:51Z",
-      "url": "https://starto.jp/s/p/live/10460",
-      "venue_name": "朱鷺メッセ 新潟コンベンションセンター"
     },
     {
       "artist_name": "The Damned",
@@ -8301,18 +7645,6 @@
           "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
           "updated_at_utc": "2026-09-20T11:08:37Z",
           "url": "https://mentrecording.jp/kismyft2/live/tour.php?id=1002973"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://starto.jp/s/p/live/10460",
-          "priority": 30,
-          "record_id": "2cc81ca0346d1f28626e0385fb4cb10a0e780f26a795db6c0c2131d741bf8623",
-          "source_class": "",
-          "source_id": "starto_concert",
-          "source_label": "STARTO NEWS (CONCERT)",
-          "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS・・・・・・",
-          "updated_at_utc": "2026-08-10T12:50:51Z",
-          "url": "https://starto.jp/s/p/live/10460"
         },
         {
           "content_extractor": null,
@@ -20091,44 +19423,6 @@
       "venue_name": "Zepp札幌"
     },
     {
-      "artist_name": "チ・チャンウク",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-02",
-      "event_end_date": "2026-10-02",
-      "event_end_time": null,
-      "event_key": "219acdbea6ed63601681",
-      "event_start_time": null,
-      "evidence_snippet": "会場: グランキューブ大阪(大阪府立国際会議場)メインホール / 日時: 2026-10-02 / ・2026年10月2日(金)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "first_seen_at_utc": "2026-08-12T12:49:09Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "チ・チャンウク",
-      "raw_venue_name": "グランキューブ大阪(大阪府立国際会議場)メインホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-          "priority": 30,
-          "record_id": "3ff89b870eb5e8d2ceb617d2c77303b0e91612909c3d4d048b9b4bd24981cefb",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281916"
-        }
-      ],
-      "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-      "updated_at_utc": "2026-08-12T12:49:09Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "venue_name": "グランキューブ大阪(大阪府立国際会議場)メインホール"
-    },
-    {
       "artist_name": "德永英明",
       "capacity": 2700,
       "display_source_class": "venue_official",
@@ -20441,44 +19735,6 @@
       "updated_at_utc": "2026-09-19T08:57:44Z",
       "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156574",
       "venue_name": "Zepp Osaka Bayside"
-    },
-    {
-      "artist_name": "チ・チャンウク",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-03",
-      "event_end_date": "2026-10-03",
-      "event_end_time": null,
-      "event_key": "89cc8b858f830712510f",
-      "event_start_time": null,
-      "evidence_snippet": "会場: グランキューブ大阪(大阪府立国際会議場)メインホール / 日時: 2026-10-03 / ・2026年10月3日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "first_seen_at_utc": "2026-08-12T12:49:09Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "チ・チャンウク",
-      "raw_venue_name": "グランキューブ大阪(大阪府立国際会議場)メインホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-          "priority": 30,
-          "record_id": "0cf8ebe626d8550143761c411b49fd707ecc5ee5189fd317f20e86c8168ab955",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281916"
-        }
-      ],
-      "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-      "updated_at_utc": "2026-08-12T12:49:09Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "venue_name": "グランキューブ大阪(大阪府立国際会議場)メインホール"
     },
     {
       "artist_name": "德永英明",
@@ -23656,18 +22912,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281934",
-          "priority": 30,
-          "record_id": "14bf6000158de83a52c7d98363479b86dac788bb504c42162975fa812831a470",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "The Performance Zero",
-          "updated_at_utc": "2026-08-25T12:31:25Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281934"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://ticketjam.jp/tickets/theperformance/event/1255911",
           "priority": 40,
           "record_id": "2eb03f9875b1d99d884349128160fe8eb30251c5ae5d000d95aa305eb3dd2059",
@@ -25083,44 +24327,6 @@
       "venue_name": "Zepp Osaka Bayside"
     },
     {
-      "artist_name": "チ・チャンウク",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-17",
-      "event_end_date": "2026-10-17",
-      "event_end_time": null,
-      "event_key": "09da90b450f39eebcdd0",
-      "event_start_time": null,
-      "evidence_snippet": "会場: パシフィコ横浜 国立大ホール / 日時: 2026-10-17 / ・2026年10月17日(土)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "first_seen_at_utc": "2026-08-12T12:49:09Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "チ・チャンウク",
-      "raw_venue_name": "パシフィコ横浜 国立大ホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-          "priority": 30,
-          "record_id": "b1d990adea771335952ac7b4a484f1b6f9c85110110dbfc0efa3caf2d15ad60a",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281916"
-        }
-      ],
-      "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-      "updated_at_utc": "2026-08-12T12:49:09Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "venue_name": "パシフィコ横浜 国立大ホール"
-    },
-    {
       "artist_name": "Novelbright",
       "capacity": 16000,
       "display_source_class": "venue_official",
@@ -25521,44 +24727,6 @@
       "updated_at_utc": "2026-09-19T08:44:28Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155996",
       "venue_name": "Zepp札幌"
-    },
-    {
-      "artist_name": "チ・チャンウク",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-10-18",
-      "event_end_date": "2026-10-18",
-      "event_end_time": null,
-      "event_key": "acfbf58b686a5d12baf1",
-      "event_start_time": null,
-      "evidence_snippet": "会場: パシフィコ横浜 国立大ホール / 日時: 2026-10-18 / ・2026年10月18日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "first_seen_at_utc": "2026-08-12T12:49:09Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "チ・チャンウク",
-      "raw_venue_name": "パシフィコ横浜 国立大ホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281916",
-          "priority": 30,
-          "record_id": "71a8fc3a4f61e6caeb1651160656931d8b845b45e2c19b543187baff637795f0",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-          "updated_at_utc": "2026-08-12T12:49:09Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281916"
-        }
-      ],
-      "title": "2026 Ji Chang Wook Japan Tour ~Just Come With~",
-      "updated_at_utc": "2026-08-12T12:49:09Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2281916",
-      "venue_name": "パシフィコ横浜 国立大ホール"
     },
     {
       "artist_name": "森山良子",
@@ -30133,6 +29301,44 @@
       "venue_name": "Zepp札幌"
     },
     {
+      "artist_name": "ORβIT",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-01",
+      "event_end_date": "2026-11-01",
+      "event_end_time": null,
+      "event_key": "9c1f900cd86003022b74",
+      "event_start_time": null,
+      "evidence_snippet": "会場: さん太ホール(岡山市北区柳町2-1-1 山陽新聞社本社ビル) / 日時: 2026-11-01 / 開催日:2026年11月1日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "first_seen_at_utc": "2026-09-20T15:09:49Z",
+      "pref_name": "岡山県",
+      "raw_artist_name": "ORβIT",
+      "raw_venue_name": "さん太ホール(岡山市北区柳町2-1-1 山陽新聞社本社ビル)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+          "priority": 30,
+          "record_id": "28eff686881fc0f9494a0028c7c40515ffbbb0db5e7f400d66919cf577e68fcd",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+          "updated_at_utc": "2026-09-20T15:09:49Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284235"
+        }
+      ],
+      "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+      "updated_at_utc": "2026-09-20T15:09:49Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "venue_name": "さん太ホール(岡山市北区柳町2-1-1 山陽新聞社本社ビル)"
+    },
+    {
       "artist_name": "コブクロ",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -30849,6 +30055,44 @@
       "updated_at_utc": "2026-09-19T08:44:28Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156821",
       "venue_name": "Zepp札幌"
+    },
+    {
+      "artist_name": "ORβIT",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-03",
+      "event_end_date": "2026-11-03",
+      "event_end_time": null,
+      "event_key": "2871c2b4e4c5960123e9",
+      "event_start_time": null,
+      "evidence_snippet": "会場: さん太ホール(岡山市北区柳町2-1-1 山陽新聞社本社ビル) / 日時: 2026-11-03 / 開催日:2026年11月3日(火・祝)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "first_seen_at_utc": "2026-09-20T15:09:49Z",
+      "pref_name": "岡山県",
+      "raw_artist_name": "ORβIT",
+      "raw_venue_name": "さん太ホール(岡山市北区柳町2-1-1 山陽新聞社本社ビル)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+          "priority": 30,
+          "record_id": "a91ad6d7e32b2dc0980fad2bc80635a4ff2d90811066ea4f8a39a2e8a32f23d0",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+          "updated_at_utc": "2026-09-20T15:09:49Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284235"
+        }
+      ],
+      "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+      "updated_at_utc": "2026-09-20T15:09:49Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "venue_name": "さん太ホール(岡山市北区柳町2-1-1 山陽新聞社本社ビル)"
     },
     {
       "artist_name": "indigo la End",
@@ -34087,6 +33331,44 @@
       "venue_name": "Kアリーナ横浜"
     },
     {
+      "artist_name": "ORβIT",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-15",
+      "event_end_date": "2026-11-15",
+      "event_end_time": null,
+      "event_key": "a499430affd69f0c9222",
+      "event_start_time": null,
+      "evidence_snippet": "会場: SPACE14(大阪市中央区心斎橋筋1-8-3 心斎橋PARCO 14F) / 日時: 2026-11-15 / 開催日:2026年11月15日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "first_seen_at_utc": "2026-09-20T15:09:49Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "ORβIT",
+      "raw_venue_name": "SPACE14(大阪市中央区心斎橋筋1-8-3 心斎橋PARCO 14F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+          "priority": 30,
+          "record_id": "9bd5ebd2f42c0285fb10656bb53f7d1e5c829f68ff1e4fcdfd9d94df68ad914e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+          "updated_at_utc": "2026-09-20T15:09:49Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284235"
+        }
+      ],
+      "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+      "updated_at_utc": "2026-09-20T15:09:49Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "venue_name": "SPACE14(大阪市中央区心斎橋筋1-8-3 心斎橋PARCO 14F)"
+    },
+    {
       "artist_name": "ミュージカル『新テニスの王子様』",
       "capacity": null,
       "display_source_class": "promoter_official",
@@ -36851,6 +36133,44 @@
       "updated_at_utc": "2026-09-19T08:44:33Z",
       "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
       "venue_name": "東京ドーム"
+    },
+    {
+      "artist_name": "ORβIT",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-23",
+      "event_end_date": "2026-11-23",
+      "event_end_time": null,
+      "event_key": "4fea66e3081e95679df3",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 西鉄ホール(福岡市中央区天神2-11-3 ソラリアステージビル6F) / 日時: 2026-11-23 / 開催日:2026年11月23日(月・祝)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "first_seen_at_utc": "2026-09-20T15:09:49Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "ORβIT",
+      "raw_venue_name": "西鉄ホール(福岡市中央区天神2-11-3 ソラリアステージビル6F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284235",
+          "priority": 30,
+          "record_id": "3cb5f11221e2cb90e3247cb5c6d25ec633bfcf42a3527552c7a9fba726db4783",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+          "updated_at_utc": "2026-09-20T15:09:49Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284235"
+        }
+      ],
+      "title": "ORBIT FAN MEETING TOUR ~6年目も君を離さない~",
+      "updated_at_utc": "2026-09-20T15:09:49Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284235",
+      "venue_name": "西鉄ホール(福岡市中央区天神2-11-3 ソラリアステージビル6F)"
     },
     {
       "artist_name": "Iron Maiden",
@@ -42867,6 +42187,44 @@
       "venue_name": "Zepp Haneda(Tokyo)"
     },
     {
+      "artist_name": "Kis-My-Ft2",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-25",
+      "event_end_date": "2026-12-25",
+      "event_end_time": null,
+      "event_key": "60dc5cc7b74a9708d6a8",
+      "event_start_time": null,
+      "evidence_snippet": "2026-12-25 18:00 / [大阪府] 京セラドーム大阪",
+      "evidence_url": "https://starto.jp/s/p/live/10594",
+      "first_seen_at_utc": "2026-09-20T15:10:44Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "Kis-My-Ft2",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://starto.jp/s/p/live/10594",
+          "priority": 30,
+          "record_id": "54500cfb4bc2a6dae553184e7a7b6a5b94af403479909b1ff6a237e96d2611ca",
+          "source_class": "",
+          "source_id": "starto_concert",
+          "source_label": "STARTO NEWS (CONCERT)",
+          "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+          "updated_at_utc": "2026-09-20T15:10:44Z",
+          "url": "https://starto.jp/s/p/live/10594"
+        }
+      ],
+      "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+      "updated_at_utc": "2026-09-20T15:10:44Z",
+      "url": "https://starto.jp/s/p/live/10594",
+      "venue_name": "京セラドーム大阪"
+    },
+    {
       "artist_name": "M!LK",
       "capacity": 16000,
       "display_source_class": "venue_official",
@@ -43091,6 +42449,44 @@
       "updated_at_utc": "2026-09-19T08:46:11Z",
       "url": "https://www.hybejapan-concert.com/statics/enhypen_blood_saga",
       "venue_name": "バンテリンドームナゴヤ"
+    },
+    {
+      "artist_name": "Kis-My-Ft2",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
+      "event_category": "コンサート",
+      "event_date": "2026-12-26",
+      "event_end_date": "2026-12-26",
+      "event_end_time": null,
+      "event_key": "00d7cd57a080111c87a0",
+      "event_start_time": null,
+      "evidence_snippet": "2026-12-26 15:00 / [大阪府] 京セラドーム大阪",
+      "evidence_url": "https://starto.jp/s/p/live/10594",
+      "first_seen_at_utc": "2026-09-20T15:10:44Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "Kis-My-Ft2",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://starto.jp/s/p/live/10594",
+          "priority": 30,
+          "record_id": "ab42251b1ab6e7f20bcd7d6411e82ed8e9d5f709d4023447414868b9b2eb3fe3",
+          "source_class": "",
+          "source_id": "starto_concert",
+          "source_label": "STARTO NEWS (CONCERT)",
+          "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+          "updated_at_utc": "2026-09-20T15:10:44Z",
+          "url": "https://starto.jp/s/p/live/10594"
+        }
+      ],
+      "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+      "updated_at_utc": "2026-09-20T15:10:44Z",
+      "url": "https://starto.jp/s/p/live/10594",
+      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "M!LK",
@@ -48653,6 +48049,44 @@
       "venue_name": "バンテリンドームナゴヤ"
     },
     {
+      "artist_name": "Kis-My-Ft2",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-21",
+      "event_end_date": "2027-02-21",
+      "event_end_time": null,
+      "event_key": "99136779546f72b0c35b",
+      "event_start_time": null,
+      "evidence_snippet": "2027-02-21 17:00 / [東京都] 東京ドーム",
+      "evidence_url": "https://starto.jp/s/p/live/10594",
+      "first_seen_at_utc": "2026-09-20T15:10:44Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Kis-My-Ft2",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://starto.jp/s/p/live/10594",
+          "priority": 30,
+          "record_id": "1efabec9f42ee7e44d30a33f9f7e4d6f49de680ed01e7bd52351653ae31ed45f",
+          "source_class": "",
+          "source_id": "starto_concert",
+          "source_label": "STARTO NEWS (CONCERT)",
+          "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+          "updated_at_utc": "2026-09-20T15:10:44Z",
+          "url": "https://starto.jp/s/p/live/10594"
+        }
+      ],
+      "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+      "updated_at_utc": "2026-09-20T15:10:44Z",
+      "url": "https://starto.jp/s/p/live/10594",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "GLAY",
       "capacity": null,
       "display_source_class": "artist_official",
@@ -48691,6 +48125,44 @@
       "venue_name": "横浜アリーナ"
     },
     {
+      "artist_name": "Kis-My-Ft2",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-22",
+      "event_end_date": "2027-02-22",
+      "event_end_time": null,
+      "event_key": "f9ef85f5f2ee36537b4d",
+      "event_start_time": null,
+      "evidence_snippet": "2027-02-22 18:00 / [東京都] 東京ドーム",
+      "evidence_url": "https://starto.jp/s/p/live/10594",
+      "first_seen_at_utc": "2026-09-20T15:10:44Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Kis-My-Ft2",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://starto.jp/s/p/live/10594",
+          "priority": 30,
+          "record_id": "695a2323c5474af8ae0f36653438787209d17a3a9c48069911a598ba44d861e1",
+          "source_class": "",
+          "source_id": "starto_concert",
+          "source_label": "STARTO NEWS (CONCERT)",
+          "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+          "updated_at_utc": "2026-09-20T15:10:44Z",
+          "url": "https://starto.jp/s/p/live/10594"
+        }
+      ],
+      "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+      "updated_at_utc": "2026-09-20T15:10:44Z",
+      "url": "https://starto.jp/s/p/live/10594",
+      "venue_name": "東京ドーム"
+    },
+    {
       "artist_name": "indigo la End",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -48727,6 +48199,44 @@
       "updated_at_utc": "2026-09-07T16:27:55Z",
       "url": "https://k-arena.com/schedule/20270223-1/",
       "venue_name": "Kアリーナ横浜"
+    },
+    {
+      "artist_name": "Kis-My-Ft2",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "starto_concert",
+      "display_source_label": "STARTO NEWS (CONCERT)",
+      "event_category": "コンサート",
+      "event_date": "2027-02-23",
+      "event_end_date": "2027-02-23",
+      "event_end_time": null,
+      "event_key": "0e28546bfec1ff69eab6",
+      "event_start_time": null,
+      "evidence_snippet": "2027-02-23 17:00 / [東京都] 東京ドーム",
+      "evidence_url": "https://starto.jp/s/p/live/10594",
+      "first_seen_at_utc": "2026-09-20T15:10:44Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "Kis-My-Ft2",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://starto.jp/s/p/live/10594",
+          "priority": 30,
+          "record_id": "771371a4e994330bad0e2ba882348a10f55c9cc0a4106204ce034939b58cd78b",
+          "source_class": "",
+          "source_id": "starto_concert",
+          "source_label": "STARTO NEWS (CONCERT)",
+          "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+          "updated_at_utc": "2026-09-20T15:10:44Z",
+          "url": "https://starto.jp/s/p/live/10594"
+        }
+      ],
+      "title": "Kis-My-Ft2 DOME TOUR 2026-2027 fan IS・・・・・・",
+      "updated_at_utc": "2026-09-20T15:10:44Z",
+      "url": "https://starto.jp/s/p/live/10594",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "スガシカオ",
@@ -51343,8 +50853,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-09-20T11:08:38Z",
-  "history_start_date": "2026-06-22",
+  "generated_at_utc": "2026-09-20T15:10:46Z",
+  "history_start_date": "2026-06-23",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -51362,6 +50872,21 @@
       "reason": "unresolved_domestic_location",
       "record_id": "8ed32caecdc741e70d885585bc20ab66e5a344622987027e72a9be3f2ab105ef",
       "source_id": "starto_concert"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "1759c601e5520606c26583ec770a33206279baa27a24dc588f0175a0c7225db7",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "b157b5e31b2c831b232d1f0c20303972b49786651d341bd18d44854b0155a8ee",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "0c894384352bf4192abde35edd2abfe512d9a9ef1e06e7c455002c9939c4e9c8",
+      "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
@@ -51386,16 +50911,6 @@
     {
       "reason": "unresolved_domestic_location",
       "record_id": "f9b61161ae5f7f3bb95b43a9f89f93304f9269b5dc004c00ec9e874b632bb749",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "fe188eab885c6244fa1b775b96ab1187478c8732bfb0bd1382b62f38b19c85eb",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "bc4101e37a73f67e4c10dfcc8248bee45c51fa294f9d91db94d3399cb6297b8f",
       "source_id": "kstyle_music"
     },
     {
@@ -51435,16 +50950,16 @@
     "counts_by_display_source": {
       "kstyle_music": 65,
       "official_events": 579,
-      "starto_concert": 101,
+      "starto_concert": 90,
       "venue_web_discovery": 438
     },
-    "event_count": 1183,
-    "location_held_record_count": 15,
-    "record_count_before_grouping": 1316,
+    "event_count": 1172,
+    "location_held_record_count": 16,
+    "record_count_before_grouping": 1299,
     "start_time_split_event_count": 32,
     "start_time_split_group_count": 30,
-    "supplemental_merged_group_count": 8,
-    "supplemental_merged_record_count": 8,
+    "supplemental_merged_group_count": 7,
+    "supplemental_merged_record_count": 7,
     "suppressed_event_count": 1,
     "ticketjam_discovery_record_count": 1211,
     "ticketjam_promoted_held_record_count": 1,
