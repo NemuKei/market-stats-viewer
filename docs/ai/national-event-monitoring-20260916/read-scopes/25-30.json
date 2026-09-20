@@ -1,0 +1,983 @@
+{
+  "scope_revision": "2bb9af1d4ad7ba48c38028d37811672087cea1a1200590d5e036e0f0f0dabe57",
+  "snapshot_only": true,
+  "scopes": [
+    {
+      "pref_code": "25",
+      "pref_name": "滋賀県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "7d37ab2a766111ff1825",
+          "name": "平和堂ＨＡＴＯスタジアム",
+          "pref_code": "25",
+          "venue_kind": "stadium",
+          "address": "滋賀県彦根市松原町3028",
+          "capacity": 6444,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/shiga/profile/",
+              "observed_at_utc": "2026-09-20T11:18:33.891400Z",
+              "body_sha256": "01ce831010f01443267a6875ad29116cedadaafca2f245662e53d40a0bca6787"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "82b02305bec631a13f2d",
+          "name": "滋賀ダイハツアリーナ",
+          "pref_code": "25",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://shigalakes.com/",
+          "location_hint": "滋賀県大津市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "26",
+      "pref_name": "京都府",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "2b2fd4a2ffa432aa0baf",
+          "name": "サンガスタジアム by ＫＹＯＣＥＲＡ",
+          "pref_code": "26",
+          "venue_kind": "stadium",
+          "address": "京都府亀岡市亀岡駅北１丁目8番地2",
+          "capacity": 21293,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/kyoto/profile/",
+              "observed_at_utc": "2026-09-20T11:17:30.600636Z",
+              "body_sha256": "f2eca10cd92fc1da190dde6fef90bdb4bac6f5aeaf1fb07bcf8764b38039f6c7"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "33afee863791c9ba2f69",
+          "name": "京都アリーナ（仮称）",
+          "pref_code": "26",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://hannaryz.jp/",
+          "location_hint": "京都府京都市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "27",
+      "pref_name": "大阪府",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "kyocera_dome_osaka",
+          "venue_name": "京セラドーム大阪",
+          "aliases": [
+            "大阪ドーム",
+            "KYOCERA DOME OSAKA",
+            "京セラD",
+            "京セラドーム",
+            "〇大阪/京セラドーム"
+          ],
+          "official_url": "https://www.kyoceradome-osaka.jp/",
+          "schedule_url": "https://www.kyoceradome-osaka.jp/schedule/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://hehn.fujiikaze.com/pwt/en/",
+            "https://jp.rizinff.com/_ct/17834937",
+            "https://npb.jp/games/2026/schedule_09_detail.html",
+            "https://sekainoowari.jp/info/2026/06/29/4466/",
+            "https://sp.super-beaver.com/live_information/list/?range=future",
+            "https://www.bumpofchicken.com/live_information/2799",
+            "https://www.hybejapan.events/enhypen",
+            "https://www.kansai-collection.net/",
+            "https://www.kyoceradome-osaka.jp/schedule/?cat=all&monthId=1&yearId=2027",
+            "https://www.kyoceradome-osaka.jp/schedule/?cat=concert&monthId=11&yearId=2026",
+            "https://www.kyoceradome-osaka.jp/schedule/?cat=entertainment&monthId=08&type=skyhall&yearId=2026",
+            "https://www.le-sserafim.jp/news/0fbf87ba1d6c",
+            "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+            "https://www.sonymusic.co.jp/artist/kinggnu/info/585061",
+            "https://www.straykidsjapan.com/runitjapan/",
+            "https://xgalx.com/xg/tour/thecore/",
+            "https://yg-babymonster-official.jp/live/2026-2027_worldtour_in_japan/",
+            "https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003004&fdate=2026-11-27&ldate=2026-11-29"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "osaka_jo_hall",
+          "venue_name": "大阪城ホール",
+          "aliases": [
+            "Osaka-jo Hall",
+            "大阪城ホール(大阪城公園)"
+          ],
+          "official_url": "https://www.osaka-johall.com/",
+          "schedule_url": "https://www.osaka-johall.com/event",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://ishida-gumi.jp/osaka.html",
+            "https://kyodo-osaka.co.jp/news/detail/729",
+            "https://kyodo-osaka.co.jp/search/detail/13250",
+            "https://le-ciel.com/s/n107/page/L35_live?ima=1218",
+            "https://www.sound-c.co.jp/schedule/detail/10254/",
+            "https://yuurinchi.com/contents/1093640"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "asue_arena_osaka",
+          "venue_name": "Asueアリーナ大阪",
+          "aliases": [
+            "大阪市中央体育館",
+            "Asue Arena Osaka"
+          ],
+          "official_url": "https://www.yahataya-park.jp/osaka_arena/",
+          "schedule_url": "https://www.yahataya-park.jp/osaka_arena/events/index.html",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://shriker-osaka.jp/result/",
+            "https://udo.jp/shows/TOTO27",
+            "https://voreas.co.jp/games/",
+            "https://www.aiko.com/topics/?id=7991",
+            "https://www.osaka-marvelous.com/game/score/2026/index.html#SV.LEAGUE",
+            "https://www.wolfdogs.jp/game/"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "zepp_namba",
+          "venue_name": "Zepp Namba(Osaka)",
+          "aliases": [
+            "Zepp Namba（大阪府大阪市浪速区）",
+            "Zepp Namba（大阪）",
+            "Zeppなんば",
+            "ゼップ難波",
+            "Zepp Namba",
+            "Zepp Namba (OSAKA)"
+          ],
+          "official_url": "https://www.zepp.co.jp/hall/namba/",
+          "schedule_url": "https://www.zepp.co.jp/hall/namba/schedule/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://sd.dleague.co.jp/schedule/2026/west-26/",
+            "https://www.jvcmusic.co.jp/plt2026/",
+            "https://www.ldh-liveschedule.jp/sys/tour/44849/",
+            "https://www.zepp.co.jp/hall/namba/schedule/",
+            "https://www.zepp.co.jp/hall/namba/schedule/?_y=2026&_m=10",
+            "https://www.zepp.co.jp/hall/namba/schedule/?_y=2026&_m=9"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "zepp_osaka_bayside",
+          "venue_name": "Zepp Osaka Bayside",
+          "aliases": [
+            "Zepp Osaka Bayside（大阪ベイサイド）",
+            "ゼップ大阪ベイサイド",
+            "Zepp大阪Bayside",
+            "〇大阪公演:Zepp Osaka Bayside"
+          ],
+          "official_url": "https://www.zepp.co.jp/hall/osakabayside/",
+          "schedule_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.zepp.co.jp/hall/osakabayside/schedule/",
+            "https://www.zepp.co.jp/hall/osakabayside/schedule/?_y=2026&_m=10",
+            "https://www.zepp.co.jp/hall/osakabayside/schedule/?_y=2026&_m=12",
+            "https://www.zepp.co.jp/hall/osakabayside/schedule/?_y=2026&_m=9"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "festival_hall",
+          "venue_name": "フェスティバルホール",
+          "aliases": [],
+          "official_url": "https://www.festivalhall.jp/",
+          "schedule_url": "https://www.festivalhall.jp/events/list/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://s.mxtv.jp/event/mx-showa101thsss/",
+            "https://www.festivalhall.jp/events/6088/",
+            "https://www.ytv.co.jp/event/contents/onclassic2026.html"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "yanmar_stadium_nagai",
+          "venue_name": "ヤンマースタジアム長居",
+          "aliases": [
+            "長居スタジアム",
+            "長居陸上競技場",
+            "Yanmar Stadium Nagai"
+          ],
+          "official_url": "https://nagaipark.com/guide/stadium/",
+          "schedule_url": "https://nagaipark.com/news/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.ldh-liveschedule.jp/sys/news/43976/?lang=ja",
+            "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "umeda_club_quattro",
+          "venue_name": "梅田クラブクアトロ",
+          "aliases": [
+            "梅田クラブクアトロ",
+            "梅田クラブクアトロ（CLUB QUATTRO）"
+          ],
+          "official_url": "https://www.club-quattro.com/umeda/",
+          "schedule_url": "https://www.club-quattro.com/umeda/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "bigcat",
+          "venue_name": "BIGCAT",
+          "aliases": [
+            "BIGCAT"
+          ],
+          "official_url": "https://bigcat-live.com/",
+          "schedule_url": "https://bigcat-live.com/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "gorilla_hall_osaka",
+          "venue_name": "GORILLA HALL OSAKA",
+          "aliases": [
+            "GORILLA HALL OSAKA"
+          ],
+          "official_url": "https://gorillahall.jp/",
+          "schedule_url": "https://gorillahall.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://eplus.jp/sf/detail/4295250002",
+            "https://funky802.com/site/pickup_detail/8304",
+            "https://gorillahall.jp/archives/schedule-date/2026-10",
+            "https://gorillahall.jp/archives/schedule-date/2026-9",
+            "https://www.ldh-liveschedule.jp/sys/tour/43235/?lang=en"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "orix_theater",
+          "venue_name": "オリックス劇場",
+          "aliases": [
+            "オリックス劇場"
+          ],
+          "official_url": "https://www.orixtheater.jp/",
+          "schedule_url": "https://www.orixtheater.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://columbia.jp/artist-info/koresawa/live/92691.html",
+            "https://kyodo-osaka.co.jp/search/detail/13646",
+            "https://orangerange.com/feature/25th",
+            "https://tdp.tv-asahi.co.jp/knockinon/",
+            "https://www.hoshikuzu-scat.com/contents/1012062",
+            "https://www.kamen-rider-official.com/finalstage/",
+            "https://www.sonymusic.co.jp/artist/shotashimizu/info/584082"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "panasonic_stadium_suita",
+          "venue_name": "Panasonic Stadium Suita",
+          "aliases": [
+            "パナスタ",
+            "市立吹田サッカースタジアム",
+            "パナソニックスタジアム吹田",
+            "パナソニック スタジアム 吹田"
+          ],
+          "official_url": "https://suitacityfootballstadium.jp/",
+          "schedule_url": "https://suitacityfootballstadium.jp/schedule/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.gamba-osaka.net/game/?log=side_menu_sp",
+            "https://www.jleague.jp/u-21/match/search-list/?enddate=2026-09-13&period=week&startdate=2026-09-07"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "edion_arena_osaka",
+          "venue_name": "大阪府立体育会館（エディオンアリーナ大阪）",
+          "aliases": [
+            "エディオンアリーナ大阪",
+            "BODYMAKERコロシアム",
+            "大阪府立体育館",
+            "Osaka Prefectural Gymnasium"
+          ],
+          "official_url": "https://www.furitutaiikukaikan.ne.jp/",
+          "schedule_url": "https://www.furitutaiikukaikan.ne.jp/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "4e797a0dae179b8620d1",
+          "name": "YANMAR HANASAKA STADIUM",
+          "pref_code": "27",
+          "venue_kind": "stadium",
+          "address": "大阪府大阪市東住吉区長居公園1-1",
+          "capacity": 24481,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/cosaka/profile/",
+              "observed_at_utc": "2026-09-20T11:16:00.648736Z",
+              "body_sha256": "a1ba64d89f64f08666f10ea352128ba5b16aa0cfaff0583e3b2e63b5ccc89db7"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "dfbec3dd543a2c6e28eb",
+          "name": "おおきにアリーナ舞洲",
+          "pref_code": "27",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.evessa.com/",
+          "location_hint": "大阪府大阪市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "0230e86322f89b964735",
+          "name": "パナソニック スタジアム 吹田",
+          "pref_code": "27",
+          "venue_kind": "stadium",
+          "address": "大阪府吹田市千里万博公園3-3",
+          "capacity": 39694,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent",
+            "recheck_existing_capacity_and_name"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/gosaka/profile/",
+              "observed_at_utc": "2026-09-20T11:16:31.100344Z",
+              "body_sha256": "c2ffbebb03e9bef3362f4160e8750482f1668e7c7fc6bcba28118380f976f49c"
+            }
+          ],
+          "registry_venue_id": "panasonic_stadium_suita",
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "606e61508221d77f10c1",
+          "name": "東大阪市花園ラグビー場",
+          "pref_code": "27",
+          "venue_kind": "stadium",
+          "address": "〒578-0923 大阪府東大阪市松原南１丁目1-1",
+          "capacity": 26443,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/fosaka/profile/",
+              "observed_at_utc": "2026-09-20T11:16:11.133418Z",
+              "body_sha256": "795b43aa943f4131e50e59a65a9add360f7a08e144be8b7a16b04beee2101c83"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "28",
+      "pref_name": "兵庫県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "koshien_stadium",
+          "venue_name": "阪神甲子園球場",
+          "aliases": [
+            "甲子園球場",
+            "Koshien Stadium",
+            "Hanshin Koshien Stadium"
+          ],
+          "official_url": "https://koshien.hanshin.co.jp/stadium_guide/seat.html",
+          "schedule_url": "https://koshien.hanshin.co.jp/stadium_guide/seat.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://npb.jp/games/2026/schedule_09_detail.html",
+            "https://npb.jp/games/2026/schedule_10_detail.html"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "noevir_stadium_kobe",
+          "venue_name": "ノエビアスタジアム神戸",
+          "aliases": [
+            "御崎公園球技場",
+            "Noevir Stadium Kobe"
+          ],
+          "official_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+          "schedule_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://inac-kobe.com/match",
+            "https://www.vissel-kobe.co.jp/news/article/26829.html"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "universiade_memorial_stadium",
+          "venue_name": "神戸総合運動公園ユニバー記念競技場",
+          "aliases": [
+            "神戸ユニバー記念競技場",
+            "Universiade Memorial Stadium"
+          ],
+          "official_url": "https://www.kobe-park.or.jp/sougou/facilities/memorialstadium/",
+          "schedule_url": "https://www.kobe-park.or.jp/sougou/facilities/memorialstadium/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://inac-kobe.com/news/match/9485"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "glion_arena_kobe",
+          "venue_name": "GLION ARENA KOBE",
+          "aliases": [
+            "ジーライオンアリーナ神戸",
+            "神戸アリーナ",
+            "GLIONアリーナ神戸"
+          ],
+          "official_url": "https://www.totteikobe.jp/",
+          "schedule_url": "https://www.totteikobe.jp/event",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.totteikobe.jp/event/article/20347",
+            "https://www.totteikobe.jp/event/article/25177",
+            "https://www.totteikobe.jp/event/article/25589",
+            "https://www.totteikobe.jp/event/article/25952"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "world_kinen_hall",
+          "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
+          "aliases": [
+            "ワールド記念ホール",
+            "神戸ポートアイランドホール"
+          ],
+          "official_url": "https://www.kobe-spokyo.jp/worldsp-kobe/about/gaiyou",
+          "schedule_url": "https://www.kobe-spokyo.jp/worldsp-kobe/about/gaiyou",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://ko1keyz.com/special_site/1st_fanmeeting/detail/14",
+            "https://me-i.jp/feature/me-i_way_2026?direct=true",
+            "https://www.ctv.co.jp/disneyonice/venue/kobe/index.html"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "kobe_kokusai_hall",
+          "venue_name": "神戸国際会館 こくさいホール",
+          "aliases": [
+            "神戸国際会館こくさいホール",
+            "神戸国際会館"
+          ],
+          "official_url": "https://www.kih.co.jp/kokusaihall/",
+          "schedule_url": "https://www.kih.co.jp/kokusaihall/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://columbia.jp/tokunagahideaki/live.html",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2134",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2138",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2163",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2167",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2184",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2185",
+            "https://www.kih.co.jp/kokusaihall/event/detail/2216"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "hyogo_pac_kobelco_hall",
+          "venue_name": "兵庫県立芸術文化センター KOBELCO 大ホール",
+          "aliases": [
+            "KOBELCO大ホール",
+            "兵庫県立芸術文化センター 大ホール"
+          ],
+          "official_url": "https://lp.p.pia.jp/venue/classic/28/307/981/103281/index.html",
+          "schedule_url": "https://lp.p.pia.jp/venue/classic/28/307/981/103281/index.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.promax.co.jp/mhoc/2026/",
+            "https://www1.gcenter-hyogo.jp/contents_parts/ConcertCalendar.aspx?ho=1&m=9&md=0&y=2026",
+            "https://www1.gcenter-hyogo.jp/contents_parts/ConcertDetail.aspx?kid=5060611310&sid=0000000001"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "kobe_bunka_hall_large_hall",
+          "venue_name": "神戸文化ホール 大ホール",
+          "aliases": [
+            "神戸文化ホール",
+            "Kobe Bunka Hall Large Hall"
+          ],
+          "official_url": "https://www.kobe-bunka.jp/hall/about_hall/575/",
+          "schedule_url": "https://www.kobe-bunka.jp/hall/about_hall/575/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "acrie_himeji",
+          "venue_name": "アクリエひめじ 大ホール",
+          "aliases": [
+            "アクリエひめじ",
+            "姫路市文化コンベンションセンター 大ホール"
+          ],
+          "official_url": "https://www.city.himeji.lg.jp/kanko/0000006638.html",
+          "schedule_url": "https://www.city.himeji.lg.jp/kanko/0000006638.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "amashin_arcaic_hall",
+          "venue_name": "あましんアルカイックホール（尼崎市総合文化センター）",
+          "aliases": [
+            "あましんアルカイックホール",
+            "尼崎市総合文化センター"
+          ],
+          "official_url": "https://www.archaic.or.jp/",
+          "schedule_url": "https://www.archaic.or.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "fb47cc77699f6c56269f",
+          "name": "GLION ARENA KOBE",
+          "pref_code": "28",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent",
+            "recheck_existing_capacity_and_name"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.storks.jp/",
+          "location_hint": "兵庫県神戸市",
+          "registry_venue_id": "glion_arena_kobe",
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "4a7cb33aaf2353029299",
+          "name": "ノエビアスタジアム神戸",
+          "pref_code": "28",
+          "venue_kind": "stadium",
+          "address": "兵庫県神戸市兵庫区御崎町1-2-2",
+          "capacity": 27974,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent",
+            "recheck_existing_capacity_and_name"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/kobe/profile/",
+              "observed_at_utc": "2026-09-20T11:17:09.764679Z",
+              "body_sha256": "2f3af8591d4a3652d0b0e20a307a5b5e77c32f33499822f67fee960e7915b557"
+            }
+          ],
+          "registry_venue_id": "noevir_stadium_kobe",
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "29",
+      "pref_name": "奈良県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "fcb24b481b6557ffa99f",
+          "name": "ロートアリーナ奈良",
+          "pref_code": "29",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://bambitious.jp/",
+          "location_hint": "奈良県奈良市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "42f56dc93d0153f69146",
+          "name": "ロートフィールド奈良",
+          "pref_code": "29",
+          "venue_kind": "stadium",
+          "address": "〒630-8108 奈良県奈良市法蓮佐保山四丁目5番1号",
+          "capacity": 5369,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/nara/profile/",
+              "observed_at_utc": "2026-09-20T11:17:51.860729Z",
+              "body_sha256": "b847aea7565626c57c456298ee3b380b7036c99719d4d85147dd8b846bceab20"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "30",
+      "pref_name": "和歌山県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "20d199fec07cfd04c9d0",
+          "name": "和歌山ビッグホエール",
+          "pref_code": "30",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_body_entry_only_not_full_census",
+          "fetch_status": "body_fetched",
+          "evidence": [
+            {
+              "evidence_url": "https://sp.super-beaver.com/live_information/detail/6056",
+              "observed_at_utc": "2026-09-20T11:22:47.428685Z",
+              "body_sha256": "2517a0499dc7e6b51f31bfed4a5073050e163e6791c58c78bee006aa4caafad2"
+            }
+          ]
+        }
+      ],
+      "pending_proposals": []
+    }
+  ]
+}

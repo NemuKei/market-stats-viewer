@@ -1,0 +1,596 @@
+"""Offline Chat -> Work intake. Prints proposals/receipts; never writes runtime data.
+
+Input is data, never code or instructions. Successful intake is NOT verification,
+publication approval, a scheduled Chat run, or a running Work Cloud trigger.
+"""
+
+from __future__ import annotations
+
+import argparse
+from copy import deepcopy
+from datetime import date, datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import re
+from urllib.parse import urlsplit
+
+from .audit_national_event_coverage import PREFECTURES, _csv_bytes, _normal, audit
+from .ticketjam_review_state import _validate_confirmed, apply_reviews, fingerprint
+
+STREAMS = {"venue_official", "announcement", "ticketjam"}
+OFFICIAL = {"venue_official", "artist_official", "promoter_official", "ticket_official"}
+SOURCE_CLASSES = OFFICIAL | {"news", "official_social", "social", "secondary_market"}
+FIELDS = {
+    "schema_version",
+    "stream",
+    "scope_revision",
+    "base_commit",
+    "venue_id",
+    "event_key",
+    "candidate_fingerprint",
+    "change_type",
+    "current_values",
+    "proposed_values",
+    "source_class",
+    "discovery_url",
+    "evidence_url",
+    "evidence_summary",
+    "published_at_utc",
+    "observed_at_utc",
+    "retrieval_method",
+    "evidence_status",
+    "unresolved_fields",
+    "next_check_date",
+}
+VALUE_FIELDS = {
+    "event_date",
+    "event_end_date",
+    "event_start_time",
+    "venue_name",
+    "artist_name",
+    "title",
+    "event_status",
+}
+MAX_INPUT_BYTES = 256 * 1024
+
+
+def validate_submission_paths(files: list[dict]) -> None:
+    """Use GitHub's changed-file metadata, never filenames claimed by a proposal."""
+    if not files:
+        raise ValueError("empty submission")
+    for entry in files:
+        path = entry.get("path", "")
+        if (
+            not re.fullmatch(r"docs/ai/event-proposals/[a-zA-Z0-9_-]+\.json", path)
+            or entry.get("mode") != "100644"
+            or entry.get("status") not in {"added", "modified"}
+        ):
+            raise ValueError(
+                "proposal PR must contain only regular proposal JSON files"
+            )
+
+
+def digest(value) -> str:
+    return hashlib.sha256(
+        json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode()
+    ).hexdigest()
+
+
+def _utc(value: str) -> datetime:
+    if not isinstance(value, str):
+        raise ValueError("UTC timestamp required")
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None or parsed.utcoffset() != timezone.utc.utcoffset(parsed):
+        raise ValueError("UTC timestamp required")
+    return parsed
+
+
+def _url(value: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError("public HTTPS URL required")
+    url = urlsplit(value)
+    if url.scheme != "https" or not url.hostname or url.username or url.password:
+        raise ValueError("public HTTPS URL required")
+    return url.hostname.lower()
+
+
+def load_json(path: Path):
+    # Check before reading; duplicate keys must not override earlier evidence.
+    if path.stat().st_size > MAX_INPUT_BYTES:
+        raise ValueError("proposal input exceeds 256 KiB")
+
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate JSON key")
+            result[key] = value
+        return result
+
+    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=unique)
+
+
+def scope_bundle(
+    registry: list[dict],
+    config: dict,
+    tickets: list[dict],
+    aliases: list[dict],
+    *,
+    candidates: list[dict] | None = None,
+    state: dict | None = None,
+) -> dict:
+    """Derive ALL registered venues; enabled/capacity never reduce discovery scope."""
+    report = audit(registry, config, tickets)
+    alias_map = {
+        r["venue_id"]: json.loads(r.get("aliases_json") or "[]")
+        for r in aliases
+        if r.get("is_enabled", "1") == "1"
+    }
+    names: dict[str, set[str]] = {}
+    for row in registry:
+        for name in [row["venue_name"], *alias_map.get(row["venue_id"], [])]:
+            if not isinstance(name, str) or not name.strip():
+                raise ValueError("invalid venue alias")
+            names.setdefault(_normal(name), set()).add(row["venue_id"])
+    alias_conflicts = [
+        {"alias": key, "venue_ids": sorted(ids)}
+        for key, ids in names.items()
+        if len(ids) > 1
+    ]
+    saved_urls: dict[str, set[str]] = {}
+    for event in config.get("confirmed_events", []):
+        ids = names.get(_normal(event.get("venue_name") or ""), set())
+        if (
+            len(ids) == 1
+            and event.get("source_class") in OFFICIAL
+            and event.get("evidence_url")
+        ):
+            saved_urls.setdefault(next(iter(ids)), set()).add(event["evidence_url"])
+    state = state or {"runs": {}, "last_success": {}, "proposals": {}}
+    # Queue is a review input, not another runtime venue master.
+    candidates = candidates or []
+    revision = digest(
+        {
+            "registry": registry,
+            "aliases": aliases,
+            "watches": config["watch_venues"],
+            "tickets": tickets,
+            "candidates": candidates,
+        }
+    )
+    scopes = []
+    for i, pref in enumerate(PREFECTURES, 1):
+        code = f"{i:02d}"
+        venues = []
+        for row in registry:
+            if row["pref_code"] != code:
+                continue
+            venues.append(
+                {
+                    "venue_id": row["venue_id"],
+                    "venue_name": row["venue_name"],
+                    "aliases": alias_map.get(row["venue_id"], []),
+                    "official_url": row["official_url"],
+                    "schedule_url": row.get("source_url"),
+                    "official_fetch_enabled": row["is_enabled"] == "1",
+                    "scope_review": "pending",
+                    "fetch_status": "unvisited",
+                    "saved_official_urls": sorted(
+                        saved_urls.get(row["venue_id"], set())
+                    ),
+                    "last_success_by_stream": {
+                        stream: state["last_success"].get(
+                            f"{stream}|venue:{row['venue_id']}"
+                        )
+                        for stream in sorted(STREAMS)
+                    },
+                }
+            )
+        scopes.append(
+            {
+                "pref_code": code,
+                "pref_name": pref,
+                "review_status": "pending",
+                "venues": venues,
+                "candidates": [r for r in candidates if r["pref_code"] == code],
+                "pending_proposals": [
+                    {"proposal_id": key, "status": record["status"]}
+                    for key, record in state["proposals"].items()
+                    if record["status"] == "needs_work_verification"
+                    and any(
+                        e["venue_id"] in {v["venue_id"] for v in venues}
+                        for e in record["evidence"]
+                    )
+                ],
+            }
+        )
+    return {
+        "schema_version": 1,
+        "scope_revision": revision,
+        "national_census_complete": False,
+        "streams": sorted(STREAMS),
+        "identity_blockers": report["identity_conflicts"] + alias_conflicts,
+        "orphan_ids": report["orphan_web_watch_ids"] + report["orphan_ticketjam_ids"],
+        "scopes": scopes,
+    }
+
+
+def write_scope_views(bundle: dict, output_dir: Path) -> dict:
+    """Export small derived snapshots for Chat's GitHub reader, not a master."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    index = {k: v for k, v in bundle.items() if k != "scopes"}
+    index.update(snapshot_only=True, shards=[])
+    for start in range(0, len(bundle["scopes"]), 6):
+        scopes = bundle["scopes"][start : start + 6]
+        filename = f"{scopes[0]['pref_code']}-{scopes[-1]['pref_code']}.json"
+        payload = {
+            "scope_revision": bundle["scope_revision"],
+            "snapshot_only": True,
+            "scopes": scopes,
+        }
+        raw = (json.dumps(payload, ensure_ascii=False, indent=2) + "\n").encode()
+        (output_dir / filename).write_bytes(raw)
+        index["shards"].append(
+            dict(
+                path=filename,
+                pref_codes=[r["pref_code"] for r in scopes],
+                sha256=hashlib.sha256(raw).hexdigest(),
+                bytes=len(raw),
+            )
+        )
+    (output_dir / "index.json").write_text(
+        json.dumps(index, ensure_ascii=False, indent=2) + "\n"
+    )
+    return index
+
+
+def validate_proposal(
+    proposal: dict,
+    registry: list[dict],
+    *,
+    base_commit: str,
+    scope_revision: str,
+    queue: dict | None = None,
+) -> dict:
+    if not isinstance(proposal, dict) or set(proposal) != FIELDS:
+        raise ValueError("proposal requires exact data-only fields")
+    if proposal["schema_version"] != 1 or proposal["stream"] not in STREAMS:
+        raise ValueError("unknown schema or stream")
+    if (
+        not re.fullmatch(r"[0-9a-f]{40}", base_commit)
+        or proposal["base_commit"] != base_commit
+    ):
+        raise ValueError("base changed: refresh inputs and revalidate")
+    if proposal["scope_revision"] != scope_revision:
+        raise ValueError("stale scope")
+    venues = {r["venue_id"]: r for r in registry}
+    venue_id = proposal["venue_id"]
+    if venue_id not in venues:
+        raise ValueError("unknown venue: resolve registry identity before intake")
+    if proposal["change_type"] not in {
+        "new",
+        "additional",
+        "correction",
+        "cancelled",
+        "postponed",
+    }:
+        raise ValueError("unknown change type")
+    if proposal["source_class"] not in SOURCE_CLASSES:
+        raise ValueError("unknown source class")
+    if proposal["evidence_status"] not in {
+        "official_body",
+        "lead_only",
+        "fetch_failed",
+    }:
+        raise ValueError("unknown evidence status")
+    if proposal["retrieval_method"] not in {
+        "requests_bs4",
+        "crawl4ai",
+        "browser",
+        "web_search",
+        "web_open",
+    }:
+        raise ValueError("unknown retrieval method")
+    _url(proposal["discovery_url"])
+    if proposal["evidence_url"] is not None:
+        _url(proposal["evidence_url"])
+    if (
+        not isinstance(proposal["evidence_summary"], str)
+        or not 1 <= len(proposal["evidence_summary"]) <= 1000
+    ):
+        raise ValueError("short evidence summary required")
+    observed = _utc(proposal["observed_at_utc"])
+    if (
+        proposal["published_at_utc"] is not None
+        and _utc(proposal["published_at_utc"]) > observed
+    ):
+        raise ValueError("publication cannot follow observation")
+    if date.fromisoformat(proposal["next_check_date"]) < observed.date():
+        raise ValueError("next check precedes observation")
+    unresolved = proposal["unresolved_fields"]
+    if not isinstance(unresolved, list) or any(
+        not isinstance(x, str) for x in unresolved
+    ):
+        raise ValueError("unresolved_fields must be strings")
+    for values in (proposal["current_values"], proposal["proposed_values"]):
+        if not isinstance(values, dict) or not set(values) <= VALUE_FIELDS:
+            raise ValueError("unsupported event fields")
+        for key, value in values.items():
+            if value is not None and (not isinstance(value, str) or not value.strip()):
+                raise ValueError("event values must be nonempty strings or null")
+            if key in {"event_date", "event_end_date"} and value is not None:
+                if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+                    raise ValueError("event date must be YYYY-MM-DD")
+                date.fromisoformat(value)
+            if key == "event_start_time" and value is not None:
+                if not re.fullmatch(r"(?:[01]\d|2[0-3]):[0-5]\d", value):
+                    raise ValueError("START must be HH:MM or null")
+    values = proposal["proposed_values"]
+    if values.get("venue_name") != venues[venue_id]["venue_name"]:
+        raise ValueError("venue ID and name disagree")
+    if not values.get("artist_name") or not values.get("title"):
+        raise ValueError("artist or representative event name and title required")
+    if values.get("event_status", "scheduled") not in {
+        "scheduled",
+        "cancelled",
+        "postponed",
+    }:
+        raise ValueError("unsupported event status")
+    if (
+        proposal["change_type"] in {"cancelled", "postponed"}
+        and values.get("event_status") != proposal["change_type"]
+    ):
+        raise ValueError("change type and event status disagree")
+    if values.get("event_end_date") and (
+        not values.get("event_date") or values["event_end_date"] < values["event_date"]
+    ):
+        raise ValueError("invalid date interval")
+    key, fp = proposal["event_key"], proposal["candidate_fingerprint"]
+    if key is not None or fp is not None:
+        lookup = {
+            r["event_key"]: r
+            for r in (queue or {}).get("candidates", [])
+            + (queue or {}).get("official_rechecks", [])
+        }
+        if key not in lookup or fingerprint(lookup[key]) != fp:
+            raise ValueError("unknown or stale existing candidate")
+        snapshot = lookup[key]
+        for field in (
+            "event_date",
+            "event_start_time",
+            "venue_name",
+            "artist_name",
+            "title",
+        ):
+            if snapshot.get(field) != (proposal["current_values"] or values).get(field):
+                raise ValueError("existing candidate and proposal disagree")
+    elif proposal["stream"] == "ticketjam":
+        raise ValueError(
+            "Ticketjam proposals require a real candidate key and fingerprint"
+        )
+    identity = {
+        "venue_id": venue_id,
+        "change_type": proposal["change_type"],
+        "current_values": proposal["current_values"],
+        "proposed_values": values,
+    }
+    return {
+        "proposal_id": digest(identity),
+        "proposal_hash": digest(proposal),
+        "status": "needs_work_verification",
+        "can_publish": False,
+        "missing_event_date": not bool(values.get("event_date")),
+    }
+
+
+def stage_official_event(
+    proposal: dict,
+    decision: dict,
+    registry: list[dict],
+    *,
+    base_commit: str,
+    scope_revision: str,
+    queue: dict | None = None,
+) -> dict:
+    """Separate Work decision -> existing official-event shape, still no config/DB write."""
+    receipt = validate_proposal(
+        proposal,
+        registry,
+        base_commit=base_commit,
+        scope_revision=scope_revision,
+        queue=queue,
+    )
+    if set(decision) != {
+        "proposal_hash",
+        "base_commit",
+        "status",
+        "reason",
+        "checked_at_utc",
+        "next_check_date",
+        "official_event",
+    }:
+        raise ValueError("unexpected Work decision fields")
+    if (
+        decision["proposal_hash"] != receipt["proposal_hash"]
+        or decision["base_commit"] != base_commit
+    ):
+        raise ValueError("Work verification is stale")
+    if decision["status"] != "confirmed" or not decision["reason"]:
+        raise ValueError("Work has not confirmed this proposal")
+    if _utc(decision["checked_at_utc"]) < _utc(proposal["observed_at_utc"]):
+        raise ValueError("verification precedes proposal")
+    event = decision["official_event"]
+    event_fields = {
+        "event_id",
+        "title",
+        "artist_name",
+        "venue_name",
+        "pref_name",
+        "event_start_date",
+        "event_end_date",
+        "event_start_time",
+        "event_end_time",
+        "source_class",
+        "evidence_url",
+        "url",
+        "evidence_snippet",
+        "content_extractor",
+        "event_status",
+        "event_category",
+        "enabled",
+    }
+    if not isinstance(event, dict) or not set(event) <= event_fields:
+        raise ValueError("unsupported official event fields")
+    if (
+        date.fromisoformat(decision["next_check_date"])
+        < _utc(decision["checked_at_utc"]).date()
+    ):
+        raise ValueError("next check precedes Work verification")
+    host = _url(event.get("evidence_url"))
+    # A Chat assertion of official_body does not authorize SNS/news/secondary URLs.
+    for domain in (
+        "x.com",
+        "twitter.com",
+        "facebook.com",
+        "instagram.com",
+        "ticketjam.jp",
+        "wikipedia.org",
+    ):
+        if host == domain or host.endswith("." + domain):
+            raise ValueError("standalone social/secondary evidence cannot be promoted")
+    values = proposal["proposed_values"]
+    if not values.get("event_date"):
+        raise ValueError("unannounced date remains a research proposal")
+    _validate_confirmed(values, event)
+    if event.get("event_start_time") != values.get("event_start_time"):
+        raise ValueError("Work start time disagrees: revise the proposal first")
+    if (event.get("event_end_date") or event["event_start_date"]) != (
+        values.get("event_end_date") or values["event_date"]
+    ):
+        raise ValueError("Work end date disagrees")
+    for field in ("title", "artist_name"):
+        if event[field] != values[field]:
+            raise ValueError("Work evidence and proposed event disagree")
+    if event.get("event_status", "scheduled") != values.get(
+        "event_status", "scheduled"
+    ):
+        raise ValueError("Work event status disagrees")
+    pref = next(
+        r["pref_name"] for r in registry if r["venue_id"] == proposal["venue_id"]
+    )
+    if event.get("pref_name") != pref:
+        raise ValueError("Work evidence prefecture disagrees")
+    if proposal["stream"] == "ticketjam":
+        # Reuse the existing decision validator without fabricating Ticketjam identities.
+        candidates = queue["candidates"] + queue.get("official_rechecks", [])
+        d = {
+            k: decision[k]
+            for k in (
+                "status",
+                "reason",
+                "checked_at_utc",
+                "next_check_date",
+                "official_event",
+            )
+        }
+        d.update(
+            event_key=proposal["event_key"],
+            candidate_fingerprint=proposal["candidate_fingerprint"],
+        )
+        apply_reviews({}, candidates, [d])
+    return {
+        **receipt,
+        "status": "verified_draft",
+        "verified_at_utc": decision["checked_at_utc"],
+        "official_event": deepcopy(event),
+        "publication_status": "approval_pending",
+        "can_publish": False,
+    }
+
+
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--registry", type=Path, default=Path("data/venue_registry.csv")
+    )
+    parser.add_argument("--aliases", type=Path, default=Path("data/venue_aliases.csv"))
+    parser.add_argument(
+        "--config", type=Path, default=Path("data/venue_web_discovery_config.json")
+    )
+    parser.add_argument(
+        "--ticketjam", type=Path, default=Path("data/ticketjam_venue_pages.csv")
+    )
+    parser.add_argument("--census-candidates", type=Path)
+    parser.add_argument("--pref-code", choices=[f"{i:02d}" for i in range(1, 48)])
+    parser.add_argument("--proposal", type=Path)
+    parser.add_argument("--decision", type=Path)
+    parser.add_argument("--queue", type=Path)
+    parser.add_argument("--state", type=Path, help="Read-only Work ledger snapshot")
+    parser.add_argument(
+        "--scope-output-dir", type=Path, help="Export derived Chat views outside data/"
+    )
+    parser.add_argument("--base-commit")
+    args = parser.parse_args(argv)
+    if args.decision and not args.proposal:
+        parser.error("decision requires proposal")
+    if args.scope_output_dir and (args.proposal or args.pref_code):
+        parser.error(
+            "scope export cannot be combined with intake or a single prefecture"
+        )
+    if args.scope_output_dir and (
+        Path("data").resolve() == args.scope_output_dir.resolve()
+        or Path("data").resolve() in args.scope_output_dir.resolve().parents
+    ):
+        parser.error("scope views must not overwrite runtime data")
+    registry = _csv_bytes(
+        args.registry.read_bytes(), {"venue_id", "venue_name", "pref_code", "pref_name"}
+    )
+    config = json.loads(args.config.read_text())
+    tickets = _csv_bytes(
+        args.ticketjam.read_bytes(), {"venue_id", "venue_name", "is_enabled"}
+    )
+    aliases = _csv_bytes(args.aliases.read_bytes(), {"venue_id", "aliases_json"})
+    candidates = (
+        json.loads(args.census_candidates.read_text())["candidates"]
+        if args.census_candidates
+        else []
+    )
+    bundle = scope_bundle(
+        registry,
+        config,
+        tickets,
+        aliases,
+        candidates=candidates,
+        state=json.loads(args.state.read_text()) if args.state else None,
+    )
+    if args.proposal:
+        if not args.base_commit or bundle["identity_blockers"] or bundle["orphan_ids"]:
+            parser.error("current base and unambiguous registry are required")
+        context = dict(
+            base_commit=args.base_commit,
+            scope_revision=bundle["scope_revision"],
+            queue=json.loads(args.queue.read_text()) if args.queue else None,
+        )
+        proposal = load_json(args.proposal)
+        bundle = (
+            stage_official_event(
+                proposal, load_json(args.decision), registry, **context
+            )
+            if args.decision
+            else validate_proposal(proposal, registry, **context)
+        )
+    elif args.pref_code:
+        bundle["scopes"] = [
+            r for r in bundle["scopes"] if r["pref_code"] == args.pref_code
+        ]
+    elif args.scope_output_dir:
+        bundle = write_scope_views(bundle, args.scope_output_dir)
+    print(json.dumps(bundle, ensure_ascii=False, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,312 @@
+{
+  "scope_revision": "2bb9af1d4ad7ba48c38028d37811672087cea1a1200590d5e036e0f0f0dabe57",
+  "snapshot_only": true,
+  "scopes": [
+    {
+      "pref_code": "43",
+      "pref_name": "熊本県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "05d986b27d3279ee979e",
+          "name": "えがお健康スタジアム",
+          "pref_code": "43",
+          "venue_kind": "stadium",
+          "address": "熊本県熊本市東区平山町2776",
+          "capacity": 30275,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/kumamoto/profile/",
+              "observed_at_utc": "2026-09-20T11:17:20.841079Z",
+              "body_sha256": "eb0472bdc7cc315be6c8a1c528035c70303137079d13cca6d3d4d8b1e1faa073"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "041b50b345e50dc35d8c",
+          "name": "グランメッセ熊本",
+          "pref_code": "43",
+          "venue_kind": "exhibition_arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_body_entry_only_not_full_census",
+          "fetch_status": "body_fetched",
+          "evidence": [
+            {
+              "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+              "observed_at_utc": "2026-09-20T11:23:06.441472Z",
+              "body_sha256": "451c30f5de56a53c1f8a8518559867676b8e5a91b4df00980a7e0db495b39ca3"
+            }
+          ]
+        },
+        {
+          "candidate_id": "8c82a44c10c3ef402024",
+          "name": "熊本県立総合体育館",
+          "pref_code": "43",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.volters.jp/",
+          "location_hint": "熊本県熊本市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "44",
+      "pref_name": "大分県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "f1292b88c8c507b7c995",
+          "name": "クラサスドーム大分",
+          "pref_code": "44",
+          "venue_kind": "stadium",
+          "address": "大分県大分市大字横尾1351",
+          "capacity": 31997,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/oita/profile/",
+              "observed_at_utc": "2026-09-20T11:18:01.486457Z",
+              "body_sha256": "c390864a47fac3dd6e80e9dad11347f6bca037be40c8ebcc93fe3835976cc434"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "45",
+      "pref_name": "宮崎県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "0d1acbcefbf61d2eeed4",
+          "name": "いちご宮崎新富サッカー場",
+          "pref_code": "45",
+          "venue_kind": "stadium",
+          "address": "宮崎県児湯郡新富町大字三納代1586",
+          "capacity": 1819,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/miyazaki/profile/",
+              "observed_at_utc": "2026-09-20T11:17:40.725475Z",
+              "body_sha256": "6aa2f000707e4a5617a983d3e300fc8ff3769cf10bd2835d70538b1b2cb86f6d"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "46",
+      "pref_name": "鹿児島県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "9db73da8f0f230159761",
+          "name": "白波スタジアム",
+          "pref_code": "46",
+          "venue_kind": "stadium",
+          "address": "〒890-0062 鹿児島県鹿児島市与次郎2-2-2",
+          "capacity": 12212,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/kagoshima/profile/",
+              "observed_at_utc": "2026-09-20T11:16:50.437275Z",
+              "body_sha256": "b6e20c0806befb2b2ad6f96a8b74bdaaa41e1f98562bc224209927586a31a3b0"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "0a57163ad610714b77c6",
+          "name": "西原商会アリーナ",
+          "pref_code": "46",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.rebnise.jp/",
+          "location_hint": "鹿児島県鹿児島市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "47",
+      "pref_name": "沖縄県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "2abf0718cb29e6864cac",
+          "name": "沖縄サントリーアリーナ",
+          "pref_code": "47",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/",
+              "observed_at_utc": "2026-09-20T11:22:56.520602Z",
+              "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822"
+            }
+          ],
+          "operator_reference_url": "https://goldenkings.jp/",
+          "location_hint": "沖縄県沖縄市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "37cb4d2bf9c95156cdb2",
+          "name": "沖縄県総合運動公園陸上競技場",
+          "pref_code": "47",
+          "venue_kind": "stadium",
+          "address": "〒904-2173 沖縄県沖縄市比屋根5-3-1",
+          "capacity": 10189,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/ryukyu/profile/",
+              "observed_at_utc": "2026-09-20T11:18:14.741846Z",
+              "body_sha256": "9721527ff9b4a056818c84ae3ab6a9115d494843cd359c08128e4aad497e4dc7"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    }
+  ]
+}

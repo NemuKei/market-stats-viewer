@@ -274,3 +274,17 @@ LPの既定は `ticketjam_policy=discovery`。Ticketjamを掲載用の統合入�
 公開LPのpref_nameは国内47都道府県のいずれかを必須とする。公式確認した会場の所在地が省略されている場合は会場マスターの一致する所在地だけを補う。明示値とマスターが矛盾する場合は黙って置換しない。未登録会場は公式住所に基づく明示値が必要。
 
 国内所在地が確定できない上位sourceの行は統合入力から保留し、location_held_recordsにsource_id/record_id/reason、summary.location_held_record_countに件数を持つ。元DBは保持する。会場名らしい文字列やアーティストから所在地を推測しない。公開validatorが欠落・不正な都道府県を拒否し、公開JSONにあるのに国内検索から落ちる状態を防ぐ。
+
+### 全国監視の調査・提案契約 v1（2026-09-20、未稼働）
+
+利用者が指定した全国のドーム級・アリーナ級・スタジアム級について、容量不明・取得未対応・無効設定を調査対象から除外しない。上記の容量による常設辞書基準だけで今回の全国調査を打ち切らない。施設の実体、所在地、正式名・旧称、運営状況、用途別の収容規模を審査し、確定した対象を `venue_registry.csv` に反映する。既存カテゴリとIDは保持する。
+
+- 調査待ち一覧は `docs/ai/national-event-monitoring-20260916/CENSUS_REVIEW_QUEUE.json`。県・名称別の観測であり、別名や開業予定の重複を含み得る。正本・審査済み施設数・網羅率の分母ではない。`national_census_complete=false` を維持し、不明値をnullと未確認理由で残す。
+- `national_event_handoff.scope_bundle` は正本、別名、watch、Ticketjam対応、調査待ち一覧から47県の読み取り用一覧を派生する。既存104会場を容量・enabledで絞らない。`scope_revision` はこれら入力の内容hash。保存公式URL、経路別の前回成功、未処理提案を添付できる。派生ファイルを編集して会場台帳の代わりにしない。
+- 提案schema_version=1の許容項目は `scripts/national_event_handoff.py` の `FIELDS` / `VALUE_FIELDS` を正本とする。`stream` は `venue_official` / `announcement` / `ticketjam`。base commit、scope版、会場ID、既存候補key/fingerprint、変更前後、発見URLと根拠URL、source class、発表日時・観測日時、確認方法、未解決項目、再確認日を分離する。未発表の日付・時刻はnull。OPENからSTARTを作らない。
+- Ticketjam提案は現在queueの実在key/fingerprintと一致すること。他経路に架空のTicketjam keyを付けない。未知会場・IDと名称の不一致・古いbase/scope・未知field・重複JSON keyを拒否する。ニュース・SNS・二次流通の情報は調査提案として受けられるが、その受理は公式確認でも掲載許可でもない。
+- 独立したWork判断を `stage_official_event` に渡すと、既存のconfirmed判断validatorと公式event形式を再利用して `verified_draft` を返す。Ticketjamでは既存 `apply_reviews` も通す。提案とWorkの日時・出演者・会場・地域・状態が一致しない場合は停止する。`can_publish=false`、`publication_status=approval_pending` のままで、config/DBへは書かない。公式本文の実閲覧・運営者の本人性・変更前configとの衝突審査は別途必要。
+- 提案の識別は会場IDと変更種別・変更前後の値のhash。三経路で完全に同じ変更は根拠を追記してまとめる。時刻不明と時刻判明など同一公演の可能性がある組は `possible_duplicate_ids` でWorkに渡す。昼夜公演を自動で一つにしない。
+- `national_event_state` の実行keyは `stream|JST日付|scope_revision`。対象数=確認済み+取得失敗+未巡回。前回成功は実際に読んだ範囲を持つcheckedだけ更新する。未確認、最古成功の順で巡回し、進捗なしの再開を拒否する。初回検知・通知・検証・Git反映・Release公開・利用側確認の時刻を分離し、未実施はnull。発表日時は個々の根拠に残す。
+
+この契約は非公開の運用状態や未公開資料を公開repoへ保存する許可を含まない。派生scope、調査記録、提案、実行履歴はRelease assetに追加しない。既存DB・LP schema、source priority、Ticketjam discovery policyは変更しない。

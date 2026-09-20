@@ -1,0 +1,665 @@
+{
+  "scope_revision": "2bb9af1d4ad7ba48c38028d37811672087cea1a1200590d5e036e0f0f0dabe57",
+  "snapshot_only": true,
+  "scopes": [
+    {
+      "pref_code": "01",
+      "pref_name": "北海道",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "zepp_sapporo",
+          "venue_name": "Zepp札幌",
+          "aliases": [
+            "Zepp Sapporo",
+            "Zepp Sapporo（札幌）",
+            "ゼップ札幌"
+          ],
+          "official_url": "https://www.zepp.co.jp/hall/sapporo/",
+          "schedule_url": "https://www.zepp.co.jp/hall/sapporo/schedule/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.zepp.co.jp/hall/sapporo/schedule/",
+            "https://www.zepp.co.jp/hall/sapporo/schedule/?_y=2026&_m=9",
+            "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156642",
+            "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=159009",
+            "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=164217"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "sapporo_dome",
+          "venue_name": "札幌ドーム",
+          "aliases": [
+            "大和ハウス プレミストドーム（札幌ドーム）",
+            "大和ハウス プレミストドーム",
+            "Sapporo Dome",
+            "プレミストドーム",
+            "Daiwa House PREMIST DOME"
+          ],
+          "official_url": "https://www.sapporo-dome.co.jp/",
+          "schedule_url": "https://www.sapporo-dome.co.jp/schedule/",
+          "official_fetch_enabled": true,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754",
+            "https://www.sapporo-dome.co.jp/schedule/",
+            "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260919",
+            "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260921",
+            "https://www.sapporo-dome.co.jp/schedule/detail/?date=20260926",
+            "https://www.sapporo-dome.co.jp/schedule/detail/?date=20261114",
+            "https://www.sapporo-dome.co.jp/schedule/detail/?date=20261115",
+            "https://www.sapporo-dome.co.jp/schedule/detail?date=20261024",
+            "https://www.sapporo-dome.co.jp/schedule/detail?date=20261030",
+            "https://www.sapporo-dome.co.jp/schedule/detail?date=20261031",
+            "https://www.sapporo-dome.co.jp/schedule/detail?date=20261101",
+            "https://www.sapporo-dome.co.jp/schedule/detail?date=20261122",
+            "https://www.sapporo-dome.co.jp/schedule/detail?date=20261123"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "makomanai_sekisuiheim_ice_arena",
+          "venue_name": "真駒内セキスイハイムアイスアリーナ",
+          "aliases": [
+            "真駒内アイスアリーナ",
+            "真駒内屋内競技場",
+            "Makomanai Sekisui Heim Ice Arena"
+          ],
+          "official_url": "https://www.makomanai.com/icearena/",
+          "schedule_url": "https://www.makomanai.com/icearena/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "makomanai_open_stadium",
+          "venue_name": "真駒内セキスイハイムスタジアム",
+          "aliases": [
+            "真駒内屋外競技場",
+            "Makomanai Open Stadium",
+            "真駒内オープンスタジアム"
+          ],
+          "official_url": "https://www.sorachi.pref.hokkaido.lg.jp/kk/skk/gaiyou/jigyou/makomana.html",
+          "schedule_url": "https://www.sorachi.pref.hokkaido.lg.jp/kk/skk/gaiyou/jigyou/makomana.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "escon_field_hokkaido",
+          "venue_name": "エスコンフィールドHOKKAIDO",
+          "aliases": [
+            "ES CON Field HOKKAIDO",
+            "エスコンフィールド",
+            "ES CON FIELD",
+            "F VILLAGE",
+            "エスコンフィールド北海道"
+          ],
+          "official_url": "https://www.hkdballpark.com/about/esconfield/",
+          "schedule_url": "https://www.hkdballpark.com/about/esconfield/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://npb.jp/games/2026/schedule_09_detail.html"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "hokkai_kitayell",
+          "venue_name": "北海道立総合体育センター 北海きたえーる",
+          "aliases": [
+            "北海きたえーる",
+            "Hokkai Kitayell",
+            "北海道立総合体育センター",
+            "北海きたえーる（北海道立総合体育センター）"
+          ],
+          "official_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+          "schedule_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.levanga.com/lp/game_20260926_20260927/"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "hitaru",
+          "venue_name": "札幌文化芸術劇場 hitaru",
+          "aliases": [
+            "hitaru",
+            "札幌市民交流プラザ 劇場",
+            "札幌文化芸術劇場ヒタル",
+            "札幌文化芸術劇場（札幌市民交流プラザ）"
+          ],
+          "official_url": "https://www.sapporo-community-plaza.jp/theater_seat.html",
+          "schedule_url": "https://www.sapporo-community-plaza.jp/theater_seat.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.ldh-liveschedule.jp/sys/tour/42159/",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5167",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5195",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5196",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5237",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5239",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5260",
+            "https://www.sapporo-community-plaza.jp/event.php?num=5342"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "kanamoto_hall",
+          "venue_name": "カナモトホール（札幌市民ホール）",
+          "aliases": [
+            "札幌市民ホール",
+            "Kanamoto Hall",
+            "カナモトホール"
+          ],
+          "official_url": "https://www.sapporo-shiminhall.org/hall/",
+          "schedule_url": "https://www.sapporo-shiminhall.org/hall/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://www.sapporo-shiminhall.org/event/"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "d6cf718031d08293ea99",
+          "name": "北海きたえーる",
+          "pref_code": "01",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent",
+            "recheck_existing_capacity_and_name"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.levanga.com/",
+          "location_hint": "北海道札幌市",
+          "registry_venue_id": "hokkai_kitayell",
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "e0a8f3062cd0255dd944",
+          "name": "大和ハウス プレミストドーム",
+          "pref_code": "01",
+          "venue_kind": "stadium",
+          "address": "〒062-0045 北海道札幌市豊平区羊ヶ丘1",
+          "capacity": 38794,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent",
+            "recheck_existing_capacity_and_name"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/sapporo/profile/",
+              "observed_at_utc": "2026-09-20T11:18:24.224371Z",
+              "body_sha256": "8e42cc37461aa3ece346dc908febeffa422fbd897b1248f1374479e918d9fcd5"
+            }
+          ],
+          "registry_venue_id": "sapporo_dome",
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "02",
+      "pref_name": "青森県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "5d36b93529f514ea8b99",
+          "name": "カクヒログループスーパーアリーナ",
+          "pref_code": "02",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://aomori-wats.jp/",
+          "location_hint": "青森県青森市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "3d43823a77b4ecdb5177",
+          "name": "プライフーズスタジアム",
+          "pref_code": "02",
+          "venue_kind": "stadium",
+          "address": "青森県八戸市大字市川町字市川後55-1",
+          "capacity": 1204,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/hachinohe/profile/",
+              "observed_at_utc": "2026-09-20T11:16:41.063213Z",
+              "body_sha256": "983cf8df2400d2f4aac7a990c049afa14ac78c5fe862f3984af0e3c996acfc73"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "03",
+      "pref_name": "岩手県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "58d53f1cff1d29d2a08d",
+          "name": "盛岡タカヤアリーナ",
+          "pref_code": "03",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.bigbulls.jp/",
+          "location_hint": "岩手県盛岡市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "04",
+      "pref_name": "宮城県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "sekisuiheim_super_arena",
+          "venue_name": "セキスイハイムスーパーアリーナ",
+          "aliases": [
+            "セキスイハイムスーパーアリーナ"
+          ],
+          "official_url": "https://www.mspf.jp/grande21/arena/",
+          "schedule_url": "https://www.mspf.jp/grande21/arena/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [
+            "https://boynextdoor-official.jp/news/eca648b741ad"
+          ],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "d562d14f37e8367f7050",
+          "name": "ゼビオアリーナ仙台",
+          "pref_code": "04",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.89ers.jp/",
+          "location_hint": "宮城県仙台市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "a909f671029f42e6401a",
+          "name": "ユアテックスタジアム仙台",
+          "pref_code": "04",
+          "venue_kind": "stadium",
+          "address": "宮城県仙台市泉区七北田字柳78",
+          "capacity": 19526,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/sendai/profile/",
+              "observed_at_utc": "2026-09-20T11:18:24.857025Z",
+              "body_sha256": "444fd44508303ced73db534dccc2e1150e75f7a0c7820ee1d72e71bc7826bf9f"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "be123dbbd3ff4a8057c4",
+          "name": "楽天モバイル 最強パーク宮城",
+          "pref_code": "04",
+          "venue_kind": "stadium",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "registry_venue_id": null,
+          "missing_fields": [
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "web_body_read",
+          "evidence": [
+            {
+              "evidence_url": "https://npb.jp/stadium/franchise.html",
+              "observed_at_utc": "2026-09-20T11:31:08.417373Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            }
+          ],
+          "operator_reference_url": "https://www.rakuteneagles.jp/stadium/"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "05",
+      "pref_name": "秋田県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "084305f9be7531196b89",
+          "name": "ソユースタジアム",
+          "pref_code": "05",
+          "venue_kind": "stadium",
+          "address": "〒010-0974　秋田県秋田市八橋運動公園1-10",
+          "capacity": 18560,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/akita/profile/",
+              "observed_at_utc": "2026-09-20T11:16:00.072943Z",
+              "body_sha256": "8b6859f32a2f15350873f5ab1389fd34335d44b3a1774d37bb51c67cea7a1e21"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "55286d46e4a21fd71613",
+          "name": "ニプロハチ公ドーム",
+          "pref_code": "05",
+          "venue_kind": "dome",
+          "address": "秋田県大館市上代野字稲荷台1番地1",
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "partially_restricted_roof_repair",
+          "scope_review": "pending",
+          "missing_fields": [
+            "capacity_basis",
+            "schedule_extent"
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_body_entry_only_not_full_census",
+          "fetch_status": "body_fetched",
+          "evidence": [
+            {
+              "evidence_url": "https://jukaidome.com/",
+              "observed_at_utc": "2026-09-20T11:22:46.708177Z",
+              "body_sha256": "6acb1f2082118d075cae85d0955ba36f8e2a2f37675b70d225d0bbe9a0fb799c"
+            }
+          ],
+          "aliases": [
+            "大館樹海ドーム"
+          ],
+          "operating_status_note": "Official homepage says ground-wide sports use is restricted during roof membrane repair; no cancellation of specific events inferred."
+        },
+        {
+          "candidate_id": "f654e22ed2a2a700e83f",
+          "name": "新秋田県立体育館",
+          "pref_code": "05",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://northern-happinets.com/",
+          "location_hint": "秋田県秋田市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "06",
+      "pref_name": "山形県",
+      "review_status": "pending",
+      "venues": [],
+      "candidates": [
+        {
+          "candidate_id": "faa9ece187e9297178e9",
+          "name": "山形県総合運動公園",
+          "pref_code": "06",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": null,
+          "capacity_basis": null,
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "address",
+            "capacity_basis",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            }
+          ],
+          "operator_reference_url": "https://www.wyverns.jp/",
+          "location_hint": "山形県天童市",
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "d8baf396558e92968fd1",
+          "name": "ＮＤソフトスタジアム山形",
+          "pref_code": "06",
+          "venue_kind": "stadium",
+          "address": "山形県天童市山王1-1",
+          "capacity": 20638,
+          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+          "operating_status": "unverified",
+          "scope_review": "pending",
+          "missing_fields": [
+            "operator_identity",
+            "operating_status",
+            "aliases",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/yamagata/profile/",
+              "observed_at_utc": "2026-09-20T11:19:04.107439Z",
+              "body_sha256": "b95d4b04fc5259d0ec9a89b066d796863ece94800e21516080d34901f3209b46"
+            }
+          ],
+          "registry_venue_id": null,
+          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "fetch_status": "body_fetched"
+        }
+      ],
+      "pending_proposals": []
+    }
+  ]
+}

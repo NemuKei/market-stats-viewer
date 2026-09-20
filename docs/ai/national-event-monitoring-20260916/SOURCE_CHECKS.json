@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "note": "HTTP/body extraction and official-site SNS links only; not full schedule coverage or SNS post success.",
+  "sources": {
+    "wakayama": {
+      "url": "https://sp.super-beaver.com/live_information/detail/6056",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:22:47.428685Z",
+      "body_sha256": "2517a0499dc7e6b51f31bfed4a5073050e163e6791c58c78bee006aa4caafad2",
+      "title": "2027年2月20日(土)和歌山ビッグホエール｜SUPER BEAVER OFFICIAL SITE｜SUPER BEAVER 友の会",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/super_beaver",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/superbeaver_official/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "odate": {
+      "url": "https://jukaidome.com/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:22:46.708177Z",
+      "body_sha256": "6acb1f2082118d075cae85d0955ba36f8e2a2f37675b70d225d0bbe9a0fb799c",
+      "title": "ニプロハチ公ドーム（大館樹海ドーム） ｜ 秋田県大館市の多目的ドーム",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/odatejukaidome",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/odatejukaidome",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "ig": {
+      "url": "https://www.ig-arena.jp/events/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:22:47.291900Z",
+      "body_sha256": "3e85754bccd8b974ec567636d13e69715c5dc2cb6c583b647a0738ae32383676",
+      "title": null,
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/igarena_jp",
+          "identity_status": "official_site_account_link_confirmed",
+          "post_fetch_status": "fetch_failed",
+          "failure_reason": "web_open returned no post body"
+        },
+        {
+          "url": "https://www.instagram.com/ig_arena_2025/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "okinawa": {
+      "url": "https://okinawa-arena.jp/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:22:56.520602Z",
+      "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822",
+      "title": "沖縄サントリーアリーナ公式サイト | OKINAWA ARENA",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/okinawa_arena/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "saga": {
+      "url": "https://saga-sunrisepark.com/status/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:22:55.116550Z",
+      "body_sha256": "28635cc07bc8d90e1bef93128d796bcbe654bfcdf24269d32656f6d3d1464ddf",
+      "title": "行事予定表 | SAGAサンライズパーク",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/sunshine.forest2020/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "fukui": {
+      "url": "https://sundome.sankan.jp/eventinfo/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:22:55.969712Z",
+      "body_sha256": "89a1a118d4751c966adce9e028618f6033447b0ccfc6900bbefaad0c5b2bd846",
+      "title": "イベント情報 | サンドーム福井",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/sundomefukui29",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "bighat": {
+      "url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:04.345624Z",
+      "body_sha256": "91f0d680a73f207062b5521d688573b102b191a102b977473e6560bdb7dd3e3a",
+      "title": "イベントカレンダー | 長野市多目的スポーツアリーナ ビッグハット",
+      "social_accounts": []
+    },
+    "grandmesse": {
+      "url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:06.441472Z",
+      "body_sha256": "451c30f5de56a53c1f8a8518559867676b8e5a91b4df00980a7e0db495b39ca3",
+      "title": "\r\n\tイベント情報 / 熊本産業展示場　グランメッセ熊本\r\n",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/grandmesse",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "asty": {
+      "url": "https://www.asty-tokushima.jp/event/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:06.797014Z",
+      "body_sha256": "0794a8faf224820c418c28481954fd9dc663d86f819d189ddce7e6ceea9f92bc",
+      "title": "イベントカレンダー 表形式 -  アスティとくしま",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/asty_tokushima",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/asty_tokushima/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "ehime": {
+      "url": "https://ehime-spa.jp/budoukan/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:15.747728Z",
+      "body_sha256": "4ea15deb1f9a5d26c2c6c387de7df59360bdd0b21bbdcef3540669b5e51c4c73",
+      "title": "愛媛県武道館 | 公益財団法人愛媛県スポーツ振興事業団",
+      "social_accounts": []
+    },
+    "nagasaki": {
+      "url": "https://www.nagasakistadiumcity.com/project_outline/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:15.178979Z",
+      "body_sha256": "156a2240ba311248dee9d4ee1a9e17e77e6724d4256790fba9dac2890e6992b2",
+      "title": "プロジェクト概要・軌跡・施設概要 - 【公式】長崎スタジアムシティ",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/nscproject",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nagasaki_stadiumcity/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "sekai": {
+      "url": "https://sekainoowari.jp/info/2026/09/18/7918/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:16.249358Z",
+      "body_sha256": "0d280442cc2f250b448941e3f19754fc7971863a0754ede3fa96a7ca8e2b6502",
+      "title": "SEKAI NO OWARI ARENA TOUR 2027 開催決定！ | NEW ARRIVALS | SEKAI NO OWARI オフィシャルサイト",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/DJLOVE_SNO",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/Nakajin_sekaino",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/fromsekaowa",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/saori_skow",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/djlove/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/fukase/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nakajin/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/saori_fujisaki/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/sno_ofc_info/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/SekaiNoOwariOFC",
+          "identity_status": "official_site_account_link_confirmed",
+          "post_fetch_status": "fetch_failed",
+          "failure_reason": "web_open returned HTTP 403"
+        }
+      ]
+    },
+    "glion": {
+      "url": "https://www.totteikobe.jp/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:25.471505Z",
+      "body_sha256": "24d7ba4ab59a60cea1eb50d8590149727c607a08a439d3886e89fdc925647125",
+      "title": "TOTTEI | GLION ARENA KOBE",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "kenmin": {
+      "url": "https://www.kanagawa-kenminhall.com/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:25.392039Z",
+      "body_sha256": "89706072a713f4812231620e232809ace59846fbbaa497885fa55046247c0a03",
+      "title": "神奈川県立県民ホール",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/OrganKenminhall",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kanagawa_kenminhall_gallery/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kanagawa_kenminhall_official/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Gallery_KanaKen",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "kokusai": {
+      "url": "https://www.kih.co.jp/kokusaihall/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:24.859187Z",
+      "body_sha256": "3aeedd10ac03bb5f58105f9d5a0bf1a77ee6b3759bcd0723a6eb2586361f5f44",
+      "title": "こくさいホールオフィシャルホームページ",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/KobeKokusaiHall",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kobekokusaihall/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "archaic": {
+      "url": "https://www.archaic.or.jp/",
+      "status": "body_fetched",
+      "observed_at_utc": "2026-09-20T11:23:34.116336Z",
+      "body_sha256": "c65bfde8f00f6d062f0315c5b00f140516ccbb061942e9cae2a4c01a0123c0ee",
+      "title": "尼崎市総合文化センター",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/ARChall_info",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/ARChall_info?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/archall_official/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    }
+  }
+}

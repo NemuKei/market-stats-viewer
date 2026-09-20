@@ -1,0 +1,3635 @@
+{
+  "schema_version": 1,
+  "status": "research_queue_not_runtime_registry",
+  "national_census_complete": false,
+  "source_scope": "B.LEAGUE 2026-27/2027-28 listed arenas + J1/J2/J3 current club stadium profiles + handoff operator entries + official tour; not an exhaustive facility census + NPB primary-franchise cross-check (three unregistered ballparks)",
+  "count_semantics": "distinct pref/name observations, may include aliases or future venues; not reviewed target denominator",
+  "candidates": [
+    {
+      "candidate_id": "d6cf718031d08293ea99",
+      "name": "北海きたえーる",
+      "pref_code": "01",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.levanga.com/",
+      "location_hint": "北海道札幌市",
+      "registry_venue_id": "hokkai_kitayell",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "e0a8f3062cd0255dd944",
+      "name": "大和ハウス プレミストドーム",
+      "pref_code": "01",
+      "venue_kind": "stadium",
+      "address": "〒062-0045 北海道札幌市豊平区羊ヶ丘1",
+      "capacity": 38794,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/sapporo/profile/",
+          "observed_at_utc": "2026-09-20T11:18:24.224371Z",
+          "body_sha256": "8e42cc37461aa3ece346dc908febeffa422fbd897b1248f1374479e918d9fcd5"
+        }
+      ],
+      "registry_venue_id": "sapporo_dome",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "5d36b93529f514ea8b99",
+      "name": "カクヒログループスーパーアリーナ",
+      "pref_code": "02",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://aomori-wats.jp/",
+      "location_hint": "青森県青森市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3d43823a77b4ecdb5177",
+      "name": "プライフーズスタジアム",
+      "pref_code": "02",
+      "venue_kind": "stadium",
+      "address": "青森県八戸市大字市川町字市川後55-1",
+      "capacity": 1204,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/hachinohe/profile/",
+          "observed_at_utc": "2026-09-20T11:16:41.063213Z",
+          "body_sha256": "983cf8df2400d2f4aac7a990c049afa14ac78c5fe862f3984af0e3c996acfc73"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "58d53f1cff1d29d2a08d",
+      "name": "盛岡タカヤアリーナ",
+      "pref_code": "03",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.bigbulls.jp/",
+      "location_hint": "岩手県盛岡市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "d562d14f37e8367f7050",
+      "name": "ゼビオアリーナ仙台",
+      "pref_code": "04",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.89ers.jp/",
+      "location_hint": "宮城県仙台市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "a909f671029f42e6401a",
+      "name": "ユアテックスタジアム仙台",
+      "pref_code": "04",
+      "venue_kind": "stadium",
+      "address": "宮城県仙台市泉区七北田字柳78",
+      "capacity": 19526,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/sendai/profile/",
+          "observed_at_utc": "2026-09-20T11:18:24.857025Z",
+          "body_sha256": "444fd44508303ced73db534dccc2e1150e75f7a0c7820ee1d72e71bc7826bf9f"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "be123dbbd3ff4a8057c4",
+      "name": "楽天モバイル 最強パーク宮城",
+      "pref_code": "04",
+      "venue_kind": "stadium",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "registry_venue_id": null,
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "web_body_read",
+      "evidence": [
+        {
+          "evidence_url": "https://npb.jp/stadium/franchise.html",
+          "observed_at_utc": "2026-09-20T11:31:08.417373Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        }
+      ],
+      "operator_reference_url": "https://www.rakuteneagles.jp/stadium/"
+    },
+    {
+      "candidate_id": "084305f9be7531196b89",
+      "name": "ソユースタジアム",
+      "pref_code": "05",
+      "venue_kind": "stadium",
+      "address": "〒010-0974　秋田県秋田市八橋運動公園1-10",
+      "capacity": 18560,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/akita/profile/",
+          "observed_at_utc": "2026-09-20T11:16:00.072943Z",
+          "body_sha256": "8b6859f32a2f15350873f5ab1389fd34335d44b3a1774d37bb51c67cea7a1e21"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "55286d46e4a21fd71613",
+      "name": "ニプロハチ公ドーム",
+      "pref_code": "05",
+      "venue_kind": "dome",
+      "address": "秋田県大館市上代野字稲荷台1番地1",
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "partially_restricted_roof_repair",
+      "scope_review": "pending",
+      "missing_fields": [
+        "capacity_basis",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://jukaidome.com/",
+          "observed_at_utc": "2026-09-20T11:22:46.708177Z",
+          "body_sha256": "6acb1f2082118d075cae85d0955ba36f8e2a2f37675b70d225d0bbe9a0fb799c"
+        }
+      ],
+      "aliases": [
+        "大館樹海ドーム"
+      ],
+      "operating_status_note": "Official homepage says ground-wide sports use is restricted during roof membrane repair; no cancellation of specific events inferred."
+    },
+    {
+      "candidate_id": "f654e22ed2a2a700e83f",
+      "name": "新秋田県立体育館",
+      "pref_code": "05",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://northern-happinets.com/",
+      "location_hint": "秋田県秋田市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "faa9ece187e9297178e9",
+      "name": "山形県総合運動公園",
+      "pref_code": "06",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.wyverns.jp/",
+      "location_hint": "山形県天童市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "d8baf396558e92968fd1",
+      "name": "ＮＤソフトスタジアム山形",
+      "pref_code": "06",
+      "venue_kind": "stadium",
+      "address": "山形県天童市山王1-1",
+      "capacity": 20638,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/yamagata/profile/",
+          "observed_at_utc": "2026-09-20T11:19:04.107439Z",
+          "body_sha256": "b95d4b04fc5259d0ec9a89b066d796863ece94800e21516080d34901f3209b46"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "f2880949c9c571576c8c",
+      "name": "とうほう・みんなのスタジアム",
+      "pref_code": "07",
+      "venue_kind": "stadium",
+      "address": "福島県福島市佐原字神事場1",
+      "capacity": 5710,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/fukushima/profile/",
+          "observed_at_utc": "2026-09-20T11:16:21.121778Z",
+          "body_sha256": "5aaa2b9e4ab06888c895dc78cb4be2986c93e7bcd8c70f24b16a5222f7dd74c8"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "db6f7e0fc335d42965e0",
+      "name": "ハワイアンズスタジアムいわき",
+      "pref_code": "07",
+      "venue_kind": "stadium",
+      "address": "福島県いわき市常磐湯本町上浅貝110-33",
+      "capacity": 5076,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/iwaki/profile/",
+          "observed_at_utc": "2026-09-20T11:16:51.957221Z",
+          "body_sha256": "1e5fec3b8087dc2dfe5ace49f4a03a0209bfc9eb7fbe0f9176b461700bd8ba46"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "294b92db47375ac6d69a",
+      "name": "宝来屋ボンズアリーナ",
+      "pref_code": "07",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://firebonds.jp/",
+      "location_hint": "福島県郡山市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "13ca641e9b135109066b",
+      "name": "アダストリアみとアリーナ",
+      "pref_code": "08",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.ibarakirobots.win/",
+      "location_hint": "茨城県水戸市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "2a57a2f9d258f4952748",
+      "name": "メルカリスタジアム",
+      "pref_code": "08",
+      "venue_kind": "stadium",
+      "address": "茨城県鹿嶋市神向寺後山26-2",
+      "capacity": 39095,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kashima/profile/",
+          "observed_at_utc": "2026-09-20T11:17:00.842775Z",
+          "body_sha256": "2c068aa05dc8b410736a2e8d99b201f3c52a1a738c923578f06a139fd60a0651"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "be3329ceff0f95edf28e",
+      "name": "水戸信用金庫スタジアム",
+      "pref_code": "08",
+      "venue_kind": "stadium",
+      "address": "茨城県那珂市向山1282-1",
+      "capacity": 17034,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/mito/profile/",
+          "observed_at_utc": "2026-09-20T11:17:40.140373Z",
+          "body_sha256": "bcbbf8a23b90eab90ae5b562e32203e01d65fbce5c84d82a195975942814ef7c"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0b0e3fd8fd8d527bfab8",
+      "name": "カンセキスタジアムとちぎ",
+      "pref_code": "09",
+      "venue_kind": "stadium",
+      "address": "栃木県宇都宮市西川田4-1-1",
+      "capacity": 24670,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/tochigi/profile/",
+          "observed_at_utc": "2026-09-20T11:18:44.134056Z",
+          "body_sha256": "3441f92fcfab40d0881aeeb89ee43010688455fe09136da5289e43fcaefaecd0"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "611f8cef0107e89cb27c",
+      "name": "ブレックスアリーナ宇都宮",
+      "pref_code": "09",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.utsunomiyabrex.com/",
+      "location_hint": "栃木県宇都宮市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "b5a767040b1b5e58e567",
+      "name": "ＣＩＴＹ　ＦＯＯＴＢＡＬＬ　ＳＴＡＴＩＯＮ",
+      "pref_code": "09",
+      "venue_kind": "stadium",
+      "address": "栃木県栃木市岩舟町三谷1038-1",
+      "capacity": 5092,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/tochigic/profile/",
+          "observed_at_utc": "2026-09-20T11:18:43.209067Z",
+          "body_sha256": "9fb9e1c9332c0b3073b867437f190ba6c6abdc55a8bbeb15ef560161ebc84859"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "c00da73cee05dffdd491",
+      "name": "オープンハウスアリーナ太田",
+      "pref_code": "10",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://g-crane-thunders.jp/",
+      "location_hint": "群馬県太田市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "c824d3841c99f945dab6",
+      "name": "正田醤油スタジアム群馬",
+      "pref_code": "10",
+      "venue_kind": "stadium",
+      "address": "群馬県前橋市敷島町66",
+      "capacity": 15190,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/gunma/profile/",
+          "observed_at_utc": "2026-09-20T11:16:30.917814Z",
+          "body_sha256": "2ede8658f03b1b88c45fd2fadf616d1f053423c10ac2f89ce98eb1b462eaa1c1"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3a8f0e44002193594e35",
+      "name": "埼玉スタジアム２００２",
+      "pref_code": "11",
+      "venue_kind": "stadium",
+      "address": "〒336-0972 埼玉県さいたま市緑区美園2-1",
+      "capacity": 62040,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/urawa/profile/",
+          "observed_at_utc": "2026-09-20T11:19:03.920519Z",
+          "body_sha256": "0d6e14357f31dfd29c9bdb7ba704ed12ecd98c92056dc6549ce0c52035d89bcc"
+        }
+      ],
+      "registry_venue_id": "saitama_stadium_2002",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0ec8f9901047d7073b11",
+      "name": "浦和駒場体育館",
+      "pref_code": "11",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://broncos20.jp/",
+      "location_hint": "埼玉県さいたま市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "ca4b4a526aa988d1c5e7",
+      "name": "越谷市立総合体育館",
+      "pref_code": "11",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.koshigaya-alphas.com/",
+      "location_hint": "埼玉県越谷市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "f6d9aa4862f51dd789a1",
+      "name": "ＮＡＣＫ５スタジアム大宮",
+      "pref_code": "11",
+      "venue_kind": "stadium",
+      "address": "〒330-0803 埼玉県さいたま市大宮区高鼻町4",
+      "capacity": 15491,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/omiya/profile/",
+          "observed_at_utc": "2026-09-20T11:18:14.186449Z",
+          "body_sha256": "8853c721bf4deffb4edddfa46cf1efc3fdd397a7b685a0178d192a5b1f54be10"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "f903c1b2713d0deb66d2",
+      "name": "LaLa arena TOKYO-BAY",
+      "pref_code": "12",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://chibajets.jp/",
+      "location_hint": "千葉県船橋市",
+      "registry_venue_id": "lalaarena_tokyobay",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "638826a8446f2af4a5fa",
+      "name": "フクダ電子アリーナ",
+      "pref_code": "12",
+      "venue_kind": "stadium",
+      "address": "千葉県千葉市中央区川崎町1-20",
+      "capacity": 19470,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/chiba/profile/",
+          "observed_at_utc": "2026-09-20T11:16:00.701106Z",
+          "body_sha256": "4a81eded80d8ffddc340bb3de5ae33cf21d1d4f92af4833d25311369b6734df7"
+        }
+      ],
+      "registry_venue_id": "fukuda_denshi_arena",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "a1f8642b0406cfc4c3c7",
+      "name": "三協フロンテア柏スタジアム",
+      "pref_code": "12",
+      "venue_kind": "stadium",
+      "address": "千葉県柏市日立台1-2-50",
+      "capacity": 15098,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kashiwa/profile/",
+          "observed_at_utc": "2026-09-20T11:17:00.904839Z",
+          "body_sha256": "965fb7b46f9b857a70c84f46fcae8e7bd60e06f388495df41cdc278bfefcdb41"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "ec75ce96f5798c4164e3",
+      "name": "千葉ポートアリーナ",
+      "pref_code": "12",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://altiri.jp/",
+      "location_hint": "千葉県千葉市",
+      "registry_venue_id": "chiba_port_arena",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "532a4aa96f3a2237fa6c",
+      "name": "TOYOTA ARENA TOKYO",
+      "pref_code": "13",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.alvark-tokyo.jp/",
+      "location_hint": "東京都江東区",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "8e95218e2ee0d08a42ed",
+      "name": "アリーナ立川立飛",
+      "pref_code": "13",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://tachikawa-dice.tokyo/",
+      "location_hint": "東京都立川市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4591d2437592146abf5c",
+      "name": "エスフォルタアリーナ八王子",
+      "pref_code": "13",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://trains.co.jp/",
+      "location_hint": "東京都八王子市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "7b8c117b94061c0d21ba",
+      "name": "味の素スタジアム",
+      "pref_code": "13",
+      "venue_kind": "stadium",
+      "address": "東京都調布市西町376-3",
+      "capacity": 47851,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/ftokyo/profile/",
+          "observed_at_utc": "2026-09-20T11:16:11.032224Z",
+          "body_sha256": "55fe2f8d0e4254c60955d87fa657c308e10877b1b04cb3296ba138280fd46469"
+        },
+        {
+          "evidence_url": "https://www.jleague.jp/club/tokyov/profile/",
+          "observed_at_utc": "2026-09-20T11:18:53.279865Z",
+          "body_sha256": "cc57da81407b2d83d41db6fbdefc003f316f33ef0ed1f40a1df54660d3079f31"
+        }
+      ],
+      "registry_venue_id": "mufg_stadium",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3339ac61303ffbd2a58c",
+      "name": "品川区立総合体育館（特例適用※）",
+      "pref_code": "13",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.shinagawa-city.com/basketball/",
+      "location_hint": "東京都品川区",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "486fe71f2ed545a6548b",
+      "name": "大田区総合体育館",
+      "pref_code": "13",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://eftokyo-z.jp/",
+      "location_hint": "東京都大田区",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "44c5e9a3e1bc01a6c63b",
+      "name": "明治神宮野球場",
+      "pref_code": "13",
+      "venue_kind": "stadium",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "registry_venue_id": null,
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "web_body_read",
+      "evidence": [
+        {
+          "evidence_url": "https://npb.jp/stadium/franchise.html",
+          "observed_at_utc": "2026-09-20T11:31:08.417393Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        }
+      ],
+      "operator_reference_url": "https://www.jingu-stadium.com/"
+    },
+    {
+      "candidate_id": "b22246c77df4215193ef",
+      "name": "有明アリーナ",
+      "pref_code": "13",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://tubc.tokyo/",
+      "location_hint": "東京都江東区",
+      "registry_venue_id": "ariake_arena",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "fd0c8d60fe6fb1befd0a",
+      "name": "町田ＧＩＯＮスタジアム",
+      "pref_code": "13",
+      "venue_kind": "stadium",
+      "address": "〒195-0063 東京都町田市野津田町2035",
+      "capacity": 15320,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/machida/profile/",
+          "observed_at_utc": "2026-09-20T11:17:30.881654Z",
+          "body_sha256": "db6efa77dfee93bd5ce7541d7a21d8aa2bbf978e72880eda219dd3128fc9c690"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "cc73fff60ad9eb833657",
+      "name": "ニッパツ三ツ沢球技場",
+      "pref_code": "14",
+      "venue_kind": "stadium",
+      "address": "〒221-0855 神奈川県横浜市神奈川区三ツ沢西町3-1",
+      "capacity": 15442,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/yokohamafc/profile/",
+          "observed_at_utc": "2026-09-20T11:19:13.584006Z",
+          "body_sha256": "6c8e2f5a9ee07064b53b8152fbab4c8627a61fda7c6a1350405cefb6f847a761"
+        }
+      ],
+      "registry_venue_id": "nippatsu_mitsuzawa_stadium",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "a7745b5708c73dd859eb",
+      "name": "レモンガススタジアム平塚",
+      "pref_code": "14",
+      "venue_kind": "stadium",
+      "address": "〒254-0074 神奈川県平塚市大原1-1",
+      "capacity": 15380,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/shonan/profile/",
+          "observed_at_utc": "2026-09-20T11:18:34.232952Z",
+          "body_sha256": "e31e4336b4af0fd0a80a04221ade79c2e60c277f61023ba315b5e47abd875290"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "e9949b729be436b97bf0",
+      "name": "日産スタジアム",
+      "pref_code": "14",
+      "venue_kind": "stadium",
+      "address": "神奈川県横浜市港北区小机町3300",
+      "capacity": 71624,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/yokohamafm/profile/",
+          "observed_at_utc": "2026-09-20T11:19:13.733242Z",
+          "body_sha256": "00fd14454b5ef1a5e3d8500f1ad94b8c171558bff0e40129974f2f0e4a991734"
+        }
+      ],
+      "registry_venue_id": "nissan_stadium",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "94142a3cb5ef7c5056ff",
+      "name": "横浜BUNTAI",
+      "pref_code": "14",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://b-corsairs.com/",
+      "location_hint": "神奈川県横浜市",
+      "registry_venue_id": "yokohama_buntai",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "6dee64e1357d461152c2",
+      "name": "横浜武道館",
+      "pref_code": "14",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://yokohama-ex.jp/",
+      "location_hint": "神奈川県横浜市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "fcfa7fa70505c9dc2405",
+      "name": "相模原ギオンスタジアム",
+      "pref_code": "14",
+      "venue_kind": "stadium",
+      "address": "神奈川県相模原市南区下溝4169番",
+      "capacity": 6259,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/sagamihara/profile/",
+          "observed_at_utc": "2026-09-20T11:18:14.885975Z",
+          "body_sha256": "8dbad49a383bc3589b9fb9e5193a4a86539de3e80fc0bc8dc4706c82aa17fc1c"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0df6b2bc4bf0831dec71",
+      "name": "秋葉台文化体育館",
+      "pref_code": "14",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://shonan-united.com/",
+      "location_hint": "神奈川県藤沢市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "2eb6104362286bac5a57",
+      "name": "（新）とどろきアリーナ（仮称）",
+      "pref_code": "14",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://kawasaki-bravethunders.com/",
+      "location_hint": "神奈川県川崎市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "356a70b9bfde082155da",
+      "name": "Ｕｖａｎｃｅとどろきスタジアム　ｂｙ　Ｆｕｊｉｔｓｕ",
+      "pref_code": "14",
+      "venue_kind": "stadium",
+      "address": "〒211-0052 神奈川県川崎市中原区等々力1-1",
+      "capacity": 26827,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kawasakif/profile/",
+          "observed_at_utc": "2026-09-20T11:17:11.013087Z",
+          "body_sha256": "9ad2c7f76d32cd464d2e8baf10f40bb85ba68237576643e9fb16ebd30eec4d39"
+        }
+      ],
+      "registry_venue_id": "todoroki_stadium",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "cce2e46b690c840fc288",
+      "name": "アオーレ長岡",
+      "pref_code": "15",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.albirex.com/",
+      "location_hint": "新潟県長岡市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "9dff8c0a7dcc7274a113",
+      "name": "デンカビッグスワンスタジアム",
+      "pref_code": "15",
+      "venue_kind": "stadium",
+      "address": "〒950-0933 新潟県新潟市中央区清五郎67-12",
+      "capacity": 41684,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/niigata/profile/",
+          "observed_at_utc": "2026-09-20T11:18:02.802881Z",
+          "body_sha256": "5db11e4ed80a54a8d51d3fa9b4679140356322cc1012bdc43ac5a366132820f1"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "5f0f7ac2caa710f816d0",
+      "name": "YKK AP ARENA",
+      "pref_code": "16",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://grouses.jp/",
+      "location_hint": "富山県富山市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "8e49519108b525557c49",
+      "name": "富山県総合運動公園陸上競技場",
+      "pref_code": "16",
+      "venue_kind": "stadium",
+      "address": "富山県富山市南中田368",
+      "capacity": 18191,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/toyama/profile/",
+          "observed_at_utc": "2026-09-20T11:19:03.765619Z",
+          "body_sha256": "b7d8a5d44966d9b235a60531ee95cf4a87cbb3876e1cf2df167763c2bf907d55"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "04ca8f2df9e48cfb22dd",
+      "name": "いしかわ総合スポーツセンター",
+      "pref_code": "17",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://samuraiz.jp/",
+      "location_hint": "石川県金沢市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "5696f96b2e0c685733aa",
+      "name": "金沢ゴーゴーカレースタジアム",
+      "pref_code": "17",
+      "venue_kind": "stadium",
+      "address": "石川県金沢市磯部町ロ75-1",
+      "capacity": 10728,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kanazawa/profile/",
+          "observed_at_utc": "2026-09-20T11:17:00.323262Z",
+          "body_sha256": "1ffba0ca6156044626e3e1cf6099e5a0afc1ab5af881c2f124b2bdf35f74ea5b"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "18d834ec40ad2e8f9040",
+      "name": "サンドーム福井",
+      "pref_code": "18",
+      "venue_kind": "dome",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://sundome.sankan.jp/eventinfo/",
+          "observed_at_utc": "2026-09-20T11:22:55.969712Z",
+          "body_sha256": "89a1a118d4751c966adce9e028618f6033447b0ccfc6900bbefaad0c5b2bd846"
+        }
+      ]
+    },
+    {
+      "candidate_id": "5c9e22d045c4e3a7eb48",
+      "name": "セーレンドリームアリーナ",
+      "pref_code": "18",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://fukuiblowinds.com/",
+      "location_hint": "福井県福井市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "def1f852231941c219c4",
+      "name": "ＪＩＴ　リサイクルインク　スタジアム",
+      "pref_code": "19",
+      "venue_kind": "stadium",
+      "address": "〒400-0836 山梨県甲府市小瀬町840",
+      "capacity": 15853,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kofu/profile/",
+          "observed_at_utc": "2026-09-20T11:17:20.892892Z",
+          "body_sha256": "b47bd8dd38b23bb144dc18e281f5e249b0dac47cc932eeaa99feed6ccf272823"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "04f64ee3b7049661c511",
+      "name": "サンプロ　アルウィン",
+      "pref_code": "20",
+      "venue_kind": "stadium",
+      "address": "長野県松本市神林5300",
+      "capacity": 19796,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/matsumoto/profile/",
+          "observed_at_utc": "2026-09-20T11:17:30.941811Z",
+          "body_sha256": "6a59c82676003f7d6827a8684d4d294536df0a2f7031d891ee91b97648d61d58"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4dac15254c614015d8b2",
+      "name": "ビッグハット",
+      "pref_code": "20",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+          "observed_at_utc": "2026-09-20T11:23:04.345624Z",
+          "body_sha256": "91f0d680a73f207062b5521d688573b102b191a102b977473e6560bdb7dd3e3a"
+        }
+      ]
+    },
+    {
+      "candidate_id": "e0d530655c1431e2375d",
+      "name": "ホワイトリング",
+      "pref_code": "20",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.b-warriors.net/",
+      "location_hint": "長野県長野市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "ee44b08a6c50fe286d4f",
+      "name": "長野Ｕスタジアム",
+      "pref_code": "20",
+      "venue_kind": "stadium",
+      "address": "長野県長野市篠ノ井東福寺320番地",
+      "capacity": 15515,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/nagano/profile/",
+          "observed_at_utc": "2026-09-20T11:17:40.820336Z",
+          "body_sha256": "57b93871beadf0aaa2a1e0d45903726e95618cd9eabc90e7e90e3568a4dd22a1"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "e86a14e859c9a8fd4108",
+      "name": "OKBぎふ清流アリーナ",
+      "pref_code": "21",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.gifu-swoops.com/",
+      "location_hint": "岐阜県岐阜市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "a87c2b8b636c2c93b8ab",
+      "name": "岐阜メモリアルセンターヒマラヤスタジアム岐阜",
+      "pref_code": "21",
+      "venue_kind": "stadium",
+      "address": "〒502-0817 岐阜県岐阜市長良福光大野2675-28",
+      "capacity": 16310,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/gifu/profile/",
+          "observed_at_utc": "2026-09-20T11:16:30.472714Z",
+          "body_sha256": "ed8e8064b5754675a577da46edd47c047ca21ab561b4b0c4d6a57f708e2aa502"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "54dc6c7af1cb815d2de7",
+      "name": "ヤマハスタジアム（磐田）",
+      "pref_code": "22",
+      "venue_kind": "stadium",
+      "address": "〒438-0025 静岡県磐田市新貝2500",
+      "capacity": 15165,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/iwata/profile/",
+          "observed_at_utc": "2026-09-20T11:16:50.891720Z",
+          "body_sha256": "e6a8a1a336a5b0ae7bebffada714db8a2ada2fb2f20bf0b3cae4664d8b7d0373"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "81cbacc37d59655a9303",
+      "name": "藤枝総合運動公園サッカー場",
+      "pref_code": "22",
+      "venue_kind": "stadium",
+      "address": "〒426-0086 静岡県藤枝市原100",
+      "capacity": 10057,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/fujieda/profile/",
+          "observed_at_utc": "2026-09-20T11:16:21.501633Z",
+          "body_sha256": "fc05b0f9280062ef5f64f4f288126160849bea6f379fdc4d0329fe1c5efd400e"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3f3a4fc3bd31cf6f8b3c",
+      "name": "静岡市アリーナ",
+      "pref_code": "22",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://veltex.co.jp/",
+      "location_hint": "静岡県静岡市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4b1ec209d5f38919573e",
+      "name": "ＩＡＩスタジアム日本平",
+      "pref_code": "22",
+      "venue_kind": "stadium",
+      "address": "静岡県静岡市清水区村松3880-1",
+      "capacity": 19594,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/shimizu/profile/",
+          "observed_at_utc": "2026-09-20T11:18:34.621257Z",
+          "body_sha256": "123737745a76c937658bab6678ee894d4fb285d44b5af8b686dee75b35d9289b"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "1a2139a24302cb8b0841",
+      "name": "IGアリーナ",
+      "pref_code": "23",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        },
+        {
+          "evidence_url": "https://www.ig-arena.jp/events/",
+          "observed_at_utc": "2026-09-20T11:22:47.291900Z",
+          "body_sha256": "3e85754bccd8b974ec567636d13e69715c5dc2cb6c583b647a0738ae32383676"
+        }
+      ],
+      "operator_reference_url": "https://nagoya-dolphins.jp/",
+      "location_hint": "愛知県名古屋市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "c5cb192ae4e5d5dd005a",
+      "name": "三河安城交流拠点（名称未定）",
+      "pref_code": "23",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://go-seahorses.jp/",
+      "location_hint": "愛知県刈谷市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "e498212b212f6cf5c61d",
+      "name": "名古屋市枇杷島スポーツセンター",
+      "pref_code": "23",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.fightingeagles.jp/",
+      "location_hint": "愛知県名古屋市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "c49ed6dbf15b35231954",
+      "name": "多目的屋内施設",
+      "pref_code": "23",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.neophoenix.jp/",
+      "location_hint": "愛知県豊橋市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "d9de75ada217d411254f",
+      "name": "豊田スタジアム",
+      "pref_code": "23",
+      "venue_kind": "stadium",
+      "address": "愛知県豊田市千石町7-2",
+      "capacity": 42753,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/nagoya/profile/",
+          "observed_at_utc": "2026-09-20T11:17:51.770645Z",
+          "body_sha256": "8081d4a5307770205cb1806adb8cd296e52cc0df2f23798108ed5194eaa34beb"
+        }
+      ],
+      "registry_venue_id": "toyota_stadium",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3a198555b6269ba74b6a",
+      "name": "AGF鈴鹿体育館（特例適用※）",
+      "pref_code": "24",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.veertien.jp/bb/",
+      "location_hint": "三重県鈴鹿市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "7d37ab2a766111ff1825",
+      "name": "平和堂ＨＡＴＯスタジアム",
+      "pref_code": "25",
+      "venue_kind": "stadium",
+      "address": "滋賀県彦根市松原町3028",
+      "capacity": 6444,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/shiga/profile/",
+          "observed_at_utc": "2026-09-20T11:18:33.891400Z",
+          "body_sha256": "01ce831010f01443267a6875ad29116cedadaafca2f245662e53d40a0bca6787"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "82b02305bec631a13f2d",
+      "name": "滋賀ダイハツアリーナ",
+      "pref_code": "25",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://shigalakes.com/",
+      "location_hint": "滋賀県大津市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "2b2fd4a2ffa432aa0baf",
+      "name": "サンガスタジアム by ＫＹＯＣＥＲＡ",
+      "pref_code": "26",
+      "venue_kind": "stadium",
+      "address": "京都府亀岡市亀岡駅北１丁目8番地2",
+      "capacity": 21293,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kyoto/profile/",
+          "observed_at_utc": "2026-09-20T11:17:30.600636Z",
+          "body_sha256": "f2eca10cd92fc1da190dde6fef90bdb4bac6f5aeaf1fb07bcf8764b38039f6c7"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "33afee863791c9ba2f69",
+      "name": "京都アリーナ（仮称）",
+      "pref_code": "26",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://hannaryz.jp/",
+      "location_hint": "京都府京都市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4e797a0dae179b8620d1",
+      "name": "YANMAR HANASAKA STADIUM",
+      "pref_code": "27",
+      "venue_kind": "stadium",
+      "address": "大阪府大阪市東住吉区長居公園1-1",
+      "capacity": 24481,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/cosaka/profile/",
+          "observed_at_utc": "2026-09-20T11:16:00.648736Z",
+          "body_sha256": "a1ba64d89f64f08666f10ea352128ba5b16aa0cfaff0583e3b2e63b5ccc89db7"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "dfbec3dd543a2c6e28eb",
+      "name": "おおきにアリーナ舞洲",
+      "pref_code": "27",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.evessa.com/",
+      "location_hint": "大阪府大阪市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0230e86322f89b964735",
+      "name": "パナソニック スタジアム 吹田",
+      "pref_code": "27",
+      "venue_kind": "stadium",
+      "address": "大阪府吹田市千里万博公園3-3",
+      "capacity": 39694,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/gosaka/profile/",
+          "observed_at_utc": "2026-09-20T11:16:31.100344Z",
+          "body_sha256": "c2ffbebb03e9bef3362f4160e8750482f1668e7c7fc6bcba28118380f976f49c"
+        }
+      ],
+      "registry_venue_id": "panasonic_stadium_suita",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "606e61508221d77f10c1",
+      "name": "東大阪市花園ラグビー場",
+      "pref_code": "27",
+      "venue_kind": "stadium",
+      "address": "〒578-0923 大阪府東大阪市松原南１丁目1-1",
+      "capacity": 26443,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/fosaka/profile/",
+          "observed_at_utc": "2026-09-20T11:16:11.133418Z",
+          "body_sha256": "795b43aa943f4131e50e59a65a9add360f7a08e144be8b7a16b04beee2101c83"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "fb47cc77699f6c56269f",
+      "name": "GLION ARENA KOBE",
+      "pref_code": "28",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.storks.jp/",
+      "location_hint": "兵庫県神戸市",
+      "registry_venue_id": "glion_arena_kobe",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4a7cb33aaf2353029299",
+      "name": "ノエビアスタジアム神戸",
+      "pref_code": "28",
+      "venue_kind": "stadium",
+      "address": "兵庫県神戸市兵庫区御崎町1-2-2",
+      "capacity": 27974,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kobe/profile/",
+          "observed_at_utc": "2026-09-20T11:17:09.764679Z",
+          "body_sha256": "2f3af8591d4a3652d0b0e20a307a5b5e77c32f33499822f67fee960e7915b557"
+        }
+      ],
+      "registry_venue_id": "noevir_stadium_kobe",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "fcb24b481b6557ffa99f",
+      "name": "ロートアリーナ奈良",
+      "pref_code": "29",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://bambitious.jp/",
+      "location_hint": "奈良県奈良市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "42f56dc93d0153f69146",
+      "name": "ロートフィールド奈良",
+      "pref_code": "29",
+      "venue_kind": "stadium",
+      "address": "〒630-8108 奈良県奈良市法蓮佐保山四丁目5番1号",
+      "capacity": 5369,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/nara/profile/",
+          "observed_at_utc": "2026-09-20T11:17:51.860729Z",
+          "body_sha256": "b847aea7565626c57c456298ee3b380b7036c99719d4d85147dd8b846bceab20"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "20d199fec07cfd04c9d0",
+      "name": "和歌山ビッグホエール",
+      "pref_code": "30",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://sp.super-beaver.com/live_information/detail/6056",
+          "observed_at_utc": "2026-09-20T11:22:47.428685Z",
+          "body_sha256": "2517a0499dc7e6b51f31bfed4a5073050e163e6791c58c78bee006aa4caafad2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "a9ea473f062a3ed7bb8d",
+      "name": "Ａｘｉｓバードスタジアム",
+      "pref_code": "31",
+      "venue_kind": "stadium",
+      "address": "鳥取県鳥取市蔵田423",
+      "capacity": 11999,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/tottori/profile/",
+          "observed_at_utc": "2026-09-20T11:18:53.572609Z",
+          "body_sha256": "091a761e66e7906c0ef2283379c9e5c32145168e54bcb76f226545d4781b314a"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "b1e65eef51bf957f759b",
+      "name": "松江市総合体育館",
+      "pref_code": "32",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.susanoo-m.com/",
+      "location_hint": "島根県松江市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "1faa467548cc9f3e400c",
+      "name": "シゲトーアリーナ岡山",
+      "pref_code": "33",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://tryhoop.com/",
+      "location_hint": "岡山県岡山市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4da4669e8a8ac3ceaec6",
+      "name": "ＪＦＥ晴れの国スタジアム",
+      "pref_code": "33",
+      "venue_kind": "stadium",
+      "address": "〒700-0012 岡山県岡山市北区いずみ町2-1",
+      "capacity": 15479,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/okayama/profile/",
+          "observed_at_utc": "2026-09-20T11:18:02.453511Z",
+          "body_sha256": "1f1982e471d1ae1a98691ab760b1a8d7e4c62163c334db3ad2556eca27a82ff4"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "6e9717e29fa7ade23dd8",
+      "name": "MAZDA Zoom-Zoom スタジアム広島",
+      "pref_code": "34",
+      "venue_kind": "stadium",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "registry_venue_id": null,
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "web_body_read",
+      "evidence": [
+        {
+          "evidence_url": "https://npb.jp/stadium/franchise.html",
+          "observed_at_utc": "2026-09-20T11:31:08.417400Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        }
+      ],
+      "operator_reference_url": "https://npb.jp/stadium/franchise.html"
+    },
+    {
+      "candidate_id": "50b9be911e4a527cb217",
+      "name": "エディオンピースウイング広島",
+      "pref_code": "34",
+      "venue_kind": "stadium",
+      "address": "広島県広島市中区基町15番2-1号",
+      "capacity": 28413,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/hiroshima/profile/",
+          "observed_at_utc": "2026-09-20T11:16:41.123780Z",
+          "body_sha256": "c824ab000552b36e9c3551c495f88e28dd5a0091130bed5498830752ec88c9bd"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "820cc2d6914762e6aad5",
+      "name": "広島グリーンアリーナ",
+      "pref_code": "34",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://hiroshimadragonflies.com/",
+      "location_hint": "広島県広島市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "88d88f261eab55e28eea",
+      "name": "俵田翁記念館",
+      "pref_code": "35",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://patsfive.com/",
+      "location_hint": "山口県宇部市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3696661f3a4c2bd2a6e8",
+      "name": "維新みらいふスタジアム",
+      "pref_code": "35",
+      "venue_kind": "stadium",
+      "address": "〒753-0815 山口県山口市維新公園4-1-1",
+      "capacity": 15115,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/yamaguchi/profile/",
+          "observed_at_utc": "2026-09-20T11:19:13.511519Z",
+          "body_sha256": "829bbd07bf0c9006006c16698bd4adc9914ceecf37b0594df947c7af8b7fc403"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "67cd87b4edac5877ec04",
+      "name": "とくぎんトモニアリーナ",
+      "pref_code": "36",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://gambarous.jp/",
+      "location_hint": "徳島県徳島市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "a0cd158472a1462680cf",
+      "name": "アスティとくしま",
+      "pref_code": "36",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://www.asty-tokushima.jp/event/",
+          "observed_at_utc": "2026-09-20T11:23:06.797014Z",
+          "body_sha256": "0794a8faf224820c418c28481954fd9dc663d86f819d189ddce7e6ceea9f92bc"
+        }
+      ]
+    },
+    {
+      "candidate_id": "aedfef57518f5ccc93ec",
+      "name": "鳴門・大塚スポーツパーク ポカリスエットスタジアム",
+      "pref_code": "36",
+      "venue_kind": "stadium",
+      "address": "徳島県鳴門市撫養町立岩字四枚61",
+      "capacity": 17924,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/tokushima/profile/",
+          "observed_at_utc": "2026-09-20T11:18:43.782770Z",
+          "body_sha256": "db5e1125a0d115e618d07ed9e61e7da7f2a7203bae8f2eaed866f426d4b04816"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "dda934eb8445d8ddfa52",
+      "name": "あなぶきアリーナ香川",
+      "pref_code": "37",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.fivearrows.jp/",
+      "location_hint": "香川県高松市",
+      "registry_venue_id": "anabuki_arena_kagawa",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0f2d7f32e324a39e44ca",
+      "name": "四国化成ＭＥＧＬＩＯスタジアム",
+      "pref_code": "37",
+      "venue_kind": "stadium",
+      "address": "〒763-0053 香川県丸亀市金倉町830",
+      "capacity": 22338,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/sanuki/profile/",
+          "observed_at_utc": "2026-09-20T11:18:24.074236Z",
+          "body_sha256": "f5e68d6cc1fdd0dd01111fd529869f1bd6330bd4c73549eca703336594900097"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "ea9e4f48a2fe79b12555",
+      "name": "アシックス里山スタジアム",
+      "pref_code": "38",
+      "venue_kind": "stadium",
+      "address": "愛媛県今治市高橋ふれあいの丘1番3",
+      "capacity": 8848,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/imabari/profile/",
+          "observed_at_utc": "2026-09-20T11:16:41.766650Z",
+          "body_sha256": "b227dd40bfd851ea964384a26d690f3601b7e462c325156f2e4d4dd977e57d11"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "30467a740c28687dfa1f",
+      "name": "ニンジニアスタジアム",
+      "pref_code": "38",
+      "venue_kind": "stadium",
+      "address": "愛媛県松山市上野町乙46",
+      "capacity": 20919,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/ehime/profile/",
+          "observed_at_utc": "2026-09-20T11:16:10.358535Z",
+          "body_sha256": "79833b4d95bd02c750dacdbb3ea9f70383e7d8751ebd019ccf2b5da72e564740"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "32d6335f196d952b2589",
+      "name": "愛媛県武道館",
+      "pref_code": "38",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://ehime-spa.jp/budoukan/",
+          "observed_at_utc": "2026-09-20T11:23:15.747728Z",
+          "body_sha256": "4ea15deb1f9a5d26c2c6c387de7df59360bdd0b21bbdcef3540669b5e51c4c73"
+        }
+      ]
+    },
+    {
+      "candidate_id": "856c1033ccfce50c5f11",
+      "name": "松山市総合コミュニティセンター",
+      "pref_code": "38",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://orangevikings.jp/",
+      "location_hint": "愛媛県松山市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "4e103a730e5fbae12242",
+      "name": "ＧＩＫＥＮスタジアム",
+      "pref_code": "39",
+      "venue_kind": "stadium",
+      "address": "〒781-0311 高知県高知市春野町芳原2485",
+      "capacity": 16010,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kochi/profile/",
+          "observed_at_utc": "2026-09-20T11:17:21.042228Z",
+          "body_sha256": "291b3dd1b2fba2e0a9a4a6b0dc3c2f124f67655136a954b0767f6c636cbe7bf3"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "fb4ac11568c8fd038d5e",
+      "name": "ベスト電器スタジアム",
+      "pref_code": "40",
+      "venue_kind": "stadium",
+      "address": "福岡県福岡市博多区東平尾公園2-1-1",
+      "capacity": 21546,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent",
+        "recheck_existing_capacity_and_name"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/fukuoka/profile/",
+          "observed_at_utc": "2026-09-20T11:16:20.608705Z",
+          "body_sha256": "fb52b6650517f8e378088447ae5506770dd0095221e9ee3b21b5b8af27059524"
+        }
+      ],
+      "registry_venue_id": "best_denki_stadium",
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "3719d24017a968502e29",
+      "name": "ミクニワールドスタジアム北九州",
+      "pref_code": "40",
+      "venue_kind": "stadium",
+      "address": "福岡県北九州市小倉北区浅野3-9-33",
+      "capacity": 15300,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kitakyushu/profile/",
+          "observed_at_utc": "2026-09-20T11:17:10.089379Z",
+          "body_sha256": "b364111c72a073ed1fd419568f7c74102926f05d8c8e64471786a96c4ace2575"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "36f8e3932570177a212d",
+      "name": "照葉積水ハウスアリーナ",
+      "pref_code": "40",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://r-zephyr.com/",
+      "location_hint": "福岡県福岡市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "d6a043c811b2f7b92004",
+      "name": "SAGAアリーナ",
+      "pref_code": "41",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        },
+        {
+          "evidence_url": "https://saga-sunrisepark.com/status/",
+          "observed_at_utc": "2026-09-20T11:22:55.116550Z",
+          "body_sha256": "28635cc07bc8d90e1bef93128d796bcbe654bfcdf24269d32656f6d3d1464ddf"
+        }
+      ],
+      "operator_reference_url": "https://ballooners.jp/",
+      "location_hint": "佐賀県佐賀市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "7e66f2f66013de94cea1",
+      "name": "駅前不動産スタジアム",
+      "pref_code": "41",
+      "venue_kind": "stadium",
+      "address": "〒841-0034 佐賀県鳥栖市京町812",
+      "capacity": 20219,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/tosu/profile/",
+          "observed_at_utc": "2026-09-20T11:18:53.402249Z",
+          "body_sha256": "d0097701ca5e7072c9f484de8bf498118ca0e25fd9ba24214d61ee75cd2f3a17"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "05d0897e12337a18aa98",
+      "name": "HAPPINESS ARENA",
+      "pref_code": "42",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "observed_at_utc": "2026-09-20T11:23:15.178979Z",
+          "body_sha256": "156a2240ba311248dee9d4ee1a9e17e77e6724d4256790fba9dac2890e6992b2"
+        }
+      ]
+    },
+    {
+      "candidate_id": "95ce782fa0bbaace620d",
+      "name": "PEACE STADIUM Connected by SoftBank",
+      "pref_code": "42",
+      "venue_kind": "stadium",
+      "address": "長崎県長崎市幸町7-1",
+      "capacity": 20268,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/nagasaki/profile/",
+          "observed_at_utc": "2026-09-20T11:17:51.268303Z",
+          "body_sha256": "040fff1a155e3da2707d06bc7872b6d9b3b38d03dc3835eed2a9f413eb51e4bd"
+        },
+        {
+          "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "observed_at_utc": "2026-09-20T11:23:15.178979Z",
+          "body_sha256": "156a2240ba311248dee9d4ee1a9e17e77e6724d4256790fba9dac2890e6992b2"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "6fb1e90a896593ff5ebb",
+      "name": "ハピネスアリーナ",
+      "pref_code": "42",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.velca.jp/",
+      "location_hint": "長崎県長崎市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "05d986b27d3279ee979e",
+      "name": "えがお健康スタジアム",
+      "pref_code": "43",
+      "venue_kind": "stadium",
+      "address": "熊本県熊本市東区平山町2776",
+      "capacity": 30275,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kumamoto/profile/",
+          "observed_at_utc": "2026-09-20T11:17:20.841079Z",
+          "body_sha256": "eb0472bdc7cc315be6c8a1c528035c70303137079d13cca6d3d4d8b1e1faa073"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "041b50b345e50dc35d8c",
+      "name": "グランメッセ熊本",
+      "pref_code": "43",
+      "venue_kind": "exhibition_arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_body_entry_only_not_full_census",
+      "fetch_status": "body_fetched",
+      "evidence": [
+        {
+          "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+          "observed_at_utc": "2026-09-20T11:23:06.441472Z",
+          "body_sha256": "451c30f5de56a53c1f8a8518559867676b8e5a91b4df00980a7e0db495b39ca3"
+        }
+      ]
+    },
+    {
+      "candidate_id": "8c82a44c10c3ef402024",
+      "name": "熊本県立総合体育館",
+      "pref_code": "43",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.volters.jp/",
+      "location_hint": "熊本県熊本市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "f1292b88c8c507b7c995",
+      "name": "クラサスドーム大分",
+      "pref_code": "44",
+      "venue_kind": "stadium",
+      "address": "大分県大分市大字横尾1351",
+      "capacity": 31997,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/oita/profile/",
+          "observed_at_utc": "2026-09-20T11:18:01.486457Z",
+          "body_sha256": "c390864a47fac3dd6e80e9dad11347f6bca037be40c8ebcc93fe3835976cc434"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0d1acbcefbf61d2eeed4",
+      "name": "いちご宮崎新富サッカー場",
+      "pref_code": "45",
+      "venue_kind": "stadium",
+      "address": "宮崎県児湯郡新富町大字三納代1586",
+      "capacity": 1819,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/miyazaki/profile/",
+          "observed_at_utc": "2026-09-20T11:17:40.725475Z",
+          "body_sha256": "6aa2f000707e4a5617a983d3e300fc8ff3769cf10bd2835d70538b1b2cb86f6d"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "9db73da8f0f230159761",
+      "name": "白波スタジアム",
+      "pref_code": "46",
+      "venue_kind": "stadium",
+      "address": "〒890-0062 鹿児島県鹿児島市与次郎2-2-2",
+      "capacity": 12212,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/kagoshima/profile/",
+          "observed_at_utc": "2026-09-20T11:16:50.437275Z",
+          "body_sha256": "b6e20c0806befb2b2ad6f96a8b74bdaaa41e1f98562bc224209927586a31a3b0"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "0a57163ad610714b77c6",
+      "name": "西原商会アリーナ",
+      "pref_code": "46",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        }
+      ],
+      "operator_reference_url": "https://www.rebnise.jp/",
+      "location_hint": "鹿児島県鹿児島市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "2abf0718cb29e6864cac",
+      "name": "沖縄サントリーアリーナ",
+      "pref_code": "47",
+      "venue_kind": "arena",
+      "address": null,
+      "capacity": null,
+      "capacity_basis": null,
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "address",
+        "capacity_basis",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+          "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+          "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        },
+        {
+          "evidence_url": "https://okinawa-arena.jp/",
+          "observed_at_utc": "2026-09-20T11:22:56.520602Z",
+          "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822"
+        }
+      ],
+      "operator_reference_url": "https://goldenkings.jp/",
+      "location_hint": "沖縄県沖縄市",
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "37cb4d2bf9c95156cdb2",
+      "name": "沖縄県総合運動公園陸上競技場",
+      "pref_code": "47",
+      "venue_kind": "stadium",
+      "address": "〒904-2173 沖縄県沖縄市比屋根5-3-1",
+      "capacity": 10189,
+      "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+      "operating_status": "unverified",
+      "scope_review": "pending",
+      "missing_fields": [
+        "operator_identity",
+        "operating_status",
+        "aliases",
+        "schedule_extent"
+      ],
+      "evidence": [
+        {
+          "evidence_url": "https://www.jleague.jp/club/ryukyu/profile/",
+          "observed_at_utc": "2026-09-20T11:18:14.741846Z",
+          "body_sha256": "9721527ff9b4a056818c84ae3ab6a9115d494843cd359c08128e4aad497e4dc7"
+        }
+      ],
+      "registry_venue_id": null,
+      "evidence_status": "official_listing_only_not_operator_or_event_verification",
+      "fetch_status": "body_fetched"
+    }
+  ],
+  "fetch_failures": []
+}
