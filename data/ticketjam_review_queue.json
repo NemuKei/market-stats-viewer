@@ -15,11 +15,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T14:09:22Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ガンバ大阪 vs ヴィッセル神戸",
@@ -42,11 +42,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:56:56Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "羊文学 TOUR 2026 “すーーーはーーー”",
@@ -66,15 +66,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "シューヤ（超特急） TOKYO DOME CITY HALL 2026-09-20 公式",
-        "シューヤ（超特急） TOKYO DOME CITY HALL 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "【10万人記念】チャーはんがパラパラと達成記念イベントしたら楽しすぎる未来しか見えない ww",
       "venue_name": "TOKYO DOME CITY HALL",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.tokyo-dome.co.jp/tdc-hall/event/"
+      ]
     },
     {
       "artist_name": "ディズニーオンアイス",
@@ -87,15 +91,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "ディズニーオンアイス ワールド記念ホール（神戸ポートアイランドホール） 2026-09-20 公式",
-        "ディズニーオンアイス ワールド記念ホール（神戸ポートアイランドホール） 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ディズニー･オン･アイス 2026",
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.ctv.co.jp/disneyonice/venue/kobe/index.html"
+      ]
     },
     {
       "artist_name": "東京ゲームショウ（TGS）",
@@ -108,11 +116,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 公式",
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "ancillary"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "『薬屋のひとりごと ～偽りの皇弟～』TGS2026スペシャルステージ【非入場券】",
       "venue_name": "幕張メッセ",
@@ -132,11 +142,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "阪神 vs DeNA",
@@ -159,11 +169,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロックスター症候群",
@@ -186,11 +196,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:44:42Z",
-        "next_check_date": "2026-09-09",
-        "status": "insufficient"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "conflict"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "あきばっか〜の東京体育館vol.2 A-POP 2on2 DANCE BATTLE FESTIVAL",
@@ -213,11 +223,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:33:17Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ふみの初ワンマンライブツアー2026 〜僕のすべてを知ってるような君だから〜",
@@ -240,11 +250,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:48:22Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Nissy Entertainment Variety Show 〜歌えなくても、エンタメってあったじゃん！〜",
@@ -265,15 +275,12 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:15:42Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
-      "search_queries": [
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 公式",
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 主催"
-      ],
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ANA presents Na Pookela 2026",
       "venue_name": "横浜BUNTAI",
@@ -293,11 +300,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:41:28Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "ancillary"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "中日ドラゴンズ【バンテリンドームナゴヤ駐車場券】",
@@ -315,15 +322,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "シューヤ（超特急） TOKYO DOME CITY HALL 2026-09-20 公式",
-        "シューヤ（超特急） TOKYO DOME CITY HALL 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "【10万人記念】チャーはんがパラパラと達成記念イベントしたら楽しすぎる未来しか見えない ww",
       "venue_name": "TOKYO DOME CITY HALL",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.tokyo-dome.co.jp/tdc-hall/event/"
+      ]
     },
     {
       "artist_name": "THE IDOLM@STER MILLION LIVE!（アイドルマスター ミリオンライブ!）",
@@ -339,11 +350,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:48:22Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "THE IDOLM@STER MILLION LIVE! 14thLIVE",
@@ -363,11 +374,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 公式",
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "ancillary"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "『カリアのアトリエ』スペシャルステージ【非入場券】",
       "venue_name": "幕張メッセ",
@@ -387,11 +400,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:29:49Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "AKINA NAKAMORI LIVE TOUR 2026",
@@ -411,11 +424,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "大相撲 両国国技館 2026-09-20 公式",
-        "大相撲 両国国技館 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "fetch_failed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "令和8年 大相撲九月場所",
       "venue_name": "両国国技館",
@@ -435,11 +450,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:41:28Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "結成20周年記念 高嶋ちさ子 12人のヴァイオリニスト コンサートツアー 2026～2027",
@@ -459,15 +474,19 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "ディズニーオンアイス ワールド記念ホール（神戸ポートアイランドホール） 2026-09-20 公式",
-        "ディズニーオンアイス ワールド記念ホール（神戸ポートアイランドホール） 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ディズニー･オン･アイス 2026",
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.ctv.co.jp/disneyonice/venue/kobe/index.html"
+      ]
     },
     {
       "artist_name": "BEAST IN BLACK（ビースト・イン・ブラック）",
@@ -477,18 +496,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "54c0adaae16e1cf3ed68",
       "event_start_time": "17:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "7d364bb61177d95eab7b"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "BEAST IN BLACK（ビースト・イン・ブラック） Zepp DiverCity(Tokyo) 2026-09-20 公式",
-        "BEAST IN BLACK（ビースト・イン・ブラック） Zepp DiverCity(Tokyo) 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "BEAST IN BLACK DAIVE TO DAIVA 2026 東京狂宴～Tokyo Crazy Party～",
       "venue_name": "Zepp DiverCity(Tokyo)",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/divercity/schedule/?_y=2026&_m=9"
+      ]
     },
     {
       "artist_name": "千葉ロッテマリーンズ",
@@ -504,11 +529,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロッテ vs 西武",
@@ -531,11 +556,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:37:56Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Saucy Dog ARENA TOUR 2026-2027 NEW GAME ＋",
@@ -558,11 +583,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "巨人 vs ヤクルト",
@@ -582,11 +607,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 公式",
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "ancillary"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "『遙かなる時空の中で 龍宮の神子』りゅうみこ出張かわら版TGS2026特別号【非入場券】",
       "venue_name": "幕張メッセ",
@@ -605,7 +632,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SixTONES LIVE TOUR 2026「MILESixTONES」【コンサートグッズ販売会場入場整理券】",
@@ -628,11 +660,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:41:25Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "[BoA the LIVE] in JAPAN",
@@ -655,11 +687,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Stray Kids World Tour ＜RUN IT＞ in JAPAN",
@@ -682,11 +714,11 @@
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:09:24Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "conflict"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "The Weeknd: After Hours Til Dawn Tour",
@@ -703,18 +735,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "77863f4b03e95ff1d69b",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "c4d90f5b20c7f8afbde5"
+      ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
-      "search_queries": [
-        "FAVOY（ファボイ） GORILLA HALL OSAKA 2026-09-20 公式",
-        "FAVOY（ファボイ） GORILLA HALL OSAKA 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "eplus presents FAVOY OSAKA【単日券】",
       "venue_name": "GORILLA HALL OSAKA",
-      "verification_urls": []
+      "verification_urls": [
+        "https://eplus.jp/sf/detail/4295250002"
+      ]
     },
     {
       "artist_name": "北海道日本ハムファイターズ 駐車場券",
@@ -728,11 +766,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:41:28Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "ancillary"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "日本ハムファイターズ【VIP2 PARKING 駐車券】",
@@ -750,11 +788,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
-      "search_queries": [
-        "アジア競技大会 豊田スタジアム 2026-09-20 公式",
-        "アジア競技大会 豊田スタジアム 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "第20回アジア競技大会 サッカー",
       "venue_name": "豊田スタジアム",
@@ -774,11 +814,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Toua 1st LIVE「This is Toua」",
@@ -801,11 +841,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:48:22Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Nissy Entertainment Variety Show 〜歌えなくても、エンタメってあったじゃん！〜",
@@ -828,11 +868,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Seiko Matsuda Concert Tour 2026",
@@ -849,18 +889,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "955d5a35080a6bf4e542",
       "event_start_time": "18:30",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "955d5a35080a6bf4e542"
+      ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "THE YELLOW MONKEY KT Zepp Yokohama 2026-09-20 公式",
-        "THE YELLOW MONKEY KT Zepp Yokohama 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "THE YELLOW MONKEY TOUR 2026 THE COUNTDOWN～60分一本勝負～",
       "venue_name": "KT Zepp Yokohama",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/yokohama/schedule/?_y=2026&_m=9"
+      ]
     },
     {
       "artist_name": "ディズニー・オン・クラシック",
@@ -876,11 +922,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T14:09:22Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ディズニー・オン・クラシック 〜まほうの夜の音楽会 2026",
@@ -902,7 +948,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "第20回アジア競技大会 サッカー",
@@ -925,11 +976,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:00:17Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "HIROMITSU KITAYAMA LIVE TOUR 2026「ULTRActi:on」",
@@ -953,11 +1004,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ROCK FOR YOU LIVE TOUR",
@@ -980,11 +1031,11 @@
       "official_confirmed": false,
       "pref_name": "新潟県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:36:55Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Kis-My-Ft2 LIVE TOUR 2026 fan IS ･･････",
@@ -1007,11 +1058,11 @@
       "official_confirmed": false,
       "pref_name": "宮城県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:09:24Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "BOYNEXTDOOR TOUR 'KNOCK ON Vol.2'",
@@ -1034,11 +1085,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:09:24Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DREAMS COME TRUE アルバムツアー",
@@ -1059,15 +1110,12 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:41:25Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "conflict"
       },
-      "review_due": true,
-      "search_queries": [
-        "AGESTOCK（エイジストック） 横浜アリーナ 2026-09-20 公式",
-        "AGESTOCK（エイジストック） 横浜アリーナ 2026-09-20 主催"
-      ],
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "AGESTOCK2026 in 横浜アリーナ",
       "venue_name": "横浜アリーナ",
@@ -1086,11 +1134,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 公式",
-        "東京ゲームショウ（TGS） 幕張メッセ 2026-09-20 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "ancillary"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "刀剣乱舞ONLINE×刀剣乱舞ぱずぎり スペシャルステージ【非入場券】",
       "venue_name": "幕張メッセ",
@@ -1110,11 +1160,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:48:22Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "莉犬のSTPRadio! Presents STPR文化祭",
@@ -1137,11 +1187,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:15:42Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "緑黄色社会アリーナツアー2026",
@@ -1161,7 +1211,12 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "ancillary"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "ガンバ大阪【南駐車場駐車券】",
@@ -1182,11 +1237,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:09:24Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ライブステージ『BACK TO THE MEMORIES 祭』",
@@ -1208,11 +1263,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:41:28Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "ancillary"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "ancillary_ticket",
       "title": "千葉ロッテマリーンズ【ZOZOマリンスタジアム海側駐車場券】",
@@ -1233,11 +1288,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:41:25Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC",
@@ -1257,6 +1312,11 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "兵庫県",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "duplicate"
+      },
       "review_due": true,
       "search_queries": [
         "ディズニーオンアイス ワールド記念ホール（神戸ポートアイランドホール） 2026-09-20 公式",
@@ -1281,11 +1341,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "中日 vs 広島",
@@ -1308,11 +1368,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:10:17Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026 KIM JAE WON WORLD TOUR FANMEETING < THE MOMENT WE MET-Episode 2:Propose in Japan >",
@@ -1333,15 +1393,12 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:15:42Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
-      "search_queries": [
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 公式",
-        "ナーポオケラ 横浜BUNTAI 2026-09-20 主催"
-      ],
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ANA presents Na Pookela 2026",
       "venue_name": "横浜BUNTAI",
@@ -1363,11 +1420,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "日本ハム vs オリックス",
@@ -1390,11 +1447,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:00:17Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "HIROMITSU KITAYAMA LIVE TOUR 2026「ULTRActi:on」",
@@ -1416,15 +1473,12 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:29:58Z",
-        "next_check_date": "2026-09-09",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "conflict"
       },
-      "review_due": true,
-      "search_queries": [
-        "アジア競技大会 日本ガイシホール 2026-09-20 公式",
-        "アジア競技大会 日本ガイシホール 2026-09-20 主催"
-      ],
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "第20回アジア競技大会 水球",
       "venue_name": "日本ガイシホール",
@@ -1446,11 +1500,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:48:22Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "莉犬のSTPRadio! Presents STPR文化祭",
@@ -1467,18 +1521,24 @@
       "event_end_date": "2026-09-20",
       "event_key": "fe1ab68a8828a095158b",
       "event_start_time": "16:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "fe1ab68a8828a095158b"
+      ],
       "official_confirmed": false,
       "pref_name": "兵庫県",
-      "review_due": true,
-      "search_queries": [
-        "FTISLAND 神戸国際会館 こくさいホール 2026-09-20 公式",
-        "FTISLAND 神戸国際会館 こくさいホール 2026-09-20 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "2026 FTISLAND TOUR 0 — XIX — III ‘FaTe’ in JAPAN",
       "venue_name": "神戸国際会館 こくさいホール",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.kih.co.jp/kokusaihall/event/detail/2184"
+      ]
     },
     {
       "artist_name": "ふみの",
@@ -1494,11 +1554,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ふみの初ワンマンライブツアー2026 〜僕のすべてを知ってるような君だから〜",
@@ -1536,18 +1596,24 @@
       "event_end_date": "2026-09-21",
       "event_key": "078f4c46b868b9a62c28",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "078f4c46b868b9a62c28"
+      ],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
-      "search_queries": [
-        "Chage Zepp Nagoya 2026-09-21 公式",
-        "Chage Zepp Nagoya 2026-09-21 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "ChageLiveTour2026 One Love",
       "venue_name": "Zepp Nagoya",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/nagoya/schedule/?_y=2026&_m=9"
+      ]
     },
     {
       "artist_name": "アジア競技大会",
@@ -1660,11 +1726,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "T.C.R.横浜銀蝿R.S. It's Only Rock'n Roll 集会 2026 KEEP ROLLING ～時代を超えて～",
@@ -1763,11 +1829,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GRe4N BOYZ イマーシブライブシアター2026 「“The ZA” 〜溢れる想いが止まらない〜」",
@@ -1859,11 +1925,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロッテ vs 西武",
@@ -1886,11 +1952,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T14:09:22Z",
-        "next_check_date": "2026-09-09",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "HIDEKI FESTA 2026 秋",
@@ -1940,11 +2006,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "中日 vs 広島",
@@ -1965,15 +2031,12 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T15:14:43Z",
-        "next_check_date": "2026-09-10",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
-      "search_queries": [
-        "カネコアヤノ Zepp札幌 2026-09-21 公式",
-        "カネコアヤノ Zepp札幌 2026-09-21 主催"
-      ],
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "kanekoayano World Tour 2026",
       "venue_name": "Zepp札幌",
@@ -1994,7 +2057,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "BONNIE PINK 30th Anniversary LIVE “Groove Kitchen”",
@@ -2072,11 +2140,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "日本ハム vs オリックス",
@@ -2143,11 +2211,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ROCK FOR YOU LIVE TOUR",
@@ -2191,11 +2259,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GADORO ONEMAN LIVE \"独り言\" at 大阪城ホール",
@@ -2218,11 +2286,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-15",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "阪神 vs DeNA",
@@ -2300,11 +2368,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Nissy Entertainment Variety Show 〜歌えなくても、エンタメってあったじゃん！〜",
@@ -2327,11 +2395,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:41:25Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "HBA Special Night 道新・秋華火",
@@ -2396,11 +2464,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
-      "search_queries": [
-        "ブルーアーカイブ Zepp Osaka Bayside 2026-09-22 公式",
-        "ブルーアーカイブ Zepp Osaka Bayside 2026-09-22 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "ブルア力 5th Anniversary DJふぇす!つあ一☆",
       "venue_name": "Zepp Osaka Bayside",
@@ -2420,11 +2490,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SUPER BEAVER「都会のラクダ DOME TOUR 2026」",
@@ -2468,11 +2538,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ソフトバンク vs 西武",
@@ -2495,11 +2565,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "キズ Zepp TOUR『天照焔巡』",
@@ -2543,11 +2613,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "CORNELIUS REFRACTIONS TOUR 2026",
@@ -2707,11 +2777,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロク漫祭 〜SPITZ 草野マサムネのロック大陸漫遊祭り〜",
@@ -2776,11 +2846,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:41:25Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "中本こまり生誕祭2026 夢見るパーティーへの招待状",
@@ -2922,7 +2992,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ChageLiveTour2026 One Love",
@@ -2991,11 +3066,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "SD.LEAGUE（エスディー・リーグ） Zepp DiverCity(Tokyo) 2026-09-22 公式",
-        "SD.LEAGUE（エスディー・リーグ） Zepp DiverCity(Tokyo) 2026-09-22 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "第一生命 SD.LEAGUE 2026 FINAL",
       "venue_name": "Zepp DiverCity(Tokyo)",
@@ -3015,11 +3092,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DeNA vs 中日",
@@ -3042,11 +3119,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "日本ハム vs 楽天",
@@ -3096,11 +3173,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Kroi Live Tour 2026 “JUNGLE”",
@@ -3123,11 +3200,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026-27 BABYMONSTER WORLD TOUR IN JAPAN",
@@ -3448,11 +3525,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "PEAK SPOT JOIN vol.10",
@@ -3524,11 +3601,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T21:48:22Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "My Hair is Bad presents「ノーブルホームランツアー」",
@@ -3620,11 +3697,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロッテ vs オリックス",
@@ -3695,11 +3772,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-08T01:41:28Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "My Hair is Bad presents「ノーブルホームランツアー」",
@@ -3773,11 +3850,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "ペルソナ（Persona） Zepp DiverCity(Tokyo) 2026-09-23 公式",
-        "ペルソナ（Persona） Zepp DiverCity(Tokyo) 2026-09-23 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "PERSONA LIVE TOUR 2026 - Resonance -",
       "venue_name": "Zepp DiverCity(Tokyo)",
@@ -3797,11 +3876,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ソフトバンク vs 西武",
@@ -3823,7 +3902,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026 ONG SEONGWU FANMEETING ＜Let's go-ONG!＞ in Yokohama",
@@ -3868,11 +3952,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DeNA vs 中日",
@@ -3895,11 +3979,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "日本ハム vs 楽天",
@@ -4041,11 +4125,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロッテ vs オリックス",
@@ -4113,11 +4197,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
-      "search_queries": [
-        "O-STAR （オースター） Zepp Nagoya 2026-09-23 公式",
-        "O-STAR （オースター） Zepp Nagoya 2026-09-23 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "O-STAR FES -ZERO-",
       "venue_name": "Zepp Nagoya",
@@ -4271,11 +4357,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "CORNELIUS REFRACTIONS TOUR 2026",
@@ -4374,11 +4460,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-08T01:41:28Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Masato Hayashi ONE MAN LIVE in Shinjuku「暴走東京」",
@@ -4401,11 +4487,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Kroi Live Tour 2026 “JUNGLE”",
@@ -4498,11 +4584,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026-27 BABYMONSTER WORLD TOUR IN JAPAN",
@@ -4553,11 +4639,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Nissy Entertainment Variety Show 〜歌えなくても、エンタメってあったじゃん！〜",
@@ -4601,11 +4687,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "「NEW ERA」～MIKADO FIRST ZEPP ONEMAN LIVE～",
@@ -4627,7 +4713,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "PERSONA LIVE TOUR 2026 - Resonance -",
@@ -4713,11 +4804,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SUPER BEAVER「都会のラクダ DOME TOUR 2026」",
@@ -5014,11 +5105,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KURE 5-56 Presents Rockon Social Club Tour 2026 WARRIORS",
@@ -5041,11 +5132,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "sumika Live Tour 2026 『Flügel Letter』",
@@ -5140,11 +5231,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SUPER★DRAGON DRA FES 2026",
@@ -5167,11 +5258,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "日本ハム vs 楽天",
@@ -5215,11 +5306,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SUPER★DRAGON DRA FES 2026",
@@ -5243,11 +5334,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "陰陽座ツアー2026 『流転の現に夢喰らう也』",
@@ -5341,11 +5432,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "iON!（アイオン） Zepp DiverCity(Tokyo) 2026-09-24 公式",
-        "iON!（アイオン） Zepp DiverCity(Tokyo) 2026-09-24 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "iON!初Zepp5大都市ツアー『ON!VOYAGE!!』",
       "venue_name": "Zepp DiverCity(Tokyo)",
@@ -5537,11 +5630,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "sumika Live Tour 2026 『Flügel Letter』",
@@ -5592,11 +5685,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KURE 5-56 Presents Rockon Social Club Tour 2026 WARRIORS",
@@ -5688,11 +5781,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "山﨑晶吾 10th ANNIVERSARY LIVE TOUR2026「Midnight Drift」",
@@ -5742,11 +5835,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "オリックス vs ソフトバンク",
@@ -5769,11 +5862,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
@@ -5793,11 +5886,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "LOVEBITES（ラヴバイツ） Zepp Haneda(Tokyo) 2026-09-25 公式",
-        "LOVEBITES（ラヴバイツ） Zepp Haneda(Tokyo) 2026-09-25 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "OUTSTANDING TOUR - JAPAN 2026",
       "venue_name": "Zepp Haneda(Tokyo)",
@@ -5817,11 +5912,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-08T08:02:07Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "HEY-SMITH 20th ANNIVERSARY 「ALL OVER JAPAN TOUR」",
@@ -5844,11 +5939,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DeNA vs 阪神",
@@ -5871,11 +5966,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "のんふぃく!全国ツアー『FICTIONAL JAPAN ROAD 2026』",
@@ -5919,11 +6014,11 @@
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "西武 vs ロッテ",
@@ -5946,11 +6041,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "UVERworld LIVE “危ない” TOUR 2026",
@@ -6000,11 +6095,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DeNA vs 阪神",
@@ -6149,7 +6244,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "WHITE JAM Zepp Tour 2026 \"磁石\" 〜初のゼップツアー・5大都市〜",
@@ -6193,11 +6293,11 @@
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "西武 vs ロッテ",
@@ -6220,11 +6320,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "キズ Zepp TOUR『天照焔巡』",
@@ -6274,11 +6374,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-08T08:02:07Z",
-        "next_check_date": "2026-09-11",
-        "status": "confirmed"
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "OUTSTANDING TOUR - JAPAN 2026",
@@ -6301,11 +6401,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "オリックス vs 日本ハム",
@@ -6328,11 +6428,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "AKB48 THREE CONCEPTS LIVE in K-Arena Yokohama",
@@ -6355,11 +6455,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DREAMS COME TRUE アルバムツアー",
@@ -6382,11 +6482,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ソフトバンク vs 楽天",
@@ -6409,11 +6509,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "THE YELLOW MONKEY TOUR 2026 THE COUNTDOWN～60分一本勝負～",
@@ -6463,11 +6563,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "AKB48 THREE CONCEPTS LIVE in K-Arena Yokohama",
@@ -6583,11 +6683,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "WHIB KT Zepp Yokohama 2026-09-26 公式",
-        "WHIB KT Zepp Yokohama 2026-09-26 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "2026 WHIB FAN CONCERT [BLUE HOUR] in JAPAN",
       "venue_name": "KT Zepp Yokohama",
@@ -6606,7 +6708,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026 PLAVE World Tour [KEEP IT MANIC] in Japan",
@@ -6657,11 +6764,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "EXILE THE SECOND LIVE TOUR 2026 \"PERFECT YEAR BEST  ～Born To Be Wild～\"",
@@ -6681,11 +6788,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "青木陽菜 Zepp DiverCity(Tokyo) 2026-09-26 公式",
-        "青木陽菜 Zepp DiverCity(Tokyo) 2026-09-26 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "青木陽菜 LIVE 2026「Blazing Pit」",
       "venue_name": "Zepp DiverCity(Tokyo)",
@@ -6855,11 +6964,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
@@ -7001,11 +7110,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "EXILE THE SECOND LIVE TOUR 2026 \"PERFECT YEAR BEST  ～Born To Be Wild～\"",
@@ -7028,11 +7137,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "山内総一郎 アルバムツアー2026「A」",
@@ -7049,18 +7158,24 @@
       "event_end_date": "2026-09-27",
       "event_key": "1ead75fb43ca54d1e8e4",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "1ead75fb43ca54d1e8e4"
+      ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
-      "search_queries": [
-        "OWV Zepp Namba(Osaka) 2026-09-27 公式",
-        "OWV Zepp Namba(Osaka) 2026-09-27 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "OWV LIVE TOUR 2026-SQUAD-",
       "venue_name": "Zepp Namba(Osaka)",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/namba/schedule/?_y=2026&_m=9"
+      ]
     },
     {
       "artist_name": "新日本プロレス",
@@ -7097,11 +7212,11 @@
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "西武 vs 楽天",
@@ -7140,16 +7255,22 @@
       "event_key": "3dc02af78f950e568357",
       "event_start_time": "15:00",
       "matching_event_keys": [
-        "83fccb675fe1817ea59b"
+        "3dc02af78f950e568357"
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
+        "status": "confirmed"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "OWV LIVE TOUR 2026-SQUAD-",
       "venue_name": "Zepp Namba(Osaka)",
       "verification_urls": [
+        "https://www.zepp.co.jp/hall/namba/schedule/?_y=2026&_m=9",
         "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=163598"
       ]
     },
@@ -7167,11 +7288,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "AKB48 THREE CONCEPTS LIVE in K-Arena Yokohama",
@@ -7194,11 +7315,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "伊藤 蘭 Special Premium Live ～Don’t Stop The Music!～ vol.3",
@@ -7270,11 +7391,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SUPER★DRAGON DRA FES 2026",
@@ -7318,11 +7439,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ソフトバンク vs オリックス",
@@ -7414,11 +7535,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロッテ vs 日本ハム",
@@ -7489,11 +7610,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DREAMS COME TRUE アルバムツアー",
@@ -7543,11 +7664,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Hiromi Go Concert Tour 2026  〜ALL MY LOVE〜",
@@ -7570,11 +7691,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "巨人 vs ヤクルト",
@@ -7597,11 +7718,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SUPER★DRAGON DRA FES 2026",
@@ -7698,11 +7819,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "Girl’s bomb!!（ガールズボム） Zepp Haneda(Tokyo) 2026-09-27 公式",
-        "Girl’s bomb!!（ガールズボム） Zepp Haneda(Tokyo) 2026-09-27 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "Girl’s bomb!! 〜秋の大収穫祭〜",
       "venue_name": "Zepp Haneda(Tokyo)",
@@ -7743,11 +7866,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DeNA vs 広島",
@@ -7815,11 +7938,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "HERO COMPLEX（ヒーローコンプレックス） Zepp Fukuoka 2026-09-27 公式",
-        "HERO COMPLEX（ヒーローコンプレックス） Zepp Fukuoka 2026-09-27 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "HERO COMPLEX  情熱たましい2026",
       "venue_name": "Zepp Fukuoka",
@@ -7838,7 +7963,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026 PLAVE World Tour [KEEP IT MANIC] in Japan",
@@ -7860,7 +7990,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ふみの初ワンマンライブツアー2026 〜僕のすべてを知ってるような君だから〜",
@@ -8083,11 +8218,11 @@
       "official_confirmed": false,
       "pref_name": "千葉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ロッテ vs 日本ハム",
@@ -8128,11 +8263,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "かすみ草とステラ Zepp Shinjuku(TOKYO) 2026-09-28 公式",
-        "かすみ草とステラ Zepp Shinjuku(TOKYO) 2026-09-28 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "iCON DOLL LOUNGE 2026 ～ AUTUMN COLLECTION ～",
       "venue_name": "Zepp Shinjuku(TOKYO)",
@@ -8167,18 +8304,24 @@
       "event_end_date": "2026-09-28",
       "event_key": "cc82f25aa2de095ad216",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "cc82f25aa2de095ad216"
+      ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "LAST PiECE（ラストピース） Zepp DiverCity(Tokyo) 2026-09-28 公式",
-        "LAST PiECE（ラストピース） Zepp DiverCity(Tokyo) 2026-09-28 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "LAST PiECE 1st ONE-MAN LIVE『PROLOGUE』",
       "venue_name": "Zepp DiverCity(Tokyo)",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/divercity/schedule/?_y=2026&_m=9"
+      ]
     },
     {
       "artist_name": "埼玉西武ライオンズ",
@@ -8194,11 +8337,11 @@
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "西武 vs 楽天",
@@ -8221,11 +8364,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "DeNA vs 広島",
@@ -8269,11 +8412,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ROCK FOR YOU LIVE TOUR",
@@ -8317,11 +8460,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ROCK FOR YOU LIVE TOUR",
@@ -8344,11 +8487,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:03:04Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "陰陽座ツアー2026 『流転の現に夢喰らう也』",
@@ -8389,11 +8532,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
-      "search_queries": [
-        "BEEEEM（ビーーーム） Zepp DiverCity(Tokyo) 2026-09-29 公式",
-        "BEEEEM（ビーーーム） Zepp DiverCity(Tokyo) 2026-09-29 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "BEEEEM FES vol.11 DX SP",
       "venue_name": "Zepp DiverCity(Tokyo)",
@@ -8455,11 +8600,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "巨人 vs 広島",
@@ -8524,11 +8669,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "凛として時雨 TOUR 2026 DREAM KILLER",
@@ -8599,11 +8744,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "阪神 vs ヤクルト",
@@ -8689,11 +8834,11 @@
       "official_confirmed": false,
       "pref_name": "埼玉県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "西武 vs オリックス",
@@ -8734,11 +8879,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
-      "search_queries": [
-        "Nothing’s Carved In Stone （ナッシングスカーブドインストーン） KT Zepp Yokohama 2026-09-30 公式",
-        "Nothing’s Carved In Stone （ナッシングスカーブドインストーン） KT Zepp Yokohama 2026-09-30 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "Nothing's Carved In Stone「Hand In Hand Tour 2026」",
       "venue_name": "KT Zepp Yokohama",
@@ -8776,11 +8923,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
-      "search_queries": [
-        "NEOLAND（ネオランド） Zepp Fukuoka 2026-09-30 公式",
-        "NEOLAND（ネオランド） Zepp Fukuoka 2026-09-30 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "NEOLAND case.6 \"Mad Fight\" ザ・クロマニヨンズ 対 ZAZEN BOYS",
       "venue_name": "Zepp Fukuoka",
@@ -8863,11 +9012,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "阪神 vs ヤクルト",
@@ -8887,11 +9036,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
-      "search_queries": [
-        "神山智洋（WEST.） Zepp Nagoya 2026-09-30 公式",
-        "神山智洋（WEST.） Zepp Nagoya 2026-09-30 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "Tomohiro Kamiyama 1st LIVE TOUR 2026 INPUT⇄OUTPUT",
       "venue_name": "Zepp Nagoya",
@@ -8935,11 +9086,13 @@
       "matching_event_keys": [],
       "official_confirmed": false,
       "pref_name": "愛知県",
-      "review_due": true,
-      "search_queries": [
-        "神山智洋（WEST.） Zepp Nagoya 2026-10-01 公式",
-        "神山智洋（WEST.） Zepp Nagoya 2026-10-01 主催"
-      ],
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
+        "status": "insufficient"
+      },
+      "review_due": false,
+      "search_queries": [],
       "status": "pending_official",
       "title": "Tomohiro Kamiyama 1st LIVE TOUR 2026 INPUT⇄OUTPUT",
       "venue_name": "Zepp Nagoya",
@@ -8980,11 +9133,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "THE PREDATORS TOUR 2026「Rock'n'Roll Undercover」",
@@ -9043,18 +9196,24 @@
       "event_end_date": "2026-10-01",
       "event_key": "43159e2296585e14d6e3",
       "event_start_time": "19:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "43159e2296585e14d6e3"
+      ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
-      "search_queries": [
-        "シンガーズハイ Zepp Osaka Bayside 2026-10-01 公式",
-        "シンガーズハイ Zepp Osaka Bayside 2026-10-01 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "PLAYBACK tour 2026",
       "venue_name": "Zepp Osaka Bayside",
-      "verification_urls": []
+      "verification_urls": [
+        "https://www.zepp.co.jp/hall/osakabayside/schedule/?_y=2026&_m=10"
+      ]
     },
     {
       "artist_name": "千葉ロッテマリーンズ",
@@ -9064,18 +9223,24 @@
       "event_end_date": "2026-10-01",
       "event_key": "443222d3ea9fe5dd01d1",
       "event_start_time": "18:00",
-      "matching_event_keys": [],
+      "matching_event_keys": [
+        "443222d3ea9fe5dd01d1"
+      ],
       "official_confirmed": false,
       "pref_name": "千葉県",
-      "review_due": true,
-      "search_queries": [
-        "千葉ロッテマリーンズ ZOZOマリンスタジアム 2026-10-01 公式",
-        "千葉ロッテマリーンズ ZOZOマリンスタジアム 2026-10-01 主催"
-      ],
-      "status": "pending_official",
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
+        "status": "confirmed"
+      },
+      "review_due": false,
+      "search_queries": [],
+      "status": "possible_existing_match",
       "title": "ロッテ vs 日本ハム",
       "venue_name": "ZOZOマリンスタジアム",
-      "verification_urls": []
+      "verification_urls": [
+        "https://npb.jp/games/2026/schedule_10_detail.html"
+      ]
     },
     {
       "artist_name": "go!go!vanillas",
@@ -9091,11 +9256,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "go!go!vanillas presents「ぼくらのタイマン上等ツアー」",
@@ -9178,11 +9343,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "PENTAGON 10th Anniversary Tour <101010> in Japan",
@@ -9233,11 +9398,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "PENTAGON 10th Anniversary Tour <101010> in Japan",
@@ -9260,11 +9425,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "凛として時雨 TOUR 2026 DREAM KILLER",
@@ -9286,7 +9451,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "北海道",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KURE 5-56 Presents Rockon Social Club Tour 2026 WARRIORS",
@@ -9309,11 +9479,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KIKKAWA KOJI LIVE 2026 Higher & Higher Tour",
@@ -9336,11 +9506,11 @@
       "official_confirmed": false,
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:03:08Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:16Z",
+        "next_check_date": "2026-09-23",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "阪神 vs 巨人",
@@ -9427,11 +9597,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KURE 5-56 Presents Rockon Social Club Tour 2026 WARRIORS",
@@ -9475,11 +9645,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Hideaki Tokunaga Concert Tour 2026",
@@ -9732,7 +9902,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
@@ -10475,11 +10650,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "マカロックツアーvol.22 〜いま、きみがすき！篇〜",
@@ -10671,11 +10846,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "街を嚥む、今宵の⽉ - HARVEST SPECIAL LIVE NIGHT WITH toe -",
@@ -11171,11 +11346,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "HIROKO SHIMABUKURO 30th Anniversary Live 2026 -SPEED WAY-",
@@ -11197,7 +11372,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "マカロックツアーvol.22 〜いま、きみがすき！篇〜",
@@ -11388,11 +11568,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TMG LIVE 2026 “SAYONARA”",
@@ -11414,7 +11594,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KOBUKURO LIVE TOUR 2026",
@@ -11570,11 +11755,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TMG LIVE 2026 “SAYONARA”",
@@ -11660,7 +11845,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KOBUKURO LIVE TOUR 2026",
@@ -11795,11 +11985,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Novelbright HALL&ARENA TOUR 2026〜PYRAMID〜",
@@ -11981,7 +12171,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Novelbright HALL&ARENA TOUR 2026〜PYRAMID〜",
@@ -12004,11 +12199,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "NEWS LIVE TOUR 2026 /// KMK",
@@ -12217,11 +12412,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "高嶋ちさ子のザワつく!音楽会 2026",
@@ -12376,11 +12571,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "04 Limited Sazabys ONE MAN TOUR 2026",
@@ -13140,11 +13335,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "街を嚥む、今宵の⽉ - HARVEST SPECIAL LIVE NIGHT WITH toe -",
@@ -13666,11 +13861,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "BKW!! Premium Party ～THINK OUT LOUD～",
@@ -13806,11 +14001,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TMG LIVE 2026 “SAYONARA”",
@@ -13988,11 +14183,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TMG LIVE 2026 “SAYONARA”",
@@ -14057,11 +14252,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "go!go!vanillas presents「ぼくらのタイマン上等ツアー」",
@@ -14233,11 +14428,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "go!go!vanillas presents「ぼくらのタイマン上等ツアー」",
@@ -14322,7 +14517,12 @@
       ],
       "official_confirmed": false,
       "pref_name": null,
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Novelbright HALL&ARENA TOUR 2026〜PYRAMID〜",
@@ -14609,11 +14809,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "My Hair is Bad presents「ノーブルホームランツアー」",
@@ -14909,11 +15109,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "女王蜂 全国ツアー2026『星』",
@@ -15094,7 +15294,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "大阪府",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "＋HEROINE2 ～iLiFE! 芸人ゲームバトル～",
@@ -15761,11 +15966,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
@@ -15788,11 +15993,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "04 Limited Sazabys ONE MAN TOUR 2026",
@@ -15857,11 +16062,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "杉山清貴 SOLO DEBUT 40TH ANNIVERSARY TOUR",
@@ -15884,11 +16089,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "iri 10th Anniversary LIVE “Period”",
@@ -15981,11 +16186,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "04 Limited Sazabys ONE MAN TOUR 2026",
@@ -16030,11 +16235,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "緑黄色社会アリーナツアー2026",
@@ -16057,11 +16262,11 @@
       "official_confirmed": false,
       "pref_name": null,
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ASIAN KUNG-FU GENERATION Tour 2026 \"Midage Fanclub\"",
@@ -16249,11 +16454,11 @@
       "official_confirmed": false,
       "pref_name": "福岡県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Stray Kids World Tour ＜RUN IT＞ in JAPAN",
@@ -16276,11 +16481,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "超ときめき♡宣伝部のきみのハートにロックオンTOUR 2026",
@@ -16352,11 +16557,11 @@
       "official_confirmed": false,
       "pref_name": null,
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ASIAN KUNG-FU GENERATION Tour 2026 \"Midage Fanclub\"",
@@ -16581,11 +16786,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "緑黄色社会アリーナツアー2026",
@@ -16630,11 +16835,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Number_i LIVE TOUR No.III",
@@ -16847,11 +17052,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "絢香 20th ANNIVERSARY LIVE TOUR",
@@ -17260,11 +17465,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "上沼恵美子 コンサート",
@@ -17379,11 +17584,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "BUMP OF CHICKEN TOUR 2026",
@@ -17476,11 +17681,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ASIAN KUNG-FU GENERATION Tour 2026 \"Midage Fanclub\"",
@@ -17587,11 +17792,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Sakura Miko 2nd Live “Blooming Parade!!”",
@@ -17635,11 +17840,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ASIAN KUNG-FU GENERATION Tour 2026 \"Midage Fanclub\"",
@@ -17661,7 +17866,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "INORAN TOUR Determine 2026 GRAND FINAL \"Naked Again\"",
@@ -17684,11 +17894,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -17711,11 +17921,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "女王蜂 全国ツアー2026『星』",
@@ -17855,11 +18065,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -17967,11 +18177,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "U-KNOW PROJECT 26 : SCENE ♯1 – EDIT",
@@ -18015,11 +18225,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE \"JSB FOREVER ONE\" ～GRAND FINALE～",
@@ -18306,11 +18516,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "milet Hall Tour 2026",
@@ -18375,11 +18585,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "三代目 J SOUL BROTHERS 15TH ANNIVERSARY STADIUM LIVE \"JSB FOREVER ONE\" ～GRAND FINALE～",
@@ -18429,11 +18639,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "KOBUKURO LIVE TOUR 2026",
@@ -18519,11 +18729,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -18546,11 +18756,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "04 Limited Sazabys ONE MAN TOUR 2026",
@@ -18594,11 +18804,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "milet Hall Tour 2026",
@@ -18684,11 +18894,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ONEMAN TOUR 2026 「紫にて」",
@@ -18817,11 +19027,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "i☆Ris 14th Anniversary Live",
@@ -19059,7 +19269,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Stray Kids World Tour ＜RUN IT＞ in JAPAN",
@@ -19325,7 +19540,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Stray Kids World Tour ＜RUN IT＞ in JAPAN",
@@ -19348,11 +19568,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GENERATIONS LIVE TOUR 2026 “PARALLEL QUEST”",
@@ -19528,11 +19748,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GLAY ARENA TOUR 2026-2027 “EXOFIRE”",
@@ -19638,7 +19858,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "東京都",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Stray Kids World Tour ＜RUN IT＞ in JAPAN",
@@ -19969,11 +20194,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "薬師丸ひろ子 Concert Tour 2026 〜明日が来る〜",
@@ -20213,11 +20438,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "RADWIMPS Official Fan Club Tour 2026 “ユーリンチー”",
@@ -20399,11 +20624,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "RADWIMPS Official Fan Club Tour 2026 “ユーリンチー”",
@@ -20877,11 +21102,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026 INI DOME LIVE TOUR",
@@ -21059,11 +21284,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "sumika×瑠東東一郎 CINEMA＆LIVE",
@@ -21199,11 +21424,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "2026 INI DOME LIVE TOUR",
@@ -21506,11 +21731,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TOMOO Arena Tour 2026",
@@ -21638,11 +21863,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "BRANDY SENKI TOUR 2026",
@@ -21812,11 +22037,11 @@
       "official_confirmed": false,
       "pref_name": "北海道",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ASIAN KUNG-FU GENERATION Tour 2026 \"Midage Fanclub\"",
@@ -22849,11 +23074,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GENERATIONS LIVE TOUR 2026 “PARALLEL QUEST”",
@@ -22876,11 +23101,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "超特急 東京ドーム公演",
@@ -22924,11 +23149,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -22972,11 +23197,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "超特急 東京ドーム公演",
@@ -22999,11 +23224,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GENERATIONS LIVE TOUR 2026 “PARALLEL QUEST”",
@@ -23227,11 +23452,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -23323,11 +23548,11 @@
       "official_confirmed": false,
       "pref_name": null,
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "TOMOHISA YAMASHITA TOUR 2026 DREAMING",
@@ -23488,11 +23713,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "GLAY ARENA TOUR 2026-2027 “EXOFIRE”",
@@ -23515,11 +23740,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -23816,11 +24041,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
@@ -23906,11 +24131,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Number_i LIVE TOUR No.III",
@@ -23954,11 +24179,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
@@ -24070,7 +24295,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "福岡県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -24093,11 +24323,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
@@ -24312,11 +24542,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
@@ -24338,7 +24568,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "緑黄色社会アリーナツアー2026",
@@ -24382,11 +24617,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "葉加瀬太郎 コンサートツアー 2026",
@@ -24520,11 +24755,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Number_i LIVE TOUR No.III",
@@ -24589,11 +24824,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-14T03:02:31Z",
-        "next_check_date": "2026-09-17",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Number_i LIVE TOUR No.III",
@@ -24827,11 +25062,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "単独禊『ジグザグ 10周年記念禊』",
@@ -25548,11 +25783,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -25629,11 +25864,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -25719,11 +25954,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
@@ -25789,11 +26024,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Snow Man DOME TOUR 2026-2027 ALL SUITE",
@@ -25901,11 +26136,11 @@
       "official_confirmed": false,
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "ENHYPEN WORLD TOUR 'BLOOD SAGA' IN JAPAN",
@@ -26279,11 +26514,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "go!go!vanillas presents「ぼくらのタイマン上等ツアー」",
@@ -26522,11 +26757,11 @@
       "official_confirmed": false,
       "pref_name": "東京都",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "go!go!vanillas presents「ぼくらのタイマン上等ツアー」",
@@ -26699,11 +26934,11 @@
       "official_confirmed": false,
       "pref_name": "大阪府",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Da-iCE DAY DOME PHASE 2027",
@@ -26811,11 +27046,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "オーイシ横アリ ～オーイシマサヨシ ワンマンライブ at 横浜アリーナ～",
@@ -26943,11 +27178,11 @@
       "official_confirmed": false,
       "pref_name": "神奈川県",
       "previous_review": {
-        "checked_at_utc": "2026-09-13T03:02:42Z",
-        "next_check_date": "2026-09-16",
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
         "status": "duplicate"
       },
-      "review_due": true,
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "Tele Kアリーナ公演（タイトル未定）",
@@ -27367,7 +27602,12 @@
       ],
       "official_confirmed": false,
       "pref_name": "神奈川県",
-      "review_due": true,
+      "previous_review": {
+        "checked_at_utc": "2026-09-20T11:02:04Z",
+        "next_check_date": "2026-09-23",
+        "status": "duplicate"
+      },
+      "review_due": false,
       "search_queries": [],
       "status": "possible_existing_match",
       "title": "SEKAI NO OWARI ARENA TOUR 2027",
@@ -28265,11 +28505,11 @@
       "official_url": "https://www.aichi-nagoya2026.org/ja/news-1435/",
       "pref_name": "愛知県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T23:29:58Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "status": "official_recheck",
       "title": "第20回アジア競技大会 男子サッカー グループステージ（FBL15）",
       "venue_name": "豊田スタジアム",
@@ -31257,11 +31497,11 @@
       "official_url": "https://www.ctv.co.jp/disneyonice/venue/kobe/index.html",
       "pref_name": "兵庫県",
       "previous_review": {
-        "checked_at_utc": "2026-09-07T22:45:28Z",
-        "next_check_date": "2026-09-11",
+        "checked_at_utc": "2026-09-20T11:08:18Z",
+        "next_check_date": "2026-09-21",
         "status": "confirmed"
       },
-      "review_due": true,
+      "review_due": false,
       "status": "official_recheck",
       "title": "ディズニー･オン･アイス 2026",
       "venue_name": "ワールド記念ホール（神戸ポートアイランドホール）",
@@ -33383,14 +33623,14 @@
     }
   ],
   "schema_version": 1,
-  "source_generated_at_utc": "2026-09-20T09:25:55Z",
+  "source_generated_at_utc": "2026-09-20T11:08:38Z",
   "summary": {
     "candidate_count": 1183,
     "counts_by_status": {
       "ancillary_ticket": 19,
-      "pending_official": 668,
-      "possible_existing_match": 496
+      "pending_official": 659,
+      "possible_existing_match": 505
     },
-    "due_count": 1193
+    "due_count": 902
   }
 }
