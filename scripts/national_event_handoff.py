@@ -16,7 +16,13 @@ import re
 from urllib.parse import urlsplit
 
 from .audit_national_event_coverage import PREFECTURES, _csv_bytes, _normal, audit
-from .ticketjam_review_state import _validate_confirmed, apply_reviews, fingerprint
+from .signals.sources.base import JST
+from .ticketjam_review_state import (
+    _validate_confirmed,
+    apply_reviews,
+    fingerprint,
+    validate_config_replacement,
+)
 
 STREAMS = {"venue_official", "announcement", "ticketjam"}
 OFFICIAL = {"venue_official", "artist_official", "promoter_official", "ticket_official"}
@@ -77,6 +83,23 @@ def digest(value) -> str:
             value, ensure_ascii=False, sort_keys=True, separators=(",", ":")
         ).encode()
     ).hexdigest()
+
+
+def published_snapshot(payload: dict, *, base_commit: str) -> dict:
+    """Wrap Work's trusted LP input, not an attachment asserted by a submitter."""
+    return {
+        "base_commit": base_commit,
+        "lp_fingerprint": digest(payload),
+        "payload": deepcopy(payload),
+    }
+
+
+def _event_values(row: dict) -> dict:
+    return {
+        **{k: row.get(k) for k in VALUE_FIELDS},
+        "event_end_date": row.get("event_end_date") or row.get("event_date"),
+        "event_status": row.get("event_status", "scheduled"),
+    }
 
 
 def _utc(value: str) -> datetime:
@@ -254,6 +277,7 @@ def validate_proposal(
     base_commit: str,
     scope_revision: str,
     queue: dict | None = None,
+    published: dict | None = None,
 ) -> dict:
     if not isinstance(proposal, dict) or set(proposal) != FIELDS:
         raise ValueError("proposal requires exact data-only fields")
@@ -308,7 +332,10 @@ def validate_proposal(
         and _utc(proposal["published_at_utc"]) > observed
     ):
         raise ValueError("publication cannot follow observation")
-    if date.fromisoformat(proposal["next_check_date"]) < observed.date():
+    if (
+        date.fromisoformat(proposal["next_check_date"])
+        < observed.astimezone(JST).date()
+    ):
         raise ValueError("next check precedes observation")
     unresolved = proposal["unresolved_fields"]
     if not isinstance(unresolved, list) or any(
@@ -349,24 +376,56 @@ def validate_proposal(
     ):
         raise ValueError("invalid date interval")
     key, fp = proposal["event_key"], proposal["candidate_fingerprint"]
+    origin_kind = "new_event"
+    published_input_fingerprint = None
     if key is not None or fp is not None:
-        lookup = {
-            r["event_key"]: r
-            for r in (queue or {}).get("candidates", [])
-            + (queue or {}).get("official_rechecks", [])
-        }
-        if key not in lookup or fingerprint(lookup[key]) != fp:
+        candidates = (queue or {}).get("candidates", []) + (queue or {}).get(
+            "official_rechecks", []
+        )
+        matches = [r for r in candidates if r["event_key"] == key]
+        published_matches = []
+        if published is not None and proposal["stream"] != "ticketjam":
+            payload = published.get("payload", {})
+            if (
+                published.get("base_commit") != base_commit
+                or published.get("lp_fingerprint") != digest(payload)
+                or payload.get("schema_version") != 1
+                or not isinstance(payload.get("events"), list)
+            ):
+                raise ValueError("stale published snapshot")
+            rows = payload["events"]
+            if len({r["event_key"] for r in rows}) != len(rows):
+                raise ValueError("duplicate published event keys")
+            published_matches = [r for r in rows if r["event_key"] == key]
+        if len(matches) + len(published_matches) != 1:
             raise ValueError("unknown or stale existing candidate")
-        snapshot = lookup[key]
-        for field in (
-            "event_date",
-            "event_start_time",
-            "venue_name",
-            "artist_name",
-            "title",
-        ):
-            if snapshot.get(field) != (proposal["current_values"] or values).get(field):
-                raise ValueError("existing candidate and proposal disagree")
+        if published_matches:
+            snapshot = published_matches[0]
+            if digest(snapshot) != fp:
+                raise ValueError("stale published event fingerprint")
+            if _event_values(snapshot) != _event_values(proposal["current_values"]):
+                raise ValueError("published event and current values disagree")
+            origin_kind = "published_event"
+            published_input_fingerprint = published["lp_fingerprint"]
+        else:
+            snapshot = matches[0]
+            if fingerprint(snapshot) != fp:
+                raise ValueError("unknown or stale existing candidate")
+            origin_kind = "ticketjam_candidate"
+            for field in (
+                "event_date",
+                "event_start_time",
+                "venue_name",
+                "artist_name",
+                "title",
+            ):
+                if snapshot.get(field) != (proposal["current_values"] or values).get(
+                    field
+                ):
+                    raise ValueError("existing candidate and proposal disagree")
+        if snapshot.get("venue_name") != venues[venue_id]["venue_name"]:
+            # Venue moves require a separate identity/migration review.
+            raise ValueError("existing venue and registry disagree")
     elif proposal["stream"] == "ticketjam":
         raise ValueError(
             "Ticketjam proposals require a real candidate key and fingerprint"
@@ -383,6 +442,8 @@ def validate_proposal(
         "status": "needs_work_verification",
         "can_publish": False,
         "missing_event_date": not bool(values.get("event_date")),
+        "origin_kind": origin_kind,
+        "published_input_fingerprint": published_input_fingerprint,
     }
 
 
@@ -394,6 +455,9 @@ def stage_official_event(
     base_commit: str,
     scope_revision: str,
     queue: dict | None = None,
+    review_state: dict | None = None,
+    config: dict | None = None,
+    published: dict | None = None,
 ) -> dict:
     """Separate Work decision -> existing official-event shape, still no config/DB write."""
     receipt = validate_proposal(
@@ -402,8 +466,9 @@ def stage_official_event(
         base_commit=base_commit,
         scope_revision=scope_revision,
         queue=queue,
+        published=published,
     )
-    if set(decision) != {
+    if set(decision) - {"replaces_config_fingerprint"} != {
         "proposal_hash",
         "base_commit",
         "status",
@@ -446,7 +511,7 @@ def stage_official_event(
         raise ValueError("unsupported official event fields")
     if (
         date.fromisoformat(decision["next_check_date"])
-        < _utc(decision["checked_at_utc"]).date()
+        < _utc(decision["checked_at_utc"]).astimezone(JST).date()
     ):
         raise ValueError("next check precedes Work verification")
     host = _url(event.get("evidence_url"))
@@ -483,6 +548,7 @@ def stage_official_event(
     )
     if event.get("pref_name") != pref:
         raise ValueError("Work evidence prefecture disagrees")
+    candidate_review_state = None
     if proposal["stream"] == "ticketjam":
         # Reuse the existing decision validator without fabricating Ticketjam identities.
         candidates = queue["candidates"] + queue.get("official_rechecks", [])
@@ -500,12 +566,75 @@ def stage_official_event(
             event_key=proposal["event_key"],
             candidate_fingerprint=proposal["candidate_fingerprint"],
         )
-        apply_reviews({}, candidates, [d])
+        candidate = next(
+            c for c in candidates if c["event_key"] == proposal["event_key"]
+        )
+        official_values = {
+            field: values.get(field, "scheduled" if field == "event_status" else None)
+            for field in (
+                "event_date",
+                "event_start_time",
+                "venue_name",
+                "artist_name",
+                "event_status",
+            )
+            if candidate.get(field, "scheduled" if field == "event_status" else None)
+            != values.get(field, "scheduled" if field == "event_status" else None)
+            and values.get(field, "scheduled" if field == "event_status" else None)
+        }
+        if official_values:
+            if proposal["change_type"] not in {"correction", "cancelled", "postponed"}:
+                raise ValueError(
+                    "candidate disagreement requires an explicit correction"
+                )
+            # The original candidate is still wrong. Do not mark its old time/date
+            # confirmed, invent a candidate, or discard the previous history.
+            d.pop("official_event")
+            d.update(
+                status="conflict",
+                official_values=official_values,
+                evidence_url=event["evidence_url"],
+            )
+        candidate_review_state = apply_reviews(review_state or {}, candidates, [d])
+    config_review_status = "not_checked"
+    if config is not None:
+        matching = [
+            row
+            for row in config.get("confirmed_events", [])
+            if row["event_id"] == event["event_id"]
+        ]
+        if len(matching) > 1:
+            raise ValueError("duplicate existing official event IDs")
+        if matching:
+            planned = dict(
+                event,
+                discovery_event_key=proposal["event_key"],
+                verified_at_utc=decision["checked_at_utc"],
+            )
+            validate_config_replacement(
+                matching[0],
+                planned,
+                origin_key=proposal["event_key"],
+                replaces_fingerprint=decision.get("replaces_config_fingerprint"),
+            )
+            config_review_status = "replacement_checked"
+        elif decision.get("replaces_config_fingerprint"):
+            raise ValueError("replacement target no longer exists")
+        else:
+            config_review_status = "new_event_id_checked"
     return {
         **receipt,
         "status": "verified_draft",
         "verified_at_utc": decision["checked_at_utc"],
         "official_event": deepcopy(event),
+        "origin": {
+            "kind": receipt["origin_kind"],
+            "event_key": proposal["event_key"],
+            "candidate_fingerprint": proposal["candidate_fingerprint"],
+            "published_input_fingerprint": receipt["published_input_fingerprint"],
+        },
+        "candidate_review_state": candidate_review_state,
+        "config_review_status": config_review_status,
         "publication_status": "approval_pending",
         "can_publish": False,
     }
@@ -528,6 +657,14 @@ def main(argv=None) -> int:
     parser.add_argument("--proposal", type=Path)
     parser.add_argument("--decision", type=Path)
     parser.add_argument("--queue", type=Path)
+    parser.add_argument(
+        "--published-lp",
+        type=Path,
+        help="Read-only LP from Work's trusted current base; never a proposal attachment",
+    )
+    parser.add_argument(
+        "--review-state", type=Path, help="Read-only prior Ticketjam review history"
+    )
     parser.add_argument("--state", type=Path, help="Read-only Work ledger snapshot")
     parser.add_argument(
         "--scope-output-dir", type=Path, help="Export derived Chat views outside data/"
@@ -573,11 +710,23 @@ def main(argv=None) -> int:
             base_commit=args.base_commit,
             scope_revision=bundle["scope_revision"],
             queue=json.loads(args.queue.read_text()) if args.queue else None,
+            published=published_snapshot(
+                json.loads(args.published_lp.read_text()), base_commit=args.base_commit
+            )
+            if args.published_lp
+            else None,
         )
         proposal = load_json(args.proposal)
         bundle = (
             stage_official_event(
-                proposal, load_json(args.decision), registry, **context
+                proposal,
+                load_json(args.decision),
+                registry,
+                review_state=json.loads(args.review_state.read_text())
+                if args.review_state
+                else None,
+                config=config,
+                **context,
             )
             if args.decision
             else validate_proposal(proposal, registry, **context)

@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2bb9af1d4ad7ba48c38028d37811672087cea1a1200590d5e036e0f0f0dabe57",
+  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
   "snapshot_only": true,
   "scopes": [
     {
@@ -149,7 +149,26 @@
       "pref_code": "34",
       "pref_name": "広島県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "hiroshima_green_arena",
+          "venue_name": "広島グリーンアリーナ",
+          "aliases": [
+            "広島県立総合体育館 大アリーナ"
+          ],
+          "official_url": "https://h-jigyoudan.or.jp/sports-center/",
+          "schedule_url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "6e9717e29fa7ade23dd8",
@@ -213,17 +232,12 @@
           "name": "広島グリーンアリーナ",
           "pref_code": "34",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "広島県広島市中区基町4-1",
+          "capacity": 10000,
+          "capacity_basis": "運営者の大アリーナ概要: 最大約10,000人、固定約4,400席。小アリーナとは別。",
+          "operating_status": "operating_with_current_schedule",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
           "evidence": [
@@ -231,13 +245,33 @@
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://h-jigyoudan.or.jp/sports-center/center-facility/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
             }
           ],
           "operator_reference_url": "https://hiroshimadragonflies.com/",
           "location_hint": "広島県広島市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "hiroshima_green_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "web_body_read",
+          "operator": "公益財団法人広島県教育事業団",
+          "aliases": [
+            "広島県立総合体育館 大アリーナ"
+          ],
+          "official_url": "https://h-jigyoudan.or.jp/sports-center/",
+          "schedule_url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+          "schedule_extent": "入口で2026年9月・10月月間PDFと2026年度上下半期の主催事業表を確認。PDF本文は未読。",
+          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
         }
       ],
       "pending_proposals": []

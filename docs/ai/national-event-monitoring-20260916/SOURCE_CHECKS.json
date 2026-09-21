@@ -320,6 +320,55 @@
           "post_fetch_status": "not_attempted"
         }
       ]
+    },
+    "hiroshima_green_arena": {
+      "url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+      "status": "web_body_read",
+      "observed_at_utc": "2026-09-21T08:40:26.653630Z",
+      "body_sha256": null,
+      "title": "広島県立総合体育館 イベント・行事",
+      "schedule_extent": "9月・10月月間PDFリンク確認。PDF本文・翌年全範囲は未読。",
+      "social_accounts": [
+        {
+          "url": "https://x.com/hiroshima_ga",
+          "identity_evidence_url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+          "identity_status": "linked_from_official_operator_site",
+          "post_fetch_status": "fetch_failed",
+          "failure_reason": "web_open returned Internal Error",
+          "observed_at_utc": "2026-09-21T08:40:26.653630Z"
+        }
+      ]
+    },
+    "ldh_live_schedule": {
+      "url": "https://www.ldh-liveschedule.jp/sys/tour/40198/",
+      "status": "web_body_read",
+      "observed_at_utc": "2026-09-21T08:40:26.653630Z",
+      "body_sha256": null,
+      "title": "FANTASTICS LIVE TOUR 2026 SUNFLOWER",
+      "publisher_role": "promoter_official",
+      "schedule_extent": "SCHEDULE全12公演: 愛知5/23、広島6/20、大阪7/1・2、静岡7/18・19、東京7/25・26、福岡9/6、東京9/26・27、福井10/11。全全国ツアー・全所属アーティストの一覧ではない。",
+      "reverse_lookup": "広島グリーンアリーナ・エコパアリーナ・サンドーム福井は運営者資料と照合。愛知ホールAは施設全体との同一性審査が必要。",
+      "published_at_utc": null,
+      "publication_status": "not_imported",
+      "social_accounts": []
+    },
+    "starto_live_index": {
+      "url": "https://starto.jp/s/p/live?ima=0000",
+      "status": "web_body_read",
+      "observed_at_utc": "2026-09-21T08:40:26.653630Z",
+      "body_sha256": null,
+      "publisher_role": "artist_official",
+      "schedule_extent": "公演一覧入口のみ。全公演詳細の再確認は未実施。既存STARTO collectorを維持。",
+      "social_accounts": []
+    },
+    "sekai_official_index_20260921": {
+      "url": "https://sekainoowari.jp/",
+      "status": "web_body_read",
+      "observed_at_utc": "2026-09-21T08:40:26.653630Z",
+      "body_sha256": null,
+      "publisher_role": "artist_official",
+      "schedule_extent": "公式トップの再確認。2027全国23公演は既存fixtureを再利用。",
+      "social_accounts": []
     }
   }
 }

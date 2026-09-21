@@ -7,13 +7,38 @@ also prove its single-writer lock and remote Git compare-and-swap before cutover
 from __future__ import annotations
 
 from copy import deepcopy
-from datetime import date, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 import json
 import os
 from pathlib import Path
 import tempfile
 
 from .national_event_handoff import STREAMS, _utc, digest
+from .signals.sources.base import JST
+
+
+def _last_attempts(state: dict, stream: str) -> dict:
+    """Derive attempt history across days/scopes, including legacy v1 ledgers."""
+    attempts = {
+        key.split("|", 1)[1]: {"observed_at_utc": stamp, "status": "checked"}
+        for key, stamp in state["last_success"].items()
+        if key.startswith(stream + "|")
+    }
+    for key, run in state["runs"].items():
+        if not key.startswith(stream + "|"):
+            continue
+        for target, row in run["observations"].items():
+            previous = attempts.get(target)
+            if not previous or _utc(row["observed_at_utc"]) > _utc(
+                previous["observed_at_utc"]
+            ):
+                attempts[target] = row
+    return attempts
+
+
+def _retry_after(row: dict) -> datetime:
+    next_day = _utc(row["observed_at_utc"]).astimezone(JST).date() + timedelta(days=1)
+    return datetime.combine(next_day, time.min, tzinfo=JST).astimezone(timezone.utc)
 
 
 def empty_state() -> dict:
@@ -23,12 +48,7 @@ def empty_state() -> dict:
 def run_key(stream: str, observed_at_utc: str, scope_revision: str) -> str:
     if stream not in STREAMS or not scope_revision:
         raise ValueError("stream and scope revision required")
-    day = (
-        _utc(observed_at_utc)
-        .astimezone(timezone(timedelta(hours=9)))
-        .date()
-        .isoformat()
-    )
+    day = _utc(observed_at_utc).astimezone(JST).date().isoformat()
     return f"{stream}|{day}|{scope_revision}"
 
 
@@ -55,11 +75,36 @@ def plan_run(
         raise ValueError("target list changed without a scope revision")
     observations = run["observations"]
     pending = [x for x in target_ids if x not in observations]
-    pending.sort(key=lambda x: (state["last_success"].get(f"{stream}|{x}", ""), x))
     failures = sum(r["status"] == "fetch_failed" for r in observations.values())
     now = _utc(observed_at_utc)
+    attempts = {
+        x: row for x, row in _last_attempts(state, stream).items() if x in target_ids
+    }
+    if any(
+        _utc(row["observed_at_utc"]).astimezone(JST).date() > now.astimezone(JST).date()
+        for row in attempts.values()
+    ):
+        raise ValueError("plan predates recorded attempts")
+    retry_after = {
+        x: _retry_after(row)
+        for x, row in attempts.items()
+        if row["status"] == "fetch_failed"
+    }
+    eligible = [x for x in pending if x not in retry_after or now >= retry_after[x]]
+    # Never attempted first, then least recently attempted. A failed attempt
+    # moves the queue forward without pretending that it was a successful check.
+    earliest = datetime.min.replace(tzinfo=timezone.utc)
+    eligible.sort(
+        key=lambda x: (
+            _utc(attempts[x]["observed_at_utc"]) if x in attempts else earliest,
+            _utc(state["last_success"][f"{stream}|{x}"])
+            if f"{stream}|{x}" in state["last_success"]
+            else earliest,
+            x,
+        )
+    )
     ages = [
-        (now - _utc(state["last_success"][f"{stream}|{x}"])).total_seconds()
+        max(0, (now - _utc(state["last_success"][f"{stream}|{x}"])).total_seconds())
         for x in target_ids
         if f"{stream}|{x}" in state["last_success"]
     ]
@@ -67,8 +112,8 @@ def plan_run(
         "run_key": key,
         "state_revision": digest(state),
         "targets": sorted(target_ids),
-        "selected_ids": pending[:limit],
-        "next_cursor": pending[limit] if len(pending) > limit else None,
+        "selected_ids": eligible[:limit],
+        "next_cursor": eligible[limit] if len(eligible) > limit else None,
         "counts": {
             "target": len(target_ids),
             "checked": len(observations) - failures,
@@ -79,9 +124,29 @@ def plan_run(
             f"{stream}|{x}" not in state["last_success"] for x in target_ids
         ),
         "max_elapsed_since_success_seconds": max(ages) if ages else None,
+        "never_attempted": sum(x not in attempts for x in target_ids),
+        "last_attempt_by_target": {
+            x: row["observed_at_utc"] for x, row in attempts.items()
+        },
+        "retry_after_by_target": {
+            x: stamp.isoformat().replace("+00:00", "Z")
+            for x, stamp in retry_after.items()
+        },
+        "deferred_retry_count": len(pending) - len(eligible),
+        "max_elapsed_since_attempt_seconds": max(
+            (
+                max(0, (now - _utc(row["observed_at_utc"])).total_seconds())
+                for row in attempts.values()
+            ),
+            default=None,
+        ),
         "status": "ready"
-        if pending
-        else ("finished_with_failures" if failures else "collected"),
+        if eligible
+        else (
+            "waiting_for_retry"
+            if pending
+            else ("finished_with_failures" if failures else "collected")
+        ),
         "publication_status": "not_started",
     }
 
@@ -122,9 +187,11 @@ def record_run(state: dict, plan: dict, observations: list[dict]) -> dict:
             raise ValueError("checked needs actual page/date/search extent")
         if run_key(stream, row["observed_at_utc"], scope) != key:
             raise ValueError("observation belongs to another JST day")
-        previous = result["last_success"].get(f"{stream}|{target}")
-        if previous and _utc(row["observed_at_utc"]) < _utc(previous):
-            raise ValueError("observation predates last success")
+        previous = _last_attempts(result, stream).get(target)
+        if previous and _utc(row["observed_at_utc"]) <= _utc(
+            previous["observed_at_utc"]
+        ):
+            raise ValueError("observation predates or repeats last attempt")
         run["observations"][target] = deepcopy(row)
         if row["status"] == "checked":
             result["last_success"][f"{stream}|{target}"] = row["observed_at_utc"]

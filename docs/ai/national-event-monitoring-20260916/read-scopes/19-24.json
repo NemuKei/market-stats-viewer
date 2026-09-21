@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2bb9af1d4ad7ba48c38028d37811672087cea1a1200590d5e036e0f0f0dabe57",
+  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
   "snapshot_only": true,
   "scopes": [
     {
@@ -237,7 +237,10 @@
           "venue_name": "エコパアリーナ",
           "aliases": [
             "エコパアリーナ",
-            "小笠山総合運動公園エコパアリーナ"
+            "小笠山総合運動公園エコパアリーナ",
+            "静岡アリーナ",
+            "ECOPA ARENA",
+            "静岡エコパアリーナ"
           ],
           "official_url": "https://www.ecopa.jp/",
           "schedule_url": "https://www.ecopa.jp/",
@@ -250,9 +253,115 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "ecopa_stadium",
+          "venue_name": "エコパスタジアム",
+          "aliases": [
+            "静岡スタジアム",
+            "ECOPA STADIUM"
+          ],
+          "official_url": "https://www.ecopa.jp/facility/stadium/",
+          "schedule_url": "https://www.ecopa.jp/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
+        {
+          "candidate_id": "a6903f579f2c8c937d7d",
+          "evidence": [
+            {
+              "evidence_url": "https://www.ecopa.jp/facility/arena/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://www.ecopa.jp/event/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://sekainoowari.jp/info/2026/09/18/7918/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            }
+          ],
+          "name": "エコパアリーナ",
+          "pref_code": "22",
+          "venue_kind": "arena",
+          "registry_venue_id": "ecopa_arena",
+          "address": "静岡県袋井市愛野2300-1",
+          "capacity": 10000,
+          "capacity_basis": "運営者のアリーナ概要: 最大10,000人、固定4,868席、可動1,440席。催事配置に依存。",
+          "operator": "静岡県サッカー協会グループ エコパハウス",
+          "aliases": [
+            "静岡アリーナ",
+            "ECOPA ARENA",
+            "静岡エコパアリーナ"
+          ],
+          "operating_status": "operating_with_current_schedule",
+          "official_url": "https://www.ecopa.jp/facility/arena/",
+          "schedule_url": "https://www.ecopa.jp/event/",
+          "schedule_extent": "2026年9月のHTML月間表入口を読取。次月以降と全行・詳細は未照合。",
+          "missing_fields": [
+            "schedule_extent"
+          ],
+          "scope_review": "identity_verified_schedule_pending",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "web_body_read",
+          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
+        },
+        {
+          "candidate_id": "c0e3c4cfad6887dcda46",
+          "evidence": [
+            {
+              "evidence_url": "https://www.ecopa.jp/facility/stadium/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://www.ecopa.jp/event/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            }
+          ],
+          "name": "エコパスタジアム",
+          "pref_code": "22",
+          "venue_kind": "stadium",
+          "registry_venue_id": "ecopa_stadium",
+          "address": "静岡県袋井市愛野2300-1",
+          "capacity": 50889,
+          "capacity_basis": "運営者の静岡スタジアム詳細: 固定45,653席+可動5,236席=50,889人。見出しの5万人とは丸めの差。",
+          "operator": "静岡県サッカー協会グループ エコパハウス",
+          "aliases": [
+            "静岡スタジアム",
+            "ECOPA STADIUM"
+          ],
+          "operating_status": "operating_with_current_schedule",
+          "official_url": "https://www.ecopa.jp/facility/stadium/",
+          "schedule_url": "https://www.ecopa.jp/event/",
+          "schedule_extent": "2026年9月表に女子サッカーのアジア競技大会準備を確認。競技詳細・次月以降は未照合。",
+          "missing_fields": [
+            "schedule_extent"
+          ],
+          "scope_review": "identity_verified_schedule_pending",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "web_body_read",
+          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
+        },
         {
           "candidate_id": "54dc6c7af1cb815d2de7",
           "name": "ヤマハスタジアム（磐田）",
@@ -585,6 +694,60 @@
           "registry_venue_id": null,
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
           "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "938c6f10a145c2a82f2e",
+          "evidence": [
+            {
+              "evidence_url": "https://portmesse.com/facility/tenjikan01",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://portmesse.com/outline",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://portmesse.com/20145",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://portmesse.com/wp-content/uploads/19ca1f2dbf02230b4bc24388dfb4d3cc.pdf",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            }
+          ],
+          "name": "ポートメッセなごや 第1展示館",
+          "pref_code": "23",
+          "venue_kind": "exhibition_arena",
+          "registry_venue_id": null,
+          "address": "愛知県名古屋市港区金城ふ頭二丁目2番地（施設概要の所在地）",
+          "capacity": null,
+          "capacity_basis": "第1展示館: 展示面積20,160㎡、可動階段席5,848席。総公演収容人数は未確認。既存施設全体の15,000を転用しない。",
+          "operator": "ポートメッセなごやMICEコンソーシアム（設置者: 名古屋市）",
+          "aliases": [
+            "名古屋市国際展示場 第1展示館"
+          ],
+          "operating_status": "temporary_general_rental_suspension",
+          "official_url": "https://portmesse.com/facility/tenjikan01",
+          "schedule_url": "https://portmesse.com/events/",
+          "schedule_extent": "運営者告知は2026年6月〜12月中頃の一般貸止（一部施設11月再開）。館別の確定日・全予定表は未検証。2027年ツアーを貸止と誤判定しない。",
+          "missing_fields": [
+            "capacity_basis",
+            "schedule_extent",
+            "hall_specific_rental_dates",
+            "parent_venue_migration"
+          ],
+          "scope_review": "identity_verified_schedule_pending",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "web_body_read",
+          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
         },
         {
           "candidate_id": "c5cb192ae4e5d5dd005a",

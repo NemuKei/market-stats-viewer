@@ -30,7 +30,7 @@
       "event_date": "2027-04-24",
       "venue_name": "広島グリーンアリーナ",
       "canonical_venue_name": "広島グリーンアリーナ",
-      "registry_venue_id": null,
+      "registry_venue_id": "hiroshima_green_arena",
       "open_time": "17:00",
       "event_start_time": "18:00"
     },
@@ -38,7 +38,7 @@
       "event_date": "2027-04-25",
       "venue_name": "広島グリーンアリーナ",
       "canonical_venue_name": "広島グリーンアリーナ",
-      "registry_venue_id": null,
+      "registry_venue_id": "hiroshima_green_arena",
       "open_time": "16:00",
       "event_start_time": "17:00"
     },
@@ -46,7 +46,7 @@
       "event_date": "2027-05-01",
       "venue_name": "サンドーム福井",
       "canonical_venue_name": "サンドーム福井",
-      "registry_venue_id": null,
+      "registry_venue_id": "sundome_fukui",
       "open_time": "17:00",
       "event_start_time": "18:00"
     },
@@ -54,7 +54,7 @@
       "event_date": "2027-05-02",
       "venue_name": "サンドーム福井",
       "canonical_venue_name": "サンドーム福井",
-      "registry_venue_id": null,
+      "registry_venue_id": "sundome_fukui",
       "open_time": "16:00",
       "event_start_time": "17:00"
     },
@@ -125,16 +125,16 @@
     {
       "event_date": "2027-06-26",
       "venue_name": "静岡エコパアリーナ",
-      "canonical_venue_name": "静岡エコパアリーナ",
-      "registry_venue_id": null,
+      "canonical_venue_name": "エコパアリーナ",
+      "registry_venue_id": "ecopa_arena",
       "open_time": "17:00",
       "event_start_time": "18:00"
     },
     {
       "event_date": "2027-06-27",
       "venue_name": "静岡エコパアリーナ",
-      "canonical_venue_name": "静岡エコパアリーナ",
-      "registry_venue_id": null,
+      "canonical_venue_name": "エコパアリーナ",
+      "registry_venue_id": "ecopa_arena",
       "open_time": "16:00",
       "event_start_time": "17:00"
     },
@@ -194,5 +194,6 @@
       "open_time": "15:30",
       "event_start_time": "17:00"
     }
-  ]
+  ],
+  "identity_reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
 }

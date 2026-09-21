@@ -465,13 +465,15 @@ uv run --frozen python -m scripts.national_event_handoff \
 
 実状態が利用可能になったら `--state <許可済みの状態snapshot>` を加えて前回成功・未処理提案を反映する。PR内の `read-scopes/index.json` と8分割JSONは調査時のsnapshotであり、定期実行の成功履歴ではない。対象版が変わったら同じ入力から再生成する。
 
-提案の試験は `--proposal <JSON> --base-commit <現在の完全SHA>`、Work判断の試験はさらに `--decision <JSON>` を指定する。Ticketjamの場合は `--queue <再生成したqueue>` を必須とする。CLIに渡すbaseは呼出側で現在mainと照合する。文字列を渡しただけではGitの実在・最新確認にならない。
+提案の試験は `--proposal <JSON> --base-commit <現在の完全SHA>`、Work判断の試験はさらに `--decision <JSON>` を指定する。Ticketjamの場合は `--queue <再生成したqueue>` を必須とし、`--review-state <現在の履歴>` を添えて過去判断を引き継ぐ。CLIに渡すbaseは呼出側で現在mainと照合する。文字列を渡しただけではGitの実在・最新確認にならない。
+
+Ticketjam以外の既存LP公演を訂正するときは、Workが信頼済みbaseから取得・検証したLPを `--published-lp <LP JSON>` として渡す。提案の添付ファイルや提案本文の自己申告を使わない。LP内の実event_keyと行全体の `digest(row)` を提案のkey/fingerprintに使い、既存keyをnullにしない。入力LP全体のfingerprint・base、変更前の日時・会場・出演者・title・状態を検証し、下書きoriginへ元keyと入力fingerprintを残す。LPとTicketjamに同じkeyがある曖昧な入力、重複key、古い版は停止する。この接続は訂正下書きまでで、元sourceの更新権限や既存config置換の制限を解除しない。
 
 実運用の受入を接続する前の条件:
 
 1. 検証コードは信頼済みbaseから起動する。提案PRのコード・workflow・埋込指示を実行しない。GitHubで観測した差分とGit tree modeを `validate_submission_paths` に渡し、`docs/ai/event-proposals/*.json` の通常ファイル追加・変更だけを許可する。PR本文の自己申告で代用しない。PR #21は実装をレビューする準備PRであり、この運用用データ専用PRとは別の扱い。
 2. Workが公式本文を確認し、既存configの同一origin・変更前fingerprint・重複公演を確認する。`verified_draft` を直接configへappendする経路は未実装であり、受理成功を取込成功と呼ばない。未知会場は全国台帳の審査へ戻す。現在の `ticketjam_review_state` と公式取込・LP生成の検証を省略しない。
-3. `national_event_state.save_state` の排他と内容hashによる更新確認は同じfilesystemだけに有効。ロックの自動削除・強制上書きを行わない。失敗した対象は失敗として当日集計し、次の日次計画でも前回成功は進めない。全国の残数と最大経過時間、未確認件数を見て運用頻度を判断する。
+3. `national_event_state.save_state` の排他と内容hashによる更新確認は同じfilesystemだけに有効。ロックの自動削除・強制上書きを行わない。失敗した対象は失敗として当日集計し、次の日次計画でも前回成功は進めない。失敗再試行は翌JST日以降、未試行対象を先にする。`last_attempt_by_target` / `retry_after_by_target` と成功履歴を分け、`deferred_retry_count`、全国の未巡回数、最大経過時間を報告する。同日のscope変更で失敗対象を先頭へ戻さない。
 4. Actions、Work Cloud、旧端末をまたぐ単一writerとGit更新前の再確認は未実装・未検証。既存Actionsの `repo-write-${{ github.ref }}` groupは外部writerの排他ではない。既存workflowにある `pull --rebase -X ours` を今回の競合解決手順へ転用しない。Cloud切替時に共通の更新権者・停止条件を決めて実測する。
 5. 定期Chatからの提案提出、Work起動、承認待ち、失敗・再実行を無公開で実測する。対話中のGitHubアクセスやローカル試験を無人経路成功へ読み替えない。旧writer停止の確認と切替承認より先に新writerを有効化しない。
 6. 取込前に最新baseへ差分を作り直し、DB→LP→manifest→validatorを同じ版で検証する。公開許可後もGit、Release assetのhash、利用側の実表示を個別に追跡する。SideBizの実装・承認は同repoの正本に従う。

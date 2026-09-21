@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "research_queue_not_runtime_registry",
   "national_census_complete": false,
-  "source_scope": "B.LEAGUE 2026-27/2027-28 listed arenas + J1/J2/J3 current club stadium profiles + handoff operator entries + official tour; not an exhaustive facility census + NPB primary-franchise cross-check (three unregistered ballparks)",
+  "source_scope": "B.LEAGUE 2026-27/2027-28 listed arenas + J1/J2/J3 current club stadium profiles + handoff operator entries + official tour; not an exhaustive facility census + NPB primary-franchise cross-check (three unregistered ballparks) + 2026-09-21 operator follow-up (Hiroshima/Fukui/ECOPA/Portmesse); still not exhaustive",
   "count_semantics": "distinct pref/name observations, may include aliases or future venues; not reviewed target denominator",
   "candidates": [
     {
@@ -1655,28 +1655,43 @@
       "name": "サンドーム福井",
       "pref_code": "18",
       "venue_kind": "dome",
-      "address": null,
-      "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
-      "missing_fields": [
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
-        "schedule_extent"
-      ],
-      "registry_venue_id": null,
-      "evidence_status": "official_body_entry_only_not_full_census",
-      "fetch_status": "body_fetched",
+      "address": "福井県越前市瓜生町5-1-1",
+      "capacity": 9000,
+      "capacity_basis": "運営者のイベントホール概要: 9,000席。展示面積8,000㎡を人数に換算しない。",
+      "operating_status": "operating_with_current_schedule",
+      "scope_review": "operator_and_visible_schedule_reviewed",
+      "missing_fields": [],
+      "registry_venue_id": "sundome_fukui",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "web_body_read",
       "evidence": [
         {
           "evidence_url": "https://sundome.sankan.jp/eventinfo/",
           "observed_at_utc": "2026-09-20T11:22:55.969712Z",
           "body_sha256": "89a1a118d4751c966adce9e028618f6033447b0ccfc6900bbefaad0c5b2bd846"
+        },
+        {
+          "evidence_url": "https://sundome.sankan.jp/about-us-h/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://sundome.sankan.jp/eventinfo/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
         }
-      ]
+      ],
+      "operator": "一般財団法人福井県産業会館",
+      "aliases": [
+        "福井県産業振興施設 イベントホール",
+        "サンドーム福井 イベントホール"
+      ],
+      "official_url": "https://sundome.sankan.jp/",
+      "schedule_url": "https://sundome.sankan.jp/eventinfo/",
+      "schedule_extent": "2026-09-21の公開コンサート一覧4催事6日分（10/3,10/4,10/11,11/13,11/14,11/21）を読取。非公開行事・将来全期間の網羅は主張しない。",
+      "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
     },
     {
       "candidate_id": "5c9e22d045c4e3a7eb48",
@@ -1908,6 +1923,93 @@
       "fetch_status": "body_fetched"
     },
     {
+      "candidate_id": "a6903f579f2c8c937d7d",
+      "evidence": [
+        {
+          "evidence_url": "https://www.ecopa.jp/facility/arena/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://www.ecopa.jp/event/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://sekainoowari.jp/info/2026/09/18/7918/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        }
+      ],
+      "name": "エコパアリーナ",
+      "pref_code": "22",
+      "venue_kind": "arena",
+      "registry_venue_id": "ecopa_arena",
+      "address": "静岡県袋井市愛野2300-1",
+      "capacity": 10000,
+      "capacity_basis": "運営者のアリーナ概要: 最大10,000人、固定4,868席、可動1,440席。催事配置に依存。",
+      "operator": "静岡県サッカー協会グループ エコパハウス",
+      "aliases": [
+        "静岡アリーナ",
+        "ECOPA ARENA",
+        "静岡エコパアリーナ"
+      ],
+      "operating_status": "operating_with_current_schedule",
+      "official_url": "https://www.ecopa.jp/facility/arena/",
+      "schedule_url": "https://www.ecopa.jp/event/",
+      "schedule_extent": "2026年9月のHTML月間表入口を読取。次月以降と全行・詳細は未照合。",
+      "missing_fields": [
+        "schedule_extent"
+      ],
+      "scope_review": "identity_verified_schedule_pending",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "web_body_read",
+      "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
+    },
+    {
+      "candidate_id": "c0e3c4cfad6887dcda46",
+      "evidence": [
+        {
+          "evidence_url": "https://www.ecopa.jp/facility/stadium/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://www.ecopa.jp/event/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        }
+      ],
+      "name": "エコパスタジアム",
+      "pref_code": "22",
+      "venue_kind": "stadium",
+      "registry_venue_id": "ecopa_stadium",
+      "address": "静岡県袋井市愛野2300-1",
+      "capacity": 50889,
+      "capacity_basis": "運営者の静岡スタジアム詳細: 固定45,653席+可動5,236席=50,889人。見出しの5万人とは丸めの差。",
+      "operator": "静岡県サッカー協会グループ エコパハウス",
+      "aliases": [
+        "静岡スタジアム",
+        "ECOPA STADIUM"
+      ],
+      "operating_status": "operating_with_current_schedule",
+      "official_url": "https://www.ecopa.jp/facility/stadium/",
+      "schedule_url": "https://www.ecopa.jp/event/",
+      "schedule_extent": "2026年9月表に女子サッカーのアジア競技大会準備を確認。競技詳細・次月以降は未照合。",
+      "missing_fields": [
+        "schedule_extent"
+      ],
+      "scope_review": "identity_verified_schedule_pending",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "web_body_read",
+      "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
+    },
+    {
       "candidate_id": "54dc6c7af1cb815d2de7",
       "name": "ヤマハスタジアム（磐田）",
       "pref_code": "22",
@@ -2054,6 +2156,60 @@
       "registry_venue_id": null,
       "evidence_status": "official_listing_only_not_operator_or_event_verification",
       "fetch_status": "body_fetched"
+    },
+    {
+      "candidate_id": "938c6f10a145c2a82f2e",
+      "evidence": [
+        {
+          "evidence_url": "https://portmesse.com/facility/tenjikan01",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://portmesse.com/outline",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://portmesse.com/20145",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://portmesse.com/wp-content/uploads/19ca1f2dbf02230b4bc24388dfb4d3cc.pdf",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        }
+      ],
+      "name": "ポートメッセなごや 第1展示館",
+      "pref_code": "23",
+      "venue_kind": "exhibition_arena",
+      "registry_venue_id": null,
+      "address": "愛知県名古屋市港区金城ふ頭二丁目2番地（施設概要の所在地）",
+      "capacity": null,
+      "capacity_basis": "第1展示館: 展示面積20,160㎡、可動階段席5,848席。総公演収容人数は未確認。既存施設全体の15,000を転用しない。",
+      "operator": "ポートメッセなごやMICEコンソーシアム（設置者: 名古屋市）",
+      "aliases": [
+        "名古屋市国際展示場 第1展示館"
+      ],
+      "operating_status": "temporary_general_rental_suspension",
+      "official_url": "https://portmesse.com/facility/tenjikan01",
+      "schedule_url": "https://portmesse.com/events/",
+      "schedule_extent": "運営者告知は2026年6月〜12月中頃の一般貸止（一部施設11月再開）。館別の確定日・全予定表は未検証。2027年ツアーを貸止と誤判定しない。",
+      "missing_fields": [
+        "capacity_basis",
+        "schedule_extent",
+        "hall_specific_rental_dates",
+        "parent_venue_migration"
+      ],
+      "scope_review": "identity_verified_schedule_pending",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "web_body_read",
+      "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
     },
     {
       "candidate_id": "c5cb192ae4e5d5dd005a",
@@ -2760,17 +2916,12 @@
       "name": "広島グリーンアリーナ",
       "pref_code": "34",
       "venue_kind": "arena",
-      "address": null,
-      "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
+      "address": "広島県広島市中区基町4-1",
+      "capacity": 10000,
+      "capacity_basis": "運営者の大アリーナ概要: 最大約10,000人、固定約4,400席。小アリーナとは別。",
+      "operating_status": "operating_with_current_schedule",
+      "scope_review": "identity_verified_schedule_pending",
       "missing_fields": [
-        "operator_identity",
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
         "schedule_extent"
       ],
       "evidence": [
@@ -2778,13 +2929,33 @@
           "evidence_url": "https://www.bleague.jp/new-bleague/club/",
           "observed_at_utc": "2026-09-20T11:15:20.891945Z",
           "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        },
+        {
+          "evidence_url": "https://h-jigyoudan.or.jp/sports-center/center-facility/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
+        },
+        {
+          "evidence_url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+          "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "retrieval_method": "web_open",
+          "body_sha256": null
         }
       ],
       "operator_reference_url": "https://hiroshimadragonflies.com/",
       "location_hint": "広島県広島市",
-      "registry_venue_id": null,
-      "evidence_status": "official_listing_only_not_operator_or_event_verification",
-      "fetch_status": "body_fetched"
+      "registry_venue_id": "hiroshima_green_arena",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "web_body_read",
+      "operator": "公益財団法人広島県教育事業団",
+      "aliases": [
+        "広島県立総合体育館 大アリーナ"
+      ],
+      "official_url": "https://h-jigyoudan.or.jp/sports-center/",
+      "schedule_url": "https://h-jigyoudan.or.jp/sports-center/center-events/",
+      "schedule_extent": "入口で2026年9月・10月月間PDFと2026年度上下半期の主催事業表を確認。PDF本文は未読。",
+      "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
     },
     {
       "candidate_id": "88d88f261eab55e28eea",

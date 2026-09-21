@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2bb9af1d4ad7ba48c38028d37811672087cea1a1200590d5e036e0f0f0dabe57",
+  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
   "snapshot_only": true,
   "scopes": [
     {
@@ -281,6 +281,7 @@
             "https://kazuya-kamenashi.com/from_here/",
             "https://www.red-hot.ne.jp/play/detail.php?pid=py27934",
             "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5168/",
+            "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5360/",
             "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5397/"
           ],
           "last_success_by_stream": {
@@ -1181,7 +1182,8 @@
             "https://pia-arena-mm.jp/event/6944.html",
             "https://pia-arena-mm.jp/event/6946.html",
             "https://pia-arena-mm.jp/event/6971.html",
-            "https://pia-arena-mm.jp/event/7203.html"
+            "https://pia-arena-mm.jp/event/7203.html",
+            "https://pia-arena-mm.jp/event/7207.html"
           ],
           "last_success_by_stream": {
             "announcement": null,
@@ -1308,7 +1310,8 @@
           "scope_review": "pending",
           "fetch_status": "unvisited",
           "saved_official_urls": [
-            "https://npb.jp/games/2026/schedule_09_detail.html"
+            "https://npb.jp/games/2026/schedule_09_detail.html",
+            "https://npb.jp/games/2026/schedule_10_detail.html"
           ],
           "last_success_by_stream": {
             "announcement": null,
@@ -1899,35 +1902,71 @@
       "pref_code": "18",
       "pref_name": "福井県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "sundome_fukui",
+          "venue_name": "サンドーム福井",
+          "aliases": [
+            "サンドーム福井",
+            "サンドーム福井 イベントホール",
+            "福井県産業振興施設 イベントホール"
+          ],
+          "official_url": "https://sundome.sankan.jp/",
+          "schedule_url": "https://sundome.sankan.jp/eventinfo/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "18d834ec40ad2e8f9040",
           "name": "サンドーム福井",
           "pref_code": "18",
           "venue_kind": "dome",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
-          "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
-          ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
-          "fetch_status": "body_fetched",
+          "address": "福井県越前市瓜生町5-1-1",
+          "capacity": 9000,
+          "capacity_basis": "運営者のイベントホール概要: 9,000席。展示面積8,000㎡を人数に換算しない。",
+          "operating_status": "operating_with_current_schedule",
+          "scope_review": "operator_and_visible_schedule_reviewed",
+          "missing_fields": [],
+          "registry_venue_id": "sundome_fukui",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "web_body_read",
           "evidence": [
             {
               "evidence_url": "https://sundome.sankan.jp/eventinfo/",
               "observed_at_utc": "2026-09-20T11:22:55.969712Z",
               "body_sha256": "89a1a118d4751c966adce9e028618f6033447b0ccfc6900bbefaad0c5b2bd846"
+            },
+            {
+              "evidence_url": "https://sundome.sankan.jp/about-us-h/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
+            },
+            {
+              "evidence_url": "https://sundome.sankan.jp/eventinfo/",
+              "observed_at_utc": "2026-09-21T08:36:31.977288Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null
             }
-          ]
+          ],
+          "operator": "一般財団法人福井県産業会館",
+          "aliases": [
+            "福井県産業振興施設 イベントホール",
+            "サンドーム福井 イベントホール"
+          ],
+          "official_url": "https://sundome.sankan.jp/",
+          "schedule_url": "https://sundome.sankan.jp/eventinfo/",
+          "schedule_extent": "2026-09-21の公開コンサート一覧4催事6日分（10/3,10/4,10/11,11/13,11/14,11/21）を読取。非公開行事・将来全期間の網羅は主張しない。",
+          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
         },
         {
           "candidate_id": "5c9e22d045c4e3a7eb48",

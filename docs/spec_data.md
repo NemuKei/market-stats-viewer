@@ -283,8 +283,15 @@ LPの既定は `ticketjam_policy=discovery`。Ticketjamを掲載用の統合入�
 - `national_event_handoff.scope_bundle` は正本、別名、watch、Ticketjam対応、調査待ち一覧から47県の読み取り用一覧を派生する。既存104会場を容量・enabledで絞らない。`scope_revision` はこれら入力の内容hash。保存公式URL、経路別の前回成功、未処理提案を添付できる。派生ファイルを編集して会場台帳の代わりにしない。
 - 提案schema_version=1の許容項目は `scripts/national_event_handoff.py` の `FIELDS` / `VALUE_FIELDS` を正本とする。`stream` は `venue_official` / `announcement` / `ticketjam`。base commit、scope版、会場ID、既存候補key/fingerprint、変更前後、発見URLと根拠URL、source class、発表日時・観測日時、確認方法、未解決項目、再確認日を分離する。未発表の日付・時刻はnull。OPENからSTARTを作らない。
 - Ticketjam提案は現在queueの実在key/fingerprintと一致すること。他経路に架空のTicketjam keyを付けない。未知会場・IDと名称の不一致・古いbase/scope・未知field・重複JSON keyを拒否する。ニュース・SNS・二次流通の情報は調査提案として受けられるが、その受理は公式確認でも掲載許可でもない。
+- Ticketjam以外の既存公演は、Workが管理する現baseのLP snapshotから照合する。`published_snapshot` はbase・LP全体のfingerprint・payloadを保持し、受付は既存event_key、行全体のfingerprint、変更前値を照合する。これは内容整合性の検証でありsnapshotの取得元を認証する仕組みではない。取得元の信頼確認はWorkの責務。下書きに `origin.kind=published_event` と `published_input_fingerprint` を残す。既存Ticketjamのfingerprint形式は変えない。
 - 独立したWork判断を `stage_official_event` に渡すと、既存のconfirmed判断validatorと公式event形式を再利用して `verified_draft` を返す。Ticketjamでは既存 `apply_reviews` も通す。提案とWorkの日時・出演者・会場・地域・状態が一致しない場合は停止する。`can_publish=false`、`publication_status=approval_pending` のままで、config/DBへは書かない。公式本文の実閲覧・運営者の本人性・変更前configとの衝突審査は別途必要。
 - 提案の識別は会場IDと変更種別・変更前後の値のhash。三経路で完全に同じ変更は根拠を追記してまとめる。時刻不明と時刻判明など同一公演の可能性がある組は `possible_duplicate_ids` でWorkに渡す。昼夜公演を自動で一つにしない。
-- `national_event_state` の実行keyは `stream|JST日付|scope_revision`。対象数=確認済み+取得失敗+未巡回。前回成功は実際に読んだ範囲を持つcheckedだけ更新する。未確認、最古成功の順で巡回し、進捗なしの再開を拒否する。初回検知・通知・検証・Git反映・Release公開・利用側確認の時刻を分離し、未実施はnull。発表日時は個々の根拠に残す。
+- `national_event_state` の実行keyは `stream|JST日付|scope_revision`。対象数=確認済み+取得失敗+未巡回。前回成功は実際に読んだ範囲を持つcheckedだけ更新する。日次・scope版をまたぐ全履歴から最終試行を導き、未試行、最古試行、最古成功の順で巡回する。失敗は翌JST日まで再試行を待ち、未巡回の対象を先に処理する。試行と成功を混同せず、未巡回数、再試行待ち数、最終試行・成功からの最大経過時間を分ける。進捗なしの再開、同一または過去時刻の重複試行、過去日への巻戻しを拒否する。旧v1履歴は消去せず読み取り時に最終試行を導く。初回検知・通知・検証・Git反映・Release公開・利用側確認の時刻を分離し、未実施はnull。発表日時は個々の根拠に残す。
+
+2026-09-21の受入訂正（PR #21 / R1〜R3）:
+
+- Ticketjamの変更前候補と公式本文が異なる訂正では、元候補の履歴へ実際の差を持つ `conflict` を追記し、訂正後の公式eventを別の `verified_draft` として返す。日時変更と中止・延期を区別し、元key/fingerprintと過去履歴を保持する。元候補を訂正済みの値で捏造してconfirmedにはしない。`conflict.official_values` は従来項目に `event_status`（scheduled/cancelled/postponed）を追加で許容する。
+- 下書きの `origin`、`candidate_review_state`、`config_review_status` は公開fieldではない。既存configを渡したときは既存昇格処理と共通の同一origin・変更前config fingerprintの検証を通す。config未入力は `not_checked` と明記する。下書きの直接appendは未対応であり、conflictによる既存派生行の掲載保留を解除しない。
+- 提案・Work判断・既存Ticketjam判断の `next_check_date` はすべてJST暦日。比較するUTC timestampはJSTへ変換してから日付を取り出す。保存済みtimestampの形式はUTCのまま維持する。
 
 この契約は非公開の運用状態や未公開資料を公開repoへ保存する許可を含まない。派生scope、調査記録、提案、実行履歴はRelease assetに追加しない。既存DB・LP schema、source priority、Ticketjam discovery policyは変更しない。

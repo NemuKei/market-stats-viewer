@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 
 from .build_lp_events import write_lp_events
 from .signals.text_quality import text_quality_issue
+from .signals.sources.base import JST
 from .signals.sources.venue_web_discovery import CONTENT_EXTRACTORS
 
 STATUSES = {
@@ -113,7 +114,24 @@ def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) ->
             raise ValueError("review candidate fingerprint is missing or stale")
         if decision["status"] == "conflict":
             values = decision.get("official_values", {})
-            permitted = {"event_date", "event_start_time", "venue_name", "artist_name"}
+            permitted = {
+                "event_date",
+                "event_start_time",
+                "venue_name",
+                "artist_name",
+                "event_status",
+            }
+            if (
+                isinstance(values, dict)
+                and "event_status" in values
+                and values["event_status"]
+                not in {
+                    "scheduled",
+                    "cancelled",
+                    "postponed",
+                }
+            ):
+                raise ValueError("unsupported official event status")
             if (
                 not isinstance(values, dict)
                 or not values
@@ -121,9 +139,15 @@ def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) ->
                 or not any(
                     bool(value)
                     and (
-                        lookup[key].get(field) not in value
+                        lookup[key].get(
+                            field, "scheduled" if field == "event_status" else None
+                        )
+                        not in value
                         if isinstance(value, list)
-                        else value != lookup[key].get(field)
+                        else value
+                        != lookup[key].get(
+                            field, "scheduled" if field == "event_status" else None
+                        )
                     )
                     for field, value in values.items()
                 )
@@ -135,7 +159,8 @@ def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) ->
         if (
             checked.tzinfo is None
             or checked.utcoffset() != timezone.utc.utcoffset(checked)
-            or date.fromisoformat(decision["next_check_date"]) < checked.date()
+            or date.fromisoformat(decision["next_check_date"])
+            < checked.astimezone(JST).date()
         ):
             raise ValueError("invalid review timing")
         if decision["status"] == "confirmed":
@@ -159,6 +184,26 @@ def config_fingerprint(event: dict) -> str:
     ).hexdigest()
 
 
+def validate_config_replacement(
+    existing: dict,
+    event: dict,
+    *,
+    origin_key: str | None,
+    replaces_fingerprint: str | None,
+) -> None:
+    """Shared guard for applying or staging a replacement of an official row."""
+    if {k: v for k, v in existing.items() if k != "verified_at_utc"} == {
+        k: v for k, v in event.items() if k != "verified_at_utc"
+    }:
+        return
+    if (
+        not origin_key
+        or existing.get("discovery_event_key") != origin_key
+        or replaces_fingerprint != config_fingerprint(existing)
+    ):
+        raise ValueError(f"conflicting existing official event: {event['event_id']}")
+
+
 def promote_confirmed(config: dict, state: dict) -> dict:
     result = deepcopy(config)
     events = result.setdefault("confirmed_events", [])
@@ -174,14 +219,12 @@ def promote_confirmed(config: dict, state: dict) -> dict:
             if {k: v for k, v in existing.items() if k != "verified_at_utc"} != {
                 k: v for k, v in event.items() if k != "verified_at_utc"
             }:
-                if (
-                    review.get("replaces_config_fingerprint")
-                    != config_fingerprint(existing)
-                    or existing.get("discovery_event_key") != key
-                ):
-                    raise ValueError(
-                        f"conflicting existing official event: {event['event_id']}"
-                    )
+                validate_config_replacement(
+                    existing,
+                    event,
+                    origin_key=key,
+                    replaces_fingerprint=review.get("replaces_config_fingerprint"),
+                )
                 existing.clear()
                 existing.update(event)
             existing["verified_at_utc"] = event["verified_at_utc"]

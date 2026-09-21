@@ -15,6 +15,35 @@ from scripts.signals.entity_aliases import (
 DATA = Path(__file__).resolve().parents[1] / "data"
 
 
+def test_operator_reviewed_venues_keep_arena_and_stadium_distinct():
+    with (DATA / "venue_registry.csv").open() as handle:
+        registry = {r["venue_id"]: r for r in csv.DictReader(handle)}
+    assert registry["sundome_fukui"]["capacity"] == "9000"
+    assert registry["hiroshima_green_arena"]["capacity"] == "10000"
+    assert registry["ecopa_stadium"]["capacity"] == "50889"
+    for key in ("sundome_fukui", "hiroshima_green_arena", "ecopa_stadium"):
+        assert registry[key]["is_enabled"] == "0"
+    keep, compact = load_venue_lookup_maps()
+    assert (
+        normalize_venue_with_lookup("静岡エコパアリーナ", keep, compact)[0]
+        == "エコパアリーナ"
+    )
+    assert (
+        normalize_venue_with_lookup("静岡スタジアム", keep, compact)[0]
+        == "エコパスタジアム"
+    )
+    assert (
+        normalize_venue_with_lookup("広島県立総合体育館 大アリーナ", keep, compact)[0]
+        == "広島グリーンアリーナ"
+    )
+    # The existing complex ID must not silently absorb a specific hall.
+    assert "portmesse_nagoya" in registry
+    assert (
+        normalize_venue_with_lookup("ポートメッセなごや 第1展示館", keep, compact)[1]
+        is False
+    )
+
+
 def test_national_watch_uses_national_id_and_keeps_ajinomoto_ticket_page():
     config = json.loads((DATA / "venue_web_discovery_config.json").read_text())
     watches = {r["venue_id"]: r for r in config["watch_venues"]}

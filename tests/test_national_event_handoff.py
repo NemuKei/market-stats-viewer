@@ -118,6 +118,56 @@ def context():
     return dict(base_commit=BASE, scope_revision=bundle()["scope_revision"])
 
 
+@pytest.mark.parametrize("change", ["time", "date", "cancelled", "postponed"])
+def test_published_non_ticketjam_correction_keeps_real_origin(change):
+    from scripts.national_event_handoff import published_snapshot
+
+    p, d, queue = correction_case(change)
+    p["stream"] = "venue_official"
+    row = dict(queue["candidates"][0], display_source_id="official_events")
+    payload = {"schema_version": 1, "events": [row]}
+    p["candidate_fingerprint"] = digest(row)
+    d["proposal_hash"] = digest(p)
+    snapshot = published_snapshot(payload, base_commit=BASE)
+    before = deepcopy((snapshot, p))
+    staged = stage_official_event(p, d, REGISTRY, published=snapshot, **context())
+    assert staged["origin"]["event_key"] == row["event_key"]
+    assert staged["origin"]["kind"] == "published_event"
+    assert staged["origin"]["published_input_fingerprint"] == digest(payload)
+    assert staged["candidate_review_state"] is None
+    assert not staged["can_publish"]
+    assert (snapshot, p) == before
+
+
+@pytest.mark.parametrize(
+    "bad", ["base", "payload", "fingerprint", "current", "unknown", "duplicate"]
+)
+def test_published_corrections_reject_stale_or_ambiguous_inputs(bad):
+    from scripts.national_event_handoff import published_snapshot
+
+    p, _, queue = correction_case()
+    p["stream"] = "announcement"
+    row = dict(queue["candidates"][0], display_source_id="official_events")
+    payload = {"schema_version": 1, "events": [row]}
+    p["candidate_fingerprint"] = digest(row)
+    snapshot = published_snapshot(payload, base_commit=BASE)
+    if bad == "base":
+        snapshot["base_commit"] = "b" * 40
+    elif bad == "payload":
+        snapshot["payload"]["events"][0]["event_status"] = "cancelled"
+    elif bad == "fingerprint":
+        p["candidate_fingerprint"] = "0" * 64
+    elif bad == "current":
+        p["current_values"]["event_start_time"] = "16:00"
+    elif bad == "unknown":
+        p["event_key"] = "unknown"
+    else:
+        snapshot["payload"]["events"].append(deepcopy(row))
+        snapshot["lp_fingerprint"] = digest(snapshot["payload"])
+    with pytest.raises(ValueError):
+        validate_proposal(p, REGISTRY, published=snapshot, **context())
+
+
 def decision(p):
     return dict(
         proposal_hash=digest(p),
@@ -420,9 +470,13 @@ def test_census_review_queue_covers_all_prefectures_without_claiming_completenes
     assert {r["pref_code"] for r in census["candidates"]} == {
         f"{i:02d}" for i in range(1, 48)
     }
-    assert all(
-        r["scope_review"] == "pending" and r["evidence"] for r in census["candidates"]
-    )
+    assert all(r["evidence"] for r in census["candidates"])
+    for row in census["candidates"]:
+        if row["scope_review"] == "operator_and_visible_schedule_reviewed":
+            assert not row["missing_fields"]
+            assert row["operator"] and row["address"] and row["capacity_basis"]
+        else:
+            assert row["missing_fields"]
     assert any(r["capacity"] is None for r in census["candidates"])
     assert any(r["venue_kind"] == "dome" for r in census["candidates"])
 
@@ -495,3 +549,175 @@ def test_synthetic_work_draft_reuses_existing_db_lp_and_manifest_pipeline(
         ]
         == 1
     )
+
+
+def correction_case(change="time"):
+    p = proposal()
+    old = dict(p["proposed_values"], event_start_time="19:00")
+    new = dict(old)
+    if change == "time":
+        new["event_start_time"] = "18:30"
+    elif change == "date":
+        new["event_date"] = "2030-12-02"
+    else:
+        new["event_status"] = change
+    candidate = dict(event_key="existing-ticketjam-key", **old)
+    p.update(
+        stream="ticketjam",
+        current_values=old,
+        proposed_values=new,
+        event_key=candidate["event_key"],
+        candidate_fingerprint=fingerprint(candidate),
+        change_type=change if change in {"cancelled", "postponed"} else "correction",
+    )
+    d = decision(p)
+    d["official_event"].update(
+        event_start_date=new["event_date"],
+        event_start_time=new["event_start_time"],
+        event_status=new.get("event_status", "scheduled"),
+    )
+    return p, d, {"candidates": [candidate]}
+
+
+@pytest.mark.parametrize(
+    "change,field",
+    [
+        ("time", "event_start_time"),
+        ("date", "event_date"),
+        ("cancelled", "event_status"),
+        ("postponed", "event_status"),
+    ],
+)
+def test_r2_ticketjam_correction_keeps_conflict_separate_from_official_draft(
+    change, field
+):
+    p, d, queue = correction_case(change)
+    assert (
+        validate_proposal(p, REGISTRY, queue=queue, **context())["status"]
+        == "needs_work_verification"
+    )
+    staged = stage_official_event(p, d, REGISTRY, queue=queue, **context())
+    assert staged["status"] == "verified_draft" and not staged["can_publish"]
+    review = staged["candidate_review_state"]["events"][p["event_key"]]
+    assert review["candidate_fingerprint"] == p["candidate_fingerprint"]
+    assert review["candidate_snapshot"] == queue["candidates"][0]
+    assert review["history"][-1]["status"] == "conflict"
+    assert (
+        review["history"][-1]["official_values"][field] == p["proposed_values"][field]
+    )
+    assert staged["origin"]["event_key"] == p["event_key"]
+    assert staged["publication_status"] == "approval_pending"
+
+
+def test_r2_keeps_prior_history_and_requires_exact_config_origin_and_replacement():
+    from scripts.ticketjam_review_state import (
+        apply_reviews,
+        config_fingerprint,
+        promote_confirmed,
+    )
+
+    p, d, queue = correction_case()
+    old_decision = {
+        k: deepcopy(d[k])
+        for k in (
+            "status",
+            "reason",
+            "checked_at_utc",
+            "next_check_date",
+            "official_event",
+        )
+    }
+    old_decision.update(
+        event_key=p["event_key"],
+        candidate_fingerprint=p["candidate_fingerprint"],
+        checked_at_utc="2030-09-20T16:00:00Z",
+    )
+    old_decision["official_event"]["event_start_time"] = "19:00"
+    state = apply_reviews({}, queue["candidates"], [old_decision])
+    config = promote_confirmed({"confirmed_events": []}, state)
+    before = deepcopy((state, config))
+    d["replaces_config_fingerprint"] = config_fingerprint(config["confirmed_events"][0])
+    staged = stage_official_event(
+        p, d, REGISTRY, queue=queue, review_state=state, config=config, **context()
+    )
+    history = staged["candidate_review_state"]["events"][p["event_key"]]["history"]
+    assert (
+        history == [old_decision, history[-1]] and history[-1]["status"] == "conflict"
+    )
+    assert (state, config) == before
+    assert staged["config_review_status"] == "replacement_checked"
+    changed = deepcopy(config)
+    changed["confirmed_events"][0]["title"] = "concurrently changed"
+    with pytest.raises(ValueError, match="conflicting existing"):
+        stage_official_event(
+            p, d, REGISTRY, queue=queue, review_state=state, config=changed, **context()
+        )
+    other = deepcopy(config)
+    other["confirmed_events"][0]["discovery_event_key"] = "other-origin"
+    d["replaces_config_fingerprint"] = config_fingerprint(other["confirmed_events"][0])
+    with pytest.raises(ValueError, match="conflicting existing"):
+        stage_official_event(
+            p, d, REGISTRY, queue=queue, review_state=state, config=other, **context()
+        )
+
+
+@pytest.mark.parametrize("bad", ["fingerprint", "official", "venue"])
+def test_r2_corrections_still_reject_stale_or_mismatched_evidence(bad):
+    p, d, queue = correction_case()
+    if bad == "fingerprint":
+        queue["candidates"][0]["event_start_time"] = "20:00"
+    elif bad == "official":
+        d["official_event"]["event_start_time"] = "17:00"
+    else:
+        p["venue_id"] = "unknown"
+        d["proposal_hash"] = digest(p)
+    with pytest.raises(ValueError):
+        stage_official_event(p, d, REGISTRY, queue=queue, **context())
+
+
+@pytest.mark.parametrize(
+    "observed,jst_day,previous",
+    [
+        ("2030-09-20T14:59:00Z", "2030-09-20", "2030-09-19"),
+        ("2030-09-20T15:00:00Z", "2030-09-21", "2030-09-20"),
+        ("2030-09-20T23:59:00Z", "2030-09-21", "2030-09-20"),
+        ("2030-09-21T00:00:00Z", "2030-09-21", "2030-09-20"),
+    ],
+)
+@pytest.mark.parametrize("entrypoint", ["proposal", "work", "ticketjam_review"])
+def test_r3_next_check_uses_jst_at_both_midnight_boundaries(
+    observed, jst_day, previous, entrypoint
+):
+    from datetime import date, timedelta
+    from scripts.ticketjam_review_state import apply_reviews
+
+    p = proposal()
+    p.update(observed_at_utc=observed, next_check_date=jst_day)
+    d = decision(p)
+    d.update(checked_at_utc=observed, next_check_date=jst_day)
+    candidate = dict(event_key="timing-test", **p["proposed_values"])
+
+    def run(day):
+        if entrypoint == "proposal":
+            return validate_proposal(
+                dict(p, next_check_date=day), REGISTRY, **context()
+            )
+        if entrypoint == "work":
+            return stage_official_event(
+                p, dict(d, next_check_date=day), REGISTRY, **context()
+            )
+        review = {
+            k: deepcopy(d[k])
+            for k in ("status", "reason", "checked_at_utc", "official_event")
+        }
+        review.update(
+            event_key=candidate["event_key"],
+            candidate_fingerprint=fingerprint(candidate),
+            next_check_date=day,
+        )
+        return apply_reviews({}, [candidate], [review])
+
+    with pytest.raises(ValueError, match="next check|review timing"):
+        run(previous)
+    assert run(jst_day)
+    assert run((date.fromisoformat(jst_day) + timedelta(days=1)).isoformat())

@@ -44,6 +44,10 @@ Git、Release、SideBiz取込と実LPを別々に確認する。公開field allo
 
 既存候補でない速報にTicketjam由来のevent_keyやfingerprintを捏造しない。必要なら一時提案IDと正式event keyを別にし、受入後の対応を記録する。提案形式の導入は既存DB/schemaを変える承認ではない。
 
+既存LP公演の訂正では、元のevent_keyを維持し、Work提供の現baseのLP行全体からfingerprintを計算する。Ticketjam queueに無いことを理由にkeyをnullへ戻さない。Workは `--published-lp` で信頼済みLPを読み、変更前と入力版を確認する。元候補が誤っていたTicketjam訂正は元履歴にconflictを追記し、訂正後の下書きを別に保持する。下書きだけをconfigへ直接追加しない。
+
+`next_check_date` は3経路とも日本時間の暦日。UTCで保存した確認時刻をJSTへ変換して比較する。巡回計画は日付やscope版が変わっても過去の試行履歴を引き継ぎ、未試行対象を失敗再試行より先に処理する。試行成功と公式確認成功は分けて記録する。
+
 ## 3経路へ共通で付ける再開情報
 
 最初に `read-scopes/index.json` のscope版・衝突・8分割への参照を読む。対象の分割だけを読み、既存会場と調査待ち会場を両方保持する。`snapshot_only=true` は定期巡回の現在状態ではない。Workから最新状態が渡らなければ履歴欠落として報告し、全国確認完了を記録しない。実際の前回成功・未処理提案を添える再生成方法は `docs/spec_update_pipeline.md` が正本。
