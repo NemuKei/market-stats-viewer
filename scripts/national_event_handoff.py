@@ -22,6 +22,7 @@ from .ticketjam_review_state import (
     _validate_confirmed,
     apply_reviews,
     fingerprint,
+    is_pure_suppression,
     promote_confirmed,
     validate_config_replacement,
 )
@@ -608,6 +609,8 @@ def stage_official_event(
                 official_values=official_values,
                 evidence_url=event["evidence_url"],
             )
+            if is_pure_suppression(candidate, event):
+                d["official_suppression"] = deepcopy(event)
         candidate_review_state = apply_reviews(review_state or {}, candidates, [d])
     config_review_status = "not_checked"
     if config is not None:
@@ -619,10 +622,8 @@ def stage_official_event(
         if len(matching) > 1:
             raise ValueError("duplicate existing official event IDs")
         if matching:
-            planned = dict(
-                event,
-                discovery_event_key=proposal["event_key"],
-                verified_at_utc=decision["checked_at_utc"],
+            planned = _import_event(
+                event, proposal, receipt, decision["checked_at_utc"]
             )
             validate_config_replacement(
                 matching[0],
@@ -664,6 +665,18 @@ def stage_official_event(
     return result
 
 
+def _import_event(event: dict, proposal: dict, receipt: dict, verified_at: str) -> dict:
+    planned = dict(event, verified_at_utc=verified_at)
+    if receipt["origin_kind"] == "published_event":
+        planned.update(
+            published_event_key=proposal["event_key"],
+            published_input_fingerprint=receipt["published_input_fingerprint"],
+        )
+    else:
+        planned["discovery_event_key"] = proposal["event_key"]
+    return planned
+
+
 def _prepare_import_preview(
     receipt: dict,
     proposal: dict,
@@ -701,9 +714,14 @@ def _prepare_import_preview(
         "action": None,
         "config": None,
     }
-    # A lower-priority new row cannot retire an old official source row/UID.
-    # Retain the conflict and require an explicit source migration instead.
-    if (
+    suppression = (
+        receipt["origin_kind"] in {"ticketjam_candidate", "published_event"}
+        and proposal["change_type"] in {"cancelled", "postponed"}
+        and is_pure_suppression(proposal["current_values"], receipt["official_event"])
+    )
+    # Pure status notices use the existing authoritative suppression policy.
+    # Other corrections still require explicit migration of the old source/UID.
+    if not suppression and (
         proposal["change_type"] not in {"new", "additional"}
         or receipt["origin_kind"] == "published_event"
         or receipt["official_event"].get("event_status", "scheduled") != "scheduled"
@@ -711,10 +729,8 @@ def _prepare_import_preview(
         return dict(result, reason="source_correction_requires_migration")
     if receipt["origin_kind"] == "new_event" and proposal["current_values"]:
         return dict(result, reason="existing_event_origin_required")
-    event = dict(
-        receipt["official_event"],
-        discovery_event_key=proposal["event_key"],
-        verified_at_utc=receipt["verified_at_utc"],
+    event = _import_event(
+        receipt["official_event"], proposal, receipt, receipt["verified_at_utc"]
     )
     existing = next((r for r in events if r["event_id"] == event["event_id"]), None)
     if existing is not None:
@@ -728,6 +744,12 @@ def _prepare_import_preview(
             status="ready_for_review",
             action="unchanged",
             config=deepcopy(config),
+        )
+    if suppression:
+        planned = deepcopy(config)
+        planned.setdefault("confirmed_events", []).append(event)
+        return dict(
+            result, status="ready_for_review", action="add_suppression", config=planned
         )
     start = event["event_start_date"]
     end = event.get("event_end_date") or start

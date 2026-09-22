@@ -291,7 +291,7 @@ def build_discovery_bundle(
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Keep discovery records out of authoritative grouping and displayed values."""
     from .build_lp_events import assemble_lp_payload
-    from .ticketjam_review_state import fingerprint
+    from .ticketjam_review_state import fingerprint, matches_official_suppression
 
     state = review_state or {"schema_version": 1, "events": {}}
     if state.get("schema_version") != 1:
@@ -313,6 +313,7 @@ def build_discovery_bundle(
             row["source_id"] == "venue_web_discovery"
             and review
             and review[-1]["status"] in {"conflict", "ancillary"}
+            and not matches_official_suppression(row, state["events"][origin])
         ):
             held.append(
                 {

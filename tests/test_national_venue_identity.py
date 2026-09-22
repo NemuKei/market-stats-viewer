@@ -15,6 +15,22 @@ from scripts.signals.entity_aliases import (
 DATA = Path(__file__).resolve().parents[1] / "data"
 
 
+def test_renamed_hall_and_toki_punctuation_keep_existing_identity():
+    keep, compact = load_venue_lookup_maps()
+    for name in ("クロコくんホール", "クロコくんホール（旧日本ガイシホール）"):
+        assert normalize_venue_with_lookup(name, keep, compact)[0] == "日本ガイシホール"
+    assert (
+        normalize_venue_with_lookup("クロコくんアリーナ", keep, compact)[0]
+        != "日本ガイシホール"
+    )
+    assert (
+        normalize_venue_with_lookup(
+            "朱鷺メッセ・新潟コンベンションセンター", keep, compact
+        )[0]
+        == "朱鷺メッセ 新潟コンベンションセンター"
+    )
+
+
 def test_operator_reviewed_venues_keep_arena_and_stadium_distinct():
     with (DATA / "venue_registry.csv").open() as handle:
         registry = {r["venue_id"]: r for r in csv.DictReader(handle)}

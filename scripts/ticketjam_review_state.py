@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 
 from .build_lp_events import write_lp_events
 from .signals.text_quality import text_quality_issue
-from .signals.sources.base import JST
+from .signals.sources.base import JST, compute_signal_uid, trim_snippet
 from .signals.sources.venue_web_discovery import CONTENT_EXTRACTORS
 
 STATUSES = {
@@ -95,6 +95,72 @@ def _validate_confirmed(candidate: dict, event: dict) -> None:
         time.fromisoformat(event["event_start_time"])
 
 
+def is_pure_suppression(candidate: dict, event: dict) -> bool:
+    """A status notice may suppress the old performance, never move or rename it."""
+    return (
+        candidate.get("event_status", "scheduled") == "scheduled"
+        and event.get("event_status") in {"cancelled", "postponed"}
+        and candidate.get("event_date") == event.get("event_start_date")
+        and (candidate.get("event_end_date") or candidate.get("event_date"))
+        == (event.get("event_end_date") or event.get("event_start_date"))
+        and all(
+            candidate.get(k) == event.get(k)
+            for k in ("event_start_time", "venue_name", "artist_name", "title")
+        )
+    )
+
+
+def _validate_suppression(candidate: dict, review: dict) -> None:
+    event = review.get("official_suppression")
+    if (
+        not isinstance(event, dict)
+        or review.get("status") != "conflict"
+        or not is_pure_suppression(candidate, event)
+        or review.get("official_values") != {"event_status": event.get("event_status")}
+    ):
+        raise ValueError("suppression requires a pure status conflict")
+    _validate_confirmed(candidate, event)
+
+
+def matches_official_suppression(row: dict, record: dict) -> bool:
+    """Only the exact latest verified status row can pass an origin conflict hold."""
+    history = record.get("history", [])
+    if not history or "official_suppression" not in history[-1]:
+        return False
+    review = history[-1]
+    candidate = record.get("candidate_snapshot", {})
+    if record.get("candidate_fingerprint") != fingerprint(candidate) or review.get(
+        "candidate_fingerprint"
+    ) != fingerprint(candidate):
+        return False
+    try:
+        _validate_suppression(candidate, review)
+    except (ValueError, KeyError, TypeError):
+        return False
+    event = review["official_suppression"]
+    expected = {
+        "source_id": "venue_web_discovery",
+        "record_id": compute_signal_uid(
+            "venue_web_discovery", event["url"], extra_key=event["event_id"]
+        ),
+        "discovery_event_key": review["event_key"],
+        "event_date": event["event_start_date"],
+        "event_end_date": event.get("event_end_date") or event["event_start_date"],
+        "event_start_time": event.get("event_start_time"),
+        "event_status": event["event_status"],
+        "title": event["title"],
+        "url": event["url"],
+        "source_class": event["source_class"],
+        "evidence_url": event["evidence_url"],
+        "evidence_snippet": trim_snippet(event["evidence_snippet"]),
+        "content_extractor": event["content_extractor"],
+    }
+    return all(row.get(k) == v for k, v in expected.items()) and all(
+        (row.get("raw_" + k) or row.get(k)) == event[k]
+        for k in ("venue_name", "artist_name")
+    )
+
+
 def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) -> dict:
     result = deepcopy(state) if state else {"schema_version": 1, "events": {}}
     if result.get("schema_version") != 1:
@@ -153,6 +219,8 @@ def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) ->
                 )
             ):
                 raise ValueError("conflict requires a structured disagreement")
+        if "official_suppression" in decision:
+            _validate_suppression(lookup[key], decision)
         checked = datetime.fromisoformat(
             decision["checked_at_utc"].replace("Z", "+00:00")
         )

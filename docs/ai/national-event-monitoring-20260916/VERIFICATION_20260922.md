@@ -1,5 +1,63 @@
 # PR #21 続行記録（2026-09-22）
 
+## 追加続行の最新検証（main c1236cf）
+
+開始PR head `09300a713974dd9bce9af9f1adc5b693d482dbb6`。最新main `c1236cf37870b26993969e776dd625d7a087161c` を同じbranchへ通常mergeし、最新DB/LP/候補の更新を保持。競合なし。以降の旧記録は前回baseの履歴。
+
+### A・B・C
+
+点検exit 0、ID衝突・孤立なし。116台帳、19県登録、公式有効32、watch12、Ticketjam75（68有効）、容量不明4。元台帳IDを削除・再採番せず、2行の公式/予定表URLと2行の別名だけを今回追加訂正した。collector有効化なし。
+
+- [運営者ホール案内](https://www.nespa.or.jp/sports-plaza/hall/)・[主催者案内](https://www.nespa.or.jp/sports-plaza/hall/organizer/)・[予定表](https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html)から名称・住所・運営者・最大10,000人を確認。クロコくんホールを既存 `nihon_gaishi_hall` / 日本ガイシホールへ対応。クロコくんアリーナは別施設として別名へ含めない。施設利用休止2026/8/6〜11/30は駐車場規制と区別して記録し、休止を理由に対象除外しない。
+- [朱鷺メッセ施設案内](https://www.tokimesse.com/sponsor/guide/)・[会社情報](https://www.tokimesse.com/about/)・[アクセス](https://www.tokimesse.com/visitor/access/)で運営者・万代島6番1号・展示ホールのシアター10,000人を確認。中黒/コロンの表記を既存 `toki_messe` の別名に追加。別の小ホールや会議室を同一の大型会場として吸収しない。
+- AIMYON fixture全36公演・15会場のうち保留6公演を解消、全36が台帳対応。愛知4公演の開演時刻を運営者の表示予定表でも逆照合。公演取込・公開は未実施。
+- 沖縄は市条例第2条の位置がaccess住所と一致することをweb閲覧で確認。ただし直接HTTP取得は失敗し、設備案内との不一致理由は未確認。address=nullと両根拠・住所相違の保留を維持し、取得失敗を成功へ書き換えない。
+- 全47県の128観測を削らず2観測追加し130。114 pending、14追加確認待ち、1運営者/表示一覧確認、1住所相違。全国審査は未完了。scope `2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa`、8分割、最大86,244 bytes。snapshotは定期巡回実績ではない。
+
+本文hash・取得日時・読取範囲はSOURCE_CHECKS / CENSUS_REVIEW_QUEUE。野口五郎の運営者本文も再取得・再読し、fixtureを今回のbase/scopeへ作り直した。
+
+### D：中止・延期だけの無公開取込案
+
+局所的にconflict保留を外す方法は旧開催予定の復活を招くため採らず、既存の公式抑止仕様へ限定して接続した。一般訂正のsource所有権・旧UIDの一括移行は今回導入しない。
+
+`add_suppression` は実候補または信頼済みLPに対して状態だけが中止/延期へ変わる場合に限る。別IDの公式状態行を追加し旧行を保持。同時刻の旧公演だけを抑止し、既知の別時刻を保持する。Ticketjamの候補はconflictのまま、検証済み状態eventを最新判断の `official_suppression` に保存。根拠とUID等が一致する状態行だけが保留を通過する。後続判断、古いsnapshot、別根拠/別公演への書換えは通過しない。
+
+既存LPのkeyはTicketjam keyへ転用せず、config案の内部監査項目に残す。一般の日時・会場・title等の訂正はconfig=nullで保留を維持。復帰・rollbackと互換条件は `docs/spec_event_status.md` が正本。source priority・公開field・DB schema・既存カテゴリの変更なし。
+
+### G：再現と生成検証
+
+テスト先行: 状態取込4ケースは未実装時4 failed / 否定ケース4 passed。状態根拠の不一致拒否7ケースは7 failed。会場旧称/別名1ケースは1 failed。実装後に全repo **289 passed / 70 subtests passed**、変更対象ruff・差分検査成功。R1〜R3の再発防止テストを含む。
+
+4通り（中止/延期 × Ticketjam/既存LP）を一時DBから実LP生成・manifest validatorまで実行。旧19:00行・下位source行を残し、21:00公演を保持。状態行は初回1件、同じ案の再入力0件。古いsource再入力でも復活しない。別日/時刻/title/終了日への変更混入は拒否。実公演の新しい中止判断を作った試験ではない。
+
+最新main保存LPは1,142件。最新DBコピーから再生成して1,144件。前回台帳追加のIG地域保留解除2件とTOYOTA表示名/key変更2件だけが差分で、共通keyの内容変更0。今回の2会場別名訂正による追加の既存LP変化0。時刻分割31公演/30組、抑止1は最新mainと同数（前回baseの抑止2という履歴値を流用しない）。候補1,153、期日到来816、選択60、残り756。既存履歴への自動解消書込みなし。
+
+同じ公式11/1野口五郎公演を新baseで無公開取込試験。初回1件/再実行0件、1,145件。既存1,144件を全行保持し、17:00・長崎県・公式URLとmanifest/validatorを確認。config/DB/LP原本へ適用していない。
+
+| 今回の一時検証物 | bytes | SHA256 |
+|---|---:|---|
+| events.sqlite | 1,282,048 | `cb1cdfc0f6bd285f91fb154a31bf2e317aba78befe892348169d9eedb4dbaccf` |
+| event_signals.sqlite | 4,194,304 | `8b63d49d6bfe70df168fd5106811c320c0b3590ea46f712356c34351b73b0253` |
+| baseline-lp.json | 2,234,585 | `0cc65fb4a916767c0e5db61172b25f6aadd7e54dcad3ccf5f37aea2549951810` |
+| lp_events.json | 2,236,368 | `e6f5aa7f27c9c485e7df2161e25aaf8e38fa5f8dd366a4ac921caf00fd349d47` |
+
+入力SHA256:
+
+- `venue_registry.csv`: `4c7376396c4303f677666e50be19705e5ef489cdd641b68ebaa0a6e5f93ec1f6`
+- `venue_aliases.csv`: `5b24acc177aa3410cd04d49a07b1bb87aa9d46e1fc426c1a4c0ebf944142e754`
+- `venue_web_discovery_config.json`: `8bddf7c1e295321027ad415ff3580596f183356325c20a340158652cc4520f01`
+- `ticketjam_venue_pages.csv`: `6ae738a0a0b447f9ac7b7a96de1cb2ddb574890c65839b72bb5b889501c9ef0c`
+
+上記は生成時刻に依存する一時物のhashで、公開assetではない。最終PR headへ結び付けた再試験・manifestはPR本文に記録する。
+
+### E・F・H：残る境界
+
+`lp_impact=present in preview`。全国対象、容量不明、旧行、3経路を保持。一般訂正、全会場審査・全予定表/発表元/SNS、Cloud/Actions/旧端末の単一writer、実使用量/遅延、定期Chat→Work起動→承認待ち→再実行、Release/実LPは未完了。前回の接続確認結果を超えるCloud実行実績は得ていない。現在の対話操作を定期成功へ読み替えない。
+
+本番公開・権限変更・旧端末停止・定期タスク有効化は未実施。新しいPR/branch/子タスクを作らず、同じPR #21に差分を残す。`sync-needed`: 本番適用前の最新base再検証、Cloud経路受入、切替承認と旧writer停止確認、公開hash/実LP追跡。
+
+## 前回続行の記録（main 70989a8、履歴）
+
 同じPR・branchで続行。全国監視の本番受入は未完了。9/21のR1〜R3修正を維持し、root AGENTSとREADMEを再読して、最新mainの更新を取り込んだ。新しいPR・branch・子タスク・定期タスクは作っていない。
 
 ## A：最新データと変更範囲

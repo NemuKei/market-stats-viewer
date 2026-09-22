@@ -607,6 +607,139 @@
       ],
       "discovery_url": "https://okinawa-arena.jp/",
       "social_accounts": []
+    },
+    "followup_20260922_gaishi_home": {
+      "url": "https://www.nespa.or.jp/sports-plaza/hall/",
+      "observed_at_utc": "2026-09-22T09:53:59.464353Z",
+      "status": "body_fetched",
+      "body_sha256": "dbf946e38b7d27f5d9201994e687f30df855f02b08e9f56eef64f5bf0e0d4953",
+      "text_sha256": "d41c95490ea250189f4ab5e32cc78a5f1afe990a5828c06456ed39b4a1a5e576",
+      "title": "NGKスポーツプラザ",
+      "final_url": "https://www.nespa.or.jp/sports-plaza/hall/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_gaishi_rename": {
+      "url": "https://www.nespa.or.jp/blog/hall/news/施設の愛称変更について/",
+      "observed_at_utc": "2026-09-22T09:53:59.467965Z",
+      "status": "body_fetched",
+      "body_sha256": "5fc1c20c73adc1b3f946b58c94ddc6a344e1dbaeb3980281b88fc3a38d46f72d",
+      "text_sha256": "a828251d232b3fce4290e50ed4353a02e66a5ce737646b47842c95417b02c1fc",
+      "title": "施設の愛称変更について | クロコくんホール",
+      "final_url": "https://www.nespa.or.jp/blog/hall/news/%E6%96%BD%E8%A8%AD%E3%81%AE%E6%84%9B%E7%A7%B0%E5%A4%89%E6%9B%B4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_gaishi_faq": {
+      "url": "https://www.nespa.or.jp/hall/faq/index.html",
+      "observed_at_utc": "2026-09-22T09:53:59.464704Z",
+      "status": "body_fetched",
+      "body_sha256": "44d5d6aa0882f830f2804fe1a69052ec16a715419c37bf773858cec3c63a1a8c",
+      "text_sha256": "4f4e3605e936c3bc5e22ac0ac7c074ac7de120fb37129bd8c402b9f5043bae61",
+      "title": "日本ガイシ スポーツプラザ [よくある質問]",
+      "final_url": "https://www.nespa.or.jp/hall/faq/index.html",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_gaishi_organizer": {
+      "url": "https://www.nespa.or.jp/sports-plaza/hall/organizer/",
+      "observed_at_utc": "2026-09-22T09:53:59.467093Z",
+      "status": "body_fetched",
+      "body_sha256": "37be80a87b737a82c6dc025dfd796b72fd9a59bc62cef2d11f6f0d41a162c898",
+      "text_sha256": "2cfc2750e20ab87504aec9334eb0fda147673d924231c09cb285f6f5944487bd",
+      "title": "イベント主催者の方へ | NGKスポーツプラザ",
+      "final_url": "https://www.nespa.or.jp/sports-plaza/hall/organizer/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_gaishi_closure": {
+      "url": "https://www.nespa.or.jp/blog/hall/news/アジア・アジアパラ競技大会に伴う施設利用休止/",
+      "observed_at_utc": "2026-09-22T09:53:59.469400Z",
+      "status": "body_fetched",
+      "body_sha256": "e25bdd4644c7ec977bd7559f96e98587229e5269203bc575eaf8e67340ae0a7d",
+      "text_sha256": "6335a3ad7d86523b20986ecbb6220dd349ff45464a2540d860ef473c93b1489a",
+      "title": "アジア・アジアパラ競技大会に伴う施設利用休止のお知らせ | クロコくんホール",
+      "final_url": "https://www.nespa.or.jp/blog/hall/news/%E3%82%A2%E3%82%B8%E3%82%A2%E3%83%BB%E3%82%A2%E3%82%B8%E3%82%A2%E3%83%91%E3%83%A9%E7%AB%B6%E6%8A%80%E5%A4%A7%E4%BC%9A%E3%81%AB%E4%BC%B4%E3%81%86%E6%96%BD%E8%A8%AD%E5%88%A9%E7%94%A8%E4%BC%91%E6%AD%A2/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_gaishi_schedule": {
+      "url": "https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html",
+      "observed_at_utc": "2026-09-22T09:53:59.465009Z",
+      "status": "body_fetched",
+      "body_sha256": "61672321207577d6c5b26a82993a3ca1d7ce49cee27e3f3bd6bf15e58c59c063",
+      "text_sha256": "7f4662489de584ec02c2374b1c9e4a593862c45d8dba1eb6a8007f63da7de3f3",
+      "title": "コンサート等イベント情報 | NGKスポーツプラザ",
+      "final_url": "https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_toki_guide": {
+      "url": "https://www.tokimesse.com/sponsor/guide/",
+      "observed_at_utc": "2026-09-22T09:54:12.558856Z",
+      "status": "body_fetched",
+      "body_sha256": "7ef3b8fb256107bc75753303bc29a5b27ae3c9c172ce2841b3531a241dab0648",
+      "text_sha256": "ce34426a785e58bd25c86019f8ee4b6afa6982a582afc911ac1b59fc52a41ed5",
+      "title": "施設のご案内 | 主催者の方 | 朱鷺メッセ：新潟コンベンションセンター",
+      "final_url": "https://www.tokimesse.com/sponsor/guide/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_toki_hall": {
+      "url": "https://www.tokimesse.com/sponsor/guide/wavemarket.html",
+      "observed_at_utc": "2026-09-22T09:54:12.561301Z",
+      "status": "body_fetched",
+      "body_sha256": "d00628ee486e395f557f5883e5901458ab3733367f10beccf6ce9ad77280a181",
+      "text_sha256": "3c6e5a095f1788d4ff19667f6f137215e731a27008874fb0c23f797c08c5b939",
+      "title": "展示ホール（ウェーブマーケット） | 施設のご案内 | 主催者の方 | 朱鷺メッセ：新潟コンベンションセンター",
+      "final_url": "https://www.tokimesse.com/sponsor/guide/wavemarket.html",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_toki_access": {
+      "url": "https://www.tokimesse.com/visitor/access/",
+      "observed_at_utc": "2026-09-22T09:54:12.562645Z",
+      "status": "body_fetched",
+      "body_sha256": "6e8ea1f5ad29f0c8f607193363a3b0873a5519ea98c86c5c91866659760bfc8c",
+      "text_sha256": "c257c9db225e994e118a989e4bee9227a3b520e9828b0feb51475f25d68ed3ef",
+      "title": "交通アクセス | ご来場のお客様 | 朱鷺メッセ：新潟コンベンションセンター",
+      "final_url": "https://www.tokimesse.com/visitor/access/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_toki_company": {
+      "url": "https://www.tokimesse.com/about/",
+      "observed_at_utc": "2026-09-22T09:55:18.585814Z",
+      "status": "body_fetched",
+      "body_sha256": "fd9bebb37232017b9ce01d1eb7e5b232e98f690865b7dc9c843579abb0634090",
+      "text_sha256": "130b250067b7e795b06b7a49280c4feebe230f3b20ff8d8b7feacfd2517ff024",
+      "title": "会社情報 | 朱鷺メッセ：新潟コンベンションセンター",
+      "final_url": "https://www.tokimesse.com/about/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_toki_schedule": {
+      "url": "https://www.tokimesse.com/visitor/event/index",
+      "observed_at_utc": "2026-09-22T09:55:28.082415Z",
+      "status": "body_fetched",
+      "body_sha256": "3503d8ed07e61c4c4f18404057e3ace731270da6f46976dbb1f5c7c19a515e92",
+      "text_sha256": "2f7c394052119df9b168195bf0a8149274f6951cffc3bc620634aa70f7469059",
+      "title": "イベント情報 | ご来場のお客様｜朱鷺メッセ 新潟コンベンションセンター",
+      "final_url": "https://www.tokimesse.com/visitor/event/index",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_noguchi": {
+      "url": "https://www.nagasakistadiumcity.com/event/50333/",
+      "observed_at_utc": "2026-09-22T09:54:12.631181Z",
+      "status": "body_fetched",
+      "body_sha256": "a78cc4b46d0a52c93ae09fd15b6832d3ea39895c5f5cdd0456bd757a1fe23059",
+      "text_sha256": "daa05f4a6507221dbaa29af31d224f38b965ca7d5d619c9fadb64b28b6e32ed8",
+      "title": "GORO NOGUCHI CONCERT TOUR 2026「 I sing songs !!～歌がある限り～」 - 【公式】長崎スタジアムシティ",
+      "final_url": "https://www.nagasakistadiumcity.com/event/50333/",
+      "retrieval_method": "requests_bs4"
+    },
+    "followup_20260922_okinawa_city": {
+      "url": "https://www.city.okinawa.okinawa.jp/zyoureikun/act/content/content110002968.htm",
+      "observed_at_utc": "2026-09-22T09:54:12.564085Z",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "retrieval_method": "requests_bs4",
+      "alternate_retrieval": {
+        "method": "web_open",
+        "status": "body_read",
+        "fact": "第2条：沖縄市山内一丁目16番1号",
+        "raw_body_hash_available": false
+      }
     }
   }
 }

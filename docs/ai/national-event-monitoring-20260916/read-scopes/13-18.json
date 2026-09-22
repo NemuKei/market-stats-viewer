@@ -1,5 +1,5 @@
 {
-  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
+  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
   "snapshot_only": true,
   "scopes": [
     {
@@ -1724,10 +1724,12 @@
           "venue_id": "toki_messe",
           "venue_name": "朱鷺メッセ 新潟コンベンションセンター",
           "aliases": [
-            "朱鷺メッセ 新潟コンベンションセンター"
+            "朱鷺メッセ 新潟コンベンションセンター",
+            "朱鷺メッセ・新潟コンベンションセンター",
+            "朱鷺メッセ：新潟コンベンションセンター"
           ],
           "official_url": "https://www.tokimesse.com/",
-          "schedule_url": "https://www.tokimesse.com/",
+          "schedule_url": "https://www.tokimesse.com/visitor/event/index",
           "official_fetch_enabled": false,
           "scope_review": "pending",
           "fetch_status": "unvisited",
@@ -1799,6 +1801,59 @@
           "registry_venue_id": null,
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
           "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "a1e5e5db0d68b12e4834",
+          "name": "朱鷺メッセ・新潟コンベンションセンター",
+          "pref_code": "15",
+          "venue_kind": "arena",
+          "address": "新潟県新潟市中央区万代島6番1号",
+          "capacity": 10000,
+          "capacity_basis": "1階展示ホール7,800㎡・シアター10,000人。小会議室や別のメインホール1,000人と区別。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.tokimesse.com/sponsor/guide/",
+              "observed_at_utc": "2026-09-22T09:54:12.558856Z",
+              "body_sha256": "7ef3b8fb256107bc75753303bc29a5b27ae3c9c172ce2841b3531a241dab0648",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.tokimesse.com/sponsor/guide/wavemarket.html",
+              "observed_at_utc": "2026-09-22T09:54:12.561301Z",
+              "body_sha256": "d00628ee486e395f557f5883e5901458ab3733367f10beccf6ce9ad77280a181",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.tokimesse.com/visitor/access/",
+              "observed_at_utc": "2026-09-22T09:54:12.562645Z",
+              "body_sha256": "6e8ea1f5ad29f0c8f607193363a3b0873a5519ea98c86c5c91866659760bfc8c",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.tokimesse.com/about/",
+              "observed_at_utc": "2026-09-22T09:55:18.585814Z",
+              "body_sha256": "fd9bebb37232017b9ce01d1eb7e5b232e98f690865b7dc9c843579abb0634090",
+              "retrieval_method": "requests_bs4"
+            }
+          ],
+          "registry_venue_id": "toki_messe",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "株式会社新潟メッセ",
+          "aliases": [
+            "朱鷺メッセ 新潟コンベンションセンター",
+            "朱鷺メッセ・新潟コンベンションセンター",
+            "朱鷺メッセ：新潟コンベンションセンター"
+          ],
+          "official_url": "https://www.tokimesse.com/",
+          "schedule_url": "https://www.tokimesse.com/visitor/event/index",
+          "schedule_extent": "予定表URL取得済み。全月・個別公演本文の確認は未完了。",
+          "reviewed_at_utc": "2026-09-22T09:57:11.217140Z"
         }
       ],
       "pending_proposals": []

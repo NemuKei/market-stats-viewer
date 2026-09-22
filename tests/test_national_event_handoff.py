@@ -217,7 +217,7 @@ def test_import_preview_requires_explicit_alias_input():
         stage_official_event(p, decision(p), REGISTRY, **ctx)
 
 
-@pytest.mark.parametrize("change", ["time", "date", "cancelled", "postponed"])
+@pytest.mark.parametrize("change", ["time", "date"])
 def test_import_preview_does_not_bypass_ticketjam_conflict_hold(change):
     p, d, queue = correction_case(change)
     staged = stage_official_event(p, d, REGISTRY, queue=queue, **preview_context())
@@ -294,7 +294,7 @@ def test_import_preview_cli_outputs_copy_without_mutating_inputs(tmp_path, capsy
     assert {p.name: p.read_bytes() for p in tmp_path.iterdir()} == before
 
 
-@pytest.mark.parametrize("change", ["time", "date", "cancelled", "postponed"])
+@pytest.mark.parametrize("change", ["time", "date"])
 def test_import_preview_cannot_overwrite_published_source_by_adding_row(change):
     p, d, queue = correction_case(change)
     p["stream"] = "venue_official"
@@ -606,7 +606,7 @@ def test_local_atomic_state_rejects_stale_revision_and_existing_lock(tmp_path):
 
 @pytest.mark.parametrize(
     "filename,total,venues,mapped",
-    [("sekai_no_owari_2027.json", 23, 11, 23), ("aimyon_2027.json", 36, 15, 30)],
+    [("sekai_no_owari_2027.json", 23, 11, 23), ("aimyon_2027.json", 36, 15, 36)],
 )
 def test_real_nationwide_tour_fixture_keeps_every_stop_without_publication_approval(
     filename,
@@ -783,6 +783,173 @@ def correction_case(change="time"):
         event_status=new.get("event_status", "scheduled"),
     )
     return p, d, {"candidates": [candidate]}
+
+
+@pytest.mark.parametrize("status", ["cancelled", "postponed"])
+@pytest.mark.parametrize("origin", ["ticketjam", "published"])
+def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
+    tmp_path, monkeypatch, status, origin
+):
+    from dataclasses import replace
+    from datetime import date
+    import requests
+    from scripts.national_event_handoff import published_snapshot
+    from scripts.signals.sources.venue_web_discovery import VenueWebDiscoverySource
+    from scripts.signals.sources.base import compute_content_hash
+    from scripts.signals.types import SignalSourceRecord
+    from scripts.update_events_data import init_db as init_events
+    from scripts.update_event_signals_data import (
+        init_db,
+        ensure_default_sources,
+        upsert_signals,
+    )
+    from scripts.build_lp_events import load_lp_records
+    from scripts.ticketjam_discovery import build_discovery_bundle
+    from scripts.build_external_events_manifest import _build_manifest
+    from scripts.validate_external_events import validate_package
+
+    init_events(tmp_path / "events.sqlite").close()
+    conn = init_db(tmp_path / "event_signals.sqlite")
+    ensure_default_sources(conn)
+    p, d, queue = correction_case(status)
+    active = dict(
+        d["official_event"],
+        event_id="original-active",
+        event_status="scheduled",
+        verified_at_utc="2030-09-20T00:00:00Z",
+    )
+    if origin == "ticketjam":
+        active["discovery_event_key"] = p["event_key"]
+    evening = dict(active, event_id="separate-evening", event_start_time="21:00")
+    evening.pop("discovery_event_key", None)
+    config = dict(future_only=False, confirmed_events=[active, evening])
+    config_path = tmp_path / "config.json"
+    source = SignalSourceRecord(
+        "venue_web_discovery",
+        "Test",
+        "https://artist.example/",
+        "codex_web_discovery",
+        json.dumps({"config_path": str(config_path)}),
+        True,
+    )
+
+    def signals_for(cfg):
+        config_path.write_text(json.dumps(cfg))
+        return VenueWebDiscoverySource(requests.Session()).fetch_signals(source)
+
+    original = signals_for(config)
+    stale = replace(
+        next(
+            s
+            for s in original
+            if json.loads(s.labels_json)["event_start_time"] == "19:00"
+        ),
+        signal_uid="stale-news-row",
+        source_id="starto_concert",
+    )
+    stale.content_hash = compute_content_hash(stale)
+    upsert_signals(conn, original + [stale])
+    conn.commit()
+
+    def publish(state):
+        records = load_lp_records(
+            events_db_path=tmp_path / "events.sqlite",
+            event_signals_db_path=tmp_path / "event_signals.sqlite",
+            as_of_date=date(2030, 9, 21),
+        )
+        return build_discovery_bundle(
+            records, as_of_date=date(2030, 9, 21), review_state=state
+        )[0]
+
+    empty = {"schema_version": 1, "events": {}}
+    before = publish(empty)
+    assert {r["event_start_time"] for r in before["events"]} == {"19:00", "21:00"}
+    if origin == "published":
+        row = next(r for r in before["events"] if r["event_start_time"] == "19:00")
+        p.update(
+            stream="venue_official",
+            event_key=row["event_key"],
+            candidate_fingerprint=digest(row),
+        )
+        d["proposal_hash"] = digest(p)
+    context_args = preview_context(config=config)
+    context_args["published"] = published_snapshot(before, base_commit=BASE)
+    receipt = stage_official_event(
+        p, d, REGISTRY, queue=queue if origin == "ticketjam" else None, **context_args
+    )
+    preview = receipt["import_preview"]
+    assert preview["action"] == "add_suppression"
+    assert preview["status"] == "ready_for_review" and not receipt["can_publish"]
+    assert preview["config"]["confirmed_events"][:2] == config["confirmed_events"]
+    state = receipt["candidate_review_state"] or empty
+    if origin == "ticketjam":
+        review = state["events"][p["event_key"]]["history"][-1]
+        assert review["status"] == "conflict"
+        assert review["official_suppression"]["event_status"] == status
+    else:
+        notice = preview["config"]["confirmed_events"][-1]
+        assert not notice.get("discovery_event_key")
+        assert notice["published_event_key"] == p["event_key"]
+        assert (
+            notice["published_input_fingerprint"]
+            == context_args["published"]["lp_fingerprint"]
+        )
+    inserted = upsert_signals(conn, signals_for(preview["config"]))
+    assert inserted == 1
+    assert upsert_signals(conn, signals_for(preview["config"])) == 0
+    # A stale source rerun must not resurrect the suppressed performance.
+    assert upsert_signals(conn, original + [stale]) == 0
+    conn.commit()
+    assert conn.execute("SELECT COUNT(*) FROM signals").fetchone()[0] == 4
+    assert (
+        conn.execute(
+            "SELECT COUNT(*) FROM signals WHERE signal_uid='stale-news-row'"
+        ).fetchone()[0]
+        == 1
+    )
+    conn.close()
+    after = publish(state)
+    assert [r["event_start_time"] for r in after["events"]] == ["21:00"]
+    assert after["summary"]["suppressed_event_count"] == 1
+    again = stage_official_event(
+        p,
+        d,
+        REGISTRY,
+        queue=queue if origin == "ticketjam" else None,
+        review_state=state,
+        **dict(context_args, config=preview["config"]),
+    )
+    assert again["import_preview"]["action"] == "unchanged"
+    (tmp_path / "lp_events.json").write_text(json.dumps(after))
+    monkeypatch.setenv("GITHUB_SHA", BASE)
+    (tmp_path / "manifest.json").write_text(
+        json.dumps(_build_manifest(tmp_path, "external-events-latest"))
+    )
+    assert (
+        validate_package(tmp_path, expected_date="2030-09-21", expected_commit=BASE)[
+            "event_count"
+        ]
+        == 1
+    )
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("event_date", "2030-12-02"),
+        ("event_start_time", "18:30"),
+        ("event_end_date", "2030-12-02"),
+        ("title", "別公演"),
+    ],
+)
+def test_status_import_cannot_change_identity_while_claiming_suppression(field, value):
+    p, d, queue = correction_case("cancelled")
+    p["proposed_values"][field] = value
+    d["official_event"][{"event_date": "event_start_date"}.get(field, field)] = value
+    d["proposal_hash"] = digest(p)
+    staged = stage_official_event(p, d, REGISTRY, queue=queue, **preview_context())
+    assert staged["import_preview"]["status"] == "blocked"
+    assert staged["import_preview"]["config"] is None
 
 
 @pytest.mark.parametrize(

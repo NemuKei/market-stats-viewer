@@ -1,5 +1,5 @@
 {
-  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
+  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
   "snapshot_only": true,
   "scopes": [
     {
@@ -622,10 +622,13 @@
           "venue_name": "日本ガイシホール",
           "aliases": [
             "ガイシホール",
-            "Nihon Gaishi Hall"
+            "Nihon Gaishi Hall",
+            "クロコくんホール",
+            "クロコくんホール（旧日本ガイシホール）",
+            "クロコくんホール (旧日本ガイシホール)"
           ],
-          "official_url": "https://aichi-sc.jp/facility/nespahall/",
-          "schedule_url": "https://aichi-sc.jp/facility/nespahall/",
+          "official_url": "https://www.nespa.or.jp/sports-plaza/hall/",
+          "schedule_url": "https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html",
           "official_fetch_enabled": false,
           "scope_review": "pending",
           "fetch_status": "unvisited",
@@ -931,6 +934,72 @@
           "registry_venue_id": "toyota_stadium",
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
           "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "cdeea1ae8cf74d92047a",
+          "name": "クロコくんホール",
+          "pref_code": "23",
+          "venue_kind": "arena",
+          "address": "愛知県名古屋市南区東又兵ヱ町5丁目1番地の16",
+          "capacity": 10000,
+          "capacity_basis": "固定・可動・移動席を含め最大10,000人。運営者の主催者案内。",
+          "operating_status": "temporary_public_use_suspension_20260806_to_20261130",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "other_months_and_event_details"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.nespa.or.jp/sports-plaza/hall/",
+              "observed_at_utc": "2026-09-22T09:53:59.464353Z",
+              "body_sha256": "dbf946e38b7d27f5d9201994e687f30df855f02b08e9f56eef64f5bf0e0d4953",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.nespa.or.jp/blog/hall/news/施設の愛称変更について/",
+              "observed_at_utc": "2026-09-22T09:53:59.467965Z",
+              "body_sha256": "5fc1c20c73adc1b3f946b58c94ddc6a344e1dbaeb3980281b88fc3a38d46f72d",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.nespa.or.jp/hall/faq/index.html",
+              "observed_at_utc": "2026-09-22T09:53:59.464704Z",
+              "body_sha256": "44d5d6aa0882f830f2804fe1a69052ec16a715419c37bf773858cec3c63a1a8c",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.nespa.or.jp/sports-plaza/hall/organizer/",
+              "observed_at_utc": "2026-09-22T09:53:59.467093Z",
+              "body_sha256": "37be80a87b737a82c6dc025dfd796b72fd9a59bc62cef2d11f6f0d41a162c898",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.nespa.or.jp/blog/hall/news/アジア・アジアパラ競技大会に伴う施設利用休止/",
+              "observed_at_utc": "2026-09-22T09:53:59.469400Z",
+              "body_sha256": "e25bdd4644c7ec977bd7559f96e98587229e5269203bc575eaf8e67340ae0a7d",
+              "retrieval_method": "requests_bs4"
+            },
+            {
+              "evidence_url": "https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html",
+              "observed_at_utc": "2026-09-22T09:53:59.465009Z",
+              "body_sha256": "61672321207577d6c5b26a82993a3ca1d7ce49cee27e3f3bd6bf15e58c59c063",
+              "retrieval_method": "requests_bs4"
+            }
+          ],
+          "registry_venue_id": "nihon_gaishi_hall",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "名古屋市総合体育館ＮＫ共同事業体（名古屋市教育スポーツ協会・加藤商会）",
+          "aliases": [
+            "日本ガイシホール",
+            "クロコくんホール",
+            "クロコくんホール（旧日本ガイシホール）",
+            "クロコくんホール (旧日本ガイシホール)"
+          ],
+          "official_url": "https://www.nespa.or.jp/sports-plaza/hall/",
+          "schedule_url": "https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html",
+          "schedule_extent": "表示中2026年12月〜2027年8月の全行を閲覧。2027/4/21・22、6/5・6のあいみょん4公演をツアーfixtureと照合。未表示月は未確認。",
+          "reviewed_at_utc": "2026-09-22T09:57:11.217140Z"
         }
       ],
       "pending_proposals": []

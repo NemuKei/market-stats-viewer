@@ -44,16 +44,16 @@
     {
       "event_date": "2027-02-20",
       "venue_name": "朱鷺メッセ・新潟コンベンションセンター",
-      "canonical_venue_name": "朱鷺メッセ・新潟コンベンションセンター",
-      "registry_venue_id": null,
+      "canonical_venue_name": "朱鷺メッセ 新潟コンベンションセンター",
+      "registry_venue_id": "toki_messe",
       "open_time": "17:00",
       "event_start_time": "18:00"
     },
     {
       "event_date": "2027-02-21",
       "venue_name": "朱鷺メッセ・新潟コンベンションセンター",
-      "canonical_venue_name": "朱鷺メッセ・新潟コンベンションセンター",
-      "registry_venue_id": null,
+      "canonical_venue_name": "朱鷺メッセ 新潟コンベンションセンター",
+      "registry_venue_id": "toki_messe",
       "open_time": "16:00",
       "event_start_time": "17:00"
     },
@@ -124,16 +124,16 @@
     {
       "event_date": "2027-04-21",
       "venue_name": "クロコくんホール (旧日本ガイシホール)",
-      "canonical_venue_name": "クロコくんホール",
-      "registry_venue_id": null,
+      "canonical_venue_name": "日本ガイシホール",
+      "registry_venue_id": "nihon_gaishi_hall",
       "open_time": "17:30",
       "event_start_time": "18:30"
     },
     {
       "event_date": "2027-04-22",
       "venue_name": "クロコくんホール (旧日本ガイシホール)",
-      "canonical_venue_name": "クロコくんホール",
-      "registry_venue_id": null,
+      "canonical_venue_name": "日本ガイシホール",
+      "registry_venue_id": "nihon_gaishi_hall",
       "open_time": "17:30",
       "event_start_time": "18:30"
     },
@@ -204,16 +204,16 @@
     {
       "event_date": "2027-06-05",
       "venue_name": "クロコくんホール (旧日本ガイシホール)",
-      "canonical_venue_name": "クロコくんホール",
-      "registry_venue_id": null,
+      "canonical_venue_name": "日本ガイシホール",
+      "registry_venue_id": "nihon_gaishi_hall",
       "open_time": "17:00",
       "event_start_time": "18:00"
     },
     {
       "event_date": "2027-06-06",
       "venue_name": "クロコくんホール (旧日本ガイシホール)",
-      "canonical_venue_name": "クロコくんホール",
-      "registry_venue_id": null,
+      "canonical_venue_name": "日本ガイシホール",
+      "registry_venue_id": "nihon_gaishi_hall",
       "open_time": "16:00",
       "event_start_time": "17:00"
     },
@@ -297,5 +297,6 @@
       "open_time": "16:00",
       "event_start_time": "17:00"
     }
-  ]
+  ],
+  "identity_review_note": "2026-09-22: operator name/address/capacity and hall schedule cross-check; all 36 performances mapped. Existing IDs and canonical labels retained; not import or publication approval."
 }

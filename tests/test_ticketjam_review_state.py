@@ -74,6 +74,32 @@ def test_conflict_and_incomplete_never_promote():
         )
 
 
+@pytest.mark.parametrize(
+    "mutation", ["time", "date", "end", "title", "status", "review", "evidence"]
+)
+def test_suppression_proof_rejects_mismatched_candidate_or_review(mutation):
+    d = decision("conflict")
+    event = d.pop("official_event")
+    event["event_status"] = "cancelled"
+    d.update(official_values={"event_status": "cancelled"}, official_suppression=event)
+    if mutation == "time":
+        event["event_start_time"] = None
+    elif mutation == "date":
+        event["event_start_date"] = "2026-09-14"
+    elif mutation == "end":
+        event["event_end_date"] = "2026-09-15"
+    elif mutation == "title":
+        event["title"] = "Another performance"
+    elif mutation == "status":
+        event["event_status"] = "postponed"
+    elif mutation == "review":
+        d["status"] = "insufficient"
+    else:
+        event["evidence_url"] = "https://ticketjam.jp/tickets/one"
+    with pytest.raises(ValueError):
+        apply_reviews({}, [candidate()], [d])
+
+
 def test_mismatched_official_date_rejected_without_mutation():
     d = decision()
     d["official_event"]["event_start_date"] = "2026-09-14"

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
+  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
   "national_census_complete": false,
   "streams": [
     "announcement",
@@ -21,7 +21,7 @@
         "05",
         "06"
       ],
-      "sha256": "f3c68e10af767724906bd889d856f1c6eb30f4dfaf9fcef7f40c97a5ef9452fc",
+      "sha256": "4d7071d5eeecd61b95b279207d36729a6479a324f2161a8a6ec6d8a6759df806",
       "bytes": 25283
     },
     {
@@ -34,7 +34,7 @@
         "11",
         "12"
       ],
-      "sha256": "5baaaf2ea1ec19a7acec693df5213b7b5e57498b3c4f7395e906e62b75c9736e",
+      "sha256": "8178563628af332565282c80b4668125d40b6b7eb3dc713485ab646203153c52",
       "bytes": 32243
     },
     {
@@ -47,8 +47,8 @@
         "17",
         "18"
       ],
-      "sha256": "c6654ddc8ba16c44402d979fab98a14fbd1250235c0f11e3b09aa5ab16c9fb46",
-      "bytes": 83368
+      "sha256": "29e9bea6dc98dbfa003e8f6139872ef63511dcccbe046729f26adfbfca232ad5",
+      "bytes": 86244
     },
     {
       "path": "19-24.json",
@@ -60,8 +60,8 @@
         "23",
         "24"
       ],
-      "sha256": "4ad709345f18b5bb2fd06fe976904b877a2efec94f58161899d0b242c55169ee",
-      "bytes": 38072
+      "sha256": "2a11b56becd8740b542be93222a77e51bca1c25ac65105d631bb3e0a4255453c",
+      "bytes": 41964
     },
     {
       "path": "25-30.json",
@@ -73,7 +73,7 @@
         "29",
         "30"
       ],
-      "sha256": "530b2a63910e794fc87e7753f49608bdbb77e7e3989da430d48fc773cf685f8e",
+      "sha256": "d79edfaee4fdb2eae2a520367036eb76fcee270e08ff3c7875fa77b80e947481",
       "bytes": 39948
     },
     {
@@ -86,7 +86,7 @@
         "35",
         "36"
       ],
-      "sha256": "a576c9d50aa4ad16039cb1472c204c18a580c3564d459b91f202ab6276d53e42",
+      "sha256": "47b88beebb851df8322fa30d52bf572564658396874056a9dd7adb0825200c12",
       "bytes": 16220
     },
     {
@@ -99,7 +99,7 @@
         "41",
         "42"
       ],
-      "sha256": "a7e299c508e0e5e4bb4717d38e9e160a2a7a80d33c2a0270e8472871b4ea0299",
+      "sha256": "d73cb54813e24277cdb4a2c7b3b6c610da3284e3738a9257bf16c7dc1086ed21",
       "bytes": 35157
     },
     {
@@ -111,8 +111,8 @@
         "46",
         "47"
       ],
-      "sha256": "cc3b7b737beba441fa7d68639d6167046a169eb4553f0d10047a1283545add4e",
-      "bytes": 14275
+      "sha256": "b1ffa05da52d08b724386466cd08e6656d579ecf91c46a6eddc7dc760ca6843c",
+      "bytes": 14782
     }
   ]
 }

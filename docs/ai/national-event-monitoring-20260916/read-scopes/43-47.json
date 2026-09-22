@@ -1,5 +1,5 @@
 {
-  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
+  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
   "snapshot_only": true,
   "scopes": [
     {
@@ -315,6 +315,13 @@
               "observed_at_utc": "2026-09-22T08:14:32.585886Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "e7a4e88bc122c5bcff6338008299901201fe759f8b03711d57553c20badcc479"
+            },
+            {
+              "evidence_url": "https://www.city.okinawa.okinawa.jp/zyoureikun/act/content/content110002968.htm",
+              "observed_at_utc": "2026-09-22T09:57:11.217140Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null,
+              "checked_fact": "第2条の位置は沖縄市山内一丁目16番1号。直接HTTP取得は失敗、web閲覧で確認。"
             }
           ],
           "operator_reference_url": "https://goldenkings.jp/",
@@ -340,7 +347,7 @@
               "evidence_url": "https://okinawa-arena.jp/organizer/equipment"
             }
           ],
-          "address_note": "公式内で相違。会社事務所の久保田住所を施設住所として転用しない。解消待ち。"
+          "address_note": "市条例第2条はaccessと同じ山内一丁目16番1号。設備案内との相違理由は未確認のため両根拠とaddress_conflictを維持。会社事務所住所は転用しない。"
         },
         {
           "candidate_id": "37cb4d2bf9c95156cdb2",
