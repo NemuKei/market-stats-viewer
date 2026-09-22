@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -32,32 +32,74 @@
           "name": "あなぶきアリーナ香川",
           "pref_code": "37",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "香川県高松市サンポート6番11号",
+          "capacity": 10000,
+          "capacity_basis": "公式トップの最大10,000。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://kagawa-arena.com/",
+              "observed_at_utc": "2026-09-22T11:32:31.395229Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "2d0dd3fff8e73a138eed06668cfc246c17e6039a7522f52420fdb029c00b6b50"
+            },
+            {
+              "evidence_url": "https://kagawa-arena.com/news/1535/",
+              "observed_at_utc": "2026-09-22T11:42:47.155869Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "5d34895808173328609fff84f95773e4b8b444fccb66679debdb290c39700030"
+            },
+            {
+              "evidence_url": "https://kagawa-arena.com/event/",
+              "observed_at_utc": "2026-09-22T11:43:57.653855Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "542e84121390484cd7fbafe674b586d345bf363b9948dc95bb64a41ce6cd08b4"
             }
           ],
           "operator_reference_url": "https://www.fivearrows.jp/",
           "location_hint": "香川県高松市",
           "registry_venue_id": "anabuki_arena_kagawa",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "香川アリーナコンソーシアム",
+          "canonical_name": "あなぶきアリーナ香川",
+          "official_url": "https://kagawa-arena.com/",
+          "schedule_url": "https://kagawa-arena.com/event/",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "10月休館告知本文は確認したが、具体日付の画像は未読。全館休館日を推測しない。",
+          "schedule_extent": "HTML見出しのみ抽出。催事本文は未取得。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://kagawa-arena.com/event/",
+              "observed_at_utc": "2026-09-22T11:43:57.653855Z",
+              "status": "body_without_schedule",
+              "extent": "HTML見出しのみ抽出。催事本文は未取得。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "0f2d7f32e324a39e44ca",
@@ -522,6 +564,24 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "mikuni_world_stadium_kitakyushu",
+          "venue_name": "ミクニワールドスタジアム北九州",
+          "aliases": [
+            "北九州スタジアム"
+          ],
+          "official_url": "https://www.kitakyushu-stadium.jp/",
+          "schedule_url": "https://www.kitakyushu-stadium.jp/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -547,11 +607,19 @@
               "evidence_url": "https://www.jleague.jp/club/fukuoka/profile/",
               "observed_at_utc": "2026-09-20T11:16:20.608705Z",
               "body_sha256": "fb52b6650517f8e378088447ae5506770dd0095221e9ee3b21b5b8af27059524"
+            },
+            {
+              "evidence_url": "https://www.jleague.jp/club/fukuoka/profile/",
+              "observed_at_utc": "2026-09-22T11:32:31.805726Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a216ff5c8d8034923dfcfa36a54cfd83ac1d382064a1e8dbbec087353e6f65cb"
             }
           ],
           "registry_venue_id": "best_denki_stadium",
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "fetch_status": "body_fetched",
+          "partial_review_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "保存URLはJリーグのクラブ案内へ転送。入場数21,546と会場住所は確認、クラブ事務所を会場運営者とはみなさない。"
         },
         {
           "candidate_id": "3719d24017a968502e29",
@@ -559,26 +627,78 @@
           "pref_code": "40",
           "venue_kind": "stadium",
           "address": "福岡県北九州市小倉北区浅野3-9-33",
-          "capacity": 15300,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": null,
+          "capacity_basis": "公式座席図はリンクを確認。総収容数の本文確認は未了。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "capacity_basis",
+            "schedule_date_conflict"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/kitakyushu/profile/",
               "observed_at_utc": "2026-09-20T11:17:10.089379Z",
               "body_sha256": "b364111c72a073ed1fd419568f7c74102926f05d8c8e64471786a96c4ace2575"
+            },
+            {
+              "evidence_url": "https://www.kitakyushu-stadium.jp/",
+              "observed_at_utc": "2026-09-22T11:32:49.734961Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7e504478ec20514950b9d3eadc3d17ae93e82da03399536b1b31a422a6f523d3"
+            },
+            {
+              "evidence_url": "https://www.kitakyushu-stadium.jp/page.php?fc=kiji&id=2",
+              "observed_at_utc": "2026-09-22T11:41:43.050268Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "468680c75c5dbd133c6304fb82870c7541281bf2df488a28316e9eae767e48c8"
+            },
+            {
+              "evidence_url": "https://www.kitakyushu-stadium.jp/event/",
+              "observed_at_utc": "2026-09-22T11:43:35.996176Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "1444c8649fda4df5f456bcf56e2c730926e8a4bcd540c7383d869226177f2dc4"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "mikuni_world_stadium_kitakyushu",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 15300,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kitakyushu/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:10.089379Z",
+                  "body_sha256": "b364111c72a073ed1fd419568f7c74102926f05d8c8e64471786a96c4ace2575"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "ミクニワールドスタジアム北九州",
+          "operator": null,
+          "aliases": [
+            "北九州スタジアム"
+          ],
+          "official_url": "https://www.kitakyushu-stadium.jp/",
+          "schedule_url": "https://www.kitakyushu-stadium.jp/event/",
+          "schedule_extent": "9月〜10月の一部告知を確認。ナイトラン見出し9/30に対し本文8/26で矛盾。3Fラウンジ催事とスタジアムを区別。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.kitakyushu-stadium.jp/event/",
+              "observed_at_utc": "2026-09-22T11:43:35.996176Z",
+              "status": "visible_entries_with_date_conflict",
+              "extent": "9月〜10月の一部告知を確認。ナイトラン見出し9/30に対し本文8/26で矛盾。3Fラウンジ催事とスタジアムを区別。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "36f8e3932570177a212d",

@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -217,32 +217,74 @@
           "name": "北海きたえーる",
           "pref_code": "01",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "北海道札幌市豊平区豊平5条11丁目1番1号",
+          "capacity": 10000,
+          "capacity_basis": "最大10,000人。仮設席4,036を含む。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases",
+            "operator_identity"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+              "observed_at_utc": "2026-09-22T11:32:09.606087Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e750fc7d3a7d2c6b8ac50ffbd06195ecb62433aa07d3b4d37c917911d5e6c65b"
+            },
+            {
+              "evidence_url": "https://www.kitayell.jp/facilities/overview/",
+              "observed_at_utc": "2026-09-22T11:42:27.183349Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "c29751246626e1415f536a2cea1dc0c579ff068703e05cee5b6ccf227d8ca73f"
+            },
+            {
+              "evidence_url": "https://www.kitayell.jp/schedule/event-info/",
+              "observed_at_utc": "2026-09-22T11:43:45.772751Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "851eb5e5746309b62a691203209649dee3fa9a50f4e42564f65d4fd6d6a9bb23"
             }
           ],
           "operator_reference_url": "https://www.levanga.com/",
           "location_hint": "北海道札幌市",
           "registry_venue_id": "hokkai_kitayell",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": null,
+          "canonical_name": "北海道立総合体育センター 北海きたえーる",
+          "official_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+          "schedule_url": "https://www.kitayell.jp/schedule/event-info/",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_extent": "9月行事予定の入口を確認。予定表画像/PDFと深夜枠の全範囲は未読。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.kitayell.jp/schedule/event-info/",
+              "observed_at_utc": "2026-09-22T11:43:45.772751Z",
+              "status": "schedule_links_only",
+              "extent": "9月行事予定の入口を確認。予定表画像/PDFと深夜枠の全範囲は未読。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "e0a8f3062cd0255dd944",
@@ -266,11 +308,18 @@
               "evidence_url": "https://www.jleague.jp/club/sapporo/profile/",
               "observed_at_utc": "2026-09-20T11:18:24.224371Z",
               "body_sha256": "8e42cc37461aa3ece346dc908febeffa422fbd897b1248f1374479e918d9fcd5"
+            },
+            {
+              "evidence_url": "https://www.sapporo-dome.co.jp/",
+              "observed_at_utc": "2026-09-22T11:32:09.606490Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "46948bc0d5057ab750065080ed6c70228d19da69088ca7f4ddc3e355e832efee"
             }
           ],
           "registry_venue_id": "sapporo_dome",
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "fetch_status": "body_fetched",
+          "partial_review_at_utc": "2026-09-22T11:47:09.609074Z"
         }
       ],
       "pending_proposals": []
@@ -337,6 +386,12 @@
               "observed_at_utc": "2026-09-22T11:12:55.263483Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "83ff0072ab627b318cf012b414683a3de0e3594b527bbffb99e7af9e1ebf5f74"
+            },
+            {
+              "evidence_url": "https://aomori-arena.jp/super-arena/wp-content/uploads/2026/09/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A610%E6%9C%88%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%B5%E3%83%96%E4%BA%88%E5%AE%9A%E8%A1%A8.pdf",
+              "observed_at_utc": "2026-09-22T11:32:43.746069Z",
+              "retrieval_method": "requests_pdf",
+              "body_sha256": "49de0c8f02f8a99c03a9c84fa9a5533910dd8218b2588cb8f1d1916d12fbcf59"
             }
           ],
           "operator_reference_url": "https://aomori-wats.jp/",
@@ -384,11 +439,25 @@
             "青森市総合体育館"
           ],
           "operating_status_note": null,
-          "schedule_extent": "2026年10月のメイン/サブ利用予定表へのリンクを確認。PDF本文・9月・他月は未読。",
+          "schedule_extent": "全2ページを目視。メイン/サブ、国スポ・障スポの予約枠を確認。準備撤収を含み得る予約時間を本番の開始時刻へ転用しない。 他月・主催者詳細・変更追跡は未完。",
           "canonical_name": "カクヒログループスーパーアリーナ",
           "official_url": "https://aomori-arena.jp/",
           "schedule_url": "https://aomori-arena.jp/news/4834/",
-          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://aomori-arena.jp/super-arena/wp-content/uploads/2026/09/令和8年度10月メインサブ予定表.pdf",
+              "observed_at_utc": "2026-09-22T11:32:43.746069Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1,
+                2
+              ],
+              "month": "2026-10",
+              "extent": "全2ページを目視。メイン/サブ、国スポ・障スポの予約枠を確認。準備撤収を含み得る予約時間を本番の開始時刻へ転用しない。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "3d43823a77b4ecdb5177",
@@ -471,6 +540,12 @@
               "observed_at_utc": "2026-09-22T11:02:33.170541Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "47e3b5390686f7894f4b29547a12fe2d631cf74aa7fe31f081c819551b4f75b6"
+            },
+            {
+              "evidence_url": "https://morioka-sport.or.jp/wp/wp-content/uploads/2026/09/10%E6%9C%88%E4%BA%88%E5%AE%9A%E8%A1%A8-1.pdf",
+              "observed_at_utc": "2026-09-22T11:32:52.746862Z",
+              "retrieval_method": "requests_pdf",
+              "body_sha256": "70d5620ca8559202d6f9ed38d8a5b51f3235278d8f9dc0678f8c92c9326112cb"
             }
           ],
           "operator_reference_url": "https://www.bigbulls.jp/",
@@ -506,11 +581,25 @@
             "盛岡市総合アリーナ"
           ],
           "operating_status_note": null,
-          "schedule_extent": "9月・10月利用予定表PDFリンクまで確認。本文未読。",
+          "schedule_extent": "全2ページを目視。アリーナとトレーニング/卓球の別、10/20休館を確認。「盛岡体育館」の改修休館は別施設でありタカヤ全館休館へ転用しない。 他月・主催者詳細・変更追跡は未完。",
           "canonical_name": "盛岡タカヤアリーナ",
           "official_url": "https://morioka-sport.or.jp/facility/arena/",
           "schedule_url": "https://morioka-sport.or.jp/facility/arena/",
-          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://morioka-sport.or.jp/wp/wp-content/uploads/2026/09/10月予定表-1.pdf",
+              "observed_at_utc": "2026-09-22T11:32:52.746862Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1,
+                2
+              ],
+              "month": "2026-10",
+              "extent": "全2ページを目視。アリーナとトレーニング/卓球の別、10/20休館を確認。「盛岡体育館」の改修休館は別施設でありタカヤ全館休館へ転用しない。",
+              "scheduled_run": false
+            }
+          ]
         }
       ],
       "pending_proposals": []
@@ -539,6 +628,22 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "xebio_arena_sendai",
+          "venue_name": "ゼビオアリーナ仙台",
+          "aliases": [],
+          "official_url": "https://www.xebioarena.com/facility/",
+          "schedule_url": "https://www.xebioarena.com/program/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -547,31 +652,75 @@
           "name": "ゼビオアリーナ仙台",
           "pref_code": "04",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "宮城県仙台市太白区あすと長町1-4-10",
+          "capacity": 7200,
+          "capacity_basis": "現行公式施設情報の最大7,200人、総座席4,660。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.xebioarena.com/",
+              "observed_at_utc": "2026-09-22T11:33:01.828095Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "9785f60a755c7e7fde2cda3e760f49503f7001506daa7f009aa7e973de6c0726"
+            },
+            {
+              "evidence_url": "https://www.xebioarena.com/facility/",
+              "observed_at_utc": "2026-09-22T11:42:08.007202Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a96bf7e0cb9964e4f7b76aa3514dffedcf4c629f4d0cb8c4278b463534a0e953"
+            },
+            {
+              "evidence_url": "https://www.xebioarena.com/program/",
+              "observed_at_utc": "2026-09-22T11:43:36.713154Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "09e35f992f1d2ddf5c4e572f5f53fb1594630af779b2176e5e639e2096fac468"
             }
           ],
           "operator_reference_url": "https://www.89ers.jp/",
           "location_hint": "宮城県仙台市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "xebio_arena_sendai",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "ゼビオアリーナ仙台",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://www.xebioarena.com/facility/",
+          "schedule_url": "https://www.xebioarena.com/program/",
+          "schedule_extent": "年/月選択と過去2025年の複数催事を確認。現行2026年の全範囲は未確認。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.xebioarena.com/program/",
+              "observed_at_utc": "2026-09-22T11:43:36.713154Z",
+              "status": "archive_visible_current_month_pending",
+              "extent": "年/月選択と過去2025年の複数催事を確認。現行2026年の全範囲は未確認。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "a909f671029f42e6401a",

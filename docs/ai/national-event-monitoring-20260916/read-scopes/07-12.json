@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -119,6 +119,12 @@
               "observed_at_utc": "2026-09-22T11:12:55.787292Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "ad6ea1e7bdc6888ca56d118dc6f6700a148251de0dc6e86e5c64c77646c2e646"
+            },
+            {
+              "evidence_url": "https://kaiseizan-koriyama.jp/cms_xfield/wp-content/uploads/2026/09/R8-10%E6%9C%88%E4%BD%93%E8%82%B2%E9%A4%A8%E8%A1%8C%E4%BA%8B%E4%BA%88%E5%AE%9A%E8%A1%A8-9%E6%9C%8818%E6%97%A5.pdf",
+              "observed_at_utc": "2026-09-22T11:32:43.746450Z",
+              "retrieval_method": "requests_pdf",
+              "body_sha256": "5b531b7671443513bc94082e95d434bb90a353c5fec36ee5be6c4f414d4aec6c"
             }
           ],
           "operator_reference_url": "https://firebonds.jp/",
@@ -167,11 +173,24 @@
             "郡山総合体育館"
           ],
           "operating_status_note": "10月～翌5月の木曜休館案内は季節別の定休。期間全体の休止ではない。",
-          "schedule_extent": "2026年10月体育館行事予定表のPDFリンクを確認。本文未読。",
+          "schedule_extent": "全1ページを目視。大/小体育館・武道場等の別、休館と個人利用を確認。ファイヤーボンズ等の予約枠から実試合日を推定しない。 他月・主催者詳細・変更追跡は未完。",
           "canonical_name": "宝来屋ボンズアリーナ",
           "official_url": "https://kaiseizan-koriyama.jp/facility-01",
           "schedule_url": "https://kaiseizan-koriyama.jp/news/cat01/3139",
-          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://kaiseizan-koriyama.jp/cms_xfield/wp-content/uploads/2026/09/R8-10月体育館行事予定表-9月18日.pdf",
+              "observed_at_utc": "2026-09-22T11:32:43.746450Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1
+              ],
+              "month": "2026-10",
+              "extent": "全1ページを目視。大/小体育館・武道場等の別、休館と個人利用を確認。ファイヤーボンズ等の予約枠から実試合日を推定しない。",
+              "scheduled_run": false
+            }
+          ]
         }
       ],
       "pending_proposals": []
@@ -187,6 +206,26 @@
           "aliases": [],
           "official_url": "https://maas.or.jp/pages/126/",
           "schedule_url": "https://maas.or.jp/pages/87/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "mercari_stadium",
+          "venue_name": "メルカリスタジアム",
+          "aliases": [
+            "茨城県立カシマサッカースタジアム",
+            "カシマサッカースタジアム",
+            "メルスタ"
+          ],
+          "official_url": "https://www.antlers.co.jp/pages/mercari-stadium-about",
+          "schedule_url": "https://www.antlers.co.jp/pages/mercari-stadium-event-index/",
           "official_fetch_enabled": false,
           "scope_review": "pending",
           "fetch_status": "unvisited",
@@ -294,26 +333,73 @@
           "pref_code": "08",
           "venue_kind": "stadium",
           "address": "茨城県鹿嶋市神向寺後山26-2",
-          "capacity": 39095,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 40003,
+          "capacity_basis": "施設概要の改修後40,003名（車椅子140・メディア240を含む）。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_date_conflict"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/kashima/profile/",
               "observed_at_utc": "2026-09-20T11:17:00.842775Z",
               "body_sha256": "2c068aa05dc8b410736a2e8d99b201f3c52a1a738c923578f06a139fd60a0651"
+            },
+            {
+              "evidence_url": "https://www.antlers.co.jp/pages/mercari-stadium-about",
+              "observed_at_utc": "2026-09-22T11:41:43.048099Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "3384bbb1a6f46e4e1d5be18c4c0e6aada6ea0f7a5a02ac3338d38c27c47cd359"
+            },
+            {
+              "evidence_url": "https://www.antlers.co.jp/pages/mercari-stadium-event-index/",
+              "observed_at_utc": "2026-09-22T11:43:28.432633Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "98ff05f513e9d89665c7a7cc7304bd210d7ad953f0bb08d475e2d28926acc27e"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "mercari_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 39095,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kashima/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:00.842775Z",
+                  "body_sha256": "2c068aa05dc8b410736a2e8d99b201f3c52a1a738c923578f06a139fd60a0651"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "メルカリスタジアム",
+          "operator": null,
+          "aliases": [
+            "茨城県立カシマサッカースタジアム",
+            "カシマサッカースタジアム",
+            "メルスタ"
+          ],
+          "official_url": "https://www.antlers.co.jp/pages/mercari-stadium-about",
+          "schedule_url": "https://www.antlers.co.jp/pages/mercari-stadium-event-index/",
+          "schedule_extent": "titleは2026年6月、本文は9月1〜30日。本文の9月6/15/23日試合を確認。titleと本文の不一致、開始時刻未記載、他月未読を保持。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.antlers.co.jp/pages/mercari-stadium-event-index/",
+              "observed_at_utc": "2026-09-22T11:43:28.432633Z",
+              "status": "visible_month_with_title_conflict",
+              "extent": "titleは2026年6月、本文は9月1〜30日。本文の9月6/15/23日試合を確認。titleと本文の不一致、開始時刻未記載、他月未読を保持。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "be3329ceff0f95edf28e",
@@ -798,28 +884,74 @@
           "name": "埼玉スタジアム２００２",
           "pref_code": "11",
           "venue_kind": "stadium",
-          "address": "〒336-0972 埼玉県さいたま市緑区美園2-1",
-          "capacity": 62040,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "埼玉県さいたま市緑区美園2-1",
+          "capacity": 63700,
+          "capacity_basis": "運営者座席63,700（車椅子150含む）。従前Jリーグ入場可能数62,040を履歴保持。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/urawa/profile/",
               "observed_at_utc": "2026-09-20T11:19:03.920519Z",
               "body_sha256": "0d6e14357f31dfd29c9bdb7ba704ed12ecd98c92056dc6549ce0c52035d89bcc"
+            },
+            {
+              "evidence_url": "https://www.stadium2002.com/",
+              "observed_at_utc": "2026-09-22T11:32:09.606813Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "1dd4875b7426007ba4eb6ab14028141c90eef92369b8df0c466a8c3bd33b751b"
+            },
+            {
+              "evidence_url": "https://www.stadium2002.com/stadium_10.html",
+              "observed_at_utc": "2026-09-22T11:42:27.267067Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d06b27fda8d8348e0d4060922efcb50f9247defb5404598789b99903ba078fe6"
+            },
+            {
+              "evidence_url": "https://www.stadium2002.com/events.php?year=2026&month=9",
+              "observed_at_utc": "2026-09-22T11:43:46.179605Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "66156734d1e3a86a913fdedc1e244126ea1ad420924d51036070016afb0ee426"
             }
           ],
           "registry_venue_id": "saitama_stadium_2002",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "〒336-0972 埼玉県さいたま市緑区美園2-1",
+              "capacity": 62040,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/urawa/profile/",
+                  "observed_at_utc": "2026-09-20T11:19:03.920519Z",
+                  "body_sha256": "0d6e14357f31dfd29c9bdb7ba704ed12ecd98c92056dc6549ce0c52035d89bcc"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "埼玉スタジアム２○○２公園マネジメントネットワーク",
+          "canonical_name": "埼玉スタジアム2002",
+          "official_url": "https://www.stadium2002.com/",
+          "schedule_url": "https://www.stadium2002.com/events.php?year=2026&month=9",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_extent": "2026年9月一覧の見出し・月選択を確認。個別催事の本文は未確認。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.stadium2002.com/events.php?year=2026&month=9",
+              "observed_at_utc": "2026-09-22T11:43:46.179605Z",
+              "status": "month_shell_read",
+              "extent": "2026年9月一覧の見出し・月選択を確認。個別催事の本文は未確認。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "0ec8f9901047d7073b11",
@@ -1079,32 +1211,80 @@
           "name": "LaLa arena TOKYO-BAY",
           "pref_code": "12",
           "venue_kind": "arena",
-          "address": null,
+          "address": "千葉県船橋市浜町2丁目5番15号",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "今回本文では最大数未照合。台帳10,000は変更しない。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases",
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/",
+              "observed_at_utc": "2026-09-22T11:32:09.607249Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7944618342adac98c3bcd79fa6f5bbc680da3c38f7cb8c515666ff33b6c0e88d"
+            },
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/company/",
+              "observed_at_utc": "2026-09-22T11:42:47.161865Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "c11f277410fe27b42434b3267a7075594c76721a2e4a891f46af143cc5029264"
+            },
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/organizer/",
+              "observed_at_utc": "2026-09-22T11:42:48.193640Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a37003fc02f8dae659a7e082107f7544daf141d372ba90e0cb2d707e5511a3d1"
+            },
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+              "observed_at_utc": "2026-09-22T11:43:48.654235Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0df7ec2df5c9138f277754dd9d51a53bd9c98322613c173f2488b115d69f44fc"
             }
           ],
           "operator_reference_url": "https://chibajets.jp/",
           "location_hint": "千葉県船橋市",
           "registry_venue_id": "lalaarena_tokyobay",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "株式会社TOKYO-BAYアリーナマネジメント",
+          "canonical_name": "ららアリーナ 東京ベイ",
+          "official_url": "https://lalaarenatokyo-bay.com/",
+          "schedule_url": "https://lalaarenatokyo-bay.com/event/",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_extent": "9月の冒頭公演で開場と開演、同日複数回を確認。全月・個別主催者照合は未完。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+              "observed_at_utc": "2026-09-22T11:43:48.654235Z",
+              "status": "visible_entries_partial",
+              "extent": "9月の冒頭公演で開場と開演、同日複数回を確認。全月・個別主催者照合は未完。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "638826a8446f2af4a5fa",
@@ -1113,26 +1293,55 @@
           "venue_kind": "stadium",
           "address": "千葉県千葉市中央区川崎町1-20",
           "capacity": 19470,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "既存Jリーグ入場可能数19,470を保持。台帳18,500との尺度・現行数は要照合。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases",
+            "capacity_reconciliation"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/chiba/profile/",
               "observed_at_utc": "2026-09-20T11:16:00.701106Z",
               "body_sha256": "4a81eded80d8ffddc340bb3de5ae33cf21d1d4f92af4833d25311369b6734df7"
+            },
+            {
+              "evidence_url": "https://sogasportspark.com/pages/74/",
+              "observed_at_utc": "2026-09-22T11:32:09.610658Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7d990a567cfcb1314aa9ad75fbd83d9339ac2f19fbb5dc8f69f3ebfb5d87387e"
+            },
+            {
+              "evidence_url": "https://sogasportspark.com/pages/371/",
+              "observed_at_utc": "2026-09-22T11:42:28.325192Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "87f2befc049699fbafda2b08c9d46dd6c1083f4c50174364c19f172a5c1de34c"
             }
           ],
           "registry_venue_id": "fukuda_denshi_arena",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/chiba/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:00.701106Z",
+                  "body_sha256": "4a81eded80d8ffddc340bb3de5ae33cf21d1d4f92af4833d25311369b6734df7"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "SSP UNITED",
+          "canonical_name": "フクダ電子アリーナ",
+          "official_url": "https://sogasportspark.com/pages/74/",
+          "schedule_url": "https://sogasportspark.com/pages/74/",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z"
         },
         {
           "candidate_id": "a1f8642b0406cfc4c3c7",
@@ -1166,32 +1375,59 @@
           "name": "千葉ポートアリーナ",
           "pref_code": "12",
           "venue_kind": "arena",
-          "address": null,
+          "address": "千葉県千葉市中央区問屋町1-20",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "本文の固定4,380・可動616・仮設2,500・車椅子8を記録。台帳7,512との差・総数は未照合。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases",
+            "capacity_basis",
+            "capacity_reconciliation"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/",
+              "observed_at_utc": "2026-09-22T11:42:33.667313Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "f421ce3a669604d5734984878bc57db98b6a4ff2e449fa794cec8867cbf87960"
+            },
+            {
+              "evidence_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+              "observed_at_utc": "2026-09-22T11:32:09.612507Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "75266685ea6de94c308e6cad43cd0b4194e64b79959617cb27f053be64deed4b"
             }
           ],
           "operator_reference_url": "https://altiri.jp/",
           "location_hint": "千葉県千葉市",
           "registry_venue_id": "chiba_port_arena",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "公益財団法人千葉市スポーツ協会",
+          "canonical_name": "千葉ポートアリーナ メインアリーナ",
+          "official_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+          "schedule_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z"
         }
       ],
       "pending_proposals": []

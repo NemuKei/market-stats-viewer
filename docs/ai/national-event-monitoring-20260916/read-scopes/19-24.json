@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -66,6 +66,12 @@
               "observed_at_utc": "2026-09-22T11:12:55.929377Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "732be40a5161e2004db75b6b66adc10356ccf52961f3f1892a91fa82a4dd9cbd"
+            },
+            {
+              "evidence_url": "https://www.kose-sp.pref.yamanashi.jp/wp-content/uploads/2026/07/3fbf89a5525056298130432198cd6391.pdf",
+              "observed_at_utc": "2026-09-22T11:32:54.917521Z",
+              "retrieval_method": "requests_pdf",
+              "body_sha256": "8b6d1744ed37d95153a854b218eb3ec708f0039dbaaa78cc369d38a50d6a3c6c"
             }
           ],
           "registry_venue_id": "jit_recycle_ink_stadium",
@@ -112,11 +118,25 @@
             "小瀬スポーツ公園陸上競技場"
           ],
           "operating_status_note": null,
-          "schedule_extent": "2026年9月のスタジアム/補助競技場利用状況へのリンクを確認。添付表本文・個別大会は未読。",
+          "schedule_extent": "全2ページを目視。p1本体、p2補助競技場の個人利用可否表（8/25時点）。空き/利用不可は催事の有無や日程の根拠ではない。 他月・主催者詳細・変更追跡は未完。",
           "canonical_name": "JITリサイクルインクスタジアム",
           "official_url": "https://www.kose-sp.pref.yamanashi.jp/guide/34/",
           "schedule_url": "https://www.kose-sp.pref.yamanashi.jp/info/use/359755/",
-          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.kose-sp.pref.yamanashi.jp/wp-content/uploads/2026/07/3fbf89a5525056298130432198cd6391.pdf",
+              "observed_at_utc": "2026-09-22T11:32:54.917521Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1,
+                2
+              ],
+              "month": "2026-09",
+              "extent": "全2ページを目視。p1本体、p2補助競技場の個人利用可否表（8/25時点）。空き/利用不可は催事の有無や日程の根拠ではない。",
+              "scheduled_run": false
+            }
+          ]
         }
       ],
       "pending_proposals": []
@@ -161,6 +181,44 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "sunpro_alwin",
+          "venue_name": "サンプロ アルウィン",
+          "aliases": [
+            "サンプロアルウィン",
+            "アルウィン"
+          ],
+          "official_url": "https://shinshu-skypark.net/facility/alwin.php",
+          "schedule_url": "https://shinshu-skypark.net/facility/alwin.php",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "white_ring",
+          "venue_name": "ホワイトリング",
+          "aliases": [
+            "長野市真島総合スポーツアリーナ",
+            "真島総合スポーツアリーナ"
+          ],
+          "official_url": "https://whitering.jp/facility.html",
+          "schedule_url": "https://whitering.jp/event.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -170,26 +228,57 @@
           "pref_code": "20",
           "venue_kind": "stadium",
           "address": "長野県松本市神林5300",
-          "capacity": 19796,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 20000,
+          "capacity_basis": "運営者施設案内の2万人（座席16,000・立見4,000）。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "venue_address_detail"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/matsumoto/profile/",
               "observed_at_utc": "2026-09-20T11:17:30.941811Z",
               "body_sha256": "6a59c82676003f7d6827a8684d4d294536df0a2f7031d891ee91b97648d61d58"
+            },
+            {
+              "evidence_url": "https://shinshu-skypark.net/facility/alwin.php",
+              "observed_at_utc": "2026-09-22T11:41:58.936301Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4eec242099b96dfae3cd1d7da2708df9a6d58f1ca94742f4d6ca7cb1b7bf62be"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "sunpro_alwin",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 19796,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/matsumoto/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:30.941811Z",
+                  "body_sha256": "6a59c82676003f7d6827a8684d4d294536df0a2f7031d891ee91b97648d61d58"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "サンプロ アルウィン",
+          "operator": "TOY BOX 信州スカイパークサービスセンター",
+          "aliases": [
+            "サンプロアルウィン",
+            "アルウィン"
+          ],
+          "official_url": "https://shinshu-skypark.net/facility/alwin.php",
+          "schedule_url": null,
+          "schedule_extent": "予定表の全範囲・主催者詳細の照合は未完。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "address_basis": "従前Jリーグ施設住所を保持。運営者本文では同住所の公園サービスセンターを確認。球場敷地の住所を追加照合。"
         },
         {
           "candidate_id": "4dac15254c614015d8b2",
@@ -254,31 +343,92 @@
           "name": "ホワイトリング",
           "pref_code": "20",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "長野県長野市真島町真島2268-1",
+          "capacity": 5008,
+          "capacity_basis": "市施設案内のメイン観客席5,008、運営サイトは約5,000。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "renovation_completion"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://whitering.jp/facility.html",
+              "observed_at_utc": "2026-09-22T11:42:16.693636Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "dbf761a3a68bf90501481224c71d37b71635758e36de296e70e0d567edbf8dce"
+            },
+            {
+              "evidence_url": "https://www.city.nagano.nagano.jp/n155400/contents/p003012.html",
+              "observed_at_utc": "2026-09-22T11:42:17.291000Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4169de532f1ee42b62cee3f8f074b7bd176e299f569113afbc9382af46499119"
+            },
+            {
+              "evidence_url": "https://whitering.jp/",
+              "observed_at_utc": "2026-09-22T11:42:17.764674Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "92a26b38233f8b6936fe593a68af7a55a0be9adfb1c600595903312f8bbe6192"
+            },
+            {
+              "evidence_url": "https://www.city.nagano.nagano.jp/n155400/contents/p006203.html",
+              "observed_at_utc": "2026-09-22T11:43:26.371522Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b8cb80b2733680e0710f1093a71bb81a29fba1de26d43c8cf951fe6721635e82"
+            },
+            {
+              "evidence_url": "https://whitering.jp/event.html",
+              "observed_at_utc": "2026-09-22T11:43:44.815773Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ec9e107cc7ee71602a7669020cee5f047007e508e43ec551353579bb4da2a8c0"
             }
           ],
           "operator_reference_url": "https://www.b-warriors.net/",
           "location_hint": "長野県長野市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "white_ring",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "ホワイトリング",
+          "operator": null,
+          "aliases": [
+            "長野市真島総合スポーツアリーナ",
+            "真島総合スポーツアリーナ"
+          ],
+          "official_url": "https://whitering.jp/facility.html",
+          "schedule_url": "https://whitering.jp/event.html",
+          "schedule_extent": "2026–2027教室一覧の冒頭を確認。教室情報は大型催事予定表の代用にしない。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "市の3/4告知は3/10〜9/18予定の部分立入制限（全館休館なし）。予定経過だけで工事完了と判定しない。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://whitering.jp/event.html",
+              "observed_at_utc": "2026-09-22T11:43:44.815773Z",
+              "status": "classes_only_not_event_coverage",
+              "extent": "2026–2027教室一覧の冒頭を確認。教室情報は大型催事予定表の代用にしない。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "ee44b08a6c50fe286d4f",
@@ -1220,11 +1370,18 @@
               "evidence_url": "https://www.jleague.jp/club/nagoya/profile/",
               "observed_at_utc": "2026-09-20T11:17:51.770645Z",
               "body_sha256": "8081d4a5307770205cb1806adb8cd296e52cc0df2f23798108ed5194eaa34beb"
+            },
+            {
+              "evidence_url": "https://www.toyota-stadium.co.jp/facility03/",
+              "observed_at_utc": "2026-09-22T11:32:30.401998Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "02e9fd8853b3e370f37de289007da984accf39c574d9123db3b81cc4c8180837"
             }
           ],
           "registry_venue_id": "toyota_stadium",
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "fetch_status": "body_fetched",
+          "partial_review_at_utc": "2026-09-22T11:47:09.609074Z"
         },
         {
           "candidate_id": "cdeea1ae8cf74d92047a",
@@ -1385,6 +1542,12 @@
               "observed_at_utc": "2026-09-22T11:12:46.426008Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "f1084bc937b3bbcc5c5bf10c362f585e4be310b439056a9258fe92b2f2724127"
+            },
+            {
+              "evidence_url": "https://sun-arena.or.jp/wp/wp-content/uploads/202610_kawaraban.pdf",
+              "observed_at_utc": "2026-09-22T11:32:43.750126Z",
+              "retrieval_method": "requests_pdf",
+              "body_sha256": "40180a37037525980454cd5dacfa002fed12e4005b053afc99e8982eb9acd043"
             }
           ],
           "address": "三重県伊勢市朝熊町字鴨谷4383-4",
@@ -1397,18 +1560,32 @@
           ],
           "operating_status": "current_schedule_linked",
           "operating_status_note": null,
-          "schedule_extent": "2026年9月・10月かわら版PDFリンクを確認。本文未読。既存AGF鈴鹿体育館候補は別施設として保持。",
+          "schedule_extent": "全2ページを目視。10/4福祉フェスのメイン10:00〜14:45を確認。教室・他会場の屋外催事、会議室/トレーニング案内を分離。8/20時点の予定で変更確認が必要。 他月・主催者詳細・変更追跡は未完。",
           "registry_venue_id": "mie_sun_arena",
           "canonical_name": "三重県営サンアリーナ",
           "official_url": "https://sun-arena.or.jp/?page_id=173",
           "schedule_url": "https://sun-arena.or.jp/?page_id=904",
-          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
           "scope_review": "operator_identity_verified_schedule_pending",
           "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "missing_fields": [
             "schedule_extent",
             "historical_aliases"
+          ],
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://sun-arena.or.jp/wp/wp-content/uploads/202610_kawaraban.pdf",
+              "observed_at_utc": "2026-09-22T11:32:43.750126Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1,
+                2
+              ],
+              "month": "2026-10",
+              "extent": "全2ページを目視。10/4福祉フェスのメイン10:00〜14:45を確認。教室・他会場の屋外催事、会議室/トレーニング案内を分離。8/20時点の予定で変更確認が必要。",
+              "scheduled_run": false
+            }
           ]
         }
       ],

@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -589,6 +589,24 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "ookini_arena_maishima",
+          "venue_name": "おおきにアリーナ舞洲",
+          "aliases": [
+            "舞洲アリーナ"
+          ],
+          "official_url": "https://human-arena.com/mainarena/",
+          "schedule_url": "https://human-arena.com/mainarena/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -624,31 +642,63 @@
           "name": "おおきにアリーナ舞洲",
           "pref_code": "27",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "大阪府大阪市此花区北港緑地2-2-15",
+          "capacity": 7056,
+          "capacity_basis": "施設概要のメイン観客席7,056。紹介の最大約7千人と同じ会場。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://human-arena.com/mainarena/",
+              "observed_at_utc": "2026-09-22T11:42:18.305395Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b3962cac303881d9d247ed2889f5baac0f76081f5f616a14a63c68139ddf7aa3"
+            },
+            {
+              "evidence_url": "https://human-arena.com/",
+              "observed_at_utc": "2026-09-22T11:42:18.369773Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "66d3e50aa08eee74043c874ac54f0d1b228a77459bcc3c6d8069c0319f8f093b"
             }
           ],
           "operator_reference_url": "https://www.evessa.com/",
           "location_hint": "大阪府大阪市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "ookini_arena_maishima",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "おおきにアリーナ舞洲",
+          "operator": null,
+          "aliases": [
+            "舞洲アリーナ"
+          ],
+          "official_url": "https://human-arena.com/mainarena/",
+          "schedule_url": null,
+          "schedule_extent": "予定表の全範囲・主催者詳細の照合は未完。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "ホームHTMLに2017/00/00のサンプル告知が残る。施設概要と住所は確認、予定表の鮮度は確認できず。"
         },
         {
           "candidate_id": "0230e86322f89b964735",
@@ -656,27 +706,72 @@
           "pref_code": "27",
           "venue_kind": "stadium",
           "address": "大阪府吹田市千里万博公園3-3",
-          "capacity": 39694,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 40000,
+          "capacity_basis": "運営者総数40,000。既存Jリーグ39,694を履歴保持。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/gosaka/profile/",
               "observed_at_utc": "2026-09-20T11:16:31.100344Z",
               "body_sha256": "c2ffbebb03e9bef3362f4160e8750482f1668e7c7fc6bcba28118380f976f49c"
+            },
+            {
+              "evidence_url": "https://suitacityfootballstadium.jp/",
+              "observed_at_utc": "2026-09-22T11:32:30.402506Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b86328b2bafb9cbd46de2a985c0ae00c516f8f291bf92508d69a9633f8b9fabd"
+            },
+            {
+              "evidence_url": "https://www2.suitacityfootballstadium.jp/c/stadium/index.html",
+              "observed_at_utc": "2026-09-22T11:42:42.268859Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4dc32ead8487e7f2db6278666f580efe39662fe2d4f4404f9159aa96b45185ca"
+            },
+            {
+              "evidence_url": "https://suitacityfootballstadium.jp/schedule/",
+              "observed_at_utc": "2026-09-22T11:43:57.381218Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "107f175b200db20409f5348fba8311d542d3a4faf28d4c4043bd5eed5a307414"
             }
           ],
           "registry_venue_id": "panasonic_stadium_suita",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 39694,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/gosaka/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:31.100344Z",
+                  "body_sha256": "c2ffbebb03e9bef3362f4160e8750482f1668e7c7fc6bcba28118380f976f49c"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "株式会社ガンバ大阪",
+          "canonical_name": "Panasonic Stadium Suita",
+          "official_url": "https://suitacityfootballstadium.jp/",
+          "schedule_url": "https://suitacityfootballstadium.jp/schedule/",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_extent": "9月の一部を確認。9/11・14の準備日と9/12・15の19:00試合を区別。他月・全件は未完。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://suitacityfootballstadium.jp/schedule/",
+              "observed_at_utc": "2026-09-22T11:43:57.381218Z",
+              "status": "visible_entries_partial",
+              "extent": "9月の一部を確認。9/11・14の準備日と9/12・15の19:00試合を区別。他月・全件は未完。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "606e61508221d77f10c1",
@@ -944,32 +1039,74 @@
           "name": "GLION ARENA KOBE",
           "pref_code": "28",
           "venue_kind": "arena",
-          "address": null,
+          "address": "兵庫県神戸市中央区新港町2番1号",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "台帳10,000を保持。今回の施設本文では規模再照合未了。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "historical_aliases",
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.totteikobe.jp/",
+              "observed_at_utc": "2026-09-22T11:32:31.025611Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4fc33684a5c8ba00273a08c2f8d400f9b39094aa7a43d352cdc09332e530d314"
+            },
+            {
+              "evidence_url": "https://www.totteikobe.jp/company",
+              "observed_at_utc": "2026-09-22T11:42:46.554787Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6071e9d97eb7a307d4a975ba974c121a708acb56efaec678c2303d1a6ea57c19"
+            },
+            {
+              "evidence_url": "https://www.totteikobe.jp/event",
+              "observed_at_utc": "2026-09-22T11:43:58.259844Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "729ea22655bc997726daaa6ecefe9e6704e95f53b428f87019c2af273830aebd"
             }
           ],
           "operator_reference_url": "https://www.storks.jp/",
           "location_hint": "兵庫県神戸市",
           "registry_venue_id": "glion_arena_kobe",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "operator": "株式会社One Bright KOBE",
+          "canonical_name": "GLION ARENA KOBE",
+          "official_url": "https://www.totteikobe.jp/",
+          "schedule_url": "https://www.totteikobe.jp/event",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_extent": "2026/Daily/8月の表示を確認。現行月全体・動的表示は未確認。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.totteikobe.jp/event",
+              "observed_at_utc": "2026-09-22T11:43:58.259844Z",
+              "status": "month_shell_read",
+              "extent": "2026/Daily/8月の表示を確認。現行月全体・動的表示は未確認。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "4a7cb33aaf2353029299",
@@ -993,11 +1130,19 @@
               "evidence_url": "https://www.jleague.jp/club/kobe/profile/",
               "observed_at_utc": "2026-09-20T11:17:09.764679Z",
               "body_sha256": "2f3af8591d4a3652d0b0e20a307a5b5e77c32f33499822f67fee960e7915b557"
+            },
+            {
+              "evidence_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+              "observed_at_utc": "2026-09-22T11:32:31.157497Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "5c5151d5a858cff1139b785d002d29e17c231b7000ed50bc2393ea4c491286fe"
             }
           ],
           "registry_venue_id": "noevir_stadium_kobe",
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "fetch_status": "body_fetched",
+          "partial_review_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "保存URLはコンベンション案内。リンク先www.noevir-stadium.jpの取得失敗。会場公式本文・現行規模・予定表の確認は継続。"
         }
       ],
       "pending_proposals": []

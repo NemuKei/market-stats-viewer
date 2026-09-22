@@ -740,6 +740,1665 @@
         "fact": "第2条：沖縄市山内一丁目16番1号",
         "raw_body_hash_available": false
       }
+    },
+    "round2_ajinomoto_close": {
+      "url": "https://www.ajinomotostadium.com/news/2026/09/16354.php",
+      "observed_at_utc": "2026-09-22T11:42:36.138487Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "9a3ddf33c5e19d5e1e59a64a38c634b9a4da688f4a4e7b86174ce154c89748e1",
+      "title": "臨時休館日のお知らせ（9月22日火曜日） | ニュース ｜ 味の素スタジアム",
+      "final_url": "https://www.ajinomotostadium.com/news/2026/09/16354.php",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ajinomoto_info": {
+      "url": "https://www.ajinomotostadium.com/overview/stadium.php",
+      "observed_at_utc": "2026-09-22T11:42:36.077041Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "efb5dee2ec8d05fb43ead1c467a1a020d6761a8f1cb321801251b32ff274965a",
+      "title": "味の素スタジアム | 施設ガイド ｜ 味の素スタジアム",
+      "final_url": "https://www.ajinomotostadium.com/overview/stadium.php",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_alwin": {
+      "url": "https://shinshu-skypark.net/facility/stadium/",
+      "observed_at_utc": "2026-09-22T11:32:50.907906Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_alwin_info": {
+      "url": "https://shinshu-skypark.net/facility/alwin.php",
+      "observed_at_utc": "2026-09-22T11:41:58.936301Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "4eec242099b96dfae3cd1d7da2708df9a6d58f1ca94742f4d6ca7cb1b7bf62be",
+      "title": "サンプロ アルウィン | 施設案内 | 信州スカイパーク",
+      "final_url": "https://shinshu-skypark.net/facility/alwin.php",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_anabuki_arena_kagawa": {
+      "url": "https://kagawa-arena.com/",
+      "observed_at_utc": "2026-09-22T11:32:31.395229Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "2d0dd3fff8e73a138eed06668cfc246c17e6039a7522f52420fdb029c00b6b50",
+      "title": "あなぶきアリーナ香川",
+      "final_url": "https://kagawa-arena.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/anabuki_arena_kagawa?igsh=MzRlODBiNWFlZA==",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_anabuki_calendar": {
+      "url": "https://kagawa-arena.com/event/",
+      "observed_at_utc": "2026-09-22T11:43:57.653855Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "542e84121390484cd7fbafe674b586d345bf363b9948dc95bb64a41ce6cd08b4",
+      "title": "イベント | あなぶきアリーナ香川",
+      "final_url": "https://kagawa-arena.com/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/anabuki_arena_kagawa?igsh=MzRlODBiNWFlZA==",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_anabuki_close": {
+      "url": "https://kagawa-arena.com/news/1535/",
+      "observed_at_utc": "2026-09-22T11:42:47.155869Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "5d34895808173328609fff84f95773e4b8b444fccb66679debdb290c39700030",
+      "title": "10月休館日のお知らせ | 新着情報 | あなぶきアリーナ香川",
+      "final_url": "https://kagawa-arena.com/news/1535/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/anabuki_arena_kagawa?igsh=MzRlODBiNWFlZA==",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_aomori_oct_pdf": {
+      "url": "https://aomori-arena.jp/super-arena/wp-content/uploads/2026/09/令和8年度10月メインサブ予定表.pdf",
+      "observed_at_utc": "2026-09-22T11:32:43.746069Z",
+      "retrieval_method": "requests_pdf",
+      "status": "body_fetched",
+      "body_sha256": "49de0c8f02f8a99c03a9c84fa9a5533910dd8218b2588cb8f1d1916d12fbcf59",
+      "final_url": "https://aomori-arena.jp/super-arena/wp-content/uploads/2026/09/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A610%E6%9C%88%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%B5%E3%83%96%E4%BA%88%E5%AE%9A%E8%A1%A8.pdf",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_aore": {
+      "url": "https://www.ao-re.jp/",
+      "observed_at_utc": "2026-09-22T11:33:00.974850Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "5077fd76bd1880e2b6990c32adcee4081b21afe7ff9c62ca0a65319aa3057b66",
+      "title": "アオーレ長岡 - 市民交流の拠点 シティホールプラザ アオーレ長岡",
+      "final_url": "https://ao-re.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_aore_arena": {
+      "url": "https://ao-re.jp/floormap/arena",
+      "observed_at_utc": "2026-09-22T11:43:18.220440Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "e0e6cc911e7d910db24f44e99f76d4b86b2e0b8b65c9fb1463ade7cd7c711896",
+      "title": "アリーナ - アオーレ長岡",
+      "final_url": "https://ao-re.jp/floormap/arena",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_aore_calendar": {
+      "url": "https://ao-re.jp/event/date/2026/09/",
+      "observed_at_utc": "2026-09-22T11:43:36.649418Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "82af98105539fdf221a4d4d26057ba9459da5817e9a88bc669a77b2e37e598f8",
+      "title": "9月 2026 - アオーレ長岡",
+      "final_url": "https://ao-re.jp/event/date/2026/09",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_aore_info": {
+      "url": "https://ao-re.jp/floormap/",
+      "observed_at_utc": "2026-09-22T11:42:00.489374Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "ba6329204e989dbf60888097a9119cf708e7863c63c4086a82441b1ced134292",
+      "title": "フロアマップ - アオーレ長岡",
+      "final_url": "https://ao-re.jp/about/floormap",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_aore_roof": {
+      "url": "https://ao-re.jp/news/47821",
+      "observed_at_utc": "2026-09-22T11:42:07.229513Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "f8a28e8fa5681d78160bb590ce3e0d95307db195a3055c8b915e945e5a970b7b",
+      "title": "アオーレ長岡（西棟・アリーナ棟）の大屋根鉄骨塗装工事に伴う使用制限について - アオーレ長岡",
+      "final_url": "https://ao-re.jp/news/47821",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ariake_arena": {
+      "url": "https://ariake-arena.tokyo/",
+      "observed_at_utc": "2026-09-22T11:32:20.849284Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "f3ac4e6bceb2c66c9e322f73e72312745769373e6cbe5ac967cd18cbeaa80a37",
+      "title": "TOKYO ARIAKE ARENA ｜ 「東京有明アリーナ」オフィシャルサイト",
+      "final_url": "https://ariake-arena.tokyo/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ariake_calendar": {
+      "url": "https://ariake-arena.tokyo/event/",
+      "observed_at_utc": "2026-09-22T11:43:53.487203Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "4404c5a2ceb3fe312f2331bff4a58a43dcdf40dafcde7e1777bf49c989f1d0fc",
+      "title": "EVENT ｜ TOKYO ARIAKE ARENA",
+      "final_url": "https://ariake-arena.tokyo/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ariake_info": {
+      "url": "https://ariake-arena.tokyo/organizer/facilities/",
+      "observed_at_utc": "2026-09-22T11:42:37.061522Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "4d41b418eccb4fffb13a42e6c6511960f1d96063b553cb2cf500b49dda0ec067",
+      "title": "施設案内 ｜ TOKYO ARIAKE ARENA",
+      "final_url": "https://ariake-arena.tokyo/organizer/facilities/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_best_denki_stadium": {
+      "url": "https://www.jleague.jp/club/fukuoka/stadium/",
+      "observed_at_utc": "2026-09-22T11:32:31.805726Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "a216ff5c8d8034923dfcfa36a54cfd83ac1d382064a1e8dbbec087353e6f65cb",
+      "title": "【公式】アビスパ福岡の試合日程・結果 | Ｊリーグ公式サイト",
+      "final_url": "https://www.jleague.jp/club/fukuoka/profile/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/jleaguejp",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/J_League",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_big_swan": {
+      "url": "https://www.denka-bigswan.com/",
+      "observed_at_utc": "2026-09-22T11:32:42.049367Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "6269dad161046d5c3b5db7d7311934e0ab2e6edd5c549a9f795e4f439b56dffa",
+      "title": "デンカビッグスワンスタジアム",
+      "final_url": "https://www.denka-bigswan.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/bigswan_niigata",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_big_swan_calendar": {
+      "url": "https://www.denka-bigswan.com/event/",
+      "observed_at_utc": "2026-09-22T11:43:28.845139Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "9a23803c8a4f3b592cadbd554510c5b98d0d5801c1ebc708845133575df933bd",
+      "title": "イベント情報｜デンカビッグスワンスタジアム",
+      "final_url": "https://www.denka-bigswan.com/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/bigswan_niigata",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_big_swan_info": {
+      "url": "https://www.denka-bigswan.com/organizer/",
+      "observed_at_utc": "2026-09-22T11:42:00.079758Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "e1604ab43c538ce11e17fcf656e6d8766a33ce097c936f504a0647eb37110035",
+      "title": "主催者様向け施設ガイド｜デンカビッグスワンスタジアム",
+      "final_url": "https://www.denka-bigswan.com/organizer/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/bigswan_niigata",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_big_swan_operator": {
+      "url": "https://www.niigata-sportspark.jp/group/",
+      "observed_at_utc": "2026-09-22T11:43:18.222961Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "09aea22a960a7dd70d0ef9b80c8360826a8b6d3b0cc8b6e74afb221ef657bf45",
+      "title": "管理運営｜新潟県スポーツ公園",
+      "final_url": "https://www.niigata-sportspark.jp/group/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/niigata_sport_park/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/ngtsportspark",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_big_swan_roof": {
+      "url": "https://www.denka-bigswan.com/topics/detail/id/6984",
+      "observed_at_utc": "2026-09-22T11:41:59.606329Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "2b6c7f622f4f06a3e1a60a767862c81f6c7fe6505924e88cf53f9f464bcccc40",
+      "title": "デンカビッグスワンスタジアム「屋根鉄骨洗浄・塗装工事」に伴う  E・Sスタンド及びグラウンドの一部エリアの立入禁止規制について｜ビッグスワンからのお知らせ｜デンカビッグスワンスタジアム",
+      "final_url": "https://www.denka-bigswan.com/topics/detail/id/6984",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/bigswan_niigata",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_big_swan_track": {
+      "url": "https://www.denka-bigswan.com/topics/detail/id/6947",
+      "observed_at_utc": "2026-09-22T11:41:59.857472Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "c7f4e11540d0aae1caf5e8bc3c412483e2e0d302fe1428b9c22a3d0f66d36c5a",
+      "title": "デンカビッグスワンスタジアム 陸上トラック補修工事について（補修工事終了のお知らせ）｜ビッグスワンからのお知らせ｜デンカビッグスワンスタジアム",
+      "final_url": "https://www.denka-bigswan.com/topics/detail/id/6947",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/bigswan_niigata",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_bonds_oct_pdf": {
+      "url": "https://kaiseizan-koriyama.jp/cms_xfield/wp-content/uploads/2026/09/R8-10月体育館行事予定表-9月18日.pdf",
+      "observed_at_utc": "2026-09-22T11:32:43.746450Z",
+      "retrieval_method": "requests_pdf",
+      "status": "body_fetched",
+      "body_sha256": "5b531b7671443513bc94082e95d434bb90a353c5fec36ee5be6c4f414d4aec6c",
+      "final_url": "https://kaiseizan-koriyama.jp/cms_xfield/wp-content/uploads/2026/09/R8-10%E6%9C%88%E4%BD%93%E8%82%B2%E9%A4%A8%E8%A1%8C%E4%BA%8B%E4%BA%88%E5%AE%9A%E8%A1%A8-9%E6%9C%8818%E6%97%A5.pdf",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_budokan_calendar": {
+      "url": "https://www.yokohama-budokan.com/event/",
+      "observed_at_utc": "2026-09-22T11:43:45.639880Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "b90dc317f84e1b36d5143d2dba3994432489b8b5f3fd99005b8d8213f29c55ea",
+      "title": "イベント｜横浜武道館 - 横浜BUNTAIサブアリーナ",
+      "final_url": "https://www.yokohama-budokan.com/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://x.com/YokohamaBudokan",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/yokohama_budokan/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_budokan_home": {
+      "url": "https://www.yokohama-budokan.com/",
+      "observed_at_utc": "2026-09-22T11:42:26.321398Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "93092e9c71fb02dbdda41d2a1ddd64008379c81aa636bca705c0b455cff315cc",
+      "title": "横浜武道館 - 横浜BUNTAIサブアリーナ",
+      "final_url": "https://www.yokohama-budokan.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://x.com/YokohamaBudokan",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/yokohama_budokan/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_buntai_calendar": {
+      "url": "https://yokohama-buntai.jp/event",
+      "observed_at_utc": "2026-09-22T11:43:57.040610Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "e3b78f6dfe621c5175c57820624ea98b32d809b83dea03ecadafbcc4484f0717",
+      "title": "イベント Archive - 横浜BUNTAI",
+      "final_url": "https://yokohama-buntai.jp/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_chiba_info": {
+      "url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/",
+      "observed_at_utc": "2026-09-22T11:42:33.667313Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "f421ce3a669604d5734984878bc57db98b6a4ff2e449fa794cec8867cbf87960",
+      "title": "千葉ポートアリーナ 施設概要 – 公益財団法人千葉市スポーツ協会",
+      "final_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_chiba_port_arena": {
+      "url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+      "observed_at_utc": "2026-09-22T11:32:09.612507Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "75266685ea6de94c308e6cad43cd0b4194e64b79959617cb27f053be64deed4b",
+      "title": "千葉ポートアリーナ・メインアリーナ – 公益財団法人千葉市スポーツ協会",
+      "final_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_egaosta": {
+      "url": "https://www.kspa.or.jp/rikujo/",
+      "observed_at_utc": "2026-09-22T11:32:57.958580Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "e1a39ee1f75abea3fe20143bb024e0d597442c5757ae15fa10d4903c5fce4fca",
+      "title": "えがお健康スタジアム【施設トップ】 | 一般財団法人 熊本県スポーツ振興事業団",
+      "final_url": "https://www.kspa.or.jp/rikujo/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/kspa_kouen?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/kspa_kouen",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kspa_stadium/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_egaosta_calendar": {
+      "url": "https://www.kspa.or.jp/rikujo_yotei/",
+      "observed_at_utc": "2026-09-22T11:43:36.559295Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "980c0e05dce608f4fbc09500f89c2f5150ad67c696952357503b3cbc2341f4ce",
+      "title": "えがお健康スタジアム【行事予定】 | 一般財団法人 熊本県スポーツ振興事業団",
+      "final_url": "https://www.kspa.or.jp/rikujo_yotei/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_egaosta_reopen": {
+      "url": "https://www.kspa.or.jp/archives/kusports_announce/52336/",
+      "observed_at_utc": "2026-09-22T11:41:59.473734Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "6f464da7eaefcab1623f26460fc73c2fa0e4de317addb23a2b4818c8a8524055",
+      "title": "施設再開及び利用休止継続のお知らせ（9/10 15：40現在） | 一般財団法人 熊本県スポーツ振興事業団",
+      "final_url": "https://www.kspa.or.jp/archives/kusports_announce/52336/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_fukuda_denshi_arena": {
+      "url": "https://sogasportspark.com/pages/74/",
+      "observed_at_utc": "2026-09-22T11:32:09.610658Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "7d990a567cfcb1314aa9ad75fbd83d9339ac2f19fbb5dc8f69f3ebfb5d87387e",
+      "title": "施設概要｜千葉市蘇我スポーツ公園｜フクダ電子アリーナ｜フクダ電子スクエア｜フクダ電子ヒルスコート｜フクダ電子グラウンド｜フクダ電子スタジアム｜フクダ電子フィールド",
+      "final_url": "https://sogasportspark.com/pages/74/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/sogaarena1?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/squaresoga?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/hillscourtsoga?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/boardarea?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_fukuda_info": {
+      "url": "https://sogasportspark.com/pages/371/",
+      "observed_at_utc": "2026-09-22T11:42:28.325192Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "87f2befc049699fbafda2b08c9d46dd6c1083f4c50174364c19f172a5c1de34c",
+      "title": "スタジアム情報 ｜千葉市蘇我スポーツ公園｜フクダ電子アリーナ｜フクダ電子スクエア｜フクダ電子ヒルスコート｜フクダ電子グラウンド｜フクダ電子スタジアム｜フクダ電子フィールド",
+      "final_url": "https://sogasportspark.com/pages/371/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/sogaarena1?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/squaresoga?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/hillscourtsoga?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/boardarea?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_glion_arena_kobe": {
+      "url": "https://www.totteikobe.jp/",
+      "observed_at_utc": "2026-09-22T11:32:31.025611Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "4fc33684a5c8ba00273a08c2f8d400f9b39094aa7a43d352cdc09332e530d314",
+      "title": "TOTTEI | GLION ARENA KOBE",
+      "final_url": "https://www.totteikobe.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://x.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_glion_calendar": {
+      "url": "https://www.totteikobe.jp/event",
+      "observed_at_utc": "2026-09-22T11:43:58.259844Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "729ea22655bc997726daaa6ecefe9e6704e95f53b428f87019c2af273830aebd",
+      "title": "EVENT : TOTTEI | GLION ARENA KOBE",
+      "final_url": "https://www.totteikobe.jp/event",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://x.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_glion_company": {
+      "url": "https://www.totteikobe.jp/company",
+      "observed_at_utc": "2026-09-22T11:42:46.554787Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "6071e9d97eb7a307d4a975ba974c121a708acb56efaec678c2303d1a6ea57c19",
+      "title": "会社情報 : TOTTEI | GLION ARENA KOBE",
+      "final_url": "https://www.totteikobe.jp/company",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://x.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/tottei_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_hachioji": {
+      "url": "https://hachioji.esforta.jp/",
+      "observed_at_utc": "2026-09-22T11:33:05.510318Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "2f78294c0f68281237ff825b8f4c69d4ea83ab9f6adc2947f925a745e765b8fa",
+      "title": "エスフォルタアリーナ八王子",
+      "final_url": "https://www.hachioji.esforta.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_hachioji_arena": {
+      "url": "https://www.hachioji.esforta.jp/arena/",
+      "observed_at_utc": "2026-09-22T11:43:18.221912Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "04074e3f7fe44770041ebce8feae4c85524f004440390300fda77ae45ddb9dad",
+      "title": "アリーナ | エスフォルタアリーナ八王子",
+      "final_url": "https://www.hachioji.esforta.jp/arena/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_hachioji_info": {
+      "url": "https://www.hachioji.esforta.jp/facility/",
+      "observed_at_utc": "2026-09-22T11:42:08.414028Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_hanazono": {
+      "url": "https://hanazono-rugby-hos.com/",
+      "observed_at_utc": "2026-09-22T11:32:48.590044Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_hanazono_city": {
+      "url": "https://www.city.higashiosaka.lg.jp/0000023913.html",
+      "observed_at_utc": "2026-09-22T11:41:43.049879Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "8965708cf604693e643c1f4dab84625312251f24658b2ad18cfb7be20acb9461",
+      "title": "東大阪市花園ラグビー場のウェブサイトについて！ | 東大阪市",
+      "final_url": "https://www.city.higashiosaka.lg.jp/0000023913.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_hokkai_kitayell": {
+      "url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+      "observed_at_utc": "2026-09-22T11:32:09.606087Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "e750fc7d3a7d2c6b8ac50ffbd06195ecb62433aa07d3b4d37c917911d5e6c65b",
+      "title": "メインアリーナ ｜ 北海道立総合体育センター 北海きたえーる",
+      "final_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/hokkaidosportassociation/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_ishikawa_oct_pdf": {
+      "url": "https://www.ishikawa-spc.jp/event/pdf/2026/202610.pdf",
+      "observed_at_utc": "2026-09-22T11:32:43.747682Z",
+      "retrieval_method": "requests_pdf",
+      "status": "body_fetched",
+      "body_sha256": "9faa7011f91752cbc8d0b07d2e9236d7ac35e2109f5b1e324ce4ced015b5ef9f",
+      "final_url": "https://www.ishikawa-spc.jp/event/pdf/2026/202610.pdf",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_jingu": {
+      "url": "https://www.jingu-stadium.com/",
+      "observed_at_utc": "2026-09-22T11:32:38.582630Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "eb12116055d524a61991935f43fdf680c85ead620a8a44202c7e7c4d9e4245a8",
+      "title": "明治神宮野球場",
+      "final_url": "https://www.jingu-stadium.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_jingu_access": {
+      "url": "https://www.jingu-stadium.com/access/",
+      "observed_at_utc": "2026-09-22T11:43:18.219045Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "6ab1711a3f01d0ef07e4a7e355649c542f693f8747af46484a31a66b923dca8b",
+      "title": "アクセスマップ（電車を利用） | アクセス・駐車場 | 明治神宮野球場",
+      "final_url": "https://www.jingu-stadium.com/access/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_jingu_calendar": {
+      "url": "https://www.jingu-stadium.com/event/",
+      "observed_at_utc": "2026-09-22T11:43:26.907045Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "772b9eeba62b621015650d4aa19dacfb9f3b197f449a9464090b096aba6572c5",
+      "title": "月間スケジュール一覧 | 明治神宮野球場",
+      "final_url": "https://www.jingu-stadium.com/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_jingu_equipment": {
+      "url": "https://www.jingu-stadium.com/about_kyujo/equipment/equipment.html",
+      "observed_at_utc": "2026-09-22T11:43:18.217287Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "fa7dfe16dbc3837e5223992c8d87428f400f6cb61311827e48b0b1f52f38993e",
+      "title": "設備について | 施設について | 明治神宮野球場",
+      "final_url": "https://www.jingu-stadium.com/about_kyujo/equipment/equipment.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_jingu_info": {
+      "url": "https://www.jingu-stadium.com/about_kyujo/",
+      "observed_at_utc": "2026-09-22T11:41:43.044444Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "17bd2854f433f241eea5b9ad6bae4c9a95605d1362ced342342faa9c5a3ad0ec",
+      "title": "明治神宮野球場について | 明治神宮野球場",
+      "final_url": "https://www.jingu-stadium.com/about_kyujo/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/jingu_stadiumpr/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_kitayell_calendar": {
+      "url": "https://www.kitayell.jp/schedule/event-info/",
+      "observed_at_utc": "2026-09-22T11:43:45.772751Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "851eb5e5746309b62a691203209649dee3fa9a50f4e42564f65d4fd6d6a9bb23",
+      "title": "今月の行事予定 ｜ 北海道立総合体育センター 北海きたえーる",
+      "final_url": "https://www.kitayell.jp/schedule/event-info/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/hokkaidosportassociation/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_kitayell_info": {
+      "url": "https://www.kitayell.jp/facilities/overview/",
+      "observed_at_utc": "2026-09-22T11:42:27.183349Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "c29751246626e1415f536a2cea1dc0c579ff068703e05cee5b6ccf227d8ca73f",
+      "title": "施設概要 ｜ 北海道立総合体育センター 北海きたえーる",
+      "final_url": "https://www.kitayell.jp/facilities/overview/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/hokkaidosportassociation/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_kose_sep_pdf": {
+      "url": "https://www.kose-sp.pref.yamanashi.jp/wp-content/uploads/2026/07/3fbf89a5525056298130432198cd6391.pdf",
+      "observed_at_utc": "2026-09-22T11:32:54.917521Z",
+      "retrieval_method": "requests_pdf",
+      "status": "body_fetched",
+      "body_sha256": "8b6d1744ed37d95153a854b218eb3ec708f0039dbaaa78cc369d38a50d6a3c6c",
+      "final_url": "https://www.kose-sp.pref.yamanashi.jp/wp-content/uploads/2026/07/3fbf89a5525056298130432198cd6391.pdf",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_kumamoto_gym": {
+      "url": "https://www.kspa.or.jp/sougou/",
+      "observed_at_utc": "2026-09-22T11:33:12.929635Z",
+      "retrieval_method": "requests_bs4",
+      "status": "not_venue_evidence",
+      "body_sha256": "1b22b9997ad44fdb728a509061e58c528a6898807ba521f468b60239623375a2",
+      "title": "熊本県民総合運動公園【施設トップ】 | 一般財団法人 熊本県スポーツ振興事業団",
+      "final_url": "https://www.kspa.or.jp/sougou/",
+      "reason": "different_facility_sports_park_not_gym",
+      "transport_status": "body_fetched",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_lalaarena_calendar": {
+      "url": "https://lalaarenatokyo-bay.com/event/",
+      "observed_at_utc": "2026-09-22T11:43:48.654235Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "0df7ec2df5c9138f277754dd9d51a53bd9c98322613c173f2488b115d69f44fc",
+      "title": "イベント情報 - LaLa arena TOKYO-BAY（ららアリーナ 東京ベイ）",
+      "final_url": "https://lalaarenatokyo-bay.com/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_lalaarena_company": {
+      "url": "https://lalaarenatokyo-bay.com/company/",
+      "observed_at_utc": "2026-09-22T11:42:47.161865Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "c11f277410fe27b42434b3267a7075594c76721a2e4a891f46af143cc5029264",
+      "title": "運営会社 - LaLa arena TOKYO-BAY（ららアリーナ 東京ベイ）",
+      "final_url": "https://lalaarenatokyo-bay.com/company/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_lalaarena_info": {
+      "url": "https://lalaarenatokyo-bay.com/organizer/",
+      "observed_at_utc": "2026-09-22T11:42:48.193640Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "a37003fc02f8dae659a7e082107f7544daf141d372ba90e0cb2d707e5511a3d1",
+      "title": "イベント主催者の方へ - LaLa arena TOKYO-BAY（ららアリーナ 東京ベイ）",
+      "final_url": "https://lalaarenatokyo-bay.com/organizer/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_lalaarena_tokyobay": {
+      "url": "https://lalaarenatokyo-bay.com/",
+      "observed_at_utc": "2026-09-22T11:32:09.607249Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "7944618342adac98c3bcd79fa6f5bbc680da3c38f7cb8c515666ff33b6c0e88d",
+      "title": "LaLa arena TOKYO-BAY（ららアリーナ 東京ベイ）",
+      "final_url": "https://lalaarenatokyo-bay.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/reel/DQ_aR0lj3pF/?igsh=MWR1YnRtMDZ4ZDZubA==",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_mazda": {
+      "url": "https://www.carp.co.jp/stadium/",
+      "observed_at_utc": "2026-09-22T11:32:40.672645Z",
+      "retrieval_method": "requests_bs4",
+      "status": "not_venue_evidence",
+      "body_sha256": "5db2d7e46dd28c505f3beadab0049a761aba7081abcc45ed73110983b5f16be2",
+      "title": "観戦・球場｜広島東洋カープ公式サイト",
+      "final_url": "https://www.carp.co.jp/stadium/",
+      "reason": "facility_body_not_extracted",
+      "transport_status": "body_fetched",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_mercari": {
+      "url": "https://www.antlers.co.jp/kashima-stadium/",
+      "observed_at_utc": "2026-09-22T11:32:43.705438Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_mercari_calendar": {
+      "url": "https://www.antlers.co.jp/pages/mercari-stadium-event-index/",
+      "observed_at_utc": "2026-09-22T11:43:28.432633Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "98ff05f513e9d89665c7a7cc7304bd210d7ad953f0bb08d475e2d28926acc27e",
+      "title": "メルカリスタジアムイベントスケジュール（2026年6月）",
+      "final_url": "https://www.antlers.co.jp/pages/mercari-stadium-event-index/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/atlrs_official",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kashima.antlers/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_mercari_info": {
+      "url": "https://www.antlers.co.jp/pages/mercari-stadium-about",
+      "observed_at_utc": "2026-09-22T11:41:43.048099Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "3384bbb1a6f46e4e1d5be18c4c0e6aada6ea0f7a5a02ac3338d38c27c47cd359",
+      "title": "メルカリスタジアム施設概要",
+      "final_url": "https://www.antlers.co.jp/pages/mercari-stadium-about",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_mie_oct_pdf": {
+      "url": "https://sun-arena.or.jp/wp/wp-content/uploads/202610_kawaraban.pdf",
+      "observed_at_utc": "2026-09-22T11:32:43.750126Z",
+      "retrieval_method": "requests_pdf",
+      "status": "body_fetched",
+      "body_sha256": "40180a37037525980454cd5dacfa002fed12e4005b053afc99e8982eb9acd043",
+      "final_url": "https://sun-arena.or.jp/wp/wp-content/uploads/202610_kawaraban.pdf",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_mikuni": {
+      "url": "https://www.kitakyushu-stadium.jp/",
+      "observed_at_utc": "2026-09-22T11:32:49.734961Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "7e504478ec20514950b9d3eadc3d17ae93e82da03399536b1b31a422a6f523d3",
+      "title": "ミクニワールドスタジアム北九州",
+      "final_url": "https://www.kitakyushu-stadium.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/search?q=%E5%8C%97%E4%B9%9D%E5%B7%9E%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%A2%E3%83%A0",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_mikuni_calendar": {
+      "url": "https://www.kitakyushu-stadium.jp/event/",
+      "observed_at_utc": "2026-09-22T11:43:35.996176Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "1444c8649fda4df5f456bcf56e2c730926e8a4bcd540c7383d869226177f2dc4",
+      "title": "イベント予定|ミクニワールドスタジアム北九州（北九州スタジアム）",
+      "final_url": "https://www.kitakyushu-stadium.jp/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_mikuni_info": {
+      "url": "https://www.kitakyushu-stadium.jp/page.php?fc=kiji&id=2",
+      "observed_at_utc": "2026-09-22T11:41:43.050268Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "468680c75c5dbd133c6304fb82870c7541281bf2df488a28316e9eae767e48c8",
+      "title": "施設概要«北九州スタジアムについて|ミクニワールドスタジアム北九州（北九州スタジアム）",
+      "final_url": "https://www.kitakyushu-stadium.jp/page.php?fc=kiji&id=2",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_morioka_oct_pdf": {
+      "url": "https://morioka-sport.or.jp/wp/wp-content/uploads/2026/09/10月予定表-1.pdf",
+      "observed_at_utc": "2026-09-22T11:32:52.746862Z",
+      "retrieval_method": "requests_pdf",
+      "status": "body_fetched",
+      "body_sha256": "70d5620ca8559202d6f9ed38d8a5b51f3235278d8f9dc0678f8c92c9326112cb",
+      "final_url": "https://morioka-sport.or.jp/wp/wp-content/uploads/2026/09/10%E6%9C%88%E4%BA%88%E5%AE%9A%E8%A1%A8-1.pdf",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_mufg_stadium": {
+      "url": "https://www.ajinomotostadium.com/",
+      "observed_at_utc": "2026-09-22T11:32:20.106539Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "412b7f875e5e8f1369686522ebd09ffe5bdf4a6beb71295991f25821e61dc7d9",
+      "title": "味の素スタジアム",
+      "final_url": "https://www.ajinomotostadium.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/tokyostadium",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_ninjineer": {
+      "url": "https://www.epsc.jp/facilities/track.html",
+      "observed_at_utc": "2026-09-22T11:32:53.456308Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_nippatsu_mitsuzawa_stadium": {
+      "url": "https://www.f-marinos.com/stadium_nippatsu",
+      "observed_at_utc": "2026-09-22T11:32:21.625058Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "f1c34e3cd3c714d281bc4bae05e0e0a94e4d61aa392ee0db79dfaea4dcfe589a",
+      "title": "ニッパツ三ツ沢球技場 | スタジアム | 横浜F・マリノス 公式サイト",
+      "final_url": "https://www.f-marinos.com/stadium_nippatsu",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/prompt_fmarinos",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/yokohamaf.marinos/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_nissan_calendar": {
+      "url": "https://www.nissan-stadium.jp/calendar/",
+      "observed_at_utc": "2026-09-22T11:43:56.828298Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "843dfe20ffc92212dae6a97501aac64fc23a7cf43e82afcc66996a923d6fc81f",
+      "title": "イベントカレンダー｜日産スタジアム",
+      "final_url": "https://www.nissan-stadium.jp/calendar/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_nissan_close": {
+      "url": "https://www.nissan-stadium.jp/news/detail.php?id6aae41e7625ec",
+      "observed_at_utc": "2026-09-22T11:42:39.107303Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "9205ef31fbb7ce65c8efb6aacee63966d3a0220ee3fd433088acc8f2593121a5",
+      "title": "【2026年9月19日（土曜日）17時00分現在】台風25号の影響による一部営業休止及びイベントの中止について｜日産スタジアム",
+      "final_url": "https://www.nissan-stadium.jp/news/detail.php?id6aae41e7625ec",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_nissan_info": {
+      "url": "https://www.nissan-stadium.jp/stadium/",
+      "observed_at_utc": "2026-09-22T11:42:39.085353Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "3b1c70cdbef20e9a73fda6f2a3f46d5e5b6c73afdc80d171128e18067ce481df",
+      "title": "施設案内｜日産スタジアム",
+      "final_url": "https://www.nissan-stadium.jp/stadium/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_nissan_stadium": {
+      "url": "https://www.nissan-stadium.jp/",
+      "observed_at_utc": "2026-09-22T11:32:21.986746Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "993af9d471cff298e49f624d33f311e099baac2819ba2143c92195a3fffb9a23",
+      "title": "日産スタジアム｜横浜国際総合競技場",
+      "final_url": "https://www.nissan-stadium.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/shinyoko_park/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/shinyoko_park",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_noevir_home": {
+      "url": "https://www.noevir-stadium.jp/",
+      "observed_at_utc": "2026-09-22T11:43:18.223731Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_noevir_stadium_kobe": {
+      "url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+      "observed_at_utc": "2026-09-22T11:32:31.157497Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "5c5151d5a858cff1139b785d002d29e17c231b7000ed50bc2393ea4c491286fe",
+      "title": "神戸コンベンションビューローMICEサイト",
+      "final_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ookini": {
+      "url": "https://maishima.osaka/",
+      "observed_at_utc": "2026-09-22T11:33:08.416311Z",
+      "retrieval_method": "requests_bs4",
+      "status": "not_venue_evidence",
+      "body_sha256": "1a966623d98d95ef555e8a4479ab46c707ec5f15e7d1f6850b10c939edcfb1c1",
+      "title": "OSAKA SPORTS GROOVE",
+      "final_url": "https://maishima.osaka/",
+      "reason": "sports_project_not_venue_operator",
+      "transport_status": "body_fetched",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ookini_home": {
+      "url": "https://human-arena.com/",
+      "observed_at_utc": "2026-09-22T11:42:18.369773Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "66d3e50aa08eee74043c874ac54f0d1b228a77459bcc3c6d8069c0319f8f093b",
+      "title": "おおきにアリーナ舞洲",
+      "final_url": "https://human-arena.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ookini_info": {
+      "url": "https://human-arena.com/mainarena/",
+      "observed_at_utc": "2026-09-22T11:42:18.305395Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "b3962cac303881d9d247ed2889f5baac0f76081f5f616a14a63c68139ddf7aa3",
+      "title": "メインアリーナ | 施設・料金 | おおきにアリーナ舞洲",
+      "final_url": "https://human-arena.com/mainarena/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ota_calendar": {
+      "url": "https://www.ota.esforta.jp/event/",
+      "observed_at_utc": "2026-09-22T11:43:37.049035Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "b9d834d2f84d9fbbca60b71c58be0a119de0e6823e288b4ce90c9b1e2270ad6a",
+      "title": "イベント一覧 | EBARA WAVE アリーナおおた（大田区総合体育館） EBARA WAVE Arena Ota",
+      "final_url": "https://www.ota.esforta.jp/event/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ota_gym": {
+      "url": "https://www.ota.esforta.jp/",
+      "observed_at_utc": "2026-09-22T11:33:01.884726Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "c72aeb73a15886b21da64b21914832cc319f653f97017ce9eae0e612bb412f4e",
+      "title": "EBARA WAVE アリーナおおた（大田区総合体育館） EBARA WAVE Arena Ota",
+      "final_url": "https://www.ota.esforta.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_ota_info": {
+      "url": "https://www.ota.esforta.jp/facility/mainarena/",
+      "observed_at_utc": "2026-09-22T11:42:08.010026Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "e6c049ee8b038b79a215364e9f49d11cb1b9753dabe5b3cdef56edfb56c87e83",
+      "title": "メインアリーナ | EBARA WAVE アリーナおおた（大田区総合体育館） EBARA WAVE Arena Ota",
+      "final_url": "https://www.ota.esforta.jp/facility/mainarena/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_panasonic_stadium_suita": {
+      "url": "https://suitacityfootballstadium.jp/",
+      "observed_at_utc": "2026-09-22T11:32:30.402506Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "b86328b2bafb9cbd46de2a985c0ae00c516f8f291bf92508d69a9633f8b9fabd",
+      "title": "Panasonic Stadium Suita（パナソニック スタジアム 吹田）",
+      "final_url": "https://suitacityfootballstadium.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_peace_calendar": {
+      "url": "https://hiroshima-stadiumpark.jp/peacewing/schedule",
+      "observed_at_utc": "2026-09-22T11:43:27.235980Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "ebdc15c5deb6623b1711faa5c1f641accbad987a2554f63b7f9079ed07689d1c",
+      "title": "イベントスケジュール | エディオンピースウイング広島:EDION PEACE WING HIROSHIMA",
+      "final_url": "https://hiroshima-stadiumpark.jp/peacewing/schedule/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/stahug_hiroshima",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/peacewinghiroshima/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/EPeace_PR",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_peace_info": {
+      "url": "https://www.sanfrecce.co.jp/news/stadiumpark/9504",
+      "observed_at_utc": "2026-09-22T11:41:43.046122Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "3a24154656b5617997dbbf569f2af3ebc5f1b9ce291dc67d8f7bf9acd3d2d20c",
+      "title": "「エディオンピースウイング広島」オフィシャルホームページ公開のお知らせ | サンフレッチェ広島 オフィシャルサイト",
+      "final_url": "https://www.sanfrecce.co.jp/news/stadiumpark/9504",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/sanfrecce_SFC",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/sanfrecce.official/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_peace_wing": {
+      "url": "https://www.hiroshima-stadiumpark.jp/peacewing/",
+      "observed_at_utc": "2026-09-22T11:32:42.098901Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "a92980d1b5988cd23c9388af28535a66ea5910bdf3c624231d62f4eb6bd34f51",
+      "title": "エディオンピースウイング広島:EDION PEACE WING HIROSHIMA",
+      "final_url": "https://hiroshima-stadiumpark.jp/peacewing/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/stahug_hiroshima",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/peacewinghiroshima/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/EPeace_PR",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_rakuten": {
+      "url": "https://www.rakuteneagles.jp/stadium/",
+      "observed_at_utc": "2026-09-22T11:32:39.411019Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "9fa7597ea69c6eb1fc6ce2a7415d0f61571f265cb23bc2553f935e980d9d6beb",
+      "title": "楽天モバイル 最強パーク宮城 - 東北楽天ゴールデンイーグルス",
+      "final_url": "https://www.rakuteneagles.jp/stadium/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/rakuten__eagles",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/rakuten_eagles/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_rakuten_access": {
+      "url": "https://www.rakuteneagles.jp/stadium/access/",
+      "observed_at_utc": "2026-09-22T11:41:43.044827Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "c64196d10bbad26af7e00791f23b51b5159b631757dd6a8077f4ef56860cf602",
+      "title": "アクセス情報 - 東北楽天ゴールデンイーグルス",
+      "final_url": "https://www.rakuteneagles.jp/stadium/access/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/rakuten__eagles",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/rakuten_eagles/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_rakuten_company": {
+      "url": "https://www.rakuteneagles.jp/company/about_us/",
+      "observed_at_utc": "2026-09-22T11:43:26.895758Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "dde742297c66eaa307e91198c2e52bc76efa5accbcb07bc0aaf3d9cd62f99250",
+      "title": "会社概要 - 東北楽天ゴールデンイーグルス",
+      "final_url": "https://www.rakuteneagles.jp/company/about_us/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/rakuten__eagles",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/rakuten_eagles/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_saitama_calendar": {
+      "url": "https://www.stadium2002.com/events.php?year=2026&month=9",
+      "observed_at_utc": "2026-09-22T11:43:46.179605Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "66156734d1e3a86a913fdedc1e244126ea1ad420924d51036070016afb0ee426",
+      "title": "イベントスケジュール一覧｜埼玉スタジアム2002",
+      "final_url": "https://www.stadium2002.com/events.php?year=2026&month=9",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_saitama_info": {
+      "url": "https://www.stadium2002.com/stadium_10.html",
+      "observed_at_utc": "2026-09-22T11:42:27.267067Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "d06b27fda8d8348e0d4060922efcb50f9247defb5404598789b99903ba078fe6",
+      "title": "スタジアムについて｜埼玉スタジアム2002",
+      "final_url": "https://www.stadium2002.com/stadium_10.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_saitama_stadium_2002": {
+      "url": "https://www.stadium2002.com/",
+      "observed_at_utc": "2026-09-22T11:32:09.606813Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "1dd4875b7426007ba4eb6ab14028141c90eef92369b8df0c466a8c3bd33b751b",
+      "title": "埼玉スタジアム2002",
+      "final_url": "https://www.stadium2002.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/saisuta_2002",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_sapporo_dome": {
+      "url": "https://www.sapporo-dome.co.jp/",
+      "observed_at_utc": "2026-09-22T11:32:09.606490Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "46948bc0d5057ab750065080ed6c70228d19da69088ca7f4ddc3e355e832efee",
+      "title": "大和ハウス プレミストドーム｜Daiwa House PREMIST DOME",
+      "final_url": "https://www.sapporo-dome.co.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/sapporodome_pr",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/daiwa_house_premist_dome/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_suita_calendar": {
+      "url": "https://suitacityfootballstadium.jp/schedule/",
+      "observed_at_utc": "2026-09-22T11:43:57.381218Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "107f175b200db20409f5348fba8311d542d3a4faf28d4c4043bd5eed5a307414",
+      "title": "Panasonic Stadium Suita（パナソニック スタジアム 吹田） イベント・ツアースケジュール | Panasonic Stadium Suita（パナソニック スタジアム 吹田）",
+      "final_url": "https://suitacityfootballstadium.jp/schedule/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_suita_info": {
+      "url": "https://www2.suitacityfootballstadium.jp/c/stadium/index.html",
+      "observed_at_utc": "2026-09-22T11:42:42.268859Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "4dc32ead8487e7f2db6278666f580efe39662fe2d4f4404f9159aa96b45185ca",
+      "title": "スタジアムについて － スタジアム概要｜Panasonic Stadium Suita（パナソニック スタジアム 吹田）",
+      "final_url": "https://www2.suitacityfootballstadium.jp/c/stadium/index.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_tachikawa": {
+      "url": "https://www.arenatachikawatachihi.com/",
+      "observed_at_utc": "2026-09-22T11:33:03.424190Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "1944ac63063facf7520b53cc3eb2ff6702477336b72ba9bf0304d5a4688e5a17",
+      "title": "アリーナ立川立飛・ドーム立川立飛 | アリーナ立川立飛　スポーツ、イベントができる３０００名収容の体育館。",
+      "final_url": "https://www.arenatachikawatachihi.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/Arena_tachihi?ref_src=twsrc%5Etfw",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_tachikawa_calendar": {
+      "url": "https://www.arenatachikawatachihi.com/events/",
+      "observed_at_utc": "2026-09-22T11:43:37.139860Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "5a6d3bf619690ae799adcbae7ec47378766897566c8839d78402a35674055ba7",
+      "title": "イベント | アリーナ立川立飛・ドーム立川立飛",
+      "final_url": "https://www.arenatachikawatachihi.com/events/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_tachikawa_info": {
+      "url": "https://www.arenatachikawatachihi.com/guide/facilities/",
+      "observed_at_utc": "2026-09-22T11:42:26.812661Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "8d7f86991f5b250ea9bb8b9cfc279eee038b72c1a407f22eae64c2e9dc35e182",
+      "title": "施設情報 | アリーナ立川立飛・ドーム立川立飛",
+      "final_url": "https://www.arenatachikawatachihi.com/guide/facilities/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_teriha": {
+      "url": "https://www.fukuoka-city-arena.jp/",
+      "observed_at_utc": "2026-09-22T11:33:12.554713Z",
+      "retrieval_method": "requests_bs4",
+      "status": "not_venue_evidence",
+      "body_sha256": "80d78e5299e3a2343dac52ce8b722e7ab9e32c272cd867e5a9d9a05c075e7d8b",
+      "title": "",
+      "final_url": "https://www.fukuoka-city-arena.jp/",
+      "reason": "empty_body",
+      "transport_status": "body_fetched",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_teriha_access": {
+      "url": "https://www.fukuoka-city-arena.jp/contact/access.html",
+      "observed_at_utc": "2026-09-22T11:42:26.728500Z",
+      "retrieval_method": "requests_bs4",
+      "status": "not_venue_evidence",
+      "body_sha256": "321a36f563bc47b3c56a76c2e36cd69b6af7c46d4c36feb76c2119488e3f773f",
+      "title": "交通アクセス | 福岡市総合体育館 - 照葉積水ハウスアリーナ",
+      "final_url": "https://www.fukuoka-city-arena.jp/contact/access.html",
+      "reason": "empty_body",
+      "transport_status": "body_fetched",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_todoroki_stadium": {
+      "url": "https://www.frontale.co.jp/stadium/todoroki.html",
+      "observed_at_utc": "2026-09-22T11:32:22.182862Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_tosu": {
+      "url": "https://www.sagan-tosu.net/stadium/",
+      "observed_at_utc": "2026-09-22T11:32:50.422159Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_toyota_stadium": {
+      "url": "https://www.toyota-stadium.co.jp/facility03/",
+      "observed_at_utc": "2026-09-22T11:32:30.401998Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "02e9fd8853b3e370f37de289007da984accf39c574d9123db3b81cc4c8180837",
+      "title": "豊田スタジアム施設概要 │ TOYOTA STADIUM │ 豊田スタジアム",
+      "final_url": "https://www.toyota-stadium.co.jp/facility03/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://twitter.com/ToyotaStadiumJP",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_white_calendar": {
+      "url": "https://whitering.jp/event.html",
+      "observed_at_utc": "2026-09-22T11:43:44.815773Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "ec9e107cc7ee71602a7669020cee5f047007e508e43ec551353579bb4da2a8c0",
+      "title": "イベント情報｜ホワイトリング（長野市真島総合スポーツアリーナ）",
+      "final_url": "https://whitering.jp/event.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/choppabreakinstudio?igsh=MXd4Y2F5bTFnbnVlMQ==",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/breakinnaganostudio?igsh=MXc5cXY4aGxjYWluYg==",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/cplg_break_club/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_white_city": {
+      "url": "https://www.city.nagano.nagano.jp/n155400/contents/p003012.html",
+      "observed_at_utc": "2026-09-22T11:42:17.291000Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "4169de532f1ee42b62cee3f8f074b7bd176e299f569113afbc9382af46499119",
+      "title": "真島総合スポーツアリーナ - 長野市公式ホームページ",
+      "final_url": "https://www.city.nagano.nagano.jp/n155400/contents/p003012.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_white_home": {
+      "url": "https://whitering.jp/",
+      "observed_at_utc": "2026-09-22T11:42:17.764674Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "92a26b38233f8b6936fe593a68af7a55a0be9adfb1c600595903312f8bbe6192",
+      "title": "長野市の体育館・ダンス教室・バスケットボール｜ホワイトリング",
+      "final_url": "https://whitering.jp/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/choppabreakinstudio/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/breakinnaganostudio/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_white_info": {
+      "url": "https://whitering.jp/facility.html",
+      "observed_at_utc": "2026-09-22T11:42:16.693636Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "dbf761a3a68bf90501481224c71d37b71635758e36de296e70e0d567edbf8dce",
+      "title": "施設紹介｜ホワイトリング（長野市真島総合スポーツアリーナ）",
+      "final_url": "https://whitering.jp/facility.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_white_ring": {
+      "url": "https://whitering-nagano.jp/",
+      "observed_at_utc": "2026-09-22T11:33:01.863076Z",
+      "retrieval_method": "requests_bs4",
+      "status": "fetch_failed",
+      "reason": "HTTPError",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_white_works": {
+      "url": "https://www.city.nagano.nagano.jp/n155400/contents/p006203.html",
+      "observed_at_utc": "2026-09-22T11:43:26.371522Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "b8cb80b2733680e0710f1093a71bb81a29fba1de26d43c8cf951fe6721635e82",
+      "title": "ホワイトリングメインアリーナ改修工事のお知らせ - 長野市公式ホームページ",
+      "final_url": "https://www.city.nagano.nagano.jp/n155400/contents/p006203.html",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_xebio": {
+      "url": "https://www.xebioarena.com/",
+      "observed_at_utc": "2026-09-22T11:33:01.828095Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "9785f60a755c7e7fde2cda3e760f49503f7001506daa7f009aa7e973de6c0726",
+      "title": "トップページ - ゼビオアリーナ仙台｜宮城県仙台市太白区にある「アリーナスポーツ」や「エンターテインメント」の魅力を最大化するベニューとなることがコンセプトの多目的アリーナ",
+      "final_url": "https://www.xebioarena.com/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/xebioarena/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/XebioArena",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_xebio_access": {
+      "url": "https://www.xebioarena.com/access/",
+      "observed_at_utc": "2026-09-22T11:42:08.008283Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "10f7f8c35e9c11278e51217299270e397aa4e81048a7b25e7a48c626bbd9e65d",
+      "title": "アクセス/周辺マップ - ゼビオアリーナ仙台｜宮城県仙台市太白区にある「アリーナスポーツ」や「エンターテインメント」の魅力を最大化するベニューとなることがコンセプトの多目的アリーナ",
+      "final_url": "https://www.xebioarena.com/access/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/xebioarena/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/XebioArena",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_xebio_calendar": {
+      "url": "https://www.xebioarena.com/program/",
+      "observed_at_utc": "2026-09-22T11:43:36.713154Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "09e35f992f1d2ddf5c4e572f5f53fb1594630af779b2176e5e639e2096fac468",
+      "title": "イベント（NEW） - ゼビオアリーナ仙台｜宮城県仙台市太白区にある「アリーナスポーツ」や「エンターテインメント」の魅力を最大化するベニューとなることがコンセプトの多目的アリーナ",
+      "final_url": "https://www.xebioarena.com/program/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/xebioarena/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/XebioArena",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_xebio_info": {
+      "url": "https://www.xebioarena.com/facility/",
+      "observed_at_utc": "2026-09-22T11:42:08.007202Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "a96bf7e0cb9964e4f7b76aa3514dffedcf4c629f4d0cb8c4278b463534a0e953",
+      "title": "施設情報 - ゼビオアリーナ仙台｜宮城県仙台市太白区にある「アリーナスポーツ」や「エンターテインメント」の魅力を最大化するベニューとなることがコンセプトの多目的アリーナ",
+      "final_url": "https://www.xebioarena.com/facility/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "social_accounts": [
+        {
+          "url": "https://www.instagram.com/xebioarena/",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/XebioArena",
+          "identity_status": "linked_from_official_page_subject_review_pending",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    "round2_yokohama_budokan": {
+      "url": "https://budokan.buntai.jp/",
+      "observed_at_utc": "2026-09-22T11:33:11.547154Z",
+      "retrieval_method": "requests_bs4",
+      "status": "not_venue_evidence",
+      "body_sha256": "b81ab559b285252e7119ff7c920e3647403f20985d92dd5eea9039c0de97762b",
+      "title": "EワラントFX合同会社",
+      "final_url": "https://ewarrant.co.jp/",
+      "reason": "unrelated_redirect",
+      "transport_status": "body_fetched",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round2_yokohama_buntai": {
+      "url": "https://yokohama-buntai.jp/facility/",
+      "observed_at_utc": "2026-09-22T11:32:22.155407Z",
+      "retrieval_method": "requests_bs4",
+      "status": "body_fetched",
+      "body_sha256": "d024e377cd76484d847bae7f7805a57565fa989df4a0750ebc6fc5cf8f78fdc4",
+      "title": "施設案内 - 横浜BUNTAI",
+      "final_url": "https://yokohama-buntai.jp/facility/",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
     }
   }
 }

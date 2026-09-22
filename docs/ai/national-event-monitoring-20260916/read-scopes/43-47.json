@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -24,6 +24,22 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "egao_kenko_stadium",
+          "venue_name": "えがお健康スタジアム",
+          "aliases": [],
+          "official_url": "https://www.kspa.or.jp/rikujo/",
+          "schedule_url": "https://www.kspa.or.jp/rikujo_yotei/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -32,27 +48,77 @@
           "name": "えがお健康スタジアム",
           "pref_code": "43",
           "venue_kind": "stadium",
-          "address": "熊本県熊本市東区平山町2776",
-          "capacity": 30275,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "熊本県熊本市東区平山町2776番地",
+          "capacity": 30000,
+          "capacity_basis": "運営者施設案内の3万人。別資料の座席数とは区別。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operating_status_detail"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/kumamoto/profile/",
               "observed_at_utc": "2026-09-20T11:17:20.841079Z",
               "body_sha256": "eb0472bdc7cc315be6c8a1c528035c70303137079d13cca6d3d4d8b1e1faa073"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/rikujo/",
+              "observed_at_utc": "2026-09-22T11:32:57.958580Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e1a39ee1f75abea3fe20143bb024e0d597442c5757ae15fa10d4903c5fce4fca"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/archives/kusports_announce/52336/",
+              "observed_at_utc": "2026-09-22T11:41:59.473734Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6f464da7eaefcab1623f26460fc73c2fa0e4de317addb23a2b4818c8a8524055"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/rikujo_yotei/",
+              "observed_at_utc": "2026-09-22T11:43:36.559295Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "980c0e05dce608f4fbc09500f89c2f5150ad67c696952357503b3cbc2341f4ce"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "egao_kenko_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "熊本県熊本市東区平山町2776",
+              "capacity": 30275,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kumamoto/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:20.841079Z",
+                  "body_sha256": "eb0472bdc7cc315be6c8a1c528035c70303137079d13cca6d3d4d8b1e1faa073"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "えがお健康スタジアム",
+          "operator": "一般財団法人熊本県スポーツ振興事業団",
+          "aliases": [],
+          "official_url": "https://www.kspa.or.jp/rikujo/",
+          "schedule_url": "https://www.kspa.or.jp/rikujo_yotei/",
+          "schedule_extent": "9月・10月の予定表リンクを確認。本文詳細/画像は未読。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "9/10施設再開・利用休止継続の告知あり。本文は他施設へのリンクで詳細画像は未読。全施設再開とは判定しない。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.kspa.or.jp/rikujo_yotei/",
+              "observed_at_utc": "2026-09-22T11:43:36.559295Z",
+              "status": "schedule_links_only",
+              "extent": "9月・10月の予定表リンクを確認。本文詳細/画像は未読。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "041b50b345e50dc35d8c",

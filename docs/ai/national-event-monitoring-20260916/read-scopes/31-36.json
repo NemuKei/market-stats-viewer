@@ -1,5 +1,5 @@
 {
-  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
+  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
   "snapshot_only": true,
   "scopes": [
     {
@@ -459,6 +459,22 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "edion_peace_wing_hiroshima",
+          "venue_name": "エディオンピースウイング広島",
+          "aliases": [],
+          "official_url": "https://hiroshima-stadiumpark.jp/peacewing/",
+          "schedule_url": "https://hiroshima-stadiumpark.jp/peacewing/schedule/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -498,26 +514,73 @@
           "pref_code": "34",
           "venue_kind": "stadium",
           "address": "広島県広島市中区基町15番2-1号",
-          "capacity": 28413,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 28520,
+          "capacity_basis": "指定管理者2024年開業案内の約28,520席。現行席種変更の総数は再確認。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/hiroshima/profile/",
               "observed_at_utc": "2026-09-20T11:16:41.123780Z",
               "body_sha256": "c824ab000552b36e9c3551c495f88e28dd5a0091130bed5498830752ec88c9bd"
+            },
+            {
+              "evidence_url": "https://www.sanfrecce.co.jp/news/stadiumpark/9504",
+              "observed_at_utc": "2026-09-22T11:41:43.046122Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "3a24154656b5617997dbbf569f2af3ebc5f1b9ce291dc67d8f7bf9acd3d2d20c"
+            },
+            {
+              "evidence_url": "https://hiroshima-stadiumpark.jp/peacewing/",
+              "observed_at_utc": "2026-09-22T11:32:42.098901Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a92980d1b5988cd23c9388af28535a66ea5910bdf3c624231d62f4eb6bd34f51"
+            },
+            {
+              "evidence_url": "https://hiroshima-stadiumpark.jp/peacewing/schedule/",
+              "observed_at_utc": "2026-09-22T11:43:27.235980Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ebdc15c5deb6623b1711faa5c1f641accbad987a2554f63b7f9079ed07689d1c"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "edion_peace_wing_hiroshima",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 28413,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/hiroshima/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:41.123780Z",
+                  "body_sha256": "c824ab000552b36e9c3551c495f88e28dd5a0091130bed5498830752ec88c9bd"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "エディオンピースウイング広島",
+          "operator": "株式会社サンフレッチェ広島",
+          "aliases": [],
+          "official_url": "https://hiroshima-stadiumpark.jp/peacewing/",
+          "schedule_url": "https://hiroshima-stadiumpark.jp/peacewing/schedule/",
+          "schedule_extent": "9月1〜30日の本文を確認。パブリックビューイングと現地試合、ツアー・一般利用を区別。他月・主催者詳細は未確認。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://hiroshima-stadiumpark.jp/peacewing/schedule/",
+              "observed_at_utc": "2026-09-22T11:43:27.235980Z",
+              "status": "visible_month_read",
+              "extent": "9月1〜30日の本文を確認。パブリックビューイングと現地試合、ツアー・一般利用を区別。他月・主催者詳細は未確認。",
+              "scheduled_run": false
+            }
+          ]
         },
         {
           "candidate_id": "820cc2d6914762e6aad5",
