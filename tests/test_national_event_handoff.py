@@ -765,6 +765,10 @@ def correction_case(change="time"):
         new["event_start_time"] = "18:30"
     elif change == "date":
         new["event_date"] = "2030-12-02"
+    elif change == "backdate":
+        new["event_date"] = "2030-10-01"
+    elif change == "end":
+        new["event_end_date"] = "2030-12-02"
     else:
         new["event_status"] = change
     candidate = dict(event_key="existing-ticketjam-key", **old)
@@ -779,16 +783,19 @@ def correction_case(change="time"):
     d = decision(p)
     d["official_event"].update(
         event_start_date=new["event_date"],
+        event_end_date=new.get("event_end_date") or new["event_date"],
         event_start_time=new["event_start_time"],
         event_status=new.get("event_status", "scheduled"),
     )
     return p, d, {"candidates": [candidate]}
 
 
-@pytest.mark.parametrize("status", ["cancelled", "postponed"])
+@pytest.mark.parametrize(
+    "status", ["cancelled", "postponed", "time", "date", "end", "backdate"]
+)
 @pytest.mark.parametrize("origin", ["ticketjam", "published"])
-def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
-    tmp_path, monkeypatch, status, origin
+def test_change_import_keeps_old_rows_and_other_performance_through_db_lp(
+    tmp_path, monkeypatch, capsys, status, origin
 ):
     from dataclasses import replace
     from datetime import date
@@ -815,6 +822,9 @@ def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
     active = dict(
         d["official_event"],
         event_id="original-active",
+        event_start_date=p["current_values"]["event_date"],
+        event_end_date=p["current_values"]["event_date"],
+        event_start_time=p["current_values"]["event_start_time"],
         event_status="scheduled",
         verified_at_utc="2030-09-20T00:00:00Z",
     )
@@ -849,6 +859,17 @@ def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
     )
     stale.content_hash = compute_content_hash(stale)
     upsert_signals(conn, original + [stale])
+    if status == "time" and origin == "published":
+        # include_past=true in a saved LP still means its explicit 90-day window.
+        archived_labels = json.loads(stale.labels_json)
+        archived_labels.update(
+            event_start_date="2029-01-01", event_end_date="2029-01-01"
+        )
+        archived = replace(
+            stale, signal_uid="archived", labels_json=json.dumps(archived_labels)
+        )
+        archived.content_hash = compute_content_hash(archived)
+        upsert_signals(conn, [archived])
     conn.commit()
 
     def publish(state):
@@ -874,18 +895,89 @@ def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
         d["proposal_hash"] = digest(p)
     context_args = preview_context(config=config)
     context_args["published"] = published_snapshot(before, base_commit=BASE)
+    if status in {"time", "date", "end", "backdate"}:
+        records = load_lp_records(
+            events_db_path=tmp_path / "events.sqlite",
+            event_signals_db_path=tmp_path / "event_signals.sqlite",
+            as_of_date=date(2030, 9, 21),
+        )
+        context_args["source_snapshot"] = dict(
+            base_commit=BASE, records=records, records_fingerprint=digest(records)
+        )
+    if status == "time":
+        collision = deepcopy(p)
+        collision["proposed_values"]["event_start_time"] = "21:00"
+        check = deepcopy(d)
+        check["proposal_hash"] = digest(collision)
+        check["official_event"]["event_start_time"] = "21:00"
+        blocked = stage_official_event(
+            collision,
+            check,
+            REGISTRY,
+            queue=queue if origin == "ticketjam" else None,
+            **context_args,
+        )
+        assert blocked["import_preview"]["reason"] == "possible_existing_performance"
+        assert blocked["import_preview"]["config"] is None
     receipt = stage_official_event(
         p, d, REGISTRY, queue=queue if origin == "ticketjam" else None, **context_args
     )
+    if status == "time" and origin == "published":
+        from scripts.national_event_handoff import main
+
+        args = ["--base-commit", BASE, "--prepare-import"]
+        for name, payload in {
+            "proposal": p,
+            "decision": d,
+            "published-lp": before,
+            "config": dict(config, watch_venues=[]),
+        }.items():
+            path = tmp_path / (name + ".json")
+            path.write_text(json.dumps(payload))
+            args.extend(["--" + name, str(path)])
+        for name, fields, rows in [
+            ("registry", list(REGISTRY[0]), REGISTRY),
+            ("aliases", ["venue_id", "aliases_json"], []),
+            ("ticketjam", ["venue_id", "venue_name", "is_enabled"], []),
+        ]:
+            path = tmp_path / (name + ".csv")
+            with path.open("w") as handle:
+                writer = csv.DictWriter(handle, fieldnames=fields)
+                writer.writeheader()
+                writer.writerows(rows)
+            args.extend(["--" + name, str(path)])
+        for name in ["events", "event-signals"]:
+            args.extend(
+                [
+                    "--" + name + "-db",
+                    str(tmp_path / (name.replace("-", "_") + ".sqlite")),
+                ]
+            )
+        inputs_before = {f.name: f.read_bytes() for f in tmp_path.iterdir()}
+        assert main(args) == 0
+        output = json.loads(capsys.readouterr().out)
+        assert output["import_preview"]["action"] == "add_correction"
+        assert output["date_time_correction"] == receipt["date_time_correction"]
+        assert {f.name: f.read_bytes() for f in tmp_path.iterdir()} == inputs_before
     preview = receipt["import_preview"]
-    assert preview["action"] == "add_suppression"
+    assert preview["action"] == (
+        "add_correction"
+        if status in {"time", "date", "end", "backdate"}
+        else "add_suppression"
+    )
     assert preview["status"] == "ready_for_review" and not receipt["can_publish"]
     assert preview["config"]["confirmed_events"][:2] == config["confirmed_events"]
     state = receipt["candidate_review_state"] or empty
     if origin == "ticketjam":
         review = state["events"][p["event_key"]]["history"][-1]
         assert review["status"] == "conflict"
-        assert review["official_suppression"]["event_status"] == status
+        if status in {"time", "date", "end", "backdate"}:
+            assert (
+                review["official_correction"]["event_start_time"]
+                == d["official_event"]["event_start_time"]
+            )
+        else:
+            assert review["official_suppression"]["event_status"] == status
     else:
         notice = preview["config"]["confirmed_events"][-1]
         assert not notice.get("discovery_event_key")
@@ -900,7 +992,9 @@ def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
     # A stale source rerun must not resurrect the suppressed performance.
     assert upsert_signals(conn, original + [stale]) == 0
     conn.commit()
-    assert conn.execute("SELECT COUNT(*) FROM signals").fetchone()[0] == 4
+    assert conn.execute("SELECT COUNT(*) FROM signals").fetchone()[0] == (
+        5 if status == "time" and origin == "published" else 4
+    )
     assert (
         conn.execute(
             "SELECT COUNT(*) FROM signals WHERE signal_uid='stale-news-row'"
@@ -909,8 +1003,51 @@ def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
     )
     conn.close()
     after = publish(state)
-    assert [r["event_start_time"] for r in after["events"]] == ["21:00"]
-    assert after["summary"]["suppressed_event_count"] == 1
+    if status in {"time", "date", "end", "backdate"}:
+        actual = {(r["event_date"], r["event_start_time"]) for r in after["events"]}
+        assert actual == {
+            ("2030-12-01", "21:00"),
+            (
+                d["official_event"]["event_start_date"],
+                d["official_event"]["event_start_time"],
+            ),
+        }
+        assert after["summary"]["suppressed_event_count"] == 0
+        corrected = next(r for r in after["events"] if r["event_start_time"] != "21:00")
+        assert corrected["event_end_date"] == d["official_event"]["event_end_date"]
+    else:
+        assert [r["event_start_time"] for r in after["events"]] == ["21:00"]
+        assert after["summary"]["suppressed_event_count"] == 1
+    if status == "backdate":
+        from scripts.build_lp_events import build_lp_events
+
+        with pytest.raises(ValueError, match="require discovery policy"):
+            build_lp_events(
+                events_db_path=tmp_path / "events.sqlite",
+                event_signals_db_path=tmp_path / "event_signals.sqlite",
+                as_of_date=date(2031, 1, 1),
+            )
+        plugin = VenueWebDiscoverySource(requests.Session())
+        assert (
+            plugin._event_to_signal(
+                source_id="venue_web_discovery",
+                event=preview["config"]["confirmed_events"][-1],
+                accepted_source_classes={"artist_official"},
+                rejected_source_classes=set(),
+                future_only=True,
+                today_iso="2031-01-01",
+            )
+            is not None
+        )
+        later_records = load_lp_records(
+            events_db_path=tmp_path / "events.sqlite",
+            event_signals_db_path=tmp_path / "event_signals.sqlite",
+            as_of_date=date(2031, 1, 1),
+        )
+        later = build_discovery_bundle(
+            later_records, as_of_date=date(2031, 1, 1), review_state=state
+        )[0]
+        assert [r["event_start_time"] for r in later["events"]] == ["21:00"]
     again = stage_official_event(
         p,
         d,
@@ -925,12 +1062,9 @@ def test_status_import_keeps_old_rows_and_other_performance_through_db_lp(
     (tmp_path / "manifest.json").write_text(
         json.dumps(_build_manifest(tmp_path, "external-events-latest"))
     )
-    assert (
-        validate_package(tmp_path, expected_date="2030-09-21", expected_commit=BASE)[
-            "event_count"
-        ]
-        == 1
-    )
+    assert validate_package(tmp_path, expected_date="2030-09-21", expected_commit=BASE)[
+        "event_count"
+    ] == (2 if status in {"time", "date", "end", "backdate"} else 1)
 
 
 @pytest.mark.parametrize(
@@ -946,6 +1080,9 @@ def test_status_import_cannot_change_identity_while_claiming_suppression(field, 
     p, d, queue = correction_case("cancelled")
     p["proposed_values"][field] = value
     d["official_event"][{"event_date": "event_start_date"}.get(field, field)] = value
+    if field == "event_date":
+        p["proposed_values"]["event_end_date"] = value
+        d["official_event"]["event_end_date"] = value
     d["proposal_hash"] = digest(p)
     staged = stage_official_event(p, d, REGISTRY, queue=queue, **preview_context())
     assert staged["import_preview"]["status"] == "blocked"

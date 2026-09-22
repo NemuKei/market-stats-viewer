@@ -23,6 +23,7 @@ from .ticketjam_review_state import (
     apply_reviews,
     fingerprint,
     is_pure_suppression,
+    is_datetime_correction,
     promote_confirmed,
     validate_config_replacement,
 )
@@ -426,14 +427,16 @@ def validate_proposal(
             origin_kind = "ticketjam_candidate"
             for field in (
                 "event_date",
+                "event_end_date",
                 "event_start_time",
                 "venue_name",
                 "artist_name",
                 "title",
+                "event_status",
             ):
-                if snapshot.get(field) != (proposal["current_values"] or values).get(
-                    field
-                ):
+                if _event_values(snapshot).get(field) != _event_values(
+                    proposal["current_values"] or values
+                ).get(field):
                     raise ValueError("existing candidate and proposal disagree")
         if snapshot.get("venue_name") != venues[venue_id]["venue_name"]:
             # Venue moves require a separate identity/migration review.
@@ -472,6 +475,7 @@ def stage_official_event(
     published: dict | None = None,
     prepare_import: bool = False,
     venue_aliases: list[dict] | None = None,
+    source_snapshot: dict | None = None,
 ) -> dict:
     """Separate Work decision -> existing official-event shape, still no config/DB write."""
     receipt = validate_proposal(
@@ -563,6 +567,7 @@ def stage_official_event(
     if event.get("pref_name") != pref:
         raise ValueError("Work evidence prefecture disagrees")
     candidate_review_state = None
+    source_review_state = review_state
     if receipt["origin_kind"] == "ticketjam_candidate":
         # Reuse the existing decision validator without fabricating Ticketjam identities.
         candidates = queue["candidates"] + queue.get("official_rechecks", [])
@@ -584,17 +589,17 @@ def stage_official_event(
             c for c in candidates if c["event_key"] == proposal["event_key"]
         )
         official_values = {
-            field: values.get(field, "scheduled" if field == "event_status" else None)
+            field: _event_values(values).get(field)
             for field in (
                 "event_date",
+                "event_end_date",
                 "event_start_time",
                 "venue_name",
                 "artist_name",
                 "event_status",
             )
-            if candidate.get(field, "scheduled" if field == "event_status" else None)
-            != values.get(field, "scheduled" if field == "event_status" else None)
-            and values.get(field, "scheduled" if field == "event_status" else None)
+            if _event_values(candidate).get(field) != _event_values(values).get(field)
+            and _event_values(values).get(field)
         }
         if official_values:
             if proposal["change_type"] not in {"correction", "cancelled", "postponed"}:
@@ -611,7 +616,36 @@ def stage_official_event(
             )
             if is_pure_suppression(candidate, event):
                 d["official_suppression"] = deepcopy(event)
+            elif is_datetime_correction(candidate, event):
+                d["official_correction"] = deepcopy(event)
         candidate_review_state = apply_reviews(review_state or {}, candidates, [d])
+        previous = (review_state or {}).get("events", {}).get(proposal["event_key"], {})
+        if previous.get("history") and previous["history"][-1] == d:
+            # Replaying the identical plan against its original trusted snapshots.
+            source_review_state = deepcopy(review_state)
+            history = source_review_state["events"][proposal["event_key"]]["history"]
+            history.pop()
+            if not history:
+                del source_review_state["events"][proposal["event_key"]]
+    correction = None
+    if (
+        prepare_import
+        and source_snapshot is not None
+        and proposal["change_type"] == "correction"
+        and is_datetime_correction(proposal["current_values"], event)
+    ):
+        from .event_corrections import prepare_correction
+
+        _published_rows(published, base_commit)
+        correction = prepare_correction(
+            proposal,
+            event,
+            receipt,
+            source_snapshot,
+            published,
+            source_review_state,
+            base_commit,
+        )
     config_review_status = "not_checked"
     if config is not None:
         matching = [
@@ -625,6 +659,8 @@ def stage_official_event(
             planned = _import_event(
                 event, proposal, receipt, decision["checked_at_utc"]
             )
+            if correction:
+                planned["date_time_correction"] = correction
             validate_config_replacement(
                 matching[0],
                 planned,
@@ -651,6 +687,7 @@ def stage_official_event(
         "config_review_status": config_review_status,
         "publication_status": "approval_pending",
         "can_publish": False,
+        "date_time_correction": correction,
     }
     if prepare_import:
         result["import_preview"] = _prepare_import_preview(
@@ -720,11 +757,16 @@ def _prepare_import_preview(
         and is_pure_suppression(proposal["current_values"], receipt["official_event"])
     )
     # Pure status notices use the existing authoritative suppression policy.
-    # Other corrections still require explicit migration of the old source/UID.
-    if not suppression and (
-        proposal["change_type"] not in {"new", "additional"}
-        or receipt["origin_kind"] == "published_event"
-        or receipt["official_event"].get("event_status", "scheduled") != "scheduled"
+    # Date/time corrections require Work's reviewed old-source retirement proof.
+    correction = receipt.get("date_time_correction")
+    if (
+        not suppression
+        and not correction
+        and (
+            proposal["change_type"] not in {"new", "additional"}
+            or receipt["origin_kind"] == "published_event"
+            or receipt["official_event"].get("event_status", "scheduled") != "scheduled"
+        )
     ):
         return dict(result, reason="source_correction_requires_migration")
     if receipt["origin_kind"] == "new_event" and proposal["current_values"]:
@@ -732,6 +774,8 @@ def _prepare_import_preview(
     event = _import_event(
         receipt["official_event"], proposal, receipt, receipt["verified_at_utc"]
     )
+    if correction:
+        event["date_time_correction"] = correction
     existing = next((r for r in events if r["event_id"] == event["event_id"]), None)
     if existing is not None:
         # The earlier shared replacement guard already checked this row.
@@ -749,11 +793,30 @@ def _prepare_import_preview(
         planned = deepcopy(config)
         planned.setdefault("confirmed_events", []).append(event)
         return dict(
-            result, status="ready_for_review", action="add_suppression", config=planned
+            result,
+            status="ready_for_review",
+            action="add_suppression",
+            config=planned,
         )
     start = event["event_start_date"]
     end = event.get("event_end_date") or start
     for row in [*events, *rows]:
+        if correction:
+            if row.get("event_key") == correction["published_event_key"]:
+                continue
+            if row.get("event_id"):
+                from .signals.sources.base import compute_signal_uid
+
+                uid = compute_signal_uid(
+                    "venue_web_discovery",
+                    row.get("url") or row.get("evidence_url"),
+                    extra_key=row["event_id"],
+                )
+                if any(
+                    r["source_id"] == "venue_web_discovery" and r["record_id"] == uid
+                    for r in correction["retired_records"]
+                ):
+                    continue
         row_venue, _ = normalize_venue_with_lookup(row.get("venue_name"), keep, compact)
         row_start = row.get("event_date") or row.get("event_start_date")
         row_end = row.get("event_end_date") or row_start
@@ -770,6 +833,12 @@ def _prepare_import_preview(
             )
         ):
             return dict(result, reason="possible_existing_performance")
+    if correction:
+        planned = deepcopy(config)
+        planned.setdefault("confirmed_events", []).append(event)
+        return dict(
+            result, status="ready_for_review", action="add_correction", config=planned
+        )
     if receipt["origin_kind"] == "ticketjam_candidate":
         key = proposal["event_key"]
         record = receipt["candidate_review_state"]["events"][key]
@@ -818,11 +887,25 @@ def main(argv=None) -> int:
         "--scope-output-dir", type=Path, help="Export derived Chat views outside data/"
     )
     parser.add_argument("--base-commit")
+    parser.add_argument(
+        "--events-db",
+        type=Path,
+        help="Work's trusted read-only DB for date/time correction previews",
+    )
+    parser.add_argument(
+        "--event-signals-db",
+        type=Path,
+        help="Work's trusted read-only signal DB for date/time correction previews",
+    )
     args = parser.parse_args(argv)
     if args.decision and not args.proposal:
         parser.error("decision requires proposal")
     if args.prepare_import and (not args.decision or not args.published_lp):
         parser.error("import preview requires decision and published LP")
+    if bool(args.events_db) != bool(args.event_signals_db) or (
+        args.events_db and not args.prepare_import
+    ):
+        parser.error("both trusted DB paths and import preview are required")
     if args.scope_output_dir and (args.proposal or args.pref_code):
         parser.error(
             "scope export cannot be combined with intake or a single prefecture"
@@ -867,6 +950,23 @@ def main(argv=None) -> int:
             else None,
         )
         proposal = load_json(args.proposal)
+        source_snapshot = None
+        if args.events_db:
+            from .build_lp_events import load_lp_records
+
+            payload = context["published"]["payload"]
+            records = load_lp_records(
+                events_db_path=args.events_db,
+                event_signals_db_path=args.event_signals_db,
+                as_of_date=date.fromisoformat(payload["as_of_date"]),
+                include_past=payload.get("history_window_days", 90) is None,
+                past_days=payload.get("history_window_days", 90) or 0,
+            )
+            source_snapshot = dict(
+                base_commit=args.base_commit,
+                records=records,
+                records_fingerprint=digest(records),
+            )
         bundle = (
             stage_official_event(
                 proposal,
@@ -877,6 +977,7 @@ def main(argv=None) -> int:
                 else None,
                 config=config,
                 prepare_import=args.prepare_import,
+                source_snapshot=source_snapshot,
                 venue_aliases=aliases,
                 **context,
             )

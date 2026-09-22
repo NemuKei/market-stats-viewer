@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "research_queue_not_runtime_registry",
   "national_census_complete": false,
-  "source_scope": "B.LEAGUE 2026-27/2027-28 listed arenas + J1/J2/J3 current club stadium profiles + handoff operator entries + official tour; not an exhaustive facility census + NPB primary-franchise cross-check (three unregistered ballparks) + 2026-09-21 operator follow-up (Hiroshima/Fukui/ECOPA/Portmesse); still not exhaustive + 2026-09-22 operator follow-up (9 registry additions, SAGA stadium observation); still not exhaustive + 2026-09-22 hall rename and Toki operator cross-check (two retained observations); still not exhaustive",
+  "source_scope": "B.LEAGUE 2026-27/2027-28 listed arenas + J1/J2/J3 current club stadium profiles + handoff operator entries + official tour; not an exhaustive facility census + NPB primary-franchise cross-check (three unregistered ballparks) + 2026-09-21 operator follow-up (Hiroshima/Fukui/ECOPA/Portmesse); still not exhaustive + 2026-09-22 operator follow-up (9 registry additions, SAGA stadium observation); still not exhaustive + 2026-09-22 hall rename and Toki operator cross-check (two retained observations); still not exhaustive + 2026-09-22 seven operator facility reviews (Akita/Nagano/Tokushima/Ehime/Kumamoto/Shiga); M-Wave new observation; still not exhaustive",
   "count_semantics": "distinct pref/name observations, may include aliases or future venues; not reviewed target denominator",
   "candidates": [
     {
@@ -275,28 +275,56 @@
       "pref_code": "05",
       "venue_kind": "dome",
       "address": "秋田県大館市上代野字稲荷台1番地1",
-      "capacity": null,
-      "capacity_basis": null,
+      "capacity": 15000,
+      "capacity_basis": "運営者施設概要: アリーナ使用時15,000人。固定観覧席5,040人とは別の人数。",
       "operating_status": "partially_restricted_roof_repair",
-      "scope_review": "pending",
+      "scope_review": "operator_identity_verified_schedule_pending",
       "missing_fields": [
-        "capacity_basis",
         "schedule_extent"
       ],
-      "registry_venue_id": null,
-      "evidence_status": "official_body_entry_only_not_full_census",
+      "registry_venue_id": "nipro_hachiko_dome",
+      "evidence_status": "operator_body_read",
       "fetch_status": "body_fetched",
       "evidence": [
         {
           "evidence_url": "https://jukaidome.com/",
           "observed_at_utc": "2026-09-20T11:22:46.708177Z",
           "body_sha256": "6acb1f2082118d075cae85d0955ba36f8e2a2f37675b70d225d0bbe9a0fb799c"
+        },
+        {
+          "evidence_url": "https://jukaidome.com/",
+          "observed_at_utc": "2026-09-22T10:20:44.075118Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "7558b0787a7f0dfdc25eda63aa2f2ee0d682c3f84b60beaff88d5138035fc68c"
+        },
+        {
+          "evidence_url": "https://jukaidome.com/summary/",
+          "observed_at_utc": "2026-09-22T10:25:27.809129Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "4c6118c4e3af56e2d15ab08282311d0d8e480c3e64c38330b48af989f23860bb"
+        },
+        {
+          "evidence_url": "https://jukaidome.com/access/",
+          "observed_at_utc": "2026-09-22T10:25:27.809738Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "02f09b72f525fc9479d8542ac56cfe79bda157bc9226e11d3559f4ff8392fcfa"
+        },
+        {
+          "evidence_url": "https://jukaidome.com/calendar/",
+          "observed_at_utc": "2026-09-22T10:25:27.811652Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "e97fac89e70ce813aab7b9a586b5c975ca48b91ef1b4bdd14faa639caeaaf40a"
         }
       ],
       "aliases": [
         "大館樹海ドーム"
       ],
-      "operating_status_note": "Official homepage says ground-wide sports use is restricted during roof membrane repair; no cancellation of specific events inferred."
+      "operating_status_note": "屋根膜復旧工事でグラウンド全体を使う競技を制限。音・車両の注意あり。個別公演の中止は推定しない。",
+      "operator": "一般財団法人大館市文教振興事業団",
+      "official_url": "https://jukaidome.com/",
+      "schedule_url": "https://jukaidome.com/calendar/",
+      "schedule_extent": "イベント一覧で大学野球と8/22〜8/30全県450歳野球を読取。個別詳細・全予約期間は未確認。",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
     },
     {
       "candidate_id": "f654e22ed2a2a700e83f",
@@ -1804,28 +1832,58 @@
       "name": "ビッグハット",
       "pref_code": "20",
       "venue_kind": "arena",
-      "address": null,
+      "address": "長野県長野市若里3丁目22番2号",
       "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
+      "capacity_basis": "主フロア4,000㎡、ステージ固定396席の記載のみ確認。施設全体の人数は未確認。面積や部分席数を容量に転用しない。",
+      "operating_status": "operating_planned_closure",
+      "scope_review": "operator_identity_verified_schedule_pending",
       "missing_fields": [
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
-        "schedule_extent"
+        "schedule_extent",
+        "capacity_basis"
       ],
-      "registry_venue_id": null,
-      "evidence_status": "official_body_entry_only_not_full_census",
+      "registry_venue_id": "big_hat",
+      "evidence_status": "operator_body_read",
       "fetch_status": "body_fetched",
       "evidence": [
         {
           "evidence_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
           "observed_at_utc": "2026-09-20T11:23:04.345624Z",
           "body_sha256": "91f0d680a73f207062b5521d688573b102b191a102b977473e6560bdb7dd3e3a"
+        },
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/bighat/",
+          "observed_at_utc": "2026-09-22T10:20:44.075733Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "e252754cea15bba5c15a77f45150f85bd0cd7ef93d602cbc94676929c46bc79b"
+        },
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/bighat/about/",
+          "observed_at_utc": "2026-09-22T10:25:27.812732Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "760f6db91bd3cc671b709da9dfa872cce4c5e1f85bc0bdf803001e4133de9831"
+        },
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/bighat/about/floor.php",
+          "observed_at_utc": "2026-09-22T10:25:27.814641Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "d064fce97176d112d047f4ac740a9b234f53bf74bb5e4e0d45dd2bd8d24f19de"
+        },
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+          "observed_at_utc": "2026-09-22T10:25:27.815975Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "006bf57499aa4d1b1659d1b020d35cc206768ebf7a26fa9cce2e6a8032576196"
         }
-      ]
+      ],
+      "operator": "株式会社エムウェーブ",
+      "aliases": [
+        "長野市若里多目的スポーツアリーナ"
+      ],
+      "official_url": "https://www.nagano-mwave.co.jp/bighat/",
+      "schedule_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+      "schedule_extent": "公開リスト9/25〜11/14を読取（BOYNEXTDOOR、武術太極拳、産業フェア、GENERATIONS、米津玄師等）。個別時刻・非掲載予定・以後の月は未確認。",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z",
+      "operating_status_note": "長寿命化改修で2027年4月上旬〜10月末、約7か月の休館予定。併記された若里市民文化ホールの通常開館とは区別する。"
     },
     {
       "candidate_id": "e0d530655c1431e2375d",
@@ -2439,31 +2497,57 @@
       "name": "滋賀ダイハツアリーナ",
       "pref_code": "25",
       "venue_kind": "arena",
-      "address": null,
-      "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
+      "address": "滋賀県大津市上田上中野町779番地",
+      "capacity": 5018,
+      "capacity_basis": "公式施設案内のメインアリーナ約5,018席（1・2階合計）。サブアリーナ200席を加算しない。",
+      "operating_status": "operating_with_current_official_page",
+      "scope_review": "operator_identity_verified_schedule_pending",
       "missing_fields": [
-        "operator_identity",
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
-        "schedule_extent"
+        "schedule_extent",
+        "operator_current_term"
       ],
       "evidence": [
         {
           "evidence_url": "https://www.bleague.jp/new-bleague/club/",
           "observed_at_utc": "2026-09-20T11:15:20.891945Z",
           "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+        },
+        {
+          "evidence_url": "https://shiga-arena.jp/",
+          "observed_at_utc": "2026-09-22T10:25:50.184908Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "e714c9b90ca5a50c84294dcac5756af7996a87ca86fb5ad45794ac99523ead0a"
+        },
+        {
+          "evidence_url": "https://shiga-arena.jp/gallery",
+          "observed_at_utc": "2026-09-22T10:25:44.888093Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "d98a4816a43442854d5f865757f6fbb1159638afd60e9101a6a26c2913470f2d"
+        },
+        {
+          "evidence_url": "https://shiga-arena.jp/access",
+          "observed_at_utc": "2026-09-22T10:25:49.783161Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "b51e0b528cd05a41227ff6f1265c147ed321af9f21e82d8adf7810c6d7f034ca"
+        },
+        {
+          "evidence_url": "https://shiga-arena.jp/news/page/14853",
+          "observed_at_utc": "2026-09-22T10:25:50.155810Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "fd69106fb04438bb986d8acd10ece4e5b537bb8a0a646dd9faa0630e8a3db8f6"
         }
       ],
       "operator_reference_url": "https://shigalakes.com/",
       "location_hint": "滋賀県大津市",
-      "registry_venue_id": null,
-      "evidence_status": "official_listing_only_not_operator_or_event_verification",
-      "fetch_status": "body_fetched"
+      "registry_venue_id": "shiga_daihatsu_arena",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "body_fetched",
+      "operator": "しがクロス株式会社（2022/9/26指定管理者挨拶。現行指定期間は未照合）",
+      "aliases": [],
+      "official_url": "https://shiga-arena.jp/",
+      "schedule_url": "https://shiga-arena.jp/",
+      "schedule_extent": "施設・アクセス・指定管理者告知と現在のトップページを確認。全施設イベント予定表は未確認。トップURLは探索入口であり予定表取得成功ではない。",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
     },
     {
       "candidate_id": "2b2fd4a2ffa432aa0baf",
@@ -3111,28 +3195,50 @@
       "name": "アスティとくしま",
       "pref_code": "36",
       "venue_kind": "arena",
-      "address": null,
-      "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
+      "address": "徳島県徳島市山城町東浜傍示1番地1",
+      "capacity": 5000,
+      "capacity_basis": "多目的ホール最大5,000人。利用形態によって変わる。",
+      "operating_status": "operating_with_current_official_page",
+      "scope_review": "operator_identity_verified_schedule_pending",
       "missing_fields": [
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
         "schedule_extent"
       ],
-      "registry_venue_id": null,
-      "evidence_status": "official_body_entry_only_not_full_census",
+      "registry_venue_id": "asty_tokushima",
+      "evidence_status": "operator_body_read",
       "fetch_status": "body_fetched",
       "evidence": [
         {
           "evidence_url": "https://www.asty-tokushima.jp/event/",
           "observed_at_utc": "2026-09-20T11:23:06.797014Z",
           "body_sha256": "0794a8faf224820c418c28481954fd9dc663d86f819d189ddce7e6ceea9f92bc"
+        },
+        {
+          "evidence_url": "https://www.asty-tokushima.jp/organizer/facility/hall/",
+          "observed_at_utc": "2026-09-22T10:20:44.076388Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "8c72ed1eb5dc08a2aafa8217e2d0f6130b740e5b914d5f888ee4c95bf9d1c06d"
+        },
+        {
+          "evidence_url": "https://www.asty-tokushima.jp/about/",
+          "observed_at_utc": "2026-09-22T10:25:35.796313Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "0b69c2f3e4bdb9ae243e7128f865a5c7b3795d0e77acf07c7e0b84e3eed8d6fc"
+        },
+        {
+          "evidence_url": "https://www.asty-tokushima.jp/event/",
+          "observed_at_utc": "2026-09-22T10:25:36.058642Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "303ce6fd9db90dc7caae92f93ffd5e2fc54a199a8c7bcd6351273870e1d881da"
         }
-      ]
+      ],
+      "operator": "とくしまにぎわい創出共同事業体",
+      "aliases": [
+        "徳島県立産業観光交流センター"
+      ],
+      "official_url": "https://www.asty-tokushima.jp/about/",
+      "schedule_url": "https://www.asty-tokushima.jp/event/",
+      "schedule_extent": "9月表示の住宅展示、9/22〜23バスケットボール、9/27おぎゃっと21と隣接10/3〜4を読取。全月・個別時刻は未確認。",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
     },
     {
       "candidate_id": "aedfef57518f5ccc93ec",
@@ -3279,28 +3385,49 @@
       "name": "愛媛県武道館",
       "pref_code": "38",
       "venue_kind": "arena",
-      "address": null,
+      "address": "愛媛県松山市市坪西町551",
       "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
+      "capacity_basis": "施設案内は1階収納移動席988、2階固定席2,896を記載。イベント配置を含む施設全体収容人数は未確認。",
+      "operating_status": "operating_with_current_official_page",
+      "scope_review": "operator_identity_verified_schedule_pending",
       "missing_fields": [
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
-        "schedule_extent"
+        "schedule_extent",
+        "capacity_basis"
       ],
-      "registry_venue_id": null,
-      "evidence_status": "official_body_entry_only_not_full_census",
+      "registry_venue_id": "ehime_budokan",
+      "evidence_status": "operator_body_read",
       "fetch_status": "body_fetched",
       "evidence": [
         {
           "evidence_url": "https://ehime-spa.jp/budoukan/",
           "observed_at_utc": "2026-09-20T11:23:15.747728Z",
           "body_sha256": "4ea15deb1f9a5d26c2c6c387de7df59360bdd0b21bbdcef3540669b5e51c4c73"
+        },
+        {
+          "evidence_url": "https://ehime-spa.jp/budoukan/",
+          "observed_at_utc": "2026-09-22T10:20:44.078482Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "883d179b7c5c0006ff35146918def97a33c5958cda3089ceb83de76966c45f3f"
+        },
+        {
+          "evidence_url": "https://ehime-spa.jp/budoukan/architecture/",
+          "observed_at_utc": "2026-09-22T10:20:44.078903Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "075ac93cfef110afeb5a7bda7c07fd7a40c4388bdc1391a81983da46ddf49539"
+        },
+        {
+          "evidence_url": "https://ehime-spa.jp/budoukan/martial-event/",
+          "observed_at_utc": "2026-09-22T10:25:38.908010Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "d33dc7a4bd9db80b3e2f59a1f418d67cf0549e6d7c7072b117c12a04c7fa6710"
         }
-      ]
+      ],
+      "operator": "公益財団法人愛媛県スポーツ振興事業団",
+      "aliases": [],
+      "official_url": "https://ehime-spa.jp/budoukan/",
+      "schedule_url": "https://ehime-spa.jp/budoukan/martial-event/",
+      "schedule_extent": "2026年9月の表と行事一覧を読取。主道場・副道場等の区別、9/26〜27 B2リーグあり。全月・個別時刻は未確認。",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
     },
     {
       "candidate_id": "856c1033ccfce50c5f11",
@@ -3747,28 +3874,63 @@
       "name": "グランメッセ熊本",
       "pref_code": "43",
       "venue_kind": "exhibition_arena",
-      "address": null,
+      "address": "熊本県上益城郡益城町福富1010",
       "capacity": null,
-      "capacity_basis": null,
-      "operating_status": "unverified",
-      "scope_review": "pending",
+      "capacity_basis": "展示面積8,000㎡（4分割）、Dゾーン可動席770/1,318の記載。全館コンサート収容人数は未確認。面積やDゾーンの席数を全館容量に転用しない。",
+      "operating_status": "operating_with_current_official_page",
+      "scope_review": "operator_identity_verified_schedule_pending",
       "missing_fields": [
-        "address",
-        "capacity_basis",
-        "operating_status",
-        "aliases",
-        "schedule_extent"
+        "schedule_extent",
+        "capacity_basis"
       ],
-      "registry_venue_id": null,
-      "evidence_status": "official_body_entry_only_not_full_census",
+      "registry_venue_id": "grandmesse_kumamoto",
+      "evidence_status": "operator_body_read",
       "fetch_status": "body_fetched",
       "evidence": [
         {
           "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
           "observed_at_utc": "2026-09-20T11:23:06.441472Z",
           "body_sha256": "451c30f5de56a53c1f8a8518559867676b8e5a91b4df00980a7e0db495b39ca3"
+        },
+        {
+          "evidence_url": "https://www.grandmesse.jp/kiji0031/index.html",
+          "observed_at_utc": "2026-09-22T10:25:39.293005Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "315d237bca58557781523b898eb5989054361e00f9ba3d5f3742b5f5515acf62"
+        },
+        {
+          "evidence_url": "https://www.grandmesse.jp/kiji00310/index.html",
+          "observed_at_utc": "2026-09-22T10:25:39.392730Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "98fdb5e5d57d86a18724df2dc6358e2cdaebe08fa4f76f4f4b7102f9cb215667"
+        },
+        {
+          "evidence_url": "https://www.grandmesse.jp/kiji00319/index.html",
+          "observed_at_utc": "2026-09-22T10:25:43.986106Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "b4efcae597a40ac6c5788e9912ce0e3bcf47ebfca11b6ddd3a36be1ec29b41ff"
+        },
+        {
+          "evidence_url": "https://www.grandmesse.jp/list00022.html",
+          "observed_at_utc": "2026-09-22T10:31:54.692365Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "6e4ce3dd19bcb98690aa0176fa548964e7f36c15c606e61d2f1f04d88b247a80"
+        },
+        {
+          "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+          "observed_at_utc": "2026-09-22T10:31:54.692769Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "711e5858f1b791f0490dfcb007b1fd3e6a2c1c314d58ef67f96456ce3f478379"
         }
-      ]
+      ],
+      "operator": "熊本産業文化振興株式会社",
+      "aliases": [
+        "熊本産業展示場"
+      ],
+      "official_url": "https://www.grandmesse.jp/",
+      "schedule_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+      "schedule_extent": "9月表示のCollect Plants中止（9/22〜23）、TOYOPET GREEN FESTIVAL延期（9/26〜27、時期未定）、熊本ママフェス延期（9/30）を読取。全月・個別本文は未確認。トップ告知の2027/1/23〜24 SUPER BEAVERも個別未確認。",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
     },
     {
       "candidate_id": "8c82a44c10c3ef402024",
@@ -4146,6 +4308,51 @@
       "schedule_url": "https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html",
       "schedule_extent": "表示中2026年12月〜2027年8月の全行を閲覧。2027/4/21・22、6/5・6のあいみょん4公演をツアーfixtureと照合。未表示月は未確認。",
       "reviewed_at_utc": "2026-09-22T09:57:11.217140Z"
+    },
+    {
+      "candidate_id": "5d9e5edfa4d74a2e87a7",
+      "name": "エムウェーブ",
+      "pref_code": "20",
+      "evidence": [
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/m_wave/",
+          "observed_at_utc": "2026-09-22T10:20:44.076071Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "b824ecb140c961e83bd1a19980bce65e832fd5816951198335a5704ff52d9934"
+        },
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/m_wave/about/",
+          "observed_at_utc": "2026-09-22T10:25:35.681156Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "7c6501a01f3d5d2dcb4879a78c2a9de25c018b047817f4976decc59d8d3f9e8a"
+        },
+        {
+          "evidence_url": "https://www.nagano-mwave.co.jp/m_wave/event_calender/",
+          "observed_at_utc": "2026-09-22T10:31:54.695229Z",
+          "retrieval_method": "requests_bs4",
+          "body_sha256": "9e5103d565d58fadbeab9798e5d792778d7a0bfbaba998c416e93128b22d7c03"
+        }
+      ],
+      "venue_kind": "arena",
+      "address": "長野県長野市大字北長池195",
+      "capacity": 20000,
+      "capacity_basis": "運営者施設概要: 収容人数20,000人、常設席約6,500席。アリーナ面積と区別。",
+      "operating_status": "operating_with_current_official_page",
+      "scope_review": "operator_identity_verified_schedule_pending",
+      "registry_venue_id": "m_wave",
+      "operator": "株式会社エムウェーブ",
+      "aliases": [
+        "長野市オリンピック記念アリーナ"
+      ],
+      "official_url": "https://www.nagano-mwave.co.jp/m_wave/",
+      "schedule_url": "https://www.nagano-mwave.co.jp/m_wave/event_calender/",
+      "schedule_extent": "2026/9/18現在の9/5〜6、10/4無料開放、10/23〜25全日本スピードスケートを読取。冬季スケート別ページ・以後の月は未確認。",
+      "evidence_status": "operator_body_read",
+      "fetch_status": "body_fetched",
+      "reviewed_at_utc": "2026-09-22T10:41:31.584195Z",
+      "missing_fields": [
+        "schedule_extent"
+      ]
     }
   ],
   "fetch_failures": []

@@ -1,6 +1,68 @@
 # PR #21 続行記録（2026-09-22）
 
-## 追加続行の最新検証（main c1236cf）
+## 会場7件追加・日時訂正の検証（最新）
+
+開始head `c3d6b60c6997e73a28448512ed08258f91b3f3c2`、main `c1236cf37870b26993969e776dd625d7a087161c`。最新fetchでも同じmainのためmergeなし。同じPR/branch、子タスクなし。root AGENTS、引き継ぎ、関連specに従い、source→一時DB→LP→manifestを検証。本番の公開・権限・旧端末・既存タスク・runtime config/DBは変更していない。
+
+### A〜C：全国対象の保持と運営者確認
+
+点検exit 0。123台帳・25県登録、公式有効32/watch12/Ticketjam75（68有効）、容量不明7。ID衝突・孤立なし。元116会場を全件保持。全47県の130観測を保持してエムウェーブを追加し131観測。108 pending、12 identity_verified_schedule_pending、9 operator_identity_verified_schedule_pending、1 operator_and_visible_schedule_reviewed、1 operator_verified_address_conflict。全国完成ではない。
+
+| 追加会場 | 運営者本文で確認した規模 | 状況・残る確認 |
+|---|---|---|
+| ニプロハチ公ドーム（秋田） | アリーナ使用時15,000人、固定観覧席5,040人 | 屋根膜工事による全グラウンド競技の制限を保持。個別中止は推定しない |
+| ビッグハット（長野） | 全体人数不明。面積・ステージ部分席数は人数へ転用しない | 2027年4月上旬〜10月末の休館予定。隣接施設の通常開館と区別 |
+| エムウェーブ（長野） | 20,000人、常設約6,500席 | 9/18現在の見えている予定のみ。冬季別ページ・後続月は未確認 |
+| アスティとくしま（徳島） | 多目的ホール最大5,000人 | 9月と隣接10月の表示範囲を読取。全月・時刻は未確認 |
+| 愛媛県武道館（愛媛） | 全体人数不明。1階988、2階2,896の部分席数を記録 | 9月行事一覧と主/副道場の別を確認。全月・時刻は未確認 |
+| グランメッセ熊本（熊本） | 全体人数不明。8,000㎡は面積、770/1,318はDゾーン席数 | 9月表示の中止・延期告知を保持。個別本文・全月は未確認 |
+| 滋賀ダイハツアリーナ（滋賀） | メインアリーナ約5,018席 | 指定管理者根拠は2022年挨拶。現行指定期間・全予定表は未照合 |
+
+住所・運営者・別名・出典URL・取得日時・本文hash・取得状態・予定表の確認範囲は `CENSUS_REVIEW_QUEUE.json` へ記録。raw本文はrepoへ入れない。主な出典は [ニプロ概要](https://jukaidome.com/summary/)、[ビッグハット](https://www.nagano-mwave.co.jp/bighat/)、[エムウェーブ概要](https://www.nagano-mwave.co.jp/m_wave/about/)、[アスティ概要](https://www.asty-tokushima.jp/about/)、[愛媛施設案内](https://ehime-spa.jp/budoukan/architecture/)、[熊本施設案内](https://www.grandmesse.jp/kiji0031/index.html)、[滋賀施設案内](https://shiga-arena.jp/gallery)。容量未確認でも除外せず、collector有効化はしない。スポーツ・展示会等の既存カテゴリを維持。
+
+8分割、最大86244 bytes、scope `2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1`。取得済み本文と定期巡回の成功は別であり、実状態はunvisitedのまま。SEKAI 23公演・あいみょん36公演の全国fixtureも全件対応を再テスト。
+
+### D：日時訂正と再現テスト
+
+既存の状態抑止経路を残し、日時だけの訂正を別IDの `add_correction` へ接続。単なる新行追加では旧sourceが残るため、Workの信頼済みDBと現行LPを再現して対象sourceだけを退役させる限定修正とした。任意のsource置換や物理削除は導入しない。内部proof・互換・移行・復帰は `spec_event_status.md` が正本。
+
+- Ticketjam / 実LP起点それぞれで、時刻・日付・終了日・前倒しの8ケースを一時DB→LP→manifestまで確認。中止/延期の既存4ケースも維持。元候補conflict・旧DB/config行・別時刻の公演を保持し、初回1件・再入力0件。
+- 日時訂正4ケースは未実装時のテスト失敗を確認して実装。後日の90日窓で訂正行だけが落ち、旧19時が再表示される2ケースも失敗を観測し修正。訂正証跡は期間外でも読み、旧行退役後に表示期間を適用する。
+- 古いDB/LP版、根拠改変、未審査の別UIDによる旧日時、訂正先の別公演、共有の時刻不明source、連続訂正、不正proofを停止。取得時刻のみの更新と、古い対象行が期間外になったケースは許容。
+- CLIで本物の一時SQLiteを読み、入力不変と90日窓を確認。訂正非対応のdisplay/reviewed生成を停止。future_onlyでも訂正証跡を捨てない。
+- 終了時刻・無効化を混ぜた訂正、会場/出演者/title変更、状態との混在、一般の実体変更は対応範囲外。退役計画の本番適用・実公演日時訂正は未実施。合成検証を実公演の訂正成功と扱わない。
+
+### G：実施した全体検証と表示差分
+
+`uv run --frozen python -m pytest -q`: **309 passed, 70 subtests passed**。R1〜R3および指定6 focusedを含む。変更Pythonのruff check、diff check成功。最終PR headへの再試験とmanifestのcommit/hashはPR本文へ記録する。
+
+最新main保存LP1,142→再生成1,144。差は前回からのIGの地域保留解除2公演とTOYOTAの表示名/key変更2公演のみ、共通key内容変更0。今回7会場追加による追加の既存LP差分0。時刻分割31公演/30組、抑止1、地域保留14。候補1,153・期限到来816・選択60・残り756。
+
+[野口五郎11/1公演](https://www.nagasakistadiumcity.com/event/50333/)の本文を再取得し、日付・17:00・HAPPINESS ARENAを確認。新scopeでfixtureを再作成。最新DBコピーへの追加は初回1件・再実行0件、LP1,145件。既存1,144件を全行保持し、公式URL/長崎県/時刻/manifest/validatorを確認。これは対話内の無公開試験であり、定期Work Cloud経路ではない。
+
+| 一時検証物 | bytes | SHA256 |
+|---|---:|---|
+| events.sqlite | 1,282,048 | `cb1cdfc0f6bd285f91fb154a31bf2e317aba78befe892348169d9eedb4dbaccf` |
+| event_signals.sqlite | 4,194,304 | `dc4cbd5d5a8b918ca7e5c778255d3f45417c20859c8e252ef5fdc0ad616f2ad7` |
+| baseline-lp.json | 2,234,585 | `b41a750473f8bd8857569dfdb624723b379e7bf8a3683ae575ef710c522fba06` |
+| lp_events.json | 2,236,368 | `57d14a0b150565e56ad44a4984d464a10316abcc87ece765349e89d90450f5fa` |
+
+入力SHA256:
+
+- `venue_registry.csv`: `46f460f975bb7a95652429caad6f9c1bc5fb1b4e0eb334d2f9e07c05d8094419`
+- `venue_aliases.csv`: `bd206141a0533b726a5ef822a4d86e918d4e1f37ce2122e8df0bf8c2a1852843`
+- `venue_web_discovery_config.json`: `8bddf7c1e295321027ad415ff3580596f183356325c20a340158652cc4520f01`
+- `ticketjam_venue_pages.csv`: `6ae738a0a0b447f9ac7b7a96de1cb2ddb574890c65839b72bb5b889501c9ef0c`
+
+生成時刻に依存する一時物であり、Release assetではない。公開していない。最終headへ固定した再検証hashはPR本文を参照。
+
+### E・F・H：未実施・未完了
+
+`lp_impact=present in preview`。3系統の提案・受入・取込案・DB/LP生成へのコード接続は試験したが、全会場/予定表/全国発表元/SNSの審査、実Cloudの起動・定期提出・承認待ち・再実行、Cloud/Actions/旧端末の単一writer、実使用量と遅延、Release/実LP追跡は未完了。前回を超えるCloudトリガー操作・結果は得ていない。自動化を成功扱いせず、既存タスク・公開権限・旧端末設定を変えない。
+
+次の再開はBの未審査108観測と各会場missing_fields、Cの全予定表/発表元を続け、Dの実体変更/連続訂正とE/Fの実経路を検証する。Hの切替許可・旧writer停止確認・公開hash追跡より先に本番へ進めない。`sync-needed`: 最新base再照合、承認されたruntime取込、Cloud受入と単一writer実測、Release/実LP。
+
+## 前回追加続行の検証（main c1236cf、履歴）
 
 開始PR head `09300a713974dd9bce9af9f1adc5b693d482dbb6`。最新main `c1236cf37870b26993969e776dd625d7a087161c` を同じbranchへ通常mergeし、最新DB/LP/候補の更新を保持。競合なし。以降の旧記録は前回baseの履歴。
 

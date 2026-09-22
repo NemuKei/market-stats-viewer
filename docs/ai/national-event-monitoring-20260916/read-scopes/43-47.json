@@ -1,12 +1,31 @@
 {
-  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
+  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
   "snapshot_only": true,
   "scopes": [
     {
       "pref_code": "43",
       "pref_name": "熊本県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "grandmesse_kumamoto",
+          "venue_name": "グランメッセ熊本",
+          "aliases": [
+            "熊本産業展示場"
+          ],
+          "official_url": "https://www.grandmesse.jp/",
+          "schedule_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "05d986b27d3279ee979e",
@@ -40,28 +59,63 @@
           "name": "グランメッセ熊本",
           "pref_code": "43",
           "venue_kind": "exhibition_arena",
-          "address": null,
+          "address": "熊本県上益城郡益城町福富1010",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "展示面積8,000㎡（4分割）、Dゾーン可動席770/1,318の記載。全館コンサート収容人数は未確認。面積やDゾーンの席数を全館容量に転用しない。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "capacity_basis"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "grandmesse_kumamoto",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
               "observed_at_utc": "2026-09-20T11:23:06.441472Z",
               "body_sha256": "451c30f5de56a53c1f8a8518559867676b8e5a91b4df00980a7e0db495b39ca3"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/kiji0031/index.html",
+              "observed_at_utc": "2026-09-22T10:25:39.293005Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "315d237bca58557781523b898eb5989054361e00f9ba3d5f3742b5f5515acf62"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/kiji00310/index.html",
+              "observed_at_utc": "2026-09-22T10:25:39.392730Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "98fdb5e5d57d86a18724df2dc6358e2cdaebe08fa4f76f4f4b7102f9cb215667"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/kiji00319/index.html",
+              "observed_at_utc": "2026-09-22T10:25:43.986106Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b4efcae597a40ac6c5788e9912ce0e3bcf47ebfca11b6ddd3a36be1ec29b41ff"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/list00022.html",
+              "observed_at_utc": "2026-09-22T10:31:54.692365Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6e4ce3dd19bcb98690aa0176fa548964e7f36c15c606e61d2f1f04d88b247a80"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+              "observed_at_utc": "2026-09-22T10:31:54.692769Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "711e5858f1b791f0490dfcb007b1fd3e6a2c1c314d58ef67f96456ce3f478379"
             }
-          ]
+          ],
+          "operator": "熊本産業文化振興株式会社",
+          "aliases": [
+            "熊本産業展示場"
+          ],
+          "official_url": "https://www.grandmesse.jp/",
+          "schedule_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+          "schedule_extent": "9月表示のCollect Plants中止（9/22〜23）、TOYOPET GREEN FESTIVAL延期（9/26〜27、時期未定）、熊本ママフェス延期（9/30）を読取。全月・個別本文は未確認。トップ告知の2027/1/23〜24 SUPER BEAVERも個別未確認。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
         },
         {
           "candidate_id": "8c82a44c10c3ef402024",

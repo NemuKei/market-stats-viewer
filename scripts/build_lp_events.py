@@ -393,7 +393,11 @@ def load_signal_events(
         )
         if not event_date or not artist_name or not venue_name:
             continue
-        if history_start_date and event_end_date < history_start_date:
+        if (
+            history_start_date
+            and event_end_date < history_start_date
+            and not labels.get("date_time_correction")
+        ):
             continue
         source_id = str(row["source_id"] or "")
         events.append(
@@ -403,6 +407,7 @@ def load_signal_events(
                 "source_class": str(labels.get("source_class") or "").strip(),
                 "record_id": str(row["signal_uid"] or ""),
                 "discovery_event_key": str(labels.get("discovery_event_key") or ""),
+                "date_time_correction": labels.get("date_time_correction"),
                 "event_date": event_date,
                 "event_end_date": event_end_date,
                 "event_start_time": labels.get("event_start_time"),
@@ -811,6 +816,8 @@ def build_lp_events(
     records = load_lp_records(events_db_path=events_db_path,
         event_signals_db_path=event_signals_db_path, include_past=include_past,
         past_days=past_days, as_of_date=reference_date)
+    if any(r.get("date_time_correction") for r in records):
+        raise ValueError("date/time corrections require discovery policy and review state")
     return assemble_lp_payload(records, as_of_date=reference_date,
         include_past=include_past, past_days=past_days)
 

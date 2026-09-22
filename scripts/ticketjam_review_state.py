@@ -122,6 +122,80 @@ def _validate_suppression(candidate: dict, review: dict) -> None:
     _validate_confirmed(candidate, event)
 
 
+def is_datetime_correction(candidate: dict, event: dict) -> bool:
+    return (
+        candidate.get("event_status", "scheduled")
+        == event.get("event_status", "scheduled")
+        == "scheduled"
+        and all(
+            candidate.get(k) == event.get(k)
+            for k in ("venue_name", "artist_name", "title")
+        )
+        and (
+            candidate.get("event_date"),
+            candidate.get("event_end_date") or candidate.get("event_date"),
+            candidate.get("event_start_time"),
+        )
+        != (
+            event.get("event_start_date"),
+            event.get("event_end_date") or event.get("event_start_date"),
+            event.get("event_start_time"),
+        )
+    )
+
+
+def _validate_correction(candidate: dict, review: dict) -> None:
+    event = review.get("official_correction")
+    if (
+        not isinstance(event, dict)
+        or review.get("status") != "conflict"
+        or not is_datetime_correction(candidate, event)
+    ):
+        raise ValueError("correction requires a date/time conflict")
+    values = review.get("official_values", {})
+    expected = {
+        k: event.get(v)
+        for k, v in (
+            ("event_date", "event_start_date"),
+            ("event_start_time", "event_start_time"),
+        )
+        if event.get(v) != candidate.get(k)
+    }
+    old_end = candidate.get("event_end_date") or candidate.get("event_date")
+    new_end = event.get("event_end_date") or event.get("event_start_date")
+    if old_end != new_end:
+        expected["event_end_date"] = new_end
+    if not expected or values != expected:
+        raise ValueError("correction review disagrees with official date/time")
+    _validate_confirmed(
+        dict(
+            candidate,
+            event_date=event["event_start_date"],
+            event_start_time=event.get("event_start_time"),
+        ),
+        event,
+    )
+
+
+def matches_official_correction(row: dict, record: dict) -> bool:
+    history = record.get("history", [])
+    if not history or "official_correction" not in history[-1]:
+        return False
+    review = history[-1]
+    candidate = record.get("candidate_snapshot", {})
+    if record.get("candidate_fingerprint") != fingerprint(candidate) or review.get(
+        "candidate_fingerprint"
+    ) != fingerprint(candidate):
+        return False
+    try:
+        _validate_correction(candidate, review)
+    except (ValueError, KeyError, TypeError):
+        return False
+    return matches_official_event(
+        row, review["official_correction"], review["event_key"]
+    )
+
+
 def matches_official_suppression(row: dict, record: dict) -> bool:
     """Only the exact latest verified status row can pass an origin conflict hold."""
     history = record.get("history", [])
@@ -137,17 +211,22 @@ def matches_official_suppression(row: dict, record: dict) -> bool:
         _validate_suppression(candidate, review)
     except (ValueError, KeyError, TypeError):
         return False
-    event = review["official_suppression"]
+    return matches_official_event(
+        row, review["official_suppression"], review["event_key"]
+    )
+
+
+def matches_official_event(row: dict, event: dict, origin_key: str | None) -> bool:
     expected = {
         "source_id": "venue_web_discovery",
         "record_id": compute_signal_uid(
             "venue_web_discovery", event["url"], extra_key=event["event_id"]
         ),
-        "discovery_event_key": review["event_key"],
+        "discovery_event_key": origin_key or "",
         "event_date": event["event_start_date"],
         "event_end_date": event.get("event_end_date") or event["event_start_date"],
         "event_start_time": event.get("event_start_time"),
-        "event_status": event["event_status"],
+        "event_status": event.get("event_status", "scheduled"),
         "title": event["title"],
         "url": event["url"],
         "source_class": event["source_class"],
@@ -182,6 +261,7 @@ def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) ->
             values = decision.get("official_values", {})
             permitted = {
                 "event_date",
+                "event_end_date",
                 "event_start_time",
                 "venue_name",
                 "artist_name",
@@ -221,6 +301,8 @@ def apply_reviews(state: dict, candidates: list[dict], decisions: list[dict]) ->
                 raise ValueError("conflict requires a structured disagreement")
         if "official_suppression" in decision:
             _validate_suppression(lookup[key], decision)
+        if "official_correction" in decision:
+            _validate_correction(lookup[key], decision)
         checked = datetime.fromisoformat(
             decision["checked_at_utc"].replace("Z", "+00:00")
         )

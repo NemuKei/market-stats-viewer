@@ -299,7 +299,9 @@ LPの既定は `ticketjam_policy=discovery`。Ticketjamを掲載用の統合入�
 2026-09-22の取込案（PR #21）:
 
 - `stage_official_event(..., prepare_import=True)` は再検証済みの提案・Work判断から `import_preview` を返す。現在の公式config・会場別名一覧と信頼済みLP snapshotが必須。新規公演でもLPのbase・内容hash・重複keyを検証し、入力config/LPのfingerprint、scope版、baseを案へ残す。戻り値は確認用であり、`can_publish=false` と承認待ちは変わらない。receiptを外部から与えて検証を迂回する入口はない。
-- 対応する案は新規・追加公演の `add`、中止・延期だけの状態変更の `add_suppression`、同内容の再入力の `unchanged`。別IDでも既存の会場別名/地域接頭辞の正規化後に日付範囲が重なり、同時刻または片方の時刻が不明な場合は `possible_existing_performance` として保留する。出演者/titleの書き換えで衝突を避けない。昼夜の異なる既知時刻は維持する。これは候補衝突の検査であり、実公演の同一性を自動確定するものではない。
+- 対応する案は新規・追加公演の `add`、中止・延期だけの状態変更の `add_suppression`、実DBと現行LPを照合した日時訂正の `add_correction`、同内容の再入力の `unchanged`。別IDでも既存の会場別名/地域接頭辞の正規化後に日付範囲が重なり、同時刻または片方の時刻が不明な場合は `possible_existing_performance` として保留する。出演者/titleの書き換えで衝突を避けない。昼夜の異なる既知時刻は維持する。これは候補衝突の検査であり、実公演の同一性を自動確定するものではない。
 - 元Ticketjam候補への公式追認は、発見streamに関係なく既存 `apply_reviews` と `promote_confirmed` を通す。今回の候補だけを昇格案へ含め、無関係な過去confirmedを取り込まない。元履歴は保持する。
-- 日時・会場・出演者・title等の訂正、状態以外の変更を伴う中止・延期、異なる既存configの置換は `source_correction_requires_migration` で停止し、config案をnullにする。下書きとconflict履歴は返す。別sourceの旧行やURL由来の旧UIDを新規行の追加だけで消せないため、元sourceの所有権・旧行の抑止/移行を扱う接続が残る。保持された下書きを別のIDで追加して迂回しない。
+- 信頼済みDBを伴わない日時訂正、会場・出演者・title等の実体変更、状態以外の変更を伴う中止・延期、異なる既存configの置換は `source_correction_requires_migration` で停止し、config案をnullにする。下書きとconflict履歴は返す。別sourceの旧行やURL由来の旧UIDを新規行の追加だけで消せないため、任意の実体変更や連続訂正の移行接続は残る。日時だけの訂正は `spec_event_status.md` の内部proofによる旧行退役に限る。保持された下書きを別のIDで追加して迂回しない。
 - 純粋な状態変更は既存の抑止仕様を使い別IDの状態行を追加する。Ticketjamのconflict履歴に任意の `official_suppression`（既存公式event形式）を追加し、既存LP由来のconfig案は `published_event_key` / `published_input_fingerprint` を内部監査項目として保持する。published keyをTicketjamのdiscovery keyへ転用しない。いずれも既存項目を削除・再解釈せず、DB schema・公開LP field・source priorityは変更しない。詳細・復帰条件は `spec_event_status.md` を参照する。適用前に同じ入力hashとbaseを再確認し、既存DB→LP→manifestを再生成する。失敗時は案を破棄し、原本config/DBを保持する。
+
+日時訂正の内部追加項目は `confirmed_events[].date_time_correction` → signalsの `labels_json.date_time_correction`、およびTicketjam最新conflictの `official_correction`。`official_values.event_end_date` を追加許容する。consumerはWorkの取込案とdiscovery生成であり、公開LP fieldは増やさない。proofの内容、期間処理、旧コードとの互換制限、移行・復帰は `spec_event_status.md` を正本とする。

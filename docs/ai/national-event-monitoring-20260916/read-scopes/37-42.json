@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
+  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
   "snapshot_only": true,
   "scopes": [
     {
@@ -93,7 +93,24 @@
       "pref_code": "38",
       "pref_name": "愛媛県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "ehime_budokan",
+          "venue_name": "愛媛県武道館",
+          "aliases": [],
+          "official_url": "https://ehime-spa.jp/budoukan/",
+          "schedule_url": "https://ehime-spa.jp/budoukan/martial-event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "ea9e4f48a2fe79b12555",
@@ -154,28 +171,49 @@
           "name": "愛媛県武道館",
           "pref_code": "38",
           "venue_kind": "arena",
-          "address": null,
+          "address": "愛媛県松山市市坪西町551",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "施設案内は1階収納移動席988、2階固定席2,896を記載。イベント配置を含む施設全体収容人数は未確認。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "capacity_basis"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "ehime_budokan",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://ehime-spa.jp/budoukan/",
               "observed_at_utc": "2026-09-20T11:23:15.747728Z",
               "body_sha256": "4ea15deb1f9a5d26c2c6c387de7df59360bdd0b21bbdcef3540669b5e51c4c73"
+            },
+            {
+              "evidence_url": "https://ehime-spa.jp/budoukan/",
+              "observed_at_utc": "2026-09-22T10:20:44.078482Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "883d179b7c5c0006ff35146918def97a33c5958cda3089ceb83de76966c45f3f"
+            },
+            {
+              "evidence_url": "https://ehime-spa.jp/budoukan/architecture/",
+              "observed_at_utc": "2026-09-22T10:20:44.078903Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "075ac93cfef110afeb5a7bda7c07fd7a40c4388bdc1391a81983da46ddf49539"
+            },
+            {
+              "evidence_url": "https://ehime-spa.jp/budoukan/martial-event/",
+              "observed_at_utc": "2026-09-22T10:25:38.908010Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d33dc7a4bd9db80b3e2f59a1f418d67cf0549e6d7c7072b117c12a04c7fa6710"
             }
-          ]
+          ],
+          "operator": "公益財団法人愛媛県スポーツ振興事業団",
+          "aliases": [],
+          "official_url": "https://ehime-spa.jp/budoukan/",
+          "schedule_url": "https://ehime-spa.jp/budoukan/martial-event/",
+          "schedule_extent": "2026年9月の表と行事一覧を読取。主道場・副道場等の区別、9/26〜27 B2リーグあり。全月・個別時刻は未確認。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
         },
         {
           "candidate_id": "856c1033ccfce50c5f11",

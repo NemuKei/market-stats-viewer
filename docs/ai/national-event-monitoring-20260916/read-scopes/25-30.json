@@ -1,12 +1,29 @@
 {
-  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
+  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
   "snapshot_only": true,
   "scopes": [
     {
       "pref_code": "25",
       "pref_name": "滋賀県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "shiga_daihatsu_arena",
+          "venue_name": "滋賀ダイハツアリーナ",
+          "aliases": [],
+          "official_url": "https://shiga-arena.jp/",
+          "schedule_url": "https://shiga-arena.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "7d37ab2a766111ff1825",
@@ -40,31 +57,57 @@
           "name": "滋賀ダイハツアリーナ",
           "pref_code": "25",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "滋賀県大津市上田上中野町779番地",
+          "capacity": 5018,
+          "capacity_basis": "公式施設案内のメインアリーナ約5,018席（1・2階合計）。サブアリーナ200席を加算しない。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "operator_current_term"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://shiga-arena.jp/",
+              "observed_at_utc": "2026-09-22T10:25:50.184908Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e714c9b90ca5a50c84294dcac5756af7996a87ca86fb5ad45794ac99523ead0a"
+            },
+            {
+              "evidence_url": "https://shiga-arena.jp/gallery",
+              "observed_at_utc": "2026-09-22T10:25:44.888093Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d98a4816a43442854d5f865757f6fbb1159638afd60e9101a6a26c2913470f2d"
+            },
+            {
+              "evidence_url": "https://shiga-arena.jp/access",
+              "observed_at_utc": "2026-09-22T10:25:49.783161Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b51e0b528cd05a41227ff6f1265c147ed321af9f21e82d8adf7810c6d7f034ca"
+            },
+            {
+              "evidence_url": "https://shiga-arena.jp/news/page/14853",
+              "observed_at_utc": "2026-09-22T10:25:50.155810Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "fd69106fb04438bb986d8acd10ece4e5b537bb8a0a646dd9faa0630e8a3db8f6"
             }
           ],
           "operator_reference_url": "https://shigalakes.com/",
           "location_hint": "滋賀県大津市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "shiga_daihatsu_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "しがクロス株式会社（2022/9/26指定管理者挨拶。現行指定期間は未照合）",
+          "aliases": [],
+          "official_url": "https://shiga-arena.jp/",
+          "schedule_url": "https://shiga-arena.jp/",
+          "schedule_extent": "施設・アクセス・指定管理者告知と現在のトップページを確認。全施設イベント予定表は未確認。トップURLは探索入口であり予定表取得成功ではない。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
         }
       ],
       "pending_proposals": []

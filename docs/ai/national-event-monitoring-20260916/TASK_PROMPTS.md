@@ -62,4 +62,4 @@ Git、Release、SideBiz取込と実LPを別々に確認する。公開field allo
 
 ## 2026-09-22の取込案作成の補足
 
-Workの提案再検証後、現行configとWorkが取得元を確認した最新LPを渡して `national_event_handoff --prepare-import` を実行できる。`ready_for_review` も承認待ちの案である。`blocked` の理由、入力hash、base/scopeを残し、config=nullを空の設定として適用しない。純粋な中止・延期は `spec_event_status.md` の抑止案まで対応する。日時・会場等の変更が混ざる一般訂正は元source/旧UIDの移行接続が未完了のため、下書きとconflictを維持して停止する。新規案は対象event_idだけを一時DB→LP→manifestへ通し、無関係な過去判断を同時に反映しない。今回の対話操作や一時DB試験を定期Chat/Work Cloudの成功として報告しない。
+Workの提案再検証後、現行configとWorkが取得元を確認した最新LPを渡して `national_event_handoff --prepare-import` を実行できる。`ready_for_review` も承認待ちの案である。`blocked` の理由、入力hash、base/scopeを残し、config=nullを空の設定として適用しない。純粋な中止・延期は `spec_event_status.md` の抑止案まで対応する。日時だけの訂正は信頼済みDB2つと同じ期間のLPを照合して旧行退役案まで作成できる（`spec_event_status.md`）。会場・出演者等の実体変更、状態変更との混在、連続訂正、根拠不足は下書きとconflictを維持して停止する。新規案は対象event_idだけを一時DB→LP→manifestへ通し、無関係な過去判断を同時に反映しない。今回の対話操作や一時DB試験を定期Chat/Work Cloudの成功として報告しない。

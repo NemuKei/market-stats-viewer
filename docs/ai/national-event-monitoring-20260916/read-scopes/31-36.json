@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
+  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
   "snapshot_only": true,
   "scopes": [
     {
@@ -347,7 +347,26 @@
       "pref_code": "36",
       "pref_name": "徳島県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "asty_tokushima",
+          "venue_name": "アスティとくしま",
+          "aliases": [
+            "徳島県立産業観光交流センター"
+          ],
+          "official_url": "https://www.asty-tokushima.jp/about/",
+          "schedule_url": "https://www.asty-tokushima.jp/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "67cd87b4edac5877ec04",
@@ -385,28 +404,50 @@
           "name": "アスティとくしま",
           "pref_code": "36",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "徳島県徳島市山城町東浜傍示1番地1",
+          "capacity": 5000,
+          "capacity_basis": "多目的ホール最大5,000人。利用形態によって変わる。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "asty_tokushima",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://www.asty-tokushima.jp/event/",
               "observed_at_utc": "2026-09-20T11:23:06.797014Z",
               "body_sha256": "0794a8faf224820c418c28481954fd9dc663d86f819d189ddce7e6ceea9f92bc"
+            },
+            {
+              "evidence_url": "https://www.asty-tokushima.jp/organizer/facility/hall/",
+              "observed_at_utc": "2026-09-22T10:20:44.076388Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "8c72ed1eb5dc08a2aafa8217e2d0f6130b740e5b914d5f888ee4c95bf9d1c06d"
+            },
+            {
+              "evidence_url": "https://www.asty-tokushima.jp/about/",
+              "observed_at_utc": "2026-09-22T10:25:35.796313Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0b69c2f3e4bdb9ae243e7128f865a5c7b3795d0e77acf07c7e0b84e3eed8d6fc"
+            },
+            {
+              "evidence_url": "https://www.asty-tokushima.jp/event/",
+              "observed_at_utc": "2026-09-22T10:25:36.058642Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "303ce6fd9db90dc7caae92f93ffd5e2fc54a199a8c7bcd6351273870e1d881da"
             }
-          ]
+          ],
+          "operator": "とくしまにぎわい創出共同事業体",
+          "aliases": [
+            "徳島県立産業観光交流センター"
+          ],
+          "official_url": "https://www.asty-tokushima.jp/about/",
+          "schedule_url": "https://www.asty-tokushima.jp/event/",
+          "schedule_extent": "9月表示の住宅展示、9/22〜23バスケットボール、9/27おぎゃっと21と隣接10/3〜4を読取。全月・個別時刻は未確認。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
         },
         {
           "candidate_id": "aedfef57518f5ccc93ec",

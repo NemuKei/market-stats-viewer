@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
+  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
   "snapshot_only": true,
   "scopes": [
     {
@@ -42,7 +42,44 @@
       "pref_code": "20",
       "pref_name": "長野県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "big_hat",
+          "venue_name": "ビッグハット",
+          "aliases": [
+            "長野市若里多目的スポーツアリーナ"
+          ],
+          "official_url": "https://www.nagano-mwave.co.jp/bighat/",
+          "schedule_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "m_wave",
+          "venue_name": "エムウェーブ",
+          "aliases": [
+            "長野市オリンピック記念アリーナ"
+          ],
+          "official_url": "https://www.nagano-mwave.co.jp/m_wave/",
+          "schedule_url": "https://www.nagano-mwave.co.jp/m_wave/event_calender/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "04f64ee3b7049661c511",
@@ -76,28 +113,58 @@
           "name": "ビッグハット",
           "pref_code": "20",
           "venue_kind": "arena",
-          "address": null,
+          "address": "長野県長野市若里3丁目22番2号",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "主フロア4,000㎡、ステージ固定396席の記載のみ確認。施設全体の人数は未確認。面積や部分席数を容量に転用しない。",
+          "operating_status": "operating_planned_closure",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "capacity_basis"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "big_hat",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
               "observed_at_utc": "2026-09-20T11:23:04.345624Z",
               "body_sha256": "91f0d680a73f207062b5521d688573b102b191a102b977473e6560bdb7dd3e3a"
+            },
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/bighat/",
+              "observed_at_utc": "2026-09-22T10:20:44.075733Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e252754cea15bba5c15a77f45150f85bd0cd7ef93d602cbc94676929c46bc79b"
+            },
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/bighat/about/",
+              "observed_at_utc": "2026-09-22T10:25:27.812732Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "760f6db91bd3cc671b709da9dfa872cce4c5e1f85bc0bdf803001e4133de9831"
+            },
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/bighat/about/floor.php",
+              "observed_at_utc": "2026-09-22T10:25:27.814641Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d064fce97176d112d047f4ac740a9b234f53bf74bb5e4e0d45dd2bd8d24f19de"
+            },
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+              "observed_at_utc": "2026-09-22T10:25:27.815975Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "006bf57499aa4d1b1659d1b020d35cc206768ebf7a26fa9cce2e6a8032576196"
             }
-          ]
+          ],
+          "operator": "株式会社エムウェーブ",
+          "aliases": [
+            "長野市若里多目的スポーツアリーナ"
+          ],
+          "official_url": "https://www.nagano-mwave.co.jp/bighat/",
+          "schedule_url": "https://www.nagano-mwave.co.jp/bighat/event_calender/",
+          "schedule_extent": "公開リスト9/25〜11/14を読取（BOYNEXTDOOR、武術太極拳、産業フェア、GENERATIONS、米津玄師等）。個別時刻・非掲載予定・以後の月は未確認。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z",
+          "operating_status_note": "長寿命化改修で2027年4月上旬〜10月末、約7か月の休館予定。併記された若里市民文化ホールの通常開館とは区別する。"
         },
         {
           "candidate_id": "e0d530655c1431e2375d",
@@ -156,6 +223,51 @@
           "registry_venue_id": null,
           "evidence_status": "official_listing_only_not_operator_or_event_verification",
           "fetch_status": "body_fetched"
+        },
+        {
+          "candidate_id": "5d9e5edfa4d74a2e87a7",
+          "name": "エムウェーブ",
+          "pref_code": "20",
+          "evidence": [
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/m_wave/",
+              "observed_at_utc": "2026-09-22T10:20:44.076071Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b824ecb140c961e83bd1a19980bce65e832fd5816951198335a5704ff52d9934"
+            },
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/m_wave/about/",
+              "observed_at_utc": "2026-09-22T10:25:35.681156Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7c6501a01f3d5d2dcb4879a78c2a9de25c018b047817f4976decc59d8d3f9e8a"
+            },
+            {
+              "evidence_url": "https://www.nagano-mwave.co.jp/m_wave/event_calender/",
+              "observed_at_utc": "2026-09-22T10:31:54.695229Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "9e5103d565d58fadbeab9798e5d792778d7a0bfbaba998c416e93128b22d7c03"
+            }
+          ],
+          "venue_kind": "arena",
+          "address": "長野県長野市大字北長池195",
+          "capacity": 20000,
+          "capacity_basis": "運営者施設概要: 収容人数20,000人、常設席約6,500席。アリーナ面積と区別。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "registry_venue_id": "m_wave",
+          "operator": "株式会社エムウェーブ",
+          "aliases": [
+            "長野市オリンピック記念アリーナ"
+          ],
+          "official_url": "https://www.nagano-mwave.co.jp/m_wave/",
+          "schedule_url": "https://www.nagano-mwave.co.jp/m_wave/event_calender/",
+          "schedule_extent": "2026/9/18現在の9/5〜6、10/4無料開放、10/23〜25全日本スピードスケートを読取。冬季スケート別ページ・以後の月は未確認。",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z",
+          "missing_fields": [
+            "schedule_extent"
+          ]
         }
       ],
       "pending_proposals": []

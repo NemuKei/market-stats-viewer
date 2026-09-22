@@ -112,3 +112,5 @@
 - D-20260907-001 | Ticketjamは公式探索の候補として活用し、段階移行中のLP生成では審査済みの重複・付随券・不一致だけを保留するreviewed modeをCLI既定とする。内容変更のある古い審査は適用せず、元DBと証跡を保持する。全国単独掲載の一括停止は別途検証する | status: superseded_by_D-20260908-001 | spec_link: docs/spec_data.md
 
 - D-20260908-001 | Ticketjamは全国で発見用に分離し、LPの統合・時刻補完・表示元に直接使わない。公式確認の履歴、再確認、既存一致の照合、boundedなCodex定期処理と公開検証を継続運用へ接続する。上位sourceからのみ掲載を組み立て、未確認候補はqueueに保持する | status: applied | spec_link: docs/spec_data.md
+
+- D-20260922-001 | PR #21の日時訂正は、旧sourceを一括上書きせず、Workが信頼済みDB/LPから導出した内容fingerprint付き計画で旧行だけを表示統合前に退役させる。別IDの公式訂正行と旧DB/configを保持し、経過による旧日時復活を防ぐ。通常のsource priority・公開fieldは維持する。実体変更・連続訂正・本番自動適用は対象外 | status: implemented_in_pr_not_deployed | spec_link: docs/spec_event_status.md

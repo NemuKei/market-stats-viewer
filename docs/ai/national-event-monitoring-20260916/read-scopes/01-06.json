@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2a7324412902b9a0ccfa7ec07e971d3f49bccf9eee55b18a1aab0ad0778805aa",
+  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
   "snapshot_only": true,
   "scopes": [
     {
@@ -504,7 +504,26 @@
       "pref_code": "05",
       "pref_name": "秋田県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "nipro_hachiko_dome",
+          "venue_name": "ニプロハチ公ドーム",
+          "aliases": [
+            "大館樹海ドーム"
+          ],
+          "official_url": "https://jukaidome.com/",
+          "schedule_url": "https://jukaidome.com/calendar/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "084305f9be7531196b89",
@@ -539,28 +558,56 @@
           "pref_code": "05",
           "venue_kind": "dome",
           "address": "秋田県大館市上代野字稲荷台1番地1",
-          "capacity": null,
-          "capacity_basis": null,
+          "capacity": 15000,
+          "capacity_basis": "運営者施設概要: アリーナ使用時15,000人。固定観覧席5,040人とは別の人数。",
           "operating_status": "partially_restricted_roof_repair",
-          "scope_review": "pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "capacity_basis",
             "schedule_extent"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "nipro_hachiko_dome",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://jukaidome.com/",
               "observed_at_utc": "2026-09-20T11:22:46.708177Z",
               "body_sha256": "6acb1f2082118d075cae85d0955ba36f8e2a2f37675b70d225d0bbe9a0fb799c"
+            },
+            {
+              "evidence_url": "https://jukaidome.com/",
+              "observed_at_utc": "2026-09-22T10:20:44.075118Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7558b0787a7f0dfdc25eda63aa2f2ee0d682c3f84b60beaff88d5138035fc68c"
+            },
+            {
+              "evidence_url": "https://jukaidome.com/summary/",
+              "observed_at_utc": "2026-09-22T10:25:27.809129Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4c6118c4e3af56e2d15ab08282311d0d8e480c3e64c38330b48af989f23860bb"
+            },
+            {
+              "evidence_url": "https://jukaidome.com/access/",
+              "observed_at_utc": "2026-09-22T10:25:27.809738Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "02f09b72f525fc9479d8542ac56cfe79bda157bc9226e11d3559f4ff8392fcfa"
+            },
+            {
+              "evidence_url": "https://jukaidome.com/calendar/",
+              "observed_at_utc": "2026-09-22T10:25:27.811652Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e97fac89e70ce813aab7b9a586b5c975ca48b91ef1b4bdd14faa639caeaaf40a"
             }
           ],
           "aliases": [
             "大館樹海ドーム"
           ],
-          "operating_status_note": "Official homepage says ground-wide sports use is restricted during roof membrane repair; no cancellation of specific events inferred."
+          "operating_status_note": "屋根膜復旧工事でグラウンド全体を使う競技を制限。音・車両の注意あり。個別公演の中止は推定しない。",
+          "operator": "一般財団法人大館市文教振興事業団",
+          "official_url": "https://jukaidome.com/",
+          "schedule_url": "https://jukaidome.com/calendar/",
+          "schedule_extent": "イベント一覧で大学野球と8/22〜8/30全県450歳野球を読取。個別詳細・全予約期間は未確認。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
         },
         {
           "candidate_id": "f654e22ed2a2a700e83f",
