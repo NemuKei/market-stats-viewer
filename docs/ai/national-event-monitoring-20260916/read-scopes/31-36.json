@@ -1,39 +1,120 @@
 {
-  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
+  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
   "snapshot_only": true,
   "scopes": [
     {
       "pref_code": "31",
       "pref_name": "鳥取県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "axis_bird_stadium",
+          "venue_name": "Axisバードスタジアム",
+          "aliases": [
+            "鳥取市営サッカー場"
+          ],
+          "official_url": "https://www.fa-tottori.com/?page_id=4875",
+          "schedule_url": "https://www.fa-tottori.com/?page_id=4875",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "a9ea473f062a3ed7bb8d",
           "name": "Ａｘｉｓバードスタジアム",
           "pref_code": "31",
           "venue_kind": "stadium",
-          "address": "鳥取県鳥取市蔵田423",
-          "capacity": 11999,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "鳥取県鳥取市蔵田423番地",
+          "capacity": 16033,
+          "capacity_basis": "運営者施設概要: 観客収容16,033人。既存Jリーグ入場可能数11,999と別。",
+          "operating_status": "official_facility_listed_current_use_not_fully_verified",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operating_status"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/tottori/profile/",
               "observed_at_utc": "2026-09-20T11:18:53.572609Z",
               "body_sha256": "091a761e66e7906c0ef2283379c9e5c32145168e54bcb76f226545d4781b314a"
+            },
+            {
+              "evidence_url": "https://www.fa-tottori.com/?page_id=4875",
+              "observed_at_utc": "2026-09-22T11:03:28.469246Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0099edc5df48994765ec6f257e8e783e9252407f8253cc64804462a7e34f9bb7"
+            },
+            {
+              "evidence_url": "https://www.fa-tottori.com/?page_id=4877",
+              "observed_at_utc": "2026-09-22T11:13:46.574733Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "dbd40d1c9939f8db2a913904ff4790598a2cdeaa4eabf21af62f5d3dba3b3cfc"
+            },
+            {
+              "evidence_url": "https://www.city.tottori.lg.jp/page/6144.html",
+              "observed_at_utc": "2026-09-22T11:03:28.471434Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "865a8b29ab80430e04d1d8865f38980ebb503e1ce0c5bd76cea2a2e8642f33ed"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "axis_bird_stadium",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "Ａｘｉｓバードスタジアム",
+              "address": "鳥取県鳥取市蔵田423",
+              "capacity": 11999,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/tottori/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:53.572609Z",
+                  "body_sha256": "091a761e66e7906c0ef2283379c9e5c32145168e54bcb76f226545d4781b314a"
+                },
+                {
+                  "evidence_url": "https://www.fa-tottori.com/?page_id=4875",
+                  "observed_at_utc": "2026-09-22T11:03:28.469246Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "0099edc5df48994765ec6f257e8e783e9252407f8253cc64804462a7e34f9bb7"
+                },
+                {
+                  "evidence_url": "https://www.fa-tottori.com/?page_id=4877",
+                  "observed_at_utc": "2026-09-22T11:13:46.574733Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "dbd40d1c9939f8db2a913904ff4790598a2cdeaa4eabf21af62f5d3dba3b3cfc"
+                },
+                {
+                  "evidence_url": "https://www.city.tottori.lg.jp/page/6144.html",
+                  "observed_at_utc": "2026-09-22T11:03:28.471434Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "865a8b29ab80430e04d1d8865f38980ebb503e1ce0c5bd76cea2a2e8642f33ed"
+                }
+              ]
+            }
+          ],
+          "operator": "一般財団法人鳥取県サッカー協会",
+          "aliases": [
+            "鳥取市営サッカー場"
+          ],
+          "operating_status_note": "市資料の指定管理期間は2024/4/1～2029/3/31。",
+          "schedule_extent": "施設入口と利用期間を確認。全日程表は未確認。施設の概要リンク4930は別の若葉台グラウンド本文に遷移したため根拠に採用せず。",
+          "canonical_name": "Axisバードスタジアム",
+          "official_url": "https://www.fa-tottori.com/?page_id=4875",
+          "schedule_url": "https://www.fa-tottori.com/?page_id=4875",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []
@@ -42,38 +123,169 @@
       "pref_code": "32",
       "pref_name": "島根県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "matsue_general_gymnasium",
+          "venue_name": "バンダイナムコアリーナ松江",
+          "aliases": [
+            "松江市総合体育館",
+            "バンダイナムコ アリーナ 松江",
+            "Bandai Namco Arena Matsue"
+          ],
+          "official_url": "https://www.so-tai.jp/",
+          "schedule_url": "https://www.so-tai.jp/cgi-bin/rus7/event/view.cgi",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "b1e65eef51bf957f759b",
           "name": "松江市総合体育館",
           "pref_code": "32",
           "venue_kind": "arena",
-          "address": null,
+          "address": "島根県松江市学園南1-21-1",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "改修前の固定1,845・可動1,136・車椅子22は読取。改修後総容量は未確認で空欄を保持。",
+          "operating_status": "general_use_suspended_until_2026_10_07",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.so-tai.jp/",
+              "observed_at_utc": "2026-09-22T11:03:39.011537Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "fe87eda401622632f3ebda96285c050ab254a01c9550b93820a042df19216650"
+            },
+            {
+              "evidence_url": "https://www.so-tai.jp/outline/mainarena.html",
+              "observed_at_utc": "2026-09-22T11:03:39.250965Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "95cb977fb6cbcf583cdf7c76d649d77857cb83c92c8e812b1f4a0b0ef26ecc90"
+            },
+            {
+              "evidence_url": "https://www.city.matsue.lg.jp/kanko_bunka_sports/sports/3/8346.html",
+              "observed_at_utc": "2026-09-22T11:12:10.667260Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "92f790bdba3df0cbca77414975418041d7d39a4e8683c0b0d33fc2b6cf125022"
+            },
+            {
+              "evidence_url": "https://www.matsue-sposhin.jp/business/gymnasium/",
+              "observed_at_utc": "2026-09-22T11:12:10.612445Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ff9ff7a9c8dc6123d964314b4972d14333f7746e848cfa5b00636554dd4b4106"
+            },
+            {
+              "evidence_url": "https://www.so-tai.jp/cgi-bin/rus7/news/view.cgi?d=227",
+              "observed_at_utc": "2026-09-22T11:13:46.574354Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ae8060f69f02f63417e920de84f165ac174b4d64dc043505c170cc403cc03091"
+            },
+            {
+              "evidence_url": "https://www.so-tai.jp/cgi-bin/rus7/news/view.cgi?d=223",
+              "observed_at_utc": "2026-09-22T11:13:46.573999Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "be7dfd56c7cc52add8e39a6c6b1f6b483eaaef0b946923a71c1843bfac38156c"
+            },
+            {
+              "evidence_url": "https://www.so-tai.jp/cgi-bin/rus7/event/view.cgi",
+              "observed_at_utc": "2026-09-22T11:12:55.846797Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4c47f3f038e0c27a867be10a757cf3b1f68c339499e0d015946b7c00d3b0c5a9"
             }
           ],
           "operator_reference_url": "https://www.susanoo-m.com/",
           "location_hint": "島根県松江市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "matsue_general_gymnasium",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "松江市総合体育館",
+              "address": null,
+              "capacity": null,
+              "capacity_basis": null,
+              "venue_kind": "arena",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                },
+                {
+                  "evidence_url": "https://www.so-tai.jp/",
+                  "observed_at_utc": "2026-09-22T11:03:39.011537Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "fe87eda401622632f3ebda96285c050ab254a01c9550b93820a042df19216650"
+                },
+                {
+                  "evidence_url": "https://www.so-tai.jp/outline/mainarena.html",
+                  "observed_at_utc": "2026-09-22T11:03:39.250965Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "95cb977fb6cbcf583cdf7c76d649d77857cb83c92c8e812b1f4a0b0ef26ecc90"
+                },
+                {
+                  "evidence_url": "https://www.city.matsue.lg.jp/kanko_bunka_sports/sports/3/8346.html",
+                  "observed_at_utc": "2026-09-22T11:12:10.667260Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "92f790bdba3df0cbca77414975418041d7d39a4e8683c0b0d33fc2b6cf125022"
+                },
+                {
+                  "evidence_url": "https://www.matsue-sposhin.jp/business/gymnasium/",
+                  "observed_at_utc": "2026-09-22T11:12:10.612445Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "ff9ff7a9c8dc6123d964314b4972d14333f7746e848cfa5b00636554dd4b4106"
+                },
+                {
+                  "evidence_url": "https://www.so-tai.jp/cgi-bin/rus7/news/view.cgi?d=227",
+                  "observed_at_utc": "2026-09-22T11:13:46.574354Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "ae8060f69f02f63417e920de84f165ac174b4d64dc043505c170cc403cc03091"
+                },
+                {
+                  "evidence_url": "https://www.so-tai.jp/cgi-bin/rus7/news/view.cgi?d=223",
+                  "observed_at_utc": "2026-09-22T11:13:46.573999Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "be7dfd56c7cc52add8e39a6c6b1f6b483eaaef0b946923a71c1843bfac38156c"
+                },
+                {
+                  "evidence_url": "https://www.so-tai.jp/cgi-bin/rus7/event/view.cgi",
+                  "observed_at_utc": "2026-09-22T11:12:55.846797Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "4c47f3f038e0c27a867be10a757cf3b1f68c339499e0d015946b7c00d3b0c5a9"
+                }
+              ]
+            }
+          ],
+          "operator": "公益財団法人松江市スポーツ・文化振興財団",
+          "aliases": [
+            "松江市総合体育館",
+            "バンダイナムコ アリーナ 松江",
+            "Bandai Namco Arena Matsue"
+          ],
+          "operating_status_note": "2026/9/1愛称変更。7/1～10/7全館一般利用休止、10/8一般利用開始予定。休止中に再開準備/リニューアルイベントを含む。",
+          "schedule_extent": "大会一覧は記事なしという表示を確認。予約なし・イベントなしを意味しない。一般利用休止中の改修イベント有無は別確認。",
+          "canonical_name": "バンダイナムコアリーナ松江",
+          "official_url": "https://www.so-tai.jp/",
+          "schedule_url": "https://www.so-tai.jp/cgi-bin/rus7/event/view.cgi",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []
@@ -82,7 +294,26 @@
       "pref_code": "33",
       "pref_name": "岡山県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "jfe_harenokuni_stadium",
+          "venue_name": "JFE晴れの国スタジアム",
+          "aliases": [
+            "岡山県総合グラウンド陸上競技場"
+          ],
+          "official_url": "https://www.okayama-momo.jp/userguide/01/",
+          "schedule_url": "https://www.okayama-momo.jp/monthlyevent/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "1faa467548cc9f3e400c",
@@ -120,27 +351,88 @@
           "name": "ＪＦＥ晴れの国スタジアム",
           "pref_code": "33",
           "venue_kind": "stadium",
-          "address": "〒700-0012 岡山県岡山市北区いずみ町2-1",
-          "capacity": 15479,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "岡山県岡山市北区いずみ町2-1-11",
+          "capacity": 20000,
+          "capacity_basis": "運営者: 約20,000人。Jリーグ入場可能数15,479とは別。",
+          "operating_status": "visible_month_schedule_read",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/okayama/profile/",
               "observed_at_utc": "2026-09-20T11:18:02.453511Z",
               "body_sha256": "1f1982e471d1ae1a98691ab760b1a8d7e4c62163c334db3ad2556eca27a82ff4"
+            },
+            {
+              "evidence_url": "https://www.okayama-momo.jp/userguide/01/",
+              "observed_at_utc": "2026-09-22T11:03:56.898737Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "cbf4b9e40b5dba8d29872ac099005def5c0d5044ab434e88e40909d56ef12c6c"
+            },
+            {
+              "evidence_url": "https://www.pref.okayama.jp/page/detail-4054.html",
+              "observed_at_utc": "2026-09-22T11:13:55.860701Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "06c4c0ae82dc7d8c4661b8378eb8ca210dffb5a2ec2cc75cd75643837c646444"
+            },
+            {
+              "evidence_url": "https://www.okayama-momo.jp/monthlyevent/",
+              "observed_at_utc": "2026-09-22T11:12:44.626667Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "9392811724999dd05a7ace6db5fc90f6fae6063f0e12deece098c4a16d68e202"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "jfe_harenokuni_stadium",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "ＪＦＥ晴れの国スタジアム",
+              "address": "〒700-0012 岡山県岡山市北区いずみ町2-1",
+              "capacity": 15479,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/okayama/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:02.453511Z",
+                  "body_sha256": "1f1982e471d1ae1a98691ab760b1a8d7e4c62163c334db3ad2556eca27a82ff4"
+                },
+                {
+                  "evidence_url": "https://www.okayama-momo.jp/userguide/01/",
+                  "observed_at_utc": "2026-09-22T11:03:56.898737Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "cbf4b9e40b5dba8d29872ac099005def5c0d5044ab434e88e40909d56ef12c6c"
+                },
+                {
+                  "evidence_url": "https://www.pref.okayama.jp/page/detail-4054.html",
+                  "observed_at_utc": "2026-09-22T11:13:55.860701Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "06c4c0ae82dc7d8c4661b8378eb8ca210dffb5a2ec2cc75cd75643837c646444"
+                },
+                {
+                  "evidence_url": "https://www.okayama-momo.jp/monthlyevent/",
+                  "observed_at_utc": "2026-09-22T11:12:44.626667Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "9392811724999dd05a7ace6db5fc90f6fae6063f0e12deece098c4a16d68e202"
+                }
+              ]
+            }
+          ],
+          "operator": "岡山県総合グラウンドコンソーシアム・チーム岡山",
+          "aliases": [
+            "岡山県総合グラウンド陸上競技場"
+          ],
+          "operating_status_note": "元の公園住所2-1を保持し、施設ページの2-1-11を詳細住所として追記。",
+          "schedule_extent": "9月月間表本文を読取。陸上競技場・補助陸上・体育館等の施設列を区別。本文の曜日を年確定根拠にせず、各催事の年・詳細・他月は未確認。",
+          "canonical_name": "JFE晴れの国スタジアム",
+          "official_url": "https://www.okayama-momo.jp/userguide/01/",
+          "schedule_url": "https://www.okayama-momo.jp/monthlyevent/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []
@@ -280,7 +572,24 @@
       "pref_code": "35",
       "pref_name": "山口県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "ishin_mirai_stadium",
+          "venue_name": "維新みらいふスタジアム",
+          "aliases": [],
+          "official_url": "https://www.ishin100.com/main/guide/gu-stadium/",
+          "schedule_url": "https://www.ishin100.com/main/sche-top_wp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "88d88f261eab55e28eea",
@@ -318,27 +627,88 @@
           "name": "維新みらいふスタジアム",
           "pref_code": "35",
           "venue_kind": "stadium",
-          "address": "〒753-0815 山口県山口市維新公園4-1-1",
+          "address": "山口県山口市維新公園4丁目1番1号",
           "capacity": 15115,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "既存Jリーグ入場可能数15,115を維持。運営者ページの固定席15,115とは一致するが、別記の芝生4,460・車椅子68を含む総最大数とはしない。",
+          "operating_status": "official_facility_listed_current_use_not_fully_verified",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "capacity_total",
+            "operating_status"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/yamaguchi/profile/",
               "observed_at_utc": "2026-09-20T11:19:13.511519Z",
               "body_sha256": "829bbd07bf0c9006006c16698bd4adc9914ceecf37b0594df947c7af8b7fc403"
+            },
+            {
+              "evidence_url": "https://www.ishin100.com/main/guide/gu-stadium/",
+              "observed_at_utc": "2026-09-22T11:03:56.899201Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "88abda65439392d8d1ba2deeeb2a4dddf3270ef332474e890afae8af12509286"
+            },
+            {
+              "evidence_url": "https://www.ishin100.com/main/",
+              "observed_at_utc": "2026-09-22T11:12:45.261169Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0fc40dc919b8127bd14585e1fccdf76122cca81ce1f111ffdf699bacafe5ef64"
+            },
+            {
+              "evidence_url": "https://www.ishin100.com/main/sche-top_wp/",
+              "observed_at_utc": "2026-09-22T11:14:03.794814Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0ee3f03e3bd04c2cd4f12ac92c57077eb7d567e1a77abc07a5899f5493e2d069"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "ishin_mirai_stadium",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "維新みらいふスタジアム",
+              "address": "〒753-0815 山口県山口市維新公園4-1-1",
+              "capacity": 15115,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/yamaguchi/profile/",
+                  "observed_at_utc": "2026-09-20T11:19:13.511519Z",
+                  "body_sha256": "829bbd07bf0c9006006c16698bd4adc9914ceecf37b0594df947c7af8b7fc403"
+                },
+                {
+                  "evidence_url": "https://www.ishin100.com/main/guide/gu-stadium/",
+                  "observed_at_utc": "2026-09-22T11:03:56.899201Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "88abda65439392d8d1ba2deeeb2a4dddf3270ef332474e890afae8af12509286"
+                },
+                {
+                  "evidence_url": "https://www.ishin100.com/main/",
+                  "observed_at_utc": "2026-09-22T11:12:45.261169Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "0fc40dc919b8127bd14585e1fccdf76122cca81ce1f111ffdf699bacafe5ef64"
+                },
+                {
+                  "evidence_url": "https://www.ishin100.com/main/sche-top_wp/",
+                  "observed_at_utc": "2026-09-22T11:14:03.794814Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "0ee3f03e3bd04c2cd4f12ac92c57077eb7d567e1a77abc07a5899f5493e2d069"
+                }
+              ]
+            }
+          ],
+          "operator": "一般財団法人山口県施設管理財団",
+          "aliases": [],
+          "operating_status_note": null,
+          "schedule_extent": "公園行事予定の入口を読取。スタジアムと他施設の区分、添付予定表本文は未確認。",
+          "canonical_name": "維新みらいふスタジアム",
+          "official_url": "https://www.ishin100.com/main/guide/gu-stadium/",
+          "schedule_url": "https://www.ishin100.com/main/sche-top_wp/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []

@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
+  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
   "snapshot_only": true,
   "scopes": [
     {
@@ -1862,7 +1862,26 @@
       "pref_code": "16",
       "pref_name": "富山県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "toyama_athletics_stadium",
+          "venue_name": "富山県総合運動公園陸上競技場",
+          "aliases": [
+            "富山県陸上競技場"
+          ],
+          "official_url": "https://toyamap.or.jp/kenso/info_map/main/",
+          "schedule_url": "https://toyamap.or.jp/kenso/info_map/main/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "5f0f7ac2caa710f816d0",
@@ -1901,26 +1920,88 @@
           "pref_code": "16",
           "venue_kind": "stadium",
           "address": "富山県富山市南中田368",
-          "capacity": 18191,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 25000,
+          "capacity_basis": "施設案内: 芝生席を含む約25,000人。Jリーグ入場可能数18,191とは別。",
+          "operating_status": "official_facility_listed_current_use_not_fully_verified",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operating_status"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/toyama/profile/",
               "observed_at_utc": "2026-09-20T11:19:03.765619Z",
               "body_sha256": "b7d8a5d44966d9b235a60531ee95cf4a87cbb3876e1cf2df167763c2bf907d55"
+            },
+            {
+              "evidence_url": "https://toyamap.or.jp/kenso/info_map/main/",
+              "observed_at_utc": "2026-09-22T11:02:51.393519Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e6b4bae102176c0016b52cf7f3d73dca276b62b69fbbae94735e558174a3957e"
+            },
+            {
+              "evidence_url": "https://www.pref.toyama.jp/sportslink/facility/00044.html",
+              "observed_at_utc": "2026-09-22T11:13:04.476171Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d45a8e34001dfa0cd16cbbbb52692ecca94987daef44647d047b89e4b2c50f9d"
+            },
+            {
+              "evidence_url": "https://toyamap.or.jp/",
+              "observed_at_utc": "2026-09-22T11:13:54.461524Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0689cbfda1becf701cde6bb67881ea2f51ca31e7703f50e32650de12d9228568"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "toyama_athletics_stadium",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "富山県総合運動公園陸上競技場",
+              "address": "富山県富山市南中田368",
+              "capacity": 18191,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/toyama/profile/",
+                  "observed_at_utc": "2026-09-20T11:19:03.765619Z",
+                  "body_sha256": "b7d8a5d44966d9b235a60531ee95cf4a87cbb3876e1cf2df167763c2bf907d55"
+                },
+                {
+                  "evidence_url": "https://toyamap.or.jp/kenso/info_map/main/",
+                  "observed_at_utc": "2026-09-22T11:02:51.393519Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "e6b4bae102176c0016b52cf7f3d73dca276b62b69fbbae94735e558174a3957e"
+                },
+                {
+                  "evidence_url": "https://www.pref.toyama.jp/sportslink/facility/00044.html",
+                  "observed_at_utc": "2026-09-22T11:13:04.476171Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "d45a8e34001dfa0cd16cbbbb52692ecca94987daef44647d047b89e4b2c50f9d"
+                },
+                {
+                  "evidence_url": "https://toyamap.or.jp/",
+                  "observed_at_utc": "2026-09-22T11:13:54.461524Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "0689cbfda1becf701cde6bb67881ea2f51ca31e7703f50e32650de12d9228568"
+                }
+              ]
+            }
+          ],
+          "operator": "公益財団法人富山県民福祉公園",
+          "aliases": [
+            "富山県陸上競技場"
+          ],
+          "operating_status_note": "県の施設情報に新武道館整備中とあるが、陸上競技場とは別施設。",
+          "schedule_extent": "陸上競技場の9月・10月予定の告知リンクを確認。リンク先・添付表は未読。",
+          "canonical_name": "富山県総合運動公園陸上競技場",
+          "official_url": "https://toyamap.or.jp/kenso/info_map/main/",
+          "schedule_url": "https://toyamap.or.jp/kenso/info_map/main/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []
@@ -1929,38 +2010,112 @@
       "pref_code": "17",
       "pref_name": "石川県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "ishikawa_sports_center",
+          "venue_name": "いしかわ総合スポーツセンター",
+          "aliases": [],
+          "official_url": "https://www.ishikawa-spc.jp/facilities/main-arina.html",
+          "schedule_url": "https://www.ishikawa-spc.jp/event/index.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "04ca8f2df9e48cfb22dd",
           "name": "いしかわ総合スポーツセンター",
           "pref_code": "17",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "石川県金沢市稚日野町北222番地",
+          "capacity": 5019,
+          "capacity_basis": "運営者: メインアリーナ総客席5,019席。固定・可動・車椅子・VIPを含む。",
+          "operating_status": "current_schedule_linked",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.ishikawa-spc.jp/facilities/main-arina.html",
+              "observed_at_utc": "2026-09-22T11:03:11.849394Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b979f3ae749805b1e5cec11cd943e28f599c17d4a137908a599e90c88fb173b6"
+            },
+            {
+              "evidence_url": "https://www.ishikawa-spc.jp/manager/index.html",
+              "observed_at_utc": "2026-09-22T11:12:32.938478Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "c2a561ecc1efd39495a24fddc577ac4646cb2f212ffa14e272add92525214d2b"
+            },
+            {
+              "evidence_url": "https://www.ishikawa-spc.jp/event/index.html",
+              "observed_at_utc": "2026-09-22T11:12:46.341274Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a5193605233a5abae0f3b4a7befc9812a93f36ab3da330d68542155c7fd74581"
             }
           ],
           "operator_reference_url": "https://samuraiz.jp/",
           "location_hint": "石川県金沢市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "ishikawa_sports_center",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "いしかわ総合スポーツセンター",
+              "address": null,
+              "capacity": null,
+              "capacity_basis": null,
+              "venue_kind": "arena",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                },
+                {
+                  "evidence_url": "https://www.ishikawa-spc.jp/facilities/main-arina.html",
+                  "observed_at_utc": "2026-09-22T11:03:11.849394Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "b979f3ae749805b1e5cec11cd943e28f599c17d4a137908a599e90c88fb173b6"
+                },
+                {
+                  "evidence_url": "https://www.ishikawa-spc.jp/manager/index.html",
+                  "observed_at_utc": "2026-09-22T11:12:32.938478Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "c2a561ecc1efd39495a24fddc577ac4646cb2f212ffa14e272add92525214d2b"
+                },
+                {
+                  "evidence_url": "https://www.ishikawa-spc.jp/event/index.html",
+                  "observed_at_utc": "2026-09-22T11:12:46.341274Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "a5193605233a5abae0f3b4a7befc9812a93f36ab3da330d68542155c7fd74581"
+                }
+              ]
+            }
+          ],
+          "operator": "石川県スポーツ協会グループ",
+          "aliases": [],
+          "operating_status_note": null,
+          "schedule_extent": "2026年9月・10月大会案内PDFへのリンクまで確認。本文とメイン/サブの区分は未確認。",
+          "canonical_name": "いしかわ総合スポーツセンター",
+          "official_url": "https://www.ishikawa-spc.jp/facilities/main-arina.html",
+          "schedule_url": "https://www.ishikawa-spc.jp/event/index.html",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         },
         {
           "candidate_id": "5696f96b2e0c685733aa",

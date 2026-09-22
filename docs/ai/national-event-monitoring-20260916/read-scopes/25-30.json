@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
+  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
   "snapshot_only": true,
   "scopes": [
     {
@@ -116,34 +116,114 @@
       "pref_code": "26",
       "pref_name": "京都府",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "sanga_stadium_kyocera",
+          "venue_name": "サンガスタジアム by KYOCERA",
+          "aliases": [
+            "京都府立京都スタジアム"
+          ],
+          "official_url": "https://sangastadium-by-kyocera.jp/stadium-guide/overview",
+          "schedule_url": "https://sangastadium-by-kyocera.jp/event-calendar",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "2b2fd4a2ffa432aa0baf",
           "name": "サンガスタジアム by ＫＹＯＣＥＲＡ",
           "pref_code": "26",
           "venue_kind": "stadium",
-          "address": "京都府亀岡市亀岡駅北１丁目8番地2",
-          "capacity": 21293,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "京都府亀岡市亀岡駅北1丁目8番地2",
+          "capacity": 21600,
+          "capacity_basis": "運営者施設概要: 約21,600人。Jリーグ入場可能数21,293と別。",
+          "operating_status": "visible_month_schedule_read",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/kyoto/profile/",
               "observed_at_utc": "2026-09-20T11:17:30.600636Z",
               "body_sha256": "f2eca10cd92fc1da190dde6fef90bdb4bac6f5aeaf1fb07bcf8764b38039f6c7"
+            },
+            {
+              "evidence_url": "https://sangastadium-by-kyocera.jp/stadium-guide/overview",
+              "observed_at_utc": "2026-09-22T11:03:28.463437Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7aee131a57b919d92a2fbf6d6daae8d37219a7897862bb453ae0cc2c4bbd9fda"
+            },
+            {
+              "evidence_url": "https://sangastadium-by-kyocera.jp/stadium-guide/greeting",
+              "observed_at_utc": "2026-09-22T11:03:28.464220Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a7d2569c21371e73d002389436f26abcfe373b5919d4a6ad87f7717b0e0de740"
+            },
+            {
+              "evidence_url": "https://sangastadium-by-kyocera.jp/event-calendar",
+              "observed_at_utc": "2026-09-22T11:12:46.548822Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "75f08bac2c824a82287d9475d845002f24bbbaaf3b04b316242b0531d00cdd7a"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "sanga_stadium_kyocera",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "サンガスタジアム by ＫＹＯＣＥＲＡ",
+              "address": "京都府亀岡市亀岡駅北１丁目8番地2",
+              "capacity": 21293,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kyoto/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:30.600636Z",
+                  "body_sha256": "f2eca10cd92fc1da190dde6fef90bdb4bac6f5aeaf1fb07bcf8764b38039f6c7"
+                },
+                {
+                  "evidence_url": "https://sangastadium-by-kyocera.jp/stadium-guide/overview",
+                  "observed_at_utc": "2026-09-22T11:03:28.463437Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "7aee131a57b919d92a2fbf6d6daae8d37219a7897862bb453ae0cc2c4bbd9fda"
+                },
+                {
+                  "evidence_url": "https://sangastadium-by-kyocera.jp/stadium-guide/greeting",
+                  "observed_at_utc": "2026-09-22T11:03:28.464220Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "a7d2569c21371e73d002389436f26abcfe373b5919d4a6ad87f7717b0e0de740"
+                },
+                {
+                  "evidence_url": "https://sangastadium-by-kyocera.jp/event-calendar",
+                  "observed_at_utc": "2026-09-22T11:12:46.548822Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "75f08bac2c824a82287d9475d845002f24bbbaaf3b04b316242b0531d00cdd7a"
+                }
+              ]
+            }
+          ],
+          "operator": "合同会社ビバ＆サンガ",
+          "aliases": [
+            "京都府立京都スタジアム"
+          ],
+          "operating_status_note": null,
+          "schedule_extent": "2026年9月カレンダー本文を読取。9/23京都対藤枝17:00、ツアー、駐車場表示を区別。個別主催者詳細・他月は未読。",
+          "canonical_name": "サンガスタジアム by KYOCERA",
+          "official_url": "https://sangastadium-by-kyocera.jp/stadium-guide/overview",
+          "schedule_url": "https://sangastadium-by-kyocera.jp/event-calendar",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         },
         {
           "candidate_id": "33afee863791c9ba2f69",
@@ -926,38 +1006,141 @@
       "pref_code": "29",
       "pref_name": "奈良県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "rohto_arena_nara",
+          "venue_name": "ロートアリーナ奈良",
+          "aliases": [
+            "奈良市中央体育館"
+          ],
+          "official_url": "https://konoike-sports-park.jp/facility",
+          "schedule_url": "https://konoike-sports-park.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "fcb24b481b6557ffa99f",
           "name": "ロートアリーナ奈良",
           "pref_code": "29",
           "venue_kind": "arena",
-          "address": null,
+          "address": "奈良県奈良市法蓮佐保山四丁目1番3号",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "運営者・市の本文ではメインアリーナ総収容数を確認できず。別武道場や陸上競技場の数値は転用しない。",
+          "operating_status": "partially_restricted_spectator_seating",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://konoike-sports-park.jp/facility",
+              "observed_at_utc": "2026-09-22T11:03:28.465584Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "732a4531bc767e32a8d0d271212a9a57f5aadf7accbfd02c1935bdbcd3e72c67"
+            },
+            {
+              "evidence_url": "https://www.city.nara.lg.jp/soshiki/22/5383.html",
+              "observed_at_utc": "2026-09-22T11:03:28.468165Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "f164f7bc57f2f52834075a2d73b8e55fd8a9b214bddf57652b9b2a43e749580d"
+            },
+            {
+              "evidence_url": "https://sogozaidan.nara.jp/kanri/nara-konoike/",
+              "observed_at_utc": "2026-09-22T11:12:25.276483Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6af29e254554ac1caadf6d3a52d749b304f20301fd2d8172fd5c7bb63a0376e0"
+            },
+            {
+              "evidence_url": "https://www.city.nara.lg.jp/soshiki/22/225232.html",
+              "observed_at_utc": "2026-09-22T11:12:24.971257Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0c36f19b6ff9d871bae6a7802cede4f0a9e8460ca31e54ab55227c4a83c52226"
+            },
+            {
+              "evidence_url": "https://konoike-sports-park.jp/",
+              "observed_at_utc": "2026-09-22T11:13:04.203523Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "3c3ecb9e1eb6ed10865e0c386109580e94779cfbd68d01bef1c3d24a678df047"
             }
           ],
           "operator_reference_url": "https://bambitious.jp/",
           "location_hint": "奈良県奈良市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "rohto_arena_nara",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "ロートアリーナ奈良",
+              "address": null,
+              "capacity": null,
+              "capacity_basis": null,
+              "venue_kind": "arena",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                },
+                {
+                  "evidence_url": "https://konoike-sports-park.jp/facility",
+                  "observed_at_utc": "2026-09-22T11:03:28.465584Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "732a4531bc767e32a8d0d271212a9a57f5aadf7accbfd02c1935bdbcd3e72c67"
+                },
+                {
+                  "evidence_url": "https://www.city.nara.lg.jp/soshiki/22/5383.html",
+                  "observed_at_utc": "2026-09-22T11:03:28.468165Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "f164f7bc57f2f52834075a2d73b8e55fd8a9b214bddf57652b9b2a43e749580d"
+                },
+                {
+                  "evidence_url": "https://sogozaidan.nara.jp/kanri/nara-konoike/",
+                  "observed_at_utc": "2026-09-22T11:12:25.276483Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "6af29e254554ac1caadf6d3a52d749b304f20301fd2d8172fd5c7bb63a0376e0"
+                },
+                {
+                  "evidence_url": "https://www.city.nara.lg.jp/soshiki/22/225232.html",
+                  "observed_at_utc": "2026-09-22T11:12:24.971257Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "0c36f19b6ff9d871bae6a7802cede4f0a9e8460ca31e54ab55227c4a83c52226"
+                },
+                {
+                  "evidence_url": "https://konoike-sports-park.jp/",
+                  "observed_at_utc": "2026-09-22T11:13:04.203523Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "3c3ecb9e1eb6ed10865e0c386109580e94779cfbd68d01bef1c3d24a678df047"
+                }
+              ]
+            }
+          ],
+          "operator": "一般財団法人奈良市総合財団",
+          "aliases": [
+            "奈良市中央体育館"
+          ],
+          "operating_status_note": "市の2026/6/30更新で7/2利用再開、2階席の一部は引き続き使用中止。屋外ロートフィールドとは別施設。",
+          "schedule_extent": "公園の更新情報と施設説明を確認。アリーナ専用の全予約表は未確認。",
+          "canonical_name": "ロートアリーナ奈良",
+          "official_url": "https://konoike-sports-park.jp/facility",
+          "schedule_url": "https://konoike-sports-park.jp/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         },
         {
           "candidate_id": "42f56dc93d0153f69146",

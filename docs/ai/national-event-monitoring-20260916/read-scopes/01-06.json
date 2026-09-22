@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
+  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
   "snapshot_only": true,
   "scopes": [
     {
@@ -279,38 +279,116 @@
       "pref_code": "02",
       "pref_name": "青森県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "aomori_super_arena",
+          "venue_name": "カクヒログループスーパーアリーナ",
+          "aliases": [
+            "青森市総合体育館"
+          ],
+          "official_url": "https://aomori-arena.jp/",
+          "schedule_url": "https://aomori-arena.jp/news/4834/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "5d36b93529f514ea8b99",
           "name": "カクヒログループスーパーアリーナ",
           "pref_code": "02",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "青森県青森市大字浦町字橋本335-17",
+          "capacity": 3500,
+          "capacity_basis": "運営者: Bリーグ開催時約3,500人。コンサート時の最大数とはしない。",
+          "operating_status": "current_schedule_linked",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://aomori-arena.jp/",
+              "observed_at_utc": "2026-09-22T11:02:33.168594Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "cd081d10e7c99eb3fa668cf59f33e3ccec61f0ee05a6ca96de7cd255cea3b0df"
+            },
+            {
+              "evidence_url": "https://aomori-arena.jp/facility/main-arena/",
+              "observed_at_utc": "2026-09-22T11:02:33.168953Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e4a96bfd6079b99f618d58a34a4807790948a4fc9dbf14fec142976c082621f9"
+            },
+            {
+              "evidence_url": "https://aomori-arena.jp/news/4834/",
+              "observed_at_utc": "2026-09-22T11:12:55.263483Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "83ff0072ab627b318cf012b414683a3de0e3594b527bbffb99e7af9e1ebf5f74"
             }
           ],
           "operator_reference_url": "https://aomori-wats.jp/",
           "location_hint": "青森県青森市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "aomori_super_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "カクヒログループスーパーアリーナ",
+              "address": null,
+              "capacity": null,
+              "capacity_basis": null,
+              "venue_kind": "arena",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                },
+                {
+                  "evidence_url": "https://aomori-arena.jp/",
+                  "observed_at_utc": "2026-09-22T11:02:33.168594Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "cd081d10e7c99eb3fa668cf59f33e3ccec61f0ee05a6ca96de7cd255cea3b0df"
+                },
+                {
+                  "evidence_url": "https://aomori-arena.jp/facility/main-arena/",
+                  "observed_at_utc": "2026-09-22T11:02:33.168953Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "e4a96bfd6079b99f618d58a34a4807790948a4fc9dbf14fec142976c082621f9"
+                },
+                {
+                  "evidence_url": "https://aomori-arena.jp/news/4834/",
+                  "observed_at_utc": "2026-09-22T11:12:55.263483Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "83ff0072ab627b318cf012b414683a3de0e3594b527bbffb99e7af9e1ebf5f74"
+                }
+              ]
+            }
+          ],
+          "operator": "青森ひと創りサポート株式会社",
+          "aliases": [
+            "青森市総合体育館"
+          ],
+          "operating_status_note": null,
+          "schedule_extent": "2026年10月のメイン/サブ利用予定表へのリンクを確認。PDF本文・9月・他月は未読。",
+          "canonical_name": "カクヒログループスーパーアリーナ",
+          "official_url": "https://aomori-arena.jp/",
+          "schedule_url": "https://aomori-arena.jp/news/4834/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         },
         {
           "candidate_id": "3d43823a77b4ecdb5177",
@@ -346,38 +424,93 @@
       "pref_code": "03",
       "pref_name": "岩手県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "morioka_takaya_arena",
+          "venue_name": "盛岡タカヤアリーナ",
+          "aliases": [
+            "盛岡市総合アリーナ"
+          ],
+          "official_url": "https://morioka-sport.or.jp/facility/arena/",
+          "schedule_url": "https://morioka-sport.or.jp/facility/arena/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "58d53f1cff1d29d2a08d",
           "name": "盛岡タカヤアリーナ",
           "pref_code": "03",
           "venue_kind": "arena",
-          "address": null,
+          "address": "岩手県盛岡市本宮5丁目4-1",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "公式施設案内に観覧席3,098席。フロアを含む総収容数は未確認。",
+          "operating_status": "current_schedule_linked",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://morioka-sport.or.jp/facility/arena/",
+              "observed_at_utc": "2026-09-22T11:02:33.170541Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "47e3b5390686f7894f4b29547a12fe2d631cf74aa7fe31f081c819551b4f75b6"
             }
           ],
           "operator_reference_url": "https://www.bigbulls.jp/",
           "location_hint": "岩手県盛岡市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "morioka_takaya_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "盛岡タカヤアリーナ",
+              "address": null,
+              "capacity": null,
+              "capacity_basis": null,
+              "venue_kind": "arena",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                },
+                {
+                  "evidence_url": "https://morioka-sport.or.jp/facility/arena/",
+                  "observed_at_utc": "2026-09-22T11:02:33.170541Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "47e3b5390686f7894f4b29547a12fe2d631cf74aa7fe31f081c819551b4f75b6"
+                }
+              ]
+            }
+          ],
+          "operator": "公益財団法人盛岡市スポーツ協会",
+          "aliases": [
+            "盛岡市総合アリーナ"
+          ],
+          "operating_status_note": null,
+          "schedule_extent": "9月・10月利用予定表PDFリンクまで確認。本文未読。",
+          "canonical_name": "盛岡タカヤアリーナ",
+          "official_url": "https://morioka-sport.or.jp/facility/arena/",
+          "schedule_url": "https://morioka-sport.or.jp/facility/arena/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []
@@ -647,7 +780,24 @@
       "pref_code": "06",
       "pref_name": "山形県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "nd_soft_stadium_yamagata",
+          "venue_name": "NDソフトスタジアム山形",
+          "aliases": [],
+          "official_url": "https://park.montedio.co.jp/beni/outline/",
+          "schedule_url": "https://park.montedio.co.jp/beni/reserve.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "faa9ece187e9297178e9",
@@ -686,26 +836,86 @@
           "pref_code": "06",
           "venue_kind": "stadium",
           "address": "山形県天童市山王1-1",
-          "capacity": 20638,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 21174,
+          "capacity_basis": "運営者の陸上競技場説明: 21,174人、うち車椅子等200人。Jリーグ入場可能数20,638とは用途を分ける。",
+          "operating_status": "official_facility_listed_current_use_not_fully_verified",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operating_status"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/yamagata/profile/",
               "observed_at_utc": "2026-09-20T11:19:04.107439Z",
               "body_sha256": "b95d4b04fc5259d0ec9a89b066d796863ece94800e21516080d34901f3209b46"
+            },
+            {
+              "evidence_url": "https://park.montedio.co.jp/beni/outline/",
+              "observed_at_utc": "2026-09-22T11:02:51.389916Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e8e62709d2548ae3ac7bfb5365fd776f35747c1a8dbd154518077d33357d29ae"
+            },
+            {
+              "evidence_url": "https://park.montedio.co.jp/beni/outline/sports.html",
+              "observed_at_utc": "2026-09-22T11:11:57.128732Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4d0efa70184db6f0418113ac0cd7e2ba133c1b1a5f19d70869ed36f2162d45da"
+            },
+            {
+              "evidence_url": "https://park.montedio.co.jp/beni/reserve.html",
+              "observed_at_utc": "2026-09-22T11:11:57.129795Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "701b027221a4e6f297c82885fbc8b673e890ffd55f666d786b4a628cb05d89be"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "nd_soft_stadium_yamagata",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "ＮＤソフトスタジアム山形",
+              "address": "山形県天童市山王1-1",
+              "capacity": 20638,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/yamagata/profile/",
+                  "observed_at_utc": "2026-09-20T11:19:04.107439Z",
+                  "body_sha256": "b95d4b04fc5259d0ec9a89b066d796863ece94800e21516080d34901f3209b46"
+                },
+                {
+                  "evidence_url": "https://park.montedio.co.jp/beni/outline/",
+                  "observed_at_utc": "2026-09-22T11:02:51.389916Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "e8e62709d2548ae3ac7bfb5365fd776f35747c1a8dbd154518077d33357d29ae"
+                },
+                {
+                  "evidence_url": "https://park.montedio.co.jp/beni/outline/sports.html",
+                  "observed_at_utc": "2026-09-22T11:11:57.128732Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "4d0efa70184db6f0418113ac0cd7e2ba133c1b1a5f19d70869ed36f2162d45da"
+                },
+                {
+                  "evidence_url": "https://park.montedio.co.jp/beni/reserve.html",
+                  "observed_at_utc": "2026-09-22T11:11:57.129795Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "701b027221a4e6f297c82885fbc8b673e890ffd55f666d786b4a628cb05d89be"
+                }
+              ]
+            }
+          ],
+          "operator": "株式会社モンテディオ山形",
+          "aliases": [],
+          "operating_status_note": "敷地内の新スタジアム工事による駐車場制限の案内あり。現NDスタジアムと将来の新スタジアムを同一視しない。公園全体名は別施設も含むためaliasにしない。",
+          "schedule_extent": "当月から3か月後までの予約照会入口を確認。施設選択後の日付明細は未読。",
+          "canonical_name": "NDソフトスタジアム山形",
+          "official_url": "https://park.montedio.co.jp/beni/outline/",
+          "schedule_url": "https://park.montedio.co.jp/beni/reserve.html",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []

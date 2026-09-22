@@ -1,5 +1,5 @@
 {
-  "scope_revision": "2b402730a0dfba750bf2733bfeee9c4386f61cc00267aec91e1e8f85191347f1",
+  "scope_revision": "f3e2c15b669cd20a1a3b7995d87d5ac39811af79e12a37637d2c66b77c7e1551",
   "snapshot_only": true,
   "scopes": [
     {
@@ -253,34 +253,101 @@
       "pref_code": "39",
       "pref_name": "高知県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "giken_stadium",
+          "venue_name": "GIKENスタジアム",
+          "aliases": [],
+          "official_url": "https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100",
+          "schedule_url": "https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "4e103a730e5fbae12242",
           "name": "ＧＩＫＥＮスタジアム",
           "pref_code": "39",
           "venue_kind": "stadium",
-          "address": "〒781-0311 高知県高知市春野町芳原2485",
-          "capacity": 16010,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "高知県高知市春野町芳原2485",
+          "capacity": 25000,
+          "capacity_basis": "県スポーツNAVIの主競技場説明: 25,000人。席種内訳の単純合計や既存Jリーグ16,010と同一視しない。",
+          "operating_status": "official_facility_listed_current_use_not_fully_verified",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
             "operating_status",
-            "aliases",
-            "schedule_extent"
+            "aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/kochi/profile/",
               "observed_at_utc": "2026-09-20T11:17:21.042228Z",
               "body_sha256": "291b3dd1b2fba2e0a9a4a6b0dc3c2f124f67655136a954b0767f6c636cbe7bf3"
+            },
+            {
+              "evidence_url": "https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100",
+              "observed_at_utc": "2026-09-22T11:12:25.388739Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "070aa71d76f97b2f0e72f61a0d034cac4b89e75fa3e08c4937c0c4414152ee25"
+            },
+            {
+              "evidence_url": "https://sports-facility.pref.kochi.lg.jp/facility.php?CD=020000",
+              "observed_at_utc": "2026-09-22T11:13:46.581177Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "241146be92513c2519d1b8d1ee1eab72f2f70240523d3d2579de2a093a1b69cb"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "giken_stadium",
+          "evidence_status": "government_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "ＧＩＫＥＮスタジアム",
+              "address": "〒781-0311 高知県高知市春野町芳原2485",
+              "capacity": 16010,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kochi/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:21.042228Z",
+                  "body_sha256": "291b3dd1b2fba2e0a9a4a6b0dc3c2f124f67655136a954b0767f6c636cbe7bf3"
+                },
+                {
+                  "evidence_url": "https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100",
+                  "observed_at_utc": "2026-09-22T11:12:25.388739Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "070aa71d76f97b2f0e72f61a0d034cac4b89e75fa3e08c4937c0c4414152ee25"
+                },
+                {
+                  "evidence_url": "https://sports-facility.pref.kochi.lg.jp/facility.php?CD=020000",
+                  "observed_at_utc": "2026-09-22T11:13:46.581177Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "241146be92513c2519d1b8d1ee1eab72f2f70240523d3d2579de2a093a1b69cb"
+                }
+              ]
+            }
+          ],
+          "operator": null,
+          "aliases": [],
+          "operating_status_note": "住所は既存Jリーグ公式観測を保持。県の別施設（スポーツ科学センター）の指定管理情報は主競技場へ転用しない。",
+          "schedule_extent": "県施設情報で主競技場と補助競技場を区別。運営者サイトはHTTP取得失敗。空き情報ログイン先や全予定表は未確認。",
+          "canonical_name": "GIKENスタジアム",
+          "official_url": "https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100",
+          "schedule_url": "https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
         }
       ],
       "pending_proposals": []
