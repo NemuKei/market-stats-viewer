@@ -17,10 +17,12 @@ from urllib.parse import urlsplit
 
 from .audit_national_event_coverage import PREFECTURES, _csv_bytes, _normal, audit
 from .signals.sources.base import JST
+from .signals.entity_aliases import _build_lookup_maps, normalize_venue_with_lookup
 from .ticketjam_review_state import (
     _validate_confirmed,
     apply_reviews,
     fingerprint,
+    promote_confirmed,
     validate_config_replacement,
 )
 
@@ -92,6 +94,25 @@ def published_snapshot(payload: dict, *, base_commit: str) -> dict:
         "lp_fingerprint": digest(payload),
         "payload": deepcopy(payload),
     }
+
+
+def _published_rows(published: dict | None, base_commit: str) -> list[dict]:
+    if published is None:
+        raise ValueError("current published snapshot required for import preview")
+    payload = published.get("payload", {})
+    if (
+        published.get("base_commit") != base_commit
+        or published.get("lp_fingerprint") != digest(payload)
+        or payload.get("schema_version") != 1
+        or not isinstance(payload.get("events"), list)
+    ):
+        raise ValueError("stale published snapshot")
+    rows = payload["events"]
+    if any(not isinstance(r, dict) or not r.get("event_key") for r in rows):
+        raise ValueError("invalid published event")
+    if len({r["event_key"] for r in rows}) != len(rows):
+        raise ValueError("duplicate published event keys")
+    return rows
 
 
 def _event_values(row: dict) -> dict:
@@ -385,17 +406,7 @@ def validate_proposal(
         matches = [r for r in candidates if r["event_key"] == key]
         published_matches = []
         if published is not None and proposal["stream"] != "ticketjam":
-            payload = published.get("payload", {})
-            if (
-                published.get("base_commit") != base_commit
-                or published.get("lp_fingerprint") != digest(payload)
-                or payload.get("schema_version") != 1
-                or not isinstance(payload.get("events"), list)
-            ):
-                raise ValueError("stale published snapshot")
-            rows = payload["events"]
-            if len({r["event_key"] for r in rows}) != len(rows):
-                raise ValueError("duplicate published event keys")
+            rows = _published_rows(published, base_commit)
             published_matches = [r for r in rows if r["event_key"] == key]
         if len(matches) + len(published_matches) != 1:
             raise ValueError("unknown or stale existing candidate")
@@ -458,6 +469,8 @@ def stage_official_event(
     review_state: dict | None = None,
     config: dict | None = None,
     published: dict | None = None,
+    prepare_import: bool = False,
+    venue_aliases: list[dict] | None = None,
 ) -> dict:
     """Separate Work decision -> existing official-event shape, still no config/DB write."""
     receipt = validate_proposal(
@@ -549,7 +562,7 @@ def stage_official_event(
     if event.get("pref_name") != pref:
         raise ValueError("Work evidence prefecture disagrees")
     candidate_review_state = None
-    if proposal["stream"] == "ticketjam":
+    if receipt["origin_kind"] == "ticketjam_candidate":
         # Reuse the existing decision validator without fabricating Ticketjam identities.
         candidates = queue["candidates"] + queue.get("official_rechecks", [])
         d = {
@@ -622,7 +635,7 @@ def stage_official_event(
             raise ValueError("replacement target no longer exists")
         else:
             config_review_status = "new_event_id_checked"
-    return {
+    result = {
         **receipt,
         "status": "verified_draft",
         "verified_at_utc": decision["checked_at_utc"],
@@ -638,6 +651,114 @@ def stage_official_event(
         "publication_status": "approval_pending",
         "can_publish": False,
     }
+    if prepare_import:
+        result["import_preview"] = _prepare_import_preview(
+            result,
+            proposal,
+            config,
+            published,
+            registry,
+            venue_aliases,
+            base_commit=base_commit,
+        )
+    return result
+
+
+def _prepare_import_preview(
+    receipt: dict,
+    proposal: dict,
+    config: dict | None,
+    published: dict | None,
+    registry: list[dict],
+    venue_aliases: list[dict] | None,
+    *,
+    base_commit: str,
+) -> dict:
+    """Only called after validation; produce a copy, never a runtime write."""
+    rows = _published_rows(published, base_commit)
+    if config is None:
+        raise ValueError("current config required for import preview")
+    if venue_aliases is None:
+        raise ValueError("current venue aliases required for import preview")
+    aliases_by_id = {
+        r["venue_id"]: tuple(json.loads(r.get("aliases_json") or "[]"))
+        for r in venue_aliases
+        if r.get("is_enabled", "1") == "1"
+    }
+    keep, compact = _build_lookup_maps(
+        [(r["venue_name"], aliases_by_id.get(r["venue_id"], ())) for r in registry]
+    )
+    events = config.get("confirmed_events", [])
+    if len({r["event_id"] for r in events}) != len(events):
+        raise ValueError("duplicate existing official event IDs")
+    result = {
+        "base_commit": base_commit,
+        "scope_revision": proposal["scope_revision"],
+        "input_config_fingerprint": digest(config),
+        "input_published_fingerprint": published["lp_fingerprint"],
+        "input_aliases_fingerprint": digest(venue_aliases),
+        "status": "blocked",
+        "action": None,
+        "config": None,
+    }
+    # A lower-priority new row cannot retire an old official source row/UID.
+    # Retain the conflict and require an explicit source migration instead.
+    if (
+        proposal["change_type"] not in {"new", "additional"}
+        or receipt["origin_kind"] == "published_event"
+        or receipt["official_event"].get("event_status", "scheduled") != "scheduled"
+    ):
+        return dict(result, reason="source_correction_requires_migration")
+    if receipt["origin_kind"] == "new_event" and proposal["current_values"]:
+        return dict(result, reason="existing_event_origin_required")
+    event = dict(
+        receipt["official_event"],
+        discovery_event_key=proposal["event_key"],
+        verified_at_utc=receipt["verified_at_utc"],
+    )
+    existing = next((r for r in events if r["event_id"] == event["event_id"]), None)
+    if existing is not None:
+        # The earlier shared replacement guard already checked this row.
+        if {k: v for k, v in existing.items() if k != "verified_at_utc"} != {
+            k: v for k, v in event.items() if k != "verified_at_utc"
+        }:
+            return dict(result, reason="source_correction_requires_migration")
+        return dict(
+            result,
+            status="ready_for_review",
+            action="unchanged",
+            config=deepcopy(config),
+        )
+    start = event["event_start_date"]
+    end = event.get("event_end_date") or start
+    for row in [*events, *rows]:
+        row_venue, _ = normalize_venue_with_lookup(row.get("venue_name"), keep, compact)
+        row_start = row.get("event_date") or row.get("event_start_date")
+        row_end = row.get("event_end_date") or row_start
+        if (
+            _normal(row_venue) == _normal(event["venue_name"])
+            and row_start
+            and row_end
+            and row_start <= end
+            and start <= row_end
+            and (
+                not row.get("event_start_time")
+                or not event.get("event_start_time")
+                or row["event_start_time"] == event["event_start_time"]
+            )
+        ):
+            return dict(result, reason="possible_existing_performance")
+    if receipt["origin_kind"] == "ticketjam_candidate":
+        key = proposal["event_key"]
+        record = receipt["candidate_review_state"]["events"][key]
+        if record["history"][-1]["status"] != "confirmed":
+            return dict(result, reason="source_correction_requires_migration")
+        # Do not promote unrelated historical decisions as a side effect.
+        planned = promote_confirmed(config, {"events": {key: record}})
+    else:
+        planned = deepcopy(config)
+        planned.setdefault("confirmed_events", []).append(event)
+    return dict(result, status="ready_for_review", action="add", config=planned)
 
 
 def main(argv=None) -> int:
@@ -656,6 +777,11 @@ def main(argv=None) -> int:
     parser.add_argument("--pref-code", choices=[f"{i:02d}" for i in range(1, 48)])
     parser.add_argument("--proposal", type=Path)
     parser.add_argument("--decision", type=Path)
+    parser.add_argument(
+        "--prepare-import",
+        action="store_true",
+        help="Print a review-only config copy; requires decision and trusted current LP",
+    )
     parser.add_argument("--queue", type=Path)
     parser.add_argument(
         "--published-lp",
@@ -673,6 +799,8 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     if args.decision and not args.proposal:
         parser.error("decision requires proposal")
+    if args.prepare_import and (not args.decision or not args.published_lp):
+        parser.error("import preview requires decision and published LP")
     if args.scope_output_dir and (args.proposal or args.pref_code):
         parser.error(
             "scope export cannot be combined with intake or a single prefecture"
@@ -726,6 +854,8 @@ def main(argv=None) -> int:
                 if args.review_state
                 else None,
                 config=config,
+                prepare_import=args.prepare_import,
+                venue_aliases=aliases,
                 **context,
             )
             if args.decision

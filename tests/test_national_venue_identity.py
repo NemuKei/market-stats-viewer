@@ -36,11 +36,24 @@ def test_operator_reviewed_venues_keep_arena_and_stadium_distinct():
         normalize_venue_with_lookup("広島県立総合体育館 大アリーナ", keep, compact)[0]
         == "広島グリーンアリーナ"
     )
-    # The existing complex ID must not silently absorb a specific hall.
+    # A hall with unknown concert capacity remains separately resolvable.
     assert "portmesse_nagoya" in registry
+    assert registry["portmesse_nagoya_hall1"]["capacity"] == ""
     assert (
-        normalize_venue_with_lookup("ポートメッセなごや 第1展示館", keep, compact)[1]
-        is False
+        normalize_venue_with_lookup("名古屋市国際展示場 第1展示館", keep, compact)[0]
+        == "ポートメッセなごや 第1展示館"
+    )
+    assert (
+        normalize_venue_with_lookup("ポートメッセなごや", keep, compact)[0]
+        != "ポートメッセなごや 第1展示館"
+    )
+    assert (
+        normalize_venue_with_lookup("ハピネスアリーナ", keep, compact)[0]
+        == "HAPPINESS ARENA"
+    )
+    assert (
+        normalize_venue_with_lookup("PEACE STADIUM", keep, compact)[0]
+        != "HAPPINESS ARENA"
     )
 
 

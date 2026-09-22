@@ -1,5 +1,5 @@
 {
-  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
+  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
   "snapshot_only": true,
   "scopes": [
     {
@@ -301,6 +301,7 @@
           "fetch_status": "unvisited",
           "saved_official_urls": [
             "https://s.mxtv.jp/event/mx-showa101thsss/",
+            "https://www.festivalhall.jp/events/",
             "https://www.festivalhall.jp/events/6088/",
             "https://www.ytv.co.jp/event/contents/onclassic2026.html"
           ],
@@ -626,7 +627,8 @@
           "fetch_status": "unvisited",
           "saved_official_urls": [
             "https://inac-kobe.com/match",
-            "https://www.vissel-kobe.co.jp/news/article/26829.html"
+            "https://www.vissel-kobe.co.jp/news/article/26829.html",
+            "https://www.vissel-kobe.co.jp/news/article/26872.html?source=visselapp"
           ],
           "last_success_by_stream": {
             "announcement": null,
@@ -948,35 +950,70 @@
       "pref_code": "30",
       "pref_name": "和歌山県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "wakayama_big_whale",
+          "venue_name": "和歌山ビッグホエール",
+          "aliases": [
+            "多目的ホール・和歌山ビッグホエール"
+          ],
+          "official_url": "https://www.wakayamasposhin.or.jp/big-whale/",
+          "schedule_url": "https://www.wakayamasposhin.or.jp/big-whale/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "20d199fec07cfd04c9d0",
           "name": "和歌山ビッグホエール",
           "pref_code": "30",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "和歌山県和歌山市手平2丁目1-1",
+          "capacity": 8500,
+          "capacity_basis": "運営者本文の最大8,500人。アリーナ面積3,280㎡から人数を推定しない。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "wakayama_big_whale",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://sp.super-beaver.com/live_information/detail/6056",
               "observed_at_utc": "2026-09-20T11:22:47.428685Z",
               "body_sha256": "2517a0499dc7e6b51f31bfed4a5073050e163e6791c58c78bee006aa4caafad2"
+            },
+            {
+              "evidence_url": "https://www.wakayamasposhin.or.jp/big-whale/",
+              "observed_at_utc": "2026-09-22T08:16:04.743870Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "de673718ae374c6082953172576565bb0b21e72e78689874dfd50000e8ff685e"
+            },
+            {
+              "evidence_url": "https://www.wakayamasposhin.or.jp/big-whale/event/",
+              "observed_at_utc": "2026-09-22T08:14:41.902694Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d2c4172371a472bfffe8e8593ca82b98adf043f8cfce92047eeaec7fddb44e32"
             }
-          ]
+          ],
+          "operator": "公益財団法人和歌山県スポーツ振興財団",
+          "aliases": [
+            "多目的ホール・和歌山ビッグホエール"
+          ],
+          "official_url": "https://www.wakayamasposhin.or.jp/big-whale/",
+          "schedule_url": "https://www.wakayamasposhin.or.jp/big-whale/event/",
+          "schedule_extent": "2026年9月までの月次PDF一覧を確認。PDF本文は未読。ビッグウエーブ等の別施設と区別。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         }
       ],
       "pending_proposals": []

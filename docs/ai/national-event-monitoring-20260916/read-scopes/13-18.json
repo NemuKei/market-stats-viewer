@@ -1,5 +1,5 @@
 {
-  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
+  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
   "snapshot_only": true,
   "scopes": [
     {
@@ -713,6 +713,24 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "toyota_arena_tokyo",
+          "venue_name": "TOYOTA ARENA TOKYO",
+          "aliases": [
+            "トヨタアリーナ東京"
+          ],
+          "official_url": "https://www.toyota-arena-tokyo.jp/",
+          "schedule_url": "https://www.toyota-arena-tokyo.jp/events/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -721,17 +739,12 @@
           "name": "TOYOTA ARENA TOKYO",
           "pref_code": "13",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "東京都江東区青海一丁目3番1号",
+          "capacity": 10000,
+          "capacity_basis": "施設概要の約10,000人。配置で変動する概数。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
           "evidence": [
@@ -739,13 +752,39 @@
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.toyota-arena-tokyo.jp/organizer/",
+              "observed_at_utc": "2026-09-22T08:15:49.507004Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "2b7c037291506113db76bfbb2da9618dc5ed973934f2653dc063fc8987600326"
+            },
+            {
+              "evidence_url": "https://www.toyota-arena-tokyo.jp/news/yns-gd9yjqg/",
+              "observed_at_utc": "2026-09-22T08:15:56.935626Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "694e38a0f5ff97105a6b3c50911ec81712d61536f1176b702c77664abcb595fd"
+            },
+            {
+              "evidence_url": "https://www.toyota-arena-tokyo.jp/events/",
+              "observed_at_utc": "2026-09-22T08:15:57.013180Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "aab21596507f25173d7388fc93aff0043adce24e9d16f3f93ba3f7a1e2c1458c"
             }
           ],
           "operator_reference_url": "https://www.alvark-tokyo.jp/",
           "location_hint": "東京都江東区",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "toyota_arena_tokyo",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "トヨタアルバルク東京株式会社",
+          "aliases": [
+            "トヨタアリーナ東京"
+          ],
+          "official_url": "https://www.toyota-arena-tokyo.jp/",
+          "schedule_url": "https://www.toyota-arena-tokyo.jp/events/",
+          "schedule_extent": "2026年9月の全表示行を読取。設営・PRIVATEと公開催事を区別。別月未読。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         },
         {
           "candidate_id": "8e95218e2ee0d08a42ed",

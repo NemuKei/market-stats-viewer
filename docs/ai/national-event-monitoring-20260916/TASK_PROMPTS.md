@@ -59,3 +59,7 @@ Git、Release、SideBiz取込と実LPを別々に確認する。公開field allo
 `SOURCE_CHECKS.json` の公式リンク確認はSNS投稿の読取成功ではない。IGアリーナとSEKAI NO OWARIの公式アカウントはリンク確認済みだが投稿取得は失敗。`REGISTRY_SOURCE_CHECKS.json` のbody取得成功も予定表全範囲確認ではない。各回、実際の閲覧範囲・失敗・未巡回を区別する。
 
 この指示案の定期登録、権限付与、無人起動、旧writer停止はまだ実施していない。オフライン試験の結果は `VERIFICATION_20260920.md`、実稼働へ進む条件はREADME A〜Hと現行specを使う。
+
+## 2026-09-22の取込案作成の補足
+
+Workの提案再検証後、現行configとWorkが取得元を確認した最新LPを渡して `national_event_handoff --prepare-import` を実行できる。`ready_for_review` も承認待ちの案である。`blocked` の理由、入力hash、base/scopeを残し、config=nullを空の設定として適用しない。日時訂正・中止・延期は元source/旧UIDの移行接続が未完了のため、下書きとconflictを維持して停止する。新規案は対象event_idだけを一時DB→LP→manifestへ通し、無関係な過去判断を同時に反映しない。今回の対話操作や一時DB試験を定期Chat/Work Cloudの成功として報告しない。

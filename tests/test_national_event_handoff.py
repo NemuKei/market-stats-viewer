@@ -118,6 +118,194 @@ def context():
     return dict(base_commit=BASE, scope_revision=bundle()["scope_revision"])
 
 
+def preview_context(events=None, config=None):
+    from scripts.national_event_handoff import published_snapshot
+
+    return dict(
+        **context(),
+        prepare_import=True,
+        venue_aliases=[],
+        config=config if config is not None else {"confirmed_events": []},
+        published=published_snapshot(
+            {"schema_version": 1, "events": events or []}, base_commit=BASE
+        ),
+    )
+
+
+def test_import_preview_is_copy_only_and_idempotent():
+    p = proposal()
+    ctx = preview_context()
+    before = deepcopy(ctx)
+    staged = stage_official_event(p, decision(p), REGISTRY, **ctx)
+    preview = staged["import_preview"]
+    assert preview["status"] == "ready_for_review"
+    assert preview["action"] == "add"
+    assert not staged["can_publish"]
+    assert ctx == before
+    assert len(preview["config"]["confirmed_events"]) == 1
+    ctx["config"] = preview["config"]
+    repeated = stage_official_event(p, decision(p), REGISTRY, **ctx)
+    assert repeated["import_preview"]["action"] == "unchanged"
+    assert repeated["import_preview"]["config"] == preview["config"]
+
+
+@pytest.mark.parametrize("bad", ["missing", "base", "payload", "duplicate"])
+def test_import_preview_requires_current_published_input_even_for_new_events(bad):
+    p = proposal()
+    ctx = preview_context()
+    if bad == "missing":
+        ctx["published"] = None
+    elif bad == "base":
+        ctx["published"]["base_commit"] = "b" * 40
+    elif bad == "payload":
+        ctx["published"]["payload"]["events"].append({"event_key": "untrusted"})
+    else:
+        ctx = preview_context([{"event_key": "same"}, {"event_key": "same"}])
+    with pytest.raises(ValueError, match="published"):
+        stage_official_event(p, decision(p), REGISTRY, **ctx)
+
+
+@pytest.mark.parametrize("where", ["published", "config"])
+@pytest.mark.parametrize("old_time", [None, "18:00"])
+def test_import_preview_stops_possible_duplicate_in_either_input(where, old_time):
+    p = proposal()
+    p["proposed_values"]["event_start_time"] = "18:00"
+    d = decision(p)
+    d["official_event"]["event_start_time"] = "18:00"
+    ctx = preview_context()
+    if where == "published":
+        row = dict(
+            p["proposed_values"], event_key="published-key", event_start_time=old_time
+        )
+        ctx = preview_context([row])
+    else:
+        old = dict(d["official_event"], event_id="other-id", event_start_time=old_time)
+        ctx["config"]["confirmed_events"] = [old]
+    staged = stage_official_event(p, d, REGISTRY, **ctx)
+    assert staged["import_preview"]["status"] == "blocked"
+    assert staged["import_preview"]["reason"] == "possible_existing_performance"
+    assert staged["import_preview"]["config"] is None
+
+
+def test_import_preview_preserves_separate_matinee_and_evening():
+    p = proposal()
+    p["proposed_values"]["event_start_time"] = "18:00"
+    d = decision(p)
+    d["official_event"]["event_start_time"] = "18:00"
+    matinee = dict(p["proposed_values"], event_key="matinee", event_start_time="13:00")
+    staged = stage_official_event(p, d, REGISTRY, **preview_context([matinee]))
+    assert staged["import_preview"]["action"] == "add"
+
+
+def test_import_preview_detects_alias_and_region_prefix_in_existing_config():
+    p = proposal()
+    d = decision(p)
+    old = dict(d["official_event"], event_id="old-id", venue_name="沖縄・旧称アリーナ")
+    ctx = preview_context(config={"confirmed_events": [old]})
+    ctx["venue_aliases"] = [
+        dict(venue_id="arena", aliases_json='["旧称アリーナ"]', is_enabled="1")
+    ]
+    receipt = stage_official_event(p, d, REGISTRY, **ctx)
+    assert receipt["import_preview"]["reason"] == "possible_existing_performance"
+
+
+def test_import_preview_requires_explicit_alias_input():
+    p = proposal()
+    ctx = preview_context()
+    ctx.pop("venue_aliases")
+    with pytest.raises(ValueError, match="aliases"):
+        stage_official_event(p, decision(p), REGISTRY, **ctx)
+
+
+@pytest.mark.parametrize("change", ["time", "date", "cancelled", "postponed"])
+def test_import_preview_does_not_bypass_ticketjam_conflict_hold(change):
+    p, d, queue = correction_case(change)
+    staged = stage_official_event(p, d, REGISTRY, queue=queue, **preview_context())
+    assert (
+        staged["candidate_review_state"]["events"][p["event_key"]]["history"][-1][
+            "status"
+        ]
+        == "conflict"
+    )
+    assert staged["import_preview"]["status"] == "blocked"
+    assert staged["import_preview"]["config"] is None
+    assert staged["import_preview"]["reason"] == "source_correction_requires_migration"
+
+
+@pytest.mark.parametrize("stream", ["ticketjam", "venue_official", "announcement"])
+def test_import_preview_promotes_only_the_reviewed_ticketjam_candidate(stream):
+    p, d, queue = correction_case()
+    p["proposed_values"] = dict(p["current_values"])
+    p["change_type"] = "new"
+    p["stream"] = stream
+    d = decision(p)
+    d["official_event"]["event_start_time"] = "19:00"
+    ctx = preview_context()
+    # An unrelated previously confirmed item must not be promoted as a side effect.
+    state = {
+        "schema_version": 1,
+        "events": {
+            "unrelated": {
+                "history": [
+                    {"status": "confirmed", "official_event": {"event_id": "unrelated"}}
+                ]
+            }
+        },
+    }
+    staged = stage_official_event(
+        p, d, REGISTRY, queue=queue, review_state=state, **ctx
+    )
+    events = staged["import_preview"]["config"]["confirmed_events"]
+    assert len(events) == 1
+    assert events[0]["discovery_event_key"] == "existing-ticketjam-key"
+    assert "unrelated" in staged["candidate_review_state"]["events"]
+
+
+def test_import_preview_cli_outputs_copy_without_mutating_inputs(tmp_path, capsys):
+    from scripts.national_event_handoff import main
+
+    p = proposal()
+    inputs = {
+        "config": {"watch_venues": [], "confirmed_events": []},
+        "published-lp": {"schema_version": 1, "events": []},
+        "proposal": p,
+        "decision": decision(p),
+    }
+    args = ["--base-commit", BASE, "--prepare-import"]
+    for name, payload in inputs.items():
+        path = tmp_path / (name + ".json")
+        path.write_text(json.dumps(payload))
+        args.extend(["--" + name, str(path)])
+    for name, fields, rows in [
+        ("registry", list(REGISTRY[0]), REGISTRY),
+        ("aliases", ["venue_id", "aliases_json"], []),
+        ("ticketjam", ["venue_id", "venue_name", "is_enabled"], []),
+    ]:
+        path = tmp_path / (name + ".csv")
+        with path.open("w") as handle:
+            writer = csv.DictWriter(handle, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(rows)
+        args.extend(["--" + name, str(path)])
+    before = {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+    assert main(args) == 0
+    output = json.loads(capsys.readouterr().out)
+    assert output["import_preview"]["action"] == "add"
+    assert {p.name: p.read_bytes() for p in tmp_path.iterdir()} == before
+
+
+@pytest.mark.parametrize("change", ["time", "date", "cancelled", "postponed"])
+def test_import_preview_cannot_overwrite_published_source_by_adding_row(change):
+    p, d, queue = correction_case(change)
+    p["stream"] = "venue_official"
+    row = dict(queue["candidates"][0], display_source_id="official_events")
+    p["candidate_fingerprint"] = digest(row)
+    d["proposal_hash"] = digest(p)
+    result = stage_official_event(p, d, REGISTRY, **preview_context([row]))
+    assert result["import_preview"]["reason"] == "source_correction_requires_migration"
+    assert result["import_preview"]["config"] is None
+
+
 @pytest.mark.parametrize("change", ["time", "date", "cancelled", "postponed"])
 def test_published_non_ticketjam_correction_keeps_real_origin(change):
     from scripts.national_event_handoff import published_snapshot
@@ -416,17 +604,24 @@ def test_local_atomic_state_rejects_stale_revision_and_existing_lock(tmp_path):
     assert json.loads(path.read_text()) == newer and lock.exists()
 
 
-def test_real_nationwide_tour_fixture_keeps_every_stop_and_stops_unknown_venues():
+@pytest.mark.parametrize(
+    "filename,total,venues,mapped",
+    [("sekai_no_owari_2027.json", 23, 11, 23), ("aimyon_2027.json", 36, 15, 30)],
+)
+def test_real_nationwide_tour_fixture_keeps_every_stop_without_publication_approval(
+    filename,
+    total,
+    venues,
+    mapped,
+):
     root = Path(__file__).resolve().parents[1]
     fixture = json.loads(
-        (
-            root / "tests/fixtures/national_event_monitoring/sekai_no_owari_2027.json"
-        ).read_text()
+        (root / "tests/fixtures/national_event_monitoring" / filename).read_text()
     )
     with (root / "data/venue_registry.csv").open() as handle:
         registry = list(csv.DictReader(handle))
-    assert len(fixture["events"]) == 23
-    assert len({r["venue_name"] for r in fixture["events"]}) == 11
+    assert len(fixture["events"]) == total
+    assert len({r["venue_name"] for r in fixture["events"]}) == venues
     assert fixture["published_at_utc"] is None
     assert fixture["publication_status"] == "not_imported"
     checked, held = 0, 0
@@ -456,7 +651,7 @@ def test_real_nationwide_tour_fixture_keeps_every_stop_and_stops_unknown_venues(
             receipt = validate_proposal(p, registry, **context())
             assert not receipt["can_publish"]
             checked += 1
-    assert checked + held == 23 and held > 0
+    assert checked == mapped and held == total - mapped
 
 
 def test_census_review_queue_covers_all_prefectures_without_claiming_completeness():
@@ -503,12 +698,23 @@ def test_synthetic_work_draft_reuses_existing_db_lp_and_manifest_pipeline(
     conn = init_db(tmp_path / "event_signals.sqlite")
     ensure_default_sources(conn)
     p = proposal()
-    staged = stage_official_event(p, decision(p), REGISTRY, **context())
+    from scripts.national_event_handoff import published_snapshot
+
+    staged = stage_official_event(
+        p,
+        decision(p),
+        REGISTRY,
+        **context(),
+        config=dict(future_only=False, confirmed_events=[]),
+        published=published_snapshot(
+            {"schema_version": 1, "events": []}, base_commit=BASE
+        ),
+        prepare_import=True,
+        venue_aliases=[],
+    )
     assert staged["can_publish"] is False
     config_path = tmp_path / "config.json"
-    config_path.write_text(
-        json.dumps(dict(future_only=False, confirmed_events=[staged["official_event"]]))
-    )
+    config_path.write_text(json.dumps(staged["import_preview"]["config"]))
     source = SignalSourceRecord(
         "venue_web_discovery",
         "Synthetic source",

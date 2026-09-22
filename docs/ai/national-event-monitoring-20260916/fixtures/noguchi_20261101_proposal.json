@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "stream": "venue_official",
+  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
+  "base_commit": "70989a8f8e36ebb49d5ed46ab0422644dfd1581e",
+  "venue_id": "happiness_arena",
+  "event_key": null,
+  "candidate_fingerprint": null,
+  "change_type": "new",
+  "current_values": {},
+  "proposed_values": {
+    "event_date": "2026-11-01",
+    "event_start_time": "17:00",
+    "venue_name": "HAPPINESS ARENA",
+    "artist_name": "野口五郎",
+    "title": "GORO NOGUCHI CONCERT TOUR 2026「 I sing songs !!～歌がある限り～」",
+    "event_status": "scheduled"
+  },
+  "source_class": "venue_official",
+  "discovery_url": "https://www.nagasakistadiumcity.com/event/",
+  "evidence_url": "https://www.nagasakistadiumcity.com/event/50333/",
+  "evidence_summary": "運営者詳細本文: 2026年11月1日、野口五郎、HAPPINESS ARENA、開場16:00・開演17:00。",
+  "published_at_utc": null,
+  "observed_at_utc": "2026-09-22T08:21:02.295324+00:00",
+  "retrieval_method": "requests_bs4",
+  "evidence_status": "official_body",
+  "unresolved_fields": [],
+  "next_check_date": "2026-09-23"
+}

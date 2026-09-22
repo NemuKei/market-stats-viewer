@@ -1,5 +1,5 @@
 {
-  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
+  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
   "snapshot_only": true,
   "scopes": [
     {
@@ -544,6 +544,7 @@
           "fetch_status": "unvisited",
           "saved_official_urls": [
             "https://www.zepp.co.jp/hall/nagoya/schedule/?_y=2026&_m=10",
+            "https://www.zepp.co.jp/hall/nagoya/schedule/?_y=2026&_m=11",
             "https://www.zepp.co.jp/hall/nagoya/schedule/?_y=2026&_m=9",
             "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=157543",
             "https://www.zepp.co.jp/hall/nagoya/schedule/single/?rid=158871"
@@ -656,6 +657,44 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "ig_arena",
+          "venue_name": "IGアリーナ",
+          "aliases": [
+            "IG ARENA",
+            "IG Arena",
+            "愛知国際アリーナ"
+          ],
+          "official_url": "https://www.ig-arena.jp/",
+          "schedule_url": "https://www.ig-arena.jp/events/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "portmesse_nagoya_hall1",
+          "venue_name": "ポートメッセなごや 第1展示館",
+          "aliases": [
+            "名古屋市国際展示場 第1展示館"
+          ],
+          "official_url": "https://portmesse.com/facility/tenjikan01",
+          "schedule_url": "https://portmesse.com/events/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -664,17 +703,12 @@
           "name": "IGアリーナ",
           "pref_code": "23",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "愛知県名古屋市北区名城1丁目2-22",
+          "capacity": 17000,
+          "capacity_basis": "最大17,000人（立ち見含む）。座席のみの数ではない。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
           "evidence": [
@@ -687,13 +721,41 @@
               "evidence_url": "https://www.ig-arena.jp/events/",
               "observed_at_utc": "2026-09-20T11:22:47.291900Z",
               "body_sha256": "3e85754bccd8b974ec567636d13e69715c5dc2cb6c583b647a0738ae32383676"
+            },
+            {
+              "evidence_url": "https://www.ig-arena.jp/news/2072/",
+              "observed_at_utc": "2026-09-22T08:16:02.572195Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "0a6bf7c894687fe6346b3b668e823fb00906b8c1425cb7ed3e231f1b565b646e"
+            },
+            {
+              "evidence_url": "https://www.ig-arena.jp/access/",
+              "observed_at_utc": "2026-09-22T08:16:01.796689Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "cf73ef60b207ebe9ac3fc78f3db87e5bc0d92cd5ac7ffc7a237c2fec05ce37d6"
+            },
+            {
+              "evidence_url": "https://www.ig-arena.jp/events/",
+              "observed_at_utc": "2026-09-22T08:14:41.723623Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "8f31e1670e5ebf71f2780b78589909dc3d57cff681ea7877b8b8595a038c3be9"
             }
           ],
           "operator_reference_url": "https://nagoya-dolphins.jp/",
           "location_hint": "愛知県名古屋市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "ig_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "株式会社愛知国際アリーナ",
+          "aliases": [
+            "IG ARENA",
+            "IG Arena",
+            "愛知国際アリーナ"
+          ],
+          "official_url": "https://www.ig-arena.jp/",
+          "schedule_url": "https://www.ig-arena.jp/events/",
+          "schedule_extent": "表示中の9/10〜10/3アジア競技大会を読取。別月・個別競技は未検証。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         },
         {
           "candidate_id": "938c6f10a145c2a82f2e",
@@ -726,7 +788,7 @@
           "name": "ポートメッセなごや 第1展示館",
           "pref_code": "23",
           "venue_kind": "exhibition_arena",
-          "registry_venue_id": null,
+          "registry_venue_id": "portmesse_nagoya_hall1",
           "address": "愛知県名古屋市港区金城ふ頭二丁目2番地（施設概要の所在地）",
           "capacity": null,
           "capacity_basis": "第1展示館: 展示面積20,160㎡、可動階段席5,848席。総公演収容人数は未確認。既存施設全体の15,000を転用しない。",
@@ -741,13 +803,13 @@
           "missing_fields": [
             "capacity_basis",
             "schedule_extent",
-            "hall_specific_rental_dates",
-            "parent_venue_migration"
+            "hall_specific_rental_dates"
           ],
           "scope_review": "identity_verified_schedule_pending",
           "evidence_status": "operator_body_read",
           "fetch_status": "web_body_read",
-          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z"
+          "reviewed_at_utc": "2026-09-21T08:36:31.977288Z",
+          "identity_note": "館名が明記された今後の提案だけ専用IDへ解決。施設全体の既存IDと保存DB行は維持。館不明の旧行を移し替えない。容量未取得でも全国監視対象に残す。"
         },
         {
           "candidate_id": "c5cb192ae4e5d5dd005a",

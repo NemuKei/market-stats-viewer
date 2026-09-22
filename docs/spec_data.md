@@ -291,7 +291,15 @@ LPの既定は `ticketjam_policy=discovery`。Ticketjamを掲載用の統合入�
 2026-09-21の受入訂正（PR #21 / R1〜R3）:
 
 - Ticketjamの変更前候補と公式本文が異なる訂正では、元候補の履歴へ実際の差を持つ `conflict` を追記し、訂正後の公式eventを別の `verified_draft` として返す。日時変更と中止・延期を区別し、元key/fingerprintと過去履歴を保持する。元候補を訂正済みの値で捏造してconfirmedにはしない。`conflict.official_values` は従来項目に `event_status`（scheduled/cancelled/postponed）を追加で許容する。
-- 下書きの `origin`、`candidate_review_state`、`config_review_status` は公開fieldではない。既存configを渡したときは既存昇格処理と共通の同一origin・変更前config fingerprintの検証を通す。config未入力は `not_checked` と明記する。下書きの直接appendは未対応であり、conflictによる既存派生行の掲載保留を解除しない。
+- 下書きの `origin`、`candidate_review_state`、`config_review_status` は公開fieldではない。既存configを渡したときは既存昇格処理と共通の同一origin・変更前config fingerprintの検証を通す。config未入力は `not_checked` と明記する。下書きの直接appendは行わず、下記の取込案を作成する。conflictによる既存派生行の掲載保留を解除しない。
 - 提案・Work判断・既存Ticketjam判断の `next_check_date` はすべてJST暦日。比較するUTC timestampはJSTへ変換してから日付を取り出す。保存済みtimestampの形式はUTCのまま維持する。
 
 この契約は非公開の運用状態や未公開資料を公開repoへ保存する許可を含まない。派生scope、調査記録、提案、実行履歴はRelease assetに追加しない。既存DB・LP schema、source priority、Ticketjam discovery policyは変更しない。
+
+2026-09-22の取込案（PR #21）:
+
+- `stage_official_event(..., prepare_import=True)` は再検証済みの提案・Work判断から `import_preview` を返す。現在の公式config・会場別名一覧と信頼済みLP snapshotが必須。新規公演でもLPのbase・内容hash・重複keyを検証し、入力config/LPのfingerprint、scope版、baseを案へ残す。戻り値は確認用であり、`can_publish=false` と承認待ちは変わらない。receiptを外部から与えて検証を迂回する入口はない。
+- 対応する案は新規・追加公演の `add`、同内容の再入力の `unchanged`。別IDでも既存の会場別名/地域接頭辞の正規化後に日付範囲が重なり、同時刻または片方の時刻が不明な場合は `possible_existing_performance` として保留する。出演者/titleの書き換えで衝突を避けない。昼夜の異なる既知時刻は維持する。これは候補衝突の検査であり、実公演の同一性を自動確定するものではない。
+- 元Ticketjam候補への公式追認は、発見streamに関係なく既存 `apply_reviews` と `promote_confirmed` を通す。今回の候補だけを昇格案へ含め、無関係な過去confirmedを取り込まない。元履歴は保持する。
+- 日時訂正・中止・延期、既存LPの変更、異なる既存configの置換は `source_correction_requires_migration` で停止し、config案をnullにする。下書きとconflict履歴は返す。別sourceの旧行やURL由来の旧UIDを新規行の追加だけで消せないため、元sourceの所有権・旧行の抑止/移行を扱う接続が残る。保持された下書きを別のIDで追加して迂回しない。
+- 取込案は永続runtime schemaや公開LP fieldを変更しない。適用前に同じ入力hashとbaseを再確認し、既存DB→LP→manifestを再生成する。失敗時は案を破棄し、原本config/DBを保持する。

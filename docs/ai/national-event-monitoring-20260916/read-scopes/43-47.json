@@ -1,5 +1,5 @@
 {
-  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
+  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
   "snapshot_only": true,
   "scopes": [
     {
@@ -240,7 +240,26 @@
       "pref_code": "47",
       "pref_name": "沖縄県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "okinawa_arena",
+          "venue_name": "沖縄サントリーアリーナ",
+          "aliases": [
+            "沖縄アリーナ"
+          ],
+          "official_url": "https://okinawa-arena.jp/",
+          "schedule_url": "https://okinawa-arena.jp/events",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "2abf0718cb29e6864cac",
@@ -248,16 +267,12 @@
           "pref_code": "47",
           "venue_kind": "arena",
           "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 10000,
+          "capacity_basis": "設備案内のセンターステージ配置で約10,000人。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_verified_address_conflict",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
+            "address_conflict",
             "schedule_extent"
           ],
           "evidence": [
@@ -270,13 +285,62 @@
               "evidence_url": "https://okinawa-arena.jp/",
               "observed_at_utc": "2026-09-20T11:22:56.520602Z",
               "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/organizer/equipment",
+              "observed_at_utc": "2026-09-22T08:15:51.530587Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "035debff362077ac81e99b58082f8d2a68664d7671b07707c6f24ac391d33cdc"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/access",
+              "observed_at_utc": "2026-09-22T08:15:51.421378Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "fa336b1bf04f9ddf2470a4716e276ffbf836676a709d48e3a0fa148c983c49d5"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/company",
+              "observed_at_utc": "2026-09-22T08:15:51.309163Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "68879787dbe9cf3013a959bbdb265fbb1d8e520bd54bf24c3c5791f59b34736e"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/",
+              "observed_at_utc": "2026-09-22T08:15:51.491221Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/events",
+              "observed_at_utc": "2026-09-22T08:14:32.585886Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e7a4e88bc122c5bcff6338008299901201fe759f8b03711d57553c20badcc479"
             }
           ],
           "operator_reference_url": "https://goldenkings.jp/",
           "location_hint": "沖縄県沖縄市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "okinawa_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "沖縄アリーナ株式会社",
+          "aliases": [
+            "沖縄アリーナ"
+          ],
+          "official_url": "https://okinawa-arena.jp/",
+          "schedule_url": "https://okinawa-arena.jp/events",
+          "schedule_extent": "イベント一覧URLは本文の個別行取得が不十分。ホームの公式ツアーリンクを確認。新規なしとはしない。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z",
+          "address_alternatives": [
+            {
+              "value": "沖縄県沖縄市山内1丁目16-1",
+              "evidence_url": "https://okinawa-arena.jp/access"
+            },
+            {
+              "value": "沖縄県沖縄市山内4丁目1番5号",
+              "evidence_url": "https://okinawa-arena.jp/organizer/equipment"
+            }
+          ],
+          "address_note": "公式内で相違。会社事務所の久保田住所を施設住所として転用しない。解消待ち。"
         },
         {
           "candidate_id": "37cb4d2bf9c95156cdb2",

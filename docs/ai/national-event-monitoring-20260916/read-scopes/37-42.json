@@ -1,5 +1,5 @@
 {
-  "scope_revision": "e8f8150c1dc73e81f8ecec46767c0bac4752031b0406fb18f3c42793f3e4f870",
+  "scope_revision": "1da53ddacfec467b899dd6364aabd3e6c1cfc04de1b1c84144b17cfec6e2d15a",
   "snapshot_only": true,
   "scopes": [
     {
@@ -513,24 +513,54 @@
       "pref_code": "41",
       "pref_name": "佐賀県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "saga_arena",
+          "venue_name": "SAGAアリーナ",
+          "aliases": [],
+          "official_url": "https://saga-sunrisepark.com/facility/",
+          "schedule_url": "https://saga-sunrisepark.com/event/2026/09",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "saga_stadium",
+          "venue_name": "SAGAスタジアム",
+          "aliases": [
+            "SAGAスタジアム（陸上競技場）"
+          ],
+          "official_url": "https://saga-sunrisepark.com/facility/0321_3766/",
+          "schedule_url": "https://saga-sunrisepark.com/status/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "d6a043c811b2f7b92004",
           "name": "SAGAアリーナ",
           "pref_code": "41",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "佐賀県佐賀市日の出2丁目1番10号",
+          "capacity": 8400,
+          "capacity_basis": "メインアリーナ約8,400席。公園全体・サブアリーナとは別。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
           "evidence": [
@@ -543,13 +573,82 @@
               "evidence_url": "https://saga-sunrisepark.com/status/",
               "observed_at_utc": "2026-09-20T11:22:55.116550Z",
               "body_sha256": "28635cc07bc8d90e1bef93128d796bcbe654bfcdf24269d32656f6d3d1464ddf"
+            },
+            {
+              "evidence_url": "https://saga-sunrisepark.com/facility/",
+              "observed_at_utc": "2026-09-22T08:14:42.361582Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "1d30e7a77cc7973a5622def5790a22a3a2b32f88cbb5cec32020d796ea501970"
+            },
+            {
+              "evidence_url": "https://saga-sunrisepark.com/admin/",
+              "observed_at_utc": "2026-09-22T08:15:58.974019Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "dce4dfdbdf2fa4d5faa1c67f4c48965bd8649de9a91cd6438d0a01db63f0b400"
+            },
+            {
+              "evidence_url": "https://saga-sunrisepark.com/status/",
+              "observed_at_utc": "2026-09-22T08:14:42.256848Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "f2ec94ccd756e97db725f917cf05ce544f0c9c38637601cae2dc4f500641b813"
             }
           ],
           "operator_reference_url": "https://ballooners.jp/",
           "location_hint": "佐賀県佐賀市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "saga_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "株式会社SAGAサンシャインフォレスト",
+          "aliases": [],
+          "official_url": "https://saga-sunrisepark.com/facility/",
+          "schedule_url": "https://saga-sunrisepark.com/event/2026/09",
+          "schedule_extent": "行事入口のアリーナ専用リンクを確認。屋外施設PDFをアリーナの予定表と取り違えない。専用月表本文は未読。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
+        },
+        {
+          "candidate_id": "0c681a13a17a72e30471",
+          "name": "SAGAスタジアム",
+          "pref_code": "41",
+          "evidence": [
+            {
+              "evidence_url": "https://saga-sunrisepark.com/facility/0321_3766/",
+              "observed_at_utc": "2026-09-22T08:15:59.573030Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "33ff6fdf37cdcb45b72ee7fdccc2c83fbc4352f725590a1461bc04dd9aad7cda"
+            },
+            {
+              "evidence_url": "https://saga-sunrisepark.com/admin/",
+              "observed_at_utc": "2026-09-22T08:15:58.974019Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "dce4dfdbdf2fa4d5faa1c67f4c48965bd8649de9a91cd6438d0a01db63f0b400"
+            },
+            {
+              "evidence_url": "https://saga-sunrisepark.com/status/",
+              "observed_at_utc": "2026-09-22T08:14:42.256848Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "f2ec94ccd756e97db725f917cf05ce544f0c9c38637601cae2dc4f500641b813"
+            }
+          ],
+          "venue_kind": "stadium",
+          "registry_venue_id": "saga_stadium",
+          "address": "佐賀県佐賀市日の出2丁目1番10号",
+          "capacity": 15000,
+          "capacity_basis": "観客席約15,000席（メインスタンド約8,400席）。",
+          "operator": "株式会社SAGAサンシャインフォレスト",
+          "aliases": [
+            "SAGAスタジアム（陸上競技場）"
+          ],
+          "official_url": "https://saga-sunrisepark.com/facility/0321_3766/",
+          "schedule_url": "https://saga-sunrisepark.com/status/",
+          "schedule_extent": "屋外施設の月次PDFリンクを確認。PDF本文・月別全行未読。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent"
+          ],
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         },
         {
           "candidate_id": "7e66f2f66013de94cea1",
@@ -585,50 +684,103 @@
       "pref_code": "42",
       "pref_name": "長崎県",
       "review_status": "pending",
-      "venues": [],
+      "venues": [
+        {
+          "venue_id": "happiness_arena",
+          "venue_name": "HAPPINESS ARENA",
+          "aliases": [
+            "ハピネスアリーナ",
+            "長崎スタジアムシティ HAPPINESS ARENA"
+          ],
+          "official_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "schedule_url": "https://www.nagasakistadiumcity.com/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "peace_stadium_nagasaki",
+          "venue_name": "PEACE STADIUM Connected by SoftBank",
+          "aliases": [
+            "PEACE STADIUM",
+            "ピーススタジアム"
+          ],
+          "official_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "schedule_url": "https://www.nagasakistadiumcity.com/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
       "candidates": [
         {
           "candidate_id": "05d0897e12337a18aa98",
           "name": "HAPPINESS ARENA",
           "pref_code": "42",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "長崎県長崎市幸町7番1号",
+          "capacity": 6000,
+          "capacity_basis": "施設概要の約6,000席。スタジアム約20,000席と分離。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_body_entry_only_not_full_census",
+          "registry_venue_id": "happiness_arena",
+          "evidence_status": "operator_body_read",
           "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
               "observed_at_utc": "2026-09-20T11:23:15.178979Z",
               "body_sha256": "156a2240ba311248dee9d4ee1a9e17e77e6724d4256790fba9dac2890e6992b2"
+            },
+            {
+              "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
+              "observed_at_utc": "2026-09-22T08:14:31.830950Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "da606bc5795d5dd2779c5bbc42a32d4928cb67f74753fc760d2c67dc4f762b6c"
+            },
+            {
+              "evidence_url": "https://www.nagasakistadiumcity.com/event/",
+              "observed_at_utc": "2026-09-22T08:14:32.352145Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d79fc7666d1de23df0d937e5e78377cf05207acff3deb3dc426d1f515fc5a4d5"
             }
-          ]
+          ],
+          "operator": "リージョナルクリエーション長崎",
+          "aliases": [
+            "ハピネスアリーナ",
+            "長崎スタジアムシティ HAPPINESS ARENA"
+          ],
+          "official_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "schedule_url": "https://www.nagasakistadiumcity.com/event/",
+          "schedule_extent": "表示一覧は2026年7月〜2027年4月。ARENA/STADIUM/HOTELを区別。11/1野口五郎の詳細を別途読取。他の詳細・開催時刻は未照合。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         },
         {
           "candidate_id": "95ce782fa0bbaace620d",
           "name": "PEACE STADIUM Connected by SoftBank",
           "pref_code": "42",
           "venue_kind": "stadium",
-          "address": "長崎県長崎市幸町7-1",
-          "capacity": 20268,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "長崎県長崎市幸町7番1号",
+          "capacity": 20000,
+          "capacity_basis": "施設概要の約20,000席。アリーナ約6,000席と分離。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
           "evidence": [
@@ -641,28 +793,44 @@
               "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
               "observed_at_utc": "2026-09-20T11:23:15.178979Z",
               "body_sha256": "156a2240ba311248dee9d4ee1a9e17e77e6724d4256790fba9dac2890e6992b2"
+            },
+            {
+              "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
+              "observed_at_utc": "2026-09-22T08:14:31.830950Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "da606bc5795d5dd2779c5bbc42a32d4928cb67f74753fc760d2c67dc4f762b6c"
+            },
+            {
+              "evidence_url": "https://www.nagasakistadiumcity.com/event/",
+              "observed_at_utc": "2026-09-22T08:14:32.352145Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d79fc7666d1de23df0d937e5e78377cf05207acff3deb3dc426d1f515fc5a4d5"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "peace_stadium_nagasaki",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "リージョナルクリエーション長崎",
+          "aliases": [
+            "PEACE STADIUM",
+            "ピーススタジアム"
+          ],
+          "official_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "schedule_url": "https://www.nagasakistadiumcity.com/event/",
+          "schedule_extent": "表示一覧の10/11 PLAY ALL DAY!を確認。詳細と全サッカー日程は未照合。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         },
         {
           "candidate_id": "6fb1e90a896593ff5ebb",
           "name": "ハピネスアリーナ",
           "pref_code": "42",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "長崎県長崎市幸町7番1号",
+          "capacity": 6000,
+          "capacity_basis": "施設概要の約6,000席。スタジアム約20,000席と分離。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
             "schedule_extent"
           ],
           "evidence": [
@@ -670,13 +838,34 @@
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.nagasakistadiumcity.com/project_outline/",
+              "observed_at_utc": "2026-09-22T08:14:31.830950Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "da606bc5795d5dd2779c5bbc42a32d4928cb67f74753fc760d2c67dc4f762b6c"
+            },
+            {
+              "evidence_url": "https://www.nagasakistadiumcity.com/event/",
+              "observed_at_utc": "2026-09-22T08:14:32.352145Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d79fc7666d1de23df0d937e5e78377cf05207acff3deb3dc426d1f515fc5a4d5"
             }
           ],
           "operator_reference_url": "https://www.velca.jp/",
           "location_hint": "長崎県長崎市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "happiness_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "リージョナルクリエーション長崎",
+          "aliases": [
+            "ハピネスアリーナ",
+            "長崎スタジアムシティ HAPPINESS ARENA"
+          ],
+          "official_url": "https://www.nagasakistadiumcity.com/project_outline/",
+          "schedule_url": "https://www.nagasakistadiumcity.com/event/",
+          "schedule_extent": "表示一覧は2026年7月〜2027年4月。ARENA/STADIUM/HOTELを区別。11/1野口五郎の詳細を別途読取。他の詳細・開催時刻は未照合。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
         }
       ],
       "pending_proposals": []
