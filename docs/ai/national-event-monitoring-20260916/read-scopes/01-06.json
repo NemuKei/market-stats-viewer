@@ -1,5 +1,5 @@
 {
-  "scope_revision": "9b7436e98e49cf319b22fcc5053d0e027e286e79e65e276ca64062fc1f240fdd",
+  "scope_revision": "3611daabe7b755b7fd465e51deea0ebaab5913ce52d6639fa62e9a136d68491f",
   "snapshot_only": true,
   "scopes": [
     {
@@ -209,6 +209,25 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "hakodate_salmon_marunama_arena",
+          "venue_name": "函館サーモン・まるなまアリーナ",
+          "aliases": [
+            "函館アリーナ",
+            "函館サーモン・まるなまアリーナ（函館アリーナ）"
+          ],
+          "official_url": "https://www.city.hakodate.hokkaido.jp/docs/2014040900082/",
+          "schedule_url": "https://www.zaidan-hakodate.com/arena/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -250,6 +269,16 @@
               "observed_at_utc": "2026-09-22T11:43:45.772751Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "851eb5e5746309b62a691203209649dee3fa9a50f4e42564f65d4fd6d6a9bb23"
+            },
+            {
+              "evidence_url": "https://www.kitayell.jp/wpky2408/wp-content/uploads/2026/09/22907b162b8ba863cd34a4142b878fa8.pdf",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_pdf_screenshot"
+            },
+            {
+              "evidence_url": "https://www.glay.co.jp/feature/arenatour2026_27",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
             }
           ],
           "operator_reference_url": "https://www.levanga.com/",
@@ -275,13 +304,24 @@
           "official_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
           "schedule_url": "https://www.kitayell.jp/schedule/event-info/",
           "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
-          "schedule_extent": "9月行事予定の入口を確認。予定表画像/PDFと深夜枠の全範囲は未読。",
+          "schedule_extent": "2026年9月の1ページを目視。メイン/サブ/武道室の区分、午前・午後・夜間の利用枠と休館日を確認。利用枠を開演時刻、空欄を将来の非開催とはしない。 他月・変更追跡・主催者照合は未完。",
           "schedule_reviews": [
             {
               "evidence_url": "https://www.kitayell.jp/schedule/event-info/",
               "observed_at_utc": "2026-09-22T11:43:45.772751Z",
               "status": "schedule_links_only",
               "extent": "9月行事予定の入口を確認。予定表画像/PDFと深夜枠の全範囲は未読。",
+              "scheduled_run": false
+            },
+            {
+              "evidence_url": "https://www.kitayell.jp/wpky2408/wp-content/uploads/2026/09/22907b162b8ba863cd34a4142b878fa8.pdf",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1
+              ],
+              "month": "2026-09",
+              "extent": "2026年9月の1ページを目視。メイン/サブ/武道室の区分、午前・午後・夜間の利用枠と休館日を確認。利用枠を開演時刻、空欄を将来の非開催とはしない。",
               "scheduled_run": false
             }
           ]
@@ -354,6 +394,88 @@
           "canonical_name": "札幌ドーム",
           "official_url": "https://www.sapporo-dome.co.jp/company/",
           "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
+        },
+        {
+          "candidate_id": "8929a1f340c274dfc99f",
+          "name": "函館サーモン・まるなまアリーナ",
+          "pref_code": "01",
+          "venue_kind": "arena",
+          "address": "北海道函館市湯川町1丁目32番2号",
+          "capacity": 5000,
+          "capacity_basis": "函館市のメインアリーナ最大収容5,000人。固定席2,120。サブアリーナ1,044を合算しない。",
+          "operating_status": "current_official_operator_schedule_2026_09",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "2027-02_venue_calendar"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.city.hakodate.hokkaido.jp/docs/2014040900082/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
+            },
+            {
+              "evidence_url": "https://www.city.hakodate.hokkaido.jp/docs/2025080800058/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
+            },
+            {
+              "evidence_url": "https://www.zaidan-hakodate.com/arena/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
+            },
+            {
+              "evidence_url": "https://www.zaidan-hakodate.com/arena/yoteihyou/R8.9yotei.pdf",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_pdf_screenshot"
+            },
+            {
+              "evidence_url": "https://www.glay.co.jp/feature/arenatour2026_27",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
+            },
+            {
+              "evidence_url": "https://wess.jp/glay_hako/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
+            }
+          ],
+          "operator": "函館市文化スポーツ振興財団・コナミスポーツグループ",
+          "canonical_name": "函館サーモン・まるなまアリーナ",
+          "official_url": "https://www.city.hakodate.hokkaido.jp/docs/2014040900082/",
+          "schedule_url": "https://www.zaidan-hakodate.com/arena/",
+          "registry_venue_id": "hakodate_salmon_marunama_arena",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "reviewed_at_utc": "2026-09-22T23:41:53.190997Z",
+          "schedule_extent": "2026年9月の月間PDF1ページを目視。メイン/サブ・午前/午後/夜間と器材点検日を区別。2027年2月の会場予定表は未読。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.zaidan-hakodate.com/arena/yoteihyou/R8.9yotei.pdf",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1
+              ],
+              "month": "2026-09",
+              "extent": "メイン/サブ、施設利用時間、器材点検日を区別。利用時間を催事開演としない。",
+              "scheduled_run": false
+            }
+          ],
+          "announced_events": [
+            {
+              "artist": "GLAY",
+              "dates": [
+                "2027-02-11",
+                "2027-02-13",
+                "2027-02-14"
+              ],
+              "source_url": "https://www.glay.co.jp/feature/arenatour2026_27",
+              "crosscheck_url": "https://wess.jp/glay_hako/",
+              "status": "official_artist_and_promoter_read_not_imported"
+            }
+          ]
         }
       ],
       "pending_proposals": []
@@ -797,6 +919,16 @@
               "observed_at_utc": "2026-09-22T11:43:36.713154Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "09e35f992f1d2ddf5c4e572f5f53fb1594630af779b2176e5e639e2096fac468"
+            },
+            {
+              "evidence_url": "https://www.xebioarena.com/program/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
+            },
+            {
+              "evidence_url": "https://www.glay.co.jp/feature/arenatour2026_27",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
             }
           ],
           "operator_reference_url": "https://www.89ers.jp/",
@@ -822,7 +954,7 @@
           "aliases": [],
           "official_url": "https://www.xebioarena.com/facility/",
           "schedule_url": "https://www.xebioarena.com/program/",
-          "schedule_extent": "年/月選択と過去2025年の複数催事を確認。現行2026年の全範囲は未確認。",
+          "schedule_extent": "公開一覧本文に2026年9月から2028年2月までの掲載行を確認。GLAY 2026/11/21・22は出演者公式の同日程と照合。個別記事の2026/4/15・9/3は公演日ではなく記事の日付。未掲載日を非開催とみなさない。 他月・変更追跡・主催者照合は未完。",
           "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
           "schedule_reviews": [
             {
@@ -830,6 +962,13 @@
               "observed_at_utc": "2026-09-22T11:43:36.713154Z",
               "status": "archive_visible_current_month_pending",
               "extent": "年/月選択と過去2025年の複数催事を確認。現行2026年の全範囲は未確認。",
+              "scheduled_run": false
+            },
+            {
+              "evidence_url": "https://www.xebioarena.com/program/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "status": "published_entries_read_range",
+              "extent": "公開一覧本文に2026年9月から2028年2月までの掲載行を確認。GLAY 2026/11/21・22は出演者公式の同日程と照合。個別記事の2026/4/15・9/3は公演日ではなく記事の日付。未掲載日を非開催とみなさない。",
               "scheduled_run": false
             }
           ]

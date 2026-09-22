@@ -1,5 +1,5 @@
 {
-  "scope_revision": "9b7436e98e49cf319b22fcc5053d0e027e286e79e65e276ca64062fc1f240fdd",
+  "scope_revision": "3611daabe7b755b7fd465e51deea0ebaab5913ce52d6639fa62e9a136d68491f",
   "snapshot_only": true,
   "scopes": [
     {
@@ -1282,6 +1282,11 @@
               "observed_at_utc": "2026-09-22T11:43:58.259844Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "729ea22655bc997726daaa6ecefe9e6704e95f53b428f87019c2af273830aebd"
+            },
+            {
+              "evidence_url": "https://www.glay.co.jp/feature/arenatour2026_27",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
             }
           ],
           "operator_reference_url": "https://www.storks.jp/",
@@ -1314,6 +1319,13 @@
               "observed_at_utc": "2026-09-22T11:43:58.259844Z",
               "status": "month_shell_read",
               "extent": "2026/Daily/8月の表示を確認。現行月全体・動的表示は未確認。",
+              "scheduled_run": false
+            },
+            {
+              "evidence_url": "https://www.glay.co.jp/feature/arenatour2026_27",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "status": "artist_official_crosscheck_venue_calendar_unread",
+              "extent": "GLAY公式に2027/1/16・17の同会場公演。会場サイトの動的な予定表本文は未取得で、会場予定表の読了とはしない。",
               "scheduled_run": false
             }
           ]
@@ -1689,6 +1701,11 @@
               "observed_at_utc": "2026-09-22T08:14:41.902694Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "d2c4172371a472bfffe8e8593ca82b98adf043f8cfce92047eeaec7fddb44e32"
+            },
+            {
+              "evidence_url": "https://www.wakayamasposhin.or.jp/big-whale/wp-content/uploads/2026/08/令和8年度9月催事案内.pdf",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_pdf_screenshot"
             }
           ],
           "operator": "公益財団法人和歌山県スポーツ振興財団",
@@ -1697,8 +1714,22 @@
           ],
           "official_url": "https://www.wakayamasposhin.or.jp/big-whale/",
           "schedule_url": "https://www.wakayamasposhin.or.jp/big-whale/event/",
-          "schedule_extent": "2026年9月までの月次PDF一覧を確認。PDF本文は未読。ビッグウエーブ等の別施設と区別。",
-          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z"
+          "schedule_extent": "2026年9月の2ページを目視。9/26・27のJVA全国ヤングバレーボール大会はビッグホエール。9/19・20の剣道大会は別施設ビッグウエーブ、ビッグ愛の催事も混在。施設ごとに分離した。 他月・変更追跡・主催者照合は未完。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.wakayamasposhin.or.jp/big-whale/wp-content/uploads/2026/08/令和8年度9月催事案内.pdf",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "status": "pdf_all_pages_visually_read",
+              "pages_read": [
+                1,
+                2
+              ],
+              "month": "2026-09",
+              "extent": "2026年9月の2ページを目視。9/26・27のJVA全国ヤングバレーボール大会はビッグホエール。9/19・20の剣道大会は別施設ビッグウエーブ、ビッグ愛の催事も混在。施設ごとに分離した。",
+              "scheduled_run": false
+            }
+          ]
         }
       ],
       "pending_proposals": []

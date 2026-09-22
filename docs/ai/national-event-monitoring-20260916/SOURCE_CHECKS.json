@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "HTTP/body extraction and official-site SNS links only; not full schedule coverage or SNS post success.",
+  "note": "HTTP/body extraction and official-site SNS links only; not full schedule coverage or SNS post success. Round 4 web render observations include PDFs without raw-byte hashes; these are not scheduled runs.",
   "sources": {
     "wakayama": {
       "url": "https://sp.super-beaver.com/live_information/detail/6056",
@@ -3705,6 +3705,102 @@
       "body_sha256": "328124ee1118507f4f3a39d9149885d16d3e5d1b0aa4d1817874a58836de7b9d",
       "extent": "建設時の施設概要、所在地、当初命名権。定員33,000は竣工当時の値。",
       "review_scope": "interactive_public_source_research_not_scheduled_monitoring"
+    },
+    "round4_kitayell_2026_09_pdf": {
+      "url": "https://www.kitayell.jp/wpky2408/wp-content/uploads/2026/09/22907b162b8ba863cd34a4142b878fa8.pdf",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_pdf_screenshot",
+      "status": "pdf_all_pages_visually_read",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "1 page; main/sub/room reservation slots, not event starts",
+      "pages_read": [
+        1
+      ],
+      "raw_pdf_sha256": null,
+      "raw_pdf_hash_reason": "Raw PDF bytes unavailable in this browser research environment; visual pages checked."
+    },
+    "round4_wakayama_2026_09_pdf": {
+      "url": "https://www.wakayamasposhin.or.jp/big-whale/wp-content/uploads/2026/08/令和8年度9月催事案内.pdf",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_pdf_screenshot",
+      "status": "pdf_all_pages_visually_read",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "2 pages; Big Whale separated from Big Wave and Big Ai",
+      "pages_read": [
+        1,
+        2
+      ],
+      "raw_pdf_sha256": null,
+      "raw_pdf_hash_reason": "Raw PDF bytes unavailable in this browser research environment; visual pages checked."
+    },
+    "round4_hakodate_2026_09_pdf": {
+      "url": "https://www.zaidan-hakodate.com/arena/yoteihyou/R8.9yotei.pdf",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_pdf_screenshot",
+      "status": "pdf_all_pages_visually_read",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "1 page; main/sub, maintenance dates; February 2027 unread",
+      "pages_read": [
+        1
+      ],
+      "raw_pdf_sha256": null,
+      "raw_pdf_hash_reason": "Raw PDF bytes unavailable in this browser research environment; visual pages checked."
+    },
+    "round4_hakodate_city": {
+      "url": "https://www.city.hakodate.hokkaido.jp/docs/2014040900082/",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "municipal name, address, main capacity and operator"
+    },
+    "round4_hakodate_operator": {
+      "url": "https://www.zaidan-hakodate.com/arena/",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "operator name and September PDF link"
+    },
+    "round4_hakodate_naming": {
+      "url": "https://www.city.hakodate.hokkaido.jp/docs/2025080800058/",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "arena and adjacent civic hall have different names"
+    },
+    "round4_glay_tour": {
+      "url": "https://www.glay.co.jp/feature/arenatour2026_27",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "artist dates and venues including Hakodate three dates"
+    },
+    "round4_glay_promoter": {
+      "url": "https://wess.jp/glay_hako/",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "promoter crosscheck of three Hakodate dates and starts"
+    },
+    "round4_xebio_list": {
+      "url": "https://www.xebioarena.com/program/",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "published list, 2026-09 through 2028-02; not full future coverage"
+    },
+    "round4_lala_list": {
+      "url": "https://lalaarenatokyo-bay.com/event/",
+      "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+      "retrieval_method": "web_open",
+      "status": "body_read_web",
+      "review_scope": "interactive_public_source_research_not_scheduled_monitoring",
+      "extent": "published list, 2026-09 through 2027-04; placeholders are not absence proof"
     }
   }
 }

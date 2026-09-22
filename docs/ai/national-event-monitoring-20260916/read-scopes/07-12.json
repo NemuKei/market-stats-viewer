@@ -1,5 +1,5 @@
 {
-  "scope_revision": "9b7436e98e49cf319b22fcc5053d0e027e286e79e65e276ca64062fc1f240fdd",
+  "scope_revision": "3611daabe7b755b7fd465e51deea0ebaab5913ce52d6639fa62e9a136d68491f",
   "snapshot_only": true,
   "scopes": [
     {
@@ -1681,6 +1681,11 @@
               "observed_at_utc": "2026-09-22T11:43:48.654235Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "0df7ec2df5c9138f277754dd9d51a53bd9c98322613c173f2488b115d69f44fc"
+            },
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "retrieval_method": "web_open"
             }
           ],
           "operator_reference_url": "https://chibajets.jp/",
@@ -1706,13 +1711,20 @@
           "official_url": "https://lalaarenatokyo-bay.com/",
           "schedule_url": "https://lalaarenatokyo-bay.com/event/",
           "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
-          "schedule_extent": "9月の冒頭公演で開場と開演、同日複数回を確認。全月・個別主催者照合は未完。",
+          "schedule_extent": "公開一覧本文で2026/9/26から2027/4/25までの掲載行と複数回公演を確認。開場/開演/試合開始/未定を分離。後続月の「該当なし」は現時点の掲載状態で、将来の非開催を意味しない。 他月・変更追跡・主催者照合は未完。",
           "schedule_reviews": [
             {
               "evidence_url": "https://lalaarenatokyo-bay.com/event/",
               "observed_at_utc": "2026-09-22T11:43:48.654235Z",
               "status": "visible_entries_partial",
               "extent": "9月の冒頭公演で開場と開演、同日複数回を確認。全月・個別主催者照合は未完。",
+              "scheduled_run": false
+            },
+            {
+              "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+              "observed_at_utc": "2026-09-22T23:41:53.190997Z",
+              "status": "published_entries_read_range",
+              "extent": "公開一覧本文で2026/9/26から2027/4/25までの掲載行と複数回公演を確認。開場/開演/試合開始/未定を分離。後続月の「該当なし」は現時点の掲載状態で、将来の非開催を意味しない。",
               "scheduled_run": false
             }
           ]

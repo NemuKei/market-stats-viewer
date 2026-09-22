@@ -1,6 +1,24 @@
 # PR #21 続行記録（2026-09-22）
 
-## 残り61観測・48会場追加の検証（最新、2026-09-23）
+## 函館の施設同定・予定表4ページ確認（最新、2026-09-23）
+
+開始head `e6f31657819e78d028c5f7d4b237c9ca6be739b6`。作業中のmain更新 `d0391bde3aa424577cfd60fcf573abe5c78e6c9d` はイベント信号DB、LP、Ticketjamレポート/キューの5ファイルのみで、既存の台帳・調査変更とは重ならないため通常merge。既存の日時訂正・中止、R1〜R3と運用境界を保持。
+
+### A〜C：同定と閲覧の範囲
+
+- 函館市の現行名称・所在地・メインアリーナ最大収容5,000人（固定席2,120）を確認。サブアリーナ1,044席を合算しない。市のネーミングライツ案内で函館市民会館を別施設と確認。運営者の9月月間PDF1ページはメイン/サブ、利用時間、器材点検を分離。新台帳ID `hakodate_salmon_marunama_arena` と旧称別名を追加し、公式collectorとTicketjam watchは無効、予定表取得候補のみ1。GLAY公式ツアーとWESS主催案内で2027年2月11・13・14日の公演を照合したが、2月会場予定表は未読で、原本の公演データを作成していない。
+- 北海きたえーる9月PDF1ページはメイン/サブ/諸室の予約枠、和歌山ビッグホエール9月PDF2ページは別施設ビッグウェーブ・ビッグ愛と区別して目視。施設の利用時間を開演時刻に変換しない。ゼビオアリーナの公開一覧とLaLa arenaの公開一覧は表示範囲だけを記録し、未掲出の日を催事なしとしない。GLION ARENA KOBEはGLAYの発表元で日程を見たが会場の動的予定表は未読のまま。
+- 台帳208→209、全47県。観測132→133、未審査0、追加観測は `operator_identity_verified_schedule_pending`。容量不明43は維持。公式有効32、Web watch12、Ticketjam75（有効68）は維持。audit exit 0、identity conflicts/orphans 0。aliasの正規名・旧称・併記名は実lookupで一致し、市民会館は一致しない。既存台帳・別名行をprefix保持。
+- `SOURCE_CHECKS.json` は259→269件。今回の10件は対話内のweb閲覧/PDF画像確認であり、raw PDF bytesを取得できずhashはnullと理由を記録した。既存のraw hashを上書きしていない。8分割scopeのrevisionは `3611daabe7b755b7fd465e51deea0ebaab5913ce52d6639fa62e9a136d68491f`、最大152,781 bytes。全て`snapshot_only`、定期巡回の成功には加算しない。
+
+### D〜H：新mainでの検証と保留
+
+- `uv run --frozen python -m pytest -q`: **309 passed / 70 subtests passed**、exit 0。辞書監査もexit 0（signals1,408、official1,236）。確認されていないalias候補は自動採用しない。
+- mainのイベント信号DB更新後、2026-09-23 JST固定で元208台帳/別名と新209台帳/別名からLPを別々に再生成。双方1,144イベント、全`events`配列と集計が一致。保存LPはmainと同じ1,142件で、新会場による差分は0。ニュース更新を含む入力7ファイルは最新mainの内容から変更していない。
+- 長崎11/1の既存実公演fixtureは新base `d0391bd`・新scopeでproposal hashを更新。新baseの再生成LPに対する提案→判断→取込案は`verified_draft` / `ready_for_review`、action `add`、`can_publish=false`。新mainの**DBコピー**に既存collectorから対象1件を追加、再実行0件。旧1,144件を保持し、試験LP1,145件、長崎県・11/1・17:00・公式URL、manifestの3資産hash/commitとvalidatorを確認。一時検証であり、原本に適用していない。
+- 3つの函館公演はアーティスト公式・主催者で個別日程を照合した観測に留める。Work Cloudによる自動検証、定期Chat提出、人の承認、単一writer、実使用量・最大遅延、切替、公開LPを確認した結果ではない。原本DB・runtime config・保存LP・権限・旧端末は今回変更していない。PRはDraftのまま。`sync-needed`: 全国の未調査施設/予定表、2月函館を含む全月、全国発表元/SNS本文、実Cloud受入、最終PR headでの再検証と公開追跡、既存の切替承認条件。
+
+## 残り61観測・48会場追加の検証（履歴、2026-09-23）
 
 開始head `70ce74f31656702c2f034d5f9726af9edd1e8780`、開始tree `9d7ddcf61a92a19043d36eefb28274a8dae9af0b`。比較main `c1236cf37870b26993969e776dd625d7a087161c`。同じPR/branchでA〜Hを継続。既存R1〜R3の修正と回帰テストを維持。対象は全国のドーム・アリーナ・スタジアムと従来カテゴリで、施設規模の閾値は設けていない。
 
