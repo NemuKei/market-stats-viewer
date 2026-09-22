@@ -1,5 +1,5 @@
 {
-  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
+  "scope_revision": "9b7436e98e49cf319b22fcc5053d0e027e286e79e65e276ca64062fc1f240fdd",
   "snapshot_only": true,
   "scopes": [
     {
@@ -291,17 +291,15 @@
           "name": "大和ハウス プレミストドーム",
           "pref_code": "01",
           "venue_kind": "stadium",
-          "address": "〒062-0045 北海道札幌市豊平区羊ヶ丘1",
+          "address": "北海道札幌市豊平区羊ケ丘1番地",
           "capacity": 38794,
           "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "capacity_reconciliation",
+            "historical_aliases"
           ],
           "evidence": [
             {
@@ -314,12 +312,48 @@
               "observed_at_utc": "2026-09-22T11:32:09.606490Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "46948bc0d5057ab750065080ed6c70228d19da69088ca7f4ddc3e355e832efee"
+            },
+            {
+              "evidence_url": "https://www.sapporo-dome.co.jp/company/",
+              "observed_at_utc": "2026-09-22T12:04:12.257626Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "17f27f3e9bbc486c88bd13ebc37dc2fada07480094d6d27fe61aadd917ce2bcf"
+            },
+            {
+              "evidence_url": "https://www.sapporo-dome.co.jp/facility/",
+              "observed_at_utc": "2026-09-22T12:04:13.492282Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "628c900160d15c460aecc7c0204e519b9699c9910a0b78a8b808f8fe48f5b150"
             }
           ],
           "registry_venue_id": "sapporo_dome",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "evidence_status": "official_facility_body_read",
           "fetch_status": "body_fetched",
-          "partial_review_at_utc": "2026-09-22T11:47:09.609074Z"
+          "partial_review_at_utc": "2026-09-22T11:47:09.609074Z",
+          "prior_facility_observations": [
+            {
+              "address": "〒062-0045 北海道札幌市豊平区羊ヶ丘1",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/sapporo/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:24.224371Z",
+                  "body_sha256": "8e42cc37461aa3ece346dc908febeffa422fbd897b1248f1374479e918d9fcd5"
+                },
+                {
+                  "evidence_url": "https://www.sapporo-dome.co.jp/",
+                  "observed_at_utc": "2026-09-22T11:32:09.606490Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "46948bc0d5057ab750065080ed6c70228d19da69088ca7f4ddc3e355e832efee"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "operator": "株式会社札幌ドーム",
+          "canonical_name": "札幌ドーム",
+          "official_url": "https://www.sapporo-dome.co.jp/company/",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         }
       ],
       "pending_proposals": []
@@ -337,6 +371,22 @@
           ],
           "official_url": "https://aomori-arena.jp/",
           "schedule_url": "https://aomori-arena.jp/news/4834/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "prifoods_stadium",
+          "venue_name": "プライフーズスタジアム",
+          "aliases": [],
+          "official_url": "https://taga-playground.com/outline/",
+          "schedule_url": "https://taga-playground.com/outline/",
           "official_fetch_enabled": false,
           "scope_review": "pending",
           "fetch_status": "unvisited",
@@ -464,27 +514,54 @@
           "name": "プライフーズスタジアム",
           "pref_code": "02",
           "venue_kind": "stadium",
-          "address": "青森県八戸市大字市川町字市川後55-1",
-          "capacity": 1204,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "青森県八戸市大字市川町字市川後55番地1",
+          "capacity": 5200,
+          "capacity_basis": "天然芝球技場約5,200人。人工芝球技場約1,700は別施設。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/hachinohe/profile/",
               "observed_at_utc": "2026-09-20T11:16:41.063213Z",
               "body_sha256": "983cf8df2400d2f4aac7a990c049afa14ac78c5fe862f3984af0e3c996acfc73"
+            },
+            {
+              "evidence_url": "https://taga-playground.com/outline/",
+              "observed_at_utc": "2026-09-22T11:58:52.507615Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7879ac5c2793fd3aa194c839550bd5d7bfe11d142763f6123c44477865222ff3"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "prifoods_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "青森県八戸市大字市川町字市川後55-1",
+              "capacity": 1204,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/hachinohe/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:41.063213Z",
+                  "body_sha256": "983cf8df2400d2f4aac7a990c049afa14ac78c5fe862f3984af0e3c996acfc73"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "プライフーズスタジアム",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://taga-playground.com/outline/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         }
       ],
       "pending_proposals": []
@@ -644,6 +721,41 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "yurtec_stadium_sendai",
+          "venue_name": "ユアテックスタジアム仙台",
+          "aliases": [],
+          "official_url": "https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html",
+          "schedule_url": "https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "rakuten_mobile_saikyo_park_miyagi",
+          "venue_name": "楽天モバイル 最強パーク宮城",
+          "aliases": [
+            "楽天モバイルパーク宮城",
+            "宮城球場"
+          ],
+          "official_url": "https://corp.rakuten.co.jp/news/press/2025/1201_01.html",
+          "schedule_url": "https://corp.rakuten.co.jp/news/press/2025/1201_01.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -727,57 +839,112 @@
           "name": "ユアテックスタジアム仙台",
           "pref_code": "04",
           "venue_kind": "stadium",
-          "address": "宮城県仙台市泉区七北田字柳78",
+          "address": "宮城県仙台市泉区七北田字柳78番地",
           "capacity": 19526,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "市の施設概要の合計19,526席。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/sendai/profile/",
               "observed_at_utc": "2026-09-20T11:18:24.857025Z",
               "body_sha256": "444fd44508303ced73db534dccc2e1150e75f7a0c7820ee1d72e71bc7826bf9f"
+            },
+            {
+              "evidence_url": "https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html",
+              "observed_at_utc": "2026-09-22T11:58:52.507951Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "937dabbbcffb2f9dbf5951e83579b4135040f215731c7b93a09c9b84e04a9775"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "yurtec_stadium_sendai",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "宮城県仙台市泉区七北田字柳78",
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/sendai/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:24.857025Z",
+                  "body_sha256": "444fd44508303ced73db534dccc2e1150e75f7a0c7820ee1d72e71bc7826bf9f"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "ユアテックスタジアム仙台",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         },
         {
           "candidate_id": "be123dbbd3ff4a8057c4",
           "name": "楽天モバイル 最強パーク宮城",
           "pref_code": "04",
           "venue_kind": "stadium",
-          "address": null,
+          "address": "宮城県仙台市宮城野区宮城野2丁目11-6",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
-          "registry_venue_id": null,
+          "capacity_basis": "今回の命名権発表本文に総収容数なし。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
+          "registry_venue_id": "rakuten_mobile_saikyo_park_miyagi",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity",
+            "capacity_basis"
           ],
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "web_body_read",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://npb.jp/stadium/franchise.html",
               "observed_at_utc": "2026-09-20T11:31:08.417373Z",
               "retrieval_method": "web_open",
               "body_sha256": null
+            },
+            {
+              "evidence_url": "https://corp.rakuten.co.jp/news/press/2025/1201_01.html",
+              "observed_at_utc": "2026-09-22T12:05:04.396871Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6db3dd9c0ec2f485b4b2eda6d8f86ac04b7041faee5d7f69a5131dae73d320e0"
             }
           ],
-          "operator_reference_url": "https://www.rakuteneagles.jp/stadium/"
+          "operator_reference_url": "https://www.rakuteneagles.jp/stadium/",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://npb.jp/stadium/franchise.html",
+                  "observed_at_utc": "2026-09-20T11:31:08.417373Z",
+                  "retrieval_method": "web_open",
+                  "body_sha256": null
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "楽天モバイル 最強パーク宮城",
+          "operator": null,
+          "aliases": [
+            "楽天モバイルパーク宮城",
+            "宮城球場"
+          ],
+          "official_url": "https://corp.rakuten.co.jp/news/press/2025/1201_01.html",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "operating_status_note": "2026-01〜2028-12の愛称変更を命名権当事者発表で確認。命名権者を施設運営者とみなさない。"
         }
       ],
       "pending_proposals": []
@@ -804,6 +971,24 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "soyu_stadium",
+          "venue_name": "ソユースタジアム",
+          "aliases": [
+            "八橋陸上競技場"
+          ],
+          "official_url": "https://www.city.akita.lg.jp/shisetsu/sports-koen/1009703/1006394.html",
+          "schedule_url": "https://www.city.akita.lg.jp/kurashi/sports/1016927.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -812,27 +997,59 @@
           "name": "ソユースタジアム",
           "pref_code": "05",
           "venue_kind": "stadium",
-          "address": "〒010-0974　秋田県秋田市八橋運動公園1-10",
-          "capacity": 18560,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "秋田県秋田市八橋運動公園1-10",
+          "capacity": null,
+          "capacity_basis": "市はメイン8,700・バック4,300・サイド6,845。Jリーグ入場可能数18,560との違いを保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/akita/profile/",
               "observed_at_utc": "2026-09-20T11:16:00.072943Z",
               "body_sha256": "8b6859f32a2f15350873f5ab1389fd34335d44b3a1774d37bb51c67cea7a1e21"
+            },
+            {
+              "evidence_url": "https://www.city.akita.lg.jp/shisetsu/sports-koen/1009703/1006394.html",
+              "observed_at_utc": "2026-09-22T11:58:52.508275Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4b17b5e19d163ec823b593afcf8d628a5257d0da344928e6f103d3647710baf3"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "soyu_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "〒010-0974　秋田県秋田市八橋運動公園1-10",
+              "capacity": 18560,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/akita/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:00.072943Z",
+                  "body_sha256": "8b6859f32a2f15350873f5ab1389fd34335d44b3a1774d37bb51c67cea7a1e21"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "ソユースタジアム",
+          "operator": null,
+          "aliases": [
+            "八橋陸上競技場"
+          ],
+          "official_url": "https://www.city.akita.lg.jp/shisetsu/sports-koen/1009703/1006394.html",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://www.city.akita.lg.jp/kurashi/sports/1016927.html",
+          "schedule_review_status": "linked_calendar_not_fully_read"
         },
         {
           "candidate_id": "55286d46e4a21fd71613",
@@ -899,28 +1116,56 @@
           "address": null,
           "capacity": null,
           "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "operating_status": "planned_construction",
+          "scope_review": "planned_facility_reviewed_details_pending",
           "missing_fields": [
-            "operator_identity",
+            "operator_authority",
             "address",
             "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "opening_date",
+            "schedule_extent",
+            "current_plan_recheck"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.pref.akita.lg.jp/pages/archive/89232",
+              "observed_at_utc": "2026-09-22T12:03:59.766002Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "1506f8c5133fb447c6fa20e4909a4482c39d763e8c9d9263cdd79fdf3831f3b3"
+            },
+            {
+              "evidence_url": "https://www.shimz.co.jp/construction/ShinAkitaKenritsuTaiikukan/index.html",
+              "observed_at_utc": "2026-09-22T12:04:00.441607Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "7d7db2a16961a88a935a9e0cbb18123f1bc9bfd54e62d929374e22bc07404411"
             }
           ],
           "operator_reference_url": "https://northern-happinets.com/",
           "location_hint": "秋田県秋田市",
           "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "operating_status_note": "秋田県の本文は工事を2025-11-01〜2030-07（建屋・外構含む）予定とする。新館開館日や現館閉館日をこれだけで確定しない。秋田アリーナPFIパートナーズ株式会社が事業主体。",
+          "official_url": "https://www.pref.akita.lg.jp/pages/archive/89232",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         }
       ],
       "pending_proposals": []
@@ -945,6 +1190,22 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "yamagata_sports_park_gymnasium",
+          "venue_name": "山形県総合運動公園総合体育館",
+          "aliases": [],
+          "official_url": "https://park.montedio.co.jp/beni/outline/sports.html",
+          "schedule_url": "https://park.montedio.co.jp/beni/outline/sports.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -953,31 +1214,55 @@
           "name": "山形県総合運動公園",
           "pref_code": "06",
           "venue_kind": "arena",
-          "address": null,
+          "address": "山形県天童市山王1-1",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "メイン観覧席3,112・収納可動864。全体定員の明示未確認、隣接スタジアム21,174を転用しない。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
+            "schedule_extent",
+            "historical_aliases",
             "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "organizer_hall_identification"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://park.montedio.co.jp/beni/outline/sports.html",
+              "observed_at_utc": "2026-09-22T12:00:13.722532Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4d0efa70184db6f0418113ac0cd7e2ba133c1b1a5f19d70869ed36f2162d45da"
             }
           ],
           "operator_reference_url": "https://www.wyverns.jp/",
           "location_hint": "山形県天童市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "yamagata_sports_park_gymnasium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "山形県総合運動公園総合体育館",
+          "operator": "株式会社モンテディオ山形",
+          "aliases": [],
+          "official_url": "https://park.montedio.co.jp/beni/outline/sports.html",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "operating_status_note": "Bリーグ観測の公園名を体育館候補へ対応。公園全体を別名辞書へ入れず、別IDのNDソフトスタジアムと分離。"
         },
         {
           "candidate_id": "d8baf396558e92968fd1",

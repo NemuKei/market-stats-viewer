@@ -1,5 +1,5 @@
 {
-  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
+  "scope_revision": "9b7436e98e49cf319b22fcc5053d0e027e286e79e65e276ca64062fc1f240fdd",
   "snapshot_only": true,
   "scopes": [
     {
@@ -312,6 +312,22 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "shigeto_arena_okayama",
+          "venue_name": "シゲトーアリーナ岡山",
+          "aliases": [],
+          "official_url": "https://www.okayama-momo.jp/userguide/03/",
+          "schedule_url": "https://www.okayama-momo.jp/monthlyevent/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -320,31 +336,62 @@
           "name": "シゲトーアリーナ岡山",
           "pref_code": "33",
           "venue_kind": "arena",
-          "address": null,
+          "address": "岡山県岡山市北区いずみ町2-1-3",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "メイン2階約2,500席は部分席数。収納席を含む総数未確認。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.okayama-momo.jp/userguide/03/",
+              "observed_at_utc": "2026-09-22T12:05:38.250110Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e88e36935561bc069e4678a397852d53928d4b16e925c0a66fe10f82489376fa"
+            },
+            {
+              "evidence_url": "https://www.okayama-momo.jp/facility/04/",
+              "observed_at_utc": "2026-09-22T12:03:48.730381Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a4ffef69c0e891fab4d34f0e28366fef420266b1978c9cbf2675e811c966139f"
             }
           ],
           "operator_reference_url": "https://tryhoop.com/",
           "location_hint": "岡山県岡山市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "shigeto_arena_okayama",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "シゲトーアリーナ岡山",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://www.okayama-momo.jp/userguide/03/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://www.okayama-momo.jp/monthlyevent/",
+          "schedule_review_status": "linked_calendar_not_fully_read"
         },
         {
           "candidate_id": "4da4669e8a8ac3ceaec6",
@@ -475,6 +522,25 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "mazda_zoom_zoom_stadium_hiroshima",
+          "venue_name": "MAZDA Zoom-Zoom スタジアム広島",
+          "aliases": [
+            "マツダ スタジアム",
+            "広島市民球場"
+          ],
+          "official_url": "https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html",
+          "schedule_url": "https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -483,30 +549,53 @@
           "name": "MAZDA Zoom-Zoom スタジアム広島",
           "pref_code": "34",
           "venue_kind": "stadium",
-          "address": null,
+          "address": "広島県広島市南区南蟹屋二丁目3番1号",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
-          "registry_venue_id": null,
+          "capacity_basis": "広島市資料には竣工当時33,000人。現在の座席配置での定員は未確認、台帳の人数欄は空欄。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
+          "registry_venue_id": "mazda_zoom_zoom_stadium_hiroshima",
           "missing_fields": [
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
+            "operator_identity",
+            "capacity_current",
+            "historical_aliases",
             "schedule_extent"
           ],
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "web_body_read",
+          "evidence_status": "official_facility_body_read_historical_capacity",
+          "fetch_status": "body_fetched",
           "evidence": [
             {
               "evidence_url": "https://npb.jp/stadium/franchise.html",
               "observed_at_utc": "2026-09-20T11:31:08.417400Z",
               "retrieval_method": "web_open",
               "body_sha256": null
+            },
+            {
+              "evidence_url": "https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/",
+              "observed_at_utc": "2026-09-22T12:05:29.309943Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e074053d3e706c125b3fbe87fd1dda197b6cc5cc0ca1620486fd44780f5279d2"
+            },
+            {
+              "observed_at_utc": "2026-09-22T23:06:58.930104Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "328124ee1118507f4f3a39d9149885d16d3e5d1b0aa4d1817874a58836de7b9d",
+              "evidence_url": "https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html"
             }
           ],
-          "operator_reference_url": "https://npb.jp/stadium/franchise.html"
+          "operator_reference_url": "https://npb.jp/stadium/franchise.html",
+          "partial_review_at_utc": "2026-09-22T12:10:15.935303Z",
+          "partial_review_note": "公式入口または取得失敗を記録。施設本文・現行概要の確認は未完。",
+          "canonical_name": "MAZDA Zoom-Zoom スタジアム広島",
+          "operator": null,
+          "aliases": [
+            "マツダ スタジアム",
+            "広島市民球場"
+          ],
+          "official_url": "https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html",
+          "reviewed_at_utc": "2026-09-22T23:06:58.930104Z",
+          "schedule_extent": "広島市の施設同一性・所在地は確認。現在の定員、現行の会場運営者、公式予定表の全範囲は未確認。",
+          "operating_status_note": "広島市の施設説明で住所と命名権名称を確認。33,000人は完成時の記録であり現行定員に昇格させない。球団の2026年予定表は今回未読。"
         },
         {
           "candidate_id": "50b9be911e4a527cb217",
@@ -651,6 +740,24 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "tawarada_memorial_gymnasium",
+          "venue_name": "俵田翁記念体育館",
+          "aliases": [
+            "俵田翁記念館"
+          ],
+          "official_url": "https://ube-taikyou.or.jp/facilities/tawaradaou-gym/",
+          "schedule_url": "https://ube-taikyou.or.jp/facilities/tawaradaou-gym/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -659,31 +766,61 @@
           "name": "俵田翁記念館",
           "pref_code": "35",
           "venue_kind": "arena",
-          "address": null,
+          "address": "山口県宇部市恩田町四丁目1番1号",
           "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity_basis": "市はアリーナ4,000人・固定観客席3,000人を別記。総定員の解釈は保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases",
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://ube-taikyou.or.jp/facilities/tawaradaou-gym/",
+              "observed_at_utc": "2026-09-22T12:05:04.384339Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "99c2e1119458c87dd9faebc85cab7fd9469ac08b66fcf6bc0c739f9cbc426d8a"
+            },
+            {
+              "evidence_url": "https://www.city.ube.yamaguchi.jp/koukyouannai/bunkakyouiku/taiikushisetsu/1009947.html",
+              "observed_at_utc": "2026-09-22T12:05:04.384764Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "055577e69a2ef556a2fabed7bfc03714f16d87cfbef45f2d7a03608078ec8c1e"
             }
           ],
           "operator_reference_url": "https://patsfive.com/",
           "location_hint": "山口県宇部市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "tawarada_memorial_gymnasium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "俵田翁記念体育館",
+          "operator": "宇部市スポーツ協会グループ",
+          "aliases": [
+            "俵田翁記念館"
+          ],
+          "official_url": "https://ube-taikyou.or.jp/facilities/tawaradaou-gym/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         },
         {
           "candidate_id": "3696661f3a4c2bd2a6e8",
@@ -798,6 +935,40 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "tokugin_tomoni_arena",
+          "venue_name": "とくぎんトモニアリーナ",
+          "aliases": [
+            "徳島市立体育館"
+          ],
+          "official_url": "https://www.tokushimacity-sports.or.jp/facilities-info/116/",
+          "schedule_url": "https://www.tokushimacity-sports.or.jp/event-schedule",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "pocari_sweat_stadium",
+          "venue_name": "鳴門・大塚スポーツパーク ポカリスエットスタジアム",
+          "aliases": [],
+          "official_url": "https://www.awa-spo.net/naruto/pocari/",
+          "schedule_url": "https://www.awa-spo.net/naruto/event/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -806,31 +977,56 @@
           "name": "とくぎんトモニアリーナ",
           "pref_code": "36",
           "venue_kind": "arena",
-          "address": null,
-          "capacity": null,
-          "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "徳島県徳島市徳島町城内6番地",
+          "capacity": 4200,
+          "capacity_basis": "第一競技場収容4,200人。第二競技場1,000は別。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "address",
-            "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.tokushimacity-sports.or.jp/facilities-info/116/",
+              "observed_at_utc": "2026-09-22T12:00:35.518991Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "22fc58992907f04fb888c97cbf903d8a100ca23767bea91a082819baa295d7a7"
             }
           ],
           "operator_reference_url": "https://gambarous.jp/",
           "location_hint": "徳島県徳島市",
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "tokugin_tomoni_arena",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "とくぎんトモニアリーナ",
+          "operator": "公益財団法人徳島市体育振興公社",
+          "aliases": [
+            "徳島市立体育館"
+          ],
+          "official_url": "https://www.tokushimacity-sports.or.jp/facilities-info/116/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://www.tokushimacity-sports.or.jp/event-schedule",
+          "schedule_review_status": "linked_calendar_not_fully_read"
         },
         {
           "candidate_id": "a0cd158472a1462680cf",
@@ -887,27 +1083,55 @@
           "name": "鳴門・大塚スポーツパーク ポカリスエットスタジアム",
           "pref_code": "36",
           "venue_kind": "stadium",
-          "address": "徳島県鳴門市撫養町立岩字四枚61",
-          "capacity": 17924,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "徳島県鳴門市撫養町立岩字四枚61番地",
+          "capacity": 19514,
+          "capacity_basis": "運営者の収容人員19,514（身障者90含む）。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/tokushima/profile/",
               "observed_at_utc": "2026-09-20T11:18:43.782770Z",
               "body_sha256": "db5e1125a0d115e618d07ed9e61e7da7f2a7203bae8f2eaed866f426d4b04816"
+            },
+            {
+              "evidence_url": "https://www.awa-spo.net/naruto/pocari/",
+              "observed_at_utc": "2026-09-22T11:59:26.594449Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6f95cd993804ae608a3b9dd797e372414305194296627c701c9c40155eae7410"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "pocari_sweat_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "徳島県鳴門市撫養町立岩字四枚61",
+              "capacity": 17924,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/tokushima/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:43.782770Z",
+                  "body_sha256": "db5e1125a0d115e618d07ed9e61e7da7f2a7203bae8f2eaed866f426d4b04816"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "鳴門・大塚スポーツパーク ポカリスエットスタジアム",
+          "operator": "公益財団法人徳島県スポーツ協会",
+          "aliases": [],
+          "official_url": "https://www.awa-spo.net/naruto/pocari/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://www.awa-spo.net/naruto/event/",
+          "schedule_review_status": "linked_calendar_not_fully_read"
         }
       ],
       "pending_proposals": []

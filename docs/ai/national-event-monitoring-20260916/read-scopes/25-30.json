@@ -1,5 +1,5 @@
 {
-  "scope_revision": "bf374f3801b30e38b9037c1a120188db86e79b8e16231cd2d19c8495b2c7b997",
+  "scope_revision": "9b7436e98e49cf319b22fcc5053d0e027e286e79e65e276ca64062fc1f240fdd",
   "snapshot_only": true,
   "scopes": [
     {
@@ -22,6 +22,24 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "heiwado_hato_stadium",
+          "venue_name": "平和堂HATOスタジアム",
+          "aliases": [
+            "彦根総合スポーツ公園陸上競技場"
+          ],
+          "official_url": "https://www.bsn.or.jp/hikone/shisetsu_no1/",
+          "schedule_url": "https://www.bsn.or.jp/hikone/shisetsu_no1/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -31,26 +49,65 @@
           "pref_code": "25",
           "venue_kind": "stadium",
           "address": "滋賀県彦根市松原町3028",
-          "capacity": 6444,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": 15000,
+          "capacity_basis": "運営サイト施設案内の約15,000人。Jリーグ6,444と別尺度。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "schedule_extent",
+            "historical_aliases"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/shiga/profile/",
               "observed_at_utc": "2026-09-20T11:18:33.891400Z",
               "body_sha256": "01ce831010f01443267a6875ad29116cedadaafca2f245662e53d40a0bca6787"
+            },
+            {
+              "evidence_url": "https://www.bsn.or.jp/hikone/shisetsu_no1/",
+              "observed_at_utc": "2026-09-22T12:05:15.369812Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "5602670fa80e6034b125c7f14ccd26dbc87bb1d862e98395ad074b4dd4dbe05d"
+            },
+            {
+              "evidence_url": "https://www.bsn.or.jp/hikone/",
+              "observed_at_utc": "2026-09-22T12:03:48.732114Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ae17feab8fbceeeb8da06794fe9424a995e897357876fb14636a0ca8b3985512"
+            },
+            {
+              "evidence_url": "https://www.bsn.or.jp/hikone/kanri/",
+              "observed_at_utc": "2026-09-22T12:07:06.140926Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "cbdcc36ce747f76b15609e082500d4ae5450b7418040e253a6e3fa8f4ff5fb5d"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "heiwado_hato_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 6444,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/shiga/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:33.891400Z",
+                  "body_sha256": "01ce831010f01443267a6875ad29116cedadaafca2f245662e53d40a0bca6787"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "平和堂HATOスタジアム",
+          "operator": "S・NKグループ",
+          "aliases": [
+            "彦根総合スポーツ公園陸上競技場"
+          ],
+          "official_url": "https://www.bsn.or.jp/hikone/shisetsu_no1/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         },
         {
           "candidate_id": "82b02305bec631a13f2d",
@@ -233,28 +290,56 @@
           "address": null,
           "capacity": null,
           "capacity_basis": null,
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "operating_status": "planned_current_status_recheck",
+          "scope_review": "planned_facility_reviewed_details_pending",
           "missing_fields": [
-            "operator_identity",
+            "operator_authority",
             "address",
             "capacity_basis",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "opening_date",
+            "schedule_extent",
+            "current_plan_recheck"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.bleague.jp/new-bleague/club/",
               "observed_at_utc": "2026-09-20T11:15:20.891945Z",
               "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.pref.kyoto.jp/bunshi-kan/news/kyoto_arena_proposal.html",
+              "observed_at_utc": "2026-09-22T12:03:48.736784Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "53230cd9ac161c5cee3fa9b48fdd11af38f7a31fc3a27bfdad0fd7e26a344ea0"
+            },
+            {
+              "evidence_url": "https://www.pref.kyoto.jp/koho/kaiken/260703.html",
+              "observed_at_utc": "2026-09-22T12:03:48.738150Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b6817e6b75dc0d9cbc259172c8e766dc53a6d9bfca552964cb2f07a2514b9fd6"
             }
           ],
           "operator_reference_url": "https://hannaryz.jp/",
           "location_hint": "京都府京都市",
           "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "operating_status_note": "京都府向日町競輪場敷地のアリーナ計画。2026-07-03の府会見で契約に基づく整備費増額への対応を確認。開業・現行施設定員・予定表は未確認。",
+          "official_url": "https://www.pref.kyoto.jp/bunshi-kan/news/kyoto_arena_proposal.html",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         }
       ],
       "pending_proposals": []
@@ -607,6 +692,42 @@
             "ticketjam": null,
             "venue_official": null
           }
+        },
+        {
+          "venue_id": "yanmar_hanasaka_stadium",
+          "venue_name": "YANMAR HANASAKA STADIUM",
+          "aliases": [
+            "ヤンマーハナサカスタジアム",
+            "長居球技場",
+            "ヨドコウ桜スタジアム"
+          ],
+          "official_url": "https://www.hanasaka-stadium.jp/guide/",
+          "schedule_url": "https://www.hanasaka-stadium.jp/schedule/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "hanazono_rugby_stadium",
+          "venue_name": "東大阪市花園ラグビー場",
+          "aliases": [],
+          "official_url": "https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html",
+          "schedule_url": "https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
         }
       ],
       "candidates": [
@@ -615,27 +736,75 @@
           "name": "YANMAR HANASAKA STADIUM",
           "pref_code": "27",
           "venue_kind": "stadium",
-          "address": "大阪府大阪市東住吉区長居公園1-1",
-          "capacity": 24481,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "大阪府大阪市東住吉区長居公園1丁目1番",
+          "capacity": null,
+          "capacity_basis": "同一ページの紹介20,000人と概要24,665人が併存。現在の総数は保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "capacity_basis",
+            "capacity_conflict"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/cosaka/profile/",
               "observed_at_utc": "2026-09-20T11:16:00.648736Z",
               "body_sha256": "a1ba64d89f64f08666f10ea352128ba5b16aa0cfaff0583e3b2e63b5ccc89db7"
+            },
+            {
+              "evidence_url": "https://www.hanasaka-stadium.jp/guide/",
+              "observed_at_utc": "2026-09-22T11:59:20.135294Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "4390f00a8f26bf3666d13500069d00e564a90d23e767839eecd4f2e2bf2ce0c0"
+            },
+            {
+              "evidence_url": "https://www.city.osaka.lg.jp/keizaisenryaku/page/0000674760.html",
+              "observed_at_utc": "2026-09-22T12:04:11.305337Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "fe6aed7f39ed77a43bf136e4b7cf7ee490598784b524e2fdbfbb43608b45d2c8"
+            },
+            {
+              "evidence_url": "https://www.hanasaka-stadium.jp/access/",
+              "observed_at_utc": "2026-09-22T12:05:53.853832Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "04f456cc7c16cce2208ce8be047b1ae4ffcc26a283ae4e7749595c52213bbc48"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "yanmar_hanasaka_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "大阪府大阪市東住吉区長居公園1-1",
+              "capacity": 24481,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/cosaka/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:00.648736Z",
+                  "body_sha256": "a1ba64d89f64f08666f10ea352128ba5b16aa0cfaff0583e3b2e63b5ccc89db7"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "YANMAR HANASAKA STADIUM",
+          "operator": null,
+          "aliases": [
+            "ヤンマーハナサカスタジアム",
+            "長居球技場",
+            "ヨドコウ桜スタジアム"
+          ],
+          "official_url": "https://www.hanasaka-stadium.jp/guide/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "operating_status_note": "2026-04-01からの長居球技場の愛称。隣接するヤンマースタジアム長居（陸上競技場）と別ID。公式概要内の定員矛盾を保留。",
+          "schedule_url": "https://www.hanasaka-stadium.jp/schedule/",
+          "schedule_review_status": "linked_calendar_not_fully_read"
         },
         {
           "candidate_id": "dfbec3dd543a2c6e28eb",
@@ -779,26 +948,67 @@
           "pref_code": "27",
           "venue_kind": "stadium",
           "address": "〒578-0923 大阪府東大阪市松原南１丁目1-1",
-          "capacity": 26443,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "capacity": null,
+          "capacity_basis": "市の現行カテゴリと管理者告知を確認。現行総定員の一次資料未確認。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "capacity_basis",
+            "address_operator_recheck"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/fosaka/profile/",
               "observed_at_utc": "2026-09-20T11:16:11.133418Z",
               "body_sha256": "795b43aa943f4131e50e59a65a9add360f7a08e144be8b7a16b04beee2101c83"
+            },
+            {
+              "evidence_url": "https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html",
+              "observed_at_utc": "2026-09-22T12:04:08.866434Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "55e4c8b62a356016a09c08a556a1113e7ae7960f34d6244e1262c7041137ff78"
+            },
+            {
+              "evidence_url": "https://www.city.higashiosaka.lg.jp/0000023913.html",
+              "observed_at_utc": "2026-09-22T12:05:27.168442Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "8965708cf604693e643c1f4dab84625312251f24658b2ad18cfb7be20acb9461"
+            },
+            {
+              "evidence_url": "https://www.city.higashiosaka.lg.jp/0000028599.html",
+              "observed_at_utc": "2026-09-22T12:05:27.167815Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b7351422859b62e82ad2a46e3b3a60874db3617466f0725d92ab28c0ca77f7d7"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "hanazono_rugby_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "capacity": 26443,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/fosaka/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:11.133418Z",
+                  "body_sha256": "795b43aa943f4131e50e59a65a9add360f7a08e144be8b7a16b04beee2101c83"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "東大阪市花園ラグビー場",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "operating_status_note": "2020年の指定管理者告知を取得したが現行契約期は未照合。旧告知だけで現在の運営者確認済みとしない。"
         }
       ],
       "pending_proposals": []
@@ -1113,17 +1323,16 @@
           "name": "ノエビアスタジアム神戸",
           "pref_code": "28",
           "venue_kind": "stadium",
-          "address": "兵庫県神戸市兵庫区御崎町1-2-2",
-          "capacity": 27974,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "兵庫県神戸市兵庫区御崎町1丁目2番2号",
+          "capacity": 30132,
+          "capacity_basis": "クラブ概要は収容30,132人・クラブライセンス入場28,996人を区別。従前Jリーグ27,974との現行差は保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
-            "operator_identity",
-            "operating_status",
-            "aliases",
             "schedule_extent",
-            "recheck_existing_capacity_and_name"
+            "capacity_reconciliation",
+            "historical_aliases",
+            "operator_identity"
           ],
           "evidence": [
             {
@@ -1136,13 +1345,67 @@
               "observed_at_utc": "2026-09-22T11:32:31.157497Z",
               "retrieval_method": "requests_bs4",
               "body_sha256": "5c5151d5a858cff1139b785d002d29e17c231b7000ed50bc2393ea4c491286fe"
+            },
+            {
+              "evidence_url": "https://www.vissel-kobe.co.jp/stadium/",
+              "observed_at_utc": "2026-09-22T12:07:06.135729Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "99d24bcc31a51dfb7ba76895ae61183d639bf64d5dcd5cd998217ab4e6951e84"
             }
           ],
           "registry_venue_id": "noevir_stadium_kobe",
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
+          "evidence_status": "official_facility_body_read",
           "fetch_status": "body_fetched",
           "partial_review_at_utc": "2026-09-22T11:47:09.609074Z",
-          "operating_status_note": "保存URLはコンベンション案内。リンク先www.noevir-stadium.jpの取得失敗。会場公式本文・現行規模・予定表の確認は継続。"
+          "operating_status_note": "会場運営者サイトの取得は失敗。ホームクラブの施設本文で同定・住所・定員を確認。クラブを自動的に施設運営者としない。",
+          "prior_facility_observations": [
+            {
+              "address": "兵庫県神戸市兵庫区御崎町1-2-2",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kobe/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:09.764679Z",
+                  "body_sha256": "2f3af8591d4a3652d0b0e20a307a5b5e77c32f33499822f67fee960e7915b557"
+                },
+                {
+                  "evidence_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+                  "observed_at_utc": "2026-09-22T11:32:31.157497Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "5c5151d5a858cff1139b785d002d29e17c231b7000ed50bc2393ea4c491286fe"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            },
+            {
+              "capacity": 27974,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kobe/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:09.764679Z",
+                  "body_sha256": "2f3af8591d4a3652d0b0e20a307a5b5e77c32f33499822f67fee960e7915b557"
+                },
+                {
+                  "evidence_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+                  "observed_at_utc": "2026-09-22T11:32:31.157497Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "5c5151d5a858cff1139b785d002d29e17c231b7000ed50bc2393ea4c491286fe"
+                },
+                {
+                  "evidence_url": "https://www.vissel-kobe.co.jp/stadium/",
+                  "observed_at_utc": "2026-09-22T12:07:06.135729Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "99d24bcc31a51dfb7ba76895ae61183d639bf64d5dcd5cd998217ab4e6951e84"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "operator": null,
+          "canonical_name": "ノエビアスタジアム神戸",
+          "official_url": "https://www.vissel-kobe.co.jp/stadium/",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z"
         }
       ],
       "pending_proposals": []
@@ -1160,6 +1423,22 @@
           ],
           "official_url": "https://konoike-sports-park.jp/facility",
           "schedule_url": "https://konoike-sports-park.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "rohto_field_nara",
+          "venue_name": "ロートフィールド奈良",
+          "aliases": [],
+          "official_url": "https://www.city.nara.lg.jp/soshiki/22/5387.html",
+          "schedule_url": "https://www.city.nara.lg.jp/soshiki/22/5387.html",
           "official_fetch_enabled": false,
           "scope_review": "pending",
           "fetch_status": "unvisited",
@@ -1292,27 +1571,62 @@
           "name": "ロートフィールド奈良",
           "pref_code": "29",
           "venue_kind": "stadium",
-          "address": "〒630-8108 奈良県奈良市法蓮佐保山四丁目5番1号",
-          "capacity": 5369,
-          "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
-          "operating_status": "unverified",
-          "scope_review": "pending",
+          "address": "奈良県奈良市法蓮佐保山四丁目5番1号",
+          "capacity": null,
+          "capacity_basis": "市の正面5,600席・芝生25,000人と現行リーグ入場数5,369の関係を保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
           "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
             "operator_identity",
-            "operating_status",
-            "aliases",
-            "schedule_extent"
+            "capacity_basis"
           ],
           "evidence": [
             {
               "evidence_url": "https://www.jleague.jp/club/nara/profile/",
               "observed_at_utc": "2026-09-20T11:17:51.860729Z",
               "body_sha256": "b847aea7565626c57c456298ee3b380b7036c99719d4d85147dd8b846bceab20"
+            },
+            {
+              "evidence_url": "https://www.city.nara.lg.jp/soshiki/22/5387.html",
+              "observed_at_utc": "2026-09-22T11:59:22.263176Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "d46fff4fcf43eb29f2ea8459864746c5aac15df8df075c4dd7af9d89bac4fd5f"
+            },
+            {
+              "evidence_url": "https://konoike-sports-park.jp/facility",
+              "observed_at_utc": "2026-09-22T12:00:51.035726Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "f6a9da10b7074105d13edc26484619b2b184d15c2de13c9323125ff1a2ad6e61"
             }
           ],
-          "registry_venue_id": null,
-          "evidence_status": "official_listing_only_not_operator_or_event_verification",
-          "fetch_status": "body_fetched"
+          "registry_venue_id": "rohto_field_nara",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "〒630-8108 奈良県奈良市法蓮佐保山四丁目5番1号",
+              "capacity": 5369,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/nara/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:51.860729Z",
+                  "body_sha256": "b847aea7565626c57c456298ee3b380b7036c99719d4d85147dd8b846bceab20"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "ロートフィールド奈良",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://www.city.nara.lg.jp/soshiki/22/5387.html",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "operating_status_note": "旧施設説明の芝生席と現行Jリーグ入場可能数を同一基準としない。ロートアリーナ奈良とは別ID。"
         }
       ],
       "pending_proposals": []
