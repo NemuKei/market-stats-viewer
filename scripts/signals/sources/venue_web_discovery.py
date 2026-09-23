@@ -156,7 +156,7 @@ class VenueWebDiscoverySource(SignalSource):
         if not DATE_RE.match(event_start_date) or not DATE_RE.match(event_end_date):
             logger.warning("venue_web_discovery: skip invalid date event_id=%s", event.get("event_id"))
             return None
-        if future_only and event_end_date < today_iso:
+        if future_only and event_end_date < today_iso and not event.get("date_time_correction"):
             return None
 
         title = str(event.get("title") or "").strip()
@@ -205,6 +205,8 @@ class VenueWebDiscoverySource(SignalSource):
         }
         if raw_event_status:
             labels["event_status"] = event_status
+        if "date_time_correction" in event:
+            labels["date_time_correction"] = event["date_time_correction"]
         for key in (
             "event_start_time",
             "event_end_time",

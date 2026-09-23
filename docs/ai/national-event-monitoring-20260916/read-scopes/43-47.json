@@ -1,0 +1,900 @@
+{
+  "scope_revision": "3611daabe7b755b7fd465e51deea0ebaab5913ce52d6639fa62e9a136d68491f",
+  "snapshot_only": true,
+  "scopes": [
+    {
+      "pref_code": "43",
+      "pref_name": "熊本県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "grandmesse_kumamoto",
+          "venue_name": "グランメッセ熊本",
+          "aliases": [
+            "熊本産業展示場"
+          ],
+          "official_url": "https://www.grandmesse.jp/",
+          "schedule_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "egao_kenko_stadium",
+          "venue_name": "えがお健康スタジアム",
+          "aliases": [],
+          "official_url": "https://www.kspa.or.jp/rikujo/",
+          "schedule_url": "https://www.kspa.or.jp/rikujo_yotei/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "kumamoto_prefectural_gymnasium",
+          "venue_name": "熊本県立総合体育館",
+          "aliases": [],
+          "official_url": "https://www.kspa.or.jp/sougou_taiku_charge/",
+          "schedule_url": "https://www.kspa.or.jp/sougou_taiku_yotei/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "05d986b27d3279ee979e",
+          "name": "えがお健康スタジアム",
+          "pref_code": "43",
+          "venue_kind": "stadium",
+          "address": "熊本県熊本市東区平山町2776番地",
+          "capacity": 30000,
+          "capacity_basis": "運営者施設案内の3万人。別資料の座席数とは区別。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
+            "operating_status_detail"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/kumamoto/profile/",
+              "observed_at_utc": "2026-09-20T11:17:20.841079Z",
+              "body_sha256": "eb0472bdc7cc315be6c8a1c528035c70303137079d13cca6d3d4d8b1e1faa073"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/rikujo/",
+              "observed_at_utc": "2026-09-22T11:32:57.958580Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e1a39ee1f75abea3fe20143bb024e0d597442c5757ae15fa10d4903c5fce4fca"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/archives/kusports_announce/52336/",
+              "observed_at_utc": "2026-09-22T11:41:59.473734Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6f464da7eaefcab1623f26460fc73c2fa0e4de317addb23a2b4818c8a8524055"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/rikujo_yotei/",
+              "observed_at_utc": "2026-09-22T11:43:36.559295Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "980c0e05dce608f4fbc09500f89c2f5150ad67c696952357503b3cbc2341f4ce"
+            }
+          ],
+          "registry_venue_id": "egao_kenko_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "熊本県熊本市東区平山町2776",
+              "capacity": 30275,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kumamoto/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:20.841079Z",
+                  "body_sha256": "eb0472bdc7cc315be6c8a1c528035c70303137079d13cca6d3d4d8b1e1faa073"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T11:47:09.609074Z"
+            }
+          ],
+          "canonical_name": "えがお健康スタジアム",
+          "operator": "一般財団法人熊本県スポーツ振興事業団",
+          "aliases": [],
+          "official_url": "https://www.kspa.or.jp/rikujo/",
+          "schedule_url": "https://www.kspa.or.jp/rikujo_yotei/",
+          "schedule_extent": "9月・10月の予定表リンクを確認。本文詳細/画像は未読。",
+          "reviewed_at_utc": "2026-09-22T11:47:09.609074Z",
+          "operating_status_note": "9/10施設再開・利用休止継続の告知あり。本文は他施設へのリンクで詳細画像は未読。全施設再開とは判定しない。",
+          "schedule_reviews": [
+            {
+              "evidence_url": "https://www.kspa.or.jp/rikujo_yotei/",
+              "observed_at_utc": "2026-09-22T11:43:36.559295Z",
+              "status": "schedule_links_only",
+              "extent": "9月・10月の予定表リンクを確認。本文詳細/画像は未読。",
+              "scheduled_run": false
+            }
+          ]
+        },
+        {
+          "candidate_id": "041b50b345e50dc35d8c",
+          "name": "グランメッセ熊本",
+          "pref_code": "43",
+          "venue_kind": "exhibition_arena",
+          "address": "熊本県上益城郡益城町福富1010",
+          "capacity": null,
+          "capacity_basis": "展示面積8,000㎡（4分割）、Dゾーン可動席770/1,318の記載。全館コンサート収容人数は未確認。面積やDゾーンの席数を全館容量に転用しない。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "capacity_basis"
+          ],
+          "registry_venue_id": "grandmesse_kumamoto",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "evidence": [
+            {
+              "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+              "observed_at_utc": "2026-09-20T11:23:06.441472Z",
+              "body_sha256": "451c30f5de56a53c1f8a8518559867676b8e5a91b4df00980a7e0db495b39ca3"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/kiji0031/index.html",
+              "observed_at_utc": "2026-09-22T10:25:39.293005Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "315d237bca58557781523b898eb5989054361e00f9ba3d5f3742b5f5515acf62"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/kiji00310/index.html",
+              "observed_at_utc": "2026-09-22T10:25:39.392730Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "98fdb5e5d57d86a18724df2dc6358e2cdaebe08fa4f76f4f4b7102f9cb215667"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/kiji00319/index.html",
+              "observed_at_utc": "2026-09-22T10:25:43.986106Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "b4efcae597a40ac6c5788e9912ce0e3bcf47ebfca11b6ddd3a36be1ec29b41ff"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/list00022.html",
+              "observed_at_utc": "2026-09-22T10:31:54.692365Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6e4ce3dd19bcb98690aa0176fa548964e7f36c15c606e61d2f1f04d88b247a80"
+            },
+            {
+              "evidence_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+              "observed_at_utc": "2026-09-22T10:31:54.692769Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "711e5858f1b791f0490dfcb007b1fd3e6a2c1c314d58ef67f96456ce3f478379"
+            }
+          ],
+          "operator": "熊本産業文化振興株式会社",
+          "aliases": [
+            "熊本産業展示場"
+          ],
+          "official_url": "https://www.grandmesse.jp/",
+          "schedule_url": "https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3",
+          "schedule_extent": "9月表示のCollect Plants中止（9/22〜23）、TOYOPET GREEN FESTIVAL延期（9/26〜27、時期未定）、熊本ママフェス延期（9/30）を読取。全月・個別本文は未確認。トップ告知の2027/1/23〜24 SUPER BEAVERも個別未確認。",
+          "reviewed_at_utc": "2026-09-22T10:41:31.584195Z"
+        },
+        {
+          "candidate_id": "8c82a44c10c3ef402024",
+          "name": "熊本県立総合体育館",
+          "pref_code": "43",
+          "venue_kind": "arena",
+          "address": "熊本県熊本市西区上熊本1丁目9番28号",
+          "capacity": null,
+          "capacity_basis": "大体育室座席一覧へのリンクのみ。総定員未確認。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
+            "capacity_basis"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://www.kspa.or.jp/sougou_taiku_charge/",
+              "observed_at_utc": "2026-09-22T12:00:10.167454Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "bfc72cd058d42f1617d33ae6a52cf94244a008b6c33113bc1a5e917fc8b6f705"
+            }
+          ],
+          "operator_reference_url": "https://www.volters.jp/",
+          "location_hint": "熊本県熊本市",
+          "registry_venue_id": "kumamoto_prefectural_gymnasium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "熊本県立総合体育館",
+          "operator": "一般財団法人熊本県スポーツ振興事業団",
+          "aliases": [],
+          "official_url": "https://www.kspa.or.jp/sougou_taiku_charge/",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://www.kspa.or.jp/sougou_taiku_yotei/",
+          "schedule_review_status": "linked_calendar_not_fully_read"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "44",
+      "pref_name": "大分県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "crasus_dome_oita",
+          "venue_name": "クラサスドーム大分",
+          "aliases": [],
+          "official_url": "https://www.oita-sportspark.jp/facility/dome",
+          "schedule_url": "https://www.oita-sportspark.jp/event",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "f1292b88c8c507b7c995",
+          "name": "クラサスドーム大分",
+          "pref_code": "44",
+          "venue_kind": "dome",
+          "address": "大分県大分市大字横尾1351番地",
+          "capacity": 40000,
+          "capacity_basis": "運営者施設概要: 可動席を含む40,000人。Jリーグ入場可能数31,997とは別。",
+          "operating_status": "visible_event_list_read",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/oita/profile/",
+              "observed_at_utc": "2026-09-20T11:18:01.486457Z",
+              "body_sha256": "c390864a47fac3dd6e80e9dad11347f6bca037be40c8ebcc93fe3835976cc434"
+            },
+            {
+              "evidence_url": "https://www.oita-sportspark.jp/facility/dome",
+              "observed_at_utc": "2026-09-22T11:03:56.900045Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "2c13546a9ad8154ff1212b0beba994726cd22b53cc7d66da2de3511f2727f55e"
+            },
+            {
+              "evidence_url": "https://www.oita-sportspark.jp/event",
+              "observed_at_utc": "2026-09-22T11:12:54.647112Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "6a4e31a2f504326bb5e8544a3fc2fa00ce9ab197bf4289b8deefa02d4475af98"
+            }
+          ],
+          "registry_venue_id": "crasus_dome_oita",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "クラサスドーム大分",
+              "address": "大分県大分市大字横尾1351",
+              "capacity": 31997,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/oita/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:01.486457Z",
+                  "body_sha256": "c390864a47fac3dd6e80e9dad11347f6bca037be40c8ebcc93fe3835976cc434"
+                },
+                {
+                  "evidence_url": "https://www.oita-sportspark.jp/facility/dome",
+                  "observed_at_utc": "2026-09-22T11:03:56.900045Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "2c13546a9ad8154ff1212b0beba994726cd22b53cc7d66da2de3511f2727f55e"
+                },
+                {
+                  "evidence_url": "https://www.oita-sportspark.jp/event",
+                  "observed_at_utc": "2026-09-22T11:12:54.647112Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "6a4e31a2f504326bb5e8544a3fc2fa00ce9ab197bf4289b8deefa02d4475af98"
+                }
+              ]
+            }
+          ],
+          "operator": "株式会社大宣 大分スポーツ公園事業所",
+          "aliases": [],
+          "operating_status_note": "クラサススタジアム（野球場）は別施設でありaliasにしない。",
+          "schedule_extent": "公園一覧の2026/9/22～10/1を読取。9/26大分対藤枝17:00表示あり。テニス/野球を含むため個別詳細で会場を確認してから採用。全将来日程は未確認。",
+          "canonical_name": "クラサスドーム大分",
+          "official_url": "https://www.oita-sportspark.jp/facility/dome",
+          "schedule_url": "https://www.oita-sportspark.jp/event",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "45",
+      "pref_name": "宮崎県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "ichigo_miyazaki_shintomi_stadium",
+          "venue_name": "いちご宮崎新富サッカー場",
+          "aliases": [],
+          "official_url": "https://www.ichigo-shintomi.jp/",
+          "schedule_url": "https://www.ichigo-shintomi.jp/",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "0d1acbcefbf61d2eeed4",
+          "name": "いちご宮崎新富サッカー場",
+          "pref_code": "45",
+          "venue_kind": "stadium",
+          "address": "宮崎県児湯郡新富町大字三納代1586番地",
+          "capacity": 5354,
+          "capacity_basis": "運営者施設概要: 5,354人。既存Jリーグ入場可能数1,819と用途/時点を分けて保持。",
+          "operating_status": "official_facility_listed_current_use_not_fully_verified",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
+            "operating_status"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/miyazaki/profile/",
+              "observed_at_utc": "2026-09-20T11:17:40.725475Z",
+              "body_sha256": "6aa2f000707e4a5617a983d3e300fc8ff3769cf10bd2835d70538b1b2cb86f6d"
+            },
+            {
+              "evidence_url": "https://www.ichigo-shintomi.jp/",
+              "observed_at_utc": "2026-09-22T11:04:18.789765Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "12c2e8af18c74f4469162ff7c0754456e041cadd134442cc4f4eb15f6e42ba68"
+            },
+            {
+              "evidence_url": "https://www.ichigo-shintomi.jp/stadium.html",
+              "observed_at_utc": "2026-09-22T11:13:46.578672Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "c614f688c0c9c3a9acd30c0f2ce5e687dca8d0a69b6f1dd1ef5df44a5e391c33"
+            },
+            {
+              "evidence_url": "https://www.ichigo-shintomi.jp/privacy.html",
+              "observed_at_utc": "2026-09-22T11:12:12.367038Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "833012e1810b8d6ea40a0ce27cade939ead1ab0cd3435f68e430c73b613e6079"
+            },
+            {
+              "evidence_url": "https://www.ichigo-shintomi.jp/access.html",
+              "observed_at_utc": "2026-09-22T11:14:42.269214Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "c8d07ad9819eb45aa27653c48fa931a591c522e7f0604f92349767972b6690bc"
+            }
+          ],
+          "registry_venue_id": "ichigo_miyazaki_shintomi_stadium",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "いちご宮崎新富サッカー場",
+              "address": "宮崎県児湯郡新富町大字三納代1586",
+              "capacity": 1819,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "venue_kind": "stadium",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/miyazaki/profile/",
+                  "observed_at_utc": "2026-09-20T11:17:40.725475Z",
+                  "body_sha256": "6aa2f000707e4a5617a983d3e300fc8ff3769cf10bd2835d70538b1b2cb86f6d"
+                },
+                {
+                  "evidence_url": "https://www.ichigo-shintomi.jp/",
+                  "observed_at_utc": "2026-09-22T11:04:18.789765Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "12c2e8af18c74f4469162ff7c0754456e041cadd134442cc4f4eb15f6e42ba68"
+                },
+                {
+                  "evidence_url": "https://www.ichigo-shintomi.jp/stadium.html",
+                  "observed_at_utc": "2026-09-22T11:13:46.578672Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "c614f688c0c9c3a9acd30c0f2ce5e687dca8d0a69b6f1dd1ef5df44a5e391c33"
+                },
+                {
+                  "evidence_url": "https://www.ichigo-shintomi.jp/privacy.html",
+                  "observed_at_utc": "2026-09-22T11:12:12.367038Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "833012e1810b8d6ea40a0ce27cade939ead1ab0cd3435f68e430c73b613e6079"
+                },
+                {
+                  "evidence_url": "https://www.ichigo-shintomi.jp/access.html",
+                  "observed_at_utc": "2026-09-22T11:14:42.269214Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "c8d07ad9819eb45aa27653c48fa931a591c522e7f0604f92349767972b6690bc"
+                }
+              ]
+            }
+          ],
+          "operator": "株式会社ライチパーク",
+          "aliases": [],
+          "operating_status_note": "施設概要の初回取得失敗と再試行成功を別記。公開サイト運営法人はprivacy本文で確認。",
+          "schedule_extent": "施設・レンタル入口まで確認。主催クラブの全日程・公開予約表は未確認。",
+          "canonical_name": "いちご宮崎新富サッカー場",
+          "official_url": "https://www.ichigo-shintomi.jp/",
+          "schedule_url": "https://www.ichigo-shintomi.jp/",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "46",
+      "pref_name": "鹿児島県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "nishihara_shokai_arena",
+          "venue_name": "西原商会アリーナ",
+          "aliases": [
+            "鹿児島アリーナ"
+          ],
+          "official_url": "https://nishihara-shokai-arena.jp/guide/outline",
+          "schedule_url": "https://nishihara-shokai-arena.jp/event",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "shiranami_stadium",
+          "venue_name": "白波スタジアム",
+          "aliases": [
+            "県立鴨池陸上競技場"
+          ],
+          "official_url": "https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=3916",
+          "schedule_url": "https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=9",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "9db73da8f0f230159761",
+          "name": "白波スタジアム",
+          "pref_code": "46",
+          "venue_kind": "stadium",
+          "address": "鹿児島県鹿児島市与次郎二丁目2番2号",
+          "capacity": null,
+          "capacity_basis": "メイン7,188・バック5,356・芝生2,500、車椅子別記。現行入場数との照合保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity",
+            "capacity_basis"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/kagoshima/profile/",
+              "observed_at_utc": "2026-09-20T11:16:50.437275Z",
+              "body_sha256": "b6e20c0806befb2b2ad6f96a8b74bdaaa41e1f98562bc224209927586a31a3b0"
+            },
+            {
+              "evidence_url": "https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=3916",
+              "observed_at_utc": "2026-09-22T11:59:58.825363Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "621655b983d00c214fe453dc3bd2c843c1987809611bb7b923d141da21f8475a"
+            }
+          ],
+          "registry_venue_id": "shiranami_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "〒890-0062 鹿児島県鹿児島市与次郎2-2-2",
+              "capacity": 12212,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/kagoshima/profile/",
+                  "observed_at_utc": "2026-09-20T11:16:50.437275Z",
+                  "body_sha256": "b6e20c0806befb2b2ad6f96a8b74bdaaa41e1f98562bc224209927586a31a3b0"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "白波スタジアム",
+          "operator": null,
+          "aliases": [
+            "県立鴨池陸上競技場"
+          ],
+          "official_url": "https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=3916",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=9",
+          "schedule_review_status": "linked_calendar_not_fully_read"
+        },
+        {
+          "candidate_id": "0a57163ad610714b77c6",
+          "name": "西原商会アリーナ",
+          "pref_code": "46",
+          "venue_kind": "arena",
+          "address": "鹿児島県鹿児島市永吉1丁目30番1号",
+          "capacity": 5700,
+          "capacity_basis": "公式概要: 最大約5,700席。固定2階席1,312は内数。",
+          "operating_status": "main_arena_suspended_2026_07_to_2028_09",
+          "scope_review": "operator_identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://nishihara-shokai-arena.jp/guide/outline",
+              "observed_at_utc": "2026-09-22T11:04:18.790156Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "2ffdac72c4a443a7917202de219deb03c5603572768cbd3b7a68da98efdee94e"
+            },
+            {
+              "evidence_url": "https://www.city.kagoshima.lg.jp/sports/shisetsu/kanko/012.html",
+              "observed_at_utc": "2026-09-22T11:04:18.793167Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "1b317a2712ba13bbcf69b2cda0118950ae6d4cabc92de9e28e1dcbc893b8163b"
+            },
+            {
+              "evidence_url": "https://nishihara-shokai-arena.jp/emergency/13165",
+              "observed_at_utc": "2026-09-22T11:12:10.722462Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "85801eb91f70dbcb9e23facd1dc4ea499d5d5e36c34a10deafdb601aaab14e84"
+            },
+            {
+              "evidence_url": "https://nishihara-shokai-arena.jp/emergency/13366",
+              "observed_at_utc": "2026-09-22T11:12:11.030314Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ba997f8b7e1251be54fd74cd1d14a41b8d83426ab559ddfd7a8ab13eaa124661"
+            },
+            {
+              "evidence_url": "https://nishihara-shokai-arena.jp/event",
+              "observed_at_utc": "2026-09-22T11:12:54.965177Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "68b49914678b4086e41593c89df1cba389d17abed8e681ef17a2e9e789b9cc65"
+            }
+          ],
+          "operator_reference_url": "https://www.rebnise.jp/",
+          "location_hint": "鹿児島県鹿児島市",
+          "registry_venue_id": "nishihara_shokai_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "name": "西原商会アリーナ",
+              "address": null,
+              "capacity": null,
+              "capacity_basis": null,
+              "venue_kind": "arena",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+                  "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+                  "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+                },
+                {
+                  "evidence_url": "https://nishihara-shokai-arena.jp/guide/outline",
+                  "observed_at_utc": "2026-09-22T11:04:18.790156Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "2ffdac72c4a443a7917202de219deb03c5603572768cbd3b7a68da98efdee94e"
+                },
+                {
+                  "evidence_url": "https://www.city.kagoshima.lg.jp/sports/shisetsu/kanko/012.html",
+                  "observed_at_utc": "2026-09-22T11:04:18.793167Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "1b317a2712ba13bbcf69b2cda0118950ae6d4cabc92de9e28e1dcbc893b8163b"
+                },
+                {
+                  "evidence_url": "https://nishihara-shokai-arena.jp/emergency/13165",
+                  "observed_at_utc": "2026-09-22T11:12:10.722462Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "85801eb91f70dbcb9e23facd1dc4ea499d5d5e36c34a10deafdb601aaab14e84"
+                },
+                {
+                  "evidence_url": "https://nishihara-shokai-arena.jp/emergency/13366",
+                  "observed_at_utc": "2026-09-22T11:12:11.030314Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "ba997f8b7e1251be54fd74cd1d14a41b8d83426ab559ddfd7a8ab13eaa124661"
+                },
+                {
+                  "evidence_url": "https://nishihara-shokai-arena.jp/event",
+                  "observed_at_utc": "2026-09-22T11:12:54.965177Z",
+                  "retrieval_method": "requests_bs4",
+                  "body_sha256": "68b49914678b4086e41593c89df1cba389d17abed8e681ef17a2e9e789b9cc65"
+                }
+              ]
+            }
+          ],
+          "operator": "株式会社ニチガスクリエート・株式会社ビルメン鹿児島共同企業体",
+          "aliases": [
+            "鹿児島アリーナ"
+          ],
+          "operating_status_note": "2026年7月～2028年9月メインアリーナ利用休止。他室は利用可能。別に2026/10/22～23は全館終日休館。休止中も監視対象に保持。",
+          "schedule_extent": "2026年9月の一覧を読取。メイン休止中も他室の催事があるため、一括で開催なし/中止と判断しない。各詳細の部屋と10月以降は未確認。",
+          "canonical_name": "西原商会アリーナ",
+          "official_url": "https://nishihara-shokai-arena.jp/guide/outline",
+          "schedule_url": "https://nishihara-shokai-arena.jp/event",
+          "reviewed_at_utc": "2026-09-22T11:17:19.360043Z"
+        }
+      ],
+      "pending_proposals": []
+    },
+    {
+      "pref_code": "47",
+      "pref_name": "沖縄県",
+      "review_status": "pending",
+      "venues": [
+        {
+          "venue_id": "okinawa_arena",
+          "venue_name": "沖縄サントリーアリーナ",
+          "aliases": [
+            "沖縄アリーナ"
+          ],
+          "official_url": "https://okinawa-arena.jp/",
+          "schedule_url": "https://okinawa-arena.jp/events",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        },
+        {
+          "venue_id": "okinawa_sports_park_stadium",
+          "venue_name": "沖縄県総合運動公園陸上競技場",
+          "aliases": [],
+          "official_url": "https://okinawa-kenso.com/?page_id=213",
+          "schedule_url": "https://okinawa-kenso.com/?page_id=48093",
+          "official_fetch_enabled": false,
+          "scope_review": "pending",
+          "fetch_status": "unvisited",
+          "saved_official_urls": [],
+          "last_success_by_stream": {
+            "announcement": null,
+            "ticketjam": null,
+            "venue_official": null
+          }
+        }
+      ],
+      "candidates": [
+        {
+          "candidate_id": "2abf0718cb29e6864cac",
+          "name": "沖縄サントリーアリーナ",
+          "pref_code": "47",
+          "venue_kind": "arena",
+          "address": null,
+          "capacity": 10000,
+          "capacity_basis": "設備案内のセンターステージ配置で約10,000人。",
+          "operating_status": "operating_with_current_official_page",
+          "scope_review": "operator_verified_address_conflict",
+          "missing_fields": [
+            "address_conflict",
+            "schedule_extent"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.bleague.jp/new-bleague/club/",
+              "observed_at_utc": "2026-09-20T11:15:20.891945Z",
+              "body_sha256": "b52a024b7ac9b2b92bd72e3e9045ddd12550debbe84abe7f1c6b3818973b0a23"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/",
+              "observed_at_utc": "2026-09-20T11:22:56.520602Z",
+              "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/organizer/equipment",
+              "observed_at_utc": "2026-09-22T08:15:51.530587Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "035debff362077ac81e99b58082f8d2a68664d7671b07707c6f24ac391d33cdc"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/access",
+              "observed_at_utc": "2026-09-22T08:15:51.421378Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "fa336b1bf04f9ddf2470a4716e276ffbf836676a709d48e3a0fa148c983c49d5"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/company",
+              "observed_at_utc": "2026-09-22T08:15:51.309163Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "68879787dbe9cf3013a959bbdb265fbb1d8e520bd54bf24c3c5791f59b34736e"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/",
+              "observed_at_utc": "2026-09-22T08:15:51.491221Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "a41fe4d204aa5fa5838f5f8b9352d6df3b4611142fb1f7bab142e345fc63b822"
+            },
+            {
+              "evidence_url": "https://okinawa-arena.jp/events",
+              "observed_at_utc": "2026-09-22T08:14:32.585886Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "e7a4e88bc122c5bcff6338008299901201fe759f8b03711d57553c20badcc479"
+            },
+            {
+              "evidence_url": "https://www.city.okinawa.okinawa.jp/zyoureikun/act/content/content110002968.htm",
+              "observed_at_utc": "2026-09-22T09:57:11.217140Z",
+              "retrieval_method": "web_open",
+              "body_sha256": null,
+              "checked_fact": "第2条の位置は沖縄市山内一丁目16番1号。直接HTTP取得は失敗、web閲覧で確認。"
+            }
+          ],
+          "operator_reference_url": "https://goldenkings.jp/",
+          "location_hint": "沖縄県沖縄市",
+          "registry_venue_id": "okinawa_arena",
+          "evidence_status": "operator_body_read",
+          "fetch_status": "body_fetched",
+          "operator": "沖縄アリーナ株式会社",
+          "aliases": [
+            "沖縄アリーナ"
+          ],
+          "official_url": "https://okinawa-arena.jp/",
+          "schedule_url": "https://okinawa-arena.jp/events",
+          "schedule_extent": "イベント一覧URLは本文の個別行取得が不十分。ホームの公式ツアーリンクを確認。新規なしとはしない。",
+          "reviewed_at_utc": "2026-09-22T08:22:56.836064Z",
+          "address_alternatives": [
+            {
+              "value": "沖縄県沖縄市山内1丁目16-1",
+              "evidence_url": "https://okinawa-arena.jp/access"
+            },
+            {
+              "value": "沖縄県沖縄市山内4丁目1番5号",
+              "evidence_url": "https://okinawa-arena.jp/organizer/equipment"
+            }
+          ],
+          "address_note": "市条例第2条はaccessと同じ山内一丁目16番1号。設備案内との相違理由は未確認のため両根拠とaddress_conflictを維持。会社事務所住所は転用しない。"
+        },
+        {
+          "candidate_id": "37cb4d2bf9c95156cdb2",
+          "name": "沖縄県総合運動公園陸上競技場",
+          "pref_code": "47",
+          "venue_kind": "stadium",
+          "address": "沖縄県沖縄市比屋根5-3-1",
+          "capacity": null,
+          "capacity_basis": "メイン7,000・バック3,840・ゴール裏1,430。Jリーグ入場数との関係保留。",
+          "operating_status": "official_site_current_extent_pending",
+          "scope_review": "identity_verified_schedule_pending",
+          "missing_fields": [
+            "schedule_extent",
+            "historical_aliases",
+            "operator_identity",
+            "capacity_basis"
+          ],
+          "evidence": [
+            {
+              "evidence_url": "https://www.jleague.jp/club/ryukyu/profile/",
+              "observed_at_utc": "2026-09-20T11:18:14.741846Z",
+              "body_sha256": "9721527ff9b4a056818c84ae3ab6a9115d494843cd359c08128e4aad497e4dc7"
+            },
+            {
+              "evidence_url": "https://okinawa-kenso.com/?page_id=213",
+              "observed_at_utc": "2026-09-22T12:04:00.519270Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "92294a8d27bfd71a83ddc8ff76d1a10e4a83dfcc18c974064c2aaeeeff299174"
+            },
+            {
+              "evidence_url": "https://okinawa-kenso.com/?page_id=48093",
+              "observed_at_utc": "2026-09-22T12:04:00.562070Z",
+              "retrieval_method": "requests_bs4",
+              "body_sha256": "ccdbd03d60b49b4c06d91332ceaa372fe5f3a65edac17129356de92ff80bee5a"
+            }
+          ],
+          "registry_venue_id": "okinawa_sports_park_stadium",
+          "evidence_status": "official_facility_body_read",
+          "fetch_status": "body_fetched",
+          "prior_facility_observations": [
+            {
+              "address": "〒904-2173 沖縄県沖縄市比屋根5-3-1",
+              "capacity": 10189,
+              "capacity_basis": "J.LEAGUE admission capacity; not concert capacity",
+              "operating_status": "unverified",
+              "evidence": [
+                {
+                  "evidence_url": "https://www.jleague.jp/club/ryukyu/profile/",
+                  "observed_at_utc": "2026-09-20T11:18:14.741846Z",
+                  "body_sha256": "9721527ff9b4a056818c84ae3ab6a9115d494843cd359c08128e4aad497e4dc7"
+                }
+              ],
+              "superseded_at_utc": "2026-09-22T12:10:15.935303Z"
+            }
+          ],
+          "canonical_name": "沖縄県総合運動公園陸上競技場",
+          "operator": null,
+          "aliases": [],
+          "official_url": "https://okinawa-kenso.com/?page_id=213",
+          "schedule_extent": "施設の同定・概要を確認。全予定表・全月・個別主催者詳細の照合は未実施。",
+          "reviewed_at_utc": "2026-09-22T12:10:15.935303Z",
+          "schedule_url": "https://okinawa-kenso.com/?page_id=48093",
+          "schedule_review_status": "linked_calendar_not_fully_read"
+        }
+      ],
+      "pending_proposals": []
+    }
+  ]
+}

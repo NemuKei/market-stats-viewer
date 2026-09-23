@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "scope_revision": "3611daabe7b755b7fd465e51deea0ebaab5913ce52d6639fa62e9a136d68491f",
+  "national_census_complete": false,
+  "streams": [
+    "announcement",
+    "ticketjam",
+    "venue_official"
+  ],
+  "identity_blockers": [],
+  "orphan_ids": [],
+  "snapshot_only": true,
+  "shards": [
+    {
+      "path": "01-06.json",
+      "pref_codes": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "sha256": "1bc0e8c44a1f7f094a5e70630ba29905710745f78b1d26f95bd28c4f54ab50c7",
+      "bytes": 68260
+    },
+    {
+      "path": "07-12.json",
+      "pref_codes": [
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "sha256": "e20fc3acc777a7a5eae7d2babc0eebc50a15e65471a0d75ec4cc6b9050ba4ff5",
+      "bytes": 87177
+    },
+    {
+      "path": "13-18.json",
+      "pref_codes": [
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18"
+      ],
+      "sha256": "0494844c5887995d0bf6bcf551456507773f7e33550cbea3370db7ba8eca1de7",
+      "bytes": 152781
+    },
+    {
+      "path": "19-24.json",
+      "pref_codes": [
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24"
+      ],
+      "sha256": "7a17aa33510b4ffc45bdafc1b7248b57b1b13294fc161965bdbb2ce5d96335d0",
+      "bytes": 91155
+    },
+    {
+      "path": "25-30.json",
+      "pref_codes": [
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "sha256": "53108d2145c059b7c16cc28e3503e19b4c0d5f9911d0443ad474190ffe7c26d5",
+      "bytes": 77849
+    },
+    {
+      "path": "31-36.json",
+      "pref_codes": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36"
+      ],
+      "sha256": "32a139c344da9518a7218012ac8d330d36f1259659ba652f7510fb1c44dfa22a",
+      "bytes": 53351
+    },
+    {
+      "path": "37-42.json",
+      "pref_codes": [
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42"
+      ],
+      "sha256": "07db862ea9a22adffb00619f8608cd6da44d4118355abbf013895153668ae64b",
+      "bytes": 62808
+    },
+    {
+      "path": "43-47.json",
+      "pref_codes": [
+        "43",
+        "44",
+        "45",
+        "46",
+        "47"
+      ],
+      "sha256": "ac20c2f88f1e2498c71720f836fd590324762473103d3df4f7bda6ead5f9791e",
+      "bytes": 41983
+    }
+  ]
+}

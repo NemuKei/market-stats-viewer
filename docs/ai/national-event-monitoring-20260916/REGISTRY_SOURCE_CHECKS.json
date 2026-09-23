@@ -1,0 +1,2471 @@
+{
+  "schema_version": 1,
+  "scope": "104 registry official_url checks; not event extraction or officialness certification",
+  "sources": [
+    {
+      "venue_id": "yokohama_arena",
+      "requested_url": "https://www.yokohama-arena.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:01.894836Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.yokohama-arena.co.jp/",
+      "http_status": 200,
+      "body_sha256": "1e72dd2ce2825ff09c23519f2559dd6422175c938de1b0d5b9d512c7e87867d4",
+      "status": "body_fetched",
+      "text_char_count": 2251,
+      "title": "横浜アリーナ",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/YokohamaArena",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "k_arena_yokohama",
+      "requested_url": "https://k-arena.com/",
+      "observed_at_utc": "2026-09-20T11:28:02.244979Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://k-arena.com/",
+      "http_status": 200,
+      "body_sha256": "3db25f4444ae273405c45d88d743693ec75977c0d2ddca271267f36be5810164",
+      "status": "body_fetched",
+      "text_char_count": 1261,
+      "title": "Kアリーナ横浜",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "nissan_stadium",
+      "requested_url": "https://www.nissan-stadium.jp/",
+      "observed_at_utc": "2026-09-20T11:28:02.595000Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.nissan-stadium.jp/",
+      "http_status": 200,
+      "body_sha256": "8b83d8c4457c0635344cdaf6d132b0d530b4d66dfda4656536b4c49a63775b62",
+      "status": "body_fetched",
+      "text_char_count": 2948,
+      "title": "日産スタジアム｜横浜国際総合競技場",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/shinyoko_park",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/shinyoko_park",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "tokyo_international_forum",
+      "requested_url": "https://www.t-i-forum.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:02.944990Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.t-i-forum.co.jp/",
+      "http_status": 200,
+      "body_sha256": "fad2bb5fa4bfa5f65d45f9e0b16d602e6b01dc93f60c45d3ef917bb6fc9bd772",
+      "status": "body_fetched",
+      "text_char_count": 2200,
+      "title": "公式 | 東京国際フォーラム | Tokyo International Forum",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/T_I_Forum_PR",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/t_i_forum_pr",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zepp_sapporo",
+      "requested_url": "https://www.zepp.co.jp/hall/sapporo/",
+      "observed_at_utc": "2026-09-20T11:28:13.470817Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/sapporo/",
+      "http_status": 200,
+      "body_sha256": "e689a63ac20b3fc952e9cc8e5f5923555cb7e7fcbcd8c294d69ac94630fa808b",
+      "status": "body_fetched",
+      "text_char_count": 5665,
+      "title": "Zepp Sapporo | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_sapporo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zeppsapporo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "sapporo_dome",
+      "requested_url": "https://www.sapporo-dome.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:14.820827Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.sapporo-dome.co.jp/",
+      "http_status": 200,
+      "body_sha256": "3c008916bee77e9316459516018796c6814581b1e492a69b1b3b185aa6986d38",
+      "status": "body_fetched",
+      "text_char_count": 6624,
+      "title": "大和ハウス プレミストドーム｜Daiwa House PREMIST DOME",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/sapporodome_pr",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/daiwa_house_premist_dome",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "nippon_budokan",
+      "requested_url": "https://www.nipponbudokan.or.jp/",
+      "observed_at_utc": "2026-09-20T11:28:15.192192Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.nipponbudokan.or.jp/",
+      "http_status": 200,
+      "body_sha256": "eba54fa55cc567d18d64cd2894b731902ae32d15f65b6696433af51fa955b295",
+      "status": "body_fetched",
+      "text_char_count": 4957,
+      "title": "日本武道館",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/nipponbudokan.channel",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nipponbudokan.koho",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Koho_Budokan",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "tokyo_dome",
+      "requested_url": "https://www.tokyo-dome.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:16.982308Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.tokyo-dome.co.jp/",
+      "http_status": 200,
+      "body_sha256": "a162fcd533c5a44e2a5407679bfc0a7fede45f67de2fc675054c4985ab291f9d",
+      "status": "body_fetched",
+      "text_char_count": 3981,
+      "title": "東京ドームシティ",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/TokyoDomeCity_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/tokyodomecity_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "saitama_super_arena",
+      "requested_url": "https://www.saitama-arena.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:24.261628Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.saitama-arena.co.jp/",
+      "http_status": 200,
+      "body_sha256": "69d7ee4ee026da46053a07b22b3fa3fe66426c2e44fa2171cc275ae52cf758c3",
+      "status": "body_fetched",
+      "text_char_count": 1938,
+      "title": "GMOアリーナさいたま",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/S_S_Arena",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "kyocera_dome_osaka",
+      "requested_url": "https://www.kyoceradome-osaka.jp/",
+      "observed_at_utc": "2026-09-20T11:28:25.904975Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kyoceradome-osaka.jp/",
+      "http_status": 200,
+      "body_sha256": "7cc4d7ef3ae9dd20bbf7375fafc1cca5bc5e1805efd856addbd448cfec905b13",
+      "status": "body_fetched",
+      "text_char_count": 5109,
+      "title": "京セラドーム大阪",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/Kyocera_Dome_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Kyocera_Dome_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "osaka_jo_hall",
+      "requested_url": "https://www.osaka-johall.com/",
+      "observed_at_utc": "2026-09-20T11:28:27.791286Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.osaka-johall.com/",
+      "http_status": 200,
+      "body_sha256": "266b27ee85a12ad07a6ab74dcb1add1390961a9623a31ab6add8f090cc7891b3",
+      "status": "body_fetched",
+      "text_char_count": 1888,
+      "title": "大阪城ホール",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "vantelin_dome_nagoya",
+      "requested_url": "https://www.nagoya-dome.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:32.793957Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.nagoya-dome.co.jp/",
+      "http_status": 200,
+      "body_sha256": "8670f1234091d07797eec6b176dcc204bd062e1a5f8984f7d606a2ae3c8c38dc",
+      "status": "body_fetched",
+      "text_char_count": 2367,
+      "title": "バンテリンドーム ナゴヤ公式サイト",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "fukuoka_paypay_dome",
+      "requested_url": "https://www.softbankhawks.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:35.037280Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.softbankhawks.co.jp/",
+      "http_status": 200,
+      "body_sha256": "bb23449b16eac3c442d35c5884c61ffdd5a9619d62e6c2ef26333c2f55b9e1c4",
+      "status": "body_fetched",
+      "text_char_count": 10457,
+      "title": "福岡ソフトバンクホークス",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/HAWKS_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/softbankhawks_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "makuhari_messe",
+      "requested_url": "https://www.m-messe.co.jp/",
+      "observed_at_utc": "2026-09-20T11:28:38.414972Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.m-messe.co.jp/",
+      "http_status": 200,
+      "body_sha256": "518981059e6260e09f02f10597a460174c0c95ef9fea1f13cada225cd19db526",
+      "status": "body_fetched",
+      "text_char_count": 2052,
+      "title": "幕張メッセ - 日本を代表する複合コンベンション施設",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/MakuhariMessePR",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zozo_marine_stadium",
+      "requested_url": "https://www.marines.co.jp/stadium/",
+      "observed_at_utc": "2026-09-20T11:28:40.316144Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.marines.co.jp/stadium/",
+      "http_status": 200,
+      "body_sha256": "fdd0d75baabc53c777277a19909ef204433ed22ce68fa6f9ef6299d551106c77",
+      "status": "body_fetched",
+      "text_char_count": 4537,
+      "title": "ZOZOマリンスタジアム - 千葉ロッテマリーンズ",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/chibalotte",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/chibalotte",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "pia_arena_mm",
+      "requested_url": "https://pia-arena-mm.jp/",
+      "observed_at_utc": "2026-09-20T11:28:43.532097Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://pia-arena-mm.jp/",
+      "http_status": 200,
+      "body_sha256": "9ff1abc1fae833af6b2e9ef1fb70f646e48bc8dd39ecd20e5351f81f4dc3e012",
+      "status": "body_fetched",
+      "text_char_count": 845,
+      "title": "ぴあアリーナMM",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/pia_arena_mm",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "portmesse_nagoya",
+      "requested_url": "https://portmesse.com/",
+      "observed_at_utc": "2026-09-20T11:28:45.781475Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://portmesse.com/",
+      "http_status": 200,
+      "body_sha256": "dd34b454321b42cf0614a100f8a6318aa4dab15d5de7c2283c20d1d182458ff4",
+      "status": "body_fetched",
+      "text_char_count": 2078,
+      "title": "公式 | ポートメッセなごや | 名古屋市国際展示場 – 名古屋市国際展示場（ポートメッセなごや）は愛知県名古屋市港区金城ふ頭にあるセミナー・講演会・研修会などのビジネスミーティング、展示会、式典、パーティー、インセンティブ、イベント、コンサートまで、幅広く対応するコミュニケーションスペースです。",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/portmesse_PR",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/portmessenagoya_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "asue_arena_osaka",
+      "requested_url": "https://www.yahataya-park.jp/osaka_arena/",
+      "observed_at_utc": "2026-09-20T11:28:48.155287Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.yahataya-park.jp/osaka_arena/index.html",
+      "http_status": 200,
+      "body_sha256": "c2ece85e5651d7945a1cabc5e995ea802eecf546d9b574bf223e2e1eb8ddea11",
+      "status": "body_fetched",
+      "text_char_count": 2708,
+      "title": "Asue アリーナ大阪  –  八幡屋公園　- 八幡屋スポーツパークセンター –",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/asue_arena_osaka",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/chutaikoho",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "mufg_stadium",
+      "requested_url": "https://www.ajinomotostadium.com/",
+      "observed_at_utc": "2026-09-20T11:28:49.755986Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.ajinomotostadium.com/",
+      "http_status": 200,
+      "body_sha256": "a0e0d47a113fc0f12ae4250696363738782d43b225fe814cd6bdb40e7d95f083",
+      "status": "body_fetched",
+      "text_char_count": 2083,
+      "title": "味の素スタジアム",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/tokyostadium",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "marine_messe_fukuoka",
+      "requested_url": "https://www.marinemesse.or.jp/messe/",
+      "observed_at_utc": "2026-09-20T11:28:52.075673Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.marinemesse.or.jp/messe/",
+      "http_status": 200,
+      "body_sha256": "77da7895b91fdaa7d09555b24c1e3f7e4e3caed3baa16677f8c924b1173b194a",
+      "status": "body_unread",
+      "text_char_count": 37,
+      "title": "【マリンメッセ福岡A館】FUKUOKA CONVENTION CENTER",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "nhk_hall",
+      "requested_url": "https://www.nhk-hall.jp/",
+      "observed_at_utc": "2026-09-20T11:28:56.462408Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "zepp_haneda",
+      "requested_url": "https://www.zepp.co.jp/hall/haneda/",
+      "observed_at_utc": "2026-09-20T11:28:57.936159Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/haneda/",
+      "http_status": 200,
+      "body_sha256": "1a54ef1a01f1b53a29598dfaecba989a44bd9ef059e34b86cee6952145d3442b",
+      "status": "body_fetched",
+      "text_char_count": 6414,
+      "title": "Zepp Haneda（TOKYO) | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_haneda",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphaneda",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zepp_divercity",
+      "requested_url": "https://www.zepp.co.jp/hall/divercity/",
+      "observed_at_utc": "2026-09-20T11:28:58.713083Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/divercity/",
+      "http_status": 200,
+      "body_sha256": "842a0e4b212aa9a58557839696d7dc4f0201ce7bf0970d266ae1cde981387d39",
+      "status": "body_fetched",
+      "text_char_count": 6830,
+      "title": "Zepp DiverCity(TOKYO) | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_divercitytokyo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zeppdivercity",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "belluna_dome",
+      "requested_url": "https://bellunadome.seibulions.co.jp/",
+      "observed_at_utc": "2026-09-20T11:29:00.413494Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://bellunadome.seibulions.co.jp/",
+      "http_status": 200,
+      "body_sha256": "3f604fb6a1108f2a61b4df87ccb97e7f88d4965b528a97da8abb4dcc472b9676",
+      "status": "body_fetched",
+      "text_char_count": 2406,
+      "title": "ベルーナドーム | 西武ドーム【西武グループ】",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "zepp_namba",
+      "requested_url": "https://www.zepp.co.jp/hall/namba/",
+      "observed_at_utc": "2026-09-20T11:29:04.522575Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/namba/",
+      "http_status": 200,
+      "body_sha256": "dfd69dc43cc0c009fd0ade3bf81bf37e9094b948f45fab9880b51314ca029fe8",
+      "status": "body_fetched",
+      "text_char_count": 5968,
+      "title": "Zepp Namba(OSAKA) | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_nambaosaka",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zeppnamba_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zepp_nagoya",
+      "requested_url": "https://www.zepp.co.jp/hall/nagoya/",
+      "observed_at_utc": "2026-09-20T11:29:07.149554Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/nagoya/",
+      "http_status": 200,
+      "body_sha256": "f6da2bf8e947c5ecc57e73f8adf68b847344fa5ee2cd5d09c956d79139fea4eb",
+      "status": "body_fetched",
+      "text_char_count": 6160,
+      "title": "Zepp Nagoya | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zeppnagoya",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zeppnagoya_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zepp_fukuoka",
+      "requested_url": "https://www.zepp.co.jp/hall/fukuoka/",
+      "observed_at_utc": "2026-09-20T11:29:08.585798Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/fukuoka/",
+      "http_status": 200,
+      "body_sha256": "ac7ebfde53aaae932b025461ee9409daa22a43a8389dc1a03b27b89ad4c6694c",
+      "status": "body_fetched",
+      "text_char_count": 5285,
+      "title": "Zepp Fukuoka | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_fukuoka",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zeppfukuoka_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zepp_osaka_bayside",
+      "requested_url": "https://www.zepp.co.jp/hall/osakabayside/",
+      "observed_at_utc": "2026-09-20T11:29:08.935966Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/osakabayside/",
+      "http_status": 200,
+      "body_sha256": "ed71201eb077ed75881be823fcb0672337e297ec5831a73874b46f0e651f8d3a",
+      "status": "body_fetched",
+      "text_char_count": 5027,
+      "title": "Zepp Osaka Bayside | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_bayside",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepposakabs",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "festival_hall",
+      "requested_url": "https://www.festivalhall.jp/",
+      "observed_at_utc": "2026-09-20T11:29:09.285967Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "ariake_arena",
+      "requested_url": "https://ariake-arena.tokyo/",
+      "observed_at_utc": "2026-09-20T11:29:18.034747Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://ariake-arena.tokyo/",
+      "http_status": 200,
+      "body_sha256": "5ba240ab096667acc79e2adc7b363939ee00e5349fe9a469b0c07b0080550cf3",
+      "status": "body_fetched",
+      "text_char_count": 2291,
+      "title": "TOKYO ARIAKE ARENA ｜ 「東京有明アリーナ」オフィシャルサイト",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "yoyogi_gymnasium",
+      "requested_url": "https://www.jpnsport.go.jp/yoyogi/",
+      "observed_at_utc": "2026-09-20T11:29:18.476154Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.jpnsport.go.jp/yoyogi/",
+      "http_status": 200,
+      "body_sha256": "4464fe89471b1dd9c1bc1fd2cf68abe3a328c80d9ed264a1b4ef0e8e9da1ecd5",
+      "status": "body_fetched",
+      "text_char_count": 1223,
+      "title": "トップページ  |  代々木競技場  |  JAPAN SPORT COUNCIL",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/japansport_JSC",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "tokyo_garden_theater",
+      "requested_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/",
+      "observed_at_utc": "2026-09-20T11:29:18.826270Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/",
+      "http_status": 200,
+      "body_sha256": "758fb23d91f93e157f4e1ae463c20c590b91cc4ac845af0ee7ad99ef0b89de7c",
+      "status": "body_fetched",
+      "text_char_count": 1278,
+      "title": "東京ガーデンシアター | 劇場型イベントホール約8,000人収容",
+      "linked_social_accounts": [
+        {
+          "url": "https://x.com/tokyogt_2020",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "tdc_hall",
+      "requested_url": "https://www.tokyo-dome.co.jp/tdc-hall/",
+      "observed_at_utc": "2026-09-20T11:29:19.176325Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.tokyo-dome.co.jp/tdc-hall/",
+      "http_status": 200,
+      "body_sha256": "5591082bb65d8486df7aa030f05b1003d25d13f92fd543958da4f0a602dfe739",
+      "status": "body_fetched",
+      "text_char_count": 1764,
+      "title": "Kanadevia Hall | 東京ドームシティ",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/TokyoDomeCity_",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/tokyodomecity_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "toyosu_pit",
+      "requested_url": "https://toyosu.pia-pit.jp/",
+      "observed_at_utc": "2026-09-20T11:29:26.734074Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://toyosu.pia-pit.jp/",
+      "http_status": 200,
+      "body_sha256": "d980b68bda16efda068a84d80775f3043f638fe0703c6abba466feb61a07763d",
+      "status": "body_fetched",
+      "text_char_count": 1520,
+      "title": "Toyosu PIT",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "yanmar_stadium_nagai",
+      "requested_url": "https://nagaipark.com/guide/stadium/",
+      "observed_at_utc": "2026-09-20T11:29:27.402312Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://nagaipark.com/guide/stadium/",
+      "http_status": 200,
+      "body_sha256": "ffa69558755e9df850f79738fa0291b837615ee1447d188afb655455790e381d",
+      "status": "body_fetched",
+      "text_char_count": 367,
+      "title": "ヤンマースタジアム長居",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "lalaarena_tokyobay",
+      "requested_url": "https://lalaarenatokyo-bay.com/",
+      "observed_at_utc": "2026-09-20T11:29:28.196692Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://lalaarenatokyo-bay.com/",
+      "http_status": 200,
+      "body_sha256": "42698699c9940c6788512b2f4dbb252a5e287fca8b0ec3e2bc976b49d491989f",
+      "status": "body_fetched",
+      "text_char_count": 2065,
+      "title": "LaLa arena TOKYO-BAY（ららアリーナ 東京ベイ）",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "ecopa_arena",
+      "requested_url": "https://www.ecopa.jp/",
+      "observed_at_utc": "2026-09-20T11:29:28.564503Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.ecopa.jp/",
+      "http_status": 200,
+      "body_sha256": "0d377600a49540abe6a0c84aaa3cb3b828378d987bf08bcdede87054e14e87bc",
+      "status": "body_fetched",
+      "text_char_count": 1231,
+      "title": "エコパ公式サイト（小笠山総合運動公園ECOPA）",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/ecopa_sportspark",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "makomanai_sekisuiheim_ice_arena",
+      "requested_url": "https://www.makomanai.com/icearena/",
+      "observed_at_utc": "2026-09-20T11:29:34.561028Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "anabuki_arena_kagawa",
+      "requested_url": "https://kagawa-arena.com/",
+      "observed_at_utc": "2026-09-20T11:29:35.111829Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://kagawa-arena.com/",
+      "http_status": 200,
+      "body_sha256": "4c42b36588600246dd106280f2ea151fdd74692eff1ec36bc9c29d7ca59bbffc",
+      "status": "body_fetched",
+      "text_char_count": 3160,
+      "title": "あなぶきアリーナ香川",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/anabuki_arena_kagawa",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "saitama_stadium_2002",
+      "requested_url": "https://www.stadium2002.com/",
+      "observed_at_utc": "2026-09-20T11:29:36.275812Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.stadium2002.com/",
+      "http_status": 200,
+      "body_sha256": "6199bbafb019fceba65124829547098af9ce99e3952693cc1b4bb62c4cb9a14e",
+      "status": "body_fetched",
+      "text_char_count": 1349,
+      "title": "埼玉スタジアム2002",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/saisuta_2002",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "todoroki_stadium",
+      "requested_url": "https://www.frontale.co.jp/stadium/todoroki.html",
+      "observed_at_utc": "2026-09-20T11:29:36.629612Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "suntory_hall",
+      "requested_url": "https://www.suntory.co.jp/suntoryhall/",
+      "observed_at_utc": "2026-09-20T11:29:44.876655Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "yokohama_fad",
+      "requested_url": "https://www.fad-music.com/",
+      "observed_at_utc": "2026-09-20T11:29:45.226799Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "shibuya_club_quattro",
+      "requested_url": "https://www.club-quattro.com/shibuya/",
+      "observed_at_utc": "2026-09-20T11:29:45.576790Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.club-quattro.com/shibuya/",
+      "http_status": 200,
+      "body_sha256": "45d9108801dad7f26276e747e29e448889c27632ac80de5f127d11c227bc42fd",
+      "status": "body_fetched",
+      "text_char_count": 8222,
+      "title": "SHIBUYA CLUB QUATTRO（渋谷クラブクアトロ）公式サイト",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/hiroshima_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nagoya_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/quattrolabo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/shibuya_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/umeda_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/club_quattro_um",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_hi",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_nag",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_shi",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/quattrolabo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "umeda_club_quattro",
+      "requested_url": "https://www.club-quattro.com/umeda/",
+      "observed_at_utc": "2026-09-20T11:29:48.622407Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.club-quattro.com/umeda/",
+      "http_status": 200,
+      "body_sha256": "128b082a1cd370202766c583037adb4b0921bc67d66258883385bffa77b00879",
+      "status": "body_fetched",
+      "text_char_count": 5606,
+      "title": "UMEDA CLUB QUATTRO（梅田クラブクアトロ）公式サイト",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/hiroshima_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nagoya_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/quattrolabo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/shibuya_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/umeda_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/club_quattro_um",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_hi",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_nag",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_shi",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/quattrolabo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "liquidroom",
+      "requested_url": "https://www.liquidroom.net/",
+      "observed_at_utc": "2026-09-20T11:29:52.417975Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.liquidroom.net/",
+      "http_status": 200,
+      "body_sha256": "8e56fc55eb4bf4a5d0137722368e0a7e4f722bf7d273e4cd515b2b7aa6d48ebb",
+      "status": "body_fetched",
+      "text_char_count": 2663,
+      "title": "LIQUIDROOM [リキッドルーム]",
+      "linked_social_accounts": [
+        {
+          "url": "http://twitter.com/LIQUIDROOM",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/liquidroom_ebisu",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "kt_zepp_yokohama",
+      "requested_url": "https://www.zepp.co.jp/hall/yokohama/",
+      "observed_at_utc": "2026-09-20T11:29:54.408909Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/yokohama/",
+      "http_status": 200,
+      "body_sha256": "bffd9cb94cd437b85d5ddeec160b8d215e7d08326fcbabec7b402376789cc895",
+      "status": "body_fetched",
+      "text_char_count": 6178,
+      "title": "KT Zepp Yokohama | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/kt_zepp_yokohama",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/KT_ZeppYokohama",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "spotify_o_east",
+      "requested_url": "https://shibuya-o.com/east/",
+      "observed_at_utc": "2026-09-20T11:29:56.710434Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://shibuya-o.com/east/",
+      "http_status": 200,
+      "body_sha256": "f6ced18531301f6374633ca0794316790cf7855bb1be6632dca0624154d0f727",
+      "status": "body_fetched",
+      "text_char_count": 3013,
+      "title": "Spotify O-EAST（オーイースト）",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/Spotify_O_EAST",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/Spotify_O_WEST",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/shibuya_nest",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/spotify_o_crest",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/midnight_east",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nest.shibuya",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/o_spotify_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "line_cube_shibuya",
+      "requested_url": "https://linecubeshibuya.com/",
+      "observed_at_utc": "2026-09-20T11:29:57.956616Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://linecubeshibuya.com/",
+      "http_status": 200,
+      "body_sha256": "9c6a6a3a43b724af3fda4ff15bbfe1a0d4a7c078b238f5bfe45a0677411c5113",
+      "status": "body_fetched",
+      "text_char_count": 2352,
+      "title": "LINE CUBE SHIBUYA（渋谷公会堂）",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/line_cube",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/line_cube",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "zepp_shinjuku",
+      "requested_url": "https://www.zepp.co.jp/hall/shinjuku/",
+      "observed_at_utc": "2026-09-20T11:30:02.976010Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.zepp.co.jp/hall/shinjuku/",
+      "http_status": 200,
+      "body_sha256": "fcd20ff67961e80aa62d01cb40d50817d9a774a1627329c7dfda747e2eeeff3a",
+      "status": "body_fetched",
+      "text_char_count": 6631,
+      "title": "Zepp Shinjuku (TOKYO) | Zeppホールネットワーク | Zeppホールネットワーク",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/zepp_shinjuku_tokyo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zepphallnetwork",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/zeppshinjuku",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "bigcat",
+      "requested_url": "https://bigcat-live.com/",
+      "observed_at_utc": "2026-09-20T11:30:04.713031Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://bigcat-live.com/",
+      "http_status": 200,
+      "body_sha256": "363591c9ffab72379244306ef5305410571fee5598f96093b16a2b2e102dd34f",
+      "status": "body_fetched",
+      "text_char_count": 2698,
+      "title": "BIGCAT",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/bigcat_tweet",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/osaka_kizame",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/bigcat_insta",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Hisatomi1983",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/nanakoro_info",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/tenran_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/umekomachi_idol",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "gorilla_hall_osaka",
+      "requested_url": "https://gorillahall.jp/",
+      "observed_at_utc": "2026-09-20T11:30:06.253751Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://gorillahall.jp/",
+      "http_status": 200,
+      "body_sha256": "d25c56a161c63436a7c2df9c4d6561c3fc22a8dfa6a313c21f883879a1d30555",
+      "status": "body_fetched",
+      "text_char_count": 7677,
+      "title": "GORILLA HALL",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/GorillaHall_osk",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/gorilla_hall_osaka",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "club_citta",
+      "requested_url": "https://clubcitta.co.jp/",
+      "observed_at_utc": "2026-09-20T11:30:07.622805Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://clubcitta.co.jp/",
+      "http_status": 200,
+      "body_sha256": "2f47b151612388e891e77e1df9f11a75ff40947bc20cc5311e654bd187e2bed8",
+      "status": "body_fetched",
+      "text_char_count": 2776,
+      "title": "CLUB CITTA'（クラブチッタ） | 川崎駅東口から徒歩5分、1,300人収容の大型ライブホール",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/clubcitta_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/millington_japantour2026",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/CLUBCITTA_1988",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "shibuya_www_x",
+      "requested_url": "https://www-shibuya.jp/schedule/",
+      "observed_at_utc": "2026-09-20T11:30:11.493640Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www-shibuya.jp/schedule/",
+      "http_status": 200,
+      "body_sha256": "fc38a4467c3e819734513848fe9e5f8848c876b92451b7b79bac40c1a7901451",
+      "status": "body_fetched",
+      "text_char_count": 7294,
+      "title": "SCHEDULE | Shibuya WWW - WWW X",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/WWW_shibuya",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/www_shibuya",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "shibuya_www",
+      "requested_url": "https://www-shibuya.jp/schedule/",
+      "observed_at_utc": "2026-09-20T11:30:13.624596Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www-shibuya.jp/schedule/",
+      "http_status": 200,
+      "body_sha256": "fc38a4467c3e819734513848fe9e5f8848c876b92451b7b79bac40c1a7901451",
+      "status": "body_fetched",
+      "text_char_count": 7294,
+      "title": "SCHEDULE | Shibuya WWW - WWW X",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/WWW_shibuya",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/www_shibuya",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "chiba_look",
+      "requested_url": "https://www.chibalook.com/",
+      "observed_at_utc": "2026-09-20T11:30:18.272453Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "nagoya_club_quattro",
+      "requested_url": "https://www.club-quattro.com/nagoya/",
+      "observed_at_utc": "2026-09-20T11:30:19.205498Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.club-quattro.com/nagoya/",
+      "http_status": 200,
+      "body_sha256": "0c1a33598e37187a962a8307ba833735f79ae7454cc30f33c3c6f1cf7556e0ca",
+      "status": "body_fetched",
+      "text_char_count": 5192,
+      "title": "NAGOYA CLUB QUATTRO（名古屋クラブクアトロ）公式サイト",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/hiroshima_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/nagoya_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/quattrolabo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/shibuya_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/umeda_club_quattro",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/club_quattro_um",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_hi",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_nag",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/clubquattro_shi",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/quattrolabo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "tokyo_geijutsu_theatre_concert_hall",
+      "requested_url": "https://www.geigeki.jp/",
+      "observed_at_utc": "2026-09-20T11:30:20.068215Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.geigeki.jp/",
+      "http_status": 200,
+      "body_sha256": "603d5245d7e30c83a65fb0412dd50097eb7fb7072761407dfb40707bf79db78d",
+      "status": "body_fetched",
+      "text_char_count": 3484,
+      "title": "東京芸術劇場　｜　Tokyo Metropolitan Theatre",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/geigeki_info",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/geigeki_info",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "orix_theater",
+      "requested_url": "https://www.orixtheater.jp/",
+      "observed_at_utc": "2026-09-20T11:30:20.418377Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.orixtheater.jp/",
+      "http_status": 200,
+      "body_sha256": "08479351f138d20c262dceaf1a16a3b0adc7dfcd88c6f055ddd1b4ca81b5cfdd",
+      "status": "body_fetched",
+      "text_char_count": 552,
+      "title": "オリックス劇場　ORIX THEATER",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "sekisuiheim_super_arena",
+      "requested_url": "https://www.mspf.jp/grande21/arena/",
+      "observed_at_utc": "2026-09-20T11:30:29.212978Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "yokohama_minatomirai_hall",
+      "requested_url": "https://yokohama-minatomiraihall.jp/",
+      "observed_at_utc": "2026-09-20T11:30:29.563121Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://yokohama-minatomiraihall.jp/",
+      "http_status": 200,
+      "body_sha256": "865cfbdcd6685137ab81e6bf50773eb8858a9a80ab6abd90d0947f313c5ad9e3",
+      "status": "body_fetched",
+      "text_char_count": 2734,
+      "title": "横浜みなとみらいホール｜ときめく音楽を 海の見えるホールから",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/yokohamammh",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/yokohamammh",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "duo_music_exchange",
+      "requested_url": "https://duomusicexchange.com/",
+      "observed_at_utc": "2026-09-20T11:30:31.294124Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://duomusicexchange.com/",
+      "http_status": 200,
+      "body_sha256": "b26f9e9a7e7f41d370fec69f9014940fdfd376472b2ea94923a2d4401e8d51b2",
+      "status": "body_fetched",
+      "text_char_count": 1688,
+      "title": "duo MUSIC EXCHANGE オフィシャルサイト｜東京・渋谷",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/shibuya_duo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/dmxweb.jp",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "shimokitazawa_shelter",
+      "requested_url": "https://www.loft-prj.co.jp/SHELTER/",
+      "observed_at_utc": "2026-09-20T11:30:31.644262Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.loft-prj.co.jp/SHELTER/",
+      "http_status": 200,
+      "body_sha256": "0e027b31bf36587bd4aa3a7088f9c1f06c2c54eeca68676fe9fd2a3b4c7afc53",
+      "status": "body_unread",
+      "text_char_count": 37,
+      "title": "下北沢SHELTER｜音楽の街下北沢にあるライブハウス「下北沢シェルター」",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "aichi_sky_expo",
+      "requested_url": "https://www.aichiskyexpo.com/",
+      "observed_at_utc": "2026-09-20T11:30:39.811488Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.aichiskyexpo.com/",
+      "http_status": 200,
+      "body_sha256": "5ea794b0ce93874790c0efaa8fdb539fce97005023826878aaf0b26195cd9958",
+      "status": "body_fetched",
+      "text_char_count": 4146,
+      "title": "愛知県国際展示場 - AichiSkyExpo（愛知県国際展示場）",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/aichi_sky_expo_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Aichi_Sky_Expo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "toki_messe",
+      "requested_url": "https://www.tokimesse.com/",
+      "observed_at_utc": "2026-09-20T11:30:40.161627Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.tokimesse.com/",
+      "http_status": 200,
+      "body_sha256": "9a0dc8b091339b841230129a46a51e2d2b46759f09c0fdce3ca8735d3f35f1ba",
+      "status": "body_fetched",
+      "text_char_count": 1662,
+      "title": "朱鷺メッセ 新潟コンベンションセンター",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/tokimesse_niigata",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/tokimesse",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "fukuoka_sunpalace",
+      "requested_url": "https://www.f-sunpalace.com/hall/",
+      "observed_at_utc": "2026-09-20T11:30:40.514322Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.f-sunpalace.com/hall/",
+      "http_status": 200,
+      "body_sha256": "33c4f475153dfd8ff5f3201ccc45c7bd5f6a30d4160ab658b2662966487c068b",
+      "status": "body_fetched",
+      "text_char_count": 3528,
+      "title": "コンサートホール | 福岡サンパレス ホテル＆ホール",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "nihonbashi_mitsui_hall",
+      "requested_url": "https://nihonbashi-hall.jp/",
+      "observed_at_utc": "2026-09-20T11:30:40.861634Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "asakusa_kagekijo",
+      "requested_url": "https://www.hanayashiki.net/events/kagekijo/",
+      "observed_at_utc": "2026-09-20T11:30:49.823358Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "edogawa_cultural_center_hall",
+      "requested_url": "https://edogawa-bunkacenter.jp/",
+      "observed_at_utc": "2026-09-20T11:30:50.380406Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://edogawa-bunkacenter.jp/",
+      "http_status": 200,
+      "body_sha256": "e964f8492d4d76f5297e1026d9fd84c5fa965e5fe0cee88c57483a14df5f8a10",
+      "status": "body_fetched",
+      "text_char_count": 2614,
+      "title": "江戸川区総合文化センター",
+      "linked_social_accounts": [
+        {
+          "url": "https://x.com/edogawa_bunce",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "makomanai_open_stadium",
+      "requested_url": "https://www.sorachi.pref.hokkaido.lg.jp/kk/skk/gaiyou/jigyou/makomana.html",
+      "observed_at_utc": "2026-09-20T11:30:50.730551Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "escon_field_hokkaido",
+      "requested_url": "https://www.hkdballpark.com/about/esconfield/",
+      "observed_at_utc": "2026-09-20T11:30:51.192861Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.hkdballpark.com/about/esconfield/",
+      "http_status": 200,
+      "body_sha256": "b5465b447f8078682667897f2f5387f7a7bb79d7aef08ac1990e82c37ceb01f1",
+      "status": "body_fetched",
+      "text_char_count": 1540,
+      "title": "ABOUT ES CON FIELD | F VILLAGEとは | HOKKAIDO BALLPARK F VILLAGE | 北海道ボールパークFビレッジ",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/FVillagePR",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/fvillage_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Ftan_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "hokkai_kitayell",
+      "requested_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+      "observed_at_utc": "2026-09-20T11:30:58.085002Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kitayell.jp/facilities/sports/main-arena/",
+      "http_status": 200,
+      "body_sha256": "8882e48cd8147f82901397ebc7f5677753d6e0127cd1d77a676062d6e95ed058",
+      "status": "body_fetched",
+      "text_char_count": 2661,
+      "title": "メインアリーナ ｜ 北海道立総合体育センター 北海きたえーる",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/hokkaidosportassociation",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "hitaru",
+      "requested_url": "https://www.sapporo-community-plaza.jp/theater_seat.html",
+      "observed_at_utc": "2026-09-20T11:30:58.686662Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.sapporo-community-plaza.jp/theater_seat.html",
+      "http_status": 200,
+      "body_sha256": "dcfcf85b89e4ae267f64f3c36611e010456cc284f2d4c536deb42f63b0a2e92d",
+      "status": "body_fetched",
+      "text_char_count": 2395,
+      "title": "札幌文化芸術劇場 hitaru 座席表 | 施設利用について | 札幌市民交流プラザ",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/SapporoSCARTS",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/infolibrary",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/sapporo.community.plaza",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/sapporoculturalartstheater",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/SapporoSCARTS",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Sapporocomplaza",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/theater_hitaru",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "kanamoto_hall",
+      "requested_url": "https://www.sapporo-shiminhall.org/hall/",
+      "observed_at_utc": "2026-09-20T11:30:59.036778Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.sapporo-shiminhall.org/hall/",
+      "http_status": 200,
+      "body_sha256": "543ebcb947d666fc9afae4436228e466e24276ea4b605eaa942f6258bd50b7fe",
+      "status": "body_fetched",
+      "text_char_count": 731,
+      "title": "ホール紹介 | カナモトホール（札幌市民ホール）",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/spr_shiminhall",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "omiya_sonic_city",
+      "requested_url": "https://www.sonic-city.or.jp/visitors/hall.html",
+      "observed_at_utc": "2026-09-20T11:31:01.290093Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.sonic-city.or.jp/visitors/hall.html",
+      "http_status": 200,
+      "body_sha256": "a62cad1f2d7b4830ed74e72e8a71759209911997e4c850a7779a857d9c7f0a59",
+      "status": "body_fetched",
+      "text_char_count": 1108,
+      "title": "大ホール",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "fukuda_denshi_arena",
+      "requested_url": "https://sogasportspark.com/pages/74/",
+      "observed_at_utc": "2026-09-20T11:31:07.432427Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://sogasportspark.com/pages/74/",
+      "http_status": 200,
+      "body_sha256": "72dc7cc3491c47e8362674cb915d46d872108aecb8bf787af213cbdc87549045",
+      "status": "body_fetched",
+      "text_char_count": 2957,
+      "title": "施設概要｜千葉市蘇我スポーツ公園｜フクダ電子アリーナ｜フクダ電子スクエア｜フクダ電子ヒルスコート｜フクダ電子グラウンド｜フクダ電子スタジアム｜フクダ電子フィールド",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/boardarea",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/hillscourtsoga",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/sogaarena1",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://twitter.com/squaresoga",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "chiba_port_arena",
+      "requested_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+      "observed_at_utc": "2026-09-20T11:31:08.377516Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://chibacity.spo-sin.or.jp/shisetu/arena-top/arena-main/",
+      "http_status": 200,
+      "body_sha256": "4d197b3e694aaf48bf2632d55e2ab94ee49e4c0b71a195c1edafc95119538ad0",
+      "status": "body_fetched",
+      "text_char_count": 1956,
+      "title": "千葉ポートアリーナ・メインアリーナ – 公益財団法人千葉市スポーツ協会",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "funabashi_arena",
+      "requested_url": "https://www.funabashi-arena.com/mainarena/",
+      "observed_at_utc": "2026-09-20T11:31:08.866352Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.funabashi-arena.com/mainarena/",
+      "http_status": 200,
+      "body_sha256": "00f16a5e9539dabe84995a32b17a1d9bf9ff0404343bdf8889fe30fa7f271474",
+      "status": "body_fetched",
+      "text_char_count": 3081,
+      "title": "メインアリーナ - 船橋アリーナ",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "national_stadium",
+      "requested_url": "https://www.jpnsport.go.jp/kokuritu/tabid/439/Default.aspx",
+      "observed_at_utc": "2026-09-20T11:31:10.290745Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.jpnsport.go.jp/kokuritu/tabid/439/Default.aspx",
+      "http_status": 200,
+      "body_sha256": "36a4fc017a454446a536dd72d35e28385bcfb544cc22b87334606cb307a3da9b",
+      "status": "body_fetched",
+      "text_char_count": 2351,
+      "title": "施設概要",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "ryogoku_kokugikan",
+      "requested_url": "https://www.sumo.or.jp/KokugikanInfo/about/",
+      "observed_at_utc": "2026-09-20T11:31:17.108555Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "tokyo_metropolitan_gymnasium",
+      "requested_url": "https://www.tef.or.jp/tmg/access.html",
+      "observed_at_utc": "2026-09-20T11:31:18.718983Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.tef.or.jp/tmg/access.html",
+      "http_status": 200,
+      "body_sha256": "2d7577d3de8e990ae3201653768bd9800183f74f9c9c3f89885130696157ff0b",
+      "status": "body_fetched",
+      "text_char_count": 1950,
+      "title": "交通アクセス | 東京体育館 | 公益財団法人 東京都スポーツ文化事業団",
+      "linked_social_accounts": [
+        {
+          "url": "https://x.com/tokyo_gymnasium",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "yokohama_stadium",
+      "requested_url": "https://www.yokohama-stadium.co.jp/about/",
+      "observed_at_utc": "2026-09-20T11:31:19.069109Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.yokohama-stadium.co.jp/about/",
+      "http_status": 200,
+      "body_sha256": "d5378a22c73636644e0cb140bfbc36aedab8dbc4f7ae5d53bb4192cd80bf0a40",
+      "status": "body_unread",
+      "text_char_count": 7,
+      "title": "横浜スタジアム",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "nippatsu_mitsuzawa_stadium",
+      "requested_url": "https://www.f-marinos.com/stadium_nippatsu",
+      "observed_at_utc": "2026-09-20T11:31:19.419093Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.f-marinos.com/stadium_nippatsu",
+      "http_status": 200,
+      "body_sha256": "f1c34e3cd3c714d281bc4bae05e0e0a94e4d61aa392ee0db79dfaea4dcfe589a",
+      "status": "body_fetched",
+      "text_char_count": 3751,
+      "title": "ニッパツ三ツ沢球技場 | スタジアム | 横浜F・マリノス 公式サイト",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/prompt_fmarinos",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/yokohamaf.marinos",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "pacifico_yokohama_national_hall",
+      "requested_url": "https://business.yokohamajapan.com/mice/ja/plan/venues/detail/?venue_id=612",
+      "observed_at_utc": "2026-09-20T11:31:27.614994Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://business.yokohamajapan.com/mice/ja/plan/venues/detail/?venue_id=612",
+      "http_status": 200,
+      "body_sha256": "32903dbfd419d79c1b3403544436514a8a6be300dc4e45087320d726f13a0205",
+      "status": "body_fetched",
+      "text_char_count": 1526,
+      "title": "パシフィコ横浜 国立大ホール(国立横浜国際会議場) | 横浜市観光協会",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/hamako_yokohama",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/yokohama_visitors_guide",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "yokohama_buntai",
+      "requested_url": "https://yokohama-buntai.jp/facility/",
+      "observed_at_utc": "2026-09-20T11:31:28.559594Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://yokohama-buntai.jp/facility/",
+      "http_status": 200,
+      "body_sha256": "d024e377cd76484d847bae7f7805a57565fa989df4a0750ebc6fc5cf8f78fdc4",
+      "status": "body_fetched",
+      "text_char_count": 1688,
+      "title": "施設案内 - 横浜BUNTAI",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "kanagawa_kenmin_hall",
+      "requested_url": "https://www.kanagawa-kenminhall.com/",
+      "observed_at_utc": "2026-09-20T11:31:29.136577Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kanagawa-kenminhall.com/",
+      "http_status": 200,
+      "body_sha256": "89706072a713f4812231620e232809ace59846fbbaa497885fa55046247c0a03",
+      "status": "body_fetched",
+      "text_char_count": 3560,
+      "title": "神奈川県立県民ホール",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/OrganKenminhall",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kanagawa_kenminhall_gallery",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kanagawa_kenminhall_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/Gallery_KanaKen",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "toyota_stadium",
+      "requested_url": "https://www.toyota-stadium.co.jp/facility03/",
+      "observed_at_utc": "2026-09-20T11:31:29.889276Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.toyota-stadium.co.jp/facility03/",
+      "http_status": 200,
+      "body_sha256": "02e9fd8853b3e370f37de289007da984accf39c574d9123db3b81cc4c8180837",
+      "status": "body_fetched",
+      "text_char_count": 2439,
+      "title": "豊田スタジアム施設概要 │ TOYOTA STADIUM │ 豊田スタジアム",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/ToyotaStadiumJP",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "nihon_gaishi_hall",
+      "requested_url": "https://aichi-sc.jp/facility/nespahall/",
+      "observed_at_utc": "2026-09-20T11:31:37.472280Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://aichi-sc.jp/facility/nespahall/",
+      "http_status": 200,
+      "body_sha256": "7cea8a6bba3a92d9e400dfe868687ee2dac531a191b32148252466c20d7680c9",
+      "status": "body_fetched",
+      "text_char_count": 2446,
+      "title": "クロコくんホール | あいちスポーツコミッション",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "nagoya_congress_center_century_hall",
+      "requested_url": "https://www.nagoya-congress-center.jp/wp-content/uploads/2018/02/century_zaseki.pdf",
+      "observed_at_utc": "2026-09-20T11:31:38.216911Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.nagoya-congress-center.jp/wp-content/uploads/2018/02/century_zaseki.pdf",
+      "http_status": 200,
+      "body_sha256": "f29a29e20e82426b3777389fe12104f6d50ce3d18a85f0ddb2d22003e6b427eb",
+      "status": "body_unread",
+      "reason": "PDF requires separate rendering/reading"
+    },
+    {
+      "venue_id": "panasonic_stadium_suita",
+      "requested_url": "https://suitacityfootballstadium.jp/",
+      "observed_at_utc": "2026-09-20T11:31:38.567026Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://suitacityfootballstadium.jp/",
+      "http_status": 200,
+      "body_sha256": "17d3cab6349a555454b712506dfdc1f122f793cddb771368c5e8b1868a3ff0d5",
+      "status": "body_fetched",
+      "text_char_count": 1939,
+      "title": "Panasonic Stadium Suita（パナソニック スタジアム 吹田）",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "edion_arena_osaka",
+      "requested_url": "https://www.furitutaiikukaikan.ne.jp/",
+      "observed_at_utc": "2026-09-20T11:31:39.896141Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.furitutaiikukaikan.ne.jp/",
+      "http_status": 200,
+      "body_sha256": "233baa21fa76595d5589b27c652e1d6632f3ff11c18a7c430c4e45b4eca9043d",
+      "status": "body_fetched",
+      "text_char_count": 3479,
+      "title": "大阪府立体育会館 エディオンアリーナ大阪",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/osaka.furitsutaiikukaikan",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "best_denki_stadium",
+      "requested_url": "https://www.jleague.jp/club/fukuoka/stadium/",
+      "observed_at_utc": "2026-09-20T11:31:47.653372Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.jleague.jp/club/fukuoka/profile/",
+      "http_status": 200,
+      "body_sha256": "fb52b6650517f8e378088447ae5506770dd0095221e9ee3b21b5b8af27059524",
+      "status": "body_fetched",
+      "text_char_count": 3794,
+      "title": "【公式】アビスパ福岡の試合日程・結果 | Ｊリーグ公式サイト",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/jleaguejp",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/J_League",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "kitakyushu_media_dome",
+      "requested_url": "https://www.mediadome.jp/about.html",
+      "observed_at_utc": "2026-09-20T11:31:52.087899Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.mediadome.jp/about.html",
+      "http_status": 200,
+      "body_sha256": "82f191ffc0f0bbc41b5883afef08b5a6a04adc441008fdd02b183d55536a9133",
+      "status": "body_fetched",
+      "text_char_count": 699,
+      "title": "北九州メディアドームについて | 北九州メディアドーム",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/media_dome",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "fukuoka_kokusai_center",
+      "requested_url": "https://www.marinemesse.or.jp/kokusai/organizer/outline/",
+      "observed_at_utc": "2026-09-20T11:31:52.438021Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "status": "fetch_failed",
+      "reason": "HTTPError"
+    },
+    {
+      "venue_id": "koshien_stadium",
+      "requested_url": "https://koshien.hanshin.co.jp/stadium_guide/seat.html",
+      "observed_at_utc": "2026-09-20T11:31:53.195218Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://koshien.hanshin.co.jp/stadium_guide/seat.html",
+      "http_status": 200,
+      "body_sha256": "7ab146318246e38750828f9368ee3469bc598c3237ecb5e326b5e3b17b7acd00",
+      "status": "body_fetched",
+      "text_char_count": 1485,
+      "title": "施設概要 | 球場紹介・サービスガイド | 阪神甲子園球場",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/enjoy_koshien",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/enjoy_koshien",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/enjoy_koshien",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "noevir_stadium_kobe",
+      "requested_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+      "observed_at_utc": "2026-09-20T11:31:58.309752Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/",
+      "http_status": 200,
+      "body_sha256": "5c5151d5a858cff1139b785d002d29e17c231b7000ed50bc2393ea4c491286fe",
+      "status": "body_fetched",
+      "text_char_count": 1143,
+      "title": "神戸コンベンションビューローMICEサイト",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "universiade_memorial_stadium",
+      "requested_url": "https://www.kobe-park.or.jp/sougou/facilities/memorialstadium/",
+      "observed_at_utc": "2026-09-20T11:32:00.332929Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kobe-park.or.jp/sougou/facilities/memorialstadium/",
+      "http_status": 200,
+      "body_sha256": "c6336b306d5819dd9781e02462ef44d02ca29628a5af57e5c616d0aeec731c0e",
+      "status": "body_fetched",
+      "text_char_count": 2618,
+      "title": "ユニバー記念競技場 – 神戸総合運動公園 -KOBE SPORTS PARK- web site",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/kobesportspark",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kobesportspark",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "glion_arena_kobe",
+      "requested_url": "https://www.totteikobe.jp/",
+      "observed_at_utc": "2026-09-20T11:32:01.910931Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.totteikobe.jp/",
+      "http_status": 200,
+      "body_sha256": "24d7ba4ab59a60cea1eb50d8590149727c607a08a439d3886e89fdc925647125",
+      "status": "body_fetched",
+      "text_char_count": 2131,
+      "title": "TOTTEI | GLION ARENA KOBE",
+      "linked_social_accounts": [
+        {
+          "url": "https://www.instagram.com/tottei_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://x.com/tottei_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "world_kinen_hall",
+      "requested_url": "https://www.kobe-spokyo.jp/worldsp-kobe/about/gaiyou",
+      "observed_at_utc": "2026-09-20T11:32:02.261099Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kobe-spokyo.jp/worldsp-kobe/about/gaiyou",
+      "http_status": 200,
+      "body_sha256": "608b87a47337432e4778b9986a0967bdbedc8a1e009a3112586e273e0a2f88ae",
+      "status": "body_fetched",
+      "text_char_count": 1026,
+      "title": "施設概要 | 施設案内 | ワールド記念ホール（主催者様）",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "kobe_kokusai_hall",
+      "requested_url": "https://www.kih.co.jp/kokusaihall/",
+      "observed_at_utc": "2026-09-20T11:32:08.536820Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kih.co.jp/kokusaihall/",
+      "http_status": 200,
+      "body_sha256": "3aeedd10ac03bb5f58105f9d5a0bf1a77ee6b3759bcd0723a6eb2586361f5f44",
+      "status": "body_fetched",
+      "text_char_count": 1062,
+      "title": "こくさいホールオフィシャルホームページ",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/KobeKokusaiHall",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kobekokusaihall",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "hyogo_pac_kobelco_hall",
+      "requested_url": "https://lp.p.pia.jp/venue/classic/28/307/981/103281/index.html",
+      "observed_at_utc": "2026-09-20T11:32:10.132919Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://lp.p.pia.jp/venue/classic/28/307/981/103281/index.html",
+      "http_status": 200,
+      "body_sha256": "cee83213c781331fcd15e8fa7855cbd5af593022a9bf0806be5cd614181601cf",
+      "status": "body_fetched",
+      "text_char_count": 544,
+      "title": "兵庫県立芸術文化センター KOBELCO 大ホール",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/gcenter_hyogo",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "kobe_bunka_hall_large_hall",
+      "requested_url": "https://www.kobe-bunka.jp/hall/about_hall/575/",
+      "observed_at_utc": "2026-09-20T11:32:10.483007Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.kobe-bunka.jp/hall/about_hall/575/",
+      "http_status": 200,
+      "body_sha256": "e9f1cb0304a4f41d8091ab8ab9edf5b82cc758865cce839b61e7e2cd09244cdc",
+      "status": "body_fetched",
+      "text_char_count": 803,
+      "title": "大ホール | 神戸文化ホール",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/KBH422",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/kobe_bunka_hall",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    },
+    {
+      "venue_id": "acrie_himeji",
+      "requested_url": "https://www.city.himeji.lg.jp/kanko/0000006638.html",
+      "observed_at_utc": "2026-09-20T11:32:10.833044Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.city.himeji.lg.jp/kanko/0000006638.html",
+      "http_status": 200,
+      "body_sha256": "47f080717af6aa05a9794b77d640e350debca48f8e7b4d5acb009fcc81e225e5",
+      "status": "body_fetched",
+      "text_char_count": 5073,
+      "title": "アクリエひめじ（姫路市文化コンベンションセンター） | 姫路市",
+      "linked_social_accounts": []
+    },
+    {
+      "venue_id": "amashin_arcaic_hall",
+      "requested_url": "https://www.archaic.or.jp/",
+      "observed_at_utc": "2026-09-20T11:32:18.041055Z",
+      "schedule_extent_status": "not_verified",
+      "official_identity_status": "requires_operator_review",
+      "last_successful_schedule_check": null,
+      "final_url": "https://www.archaic.or.jp/",
+      "http_status": 200,
+      "body_sha256": "c65bfde8f00f6d062f0315c5b00f140516ccbb061942e9cae2a4c01a0123c0ee",
+      "status": "body_fetched",
+      "text_char_count": 1971,
+      "title": "尼崎市総合文化センター",
+      "linked_social_accounts": [
+        {
+          "url": "https://twitter.com/ARChall_info",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        },
+        {
+          "url": "https://www.instagram.com/archall_official",
+          "identity_status": "linked_from_page_subject_not_reviewed",
+          "post_fetch_status": "not_attempted"
+        }
+      ]
+    }
+  ]
+}

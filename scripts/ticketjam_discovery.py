@@ -291,11 +291,25 @@ def build_discovery_bundle(
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     """Keep discovery records out of authoritative grouping and displayed values."""
     from .build_lp_events import assemble_lp_payload
-    from .ticketjam_review_state import fingerprint
+    from .ticketjam_review_state import fingerprint, matches_official_suppression, matches_official_correction
+    from .event_corrections import apply_corrections
 
     state = review_state or {"schema_version": 1, "events": {}}
     if state.get("schema_version") != 1:
         raise ValueError("unsupported review state schema")
+    records = apply_corrections(records, state)
+    # Correction notices must survive the loader's date window to retire old rows.
+    # Their own expired performance must still stay outside the public window.
+    if not include_past:
+        from datetime import timedelta
+        from .build_lp_events import today_jst
+
+        cutoff = ((as_of_date or today_jst()) - timedelta(days=past_days)).isoformat()
+        records = [
+            r for r in records
+            if not r.get("date_time_correction")
+            or (r.get("event_end_date") or r["event_date"]) >= cutoff
+        ]
     from .signals.entity_aliases import load_venue_prefecture_map
     from .events.types import JAPAN_PREFECTURES
 
@@ -313,6 +327,8 @@ def build_discovery_bundle(
             row["source_id"] == "venue_web_discovery"
             and review
             and review[-1]["status"] in {"conflict", "ancillary"}
+            and not matches_official_suppression(row, state["events"][origin])
+            and not matches_official_correction(row, state["events"][origin])
         ):
             held.append(
                 {

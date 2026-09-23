@@ -15,7 +15,7 @@ mufg_stadium,味の素スタジアム,"[""東京スタジアム"", ""Ajinomoto S
 tdc_hall,TOKYO DOME CITY HALL,"[""Kanadevia Hall（旧TOKYO DOME CITY HALL）"", ""TDC Hall"", ""東京ドームシティホール"", ""カナデビアホール"", ""Kanadevia Hall""]",manual,2026-03-08,1
 yoyogi_gymnasium,国立代々木競技場第一体育館,"[""国立代々木競技場 第一体育館"", ""代々木第一体育館"", ""Yoyogi National Gymnasium 1st Gym""]",manual,2026-03-08,1
 lalaarena_tokyobay,ららアリーナ 東京ベイ,"[""ららアリーナ東京ベイ"", ""LaLa arena TOKYO-BAY"", ""LaLaアリーナ"", ""LaLa arena""]",manual,2026-03-08,1
-ecopa_arena,エコパアリーナ,"[""エコパアリーナ"",""小笠山総合運動公園エコパアリーナ""]",manual,2026-03-06,1
+ecopa_arena,エコパアリーナ,"[""エコパアリーナ"", ""小笠山総合運動公園エコパアリーナ"", ""静岡アリーナ"", ""ECOPA ARENA"", ""静岡エコパアリーナ""]",manual,2026-09-21,1
 makomanai_sekisuiheim_ice_arena,真駒内セキスイハイムアイスアリーナ,"[""真駒内アイスアリーナ"", ""真駒内屋内競技場"", ""Makomanai Sekisui Heim Ice Arena""]",manual,2026-03-08,1
 anabuki_arena_kagawa,あなぶきアリーナ香川,"[""あなぶきアリーナ香川""]",manual,2026-03-06,1
 ig_arena,IGアリーナ,"[""IG ARENA"", ""IG Arena"", ""愛知国際アリーナ""]",manual,2026-03-18,1
@@ -54,7 +54,7 @@ yokohama_minatomirai_hall,横浜みなとみらいホール,"[""横浜みなと�
 duo_music_exchange,duo MUSIC EXCHANGE,"[""duo MUSIC EXCHANGE""]",manual,2026-03-06,1
 shimokitazawa_shelter,下北沢 SHELTER,"[""下北沢 SHELTER""]",manual,2026-03-06,1
 aichi_sky_expo,愛知県国際展示場（AICHI SKY EXPO）,"[""愛知県国際展示場（AICHI SKY EXPO）"",""Aichi Sky Expo（愛知県国際展示場）Aホール""]",manual,2026-03-06,1
-toki_messe,朱鷺メッセ 新潟コンベンションセンター,"[""朱鷺メッセ 新潟コンベンションセンター""]",manual,2026-03-06,1
+toki_messe,朱鷺メッセ 新潟コンベンションセンター,"[""朱鷺メッセ 新潟コンベンションセンター"", ""朱鷺メッセ・新潟コンベンションセンター"", ""朱鷺メッセ：新潟コンベンションセンター""]",manual,2026-09-22,1
 fukuoka_sunpalace,福岡サンパレス,"[""Fukuoka Sunpalace"", ""福岡サンパレス コンサートホール""]",manual,2026-03-08,1
 nihonbashi_mitsui_hall,日本橋三井ホール,"[""日本橋三井ホール"",""日本橋三井ホール（東京都中央区日本橋室町2丁目2−1）""]",manual,2026-03-06,1
 asakusa_kagekijo,浅草花劇場,"[""浅草花劇場"",""浅草花劇場（東京）""]",manual,2026-03-06,1
@@ -91,7 +91,7 @@ yokohama_buntai,横浜BUNTAI,"[""Yokohama BUNTAI"", ""横浜文化体育館（�
 kanagawa_kenmin_hall,神奈川県民ホール 大ホール,"[""県民ホール"", ""Kanagawa Kenmin Hall"", ""神奈川県立県民ホール"", ""神奈川県民ホール""]",manual,2026-03-08,1
 vantelin_dome_nagoya,バンテリンドームナゴヤ,"[""ナゴヤドーム"", ""Nagoya Dome"", ""Vantelin Dome Nagoya"", ""バンテリンドーム ナゴヤ""]",manual,2026-03-08,1
 toyota_stadium,豊田スタジアム,"[""TOYOTA STADIUM"", ""豊スタ"", ""トヨタスタジアム""]",manual,2026-03-08,1
-nihon_gaishi_hall,日本ガイシホール,"[""ガイシホール"", ""Nihon Gaishi Hall""]",manual,2026-03-08,1
+nihon_gaishi_hall,日本ガイシホール,"[""ガイシホール"", ""Nihon Gaishi Hall"", ""クロコくんホール"", ""クロコくんホール（旧日本ガイシホール）"", ""クロコくんホール (旧日本ガイシホール)""]",manual,2026-09-22,1
 nagoya_congress_center_century_hall,名古屋国際会議場 センチュリーホール,"[""センチュリーホール"", ""Nagoya Congress Center Century Hall"", ""名古屋国際会議場""]",manual,2026-03-08,1
 kyocera_dome_osaka,京セラドーム大阪,"[""大阪ドーム"", ""KYOCERA DOME OSAKA"", ""京セラD"", ""京セラドーム"", ""〇大阪/京セラドーム""]",manual,2026-03-18,1
 panasonic_stadium_suita,Panasonic Stadium Suita,"[""パナスタ"", ""市立吹田サッカースタジアム"", ""パナソニックスタジアム吹田"", ""パナソニック スタジアム 吹田""]",manual,2026-03-08,1
@@ -106,10 +106,113 @@ koshien_stadium,阪神甲子園球場,"[""甲子園球場"", ""Koshien Stadium""
 noevir_stadium_kobe,ノエビアスタジアム神戸,"[""御崎公園球技場"", ""Noevir Stadium Kobe""]",manual,2026-03-08,1
 universiade_memorial_stadium,神戸総合運動公園ユニバー記念競技場,"[""神戸ユニバー記念競技場"", ""Universiade Memorial Stadium""]",manual,2026-03-08,1
 glion_arena_kobe,GLION ARENA KOBE,"[""ジーライオンアリーナ神戸"", ""神戸アリーナ"", ""GLIONアリーナ神戸""]",manual,2026-03-08,1
-sundome_fukui,サンドーム福井,"[""サンドーム福井""]",manual,2026-03-18,1
+sundome_fukui,サンドーム福井,"[""サンドーム福井"", ""サンドーム福井 イベントホール"", ""福井県産業振興施設 イベントホール""]",manual,2026-09-21,1
 world_kinen_hall,ワールド記念ホール（神戸ポートアイランドホール）,"[""ワールド記念ホール"", ""神戸ポートアイランドホール""]",manual,2026-03-08,1
 kobe_kokusai_hall,神戸国際会館 こくさいホール,"[""神戸国際会館こくさいホール"", ""神戸国際会館""]",manual,2026-03-08,1
 hyogo_pac_kobelco_hall,兵庫県立芸術文化センター KOBELCO 大ホール,"[""KOBELCO大ホール"", ""兵庫県立芸術文化センター 大ホール""]",manual,2026-03-08,1
 kobe_bunka_hall_large_hall,神戸文化ホール 大ホール,"[""神戸文化ホール"", ""Kobe Bunka Hall Large Hall""]",manual,2026-03-08,1
 acrie_himeji,アクリエひめじ 大ホール,"[""アクリエひめじ"", ""姫路市文化コンベンションセンター 大ホール""]",manual,2026-03-08,1
 amashin_arcaic_hall,あましんアルカイックホール（尼崎市総合文化センター）,"[""あましんアルカイックホール"", ""尼崎市総合文化センター""]",manual,2026-03-08,1
+hiroshima_green_arena,広島グリーンアリーナ,"[""広島県立総合体育館 大アリーナ""]",manual,2026-09-21,1
+ecopa_stadium,エコパスタジアム,"[""静岡スタジアム"", ""ECOPA STADIUM""]",manual,2026-09-21,1
+toyota_arena_tokyo,TOYOTA ARENA TOKYO,"[""トヨタアリーナ東京""]",operator_review,2026-09-22,1
+saga_arena,SAGAアリーナ,[],operator_review,2026-09-22,1
+saga_stadium,SAGAスタジアム,"[""SAGAスタジアム（陸上競技場）""]",operator_review,2026-09-22,1
+happiness_arena,HAPPINESS ARENA,"[""ハピネスアリーナ"", ""長崎スタジアムシティ HAPPINESS ARENA""]",operator_review,2026-09-22,1
+peace_stadium_nagasaki,PEACE STADIUM Connected by SoftBank,"[""PEACE STADIUM"", ""ピーススタジアム""]",operator_review,2026-09-22,1
+wakayama_big_whale,和歌山ビッグホエール,"[""多目的ホール・和歌山ビッグホエール""]",operator_review,2026-09-22,1
+okinawa_arena,沖縄サントリーアリーナ,"[""沖縄アリーナ""]",operator_review,2026-09-22,1
+portmesse_nagoya_hall1,ポートメッセなごや 第1展示館,"[""名古屋市国際展示場 第1展示館""]",operator_review,2026-09-22,1
+nipro_hachiko_dome,ニプロハチ公ドーム,"[""大館樹海ドーム""]",operator_review,2026-09-22,1
+big_hat,ビッグハット,"[""長野市若里多目的スポーツアリーナ""]",operator_review,2026-09-22,1
+m_wave,エムウェーブ,"[""長野市オリンピック記念アリーナ""]",operator_review,2026-09-22,1
+asty_tokushima,アスティとくしま,"[""徳島県立産業観光交流センター""]",operator_review,2026-09-22,1
+ehime_budokan,愛媛県武道館,[],operator_review,2026-09-22,1
+grandmesse_kumamoto,グランメッセ熊本,"[""熊本産業展示場""]",operator_review,2026-09-22,1
+shiga_daihatsu_arena,滋賀ダイハツアリーナ,[],operator_review,2026-09-22,1
+aomori_super_arena,カクヒログループスーパーアリーナ,"[""青森市総合体育館""]",operator_review,2026-09-22,1
+morioka_takaya_arena,盛岡タカヤアリーナ,"[""盛岡市総合アリーナ""]",operator_review,2026-09-22,1
+nd_soft_stadium_yamagata,NDソフトスタジアム山形,[],operator_review,2026-09-22,1
+horaiya_bonds_arena,宝来屋ボンズアリーナ,"[""宝来屋 ボンズアリーナ"", ""郡山総合体育館""]",operator_review,2026-09-22,1
+adastria_mito_arena,アダストリアみとアリーナ,[],operator_review,2026-09-22,1
+kanseki_stadium_tochigi,カンセキスタジアムとちぎ,[],operator_review,2026-09-22,1
+open_house_arena_ota,オープンハウスアリーナ太田,"[""OPEN HOUSE ARENA OTA""]",operator_review,2026-09-22,1
+toyama_athletics_stadium,富山県総合運動公園陸上競技場,"[""富山県陸上競技場""]",operator_review,2026-09-22,1
+ishikawa_sports_center,いしかわ総合スポーツセンター,[],operator_review,2026-09-22,1
+jit_recycle_ink_stadium,JITリサイクルインクスタジアム,"[""JIT リサイクルインク スタジアム"", ""小瀬スポーツ公園陸上競技場""]",operator_review,2026-09-22,1
+himalaya_stadium_gifu,ヒマラヤスタジアム岐阜,"[""岐阜メモリアルセンター陸上競技場"", ""長良川競技場"", ""岐阜メモリアルセンターヒマラヤスタジアム岐阜""]",operator_review,2026-09-22,1
+mie_sun_arena,三重県営サンアリーナ,"[""サンアリーナ""]",operator_review,2026-09-22,1
+sanga_stadium_kyocera,サンガスタジアム by KYOCERA,"[""京都府立京都スタジアム""]",operator_review,2026-09-22,1
+rohto_arena_nara,ロートアリーナ奈良,"[""奈良市中央体育館""]",operator_review,2026-09-22,1
+axis_bird_stadium,Axisバードスタジアム,"[""鳥取市営サッカー場""]",operator_review,2026-09-22,1
+matsue_general_gymnasium,バンダイナムコアリーナ松江,"[""松江市総合体育館"", ""バンダイナムコ アリーナ 松江"", ""Bandai Namco Arena Matsue""]",operator_review,2026-09-22,1
+jfe_harenokuni_stadium,JFE晴れの国スタジアム,"[""岡山県総合グラウンド陸上競技場""]",operator_review,2026-09-22,1
+ishin_mirai_stadium,維新みらいふスタジアム,[],operator_review,2026-09-22,1
+giken_stadium,GIKENスタジアム,[],government_review,2026-09-22,1
+crasus_dome_oita,クラサスドーム大分,[],operator_review,2026-09-22,1
+ichigo_miyazaki_shintomi_stadium,いちご宮崎新富サッカー場,[],operator_review,2026-09-22,1
+nishihara_shokai_arena,西原商会アリーナ,"[""鹿児島アリーナ""]",operator_review,2026-09-22,1
+jingu_stadium,明治神宮野球場,"[""神宮球場""]",https://www.jingu-stadium.com/about_kyujo/equipment/equipment.html,2026-09-22,1
+edion_peace_wing_hiroshima,エディオンピースウイング広島,[],https://hiroshima-stadiumpark.jp/peacewing/,2026-09-22,1
+mercari_stadium,メルカリスタジアム,"[""茨城県立カシマサッカースタジアム"", ""カシマサッカースタジアム"", ""メルスタ""]",https://www.antlers.co.jp/pages/mercari-stadium-about,2026-09-22,1
+mikuni_world_stadium_kitakyushu,ミクニワールドスタジアム北九州,"[""北九州スタジアム""]",https://www.kitakyushu-stadium.jp/,2026-09-22,1
+sunpro_alwin,サンプロ アルウィン,"[""サンプロアルウィン"", ""アルウィン""]",https://shinshu-skypark.net/facility/alwin.php,2026-09-22,1
+denka_big_swan_stadium,デンカビッグスワンスタジアム,[],https://www.denka-bigswan.com/organizer/,2026-09-22,1
+egao_kenko_stadium,えがお健康スタジアム,[],https://www.kspa.or.jp/rikujo/,2026-09-22,1
+aore_nagaoka,アオーレ長岡,[],https://ao-re.jp/floormap/arena,2026-09-22,1
+xebio_arena_sendai,ゼビオアリーナ仙台,[],https://www.xebioarena.com/facility/,2026-09-22,1
+ebara_wave_arena_ota,EBARA WAVE アリーナおおた,"[""大田区総合体育館"", ""EBARA WAVE アリーナおおた（大田区総合体育館）""]",https://www.ota.esforta.jp/,2026-09-22,1
+arena_tachikawa_tachihi,アリーナ立川立飛,[],https://www.arenatachikawatachihi.com/guide/facilities/,2026-09-22,1
+esforta_arena_hachioji,エスフォルタアリーナ八王子,[],https://www.hachioji.esforta.jp/arena/,2026-09-22,1
+white_ring,ホワイトリング,"[""長野市真島総合スポーツアリーナ"", ""真島総合スポーツアリーナ""]",https://whitering.jp/facility.html,2026-09-22,1
+ookini_arena_maishima,おおきにアリーナ舞洲,"[""舞洲アリーナ""]",https://human-arena.com/mainarena/,2026-09-22,1
+yokohama_budokan,横浜武道館,[],https://www.yokohama-budokan.com/,2026-09-22,1
+prifoods_stadium,プライフーズスタジアム,[],https://taga-playground.com/outline/,2026-09-22,1
+yurtec_stadium_sendai,ユアテックスタジアム仙台,[],https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html,2026-09-22,1
+rakuten_mobile_saikyo_park_miyagi,楽天モバイル 最強パーク宮城,"[""楽天モバイルパーク宮城"", ""宮城球場""]",https://corp.rakuten.co.jp/news/press/2025/1201_01.html,2026-09-22,1
+soyu_stadium,ソユースタジアム,"[""八橋陸上競技場""]",https://www.city.akita.lg.jp/shisetsu/sports-koen/1009703/1006394.html,2026-09-22,1
+yamagata_sports_park_gymnasium,山形県総合運動公園総合体育館,[],https://park.montedio.co.jp/beni/outline/sports.html,2026-09-22,1
+toho_minna_stadium,とうほう・みんなのスタジアム,[],https://www.azumapark.or.jp/guide-map/sports-facility/%E3%81%A8%E3%81%86%E3%81%BB%E3%81%86%E3%83%BB%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%A2%E3%83%A0/,2026-09-22,1
+hawaiians_stadium_iwaki,ハワイアンズスタジアムいわき,[],https://iwakicity-park.or.jp/greenfield/,2026-09-22,1
+mitoshin_stadium,水戸信用金庫スタジアム,"[""笠松運動公園陸上競技場""]",https://www.ibaraki-sports.or.jp/kasamatsu2/%E9%99%B8%E4%B8%8A%E7%AB%B6%E6%8A%80%E5%A0%B4/,2026-09-22,1
+brex_arena_utsunomiya,とちぎん・ブレックスアリーナ宇都宮,"[""ブレックスアリーナ宇都宮"", ""宇都宮市体育館""]",https://www.utsunomiya-sponavi.or.jp/facility/01.html?id=1,2026-09-22,1
+city_football_station,CITY FOOTBALL STATION,[],https://tochigi-city.com/watching/stadium/,2026-09-22,1
+shoda_shoyu_stadium_gunma,正田醤油スタジアム群馬,[],https://shikishima-park.org/facility/stadium.html,2026-09-22,1
+urawa_komaba_gymnasium,浦和駒場体育館,[],https://www.city.saitama.lg.jp/004/006/003/001/p034294.html,2026-09-22,1
+koshigaya_municipal_gymnasium,越谷市立総合体育館,[],https://sougoutaiiku.kosi-kanri.com/guide/,2026-09-22,1
+nack5_stadium_omiya,NACK5スタジアム大宮,"[""大宮公園サッカー場""]",https://www.rbomiya.com/jp-ja/content/stadium,2026-09-22,1
+sankyo_frontier_kashiwa_stadium,三協フロンテア柏スタジアム,"[""日立柏サッカー場""]",https://www.reysol.co.jp/game/stadium/,2026-09-22,1
+shinagawa_general_gymnasium,品川区立総合体育館,[],https://www.ssa.or.jp/sougou/,2026-09-22,1
+machida_gion_stadium,町田GIONスタジアム,"[""町田市立陸上競技場""]",https://www.nozuta-park.com/athletics.html,2026-09-22,1
+lemon_gas_stadium_hiratsuka,レモンガススタジアム平塚,"[""平塚競技場""]",https://www.city.hiratsuka.kanagawa.jp/koen/page-c_00810.html,2026-09-22,1
+sagamihara_gion_stadium,相模原ギオンスタジアム,[],https://a-stadium.jpn.org/,2026-09-22,1
+akibadai_cultural_gymnasium,秋葉台文化体育館,[],https://f-mirai.jp/sports/gymnasium/akibadai,2026-09-22,1
+ykk_ap_arena,YKK AP ARENA,"[""富山市総合体育館""]",https://toyama-arena.co.jp/,2026-09-22,1
+kanazawa_gogo_curry_stadium,金沢ゴーゴーカレースタジアム,[],https://www.kanazawa-stadium.jp/,2026-09-22,1
+seiren_dream_arena,セーレン・ドリームアリーナ,"[""セーレンドリームアリーナ"", ""福井県営体育館""]",https://www.pref.fukui.lg.jp/doc/undoukouen/taiikukan.html,2026-09-22,1
+nagano_u_stadium,長野Uスタジアム,[],https://parceiro.co.jp/stadium/access.html,2026-09-22,1
+okb_gifu_seiryu_arena,OKBぎふ清流アリーナ,"[""岐阜アリーナ""]",https://www.pref.gifu.lg.jp/site/ken-shisetsu/62.html,2026-09-22,1
+yamaha_stadium,ヤマハスタジアム,"[""ヤマハスタジアム（磐田）""]",https://jubilo-iwata.co.jp/stadium/yamaha,2026-09-22,1
+fujieda_sports_park_soccer_stadium,藤枝総合運動公園サッカー場,[],https://www.fujiedascp.com/information/index.php?c=1,2026-09-22,1
+iai_stadium_nihondaira,IAIスタジアム日本平,"[""清水日本平運動公園球技場""]",https://shimizu-nihondaira.com/about,2026-09-22,1
+biwajima_sports_center,名古屋市枇杷島スポーツセンター,"[""枇杷島スポーツセンター""]",https://www.nespa.or.jp/facility/biwajima_sc/outline.html,2026-09-22,1
+agf_suzuka_gymnasium,AGF鈴鹿体育館,[],https://www.city.suzuka.lg.jp/shisei/shisetsu/1004371/1004372.html,2026-09-22,1
+heiwado_hato_stadium,平和堂HATOスタジアム,"[""彦根総合スポーツ公園陸上競技場""]",https://www.bsn.or.jp/hikone/shisetsu_no1/,2026-09-22,1
+yanmar_hanasaka_stadium,YANMAR HANASAKA STADIUM,"[""ヤンマーハナサカスタジアム"", ""長居球技場"", ""ヨドコウ桜スタジアム""]",https://www.hanasaka-stadium.jp/guide/,2026-09-22,1
+hanazono_rugby_stadium,東大阪市花園ラグビー場,[],https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html,2026-09-22,1
+rohto_field_nara,ロートフィールド奈良,[],https://www.city.nara.lg.jp/soshiki/22/5387.html,2026-09-22,1
+shigeto_arena_okayama,シゲトーアリーナ岡山,[],https://www.okayama-momo.jp/userguide/03/,2026-09-22,1
+tawarada_memorial_gymnasium,俵田翁記念体育館,"[""俵田翁記念館""]",https://ube-taikyou.or.jp/facilities/tawaradaou-gym/,2026-09-22,1
+tokugin_tomoni_arena,とくぎんトモニアリーナ,"[""徳島市立体育館""]",https://www.tokushimacity-sports.or.jp/facilities-info/116/,2026-09-22,1
+pocari_sweat_stadium,鳴門・大塚スポーツパーク ポカリスエットスタジアム,[],https://www.awa-spo.net/naruto/pocari/,2026-09-22,1
+shikoku_kasei_meglio_stadium,四国化成MEGLIOスタジアム,"[""香川県立丸亀競技場""]",https://www.pref.kagawa.lg.jp/yosan/koukoku/nr_marukyo.html,2026-09-22,1
+asics_satoyama_stadium,アシックス里山スタジアム,[],https://satoyamastadium.com/stadium/,2026-09-22,1
+matsuyama_community_center_gymnasium,松山市総合コミュニティセンター体育館,[],https://www.cul-spo.or.jp/comcen/fac_taiiku,2026-09-22,1
+teriha_sekisui_house_arena,照葉積水ハウスアリーナ,[],https://www.fukuoka-city-arena.jp/about/fc_main.html,2026-09-22,1
+ekimae_fudosan_stadium,駅前不動産スタジアム,[],https://www.city.tosu.lg.jp/soshiki/12/1150.html,2026-09-22,1
+kumamoto_prefectural_gymnasium,熊本県立総合体育館,[],https://www.kspa.or.jp/sougou_taiku_charge/,2026-09-22,1
+shiranami_stadium,白波スタジアム,"[""県立鴨池陸上競技場""]",https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=3916,2026-09-22,1
+okinawa_sports_park_stadium,沖縄県総合運動公園陸上競技場,[],https://okinawa-kenso.com/?page_id=213,2026-09-22,1
+ningineer_stadium,ニンジニアスタジアム,"[""愛媛県総合運動公園陸上競技場""]",https://ehimefc.com/access/ningineerstadium.html,2026-09-22,1
+mazda_zoom_zoom_stadium_hiroshima,MAZDA Zoom-Zoom スタジアム広島,"[""マツダ スタジアム"", ""広島市民球場""]",https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html,2026-09-23,1
+hakodate_salmon_marunama_arena,函館サーモン・まるなまアリーナ,"[""函館アリーナ"", ""函館サーモン・まるなまアリーナ（函館アリーナ）""]",https://www.city.hakodate.hokkaido.jp/docs/2025080800058/,2026-09-23,1

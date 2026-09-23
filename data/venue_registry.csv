@@ -63,7 +63,7 @@ yokohama_minatomirai_hall,横浜みなとみらいホール,14,神奈川県,2020
 duo_music_exchange,duo MUSIC EXCHANGE,13,東京都,700,https://duomusicexchange.com/,html,https://duomusicexchange.com/,"{""strategy"":""generic""}",0
 shimokitazawa_shelter,下北沢 SHELTER,13,東京都,250,https://www.loft-prj.co.jp/SHELTER/,html,https://www.loft-prj.co.jp/SHELTER/,"{""strategy"":""generic""}",0
 aichi_sky_expo,愛知県国際展示場（AICHI SKY EXPO）,23,愛知県,6500,https://www.aichiskyexpo.com/,html,https://www.aichiskyexpo.com/,"{""strategy"":""generic""}",0
-toki_messe,朱鷺メッセ 新潟コンベンションセンター,15,新潟県,10000,https://www.tokimesse.com/,html,https://www.tokimesse.com/,"{""strategy"":""generic""}",0
+toki_messe,朱鷺メッセ 新潟コンベンションセンター,15,新潟県,10000,https://www.tokimesse.com/,html,https://www.tokimesse.com/visitor/event/index,"{""strategy"":""generic""}",0
 fukuoka_sunpalace,福岡サンパレス,40,福岡県,2316,https://www.f-sunpalace.com/hall/,html,https://www.f-sunpalace.com/hall/,"{""strategy"":""generic""}",0
 nihonbashi_mitsui_hall,日本橋三井ホール,13,東京都,690,https://nihonbashi-hall.jp/,html,https://nihonbashi-hall.jp/,"{""strategy"":""generic""}",0
 asakusa_kagekijo,浅草花劇場,13,東京都,526,https://www.hanayashiki.net/events/kagekijo/,html,https://www.hanayashiki.net/events/kagekijo/,"{""strategy"":""generic""}",0
@@ -84,9 +84,9 @@ yokohama_stadium,横浜スタジアム,14,神奈川県,35363,https://www.yokoham
 nippatsu_mitsuzawa_stadium,ニッパツ三ツ沢球技場,14,神奈川県,15454,https://www.f-marinos.com/stadium_nippatsu,html,https://www.f-marinos.com/stadium_nippatsu,,0
 pacifico_yokohama_national_hall,パシフィコ横浜 国立大ホール,14,神奈川県,5002,https://business.yokohamajapan.com/mice/ja/plan/venues/detail/?venue_id=612,html,https://business.yokohamajapan.com/mice/ja/plan/venues/detail/?venue_id=612,,0
 yokohama_buntai,横浜BUNTAI,14,神奈川県,5000,https://yokohama-buntai.jp/facility/,html,https://yokohama-buntai.jp/facility/,,0
-kanagawa_kenmin_hall,神奈川県民ホール 大ホール,14,神奈川県,2493,https://ja.wikipedia.org/wiki/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E7%AB%8B%E7%9C%8C%E6%B0%91%E3%83%9B%E3%83%BC%E3%83%AB,html,https://ja.wikipedia.org/wiki/%E7%A5%9E%E5%A5%88%E5%B7%9D%E7%9C%8C%E7%AB%8B%E7%9C%8C%E6%B0%91%E3%83%9B%E3%83%BC%E3%83%AB,,0
+kanagawa_kenmin_hall,神奈川県民ホール 大ホール,14,神奈川県,2493,https://www.kanagawa-kenminhall.com/,html,https://www.kanagawa-kenminhall.com/,,0
 toyota_stadium,豊田スタジアム,23,愛知県,44380,https://www.toyota-stadium.co.jp/facility03/,html,https://www.toyota-stadium.co.jp/facility03/,,0
-nihon_gaishi_hall,日本ガイシホール,23,愛知県,10000,https://aichi-sc.jp/facility/nespahall/,html,https://aichi-sc.jp/facility/nespahall/,,0
+nihon_gaishi_hall,日本ガイシホール,23,愛知県,10000,https://www.nespa.or.jp/sports-plaza/hall/,html,https://www.nespa.or.jp/sports-plaza/hall/event-schedule/concert.html,,0
 nagoya_congress_center_century_hall,名古屋国際会議場 センチュリーホール,23,愛知県,3002,https://www.nagoya-congress-center.jp/wp-content/uploads/2018/02/century_zaseki.pdf,html,https://www.nagoya-congress-center.jp/wp-content/uploads/2018/02/century_zaseki.pdf,,0
 panasonic_stadium_suita,Panasonic Stadium Suita,27,大阪府,40000,https://suitacityfootballstadium.jp/,html,https://suitacityfootballstadium.jp/schedule/,"{""strategy"":""panasonic_stadium_suita_schedule"",""months_ahead"":6}",1,0,0,
 edion_arena_osaka,大阪府立体育会館（エディオンアリーナ大阪）,27,大阪府,8000,https://www.furitutaiikukaikan.ne.jp/,html,https://www.furitutaiikukaikan.ne.jp/,"{""strategy"":""edion_arena_osaka_pdf_schedule""}",1,0,0,
@@ -96,10 +96,115 @@ fukuoka_kokusai_center,福岡国際センター,40,福岡県,10000,https://www.m
 koshien_stadium,阪神甲子園球場,28,兵庫県,47359,https://koshien.hanshin.co.jp/stadium_guide/seat.html,html,https://koshien.hanshin.co.jp/stadium_guide/seat.html,,0
 noevir_stadium_kobe,ノエビアスタジアム神戸,28,兵庫県,30132,https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/,html,https://kobe-convention.jp/ja/planning/venues-and-accommodations/noevir-stadium-kobe/,,0
 universiade_memorial_stadium,神戸総合運動公園ユニバー記念競技場,28,兵庫県,45000,https://www.kobe-park.or.jp/sougou/facilities/memorialstadium/,html,https://www.kobe-park.or.jp/sougou/facilities/memorialstadium/,,0
-glion_arena_kobe,GLION ARENA KOBE,28,兵庫県,10000,https://ticketjam.jp/venues/14135,html,https://www.totteikobe.jp/event,,0,,,
+glion_arena_kobe,GLION ARENA KOBE,28,兵庫県,10000,https://www.totteikobe.jp/,html,https://www.totteikobe.jp/event,,0,,,
 world_kinen_hall,ワールド記念ホール（神戸ポートアイランドホール）,28,兵庫県,8000,https://www.kobe-spokyo.jp/worldsp-kobe/about/gaiyou,html,https://www.kobe-spokyo.jp/worldsp-kobe/about/gaiyou,,0
-kobe_kokusai_hall,神戸国際会館 こくさいホール,28,兵庫県,2112,https://ticketjam.jp/venues/12901,html,https://ticketjam.jp/venues/12901,,0
+kobe_kokusai_hall,神戸国際会館 こくさいホール,28,兵庫県,2112,https://www.kih.co.jp/kokusaihall/,html,https://www.kih.co.jp/kokusaihall/,,0
 hyogo_pac_kobelco_hall,兵庫県立芸術文化センター KOBELCO 大ホール,28,兵庫県,2001,https://lp.p.pia.jp/venue/classic/28/307/981/103281/index.html,html,https://lp.p.pia.jp/venue/classic/28/307/981/103281/index.html,,0
 kobe_bunka_hall_large_hall,神戸文化ホール 大ホール,28,兵庫県,2043,https://www.kobe-bunka.jp/hall/about_hall/575/,html,https://www.kobe-bunka.jp/hall/about_hall/575/,,0
 acrie_himeji,アクリエひめじ 大ホール,28,兵庫県,2010,https://www.city.himeji.lg.jp/kanko/0000006638.html,html,https://www.city.himeji.lg.jp/kanko/0000006638.html,,0
-amashin_arcaic_hall,あましんアルカイックホール（尼崎市総合文化センター）,28,兵庫県,1820,https://ticketjam.jp/venues/2735,html,https://ticketjam.jp/venues/2735,,0
+amashin_arcaic_hall,あましんアルカイックホール（尼崎市総合文化センター）,28,兵庫県,1820,https://www.archaic.or.jp/,html,https://www.archaic.or.jp/,,0
+hiroshima_green_arena,広島グリーンアリーナ,34,広島県,10000,https://h-jigyoudan.or.jp/sports-center/,html,https://h-jigyoudan.or.jp/sports-center/center-events/,{},0,0,1,
+sundome_fukui,サンドーム福井,18,福井県,9000,https://sundome.sankan.jp/,html,https://sundome.sankan.jp/eventinfo/,{},0,0,1,
+ecopa_stadium,エコパスタジアム,22,静岡県,50889,https://www.ecopa.jp/facility/stadium/,html,https://www.ecopa.jp/event/,{},0,0,1,
+ig_arena,IGアリーナ,23,愛知県,17000,https://www.ig-arena.jp/,html,https://www.ig-arena.jp/events/,{},0,0,1,
+toyota_arena_tokyo,TOYOTA ARENA TOKYO,13,東京都,10000,https://www.toyota-arena-tokyo.jp/,html,https://www.toyota-arena-tokyo.jp/events/,{},0,0,1,
+saga_arena,SAGAアリーナ,41,佐賀県,8400,https://saga-sunrisepark.com/facility/,html,https://saga-sunrisepark.com/event/2026/09,{},0,0,1,
+saga_stadium,SAGAスタジアム,41,佐賀県,15000,https://saga-sunrisepark.com/facility/0321_3766/,html,https://saga-sunrisepark.com/status/,{},0,0,1,
+happiness_arena,HAPPINESS ARENA,42,長崎県,6000,https://www.nagasakistadiumcity.com/project_outline/,html,https://www.nagasakistadiumcity.com/event/,{},0,0,1,
+peace_stadium_nagasaki,PEACE STADIUM Connected by SoftBank,42,長崎県,20000,https://www.nagasakistadiumcity.com/project_outline/,html,https://www.nagasakistadiumcity.com/event/,{},0,0,1,
+wakayama_big_whale,和歌山ビッグホエール,30,和歌山県,8500,https://www.wakayamasposhin.or.jp/big-whale/,html,https://www.wakayamasposhin.or.jp/big-whale/event/,{},0,0,1,
+okinawa_arena,沖縄サントリーアリーナ,47,沖縄県,10000,https://okinawa-arena.jp/,html,https://okinawa-arena.jp/events,{},0,0,1,
+portmesse_nagoya_hall1,ポートメッセなごや 第1展示館,23,愛知県,,https://portmesse.com/facility/tenjikan01,html,https://portmesse.com/events/,{},0,0,1,capacity_unverified; hall_specific_rental_dates_pending
+nipro_hachiko_dome,ニプロハチ公ドーム,05,秋田県,15000,https://jukaidome.com/,html,https://jukaidome.com/calendar/,{},0,0,1,schedule_extent_pending
+big_hat,ビッグハット,20,長野県,,https://www.nagano-mwave.co.jp/bighat/,html,https://www.nagano-mwave.co.jp/bighat/event_calender/,{},0,0,1,schedule_extent_pending; capacity_unverified
+m_wave,エムウェーブ,20,長野県,20000,https://www.nagano-mwave.co.jp/m_wave/,html,https://www.nagano-mwave.co.jp/m_wave/event_calender/,{},0,0,1,schedule_extent_pending
+asty_tokushima,アスティとくしま,36,徳島県,5000,https://www.asty-tokushima.jp/about/,html,https://www.asty-tokushima.jp/event/,{},0,0,1,schedule_extent_pending
+ehime_budokan,愛媛県武道館,38,愛媛県,,https://ehime-spa.jp/budoukan/,html,https://ehime-spa.jp/budoukan/martial-event/,{},0,0,1,schedule_extent_pending; capacity_unverified
+grandmesse_kumamoto,グランメッセ熊本,43,熊本県,,https://www.grandmesse.jp/,html,https://www.grandmesse.jp/dynamic/hpkiji/pub/calendar.aspx?c_id=3&class_id=3,{},0,0,1,schedule_extent_pending; capacity_unverified
+shiga_daihatsu_arena,滋賀ダイハツアリーナ,25,滋賀県,5018,https://shiga-arena.jp/,html,https://shiga-arena.jp/,{},0,0,1,schedule_extent_pending
+aomori_super_arena,カクヒログループスーパーアリーナ,02,青森県,3500,https://aomori-arena.jp/,html,https://aomori-arena.jp/news/4834/,{},0,0,1,schedule_extent_pending
+morioka_takaya_arena,盛岡タカヤアリーナ,03,岩手県,,https://morioka-sport.or.jp/facility/arena/,html,https://morioka-sport.or.jp/facility/arena/,{},0,0,1,schedule_extent_pending; capacity_unverified
+nd_soft_stadium_yamagata,NDソフトスタジアム山形,06,山形県,21174,https://park.montedio.co.jp/beni/outline/,html,https://park.montedio.co.jp/beni/reserve.html,{},0,0,1,schedule_extent_pending
+horaiya_bonds_arena,宝来屋ボンズアリーナ,07,福島県,5013,https://kaiseizan-koriyama.jp/facility-01,html,https://kaiseizan-koriyama.jp/news/cat01/3139,{},0,0,1,schedule_extent_pending
+adastria_mito_arena,アダストリアみとアリーナ,08,茨城県,5000,https://maas.or.jp/pages/126/,html,https://maas.or.jp/pages/87/,{},0,0,1,schedule_extent_pending
+kanseki_stadium_tochigi,カンセキスタジアムとちぎ,09,栃木県,25000,https://www.gsz-northcentralarea.com/facility/stadium.html,html,https://www.gsz-northcentralarea.com/schedule/?ss=1,{},0,0,1,schedule_extent_pending
+open_house_arena_ota,オープンハウスアリーナ太田,10,群馬県,,https://gunma-cm.com/,html,https://gunma-cm.com/events/,{},0,0,1,schedule_extent_pending; capacity_unverified
+toyama_athletics_stadium,富山県総合運動公園陸上競技場,16,富山県,25000,https://toyamap.or.jp/kenso/info_map/main/,html,https://toyamap.or.jp/kenso/info_map/main/,{},0,0,1,schedule_extent_pending
+ishikawa_sports_center,いしかわ総合スポーツセンター,17,石川県,5019,https://www.ishikawa-spc.jp/facilities/main-arina.html,html,https://www.ishikawa-spc.jp/event/index.html,{},0,0,1,schedule_extent_pending
+jit_recycle_ink_stadium,JITリサイクルインクスタジアム,19,山梨県,15853,https://www.kose-sp.pref.yamanashi.jp/guide/34/,html,https://www.kose-sp.pref.yamanashi.jp/info/use/359755/,{},0,0,1,schedule_extent_pending
+himalaya_stadium_gifu,ヒマラヤスタジアム岐阜,21,岐阜県,26109,https://gifu-sports.org/gmc/shisetsudata/nagaragawastg2/,html,https://gifu-sports.org/gmc/event/,{},0,0,1,schedule_extent_pending
+mie_sun_arena,三重県営サンアリーナ,24,三重県,11000,https://sun-arena.or.jp/?page_id=173,html,https://sun-arena.or.jp/?page_id=904,{},0,0,1,schedule_extent_pending
+sanga_stadium_kyocera,サンガスタジアム by KYOCERA,26,京都府,21600,https://sangastadium-by-kyocera.jp/stadium-guide/overview,html,https://sangastadium-by-kyocera.jp/event-calendar,{},0,0,1,schedule_extent_pending
+rohto_arena_nara,ロートアリーナ奈良,29,奈良県,,https://konoike-sports-park.jp/facility,html,https://konoike-sports-park.jp/,{},0,0,1,schedule_extent_pending; capacity_unverified
+axis_bird_stadium,Axisバードスタジアム,31,鳥取県,16033,https://www.fa-tottori.com/?page_id=4875,html,https://www.fa-tottori.com/?page_id=4875,{},0,0,1,schedule_extent_pending
+matsue_general_gymnasium,バンダイナムコアリーナ松江,32,島根県,,https://www.so-tai.jp/,html,https://www.so-tai.jp/cgi-bin/rus7/event/view.cgi,{},0,0,1,schedule_extent_pending; capacity_unverified
+jfe_harenokuni_stadium,JFE晴れの国スタジアム,33,岡山県,20000,https://www.okayama-momo.jp/userguide/01/,html,https://www.okayama-momo.jp/monthlyevent/,{},0,0,1,schedule_extent_pending
+ishin_mirai_stadium,維新みらいふスタジアム,35,山口県,15115,https://www.ishin100.com/main/guide/gu-stadium/,html,https://www.ishin100.com/main/sche-top_wp/,{},0,0,1,schedule_extent_pending
+giken_stadium,GIKENスタジアム,39,高知県,25000,https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100,html,https://sports-facility.pref.kochi.lg.jp/facility-s.php?CD=020100,{},0,0,1,schedule_extent_pending; operator_identity_pending
+crasus_dome_oita,クラサスドーム大分,44,大分県,40000,https://www.oita-sportspark.jp/facility/dome,html,https://www.oita-sportspark.jp/event,{},0,0,1,schedule_extent_pending
+ichigo_miyazaki_shintomi_stadium,いちご宮崎新富サッカー場,45,宮崎県,5354,https://www.ichigo-shintomi.jp/,html,https://www.ichigo-shintomi.jp/,{},0,0,1,schedule_extent_pending
+nishihara_shokai_arena,西原商会アリーナ,46,鹿児島県,5700,https://nishihara-shokai-arena.jp/guide/outline,html,https://nishihara-shokai-arena.jp/event,{},0,0,1,schedule_extent_pending
+jingu_stadium,明治神宮野球場,13,東京都,29943,https://www.jingu-stadium.com/about_kyujo/equipment/equipment.html,html,https://www.jingu-stadium.com/event/,{},0,0,1,schedule_extent_pending
+edion_peace_wing_hiroshima,エディオンピースウイング広島,34,広島県,28520,https://hiroshima-stadiumpark.jp/peacewing/,html,https://hiroshima-stadiumpark.jp/peacewing/schedule/,{},0,0,1,schedule_extent_pending
+mercari_stadium,メルカリスタジアム,08,茨城県,40003,https://www.antlers.co.jp/pages/mercari-stadium-about,html,https://www.antlers.co.jp/pages/mercari-stadium-event-index/,{},0,0,1,schedule_extent_pending
+mikuni_world_stadium_kitakyushu,ミクニワールドスタジアム北九州,40,福岡県,,https://www.kitakyushu-stadium.jp/,html,https://www.kitakyushu-stadium.jp/event/,{},0,0,1,schedule_extent_pending
+sunpro_alwin,サンプロ アルウィン,20,長野県,20000,https://shinshu-skypark.net/facility/alwin.php,html,https://shinshu-skypark.net/facility/alwin.php,{},0,0,1,schedule_extent_pending
+denka_big_swan_stadium,デンカビッグスワンスタジアム,15,新潟県,42300,https://www.denka-bigswan.com/organizer/,html,https://www.denka-bigswan.com/event/,{},0,0,1,schedule_extent_pending
+egao_kenko_stadium,えがお健康スタジアム,43,熊本県,30000,https://www.kspa.or.jp/rikujo/,html,https://www.kspa.or.jp/rikujo_yotei/,{},0,0,1,schedule_extent_pending
+aore_nagaoka,アオーレ長岡,15,新潟県,5000,https://ao-re.jp/floormap/arena,html,https://ao-re.jp/event/date/2026/09,{},0,0,1,schedule_extent_pending
+xebio_arena_sendai,ゼビオアリーナ仙台,04,宮城県,7200,https://www.xebioarena.com/facility/,html,https://www.xebioarena.com/program/,{},0,0,1,schedule_extent_pending
+ebara_wave_arena_ota,EBARA WAVE アリーナおおた,13,東京都,4012,https://www.ota.esforta.jp/,html,https://www.ota.esforta.jp/event/,{},0,0,1,schedule_extent_pending
+arena_tachikawa_tachihi,アリーナ立川立飛,13,東京都,3275,https://www.arenatachikawatachihi.com/guide/facilities/,html,https://www.arenatachikawatachihi.com/events/,{},0,0,1,schedule_extent_pending
+esforta_arena_hachioji,エスフォルタアリーナ八王子,13,東京都,,https://www.hachioji.esforta.jp/arena/,html,https://www.hachioji.esforta.jp/arena/,{},0,0,1,schedule_extent_pending
+white_ring,ホワイトリング,20,長野県,5008,https://whitering.jp/facility.html,html,https://whitering.jp/event.html,{},0,0,1,schedule_extent_pending
+ookini_arena_maishima,おおきにアリーナ舞洲,27,大阪府,7056,https://human-arena.com/mainarena/,html,https://human-arena.com/mainarena/,{},0,0,1,schedule_extent_pending
+yokohama_budokan,横浜武道館,14,神奈川県,3000,https://www.yokohama-budokan.com/,html,https://www.yokohama-budokan.com/event/,{},0,0,1,schedule_extent_pending
+prifoods_stadium,プライフーズスタジアム,02,青森県,5200,https://taga-playground.com/outline/,html,https://taga-playground.com/outline/,{},0,0,1,schedule_extent_pending
+yurtec_stadium_sendai,ユアテックスタジアム仙台,04,宮城県,19526,https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html,html,https://www.city.sendai.jp/koen-rikatu/kurashi/manabu/sports/stadium/shisetu.html,{},0,0,1,schedule_extent_pending
+rakuten_mobile_saikyo_park_miyagi,楽天モバイル 最強パーク宮城,04,宮城県,,https://corp.rakuten.co.jp/news/press/2025/1201_01.html,html,https://corp.rakuten.co.jp/news/press/2025/1201_01.html,{},0,0,1,schedule_extent_pending
+soyu_stadium,ソユースタジアム,05,秋田県,,https://www.city.akita.lg.jp/shisetsu/sports-koen/1009703/1006394.html,html,https://www.city.akita.lg.jp/kurashi/sports/1016927.html,{},0,0,1,schedule_extent_pending
+yamagata_sports_park_gymnasium,山形県総合運動公園総合体育館,06,山形県,,https://park.montedio.co.jp/beni/outline/sports.html,html,https://park.montedio.co.jp/beni/outline/sports.html,{},0,0,1,schedule_extent_pending
+toho_minna_stadium,とうほう・みんなのスタジアム,07,福島県,21000,https://www.azumapark.or.jp/guide-map/sports-facility/%E3%81%A8%E3%81%86%E3%81%BB%E3%81%86%E3%83%BB%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%A2%E3%83%A0/,html,https://www.azumapark.or.jp/guide-map/sports-facility/%E3%81%A8%E3%81%86%E3%81%BB%E3%81%86%E3%83%BB%E3%81%BF%E3%82%93%E3%81%AA%E3%81%AE%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%A2%E3%83%A0/,{},0,0,1,schedule_extent_pending
+hawaiians_stadium_iwaki,ハワイアンズスタジアムいわき,07,福島県,6400,https://iwakicity-park.or.jp/greenfield/,html,https://iwakicity-park.or.jp/greenfield/taikaiyotei/,{},0,0,1,schedule_extent_pending
+mitoshin_stadium,水戸信用金庫スタジアム,08,茨城県,22002,https://www.ibaraki-sports.or.jp/kasamatsu2/%E9%99%B8%E4%B8%8A%E7%AB%B6%E6%8A%80%E5%A0%B4/,html,https://www.ibaraki-sports.or.jp/kasamatsu2/%E9%99%B8%E4%B8%8A%E7%AB%B6%E6%8A%80%E5%A0%B4/,{},0,0,1,schedule_extent_pending
+brex_arena_utsunomiya,とちぎん・ブレックスアリーナ宇都宮,09,栃木県,,https://www.utsunomiya-sponavi.or.jp/facility/01.html?id=1,html,https://www.utsunomiya-sponavi.or.jp/facility/01.html?id=1,{},0,0,1,schedule_extent_pending
+city_football_station,CITY FOOTBALL STATION,09,栃木県,,https://tochigi-city.com/watching/stadium/,html,https://tochigi-city.com/watching/stadium/,{},0,0,1,schedule_extent_pending
+shoda_shoyu_stadium_gunma,正田醤油スタジアム群馬,10,群馬県,,https://shikishima-park.org/facility/stadium.html,html,https://shikishima-park.org/facility/stadium.html,{},0,0,1,schedule_extent_pending
+urawa_komaba_gymnasium,浦和駒場体育館,11,埼玉県,,https://www.city.saitama.lg.jp/004/006/003/001/p034294.html,html,https://www.city.saitama.lg.jp/004/006/003/001/p034294.html,{},0,0,1,schedule_extent_pending
+koshigaya_municipal_gymnasium,越谷市立総合体育館,11,埼玉県,4472,https://sougoutaiiku.kosi-kanri.com/guide/,html,https://sougoutaiiku.kosi-kanri.com/schedule/,{},0,0,1,schedule_extent_pending
+nack5_stadium_omiya,NACK5スタジアム大宮,11,埼玉県,,https://www.rbomiya.com/jp-ja/content/stadium,html,https://www.rbomiya.com/jp-ja/content/stadium,{},0,0,1,schedule_extent_pending
+sankyo_frontier_kashiwa_stadium,三協フロンテア柏スタジアム,12,千葉県,,https://www.reysol.co.jp/game/stadium/,html,https://www.reysol.co.jp/game/stadium/,{},0,0,1,schedule_extent_pending
+shinagawa_general_gymnasium,品川区立総合体育館,13,東京都,,https://www.ssa.or.jp/sougou/,html,https://www.ssa.or.jp/sougou/,{},0,0,1,schedule_extent_pending
+machida_gion_stadium,町田GIONスタジアム,13,東京都,15489,https://www.nozuta-park.com/athletics.html,html,https://www.nozuta-park.com/calender.html,{},0,0,1,schedule_extent_pending
+lemon_gas_stadium_hiratsuka,レモンガススタジアム平塚,14,神奈川県,15380,https://www.city.hiratsuka.kanagawa.jp/koen/page-c_00810.html,html,https://www.city.hiratsuka.kanagawa.jp/koen/page-c_00810.html,{},0,0,1,schedule_extent_pending
+sagamihara_gion_stadium,相模原ギオンスタジアム,14,神奈川県,,https://a-stadium.jpn.org/,html,https://a-stadium.jpn.org/,{},0,0,1,schedule_extent_pending
+akibadai_cultural_gymnasium,秋葉台文化体育館,14,神奈川県,3000,https://f-mirai.jp/sports/gymnasium/akibadai,html,https://f-mirai.jp/sports/gymnasium/akibadai,{},0,0,1,schedule_extent_pending
+ykk_ap_arena,YKK AP ARENA,16,富山県,,https://toyama-arena.co.jp/,html,https://toyama-arena.co.jp/,{},0,0,1,schedule_extent_pending
+kanazawa_gogo_curry_stadium,金沢ゴーゴーカレースタジアム,17,石川県,10444,https://www.kanazawa-stadium.jp/,html,https://www.kanazawa-stadium.jp/,{},0,0,1,schedule_extent_pending
+seiren_dream_arena,セーレン・ドリームアリーナ,18,福井県,,https://www.pref.fukui.lg.jp/doc/undoukouen/taiikukan.html,html,https://www.pref.fukui.lg.jp/doc/undoukouen/taiikukan.html,{},0,0,1,schedule_extent_pending
+nagano_u_stadium,長野Uスタジアム,20,長野県,,https://parceiro.co.jp/stadium/access.html,html,https://parceiro.co.jp/stadium/access.html,{},0,0,1,schedule_extent_pending
+okb_gifu_seiryu_arena,OKBぎふ清流アリーナ,21,岐阜県,,https://www.pref.gifu.lg.jp/site/ken-shisetsu/62.html,html,https://www.pref.gifu.lg.jp/site/ken-shisetsu/62.html,{},0,0,1,schedule_extent_pending
+yamaha_stadium,ヤマハスタジアム,22,静岡県,15165,https://jubilo-iwata.co.jp/stadium/yamaha,html,https://jubilo-iwata.co.jp/stadium/yamaha,{},0,0,1,schedule_extent_pending
+fujieda_sports_park_soccer_stadium,藤枝総合運動公園サッカー場,22,静岡県,,https://www.fujiedascp.com/information/index.php?c=1,html,https://www.fujiedascp.com/information/index.php?c=1,{},0,0,1,schedule_extent_pending
+iai_stadium_nihondaira,IAIスタジアム日本平,22,静岡県,20299,https://shimizu-nihondaira.com/about,html,https://shimizu-nihondaira.com/about,{},0,0,1,schedule_extent_pending
+biwajima_sports_center,名古屋市枇杷島スポーツセンター,23,愛知県,,https://www.nespa.or.jp/facility/biwajima_sc/outline.html,html,https://www.nespa.or.jp/facility/biwajima_sc/outline.html,{},0,0,1,schedule_extent_pending
+agf_suzuka_gymnasium,AGF鈴鹿体育館,24,三重県,,https://www.city.suzuka.lg.jp/shisei/shisetsu/1004371/1004372.html,html,https://www.city.suzuka.lg.jp/shisei/shisetsu/1004371/1004372.html,{},0,0,1,schedule_extent_pending
+heiwado_hato_stadium,平和堂HATOスタジアム,25,滋賀県,15000,https://www.bsn.or.jp/hikone/shisetsu_no1/,html,https://www.bsn.or.jp/hikone/shisetsu_no1/,{},0,0,1,schedule_extent_pending
+yanmar_hanasaka_stadium,YANMAR HANASAKA STADIUM,27,大阪府,,https://www.hanasaka-stadium.jp/guide/,html,https://www.hanasaka-stadium.jp/schedule/,{},0,0,1,schedule_extent_pending
+hanazono_rugby_stadium,東大阪市花園ラグビー場,27,大阪府,,https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html,html,https://www.city.higashiosaka.lg.jp/category/21-14-1-0-0-0-0-0-0-0.html,{},0,0,1,schedule_extent_pending
+rohto_field_nara,ロートフィールド奈良,29,奈良県,,https://www.city.nara.lg.jp/soshiki/22/5387.html,html,https://www.city.nara.lg.jp/soshiki/22/5387.html,{},0,0,1,schedule_extent_pending
+shigeto_arena_okayama,シゲトーアリーナ岡山,33,岡山県,,https://www.okayama-momo.jp/userguide/03/,html,https://www.okayama-momo.jp/monthlyevent/,{},0,0,1,schedule_extent_pending
+tawarada_memorial_gymnasium,俵田翁記念体育館,35,山口県,,https://ube-taikyou.or.jp/facilities/tawaradaou-gym/,html,https://ube-taikyou.or.jp/facilities/tawaradaou-gym/,{},0,0,1,schedule_extent_pending
+tokugin_tomoni_arena,とくぎんトモニアリーナ,36,徳島県,4200,https://www.tokushimacity-sports.or.jp/facilities-info/116/,html,https://www.tokushimacity-sports.or.jp/event-schedule,{},0,0,1,schedule_extent_pending
+pocari_sweat_stadium,鳴門・大塚スポーツパーク ポカリスエットスタジアム,36,徳島県,19514,https://www.awa-spo.net/naruto/pocari/,html,https://www.awa-spo.net/naruto/event/,{},0,0,1,schedule_extent_pending
+shikoku_kasei_meglio_stadium,四国化成MEGLIOスタジアム,37,香川県,30099,https://www.pref.kagawa.lg.jp/yosan/koukoku/nr_marukyo.html,html,https://www.pref.kagawa.lg.jp/yosan/koukoku/nr_marukyo.html,{},0,0,1,schedule_extent_pending
+asics_satoyama_stadium,アシックス里山スタジアム,38,愛媛県,,https://satoyamastadium.com/stadium/,html,https://satoyamastadium.com/event/,{},0,0,1,schedule_extent_pending
+matsuyama_community_center_gymnasium,松山市総合コミュニティセンター体育館,38,愛媛県,,https://www.cul-spo.or.jp/comcen/fac_taiiku,html,https://www.cul-spo.or.jp/comcen/fac_taiiku,{},0,0,1,schedule_extent_pending
+teriha_sekisui_house_arena,照葉積水ハウスアリーナ,40,福岡県,,https://www.fukuoka-city-arena.jp/about/fc_main.html,html,https://www.fukuoka-city-arena.jp/about/fc_main.html,{},0,0,1,schedule_extent_pending
+ekimae_fudosan_stadium,駅前不動産スタジアム,41,佐賀県,25000,https://www.city.tosu.lg.jp/soshiki/12/1150.html,html,https://www.city.tosu.lg.jp/soshiki/12/1150.html,{},0,0,1,schedule_extent_pending
+kumamoto_prefectural_gymnasium,熊本県立総合体育館,43,熊本県,,https://www.kspa.or.jp/sougou_taiku_charge/,html,https://www.kspa.or.jp/sougou_taiku_yotei/,{},0,0,1,schedule_extent_pending
+shiranami_stadium,白波スタジアム,46,鹿児島県,,https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=3916,html,https://ppp.seika-spc.co.jp/kamoike-undo/?page_id=9,{},0,0,1,schedule_extent_pending
+okinawa_sports_park_stadium,沖縄県総合運動公園陸上競技場,47,沖縄県,,https://okinawa-kenso.com/?page_id=213,html,https://okinawa-kenso.com/?page_id=48093,{},0,0,1,schedule_extent_pending
+ningineer_stadium,ニンジニアスタジアム,38,愛媛県,20919,https://ehimefc.com/access/ningineerstadium.html,html,https://ehimefc.com/access/ningineerstadium.html,{},0,0,1,schedule_extent_pending
+mazda_zoom_zoom_stadium_hiroshima,MAZDA Zoom-Zoom スタジアム広島,34,広島県,,https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html,html,https://www.city.hiroshima.lg.jp/tourism-culture/sports/1021484/1014905/1017941.html,{},0,0,1,schedule_extent_pending
+hakodate_salmon_marunama_arena,函館サーモン・まるなまアリーナ,01,北海道,5000,https://www.city.hakodate.hokkaido.jp/docs/2014040900082/,html,https://www.zaidan-hakodate.com/arena/,{},0,0,1,schedule_extent_pending
