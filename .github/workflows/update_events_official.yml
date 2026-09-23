@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          # Queued behind repo-write concurrency; start from the current tip, not the trigger SHA.
+          ref: ${{ github.ref }}
           fetch-depth: 0
 
       - uses: actions/setup-python@v6
@@ -51,7 +53,22 @@ jobs:
             git commit -m "chore: update events official data"
             branch="${GITHUB_REF_NAME:-main}"
             for i in 1 2 3; do
-              git pull --rebase -X ours origin "$branch" && git push origin "HEAD:$branch" && break
+              if git pull --rebase -X ours origin "$branch"; then
+                # Rebase text-merges lp_events.json (summary and rows can come from different builds),
+                # so rebuild it from the rebased DBs and validate before pushing.
+                uv run python -m scripts.build_lp_events
+                uv run python -m scripts.validate_external_events --lp-events data/lp_events.json
+                git add data/lp_events.json
+                if ! git diff --cached --quiet; then
+                  # A commit whose patch is already upstream is dropped by rebase; never amend upstream's commit.
+                  if [ "$(git rev-parse HEAD)" = "$(git rev-parse FETCH_HEAD)" ]; then
+                    git commit -m "chore: update events official data"
+                  else
+                    git commit --amend --no-edit
+                  fi
+                fi
+                git push origin "HEAD:$branch" && break
+              fi
               git rebase --abort || true
               if [ "$i" -eq 3 ]; then
                 echo "Push failed after 3 retries"

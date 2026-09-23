@@ -77,3 +77,21 @@ def test_missing_prefecture_cannot_silently_disappear_from_public_search():
     del p["events"][0]["pref_name"]
     with pytest.raises(ValueError, match="prefecture"):
         validate_payload(p)
+
+
+def test_lp_events_only_cli_rejects_summary_row_mismatch(tmp_path, capsys):
+    import json
+    from scripts.validate_external_events import main
+
+    path = tmp_path / "lp_events.json"
+    path.write_text(json.dumps(payload()), encoding="utf-8")
+    assert main(["--lp-events", str(path)]) == 0
+    assert '"valid": true' in capsys.readouterr().out
+
+    # Shape left by `git pull --rebase -X ours`: summary from one build, rows from both.
+    mixed = payload()
+    extra = dict(mixed["events"][0], event_key="two", display_source_id="venue_web_discovery", display_source_class="venue_official")
+    mixed["events"].append(extra)
+    path.write_text(json.dumps(mixed), encoding="utf-8")
+    with pytest.raises(ValueError, match="summary does not match rows"):
+        main(["--lp-events", str(path)])

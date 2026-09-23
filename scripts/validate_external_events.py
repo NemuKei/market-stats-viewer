@@ -121,13 +121,25 @@ def validate_package(
     )
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--expected-as-of-date")
     parser.add_argument("--expected-commit")
-    args = parser.parse_args()
+    parser.add_argument(
+        "--lp-events",
+        type=Path,
+        help="Validate only this LP events JSON (no manifest); used before data pushes.",
+    )
+    args = parser.parse_args(argv)
+    if args.lp_events:
+        result = validate_payload(
+            json.loads(args.lp_events.read_text(encoding="utf-8")),
+            expected_date=args.expected_as_of_date,
+        )
+        print(json.dumps({"valid": True, **result}, ensure_ascii=False))
+        return 0
     result = validate_package(
         args.data_dir,
         manifest_path=args.manifest,

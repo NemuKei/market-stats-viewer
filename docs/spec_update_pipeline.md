@@ -206,6 +206,8 @@
   - `.github/workflows/update_events_official.yml`（会場公式）: 定期実行と手動実行を受け、会場公式DBとLPを更新する。
   - `.github/workflows/watch_automation_freshness.yml`（停止検知）: 毎日cronまたは手動でinboxの鮮度を検査する。
   - 各更新workflowは`build_lp_events`を後段で実行し、差分がある場合だけcommitする。
+  - `lp_events.json`を生成する3 workflow（会場公式、ニュース、公式/準公式Web検知）は、`repo-write` concurrencyで待機した後に古いtrigger SHAから始めないよう、checkoutで`ref: ${{ github.ref }}`（branch先端）を指定する。
+  - push前の`git pull --rebase -X ours`はJSONを行単位でmergeするため、`summary`と`events`が別buildに由来する不整合なJSONを作りうる（2026-09-16 `a9c045a`、2026-09-19 `c3c7cb9`で公開workflowの`publication summary does not match rows`として発生）。rebase成功後は必ず`build_lp_events`をrebase後のDBから再実行し、`python -m scripts.validate_external_events --lp-events data/lp_events.json`で公開validatorと同じ行・summary検査を通してから、差分を自commitへ`--amend`してpushする。自commitの内容がすでにupstreamにありrebaseでdropされた場合（`HEAD`が`FETCH_HEAD`と一致）は、upstreamのcommitを書き換えずに再生成分を新しいcommitとして積む。検査に失敗した場合はpushせずworkflowを失敗させる。
 
 ## Addendum (2026-05-12) Event Signal Coverage and Normalization Audit
 - 目的:
