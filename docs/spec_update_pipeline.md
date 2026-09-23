@@ -333,7 +333,12 @@
   - output: `data/manifest.json`
   - contains: `generated_at_utc`, `source_repository`, `source_commit_sha`, assetごとの `size_bytes` / `sha256`
 - Upload policy:
-  - `gh release upload ... --clobber` を使い、同名assetを上書きして常に最新を保持する
+  - script: `python -m scripts.upload_release_assets --tag external-events-latest <files...>`。同名assetを削除してから再uploadし、常に最新を保持する。upload順は `events.sqlite` → `event_signals.sqlite` → `lp_events.json` → `manifest.json`。
+  - tagはrelease idの解決だけに使い、asset一覧・削除・upload・検証は `releases/{release_id}/assets` 系endpointで行う。直前の別publishでassetが置換された後、`releases/tags/{tag}` とrelease一覧endpointは削除済みasset idを数分以上返し続けることがあり（2026-09-23 run 35835686906で `gh release upload --clobber` がHTTP 404）、`gh release upload --clobber` はこのstale一覧を使うため採用しない。
+  - 削除時の404は「既に削除済み」として扱う。upload時の422（同名asset残存）と5xxは最大3回（待機20s / 40s）まで再試行する。
+  - upload後にid scoped一覧で各assetが1件・`state=uploaded`・sizeと`digest`（sha256）がローカルと一致することを確認し、不一致ならstepを失敗させる。
+  - `concurrency: release-assets-${{ github.ref }}`（`cancel-in-progress: false`）でpublishを直列化する。
+  - 利用側で `gh release download` など tag endpoint経由でassetを解決する場合も同じstaleの影響を受け得る（置換直後にHTTP 404）。利用側の再試行やid scoped endpoint利用は各repo側で扱う。
 - 再実行手順:
   1. ローカルcheckoutから`main`へ対象pathを直接pushした場合は`push` run、上流GitHub Actionsが完了した場合は`workflow_run` runを確認する
   2. publish run が `failure` / `cancelled` の場合は原因を修正して再実行する。上流workflowが `failure` / `cancelled` / `skipped` の場合は、先に上流workflowを復旧または再実行する

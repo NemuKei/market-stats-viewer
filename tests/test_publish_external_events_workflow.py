@@ -18,6 +18,7 @@ class PublishExternalEventsWorkflowTest(unittest.TestCase):
         for path in (
             ".github/workflows/publish_external_events_assets.yml",
             "scripts/build_external_events_manifest.py",
+            "scripts/upload_release_assets.py",
             "data/events.sqlite",
             "data/event_signals.sqlite",
             "data/lp_events.json",
@@ -45,6 +46,23 @@ class PublishExternalEventsWorkflowTest(unittest.TestCase):
         )
         self.assertIn(
             "github.event.workflow_run.head_branch == 'main'", self.workflow
+        )
+
+    def test_upload_avoids_stale_tag_asset_listing(self) -> None:
+        upload_step = self.workflow.split("      - name: Upload release assets\n", 1)[1]
+        self.assertIn("python -m scripts.upload_release_assets", upload_step)
+        self.assertIn("--tag external-events-latest", upload_step)
+        self.assertNotIn("--clobber", upload_step)
+        self.assertLess(
+            upload_step.index("data/lp_events.json"),
+            upload_step.index("data/manifest.json"),
+        )
+
+    def test_release_publication_stays_serialized(self) -> None:
+        self.assertIn(
+            "concurrency:\n  group: release-assets-${{ github.ref }}\n"
+            "  cancel-in-progress: false\n",
+            self.workflow,
         )
 
 
