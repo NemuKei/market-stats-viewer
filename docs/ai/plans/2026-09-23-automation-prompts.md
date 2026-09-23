@@ -62,6 +62,5 @@ prompt:
 
 ## 利用者の作業
 
-1. GitHubでfine-grained PATを発行する（Repository access: `NemuKei/rm-trend-radar` のみ、Permissions: Contents = Read-only、有効期限は任意）。
-2. `SideBiz_HotelRM` の Settings → Secrets and variables → Actions に `RTR_READ_TOKEN` として登録する。
-3. Codexアプリで `lp` を停止し、上記1を作成、2を変更する。
+1. Codexアプリで `lp` を停止し、上記1を作成、2を変更する（Codexアプリのスレッドに依頼してもよい）。
+2. PATは不要。`rm-trend-radar` は2026-09-23にpublic repositoryへ変更し、SideBizはtokenなしでexportを取得する。
