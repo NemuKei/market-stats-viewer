@@ -188,7 +188,6 @@ def _create_signals_db(path: Path) -> None:
         ("venue_web_discovery", "Venue Web Discovery"),
         ("starto_concert", "STARTO NEWS (CONCERT)"),
         ("kstyle_music", "Kstyle MUSIC"),
-        ("ticketjam_events", "Ticketjam Events"),
     ]:
         conn.execute(
             "INSERT INTO signal_sources VALUES (?, ?)", (source_id, source_name)
@@ -236,22 +235,6 @@ def _create_signals_db(path: Path) -> None:
             "Kstyle Artist",
             source_class="general_news",
             event_category=None,
-        ),
-        _signal(
-            "ticketjam_events",
-            "Stray Kids World Tour <RUN IT JAPAN>",
-            "2026-09-19",
-            "京セラドーム大阪",
-            "Stray Kids",
-            source_class="secondary_market",
-        ),
-        _signal(
-            "ticketjam_events",
-            "”EXILE 25th ANNIVERSARY BEST LIVE” ～LDH PERFECT YEAR 2026～",
-            "2026-12-06",
-            "京セラドーム大阪",
-            "EXILE（エグザイル）",
-            source_class="secondary_market",
         ),
     ]:
         _insert_signal_with_connection(conn, rec)
@@ -384,7 +367,6 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     assert payload["summary"]["suppressed_event_count"] == 0
     assert payload["summary"]["location_held_record_count"] == 0
     assert payload["location_held_records"] == []
-    assert "ticketjam_events" not in payload["source_priority"]
     assert json.dumps(payload, ensure_ascii=False)
 
 
@@ -408,12 +390,12 @@ def test_authoritative_status_suppresses_real_world_artist_alias(
             event_status=event_status,
         ),
         _signal(
-            "ticketjam_events",
+            "starto_concert",
             "Post Malone Presents The BIG ASS Stadium World Tour",
             "2026-10-06",
             "京セラドーム大阪",
             "POST MALONE（ポストマローン）",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]:
         _insert_signal(signals_db, rec)
@@ -435,7 +417,7 @@ def test_authoritative_status_suppresses_real_world_artist_alias(
         ).fetchall()
     }
     conn.close()
-    assert source_ids == {"venue_web_discovery", "ticketjam_events"}
+    assert source_ids == {"venue_web_discovery", "starto_concert"}
 
 
 @pytest.mark.parametrize("event_status", ["postponed", "cancelled"])
@@ -457,12 +439,12 @@ def test_official_event_status_suppresses_lower_priority_source(
     _insert_signal(
         signals_db,
         _signal(
-            "ticketjam_events",
+            "starto_concert",
             "Official status event",
             "2026-10-08",
             "京セラドーム大阪",
             "Official Status Artist",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     )
 
@@ -486,12 +468,12 @@ def test_unverified_venue_discovery_cannot_enter_publication(tmp_path: Path) -> 
     _insert_signal(
         signals_db,
         _signal(
-            "ticketjam_events",
-            "Secondary-only status must not suppress",
+            "starto_concert",
+            "News-only status must not suppress",
             "2026-10-07",
             "京セラドーム大阪",
-            "Secondary Status Artist",
-            source_class="secondary_market",
+            "News Status Artist",
+            source_class="general_news",
             event_status="cancelled",
         ),
     )
@@ -677,12 +659,12 @@ def test_supplemental_merge_accepts_one_missing_start_time() -> None:
             "Artist A",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "without-time",
             "Shared Event Title 2026",
             "Artist B",
             event_start_time=None,
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -705,20 +687,20 @@ def test_strict_group_splits_distinct_start_times_and_keeps_blank_support() -> N
             source_class="venue_official",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "matinee",
             "Same Artist Two Shows",
             "Same Artist",
             event_start_time="12:30",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "evening",
             "Same Artist Two Shows",
             "Same Artist",
             event_start_time="18:00",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -750,12 +732,12 @@ def test_supplemental_merge_rejects_different_nonempty_start_times() -> None:
             event_start_time="12:30",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "evening",
             "Shared Event Title 2026",
             "Artist B",
             event_start_time="18:00",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -784,12 +766,12 @@ def test_supplemental_merge_stops_when_blank_time_anchor_is_ambiguous() -> None:
             source_class="artist_official",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "evening",
             "Shared Event Title 2026",
             "Artist C",
             event_start_time="18:00",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -809,12 +791,12 @@ def test_supplemental_merge_requires_same_canonical_venue() -> None:
             venue_name="Zepp Osaka Bayside",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "venue-b",
             "Shared Event Title 2026",
             "Artist B",
             venue_name="Zepp Namba(Osaka)",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -833,11 +815,11 @@ def test_supplemental_merge_rejects_titles_below_threshold() -> None:
             "Artist A",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "title-b",
             "Unrelated Festival Night 2026",
             "Artist B",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -864,11 +846,11 @@ def test_supplemental_merge_does_not_chain_through_non_representative_group() ->
             source_class="artist_official",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "tail",
             "abcdefghyy",
             "Artist C",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -894,11 +876,11 @@ def test_authoritative_suppression_applies_after_supplemental_merge() -> None:
             source_class="promoter_official",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "scheduled",
             "Shared Event Title 2026",
             "Artist B",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 
@@ -912,11 +894,11 @@ def test_authoritative_suppression_applies_after_supplemental_merge() -> None:
 def test_existing_strict_merge_keeps_event_key_and_source_priority() -> None:
     records = [
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "lower",
             "Lower source wording",
             "Same Artist",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
         _event_record(
             "official_events",
@@ -957,11 +939,11 @@ def test_consolidation_is_independent_of_input_order() -> None:
             "Paledusk",
         ),
         _event_record(
-            "ticketjam_events",
+            "starto_concert",
             "other",
             "Unrelated Festival Night 2026",
             "Other Artist",
-            source_class="secondary_market",
+            source_class="general_news",
         ),
     ]
 

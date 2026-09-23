@@ -24,7 +24,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
-DEFAULT_SIGNAL_SOURCE_IDS = ("kstyle_music", "starto_concert", "ticketjam_events")
+DEFAULT_SIGNAL_SOURCE_IDS = ("kstyle_music", "starto_concert")
 DEFAULT_OUTPUT_JSON_PATH = DATA_DIR / "event_normalization_audit.json"
 DEFAULT_OUTPUT_MD_PATH = DATA_DIR / "event_normalization_audit.md"
 
@@ -300,8 +300,6 @@ def first_nonblank(*values: object) -> str:
 
 
 def source_kind(source_id: str) -> str:
-    if source_id == "ticketjam_events":
-        return "secondary"
     if source_id in {"kstyle_music", "starto_concert"}:
         return "news"
     return "signal"
@@ -417,12 +415,6 @@ def build_audit_report(
         for row in same_event_candidates_all
         if "official_events" in set(row["source_ids"])
     )
-    news_ticketjam_overlap_groups = sum(
-        1
-        for row in same_event_candidates_all
-        if "ticketjam_events" in set(row["source_ids"])
-        and {"kstyle_music", "starto_concert"} & set(row["source_ids"])
-    )
     return {
         "report_name": "event_normalization_audit",
         "report_version": 1,
@@ -443,7 +435,6 @@ def build_audit_report(
             "same_event_candidate_groups": len(same_event_candidates_all),
             "same_event_candidate_groups_output": len(same_event_candidates),
             "official_overlap_groups": official_overlap_groups,
-            "news_ticketjam_overlap_groups": news_ticketjam_overlap_groups,
             "normalization_gap_records": sum(
                 1 for record in records if record.normalization_gaps()
             ),

@@ -42,7 +42,7 @@ from scripts.signals.entity_aliases import (  # noqa: E402
 
 SIGNALS_DB_PATH = REPO_ROOT / "data" / "event_signals.sqlite"
 EVENTS_DB_PATH = REPO_ROOT / "data" / "events.sqlite"
-DEFAULT_SOURCE_IDS = ("kstyle_music", "starto_concert", "ticketjam_events")
+DEFAULT_SOURCE_IDS = ("kstyle_music", "starto_concert")
 
 CONCERT_HINT_RE = re.compile(
     r"(ライブ|コンサート|公演|ツアー|フェス|fan meeting|showcase|live|concert|tour|dome|arena|zepp)",

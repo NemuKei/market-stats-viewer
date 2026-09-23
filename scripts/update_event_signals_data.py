@@ -3,7 +3,6 @@
 Usage:
     uv run python -m scripts.update_event_signals_data
     uv run python -m scripts.update_event_signals_data --only starto_concert
-    uv run python -m scripts.update_event_signals_data --only ticketjam_events --ticketjam-bootstrap-full
     uv run python -m scripts.update_event_signals_data --verbose
 """
 
@@ -24,13 +23,6 @@ from urllib.parse import urlparse
 
 import requests
 
-from .events.category import (
-    EVENT_CATEGORY_BASEBALL,
-    EVENT_CATEGORY_CONCERT,
-    EVENT_CATEGORY_OTHER,
-    classify_event_category,
-)
-from .events.registry import load_registry as load_venue_registry
 from .signals.entity_aliases import (
     load_artist_lookup_maps,
     load_venue_lookup_maps,
@@ -44,7 +36,6 @@ from .signals.sources.base import (
 )
 from .signals.sources.kstyle import KstyleMusicSource
 from .signals.sources.starto import StartoConcertSource
-from .signals.sources.ticketjam import TicketjamEventsSource
 from .signals.sources.venue_web_discovery import VenueWebDiscoverySource
 from .signals.types import SignalRecord, SignalSourceRecord
 from .signals.text_quality import validate_event_text_fields
@@ -124,42 +115,6 @@ DEFAULT_SOURCES = [
         ),
     },
     {
-        "source_id": "ticketjam_events",
-        "source_name": "Ticketjam Events (Secondary)",
-        "source_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
-        "source_type": "hybrid_events",
-        "config_json": json.dumps(
-            {
-                "discovery_mode": "hybrid",
-                "venue_pages_csv": "data/ticketjam_venue_pages.csv",
-                "prefecture_month_urls": [
-                    "https://ticketjam.jp/prefectures/osaka/month"
-                ],
-                "prefecture_month_page_param": "events_page",
-                "prefecture_month_max_pages": 8,
-                "bootstrap_prefecture_month_max_pages": 60,
-                "sitemap_index_url": "https://ticketjam.jp/shared/sitemaps/sitemaps_events.xml.gz",
-                "bootstrap_max_sitemaps": 8000,
-                "bootstrap_max_event_urls": 50000,
-                "max_sitemaps": 120,
-                "max_event_urls": 400,
-                "timeout_sec": 30,
-                "request_retries": 3,
-                "allowed_event_types": ["Event", "MusicEvent", "SportsEvent"],
-                "future_only": True,
-                "lookback_days": 0,
-                "exclude_title_keywords": ["駐車場券", "駐車券", "駐車場"],
-                "venue_min_capacity": 1000,
-                "require_known_venue": True,
-                "prune_missing": False,
-                "drop_past_events": True,
-                "prune_nonconforming": True,
-                "upsert_existing": False,
-            },
-            ensure_ascii=False,
-        ),
-    },
-    {
         "source_id": "venue_web_discovery",
         "source_name": "Venue Web Discovery (Official/Semi-official)",
         "source_url": "data/venue_web_discovery_config.json",
@@ -230,7 +185,6 @@ class ThrottledSession:
 SOURCE_MAP: dict[str, type[SignalSource]] = {
     "starto_concert": StartoConcertSource,
     "kstyle_music": KstyleMusicSource,
-    "ticketjam_events": TicketjamEventsSource,
     "venue_web_discovery": VenueWebDiscoverySource,
 }
 
@@ -264,7 +218,7 @@ def ensure_default_sources(conn: sqlite3.Connection) -> None:
                 source_url = excluded.source_url,
                 source_type = excluded.source_type,
                 config_json = CASE
-                    WHEN signal_sources.source_id IN ('ticketjam_events', 'venue_web_discovery')
+                    WHEN signal_sources.source_id = 'venue_web_discovery'
                     THEN excluded.config_json
                     ELSE COALESCE(signal_sources.config_json, excluded.config_json)
                 END
@@ -468,60 +422,21 @@ def load_source_config(config_json: str | None) -> dict[str, object]:
 
 def should_prune_missing_for_source(source: SignalSourceRecord) -> bool:
     cfg = load_source_config(source.config_json)
-    if source.source_id == "ticketjam_events":
-        return bool(cfg.get("prune_missing", False))
     return bool(cfg.get("prune_missing", True))
 
 
 def should_drop_past_events_for_source(source: SignalSourceRecord) -> bool:
     cfg = load_source_config(source.config_json)
-    if source.source_id == "ticketjam_events":
-        return bool(cfg.get("drop_past_events", True))
     return bool(cfg.get("drop_past_events", False))
 
 
-def should_prune_nonconforming_for_source(source: SignalSourceRecord) -> bool:
-    cfg = load_source_config(source.config_json)
-    if source.source_id == "ticketjam_events":
-        return bool(cfg.get("prune_nonconforming", True))
-    return bool(cfg.get("prune_nonconforming", False))
 
 
 def should_upsert_existing_for_source(source: SignalSourceRecord) -> bool:
     cfg = load_source_config(source.config_json)
-    if source.source_id == "ticketjam_events":
-        return bool(cfg.get("upsert_existing", False))
     return bool(cfg.get("upsert_existing", True))
 
 
-def apply_ticketjam_runtime_overrides(
-    source: SignalSourceRecord,
-    *,
-    bootstrap_full: bool,
-    bootstrap_max_sitemaps: int,
-    bootstrap_max_event_urls: int,
-    discovery_mode_override: str | None,
-) -> SignalSourceRecord:
-    if source.source_id != "ticketjam_events":
-        return source
-
-    cfg = load_source_config(source.config_json)
-    if discovery_mode_override:
-        cfg["discovery_mode"] = discovery_mode_override
-
-    if not bootstrap_full:
-        if discovery_mode_override:
-            source.config_json = json.dumps(cfg, ensure_ascii=False)
-        return source
-
-    cfg["bootstrap_max_sitemaps"] = max(1, int(bootstrap_max_sitemaps))
-    cfg["bootstrap_max_event_urls"] = max(1, int(bootstrap_max_event_urls))
-    cfg["max_sitemap_attempts"] = max(
-        int(cfg.get("max_sitemap_attempts", 0)),
-        int(cfg["bootstrap_max_sitemaps"]) * 5,
-    )
-    source.config_json = json.dumps(cfg, ensure_ascii=False)
-    return source
 
 
 def prune_past_event_signals(
@@ -562,305 +477,10 @@ def prune_past_event_signals(
     return len(delete_uids)
 
 
-def load_venue_capacity_map() -> dict[str, int]:
-    try:
-        registry = load_venue_registry()
-    except Exception:
-        return {}
-
-    out: dict[str, int] = {}
-    for row in registry:
-        name = str(getattr(row, "venue_name", "") or "").strip()
-        capacity = getattr(row, "capacity", None)
-        if not name:
-            continue
-        if isinstance(capacity, int) and capacity > 0:
-            out[name] = capacity
-    return out
 
 
-def _to_bool(value: object, default: bool) -> bool:
-    if isinstance(value, bool):
-        return value
-    text = str(value or "").strip().lower()
-    if not text:
-        return default
-    if text in {"1", "true", "yes", "on"}:
-        return True
-    if text in {"0", "false", "no", "off"}:
-        return False
-    return default
 
 
-def _resolve_ticketjam_venue_gate(source: SignalSourceRecord) -> tuple[int, bool]:
-    cfg = load_source_config(source.config_json)
-    try:
-        min_capacity = int(cfg.get("venue_min_capacity", 1000))
-    except Exception:
-        min_capacity = 1000
-    min_capacity = max(0, min_capacity)
-    require_known_venue = _to_bool(cfg.get("require_known_venue", True), True)
-    return min_capacity, require_known_venue
-
-
-_TICKETJAM_CONCERT_CATEGORY_GROUPS = {"live_domestic", "live_international"}
-_TICKETJAM_CONCERT_SLUG_HINTS = (
-    "music",
-    "band",
-    "idol",
-    "classical",
-    "jazz",
-    "fusion",
-    "festival",
-    "artist",
-)
-_TICKETJAM_BASEBALL_HINTS = ("baseball", "yakyu", "npb")
-
-
-def classify_ticketjam_category(title: object, labels: dict[str, object]) -> str:
-    group = str(labels.get("ticketjam_category_group") or "").strip().lower()
-    slug = str(labels.get("ticketjam_category_slug") or "").strip().lower()
-    artist_name = str(labels.get("artist_name") or "").strip()
-    event_info = str(labels.get("event_info") or "").strip()
-
-    if any(hint in group for hint in _TICKETJAM_BASEBALL_HINTS) or any(
-        hint in slug for hint in _TICKETJAM_BASEBALL_HINTS
-    ):
-        return EVENT_CATEGORY_BASEBALL
-    if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS:
-        return EVENT_CATEGORY_CONCERT
-    if any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS):
-        return EVENT_CATEGORY_CONCERT
-
-    fallback_artist_name = (
-        artist_name
-        if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS
-        or any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS)
-        else ""
-    )
-    category = classify_event_category(title, fallback_artist_name, event_info)
-    if category not in {
-        EVENT_CATEGORY_CONCERT,
-        EVENT_CATEGORY_BASEBALL,
-        EVENT_CATEGORY_OTHER,
-    }:
-        return EVENT_CATEGORY_OTHER
-    return category
-
-
-def apply_ticketjam_selection_rules(
-    signals: list[SignalRecord],
-    source: SignalSourceRecord,
-    venue_capacity_by_name: dict[str, int],
-) -> tuple[list[SignalRecord], dict[str, object]]:
-    if source.source_id != "ticketjam_events":
-        return signals, {}
-
-    min_capacity, require_known_venue = _resolve_ticketjam_venue_gate(source)
-    kept: list[SignalRecord] = []
-    dropped_missing_fields = 0
-    dropped_unknown_venue = 0
-    dropped_low_capacity = 0
-    category_counts: Counter[str] = Counter()
-
-    for row in signals:
-        labels: dict[str, object] = {}
-        if isinstance(row.labels_json, str) and row.labels_json.strip():
-            try:
-                parsed = json.loads(row.labels_json)
-                if isinstance(parsed, dict):
-                    labels = parsed
-            except Exception:
-                labels = {}
-
-        title = str(row.title or "").strip()
-        start_date = str(labels.get("event_start_date") or "").strip()
-        venue_name = str(labels.get("venue_name") or "").strip()
-        artist_name = str(labels.get("artist_name") or "").strip()
-        if not (title and start_date and venue_name and artist_name):
-            dropped_missing_fields += 1
-            continue
-
-        capacity = venue_capacity_by_name.get(venue_name)
-        if capacity is None:
-            if require_known_venue:
-                dropped_unknown_venue += 1
-                continue
-        elif capacity < min_capacity:
-            dropped_low_capacity += 1
-            continue
-
-        category = classify_ticketjam_category(title, labels)
-        labels["event_category"] = category
-        if capacity is not None:
-            labels["venue_capacity"] = capacity
-        row.labels_json = canonical_labels_json(labels)
-        row.content_hash = compute_content_hash(row)
-        kept.append(row)
-        category_counts[category] += 1
-
-    return kept, {
-        "min_capacity": min_capacity,
-        "require_known_venue": require_known_venue,
-        "kept": len(kept),
-        "dropped_missing_fields": dropped_missing_fields,
-        "dropped_unknown_venue": dropped_unknown_venue,
-        "dropped_low_capacity": dropped_low_capacity,
-        "category_counts": dict(category_counts),
-    }
-
-
-def prune_ticketjam_nonconforming_signals(
-    conn: sqlite3.Connection,
-    source: SignalSourceRecord,
-    venue_capacity_by_name: dict[str, int],
-) -> int:
-    if source.source_id != "ticketjam_events":
-        return 0
-
-    min_capacity, require_known_venue = _resolve_ticketjam_venue_gate(source)
-
-    cur = conn.execute(
-        "SELECT signal_uid, title, labels_json FROM signals WHERE source_id = ?",
-        (source.source_id,),
-    )
-    delete_uids: list[tuple[str]] = []
-    for signal_uid, title, labels_json in cur.fetchall():
-        if not isinstance(labels_json, str) or not labels_json.strip():
-            delete_uids.append((str(signal_uid),))
-            continue
-        try:
-            labels = json.loads(labels_json)
-        except Exception:
-            delete_uids.append((str(signal_uid),))
-            continue
-        if not isinstance(labels, dict):
-            delete_uids.append((str(signal_uid),))
-            continue
-
-        title_text = str(title or "").strip()
-        start_date = str(labels.get("event_start_date") or "").strip()
-        venue_name = str(labels.get("venue_name") or "").strip()
-        artist = str(labels.get("artist_name") or "").strip()
-        if not (title_text and start_date and venue_name and artist):
-            delete_uids.append((str(signal_uid),))
-            continue
-
-        capacity = venue_capacity_by_name.get(venue_name)
-        if capacity is None and require_known_venue:
-            delete_uids.append((str(signal_uid),))
-            continue
-        if capacity is not None and capacity < min_capacity:
-            delete_uids.append((str(signal_uid),))
-
-    if not delete_uids:
-        return 0
-    conn.executemany("DELETE FROM signals WHERE signal_uid = ?", delete_uids)
-    return len(delete_uids)
-
-
-def prune_ticketjam_duplicate_event_ids(
-    conn: sqlite3.Connection,
-    source_id: str,
-) -> int:
-    if source_id != "ticketjam_events":
-        return 0
-    cur = conn.execute(
-        """
-        SELECT signal_uid, url, published_at_utc, updated_at_utc
-        FROM signals
-        WHERE source_id = ?
-        """,
-        (source_id,),
-    )
-
-    best_by_event_id: dict[str, tuple[str, str, str]] = {}
-    duplicate_uids: list[tuple[str]] = []
-    for signal_uid, url, published_at_utc, updated_at_utc in cur.fetchall():
-        match = re.search(r"/event/(\d+)$", str(url or "").strip())
-        if not match:
-            continue
-        event_id = match.group(1)
-        current = (
-            str(signal_uid),
-            str(published_at_utc or ""),
-            str(updated_at_utc or ""),
-        )
-        prev = best_by_event_id.get(event_id)
-        if prev is None:
-            best_by_event_id[event_id] = current
-            continue
-        if (current[1], current[2], current[0]) > (prev[1], prev[2], prev[0]):
-            duplicate_uids.append((prev[0],))
-            best_by_event_id[event_id] = current
-        else:
-            duplicate_uids.append((current[0],))
-
-    if not duplicate_uids:
-        return 0
-    conn.executemany("DELETE FROM signals WHERE signal_uid = ?", duplicate_uids)
-    return len(duplicate_uids)
-
-
-def prune_ticketjam_duplicate_performances(
-    conn: sqlite3.Connection,
-    source_id: str,
-) -> int:
-    """Drop duplicate rows that represent the same performance."""
-    if source_id != "ticketjam_events":
-        return 0
-    cur = conn.execute(
-        """
-        SELECT signal_uid, title, labels_json, published_at_utc, updated_at_utc
-        FROM signals
-        WHERE source_id = ?
-        """,
-        (source_id,),
-    )
-
-    best_by_key: dict[tuple[str, str, str, str, str], tuple[str, str, str]] = {}
-    duplicate_uids: list[tuple[str]] = []
-    for (
-        signal_uid,
-        title,
-        labels_json,
-        published_at_utc,
-        updated_at_utc,
-    ) in cur.fetchall():
-        labels: dict[str, object] = {}
-        if isinstance(labels_json, str) and labels_json.strip():
-            try:
-                parsed = json.loads(labels_json)
-                if isinstance(parsed, dict):
-                    labels = parsed
-            except Exception:
-                labels = {}
-        key = (
-            str(labels.get("event_start_date") or "").strip(),
-            str(labels.get("event_start_time") or "").strip(),
-            str(labels.get("venue_name") or "").strip(),
-            str(labels.get("artist_name") or "").strip(),
-            str(title or "").strip(),
-        )
-        current = (
-            str(signal_uid),
-            str(published_at_utc or ""),
-            str(updated_at_utc or ""),
-        )
-        prev = best_by_key.get(key)
-        if prev is None:
-            best_by_key[key] = current
-            continue
-        if (current[1], current[2], current[0]) > (prev[1], prev[2], prev[0]):
-            duplicate_uids.append((prev[0],))
-            best_by_key[key] = current
-        else:
-            duplicate_uids.append((current[0],))
-
-    if not duplicate_uids:
-        return 0
-    conn.executemany("DELETE FROM signals WHERE signal_uid = ?", duplicate_uids)
-    return len(duplicate_uids)
 
 
 def normalize_signal_labels(
@@ -960,35 +580,6 @@ def main() -> None:
         action="store_true",
         help="Rebuild target source rows (requires --only)",
     )
-    parser.add_argument(
-        "--ticketjam-bootstrap-full",
-        action="store_true",
-        help="Force ticketjam full rebuild once (usually with --only ticketjam_events)",
-    )
-    parser.add_argument(
-        "--ticketjam-bootstrap-max-sitemaps",
-        type=int,
-        default=8000,
-        help="Legacy sitemap mode only: scan this many ticketjam sitemaps",
-    )
-    parser.add_argument(
-        "--ticketjam-bootstrap-max-event-urls",
-        type=int,
-        default=50000,
-        help="Legacy sitemap mode only: keep up to this many ticketjam event URLs",
-    )
-    parser.add_argument(
-        "--ticketjam-discovery-mode",
-        choices=[
-            "hybrid",
-            "sitemap",
-            "venue_pages",
-            "prefecture_month",
-            "prefecture_month_hybrid",
-        ],
-        default="",
-        help="Override ticketjam discovery mode for this run",
-    )
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     args = parser.parse_args()
 
@@ -1004,21 +595,12 @@ def main() -> None:
 
     if args.rebuild and not only_ids:
         parser.error("--rebuild requires --only with one or more source_ids")
-    if (
-        args.ticketjam_bootstrap_full
-        and only_ids
-        and "ticketjam_events" not in only_ids
-    ):
-        parser.error(
-            "--ticketjam-bootstrap-full requires --only to include ticketjam_events"
-        )
 
     raw_session = requests.Session()
     raw_session.headers.update({"User-Agent": USER_AGENT})
     throttle = DomainThrottle(
         min_interval=4.0,
         default_interval=1.5,
-        domain_intervals={"ticketjam.jp": 1.0},
     )
     session = ThrottledSession(raw_session, throttle)
 
@@ -1034,21 +616,12 @@ def main() -> None:
     logger.info("Processing %d source(s)...", len(targets))
     artist_keep_map, artist_compact_map = load_artist_lookup_maps()
     venue_keep_map, venue_compact_map = load_venue_lookup_maps()
-    venue_capacity_by_name = load_venue_capacity_map()
-    target_venue_count_1000 = sum(
-        1 for cap in venue_capacity_by_name.values() if int(cap) >= 1000
-    )
     logger.info(
         "Loaded normalization maps: artist keep=%d compact=%d, venue keep=%d compact=%d",
         len(artist_keep_map),
         len(artist_compact_map),
         len(venue_keep_map),
         len(venue_compact_map),
-    )
-    logger.info(
-        "Loaded venue capacity map: total=%d, capacity>=1000=%d",
-        len(venue_capacity_by_name),
-        target_venue_count_1000,
     )
 
     success_count = 0
@@ -1059,44 +632,6 @@ def main() -> None:
     for source in targets:
         logger.info("--- %s (%s) ---", source.source_id, source.source_name)
         try:
-            source = apply_ticketjam_runtime_overrides(
-                source,
-                bootstrap_full=args.ticketjam_bootstrap_full,
-                bootstrap_max_sitemaps=args.ticketjam_bootstrap_max_sitemaps,
-                bootstrap_max_event_urls=args.ticketjam_bootstrap_max_event_urls,
-                discovery_mode_override=args.ticketjam_discovery_mode or None,
-            )
-            if args.ticketjam_bootstrap_full and source.source_id == "ticketjam_events":
-                clear_source_for_rebuild(conn, source.source_id)
-                source.last_signature = None
-                source_cfg = load_source_config(source.config_json)
-                discovery_mode = (
-                    str(source_cfg.get("discovery_mode", "sitemap")).strip()
-                    or "sitemap"
-                )
-                if discovery_mode == "venue_pages":
-                    logger.info(
-                        "  ticketjam bootstrap full: force rebuild (venue-page mode; bootstrap_max_* ignored)"
-                    )
-                elif discovery_mode == "prefecture_month":
-                    logger.info(
-                        "  ticketjam bootstrap full: force rebuild (prefecture-month mode; Osaka spike route only)"
-                    )
-                elif discovery_mode == "prefecture_month_hybrid":
-                    logger.info(
-                        "  ticketjam bootstrap full: force rebuild (prefecture-month priority + existing routes)"
-                    )
-                elif discovery_mode == "hybrid":
-                    logger.info(
-                        "  ticketjam bootstrap full: force rebuild (hybrid mode; venue pages + sitemap supplement)"
-                    )
-                else:
-                    logger.info(
-                        "  ticketjam bootstrap full: force rebuild + max_sitemaps=%d max_event_urls=%d",
-                        args.ticketjam_bootstrap_max_sitemaps,
-                        args.ticketjam_bootstrap_max_event_urls,
-                    )
-
             plugin = get_source(source.source_id, session)
             if plugin is None:
                 logger.warning("No plugin for source_id=%s", source.source_id)
@@ -1133,28 +668,6 @@ def main() -> None:
                 norm_stats.get("unknown_venues", Counter()),
                 label="venue",
             )
-            selection_stats: dict[str, object] = {}
-            signals, selection_stats = apply_ticketjam_selection_rules(
-                signals,
-                source,
-                venue_capacity_by_name,
-            )
-            if selection_stats:
-                category_counts = selection_stats.get("category_counts", {})
-                category_summary = ", ".join(
-                    f"{k}:{v}" for k, v in sorted(dict(category_counts).items())
-                )
-                logger.info(
-                    "  ticketjam gate: min_capacity=%s require_known_venue=%s kept=%s dropped_missing=%s dropped_unknown_venue=%s dropped_low_capacity=%s categories=%s",
-                    selection_stats.get("min_capacity"),
-                    selection_stats.get("require_known_venue"),
-                    selection_stats.get("kept"),
-                    selection_stats.get("dropped_missing_fields"),
-                    selection_stats.get("dropped_unknown_venue"),
-                    selection_stats.get("dropped_low_capacity"),
-                    category_summary or "-",
-                )
-
             validate_signal_text_quality(signals)
 
             if args.rebuild:
@@ -1181,56 +694,13 @@ def main() -> None:
                 if pruned_past > 0:
                     logger.info("  pruned %d past signal(s)", pruned_past)
 
-            pruned_nonconforming = 0
-            if should_prune_nonconforming_for_source(source):
-                pruned_nonconforming = prune_ticketjam_nonconforming_signals(
-                    conn,
-                    source,
-                    venue_capacity_by_name,
-                )
-                if pruned_nonconforming > 0:
-                    logger.info(
-                        "  pruned %d nonconforming signal(s)",
-                        pruned_nonconforming,
-                    )
-
-            pruned_duplicates = prune_ticketjam_duplicate_event_ids(
-                conn,
-                source.source_id,
-            )
-            if pruned_duplicates > 0:
-                logger.info(
-                    "  pruned %d duplicate event_id signal(s)", pruned_duplicates
-                )
-            pruned_performances = prune_ticketjam_duplicate_performances(
-                conn,
-                source.source_id,
-            )
-            if pruned_performances > 0:
-                logger.info(
-                    "  pruned %d duplicate performance signal(s)",
-                    pruned_performances,
-                )
-
             if not args.rebuild and source.last_signature == sig:
-                if (
-                    pruned == 0
-                    and pruned_past == 0
-                    and pruned_nonconforming == 0
-                    and pruned_duplicates == 0
-                    and pruned_performances == 0
-                ):
+                if pruned == 0 and pruned_past == 0:
                     logger.info("  no-op: signature unchanged")
                 else:
                     conn.commit()
                 success_count += 1
-                total_changed += (
-                    pruned
-                    + pruned_past
-                    + pruned_nonconforming
-                    + pruned_duplicates
-                    + pruned_performances
-                )
+                total_changed += pruned + pruned_past
                 continue
 
             update_existing = should_upsert_existing_for_source(source)
@@ -1241,47 +711,15 @@ def main() -> None:
                 signals,
                 update_existing=update_existing,
             )
-            post_pruned_duplicates = prune_ticketjam_duplicate_event_ids(
-                conn,
-                source.source_id,
-            )
-            post_pruned_performances = prune_ticketjam_duplicate_performances(
-                conn,
-                source.source_id,
-            )
-            if post_pruned_duplicates > 0:
-                logger.info(
-                    "  post-upsert pruned %d duplicate event_id signal(s)",
-                    post_pruned_duplicates,
-                )
-            if post_pruned_performances > 0:
-                logger.info(
-                    "  post-upsert pruned %d duplicate performance signal(s)",
-                    post_pruned_performances,
-                )
             update_source_signature(conn, source.source_id, sig)
             conn.commit()
 
-            total_changed += (
-                changed
-                + pruned
-                + pruned_past
-                + pruned_nonconforming
-                + pruned_duplicates
-                + pruned_performances
-                + post_pruned_duplicates
-                + post_pruned_performances
-            )
+            total_changed += changed + pruned + pruned_past
             logger.info(
-                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s), %d nonconforming signal(s), %d duplicate event_id signal(s), %d duplicate performance signal(s), post-upsert %d duplicate event_id signal(s), %d duplicate performance signal(s)",
+                "  upserted %d changed signal(s), pruned %d stale signal(s), %d past signal(s)",
                 changed,
                 pruned,
                 pruned_past,
-                pruned_nonconforming,
-                pruned_duplicates,
-                pruned_performances,
-                post_pruned_duplicates,
-                post_pruned_performances,
             )
             success_count += 1
 

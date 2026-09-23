@@ -8,7 +8,7 @@ from scripts.signals.text_quality import (
 
 
 class EventTextQualityTests(unittest.TestCase):
-    def test_rejects_ticketjam_ptcp154_mojibake_regression(self) -> None:
+    def test_rejects_ptcp154_mojibake_regression(self) -> None:
         good = "GRe4N BOYZ イマーシブライブシアター2026 「“The ZA” 〜溢れる想いが止まらない〜」"
         bad = good.encode("utf-8").decode("ptcp154")
 

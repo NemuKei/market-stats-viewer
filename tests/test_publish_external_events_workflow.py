@@ -37,7 +37,6 @@ class PublishExternalEventsWorkflowTest(unittest.TestCase):
         for workflow_name in (
             "Update events official data",
             "Update event signals data (News)",
-            "Update event signals data (Ticketjam)",
             "Update event signals data (Venue Web Discovery)",
         ):
             self.assertIn(f"      - {workflow_name}\n", self.workflow)

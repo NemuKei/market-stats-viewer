@@ -1899,9 +1899,7 @@ DATASET_LABEL_TA = "\u65c5\u884c\u696d\u8005\u53d6\u6271\u984d"
 DATASET_LABEL_AIRPORT_VOLUME = "\u7a7a\u6e2f\u5225\u5165\u56fd\u8005\u6570"
 DATASET_LABEL_EVENTS_OFFICIAL = "全国イベント情報（会場公式）"
 DATASET_LABEL_EVENTS_SIGNALS = "全国イベント速報（ニュース）"
-DATASET_LABEL_EVENTS_MARKET = "全国イベント参考（二次流通）"
 DATASET_LABEL_EVENTS = DATASET_LABEL_EVENTS_OFFICIAL
-EVENT_SIGNALS_MARKET_SOURCE_IDS = {"ticketjam_events"}
 
 EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
@@ -3192,57 +3190,6 @@ def classify_event_category(title: str, artist_name: str, description: str) -> s
     return EVENT_CATEGORY_OTHER
 
 
-_TICKETJAM_CONCERT_CATEGORY_GROUPS = {"live_domestic", "live_international"}
-_TICKETJAM_CONCERT_SLUG_HINTS = (
-    "music",
-    "band",
-    "idol",
-    "classical",
-    "jazz",
-    "fusion",
-    "festival",
-    "artist",
-)
-_TICKETJAM_BASEBALL_HINTS = ("baseball", "yakyu", "npb")
-
-
-def classify_ticketjam_signal_category(
-    *,
-    title: str,
-    artist_name: str,
-    description: str,
-    category_group: str,
-    category_slug: str,
-    explicit_category: str,
-) -> str:
-    explicit = str(explicit_category or "").strip()
-    if explicit in {
-        EVENT_CATEGORY_CONCERT,
-        EVENT_CATEGORY_BASEBALL,
-        EVENT_CATEGORY_OTHER,
-    }:
-        return explicit
-
-    group = str(category_group or "").strip().lower()
-    slug = str(category_slug or "").strip().lower()
-    if any(hint in group for hint in _TICKETJAM_BASEBALL_HINTS) or any(
-        hint in slug for hint in _TICKETJAM_BASEBALL_HINTS
-    ):
-        return EVENT_CATEGORY_BASEBALL
-    if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS:
-        return EVENT_CATEGORY_CONCERT
-    if any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS):
-        return EVENT_CATEGORY_CONCERT
-
-    fallback_artist_name = (
-        artist_name
-        if group in _TICKETJAM_CONCERT_CATEGORY_GROUPS
-        or any(hint in slug for hint in _TICKETJAM_CONCERT_SLUG_HINTS)
-        else ""
-    )
-    return classify_event_category(title, fallback_artist_name, description)
-
-
 @st.cache_data(show_spinner=False)
 def load_events_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load events + venues from events.sqlite. Returns (df_events, df_venues)."""
@@ -3395,13 +3342,8 @@ def normalize_artist_name_with_lookup(
     return text
 
 
-def render_event_signals_view(view_mode: str = "news") -> None:
-    is_market_view = view_mode == "market"
-    st.title(
-        "全国イベント参考（二次流通）"
-        if is_market_view
-        else "全国イベント速報（ニュース）"
-    )
+def render_event_signals_view() -> None:
+    st.title("全国イベント速報（ニュース）")
 
     df_signals, df_sources = load_event_signals_data()
     if df_signals.empty:
@@ -3411,26 +3353,15 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         )
         return
 
-    source_master = df_sources[["source_id", "source_name"]].drop_duplicates()
+    source_master = df_sources.loc[
+        df_sources["source_type"] != "hybrid_events", ["source_id", "source_name"]
+    ].drop_duplicates()
     df = df_signals.merge(source_master, on="source_id", how="left")
-    if is_market_view:
-        df = df[df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS)].copy()
-        st.caption(
-            "二次流通サイト由来の参考情報です。公式発表ではないため、最終確認は公式情報で行ってください。"
-        )
-    else:
-        df = df[~df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS)].copy()
-
+    df = df[df["source_name"].notna()].copy()
     published_utc = pd.to_datetime(df["published_at_utc"], utc=True, errors="coerce")
     df = df[published_utc.notna()].copy()
     if df.empty:
-        if is_market_view:
-            st.warning(
-                "表示可能な二次流通データがありません。"
-                "`uv run python -m scripts.update_event_signals_data --only ticketjam_events` を実行してください。"
-            )
-        else:
-            st.warning("表示可能な速報データがありません。")
+        st.warning("表示可能な速報データがありません。")
         return
 
     df["published_dt_utc"] = published_utc[published_utc.notna()]
@@ -3448,14 +3379,6 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     if starto_mask.any():
         df.loc[starto_mask, "effective_published_dt_utc"] = df.loc[
             starto_mask, "first_seen_dt_utc"
-        ]
-    market_mask = (
-        df["source_id"].isin(EVENT_SIGNALS_MARKET_SOURCE_IDS)
-        & df["first_seen_dt_utc"].notna()
-    )
-    if market_mask.any():
-        df.loc[market_mask, "effective_published_dt_utc"] = df.loc[
-            market_mask, "first_seen_dt_utc"
         ]
     df["effective_published_dt_jst"] = df["effective_published_dt_utc"].dt.tz_convert(
         "Asia/Tokyo"
@@ -3499,20 +3422,6 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     )
     df["event_info"] = labels_series.apply(
         lambda d: str(d.get("event_info", "")).strip() if isinstance(d, dict) else ""
-    )
-    df["ticketjam_category_group"] = labels_series.apply(
-        lambda d: (
-            str(d.get("ticketjam_category_group", "")).strip()
-            if isinstance(d, dict)
-            else ""
-        )
-    )
-    df["ticketjam_category_slug"] = labels_series.apply(
-        lambda d: (
-            str(d.get("ticketjam_category_slug", "")).strip()
-            if isinstance(d, dict)
-            else ""
-        )
     )
     df["event_category_label"] = labels_series.apply(
         lambda d: (
@@ -3584,20 +3493,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         lambda row: row["event_info"] if row["event_info"] else row["snippet"],
         axis=1,
     )
-    if is_market_view:
-        df["event_category"] = df.apply(
-            lambda row: classify_ticketjam_signal_category(
-                title=str(row.get("title", "") or ""),
-                artist_name=str(row.get("artist_name", "") or ""),
-                description=str(row.get("event_info", "") or ""),
-                category_group=str(row.get("ticketjam_category_group", "") or ""),
-                category_slug=str(row.get("ticketjam_category_slug", "") or ""),
-                explicit_category=str(row.get("event_category_label", "") or ""),
-            ),
-            axis=1,
-        )
-    else:
-        df["event_category"] = EVENT_CATEGORY_OTHER
+    df["event_category"] = EVENT_CATEGORY_OTHER
     df["published_label"] = df["published_jst"]
 
     def _normalize_hhmm(value: object) -> str:
@@ -3806,18 +3702,13 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     source_name_to_id = {
         str(row["source_name"]): str(row["source_id"]) for row in source_options
     }
-    if is_market_view:
-        selected_source_ids = list(source_name_to_id.values())
-    else:
-        selected_source_names = st.multiselect(
-            "ソース",
-            options=list(source_name_to_id.keys()),
-            default=list(source_name_to_id.keys()),
-            key="signals_sources",
-        )
-        selected_source_ids = [
-            source_name_to_id[name] for name in selected_source_names
-        ]
+    selected_source_names = st.multiselect(
+        "ソース",
+        options=list(source_name_to_id.keys()),
+        default=list(source_name_to_id.keys()),
+        key="signals_sources",
+    )
+    selected_source_ids = [source_name_to_id[name] for name in selected_source_names]
 
     pref_options = sorted(
         [
@@ -3857,18 +3748,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     )
 
     keyword = st.text_input("キーワード（タイトル/抜粋）", key="signals_keyword")
-    selected_category = EVENT_CATEGORY_ALL
-    if is_market_view:
-        selected_category = st.radio(
-            "種別",
-            EVENT_CATEGORY_OPTIONS,
-            horizontal=True,
-            key="signals_market_category",
-        )
-    sort_options = [
-        "初回検知日時（新しい順）" if is_market_view else "掲載日時（新しい順）",
-        "イベント日（早い順）",
-    ]
+    sort_options = ["掲載日時（新しい順）", "イベント日（早い順）"]
     sort_label = st.radio(
         "並び順",
         sort_options,
@@ -3887,9 +3767,6 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         mask &= df["title"].fillna("").str.lower().str.contains(keyword_lower) | df[
             "event_info"
         ].fillna("").str.lower().str.contains(keyword_lower)
-    if is_market_view and selected_category != EVENT_CATEGORY_ALL:
-        mask &= df["event_category"] == selected_category
-
     filtered = df[mask].copy()
     if sort_label == sort_options[0]:
         filtered = filtered.sort_values(
@@ -3909,8 +3786,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
     )
 
     new_count = int(filtered["is_new_24h"].sum()) if not filtered.empty else 0
-    row_label = "イベント候補" if is_market_view else "速報"
-    st.markdown(f"**{len(filtered)}** 件の{row_label}")
+    st.markdown(f"**{len(filtered)}** 件の速報")
     if new_count > 0:
         st.success(f"新規イベント（直近24時間）: {new_count} 件")
     else:
@@ -3929,9 +3805,7 @@ def render_event_signals_view(view_mode: str = "news") -> None:
         "url",
         "event_info",
     ]
-    if is_market_view:
-        table_columns.insert(5, "event_category")
-    published_column_label = "初回検知日" if is_market_view else "掲載日"
+    published_column_label = "掲載日"
     table_df = filtered[table_columns].rename(
         columns={
             "new_badge": "新着",
@@ -4449,7 +4323,6 @@ def main() -> None:
         _REF_OPTIONS = [
             DATASET_LABEL_EVENTS_OFFICIAL,
             DATASET_LABEL_EVENTS_SIGNALS,
-            DATASET_LABEL_EVENTS_MARKET,
         ]
 
         if "_active_dataset" not in st.session_state:
@@ -4505,11 +4378,7 @@ def main() -> None:
         return
 
     if dataset_type == DATASET_LABEL_EVENTS_SIGNALS:
-        render_event_signals_view(view_mode="news")
-        return
-
-    if dataset_type == DATASET_LABEL_EVENTS_MARKET:
-        render_event_signals_view(view_mode="market")
+        render_event_signals_view()
         return
 
     render_airport_volume_view()

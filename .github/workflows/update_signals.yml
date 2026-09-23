@@ -35,10 +35,6 @@ jobs:
         run: |
           uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music
 
-      - name: Build ticketjam supplement report
-        run: |
-          uv run python -m scripts.build_ticketjam_supplement_report
-
       - name: Build LP events
         run: |
           uv run python -m scripts.build_lp_events

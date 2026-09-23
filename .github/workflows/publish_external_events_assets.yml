@@ -16,7 +16,6 @@ on:
     workflows:
       - Update events official data
       - Update event signals data (News)
-      - Update event signals data (Ticketjam)
       - Update event signals data (Venue Web Discovery)
     types:
       - completed
