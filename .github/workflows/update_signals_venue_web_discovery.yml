@@ -4,6 +4,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "35 4 * * *" # daily (UTC)
+  push:
+    branches:
+      - main
+    paths:
+      - data/venue_discovery_inbox.json
 
 concurrency:
   group: repo-write-${{ github.ref }}
@@ -38,6 +43,10 @@ jobs:
           uv run crawl4ai-setup
           uv run crawl4ai-doctor
 
+      - name: Apply venue discovery inbox
+        run: |
+          uv run python -m scripts.apply_venue_discovery_inbox
+
       - name: Update venue web discovery signals
         run: |
           uv run python -m scripts.update_event_signals_data --only venue_web_discovery
@@ -48,7 +57,7 @@ jobs:
 
       - name: Validate venue web discovery outputs
         run: |
-          uv run python -m pytest tests/test_venue_web_discovery_source.py tests/test_venue_web_discovery_extract.py tests/test_build_lp_events.py tests/test_build_external_events_manifest.py tests/test_validate_external_events.py
+          uv run python -m pytest tests/test_venue_web_discovery_source.py tests/test_venue_web_discovery_extract.py tests/test_build_lp_events.py tests/test_build_external_events_manifest.py tests/test_validate_external_events.py tests/test_apply_venue_discovery_inbox.py tests/test_publication_filter.py
           uv run python -m scripts.venue_web_discovery_extract --help
           mkdir -p tmp
           uv run python -m scripts.build_external_events_manifest --release-tag external-events-latest --output tmp/manifest.json
