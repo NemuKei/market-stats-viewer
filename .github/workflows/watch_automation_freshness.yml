@@ -1,0 +1,21 @@
+name: Watch automation freshness
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *" # daily 10:00 JST
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Check venue discovery inbox freshness
+        run: |
+          python -m scripts.check_automation_freshness --file data/venue_discovery_inbox.json --max-age-days 3
