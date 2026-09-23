@@ -45,13 +45,11 @@ SOURCE_PRIORITY = {
     "venue_web_discovery": 20,
     "starto_concert": 30,
     "kstyle_music": 30,
-    "ticketjam_events": 40,
 }
 SIGNAL_SOURCE_IDS = {
     "venue_web_discovery",
     "starto_concert",
     "kstyle_music",
-    "ticketjam_events",
 }
 SIGNAL_CATEGORY_MAP = {
     "concert": EVENT_CATEGORY_CONCERT,
@@ -361,7 +359,7 @@ def load_signal_events(
             s.updated_at_utc
         FROM signals s
         LEFT JOIN signal_sources src ON src.source_id = s.source_id
-        WHERE s.source_id IN (?, ?, ?, ?)
+        WHERE s.source_id IN (?, ?, ?)
         ORDER BY s.published_at_utc DESC, s.title
         """,
         tuple(sorted(SIGNAL_SOURCE_IDS)),
@@ -790,7 +788,6 @@ def assemble_lp_payload(
             "venue_web_discovery",
             "starto_concert",
             "kstyle_music",
-            "ticketjam_events",
         ],
         "summary": {
             "record_count_before_grouping": len(records),
@@ -807,12 +804,20 @@ def build_lp_events(
     include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
     as_of_date: date | None = None,
 ) -> dict[str, Any]:
+    from .publication_filter import select_publishable_records
+    from .signals.entity_aliases import load_venue_prefecture_map
+
     reference_date = as_of_date or today_jst()
     records = load_lp_records(events_db_path=events_db_path,
         event_signals_db_path=event_signals_db_path, include_past=include_past,
         past_days=past_days, as_of_date=reference_date)
-    return assemble_lp_payload(records, as_of_date=reference_date,
+    trusted, location_held = select_publishable_records(
+        records, venue_prefectures=load_venue_prefecture_map())
+    payload = assemble_lp_payload(trusted, as_of_date=reference_date,
         include_past=include_past, past_days=past_days)
+    payload["location_held_records"] = location_held
+    payload["summary"]["location_held_record_count"] = len(location_held)
+    return payload
 
 
 
@@ -848,44 +853,10 @@ def main() -> int:
         action="store_true",
         help="Include all past events retained in the source databases.",
     )
-    parser.add_argument(
-        "--ticketjam-policy", choices=("display", "discovery", "reviewed"), default="discovery",
-        help="discovery (default) excludes Ticketjam before publication grouping; reviewed/display are migration rollback modes.",
-    )
-    parser.add_argument("--review-output", type=Path, help="Write official-verification candidates before filtering.")
-    parser.add_argument("--review-state", type=Path, help="Existing review history for due-date filtering.")
     args = parser.parse_args()
-    if args.ticketjam_policy in {"reviewed", "discovery"}:
-        args.review_state = args.review_state or DATA_DIR / "ticketjam_review_state.json"
-        args.review_output = args.review_output or args.output.with_name("ticketjam_review_queue.json")
-    if args.review_output and args.review_output.resolve() == args.output.resolve():
-        parser.error("--review-output must differ from --output")
-
-    if args.review_state and any(
-        path and path.resolve() == args.review_state.resolve()
-        for path in (args.output, args.review_output)
-    ):
-        parser.error("outputs must not overwrite review state")
-
-    review_state = json.loads(args.review_state.read_text(encoding="utf-8")) if args.review_state else None
-    build_args = dict(events_db_path=args.events_db, event_signals_db_path=args.event_signals_db,
-                      include_past=bool(args.include_past), past_days=args.past_days)
-    if args.ticketjam_policy == "discovery":
-        from .ticketjam_discovery import build_discovery_bundle
-
-        reference_date = today_jst()
-        records = load_lp_records(**build_args, as_of_date=reference_date)
-        payload, queue = build_discovery_bundle(records, as_of_date=reference_date,
-            review_state=review_state, include_past=bool(args.include_past), past_days=args.past_days)
-        write_lp_events(queue, args.review_output)
-    else:
-        from .ticketjam_discovery import apply_reviewed_policy, build_review_queue
-
-        payload = build_lp_events(**build_args)
-        if args.review_output:
-            write_lp_events(build_review_queue(payload, review_state), args.review_output)
-        if args.ticketjam_policy == "reviewed":
-            payload = apply_reviewed_policy(payload, review_state)
+    payload = build_lp_events(events_db_path=args.events_db,
+        event_signals_db_path=args.event_signals_db,
+        include_past=bool(args.include_past), past_days=args.past_days)
     write_lp_events(payload, args.output)
     print(
         f"lp events written: {args.output} ({payload['summary']['event_count']} events)"

@@ -296,7 +296,7 @@ def test_build_rejects_mojibake_before_output_payload(tmp_path: Path) -> None:
     bad = good.encode("utf-8").decode("ptcp154")
     conn = sqlite3.connect(str(signals_db))
     conn.execute(
-        "UPDATE signals SET title = ? WHERE source_id = 'ticketjam_events'",
+        "UPDATE signals SET title = ? WHERE source_id = 'kstyle_music'",
         (bad,),
     )
     conn.commit()
@@ -372,17 +372,19 @@ def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     assert by_artist["EXILE"]["display_source_id"] == "official_events"
     assert [item["source_id"] for item in by_artist["EXILE"]["supporting_sources"]] == [
         "official_events",
-        "ticketjam_events",
     ]
     assert by_artist["Stray Kids"]["display_source_id"] == "venue_web_discovery"
     assert [
         item["source_id"] for item in by_artist["Stray Kids"]["supporting_sources"]
-    ] == ["venue_web_discovery", "kstyle_music", "ticketjam_events"]
+    ] == ["venue_web_discovery", "kstyle_music"]
     assert by_artist["STARTO Artist"]["display_source_id"] == "starto_concert"
     assert by_artist["STARTO Artist"]["event_category"] == "コンサート"
     assert by_artist["Kstyle Artist"]["display_source_id"] == "kstyle_music"
     assert by_artist["Kstyle Artist"]["event_category"] == "コンサート"
     assert payload["summary"]["suppressed_event_count"] == 0
+    assert payload["summary"]["location_held_record_count"] == 0
+    assert payload["location_held_records"] == []
+    assert "ticketjam_events" not in payload["source_priority"]
     assert json.dumps(payload, ensure_ascii=False)
 
 
@@ -476,7 +478,7 @@ def test_official_event_status_suppresses_lower_priority_source(
     assert payload["summary"]["suppressed_event_count"] == 1
 
 
-def test_secondary_market_status_does_not_suppress_event(tmp_path: Path) -> None:
+def test_unverified_venue_discovery_cannot_enter_publication(tmp_path: Path) -> None:
     events_db = tmp_path / "events.sqlite"
     signals_db = tmp_path / "event_signals.sqlite"
     _create_events_db(events_db)
@@ -519,25 +521,12 @@ def test_secondary_market_status_does_not_suppress_event(tmp_path: Path) -> None
         ),
     )
 
-    payload = build_lp_events(
-        events_db_path=events_db,
-        event_signals_db_path=signals_db,
-        include_past=True,
-    )
-
-    by_artist = {row["artist_name"]: row for row in payload["events"]}
-    assert (
-        by_artist["Secondary Status Artist"]["display_source_id"] == "ticketjam_events"
-    )
-    assert (
-        by_artist["Non-official VWD Artist"]["display_source_id"]
-        == "venue_web_discovery"
-    )
-    assert (
-        by_artist["VWD Missing Evidence Artist"]["display_source_id"]
-        == "venue_web_discovery"
-    )
-    assert payload["summary"]["suppressed_event_count"] == 0
+    with pytest.raises(ValueError, match="unverified venue_web_discovery"):
+        build_lp_events(
+            events_db_path=events_db,
+            event_signals_db_path=signals_db,
+            include_past=True,
+        )
 
 
 def test_lp_events_default_history_window_is_bounded_to_90_days(tmp_path: Path) -> None:

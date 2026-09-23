@@ -7,7 +7,7 @@ def payload():
     return {
         "schema_version": 1,
         "as_of_date": "2026-09-08",
-        "ticketjam_policy": "discovery",
+        "source_priority": ["official_events", "venue_web_discovery", "starto_concert", "kstyle_music"],
         "summary": {
             "event_count": 1,
             "counts_by_display_source": {"official_events": 1},
@@ -28,10 +28,17 @@ def payload():
     }
 
 
-def test_secondary_display_is_rejected_even_if_policy_label_is_discovery():
+def test_secondary_display_is_rejected():
     p = payload()
     p["events"][0]["display_source_id"] = "ticketjam_events"
     with pytest.raises(ValueError, match="source"):
+        validate_payload(p)
+
+
+def test_ticketjam_in_source_priority_is_rejected():
+    p = payload()
+    p["source_priority"].append("ticketjam_events")
+    with pytest.raises(ValueError, match="ticketjam must not be a publication source"):
         validate_payload(p)
 
 

@@ -23,11 +23,10 @@ DISPLAY_SOURCES = {
 
 
 def validate_payload(payload: dict, *, expected_date: str | None = None) -> dict:
-    if (
-        payload.get("schema_version") != 1
-        or payload.get("ticketjam_policy") != "discovery"
-    ):
-        raise ValueError("publication must use schema v1 and discovery policy")
+    if payload.get("schema_version") != 1:
+        raise ValueError("publication must use schema v1")
+    if "ticketjam_events" in payload.get("source_priority", []):
+        raise ValueError("ticketjam must not be a publication source")
     date.fromisoformat(payload["as_of_date"])
     if expected_date and payload["as_of_date"] != expected_date:
         raise ValueError("publication as-of date is stale")
