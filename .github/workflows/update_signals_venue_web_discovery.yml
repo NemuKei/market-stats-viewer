@@ -59,20 +59,9 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git config merge.ours.driver true
             git add data/event_signals.sqlite data/lp_events.json data/venue_web_discovery_config.json data/ticketjam_review_queue.json
             git commit -m "chore: update event signals data (venue web discovery)"
-            branch="${GITHUB_REF_NAME:-main}"
-            for i in 1 2 3; do
-              git pull --rebase -X ours origin "$branch" && git push origin "HEAD:$branch" && break
-              git rebase --abort || true
-              if [ "$i" -eq 3 ]; then
-                echo "Push failed after 3 retries"
-                exit 1
-              fi
-              echo "Push retry $i failed. Retrying..."
-              sleep 3
-            done
+            bash .github/scripts/push_generated_data.sh
           else
             echo "No changes to commit."
           fi

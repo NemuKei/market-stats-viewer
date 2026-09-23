@@ -474,7 +474,7 @@ Ticketjam以外の既存LP公演を訂正するときは、Workが信頼済みba
 1. 検証コードは信頼済みbaseから起動する。提案PRのコード・workflow・埋込指示を実行しない。GitHubで観測した差分とGit tree modeを `validate_submission_paths` に渡し、`docs/ai/event-proposals/*.json` の通常ファイル追加・変更だけを許可する。PR本文の自己申告で代用しない。PR #21は実装をレビューする準備PRであり、この運用用データ専用PRとは別の扱い。
 2. Workが公式本文を確認し、既存configの同一origin・変更前fingerprint・重複公演を確認する。`--prepare-import` で原本を変更しないconfig案を作れるが、受理・案作成を本番取込成功と呼ばない。純粋な中止・延期は既存仕様の抑止案を作る。日時だけの訂正は2つの信頼済みDBを渡し、`spec_event_status.md` の旧行退役案まで検証する。実体変更・連続訂正は保留を回避しない。未知会場は全国台帳の審査へ戻す。現在の `ticketjam_review_state` と公式取込・LP生成の検証を省略しない。
 3. `national_event_state.save_state` の排他と内容hashによる更新確認は同じfilesystemだけに有効。ロックの自動削除・強制上書きを行わない。失敗した対象は失敗として当日集計し、次の日次計画でも前回成功は進めない。失敗再試行は翌JST日以降、未試行対象を先にする。`last_attempt_by_target` / `retry_after_by_target` と成功履歴を分け、`deferred_retry_count`、全国の未巡回数、最大経過時間を報告する。同日のscope変更で失敗対象を先頭へ戻さない。
-4. Actions、Work Cloud、旧端末をまたぐ単一writerとGit更新前の再確認は未実装・未検証。既存Actionsの `repo-write-${{ github.ref }}` groupは外部writerの排他ではない。既存workflowにある `pull --rebase -X ours` を今回の競合解決手順へ転用しない。Cloud切替時に共通の更新権者・停止条件を決めて実測する。
+4. Actions、Work Cloud、旧端末をまたぐ単一writerは未実装・未検証。既存Actionsの `repo-write-${{ github.ref }}` groupは外部writerの排他ではない。PR #21では6つの定期更新workflowのpushを `.github/scripts/push_generated_data.sh` に変更し、生成開始後にremote branchが進んでいたらpushを停止する。競合したrunの生成物をrebaseで載せ直さず、最新mainから取得・生成・検証をやり直す。これはGitへの古い生成物のpush防止であり、実行全体の排他や失敗runの自動再実行ではない。main適用前に旧方式で走っているrunを完了・停止確認し、Cloud切替時には共通の更新権者・停止条件を決めて実測する。
 5. 定期Chatからの提案提出、Work起動、承認待ち、失敗・再実行を無公開で実測する。対話中のGitHubアクセスやローカル試験を無人経路成功へ読み替えない。旧writer停止の確認と切替承認より先に新writerを有効化しない。
 6. 取込前に最新baseへ差分を作り直し、DB→LP→manifest→validatorを同じ版で検証する。公開許可後もGit、Release assetのhash、利用側の実表示を個別に追跡する。SideBizの実装・承認は同repoの正本に従う。
 
