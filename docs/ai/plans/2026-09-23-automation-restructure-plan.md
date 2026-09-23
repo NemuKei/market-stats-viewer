@@ -287,10 +287,10 @@ Expected: `True`。`supporting_sources`からticketjam行が消えるのは想�
 - [ ] **Step 2: 残存参照の確認**
 
 ```bash
-git grep -n -i ticketjam -- scripts tests app.py .github .agents | grep -viE "ticketjam_watch|ticketjam_benchmark_tier|ticketjam_watch_reason|ticketjam\.jp"
+git grep -n -i ticketjam -- scripts tests app.py .github .agents ':!scripts/validate_external_events.py' ':!tests/test_validate_external_events.py' ':!tests/test_publication_filter.py' | grep -viE "ticketjam_watch|ticketjam_benchmark_tier|ticketjam_watch_reason"
 ```
 
-Expected: 出力なし（CSV列名と、validatorのticketjam.jp公開禁止検査だけが残る）
+Expected: 出力なし。除外した3fileは、ticketjamを公開sourceとして拒否する検査（Task 2）とそのtestなので残す。CSV列名も残す
 
 - [ ] **Step 3: 全test**
 
