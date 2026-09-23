@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import textwrap
 import unittest
@@ -12,6 +13,31 @@ LP_BUILDING_WORKFLOWS = (
     Path(".github/workflows/update_signals.yml"),
     Path(".github/workflows/update_signals_venue_web_discovery.yml"),
 )
+DATA_WORKFLOWS = LP_BUILDING_WORKFLOWS + (
+    Path(".github/workflows/update_data.yml"),
+    Path(".github/workflows/update_artist_registry.yml"),
+)
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+class DataWorkflowRebaseTest(unittest.TestCase):
+    """`-X ours` lets upstream silently win binary SQLite conflicts during rebase."""
+
+    def test_push_step_rebases_with_helper_not_x_ours(self) -> None:
+        for path in DATA_WORKFLOWS:
+            with self.subTest(workflow=path.name):
+                workflow = path.read_text(encoding="utf-8")
+                self.assertNotIn("-X ours", workflow)
+                self.assertNotIn("merge.ours", workflow)
+                commit_step = workflow.split("- name: Commit changes (if any)", 1)[1]
+                rebase = commit_step.index("python -m scripts.rebase_data_commit --branch \"$branch\"")
+                self.assertLess(rebase, commit_step.index("git push origin"))
+
+    def test_checkout_starts_from_branch_tip_not_trigger_sha(self) -> None:
+        for path in DATA_WORKFLOWS[len(LP_BUILDING_WORKFLOWS):]:
+            with self.subTest(workflow=path.name):
+                checkout = path.read_text(encoding="utf-8").split("uses: actions/checkout@v6", 1)[1]
+                self.assertIn("ref: ${{ github.ref }}", checkout.split("- uses:", 1)[0])
 
 
 class LpBuildingWorkflowPushTest(unittest.TestCase):
@@ -31,7 +57,7 @@ class LpBuildingWorkflowPushTest(unittest.TestCase):
                 commit_step = path.read_text(encoding="utf-8").split(
                     "- name: Commit changes (if any)", 1
                 )[1]
-                rebase = commit_step.index("git pull --rebase")
+                rebase = commit_step.index("python -m scripts.rebase_data_commit")
                 rebuild = commit_step.index("python -m scripts.build_lp_events", rebase)
                 validate = commit_step.index(
                     "python -m scripts.validate_external_events --lp-events data/lp_events.json",
@@ -72,6 +98,7 @@ class LpBuildingWorkflowPushScriptTest(unittest.TestCase):
         "pyproject.toml",
         "uv.lock",
         "README.md",
+        ".github/workflows/update_artist_registry.yml",
     )
 
     def setUp(self) -> None:
@@ -84,6 +111,7 @@ class LpBuildingWorkflowPushScriptTest(unittest.TestCase):
             "#!/bin/sh\n"
             'case "$*" in\n'
             '  *scripts.build_lp_events*) python3 -c "import uuid; print(uuid.uuid4())" > data/lp_events.json ;;\n'
+            f'  *scripts.rebase_data_commit*) shift 2; exec "{sys.executable}" "$@" ;;\n'
             "esac\n",
             encoding="utf-8",
         )
@@ -92,6 +120,7 @@ class LpBuildingWorkflowPushScriptTest(unittest.TestCase):
             **os.environ,
             "PATH": f"{stub_bin}{os.pathsep}{os.environ['PATH']}",
             "GITHUB_REF_NAME": "main",
+            "PYTHONPATH": str(REPO_ROOT),
             "GIT_CONFIG_GLOBAL": os.devnull,
             "GIT_CONFIG_NOSYSTEM": "1",
             "GIT_AUTHOR_NAME": "t",
@@ -103,6 +132,7 @@ class LpBuildingWorkflowPushScriptTest(unittest.TestCase):
         seed = self.tmp / "seed"
         self.git(self.tmp, "init", "-q", "--bare", "-b", "main", str(self.remote))
         self.git(self.tmp, "clone", "-q", str(self.remote), str(seed))
+        (seed / ".gitattributes").write_text("*.sqlite binary\n", encoding="utf-8")
         for name in self.FILES:
             (seed / name).parent.mkdir(parents=True, exist_ok=True)
             (seed / name).write_text("base\n", encoding="utf-8")
@@ -170,6 +200,31 @@ class LpBuildingWorkflowPushScriptTest(unittest.TestCase):
                     self.git(self.remote, "show", "main:data/lp_events.json"),
                     (self.runner / "data/lp_events.json").read_text().strip(),
                 )
+
+    def test_conflicting_sqlite_update_fails_without_pushing(self) -> None:
+        for workflow in DATA_WORKFLOWS:
+            with self.subTest(workflow=workflow.name):
+                self.setUp()
+                upstream_sha = self.push_upstream("data/event_signals.sqlite", "upstream\n")
+                (self.runner / "data/event_signals.sqlite").write_text("mine\n")
+                result = self.run_step(workflow)
+                self.assertNotEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertIn("::error::", result.stderr)
+                self.assertIn("data/event_signals.sqlite", result.stderr)
+                self.assertNotIn("Push retry", result.stdout)
+                self.assertEqual(self.git(self.remote, "rev-parse", "main"), upstream_sha)
+
+    def test_race_keeps_this_runs_db_without_lp_rebuild(self) -> None:
+        for workflow in DATA_WORKFLOWS[len(LP_BUILDING_WORKFLOWS):]:
+            with self.subTest(workflow=workflow.name):
+                self.setUp()
+                upstream_sha = self.push_upstream("data/events.sqlite", "upstream\n")
+                (self.runner / "data/event_signals.sqlite").write_text("mine\n")
+                result = self.run_step(workflow)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertEqual(self.git(self.remote, "rev-parse", "main~1"), upstream_sha)
+                self.assertEqual(self.git(self.remote, "show", "main:data/event_signals.sqlite"), "mine")
+                self.assertEqual(self.git(self.remote, "show", "main:data/events.sqlite"), "upstream")
 
 
 if __name__ == "__main__":

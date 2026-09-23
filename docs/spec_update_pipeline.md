@@ -206,8 +206,9 @@
   - `.github/workflows/update_events_official.yml`（会場公式）: 定期実行と手動実行を受け、会場公式DBとLPを更新する。
   - `.github/workflows/watch_automation_freshness.yml`（停止検知）: 毎日cronまたは手動でinboxの鮮度を検査する。
   - 各更新workflowは`build_lp_events`を後段で実行し、差分がある場合だけcommitする。
-  - `lp_events.json`を生成する3 workflow（会場公式、ニュース、公式/準公式Web検知）は、`repo-write` concurrencyで待機した後に古いtrigger SHAから始めないよう、checkoutで`ref: ${{ github.ref }}`（branch先端）を指定する。
-  - push前の`git pull --rebase -X ours`はJSONを行単位でmergeするため、`summary`と`events`が別buildに由来する不整合なJSONを作りうる（2026-09-16 `a9c045a`、2026-09-19 `c3c7cb9`で公開workflowの`publication summary does not match rows`として発生）。rebase成功後は必ず`build_lp_events`をrebase後のDBから再実行し、`python -m scripts.validate_external_events --lp-events data/lp_events.json`で公開validatorと同じ行・summary検査を通してから、差分を自commitへ`--amend`してpushする。自commitの内容がすでにupstreamにありrebaseでdropされた場合（`HEAD`が`FETCH_HEAD`と一致）は、upstreamのcommitを書き換えずに再生成分を新しいcommitとして積む。検査に失敗した場合はpushせずworkflowを失敗させる。
+  - data更新5 workflow（会場公式、ニュース、公式/準公式Web検知、市場統計、アーティスト辞書）は、`repo-write` concurrencyで待機した後に古いtrigger SHAから始めないよう、checkoutで`ref: ${{ github.ref }}`（branch先端）を指定する。
+  - push前のrebaseは`python -m scripts.rebase_data_commit --branch "$branch"`で行う。旧`git pull --rebase -X ours`は衝突をupstream側で解決し、binaryのSQLiteでは衝突を報告しないまま自runのDB更新を捨ててcommitだけをpushしていた（2026-09-08 Ticketjam run `34202286910`の`e23929c`で、`lp_events.json`の26行がDBに存在しない状態で発生）。helperは`-X`なしでrebaseし、派生物の`data/lp_events.json`だけをCI内の`.git/info/attributes`でupstream側に固定する（直後に再生成するため）。`*.sqlite`を含むその他の衝突ではrebaseを中止し、`::error::`で衝突fileを示してpushせずworkflowを失敗させる。衝突は再試行せず、次回runが新しい先端から更新し直す。rebase後に自commitの`*.sqlite`が自runの出力と一致しない場合も失敗させる。retryはpush競合（non-fast-forward）だけに使う。
+  - 旧`git pull --rebase -X ours`はJSONを行単位でmergeするため、`summary`と`events`が別buildに由来する不整合なJSONを作りえた（2026-09-16 `a9c045a`、2026-09-19 `c3c7cb9`で公開workflowの`publication summary does not match rows`として発生）。`lp_events.json`を生成する3 workflowは、rebase成功後に必ず`build_lp_events`をrebase後のDBから再実行し、`python -m scripts.validate_external_events --lp-events data/lp_events.json`で公開validatorと同じ行・summary検査を通してから、差分を自commitへ`--amend`してpushする。自commitの内容がすでにupstreamにありrebaseでdropされた場合（`HEAD`が`FETCH_HEAD`と一致）は、upstreamのcommitを書き換えずに再生成分を新しいcommitとして積む。検査に失敗した場合はpushせずworkflowを失敗させる。
 
 ## Addendum (2026-05-12) Event Signal Coverage and Normalization Audit
 - 目的:
