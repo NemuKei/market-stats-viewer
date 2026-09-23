@@ -1,6 +1,6 @@
 ---
 name: venue-web-discovery
-description: 会場起点のWeb検索・公式/準公式ページ確認で大型イベント発表を検知し、venue_web_discovery signal、LP-ready events、設定改善を扱うときに使う。Bruno Mars / Stray Kids のような大型会場公演の検知、Codex Automation による公式根拠確認、data/venue_web_discovery_config.json 更新、event_signals.sqlite / lp_events.json 更新を行う場合に使用する。
+description: 会場起点のWeb検索・公式/準公式ページ確認で大型イベント発表を検知し、候補を data/venue_discovery_inbox.json に書くときに使う。Bruno Mars / Stray Kids のような大型会場公演の検知、Codex Automation による公式根拠確認、venue discovery inbox の作成、設定改善の検討に使用する。config・DB・LP への反映は GitHub Actions が行う。
 ---
 
 # Venue Web Discovery
@@ -9,10 +9,10 @@ description: 会場起点のWeb検索・公式/準公式ページ確認で大型
 
 ## 原則
 
-- LP掲載の表示優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events` とする。
+- LP掲載の表示優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music` とする。
 - Google検索結果、AI概要、一般ニュース、SNS単体、二次流通単体はDB更新根拠にしない。
 - DB更新根拠にできるのは `venue_official`、`artist_official`、`promoter_official`、`ticket_official` の公式/準公式ページ本文だけ。
-- Skill本文は自動編集しない。Codexが自動調整できるのは `data/venue_web_discovery_config.json` の設定と confirmed event rows だけ。
+- Skill本文は自動編集しない。Codex Automationが書き込めるのは `data/venue_discovery_inbox.json` だけ。`data/venue_web_discovery_config.json` への追記、DB、LP、manifest、Releaseは GitHub Actions（`update_signals_venue_web_discovery.yml` と後続の公開workflow）が行う。
 - 別端末の Codex Automation でも動くよう、ローカル絶対パス、ブラウザ履歴、個人ログイン状態に依存しない。
 - 本文抽出は `requests_bs4` を default extractor とし、`crawl4ai` は optional fallback extractor として使う。
 - `crawl4ai` を使ってよいのは、JS生成ページ、`requests_bs4` で本文抽出に失敗したページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトに限る。
@@ -32,11 +32,10 @@ description: 会場起点のWeb検索・公式/準公式ページ確認で大型
    - アーティスト名またはイベント名
    - 公式/準公式 source class
    - evidence URL と短い evidence snippet
-5. `data/venue_web_discovery_config.json` の `confirmed_events` に、根拠付き候補を追加または更新する。各行に `content_extractor` を記録する。
-6. `python -m scripts.update_event_signals_data --only venue_web_discovery` を実行し、`data/event_signals.sqlite` に反映する。
-7. `python -m scripts.build_lp_events` を実行し、`data/lp_events.json` を再生成する。
-8. `python -m scripts.build_external_events_manifest --release-tag external-events-latest` を実行し、manifest に `lp_events.json` を含める。
-9. 重複統合結果で、同一イベントの表示sourceが最上位だけになっていることを確認する。
+5. 既に `confirmed_events` または `data/lp_events.json` にある公演は候補から除く。候補は1回30件まで。
+6. `data/venue_discovery_inbox.json` を schema_version=1 で丸ごと書き直す。`run_at_utc` は実行時刻（UTC、末尾Z）。`candidates` の各行は `confirmed_events` と同じfield名（`event_start_date`、`event_end_date`、`event_start_time`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`title`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet`、`content_extractor`、`discovery_query`、`verified_at_utc`）を使う。採用しなかった有力候補は `rejected` に `query`、`url`、`reason` を残す。候補0件でも `run_at_utc` を更新する（停止検知の生存信号）。
+7. `data/venue_web_discovery_config.json` の一時コピーに対して `python -m scripts.apply_venue_discovery_inbox --config <一時コピー>` を実行し、rejected が出たら理由を見て inbox を直す。repo の config は変更しない。
+8. `data/venue_discovery_inbox.json` だけを commit / push する。push を合図に Actions が検証・config追記・signals・LP・Release まで反映する。
 
 ## Crawl4AI optional setup
 
@@ -59,3 +58,4 @@ description: 会場起点のWeb検索・公式/準公式ページ確認で大型
 - `content_extractor` は確認に使った本文抽出providerを示す監査用ラベルであり、DB採用根拠そのものではない。
 - `lp_events.json` は同一キー `event_date + canonical venue_name + canonical artist_name` で統合し、`display_source_id` と `supporting_sources` を持つ。
 - `lp_impact` は通常 `display_count_change`、`source_priority_change`、`manifest_asset_change` のいずれかまたは複数になる。
+- inbox が3日更新されないと `watch_automation_freshness.yml` が失敗する。

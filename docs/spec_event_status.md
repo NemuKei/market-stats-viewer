@@ -42,7 +42,7 @@ DB schemaは変更しない。
 - `events.sqlite` の会場公式行は既存の `events.status` を使う。
 - `event_signals.sqlite` の `venue_web_discovery` 行は `labels_json.event_status` を使う。
 - `venue_web_discovery` の `postponed` / `cancelled` 行は、`enabled: false` であっても状態レコードとして保存する。
-- Ticketjamなど下位ソースの行は物理削除しない。
+- ニュース由来など下位ソースの行は、状態抑止を理由に物理削除しない。
 
 延期・中止の状態レコードは、開催予定を表示するための行ではなく、同一イベントの表示を止めるための監査可能な根拠として扱う。
 
@@ -55,7 +55,7 @@ DB schemaは変更しない。
 - `official_events` の `postponed` / `cancelled`
 - `venue_web_discovery` の `postponed` / `cancelled`
 
-`starto_concert`、`kstyle_music`、`ticketjam_events` に状態らしい文字列があっても、それだけでは表示を抑止しない。
+`starto_concert`、`kstyle_music` に状態らしい文字列があっても、それだけでは表示を抑止しない。
 
 厳密キー内に異なる開始時刻があり、時刻なしの公式／準公式状態レコードが各時刻別公演のsupporting sourceとして引き継がれた場合は、従来の日付単位の抑止範囲を維持して各公演を抑止する。開始時刻が明示された状態レコードは、互換な時刻の最終グループだけに適用する。
 
@@ -92,7 +92,7 @@ DB schemaは変更しない。
 期待結果:
 
 - `venue_web_discovery` の公式状態レコードは `event_signals.sqlite` に残る。
-- 同一キーの `ticketjam_events` 行もDBに残る。
+- 同一キーのニュース由来行がある場合も、状態抑止を理由にDBから削除しない。
 - `lp_events.json.events` には旧日程を出さない。
 - `summary.suppressed_event_count` が1件増える。
 
@@ -115,7 +115,7 @@ git diff --check
 生成後に追加で確認する。
 
 - Post Malone旧日程が `lp_events.json.events` に存在しない。
-- Ticketjamの元行が `event_signals.sqlite` に残っている。
+- 同一キーのニュース由来行がある場合、状態抑止を理由に削除されていない。
 - 無関係なイベントの表示元と件数が意図せず変わっていない。
 - 変更ファイルがコード、テスト、仕様、対象設定、予定された生成物に限定されている。
 
@@ -132,8 +132,8 @@ git diff --check
 ## 対象外
 
 - DB schema変更
-- Ticketjam行の削除
-- ニュースまたは二次流通ページからの延期・中止自動推定
+- ニュース由来行の削除
+- ニュースページからの延期・中止自動推定
 - fuzzy matchingの追加
 - 振替日の自動探索
 - Release workflow、権限、secretの変更

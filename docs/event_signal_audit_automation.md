@@ -62,8 +62,6 @@ Automation 実行時は、長い prompt ではなく次の contract を満たす
 - `data/event_signal_audit_report.json`
 - `data/event_signal_audit_report.md`
 - `data/event_signals.sqlite` への K-Style 確認済み候補の限定追加
-- `data/ticketjam_supplement_report.json`
-- `data/ticketjam_supplement_report.md`
 - `data/venue_aliases.csv` への低リスク alias 追加案
 - `data/artist_registry.manual.csv` への低リスク manual entry 追加案
 - `tests/test_kstyle_source.py` など、既存挙動を固定するための狭いテスト追加
@@ -120,13 +118,12 @@ Automation 実行時は、長い prompt ではなく次の contract を満たす
    - manual artist追加だけ
    - K-Style parserの狭い形式対応だけ
    - テスト追加だけ
-12. K-Style候補を取り込んだ場合は、`scripts.build_ticketjam_supplement_report` を再生成する。
-13. 修正後に監査レポートを再生成する。
-14. verifyを実行する。
-15. PRを作る場合は、PR本文に `lp_impact`、変更対象、根拠、verify結果、残った `needs_review_reason` を書く。
-16. `Auto-merge Gate Checklist` を評価し、`classification` と `merge_action` を出力する。
-17. `classification=auto_merge_candidate` かつ `merge_action=merge_and_run_post_merge_audit` の場合だけ自動マージする。
-18. 自動マージ後は `Post-merge Audit` を実行し、`post_merge_audit_result` を出力する。監査に失敗した場合は、同じautomation内で無言修正せず、`needs_fix_pr` または `needs_revert_pr` として人間が確認できる後続対応に分ける。
+12. 修正後に監査レポートを再生成する。
+13. verifyを実行する。
+14. PRを作る場合は、PR本文に `lp_impact`、変更対象、根拠、verify結果、残った `needs_review_reason` を書く。
+15. `Auto-merge Gate Checklist` を評価し、`classification` と `merge_action` を出力する。
+16. `classification=auto_merge_candidate` かつ `merge_action=merge_and_run_post_merge_audit` の場合だけ自動マージする。
+17. 自動マージ後は `Post-merge Audit` を実行し、`post_merge_audit_result` を出力する。監査に失敗した場合は、同じautomation内で無言修正せず、`needs_fix_pr` または `needs_revert_pr` として人間が確認できる後続対応に分ける。
 
 ## K-Style Candidate Import Rules
 
@@ -204,12 +201,6 @@ K-Style parser または test を変更した場合:
 
 ```powershell
 uv run python -m pytest tests\test_kstyle_source.py
-```
-
-K-Style候補を取り込んだ場合:
-
-```powershell
-uv run python -m scripts.build_ticketjam_supplement_report
 ```
 
 取り込み件数確認:
@@ -297,7 +288,7 @@ PR本文には次を必ず含める。
   - 条件: 既存の `■公演情報` / `■開催概要` セクション抽出の範囲内で、日付、会場、アーティスト抽出の形式差分だけに対応する
   - 条件: `tests/test_kstyle_source.py` で対象ケースを固定している
 - K-Style確認済み候補の限定取り込み
-  - 対象ファイル: `scripts/update_event_signals_data.py`、`data/event_signals.sqlite`、`data/event_signal_audit_report.json`、`data/event_signal_audit_report.md`、必要に応じて `data/ticketjam_supplement_report.json`、`data/ticketjam_supplement_report.md`
+  - 対象ファイル: `scripts/update_event_signals_data.py`、`data/event_signals.sqlite`、`data/event_signal_audit_report.json`、`data/event_signal_audit_report.md`
   - 条件: 本文確認済みで、国内公演、未来日程、日付、会場、アーティストを確認できる
   - 条件: `backfill_article_urls` への明示URL追加だけで対応し、source優先順位、DBスキーマ、manifest、Release asset、LP表示契約を変更しない
 
@@ -368,7 +359,6 @@ PR本文には次を必ず含める。
 - K-Style取り込み行は、取り込み判断時点で未来日程である。
 - 海外公演、展示、配信、楽曲リリース、動画、テレビ、ロケ地ツアー、リンク集のみの記事が取り込まれていない。
 - `data/event_signal_audit_report.json` の `summary.missed_articles`、`summary.needs_review_count`、`summary.automation_bucket_counts` の変化が、取り込み件数またはレポート更新内容と矛盾していない。
-- K-Style候補を取り込んだ場合、`data/ticketjam_supplement_report.json` と `.md` が再生成されている。
 - `lp_impact` が `none` 以外の場合、表示件数、カテゴリ、同一イベントのまとまり、source優先順位のどれに影響したかが明記されている。
 - verifyコマンドと結果が残っている。
 

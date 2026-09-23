@@ -51,22 +51,10 @@ uv run streamlit run app.py
 
 - Focused parser regression for official-event artist/category inference:
   - `uv run python -m pytest tests/test_build_events_artist_inferred.py -q`
-- Focused report regression for Ticketjam supplement output:
-  - `uv run python -m pytest tests/test_build_ticketjam_supplement_report.py -q`
 - Full local regression suite:
   - `uv run python -m pytest tests -q`
-- Ticketjam supplement report regeneration check:
-  - `uv run python -m scripts.build_ticketjam_supplement_report`
 - Docs-only whitespace / merge-marker check:
   - `git diff --check`
-
-## Ticketjamを入口にした公式確認
-
-LP生成は `uv run python -m scripts.build_lp_events`。Ticketjamを掲載用の統合から分離し、確認待ち一覧へ送ります。上位sourceのない候補は公式確認後に既存のvenue_web_discovery経路へ登録します。
-
-- `uv run python -m scripts.prepare_ticketjam_review --resolve-covered --output /tmp/ticketjam-plan.json`: 既存一致を照合し、再確認期日を考慮した作業一覧を生成。
-- `uv run python -m scripts.validate_external_events`: 配布データと生成済みmanifestの整合性を検証。
-- 定期運用と公開までの手順: [Ticketjam公式確認の定期運用](docs/ticketjam_official_review_automation.md)。
 
 ## リリースZIP作成
 - 実行コマンド: `python make_release_zip.py`
@@ -95,7 +83,7 @@ LP生成は `uv run python -m scripts.build_lp_events`。Ticketjamを掲載用�
 - データ: `data/event_signals.sqlite`（signal_sources + signals テーブル）
 - 更新コマンド:
   - `uv run python -m scripts.update_event_signals_data`
-  - オプション: `--only venue_web_discovery,starto_concert,kstyle_music,ticketjam_events`, `--ticketjam-bootstrap-full`, `--verbose`
+  - オプション: `--only venue_web_discovery,starto_concert,kstyle_music`, `--verbose`
 - 保存方針:
   - ニュース本文は保存しない
   - 保存対象は掲載日時・タイトル・URL・短い抜粋（取得できる場合のみ）
@@ -113,28 +101,14 @@ LP生成は `uv run python -m scripts.build_lp_events`。Ticketjamを掲載用�
   - `uv run python -m scripts.venue_web_discovery_extract <official-url> --content-extractor crawl4ai`
 - DB更新根拠は Crawl4AI の出力そのものではなく、取得できた公式/準公式URLと本文根拠に限定する
 
-## 全国イベント参考（二次流通）
-- サイドバーの `参考情報` → `全国イベント参考（二次流通）` で表示
-- ソース:
-  - `ticketjam_events`（Ticketjam 会場ページ + 公開 sitemap 補完由来）
-- 取得方針:
-  - `Event` / `MusicEvent` / `SportsEvent` を対象にし、イベント日・会場・アーティスト・イベント名が揃う行のみ保存
-  - 取得時は Ticketjam 側カテゴリだけで除外せず、保存時に会場辞書一致 + `capacity >= 1000` の採用ゲートを適用
-  - `event_category` は `コンサート / 野球 / その他` を付与
-  - 未来開催のみ
-  - 初回は bootstrap full 実行で網羅取得（既定 `bootstrap_max_sitemaps=8000`, `bootstrap_max_event_urls=50000`）
-  - 以後は増分巡回（既定 `max_sitemaps=120`, `max_event_urls=400`）で新規中心に取り込み（`upsert_existing=false`）
-  - 同一公演（イベント日+開始時間+会場+アーティスト+イベント名）は重複行を1件に集約
-  - 他アプリで利用する場合は、会場公式やニュース速報で拾いにくい `artist-gap` / `venue-gap` の補完情報として扱う
-
 ## 外部アプリ向けイベントデータ
 - 配布単位: GitHub Release `external-events-latest`
 - assets: `events.sqlite`, `event_signals.sqlite`, `lp_events.json`, `manifest.json`
 - `manifest.json` には生成時刻、配布元 commit、各 asset の `sha256` と `size_bytes` を保存する
 - LPイベント一覧は、重複統合済みの `lp_events.json` を読む
-- 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `venue_web_discovery` を公式/準公式Web検知、`starto_concert` / `kstyle_music` をニュース速報、`ticketjam_events` を二次流通参考として分けて扱う
+- 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `venue_web_discovery` を公式/準公式Web検知、`starto_concert` / `kstyle_music` をニュース速報として扱う
 - 同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name` を基本とする
-- 表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music > ticketjam_events`
+- 表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music`
 - 詳細なデータ契約は `docs/spec_data.md` の「外部アプリ向けのイベントデータ契約」を参照
 
 ## 旅行・観光消費動向調査（TCD）拡張
@@ -159,32 +133,17 @@ LP生成は `uv run python -m scripts.build_lp_events`。Ticketjamを掲載用�
   - 実行順:
     1. `uv run python -m scripts.update_events_data --skip-artist-inference`
     2. `uv run python -m scripts.build_events_artist_inferred`
-    3. `uv run python -m scripts.build_ticketjam_supplement_report`
-    4. `uv run python -m scripts.build_lp_events`
+    3. `uv run python -m scripts.build_lp_events`
 - 注記:
   - 取得元サイトの構造変更等により、自動更新が遅れる/失敗する場合があります。
   - その場合は GitHub Actions の実行結果を確認し、必要に応じて手動実行してください。
 
-## 速報データ自動更新
-- Workflow:
-  - `.github/workflows/update_signals_venue_web_discovery.yml`（公式/準公式Web検知: Venue Web Discovery）
-  - `.github/workflows/update_signals.yml`（ニュース: STARTO/Kstyle）
-  - `.github/workflows/update_signals_ticketjam.yml`（二次流通: Ticketjam）
-- Trigger:
-  - Venue Web Discovery: `schedule` = `35 4 * * *`（毎日 UTC）
-  - ニュース: `schedule` = `0 */12 * * *`（12時間ごと UTC）
-  - Ticketjam: `schedule` = `15 3 * * *`（毎日 UTC）
-  - `workflow_dispatch`: 手動実行可（Ticketjam は `bootstrap_full=true` で初回全件近似取得モード）
-- 実行コマンド:
-  - Venue Web Discovery: `uv run python -m scripts.update_event_signals_data --only venue_web_discovery`
-  - LP統合JSON: `uv run python -m scripts.build_lp_events`
-  - ニュース: `uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music`
-  - Ticketjam: `uv run python -m scripts.update_event_signals_data --only ticketjam_events`
-  - Ticketjam 初回bootstrap: `uv run python -m scripts.update_event_signals_data --only ticketjam_events --ticketjam-bootstrap-full`
-- 補完評価レポート:
-  - ニュース / Ticketjam / 会場公式イベント更新後に `uv run python -m scripts.build_ticketjam_supplement_report` を実行
-  - `data/ticketjam_supplement_report.json` / `.md` は、`events.sqlite + starto_concert + kstyle_music` を baseline とする Ticketjam 補完評価として更新
-- 差分がある場合のみ commit/push
+## 会場起点Web検知と速報データ自動更新
+- Codex app automation `msv-venue-discovery` はMacBook Pro上で毎日実行し、公式/準公式本文で確認した候補を `data/venue_discovery_inbox.json` だけに書いてpushする。候補0件でも実行時刻を更新する。
+- `.github/workflows/update_signals_venue_web_discovery.yml` はinboxの`main`へのpush、毎日のschedule、手動実行で起動する。inbox適用、DB更新、LP JSON生成、検証を行い、成功後にRelease公開workflowが走る。
+- `.github/workflows/update_signals.yml` はニュース（STARTO/Kstyle）を12時間ごとに更新する。
+- `.github/workflows/watch_automation_freshness.yml` は毎日、inboxの`run_at_utc`が3日より古い場合に失敗する。
+- 詳細なinbox契約と実行順は `docs/spec_update_pipeline.md` を参照。
 
 ## ワークスペース索引
 - ワークスペース横断の正本: c:/Users/n-kei/dev/SideBiz_HotelRM/00_Admin/workspace_index.md

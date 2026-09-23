@@ -149,105 +149,25 @@
 - Script: `python -m scripts.update_event_signals_data`
 - Update target DB: `data/event_signals.sqlite`
 - Scope note (for BCL consumers):
-  - `event_signals.sqlite` stores both news signals and secondary-market reference signals.
+  - `event_signals.sqlite` stores official/semi-official Web discovery and news signals.
   - It is not a complete multi-category events master DB.
 - Sources (MVP):
   - `venue_web_discovery`（Codex Automation が公式/準公式ページ本文を確認した会場起点Web検知）
   - `starto_concert`（STARTO 公演情報 / CONCERT）
   - `kstyle_music`（Kstyle MUSIC）
-  - `ticketjam_events`（Ticketjam 会場ページ由来、二次流通参考）
 - Source-specific extraction policy:
-  - `venue_web_discovery`: `.agents/skills/venue-web-discovery/SKILL.md` を使う Codex Automation が会場起点で検索し、公式/準公式ページ本文に公演日、会場、アーティスト/イベント名が揃う候補だけを `data/venue_web_discovery_config.json` の `confirmed_events` に反映する。保存処理は設定ファイルを読み、`event_signals.sqlite` の `source_id=venue_web_discovery` として `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する。
+  - `venue_web_discovery`: `.agents/skills/venue-web-discovery/SKILL.md` を使う Codex Automation が会場起点で検索し、公式/準公式ページ本文に公演日、会場、アーティスト/イベント名が揃う候補だけをinboxへ書く。GitHub Actionsがinboxを `data/venue_web_discovery_config.json` の `confirmed_events` に適用する。保存処理は設定ファイルを読み、`event_signals.sqlite` の `source_id=venue_web_discovery` として `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する。
     - DB更新根拠にできる `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` のみ。
     - Google検索結果、AI概要、一般ニュース、SNS単体、二次流通単体は発見導線として使えてもDB更新根拠にしない。
     - DB schema は増やさず、設定ファイルと `labels_json` で運用する。
     - `event_status=postponed|cancelled` の保存、LP表示抑止、振替公演、Release gateは `docs/spec_event_status.md` を正本とする。
-    - Skill本文は自動編集しない。Codex Automation が自動調整してよいのは `data/venue_web_discovery_config.json` の設定と confirmed event rows のみ。
+    - Skill本文とconfigはCodex Automationから変更しない。automationが書くのは `data/venue_discovery_inbox.json` のみ。
     - 本文抽出providerは `content_extractor=requests_bs4|crawl4ai|browser` とする。既定は `requests_bs4`、`crawl4ai` は optional fallback provider であり、JS生成ページ、`requests_bs4` 失敗ページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトだけに使う。
     - `crawl4ai` は optional dependency とし、通常の `uv sync --frozen` では必須にしない。必要な環境だけ `uv sync --extra crawl4ai`、`uv run crawl4ai-setup`、`uv run crawl4ai-doctor` を実行する。
     - Firecrawl は将来の paid optional provider として保留し、browser-use は調査・Skill改善・例外調査用に保留する。
     - `content_extractor` は確認に使った抽出providerの監査ラベルであり、DB採用根拠そのものではない。採用根拠は常に公式/準公式URLと本文根拠である。
   - `starto_concert`: `https://starto.jp/s/p/live?ct=concert` 一覧から公演詳細（`/s/p/live/<id>`）を巡回し、SCHEDULE（日付・開演時間・会場）を抽出する
   - `kstyle_music`: recent news sitemap、検索結果、必要な場合の `backfill_article_urls` 明示URLから記事を取得する。記事詳細本文に `■公演情報`（実データ上の `■開催概要` 含む）がある記事のみ対象とし、該当セクションから会場・日時情報を抽出する。`backfill_article_urls` は監査で本文・日程・会場を確認済みだが通常入口から漏れた記事だけに使い、取得対象ソースの優先順位は変更しない。
-  - `ticketjam_events`: `data/ticketjam_venue_pages.csv` に定義した Ticketjam 会場ページから `イベント一覧` の event URL を収集しつつ、公開 sitemap も補完導線として併用する。イベントページの JSON-LD（`Event` / `MusicEvent` / `SportsEvent`）とページ見出しを組み合わせ、`イベント日 / 会場 / アーティスト / イベント名` が揃うものを抽出する
-    - HTML responseはraw bytesをUTF-8 strict decodeする。HTTPのUTF-8 charsetは監査情報として扱い、`apparent_encoding` による推測decodeやdecode失敗時の別encoding fallbackは行わない
-    - Phase 1 対象: 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
-    - 会場ページマスタ: `data/ticketjam_venue_pages.csv`
-      - `venue_id` は内部辞書の canonical 会場へ対応付ける
-      - `is_enabled=1` の行だけ日次巡回する（初期状態: 75会場中68会場）
-    - 会場ページの `イベント一覧` だけを対象にし、`チケット一覧` は巡回しない
-    - `駐車場券` / `駐車券` / `駐車場` を含む付随商品は event URL 収集時に除外する
-    - 既定 discovery mode は `hybrid`（会場ページ + sitemap 補完）
-      - 会場ページは date/time/venue の page-specific 情報源として優先する
-      - sitemap は会場ページに出てこない event URL の補完に使う
-    - 取得時は Ticketjam 側カテゴリ（`categorie_groups` / `categories`）で除外しない
-    - 採用ゲート: 会場辞書（`venue_registry + venue_aliases` 正規化後）に一致し、かつ `venue_registry.capacity >= 1000` の会場のみ保存する（既定 `require_known_venue=true`, `venue_min_capacity=1000`）
-    - 1日程=1データを原則とし、`event_start_date` / `event_end_date` は同一日で保存する
-    - 種別付与: `event_category` を `コンサート / 野球 / その他` に付与する（Ticketjamカテゴリを優先し、不足時は既存キーワード分類で補完）
-    - 取得範囲: `future_only=true`（`event_start_date >= 今日`）
-    - 既定運用: enabled 会場ページ全巡回 + 既定上限の sitemap 補完で署名比較し、差分があるときだけ DB 更新する
-    - `--ticketjam-bootstrap-full`: `last_signature` をリセットして会場ページ全件 + bootstrap 上限の sitemap 補完で再評価する
-    - 互換メモ: pure venue-page mode / pure sitemap mode は runtime 互換として残すが、既定では使わない
-    - `prune_missing=false`（差分巡回で未取得行を消さない）
-    - `drop_past_events=true`（開催終了日が今日より前の行を削除）
-    - `prune_nonconforming=true`（会場辞書一致 + capacity 閾値を満たさない既存行を更新時に削除）
-    - 重複除去: `event_id` 重複に加えて、`event_start_date + event_start_time + venue_name + artist_name + title` が同一の重複行を更新時に1件へ集約
-  - 2026-03-09 時点の再定義:
-    - `ticketjam_events` の役割は「会場網羅の正本」ではなく「補完ソース」とする
-    - 補完対象は 2 軸で管理する
-      - `artist-gap`: STARTO / K-POP ニュースソースで拾いにくいアーティストの速報補完
-      - `venue-gap`: 会場公式が弱い・無い・取得困難な会場の補完
-    - 京セラドーム大阪のように会場公式で十分取得できる会場は、Ticketjam で網羅性を追わない
-    - 採用条件の正本は従来どおり会場辞書一致 + capacity gate とし、発見導線が変わっても保存ゲートは維持する
-    - 大阪スパイクでは `https://ticketjam.jp/prefectures/osaka/month` 系の都道府県ページを優先的に検証し、会場ページ / sitemap は補助導線として比較評価する
-      - runtime 互換 mode:
-        - `prefecture_month`: 都道府県 month ページのみ
-        - `prefecture_month_hybrid`: 都道府県 month ページを優先しつつ、既存の会場ページ / sitemap も併用
-      - config 追加: `prefecture_month_urls`, `prefecture_month_page_param`, `prefecture_month_max_pages`, `bootstrap_prefecture_month_max_pages`
-    - スパイクの成功条件は「既存ソース（会場公式 / STARTO / Kstyle）に対して追加できたユニーク日程の有意差」で判定する
-      - 指標: `artist-gap additional hits` / `venue-gap additional hits` / `noise rate`
-  - 2026-03-11 大阪スパイク評価:
-    - GitHub Actions run `22835162881`（`prefecture_month`, bootstrap full）:
-      - `ticketjam_events=91件`、全件 `大阪府`
-      - `artist-gap` ベンチマークヒット: `0件`
-      - `venue-gap` 候補ヒット: `ヤンマースタジアム長居 0 / Panasonic Stadium Suita 0 / エディオンアリーナ大阪 14`
-    - GitHub Actions run `22836011961`（`hybrid`, bootstrap full）:
-      - `ticketjam_events=2561件`、うち `大阪府 380件`
-      - `artist-gap` ベンチマークヒット: `福山雅治 9 / 三代目 J SOUL BROTHERS from EXILE TRIBE 2`
-      - `venue-gap` 候補ヒット: `ヤンマースタジアム長居 3 / Panasonic Stadium Suita 7 / エディオンアリーナ大阪 14`
-    - 評価結果:
-      - `prefecture_month` 単体は大阪限定の軽量調査導線としては有効だが、補完ソース本線としては弱い
-      - `hybrid` を既定運用のまま維持し、`prefecture_month` / `prefecture_month_hybrid` は比較・調査用 runtime mode として残す
-  - 2026-03-11 補完評価レポート:
-    - スクリプト: `python -m scripts.build_ticketjam_supplement_report`
-    - 入力:
-      - `data/event_signals.sqlite` の `ticketjam_events` / `starto_concert` / `kstyle_music`
-      - `data/events.sqlite`
-      - アーティスト辞書の `ticketjam_watch` / `ticketjam_benchmark_tier`
-      - 会場辞書の `ticketjam_watch` / `official_fetch_candidate`
-    - schedule key: `event_date + canonical venue_name + canonical artist_name`
-    - `additional_hits`: Ticketjam schedule key が既存ソース baseline（会場公式 + STARTO + Kstyle）に存在しない件数
-    - `noise_rate`: 監視スコープ内 Ticketjam schedule のうち baseline と重複した比率
-    - `out_of_scope_rate`: Ticketjam schedule のうち監視アーティスト/会場のどちらにも当てはまらない比率
-    - 出力:
-      - `data/ticketjam_supplement_report.json`
-      - `data/ticketjam_supplement_report.md`
-  - 2026-03-11 `official_fetch_candidate=1` 大阪会場の棚卸し:
-    - `Panasonic Stadium Suita`: 公式 `https://suitacityfootballstadium.jp/schedule/` に月次HTML表と前月/次月導線があり、会場公式ソース追加を優先する。Ticketjam 補完は実装完了までの暫定運用
-    - `大阪府立体育会館（エディオンアリーナ大阪）`: 公式 `https://www.furitutaiikukaikan.ne.jp/` に月次 `行事案内` PDF が公開されており、会場公式ソース追加を優先する。PDF抽出が必要なため実装優先度は Panasonic の次
-    - `ヤンマースタジアム長居`: 公式 `https://www.nagai-park.jp/stadium/` が 2026-03-11 時点で WordPress fatal error を返し、安定した schedule 導線を確認できない。Ticketjam 補完を継続し、公式追加は保留する
-  - 2026-03-11 Panasonic Stadium Suita 公式移管:
-    - `data/venue_registry.csv` を `is_enabled=1`, `strategy=panasonic_stadium_suita_schedule`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
-    - ローカル `update_events_data --only panasonic_stadium_suita` で `9件 fetched / 9件 kept` を確認
-  - 2026-03-11 大阪府立体育会館（エディオンアリーナ大阪）公式移管:
-    - `data/venue_registry.csv` を `is_enabled=1`, `strategy=edion_arena_osaka_pdf_schedule`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
-    - 公式トップページ上の `monthlyYYMM.pdf` を巡回し、第2競技場の教室系ノイズを避けるため第1競技場のみ取り込む
-    - ローカル `update_events_data --only edion_arena_osaka` で `15件 fetched / 15件 kept` を確認
-  - 2026-05-02 ヤンマースタジアム長居 公式移管:
-    - 旧 `https://www.nagai-park.jp/` は `https://nagaipark.com/` へ移行しており、新サイトの `https://nagaipark.com/news/` から月次 `イベントカレンダー` PDF への導線を確認した
-    - `nagai_park_event_calendar_pdf` はニュース一覧から当月以降の `イベントカレンダー` PDF を収集し、PDF内で `施設・場所等` が `ヤンマースタジアム長居` の行だけを保存する。`関連リンク` などの補助文字列と、同一行抽出で混ざる他施設名だけの継続行はタイトルから除外する
-    - `data/venue_registry.csv` を `is_enabled=1`, `strategy=nagai_park_event_calendar_pdf`, `source_url=https://nagaipark.com/news/`, `ticketjam_watch=0`, `official_fetch_candidate=0` へ更新
-    - ローカル `update_events_data --only yanmar_stadium_nagai` で `11件 fetched` を確認した。`back number` は `artist_name_resolved=back number`, `event_category=コンサート` へ補完された。当初 `Mrs. GREEN APPLE ゼンジン未到とイ/ミュータブル～間奏編～` は音楽イベントキーワードを含まないため未補完だったが、2026-05-12 の canonical artist name 先頭一致条件追加により `artist_name_resolved=Mrs. GREEN APPLE`, `event_category=コンサート` へ補完される。
 - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
@@ -255,7 +175,6 @@
   - sourceごとに `signal_uid -> content_hash` から signature を算出
   - `signal_sources.last_signature` と一致する場合、当該sourceのDB更新をスキップ
   - `signals` は既定で `content_hash` が変わった行のみ UPSERT
-  - ただし `ticketjam_events` は通常運用で `upsert_existing=false` のため、既存行更新は行わず新規行のみ INSERT する
   - `signal_sources.updated_at_utc/last_signature` は変化がある場合のみ更新
 - Event text quality gate:
   - source parser完了後、DBのclear/prune/upsert/signature更新より前に、表示・統合に使うイベント文字列を共通validatorで検証する
@@ -269,9 +188,7 @@
   - User-Agent: `market-stats-viewer-signals-bot/1.0 (+https://deltahelmlab.com/)`
   - ドメイン単位レート制限（全GETに適用）
 - CLI:
-  - `--only venue_web_discovery,starto_concert,kstyle_music,ticketjam_events`
-  - `--ticketjam-bootstrap-full`（Ticketjam 全件再評価）
-  - `--ticketjam-discovery-mode prefecture_month|prefecture_month_hybrid|hybrid|...`（Ticketjam discovery route の一時切替）
+  - `--only venue_web_discovery,starto_concert,kstyle_music`
   - `--verbose`
 - LP-ready output:
   - Script: `python -m scripts.build_lp_events`
@@ -281,27 +198,19 @@
   - 履歴判定は開催開始日ではなく `event_end_date` を使い、基準日時点で開催中の複数日イベントを過去扱いしない。
   - payloadは `include_past`、`history_window_days`、`history_start_date` を持つ。通常生成は `include_past=true`、`history_window_days=90` とする。
   - Grouping key: `event_date + canonical venue_name + canonical artist_name`
-  - Display source priority: `official_events > venue_web_discovery > starto_concert/kstyle_music`。Ticketjamは発見用に分離する
+  - Display source priority: `official_events > venue_web_discovery > starto_concert/kstyle_music`
   - Lower-priority matches are retained in `supporting_sources`.
 - Workflow:
-  - `.github/workflows/update_signals_venue_web_discovery.yml`（公式/準公式Web検知: `venue_web_discovery`）
-    - Codex Automation が確認済み候補を `data/venue_web_discovery_config.json` へ反映したあと、`python -m scripts.update_event_signals_data --only venue_web_discovery` と `python -m scripts.build_lp_events` を実行する
-    - focused tests と一時manifest生成で `event_signals.sqlite`、`lp_events.json`、manifest対象assetの整合を検証する
-    - repository variable `VENUE_WEB_DISCOVERY_ENABLE_CRAWL4AI=true` のときだけ optional Crawl4AI setup を行う
-  - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）
-    - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、ニュース速報 baseline 変更後の補完評価レポートを更新する
-  - `.github/workflows/update_signals_ticketjam.yml`（二次流通: `ticketjam_events`）
-    - `workflow_dispatch` 入力 `bootstrap_full=true` で full rebuild を実行可能（legacy sitemap mode を使う場合のみ `bootstrap_max_*` を参照）
-    - 後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、補完評価レポートを `data/ticketjam_supplement_report.json` / `.md` へ更新する
-  - `.github/workflows/update_events_official.yml`（会場公式）も後段で `python -m scripts.build_ticketjam_supplement_report` を実行し、会場公式 baseline 変更後の補完評価レポートを更新する
-  - 会場公式、ニュース、Ticketjam、Venue Web Discovery の各更新workflowは後段で `python -m scripts.build_lp_events` を実行し、LP向け統合JSONを stale にしない
-  - `workflow_dispatch` + 定期実行（ニュース=12時間ごと / Ticketjam=日次）
-  - 差分がある場合のみ commit
+  - `.github/workflows/update_signals_venue_web_discovery.yml`（公式/準公式Web検知）: 定期実行、手動実行、または`main`の`data/venue_discovery_inbox.json`へのpushで起動する。inbox適用、`venue_web_discovery`のDB更新、`lp_events.json`生成、focused testsと一時manifest検証を順に行い、差分があればconfig・DB・LPをcommit/pushする。inboxはActionsから変更しない。repository variable `VENUE_WEB_DISCOVERY_ENABLE_CRAWL4AI=true` のときだけoptional Crawl4AI setupを行う。
+  - `.github/workflows/update_signals.yml`（ニュース: `starto_concert,kstyle_music`）: 12時間ごとの定期実行と手動実行を受け、DBとLPを更新する。
+  - `.github/workflows/update_events_official.yml`（会場公式）: 定期実行と手動実行を受け、会場公式DBとLPを更新する。
+  - `.github/workflows/watch_automation_freshness.yml`（停止検知）: 毎日cronまたは手動でinboxの鮮度を検査する。
+  - 各更新workflowは`build_lp_events`を後段で実行し、差分がある場合だけcommitする。
 
 ## Addendum (2026-05-12) Event Signal Coverage and Normalization Audit
 - 目的:
   - 会場公式以外のイベント情報について、記事取得前の取りこぼし、本文抽出失敗、辞書未解決、カテゴリ誤分類、同一イベントの未統合を分けて検知する。
-  - 初期対象は `kstyle_music` とする。`starto_concert` と `ticketjam_events` へ広げるかは、K-Style監査の出力形式と運用負荷を確認してから判断する。
+  - 初期対象は `kstyle_music` とする。`starto_concert` へ広げるかは、K-Style監査の出力形式と運用負荷を確認してから判断する。
 - 非目標:
   - 監査の初期実装では、`events.sqlite` / `event_signals.sqlite` の既存スキーマを変更しない。
   - 監査の初期実装では、ニュース記事本文全文を保存しない。保存するのはURL、タイトル、掲載日時、短い根拠文字列、抽出結果、判定理由とする。
@@ -398,7 +307,7 @@
   - 別名・表記ゆれ・ニュース由来表記は `data/venue_aliases.csv` で吸収する。
   - 対象範囲は「`capacity >= 10000` を基本対象、`1000 <= capacity < 10000` は重点会場のみ」とする。
     - `capacity >= 10000`: 公式ソース未実装でも `is_enabled=0` の辞書用途で保持する。
-    - 重点会場: 会場公式取得対象、または `ticketjam_events` の採用/未解決候補で継続的に影響が出る会場を登録する。
+    - 重点会場: 会場公式取得対象、または公式/準公式Web検知と辞書照合に継続的に必要な会場を登録する。
     - `capacity < 1000` または capacity 不明: 明示要件が出るまで常設対象外。
   - 会場名変更が発生した場合:
     1. `venue_registry.csv` の `venue_name` を新正式名へ更新
@@ -412,8 +321,8 @@
 - Trigger:
   - `push`（`main` で配布入力または公開workflowが更新されたとき）
     - 対象path: `.github/workflows/publish_external_events_assets.yml`, `scripts/build_external_events_manifest.py`, `data/events.sqlite`, `data/event_signals.sqlite`, `data/lp_events.json`
-    - ローカルcheckoutやCodex Automationから直接pushされた配布入力またはmanifest生成処理の更新を自動公開する。push起点ではtrigger commitをcheckoutして、manifestの`source_commit_sha`とasset内容を一致させる。公開workflow自身の変更も対象に含め、導入PRのmerge直後に現行assetを再公開する。
-  - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Ticketjam)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
+    - ローカルcheckoutから直接pushされた配布入力またはmanifest生成処理の更新を自動公開する。push起点ではtrigger commitをcheckoutして、manifestの`source_commit_sha`とasset内容を一致させる。公開workflow自身の変更も対象に含め、導入PRのmerge直後に現行assetを再公開する。
+  - `workflow_run`（`Update events official data` / `Update event signals data (News)` / `Update event signals data (Venue Web Discovery)` が `main` で成功したとき）
     - GitHub Actionsが`GITHUB_TOKEN`で作成したcommitは後続の`push` workflowを起動しないため、scheduled/manualの上流workflow経路として維持する。
   - `workflow_dispatch`（手動再公開）
 - Release:
@@ -426,25 +335,16 @@
 - Upload policy:
   - `gh release upload ... --clobber` を使い、同名assetを上書きして常に最新を保持する
 - 再実行手順:
-  1. ローカルcheckoutやCodex Automationから`main`へ対象pathを直接pushした場合は`push` run、上流GitHub Actionsが完了した場合は`workflow_run` runを確認する
+  1. ローカルcheckoutから`main`へ対象pathを直接pushした場合は`push` run、上流GitHub Actionsが完了した場合は`workflow_run` runを確認する
   2. publish run が `failure` / `cancelled` の場合は原因を修正して再実行する。上流workflowが `failure` / `cancelled` / `skipped` の場合は、先に上流workflowを復旧または再実行する
   3. 対象更新後にpublish runが存在しない、またはrelease assetが更新されていない場合は、`publish_external_events_assets.yml` を `workflow_dispatch` で手動実行する
   4. 確認は GitHub Release `external-events-latest` の asset `updated_at` と `manifest.json` の `generated_at_utc` / `source_commit_sha` を見る
 
-### Ticketjam公式確認からLP配布への継続運用
+### 会場起点Web検知からLP配布への継続運用
 
-運用手順・許可範囲・再確認・公開確認は [ticketjam_official_review_automation.md](ticketjam_official_review_automation.md) を正本とする。
-
-- `build_lp_events` CLI既定は `discovery`。同じDB入力から、上位sourceのみの掲載用データと、Ticketjamのみを別に統合した発見用データを作る。未確認のTicketjamを掲載用の公演分割・時刻補完・表示元に使わない。
-- `data/ticketjam_review_state.json` を読み、出力先と同じdirectoryへ `ticketjam_review_queue.json` を生成する。`--review-state` / `--review-output` で変更可能。入出力で履歴を上書きする指定を拒否する。履歴がないときは暗黙に旧modeへ戻さない。
-- `build_lp_events()` は移行比較用の保留前payloadを返す。公開にはCLIまたは `build_discovery_bundle` を使う。`reviewed` / `display` は比較用互換modeとして残す。
-- `prepare_ticketjam_review` は再確認期日と候補内容を確認し、boundedなplanを生成する。`--resolve-covered` は上位sourceの厳密キー・会場・日付・出演者・時刻が一致する場合だけ既存一致を記録する。新しいWeb確認の主張ではない。
-- `ticketjam_official_checks` はNPBとZeppの公式予定表を照合する。年、日付区間、会場、公演、出演者、STARTを一致確認し、古いqueueやOPENだけでconfirmedを出力しない。未対応・未一致の候補はCodexの公式探索へ回す。
-- `ticketjam_review_state` はcandidate_fingerprint付き判断を追記する。同一判断は冪等。古い判断、日付矛盾、実際の差がないconflict、別originのconfig変更を拒否する。明示的なconfig訂正は変更前のreplaces_config_fingerprintが一致する場合のみ。
-- `venue_web_discovery` のsignalにdiscovery_event_keyを保持する。最新判断がconflict/ancillaryになった派生公式行は公開から保留する。元DB行は消さない。取得失敗で最後の成功を取り消さず、確認URLと再試行履歴を保持する。
-- 本文はHTML bytesからcharsetを認識する。確認methodはrequests_bs4/crawl4ai/browser。browserはCodexが実表示で公式公演表を読んだ場合の監査値で、Python extractorの自動実行modeではない。
-- Ticketjam collectorでは候補リストと個別ページ見出しの日時・会場が矛盾する候補を採用しない。既知の会場aliasは同一性判定に使い、未知の別名は推測一致させない。
-- `as_of_date` の既定はAsia/Tokyoの日付。UTCのgenerated_at_utcと混同しない。
-- `data/manifest.json` はGit管理せずRelease時にcheckoutの実commitから生成する。`validate_external_events` を通してからassetを上書きする。候補・履歴はRelease assetに追加しない。
-
-- 公式登録では会場マスターの確定済み所在地を補完し、明示所在地との矛盾を拒否する。LP組立では国内所在地の確定できない上位sourceも保留する。validatorは47都道府県の完全一致を検証する。
+- MacBook Pro上のCodex app automation `msv-venue-discovery`（`gpt-6-sol` / medium）は、会場起点で公式/準公式ページ本文を確認し、`data/venue_discovery_inbox.json`だけを更新してpushする。既存`lp` automationは停止する。Codex Cloudには定期実行がないため、現行の定期判断はlocal automationで行う。
+- inbox（schema_version 1）は`run_at_utc`、`automation_id=msv-venue-discovery`、`candidates`、`rejected`を持つ。candidateは既存`confirmed_events`と同じfield名を使い、`event_start_date`、`event_end_date`、`event_start_time`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`title`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet`、`content_extractor`、`discovery_query`、`verified_at_utc`を記録する。候補は1回30件以下で、0件でも`run_at_utc`を更新する。
+- `scripts.apply_venue_discovery_inbox`は、schema version、必須項目、日付形式、許可`source_class`、httpsの根拠URLと拒否domain、400文字以内の非空`evidence_snippet`、監視会場またはaliasで解決できる会場名を検査する。`event_start_date + canonical venue_name + canonical artist_name/title`が既存`confirmed_events`と一致する行は上書きしない。適用・却下・重複件数をstdoutとGitHub step summaryに、却下理由をstdoutに出す。候補の却下だけなら成功、schema不正なら失敗する。
+- inboxの`main`へのpushで`update_signals_venue_web_discovery.yml`が起動し、適用後にDB、LP、manifest対象assetを検証する。成功した上流workflowを`publish_external_events_assets.yml`の`workflow_run`が受け、manifest生成・検証を経てRelease `external-events-latest`を公開する。
+- `watch_automation_freshness.yml`は毎日実行し、inboxがない、または`run_at_utc`が3日より古い場合に失敗する。GitHub Actionsの失敗通知を停止検知に使う。
+- `as_of_date` の既定はAsia/Tokyoの日付。UTCの`generated_at_utc`と混同しない。`data/manifest.json`はGit管理せず、Release時にcheckoutしたcommitから生成する。国内所在地が確定できない上位sourceはLPから保留し、公開validatorが47都道府県の完全一致を確認する。

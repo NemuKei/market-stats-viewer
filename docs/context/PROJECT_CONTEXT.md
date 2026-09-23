@@ -1,17 +1,17 @@
 # PROJECT_CONTEXT（market-stats-viewer）
 
-最終更新: 2026-09-08
+最終更新: 2026-09-23
 
 ## Always Read Block
 
 - このrepoの目的は、市場統計と大型イベント情報を、外部LPや需要判断に使える配布データとして安定提供すること。
 - イベント情報の本質ゴールは、検知した大型イベントがLPのイベント一覧に自然に載ること。DB更新はそのための手段である。
 - LP向けイベント表示は、重複統合済みの `data/lp_events.json` をデータ側で生成し、LP側は原則としてその一覧を読むだけにする。
-- LP生成の既定はTicketjamを掲載用統合から分離し、公式確認の発見導線に使う。未確認候補を表示元・時刻補完に使わない。詳細は `docs/spec_data.md` のdiscovery契約に従う。
+- 会場起点のWeb検知は公式/準公式本文で確認した候補だけを扱い、未確認候補を表示元・時刻補完に使わない。詳細は `docs/spec_data.md` に従う。
 - 同一イベントの表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music` とする。
 - Web検知でDB/LP掲載してよい根拠は、公式/準公式ページ本文に限る。検索結果、AI概要、一般ニュース、SNS単体、二次流通単体はDB更新根拠にしない。
 - 本文抽出providerや実行commandは実装詳細であり、上位文脈ではなく `docs/spec_update_pipeline.md` の pipeline 契約に置く。採用根拠は常に公式/準公式URLと本文根拠である。
-- 自動化方針は、人間が毎回候補を読む運用ではなく、Codex Automation が根拠、分類、変更、verify、LP影響を出して、DB/LP出力更新まで進めること。
+- 自動化方針は、人間が毎回候補を読む運用ではなく、Codex Automation が根拠を確認して候補をinboxへ記録し、GitHub Actionsが検証・反映・配布すること。
 - ローカル絶対パス、個人ログイン状態、ブラウザ履歴、端末固有キャッシュには依存しない。別端末でもrepo内のdocs、Skill、設定、検証コマンドで再現できることを優先する。
 
 ## Purpose
@@ -33,7 +33,7 @@
 - `events.sqlite`、`event_signals.sqlite`、`lp_events.json`、`manifest.json`、Release asset の関係が明確である。
 - LP表示用には `lp_events.json` が、厳密キーを基本に開始時刻の異なる公演を分け、同日・同canonical会場・時刻互換・高類似タイトルの補助統合を行い、最上位sourceを `display_source_id` として選ぶ。詳細契約は `docs/spec_data.md` を正とする。
 - 下位sourceは削除せず、`supporting_sources` として根拠確認や監査に使える。
-- Codex Automation は、公式/準公式根拠を確認した候補だけを `venue_web_discovery` として保存し、DB更新、LP出力再生成、manifest検証まで実行できる。
+- Codex Automation は、公式/準公式根拠を確認した候補だけをinboxへ記録する。GitHub Actionsが`venue_web_discovery`への適用、DB更新、LP出力再生成、manifest検証を行う。
 - source priority、DB schema、Release asset契約を変える場合は、docs/spec/DECISIONS とテストを同じ変更内で同期する。
 
 ## Judgment Principles
@@ -61,7 +61,7 @@ automation を進めるときは、処理対象、入力データ、分類条件
 
 市場統計とイベント情報では、公的公開統計または会場公式/準公式が確認できる公開スケジュールを優先する。
 
-イベント情報を比較するときは、`events.sqlite` の会場公式日程、`event_signals.sqlite` の公式/準公式Web検知、ニュース速報、二次流通参考を同じ種類のデータとして扱わない。統合や重複判断では厳密キーを基本とし、開始時刻分割と補助統合の条件は `docs/spec_data.md` に従う。
+イベント情報を比較するときは、`events.sqlite` の会場公式日程、`event_signals.sqlite` の公式/準公式Web検知、ニュース速報を同じ種類のデータとして扱わない。統合や重複判断では厳密キーを基本とし、開始時刻分割と補助統合の条件は `docs/spec_data.md` に従う。
 
 ### Consumer Impact Is Part Of The Change
 
@@ -86,5 +86,5 @@ automation を進めるときは、処理対象、入力データ、分類条件
 - 個別仕様の入出力契約を `PROJECT_CONTEXT.md` に移さない。
 - Google API固定やGoogle SERPスクレイピングを本番取得方式として採用しない。
 - 検索結果、AI概要、一般ニュース、SNS単体、二次流通単体をDB更新根拠にしない。
-- `venue_web_discovery` の実績評価前に、STARTO/Kstyle/Ticketjam を即廃止しない。
+- `venue_web_discovery` の実績評価前に、STARTO/Kstyleを即廃止しない。
 - automation が失敗した変更を、同じ処理内で根拠なく隠して修正しない。

@@ -104,21 +104,21 @@
 
 ### 外部アプリ向けのイベントデータ契約
 - 外部アプリが利用する配布単位は GitHub Release `external-events-latest` の `events.sqlite` / `event_signals.sqlite` / `lp_events.json` / `manifest.json` とする。
+- `data/venue_discovery_inbox.json` はCodex Automationが書く入力ファイルであり、Release assetではない。`schema_version=1`、`run_at_utc`、`automation_id`、`candidates`、`rejected` を持ち、候補が0件でも実行時刻を更新する。候補の項目と検証条件は `docs/spec_update_pipeline.md` に従う。
 - `manifest.json` は配布ファイルの鮮度と同一性を確認するためのメタデータであり、利用側は `generated_at_utc`、各 asset の `sha256`、`size_bytes` を確認できる。
 - LP向けイベント一覧は、重複統合済みの `lp_events.json` を読む。LP側で同じsource priorityを再実装しない。
+- `lp_events.json` のpayloadには `ticketjam_policy`、`discovery_source_ids`、`ticketjam_promoted_held_records`、`summary.ticketjam_*` を含めない。国内所在地を確定できない掲載候補は `location_held_records` にsource_id/record_id/reasonを残し、`summary.location_held_record_count` に件数を保持する。
 - `lp_events.json` の通常生成は、生成基準日以降の開催予定に加え、開催終了日が基準日の90日前以降であるイベントを含める。
   - `history_window_days=90` と `history_start_date` をpayloadへ保持し、外部アプリはこの範囲を「直近の開催済みイベント」として扱う。
   - 過去分は元DBに残る公開情報の範囲に限り、sourceごとの保存方針も異なるため、網羅的なイベントアーカイブとは表現しない。
-  - `ticketjam_events` は従来どおり未来開催のみを保持する。開催済みイベントの過去範囲や網羅性を補うsourceとして扱わない。
-- 外部アプリは、次の4層を同じ意味のイベント情報として混ぜない。
+- 外部アプリは、次の3層を同じ意味のイベント情報として混ぜない。
   - `events.sqlite`: 会場公式サイトまたは会場公式に準じる公開スケジュールから取得した日程。会場別の定期予定表として扱う。
   - `event_signals.sqlite` の `venue_web_discovery`: Codex Automation が公式/準公式ページ本文を根拠確認した大型会場イベント検知。LP掲載候補として扱う。
   - `event_signals.sqlite` の `starto_concert` / `kstyle_music`: ニュース記事または公式に近い告知ページから抽出した速報。興行決定や追加公演の早期検知に使う。
-  - `event_signals.sqlite` の `ticketjam_events`: 二次流通サイト上で確認できる参考日程。公式取得が弱い会場やニュースで拾いにくいアーティストの補完に使う。
-- 同一イベントのLP表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music`。TicketjamはLP表示元にせず発見用候補とする とする。
+- 同一イベントのLP表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music` とする。
 - 公式／準公式の延期・中止が下位sourceの開催予定を抑止する状態契約と `summary.suppressed_event_count` は、`docs/spec_event_status.md` を正本とする。
 - 外部アプリが「確定日程」として優先表示する場合は、まず `lp_events.json` を使う。元DBを直接使う場合も、同一日程が公式側に存在する場合は公式側を優先する。
-- 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、ニュース由来と二次流通由来を同じ信頼度として扱わない。
+- 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、公式/準公式Web検知とニュース由来を同じ信頼度として扱わない。
 - `lp_events.json` の同一イベント判定は、次の2段階とする。
   1. 厳密統合: `event_date + canonical venue_name + canonical artist_name`
   2. 補助統合: 厳密統合後も分かれたグループのうち、`event_date` とcanonical会場が同じで、開始時刻が矛盾せず、正規化タイトルが完全一致するか、双方8文字以上かつ `difflib.SequenceMatcher` の類似度が `0.80` 以上のもの
@@ -142,9 +142,8 @@
   - `start_time_split_group_count`: 異なる非空開始時刻により分割した従来の厳密グループ数
   - `start_time_split_event_count`: 開始時刻分割によって増えた公演数
 - この変更のbeforeは厳密キーだけによる統合、afterは開始時刻分割を含む2段階統合である。既存fieldは削除・改名せず、追加summaryは後方互換とするため `schema_version=1` を維持する。consumer側の移行作業は不要で、`lp_events.json` の再生成だけをforward migrationとする。rollbackは実装と生成JSONを同じrevisionへ戻し、DBと旧pathは変更・削除しない。
-- 外部アプリが新着判定を行う場合、`ticketjam_events` は `published_at_utc` ではなく `first_seen_at_utc` を使う。Ticketjam の公開ページから安定した掲載日時を取得できないためである。
 - 外部アプリがデータ品質を判断する場合、少なくとも次の情報を保持する。
-  - `source_id`: `events.sqlite` 由来か、ニュース由来か、二次流通由来かを判定する。
+  - `source_id`: `events.sqlite` 由来か、公式/準公式Web検知か、ニュース由来かを判定する。
   - `url`: 利用者が元ページで確認するための参照先。
   - `updated_at_utc` または `first_seen_at_utc`: データ更新または初回検知の時刻。
   - `raw_artist_name` / `raw_venue_name`: `event_signals.sqlite` で正規化前の表記確認が必要な場合に使う。
@@ -154,18 +153,17 @@
   - 品質不良を検出したレコードは自動再変換しない。producer側で保存を停止し、source URLとfield名を含むエラーとして扱う。
   - `build_lp_events` は入力DBをpreflightし、品質不良があれば既存の `lp_events.json` を上書きしない。
   - 外部アプリは配布assetのshape/hash検証に加え、同じ最低限の文字品質検査をconsumer防御として行ってよい。
-- 外部アプリは `ticketjam_events` を会場網羅の代替として使わない。`ticketjam_events` は `artist-gap` / `venue-gap` を補う参考ソースであり、会場公式取得が安定している会場では公式データを優先する。
 - 外部アプリ向けの利用例:
   - LPイベント一覧: `lp_events.json` を使い、表示sourceとsupporting sourceをそのまま利用する。
   - BCL などの需要予測支援: `events.sqlite` を基準にし、`event_signals.sqlite` と `lp_events.json` は追加検知と早期注意喚起に使う。
-  - イベント監視ダッシュボード: 3層を別ラベルで表示し、公式日程、ニュース速報、二次流通参考を分けて比較する。
-  - 辞書メンテナンス支援: `raw_*` と canonical 名の差分、未解決ログ、`ticketjam_supplement_report.json` を使って artist/venue 辞書候補を抽出する。
+  - イベント監視ダッシュボード: 3層を別ラベルで表示し、会場公式日程、公式/準公式Web検知、ニュース速報を分けて比較する。
+  - 辞書メンテナンス支援: `raw_*` と canonical 名の差分、未解決ログを使って artist/venue 辞書候補を抽出する。
 
 ## 追補（2026-02-23）イベント速報/参考シグナル
 - SSOT: `data/event_signals.sqlite`（`events.sqlite` とは分離）
 - 対象範囲（BCL向け注記）:
-  - 収集ソースは `venue_web_discovery` / `starto_concert` / `kstyle_music` / `ticketjam_events`
-  - `venue_web_discovery` は公式/準公式ページ本文確認済み、`starto_concert` / `kstyle_music` はニュース由来、`ticketjam_events` は二次流通由来の参考データ
+  - 収集ソースは `venue_web_discovery` / `starto_concert` / `kstyle_music`
+  - `venue_web_discovery` は公式/準公式ページ本文確認済み、`starto_concert` / `kstyle_music` はニュース由来
   - 全カテゴリ横断の網羅DBではない（野球/その他イベントの網羅は目的外）
 - 保存方針:
   - 本文は保存しない（ニュース全文のDB保存禁止）
@@ -173,19 +171,6 @@
   - `venue_web_discovery` は `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する
   - `venue_web_discovery` の `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` に限定する
   - `venue_web_discovery` の `content_extractor` は `requests_bs4` / `crawl4ai` / `browser` のどの方法で本文・公式公演表を確認したかを示す監査用ラベルであり、DB採用根拠そのものではない
-  - `ticketjam_events` は `labels_json` に `artist_name / venue_name / event_start_date / event_end_date` を必須保存する
-  - `ticketjam_events` は 1日程=1データを原則とし、複数日開催のシリーズでも日別ページ単位で保存する
-  - `ticketjam_events` は未来開催のみを保持し、過去開催は定期更新時に除去する
-  - `ticketjam_events` は会場網羅の正本DBではなく、`artist-gap` / `venue-gap` を補う参考ソースとして扱う
-  - `ticketjam_events` のHTML本文はUTF-8 strict decodeを使い、`apparent_encoding` などの推測encodingは使わない。decode失敗時は当該source更新を失敗させ、別encodingによる推測変換は行わない
-  - `ticketjam_events` の会場ページ対応は `data/ticketjam_venue_pages.csv` で管理する
-    - 1行=1 Ticketjam 会場ページと内部 `venue_id` の対応
-    - 初期 scope は 北海道 / 東京都 / 神奈川県 / 千葉県 / 埼玉県 / 愛知県 / 大阪府 / 兵庫県 / 福岡県
-    - `is_enabled=1` は日次巡回対象、`is_enabled=0` は辞書保持のみ
-  - 補完評価レポート:
-    - `data/ticketjam_supplement_report.json`: 機械処理向けサマリ
-    - `data/ticketjam_supplement_report.md`: 目視確認向けサマリ
-    - `ticketjam_watch` / `ticketjam_benchmark_tier` / `official_fetch_candidate` を使って自動集計する
 
 ### テーブル: `signal_sources`
 - `source_id` TEXT PRIMARY KEY
@@ -224,50 +209,18 @@
 - アーティスト辞書:
   - 入力ソース: `artist_registry.seed.csv` + `artist_registry.jp.seed.csv` + `artist_registry.manual.csv`
   - マージ優先順: `seed -> jp.seed -> manual`（後勝ち）
-  - Ticketjam 補完フラグ列:
-    - `ticketjam_watch`: `0/1`。Ticketjam の `artist-gap` 補完対象として監視するか
-    - `ticketjam_benchmark_tier`: `S / A / B / reference / ""`
-      - `S`: 直近1年で五大ドーム完走級
-      - `A`: 全国ドームツアー級
-      - `B`: 複数ドーム開催級
-      - `reference`: 格としては十分だが、初期監視は後回し
-    - `ticketjam_watch_reason`: 初期値は `artist_gap`
 - 会場辞書:
   - 正本: `data/venue_registry.csv`（`venue_id` 固定）
   - 別名辞書: `data/venue_aliases.csv`
-  - Ticketjam 会場ページ対応: `data/ticketjam_venue_pages.csv`
   - 解決優先順: `venue_registry` の正式名 + `venue_aliases` の別名（`venue_id` 単位で後勝ち）
   - 味の素スタジアムと国立競技場（MUFGスタジアム）は別施設。`mufg_stadium` は既存ID互換のため名称を残すが、取得元・実体は味の素スタジアムでありcanonical名も `味の素スタジアム` とする。`MUFGスタジアム` / `MUFG STADIUM` の別名は `national_stadium`（canonical `国立競技場`）だけに対応させる。2026-09-08の誤対応訂正ではvenue ID・event UIDを保持し、会場マスターとLPを再同期する。元候補に会場不一致が残る場合は公式確認まで非掲載とする。根拠: [味の素スタジアム施設案内](https://www.ajinomotostadium.com/overview/stadium.php)、[MUFGの施設表記](https://www.mufg.jp/profile/japan_rugby_league_one/mufgonepark/index.html)。
   - 対象範囲:
     - 基本対象: `capacity >= 10000` の会場は、会場公式ソースの実装有無に関わらず辞書へ保持する。公式取得未対応でも `is_enabled=0` の辞書用途で先行登録してよい。
-    - 重点会場: `1000 <= capacity < 10000` の会場は、ユーザー影響が高いものだけを対象にする。判断基準は「会場公式イベントの取得対象である」または「`ticketjam_events` の採用/未解決候補で継続的に出現し、GUI確認や辞書照合KPIに影響する」のいずれか。
+    - 重点会場: `1000 <= capacity < 10000` の会場は、会場公式イベントの取得対象、または公式/準公式Web検知と辞書照合に継続的に必要な会場に限定する。
     - 原則対象外: `capacity < 1000` または capacity 不明の小規模会場は、明示的な運用要件が出るまで辞書の常設対象にしない。
-  - Ticketjam venue-first Phase 1 では、会場辞書へ追加した canonical 会場に対して `ticketjam_venue_pages.csv` の page URL を紐付け、Ticketjam 側 raw 表記は `venue_aliases.csv` で吸収する。
-  - Ticketjam 補完フラグ列:
-    - `ticketjam_watch`: `0/1`。Ticketjam の `venue-gap` 補完対象として監視するか
-    - `official_fetch_candidate`: `0/1`。本来は会場公式ソース追加を検討すべき会場か
-    - `official_gap_reason`: `no_official_site / weak_schedule / hard_to_parse / temporary_fallback / ""`
-      - `ticketjam_watch=1` と `official_fetch_candidate=1` は両立してよい
-  - 補完評価レポートの集計キー:
-    - `event_date + canonical venue_name + canonical artist_name`
-    - baseline は `events.sqlite` + `starto_concert` + `kstyle_music`
 - 一意性ルール:
   - 正規化キー（keep/compact）が複数 canonical に衝突する場合、そのキーは自動適用しない。
   - 自動適用は一意に解決できるキーのみ。
-
-### Ticketjam発見用データと確認履歴 v1
-
-LPの既定は `ticketjam_policy=discovery`。Ticketjamを掲載用の統合入力から除外し、上位sourceのみで公演を分割・統合する。Ticketjamは別に統合して確認待ち一覧へ送り、元DBを保持する。未確認の時刻、会場、出演者を公式行へ補完しない。
-
-- 掲載schema_version=1を維持。source_priorityは掲載可能な4sourceだけ。discovery_source_idsはticketjam_eventsを示す。summaryにticketjam_discovery_record_count、ticketjam_review_candidate_count、ticketjam_verified_support_count、ticketjam_promoted_held_record_countを追加する。統合metricsは掲載用入力の処理件数。
-- 確認済み・重複確認済みのTicketjam根拠だけ、掲載行の日付・会場・時刻と一致するときにsupporting_sourcesへ後付けする。表示値やevent_keyを変更しない。未確認の根拠はDBとqueueに残す。
-- `ticketjam_review_queue.json` はschema_version/as_of_date/source_generated_at_utc/summary/candidates/official_rechecksを持つ。候補はevent_key、日付・時刻・会場・出演者・title・pref_name・capacity、discovery_url、matching_event_keys、search_queries、verification_urls、status、review_due、previous_reviewを保持。statusはpending_official/possible_existing_match/ancillary_ticket/expired。公式昇格後も公式URLからの再確認を維持する。配布対象外。
-- `ticketjam_review_state.json` はschema_version=1とevents（event_keyをkeyにしたobject）を持つ。各recordはcandidate_fingerprint、candidate_snapshot、追記型history。判断のstatusはconfirmed/insufficient/conflict/fetch_failed/duplicate/ancillary。誤判断は訂正を追記し、古い履歴を消さない。配布対象外。
-- confirmedのofficial_eventは既存confirmed_events形式。discovery_event_keyで派生元を追跡し、表示名・URLが変わっても最新の不一致判断を反映する。画像化された公式公演表の実表示確認はcontent_extractor=browserと記録する。
-- conflictはofficial_valuesに実際の異なる値を持つ。複数の公演時刻は配列で保持し、候補がその集合に含まれていれば不一致扱いしない。duplicateはduplicate_of_event_keyとduplicate_target_fingerprintを保持。対象消失・変更で再確認へ戻す。
-- review判断の書込は現在候補のfingerprint一致を必須とする。既存公式configの意味変更はreplaces_config_fingerprintで変更前の完全一致を確認した同一originだけ。schema変更時は履歴migrationを別途用意する。
-
-既存のdisplay/reviewed modeは比較用に残す。全国切替のforward手順はコード・履歴・公式configを一緒に反映し、DB→LP→manifestを再生成して検証すること。公開のrollbackには直前の検証済みdiscovery版assetを使う。旧modeの削除予定はない。運用commandはspec_update_pipelineとticketjam_official_review_automationに従う。
 
 #### 国内所在地の完全性
 

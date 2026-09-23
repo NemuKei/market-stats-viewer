@@ -25,6 +25,7 @@
 - `docs/spec_data.md`: DB、JSON、manifest、外部app向けdata contract、source priorityの詳細。
 - `docs/spec_update_pipeline.md`: update script、workflow、provider、command、Release asset publish、automation実行条件。
 - `docs/event_signal_audit_automation.md`: イベント監査automationの入力、許可・禁止変更、evidence、verification、post-merge audit。
+- LLM automationは`data/venue_discovery_inbox.json`だけを書く。適用、DB、LP、manifest、ReleaseはGitHub Actionsが行う。
 - `README.md`: setup、実行手順、利用者向け概要、公開URL。
 - `docs/handovers/**`、`docs/thread_logs/**`、archive相当は参照専用とし、新規ruleを置かない。
 
