@@ -1,7 +1,44 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-09-23T00:00:00Z",
+  "run_at_utc": "2026-09-24T03:13:50Z",
   "automation_id": "msv-venue-discovery",
-  "candidates": [],
+  "candidates": [
+    {
+      "event_start_date": "2026-12-12",
+      "event_end_date": "2026-12-12",
+      "event_start_time": "17:00",
+      "venue_name": "MUFGスタジアム",
+      "raw_venue_name": "MUFGスタジアム(国立競技場)",
+      "artist_name": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "raw_artist_name": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://www.music-bank.jp/",
+      "evidence_snippet": "ABOUT イベントタイトル 2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN 日時 2026年12月12日(土)、13日(日) 両日 開場15:00（予定）/ 開演17:00（予定） 会場 MUFGスタジアム(国立競技場)",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "MUFGスタジアム 2026 12月 コンサート 公式",
+      "verified_at_utc": "2026-09-24T03:13:50Z"
+    },
+    {
+      "event_start_date": "2026-12-13",
+      "event_end_date": "2026-12-13",
+      "event_start_time": "17:00",
+      "venue_name": "MUFGスタジアム",
+      "raw_venue_name": "MUFGスタジアム(国立競技場)",
+      "artist_name": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "raw_artist_name": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://www.music-bank.jp/",
+      "evidence_snippet": "ABOUT イベントタイトル 2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN 日時 2026年12月12日(土)、13日(日) 両日 開場15:00（予定）/ 開演17:00（予定） 会場 MUFGスタジアム(国立競技場)",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "MUFGスタジアム 2026 12月 コンサート 公式",
+      "verified_at_utc": "2026-09-24T03:13:50Z"
+    }
+  ],
   "rejected": []
 }
