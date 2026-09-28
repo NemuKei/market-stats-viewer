@@ -1,44 +1,7 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-09-28T00:01:05Z",
+  "run_at_utc": "2026-09-28T03:13:12Z",
   "automation_id": "msv-venue-discovery",
-  "candidates": [
-    {
-      "event_start_date": "2026-12-05",
-      "event_end_date": "2026-12-05",
-      "event_start_time": "17:00",
-      "venue_name": "ベルーナドーム",
-      "raw_venue_name": "ベルーナドーム",
-      "artist_name": "MEYCHAN",
-      "raw_artist_name": "MEYCHAN",
-      "title": "MEYCHAN ONE-MAN LIVE 2026『MEGA WATT』",
-      "event_category": "コンサート",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://meychan.com/live/oneman_megawatt/",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "ベルーナドーム MEYCHAN 2026 コンサート 公式",
-      "verified_at_utc": "2026-09-28T00:01:05Z",
-      "evidence_snippet": "MEYCHAN ONE-MAN LIVE 2026『MEGA WATT』 Schedule & Live Info 公演情報 DAY 1 12.05 SAT ONE-MAN LIVE 会場 ベルーナドーム OPEN 15:00 START 17:00"
-    },
-    {
-      "event_start_date": "2026-12-06",
-      "event_end_date": "2026-12-06",
-      "event_start_time": "16:00",
-      "venue_name": "ベルーナドーム",
-      "raw_venue_name": "ベルーナドーム",
-      "artist_name": "MEYCHAN",
-      "raw_artist_name": "MEYCHAN",
-      "title": "MEYCHAN ONE-MAN LIVE 2026『MEGA WATT』",
-      "event_category": "コンサート",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://meychan.com/live/oneman_megawatt/",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "ベルーナドーム MEYCHAN 2026 コンサート 公式",
-      "verified_at_utc": "2026-09-28T00:01:05Z",
-      "evidence_snippet": "MEYCHAN ONE-MAN LIVE 2026『MEGA WATT』 Schedule & Live Info 公演情報 DAY 2 12.06 SUN MEYCHAN FESTIVAL 会場 ベルーナドーム OPEN 14:00 START 16:00"
-    }
-  ],
+  "candidates": [],
   "rejected": []
 }
