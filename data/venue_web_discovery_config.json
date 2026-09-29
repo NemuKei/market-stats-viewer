@@ -20824,6 +20824,27 @@
       "url": "https://meychan.com/live/oneman_megawatt/",
       "venue_name": "ベルーナドーム",
       "verified_at_utc": "2026-09-28T00:01:05Z"
+    },
+    {
+      "artist_name": "宮野真守",
+      "confidence": "high",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "横浜アリーナ 2026年10月 コンサート 公式",
+      "enabled": true,
+      "event_category": "コンサート",
+      "event_end_date": "2026-10-25",
+      "event_id": "vwd-f9163d472a9d",
+      "event_start_date": "2026-10-25",
+      "event_start_time": "16:00",
+      "evidence_snippet": "『with MAMO～STAR～』 2026 年 10 月 25 日(日) 開場 14:30 / 開演 16:00 横浜アリーナ。今回宮野真守がwithするのは、こっちのけんと、COWCOW、メンバー。",
+      "evidence_url": "https://event.1242.com/events/miyanomamoru/",
+      "raw_artist_name": "宮野真守",
+      "raw_venue_name": "横浜アリーナ",
+      "source_class": "promoter_official",
+      "title": "with MAMO～STAR～",
+      "url": "https://event.1242.com/events/miyanomamoru/",
+      "venue_name": "横浜アリーナ",
+      "verified_at_utc": "2026-09-29T03:14:00Z"
     }
   ],
   "future_only": true,
