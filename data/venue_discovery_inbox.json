@@ -1,7 +1,26 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-09-28T03:13:12Z",
+  "run_at_utc": "2026-09-29T03:14:00Z",
   "automation_id": "msv-venue-discovery",
-  "candidates": [],
+  "candidates": [
+    {
+      "event_start_date": "2026-10-25",
+      "event_end_date": "2026-10-25",
+      "event_start_time": "16:00",
+      "venue_name": "横浜アリーナ",
+      "raw_venue_name": "横浜アリーナ",
+      "artist_name": "宮野真守",
+      "raw_artist_name": "宮野真守",
+      "title": "with MAMO～STAR～",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://event.1242.com/events/miyanomamoru/",
+      "evidence_snippet": "『with MAMO～STAR～』 2026 年 10 月 25 日(日) 開場 14:30 / 開演 16:00 横浜アリーナ。今回宮野真守がwithするのは、こっちのけんと、COWCOW、メンバー。",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "横浜アリーナ 2026年10月 コンサート 公式",
+      "verified_at_utc": "2026-09-29T03:14:00Z"
+    }
+  ],
   "rejected": []
 }
