@@ -8114,82 +8114,6 @@
       "venue_name": "Zepp Nagoya"
     },
     {
-      "artist_name": "アジア競技大会",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-09-30",
-      "event_end_date": "2026-09-30",
-      "event_end_time": null,
-      "event_key": "efe6fb2633f8c6372a41",
-      "event_start_time": "15:00",
-      "evidence_snippet": "公式本文確認: 2026-09-30 ヤンマースタジアム長居 第20回アジア競技大会 サッカー 男子準決勝 開始 15:00。",
-      "evidence_url": "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html",
-      "first_seen_at_utc": "2026-09-07T14:09:22Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "アジア競技大会",
-      "raw_venue_name": "ヤンマースタジアム長居",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html",
-          "priority": 20,
-          "record_id": "684e69af1bf59d7d63a97c44a88d8409ea197f0b9773670d8d4c426f4d2d6d37",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "第20回アジア競技大会 サッカー 男子準決勝",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
-          "url": "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html"
-        }
-      ],
-      "title": "第20回アジア競技大会 サッカー 男子準決勝",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
-      "url": "https://www.pref.osaka.lg.jp/o070110/sportsshinko/asia/index.html",
-      "venue_name": "ヤンマースタジアム長居"
-    },
-    {
-      "artist_name": "CUTIE STREET",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "コンサート",
-      "event_date": "2026-09-30",
-      "event_end_date": "2026-09-30",
-      "event_end_time": null,
-      "event_key": "e60ba019eff0c6d74f82",
-      "event_start_time": null,
-      "evidence_snippet": "東京有明アリーナ公式イベントページは、CUTIE STREET JAPAN ARENA TOUR 2026 -AUTUMN-を有明アリーナで2026年9月30日に開催すると掲載している。",
-      "evidence_url": "https://ariake-arena.tokyo/event/two/",
-      "first_seen_at_utc": "2026-07-28T00:15:45Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "CUTIE STREET",
-      "raw_venue_name": "有明アリーナ",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://ariake-arena.tokyo/event/two/",
-          "priority": 20,
-          "record_id": "0001154e6f0a209af59c40dffe3983346db60778614213abbe44bacfe52ab0b9",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "CUTIE STREET JAPAN ARENA TOUR 2026 -AUTUMN-",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
-          "url": "https://ariake-arena.tokyo/event/two/"
-        }
-      ],
-      "title": "CUTIE STREET JAPAN ARENA TOUR 2026 -AUTUMN-",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
-      "url": "https://ariake-arena.tokyo/event/two/",
-      "venue_name": "有明アリーナ"
-    },
-    {
       "artist_name": "HEROINES FES AUTUMN",
       "capacity": 3103,
       "display_source_class": "venue_official",
@@ -8226,44 +8150,6 @@
       "updated_at_utc": "2026-09-28T11:02:07Z",
       "url": "https://toyosu.pia-pit.jp/schedule/202609/8834.html",
       "venue_name": "豊洲PIT"
-    },
-    {
-      "artist_name": "阪神タイガース",
-      "capacity": null,
-      "display_source_class": "promoter_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "野球",
-      "event_date": "2026-09-30",
-      "event_end_date": "2026-09-30",
-      "event_end_time": null,
-      "event_key": "a9ff61d5fbba8e2d874a",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式日程本文で照合: 2026-09-30 阪神甲子園球場 阪神 vs ヤクルト 開始18:00。",
-      "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "first_seen_at_utc": "2026-09-07T15:04:17Z",
-      "pref_name": "兵庫県",
-      "raw_artist_name": "阪神タイガース",
-      "raw_venue_name": "阪神甲子園球場",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://npb.jp/games/2026/schedule_09_detail.html",
-          "priority": 20,
-          "record_id": "54f284fd952eaab9293f07d55385ded72f76454d5a43a876413b5f4edcb364f3",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "阪神 vs ヤクルト",
-          "updated_at_utc": "2026-09-23T03:12:47Z",
-          "url": "https://npb.jp/games/2026/schedule_09_detail.html"
-        }
-      ],
-      "title": "阪神 vs ヤクルト",
-      "updated_at_utc": "2026-09-23T03:12:47Z",
-      "url": "https://npb.jp/games/2026/schedule_09_detail.html",
-      "venue_name": "阪神甲子園球場"
     },
     {
       "artist_name": "The BONEZ",
@@ -12000,6 +11886,44 @@
       "venue_name": "大阪城ホール"
     },
     {
+      "artist_name": "浦島坂田船",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-10",
+      "event_end_date": "2026-10-10",
+      "event_end_time": null,
+      "event_key": "25f49fed7c712d65170a",
+      "event_start_time": "17:00",
+      "evidence_snippet": "10.10 SAT 10.11 SUN 浦島坂田船 Happy Halloweeeen 浦島坂田幽霊船～ぼくたち魔法少年うしさせいんと☆みるきぃず超特大しゅうぱぁまっくすだいだいだいしゅきぱわぁchuuuuuuuuuu…にゅ？い、いかん！魔力が足りぬ！「えむピくれぴ♡んぅう満ちち☆彡」～ 公演時間 10.10 Sat 開場 16:00 / 開演 17:00…",
+      "evidence_url": "https://ariake-arena.tokyo/event/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "浦島坂田船",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/",
+          "priority": 20,
+          "record_id": "38c7e184af2af46371a625dbaf7a736c7096ad2585a0c81ec3e9d0f7128119dc",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Happy Halloweeeen 浦島坂田幽霊船～ぼくたち魔法少年うしさせいんと☆みるきぃず超特大しゅうぱぁまっくすだいだいだいしゅきぱわぁchuuuuuuuuuu…にゅ？い、いかん！魔力が足りぬ！「えむピくれぴ♡んぅう満ちち☆彡」～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/"
+        }
+      ],
+      "title": "Happy Halloweeeen 浦島坂田幽霊船～ぼくたち魔法少年うしさせいんと☆みるきぃず超特大しゅうぱぁまっくすだいだいだいしゅきぱわぁchuuuuuuuuuu…にゅ？い、いかん！魔力が足りぬ！「えむピくれぴ♡んぅう満ちち☆彡」～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/",
+      "venue_name": "有明アリーナ"
+    },
+    {
       "artist_name": "Poppin'Party",
       "capacity": 8000,
       "display_source_class": "venue_official",
@@ -12492,6 +12416,44 @@
       "updated_at_utc": "2026-09-07T16:27:55Z",
       "url": "https://ishida-gumi.jp/osaka.html",
       "venue_name": "大阪城ホール"
+    },
+    {
+      "artist_name": "浦島坂田船",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-10-11",
+      "event_end_date": "2026-10-11",
+      "event_end_time": null,
+      "event_key": "12606bd6d3f6eaea2b84",
+      "event_start_time": "15:00",
+      "evidence_snippet": "10.10 SAT 10.11 SUN 浦島坂田船 Happy Halloweeeen 浦島坂田幽霊船～ぼくたち魔法少年うしさせいんと☆みるきぃず超特大しゅうぱぁまっくすだいだいだいしゅきぱわぁchuuuuuuuuuu…にゅ？い、いかん！魔力が足りぬ！「えむピくれぴ♡んぅう満ちち☆彡」～ 公演時間 10.10 Sat 開場 16:00 / 開演 17:00…",
+      "evidence_url": "https://ariake-arena.tokyo/event/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "浦島坂田船",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/",
+          "priority": 20,
+          "record_id": "e7744ac077e88ece28d612b8b48336526ae3ab77565aa91760e2a0f0f819d621",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "Happy Halloweeeen 浦島坂田幽霊船～ぼくたち魔法少年うしさせいんと☆みるきぃず超特大しゅうぱぁまっくすだいだいだいしゅきぱわぁchuuuuuuuuuu…にゅ？い、いかん！魔力が足りぬ！「えむピくれぴ♡んぅう満ちち☆彡」～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/"
+        }
+      ],
+      "title": "Happy Halloweeeen 浦島坂田幽霊船～ぼくたち魔法少年うしさせいんと☆みるきぃず超特大しゅうぱぁまっくすだいだいだいしゅきぱわぁchuuuuuuuuuu…にゅ？い、いかん！魔力が足りぬ！「えむピくれぴ♡んぅう満ちち☆彡」～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/",
+      "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "夢限大みゅーたいぷ",
@@ -19492,6 +19454,44 @@
       "venue_name": "フェスティバルホール"
     },
     {
+      "artist_name": "BALLISTIK BOYZ",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-03",
+      "event_end_date": "2026-11-03",
+      "event_end_time": null,
+      "event_key": "b2d5723b746c06b24265",
+      "event_start_time": "17:00",
+      "evidence_snippet": "11.3 TUE BALLISTIK BOYZ BALLISTIK BOYZ ARENA LIVE 2026 \"BEAT BLAST Z\" ～Our Place～ 公演時間 11.3 Tue 開場 16:00 / 開演 17:00",
+      "evidence_url": "https://ariake-arena.tokyo/event/next/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "BALLISTIK BOYZ",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/next/",
+          "priority": 20,
+          "record_id": "102f32f3c1120685484b9c791def27092d66fd7afc78171986099f5ade2ae1cc",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "BALLISTIK BOYZ ARENA LIVE 2026 \"BEAT BLAST Z\" ～Our Place～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/next/"
+        }
+      ],
+      "title": "BALLISTIK BOYZ ARENA LIVE 2026 \"BEAT BLAST Z\" ～Our Place～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/next/",
+      "venue_name": "有明アリーナ"
+    },
+    {
       "artist_name": "i☆Ris",
       "capacity": 17000,
       "display_source_class": "venue_official",
@@ -23542,6 +23542,44 @@
       "venue_name": "大阪城ホール"
     },
     {
+      "artist_name": "HiGH&LOW",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-11-18",
+      "event_end_date": "2026-11-18",
+      "event_end_time": null,
+      "event_key": "af308e8a399012c250f7",
+      "event_start_time": null,
+      "evidence_snippet": "11.18 WED 11.19 THU HiGH&LOW THE 戦国 LOVE&HATE 出演者は備考欄をご確認ください 公演時間 11.18 Wed ①開場 13:00 / 開演 14:00 ②開場 18:00 / 開演 19:00 11.19 Thu ①開場 13:00 / 開演 14:00 ②開場 18:00 / 開演 19:00",
+      "evidence_url": "https://ariake-arena.tokyo/event/next/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "HiGH&LOW",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/next/",
+          "priority": 20,
+          "record_id": "39b49e9c101d1f071beb91c1a26aa3c7249c6c7fe8dc24681c4fae2a0beea335",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HiGH&LOW THE 戦国 LOVE&HATE",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/next/"
+        }
+      ],
+      "title": "HiGH&LOW THE 戦国 LOVE&HATE",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/next/",
+      "venue_name": "有明アリーナ"
+    },
+    {
       "artist_name": "Da-iCE",
       "capacity": 8000,
       "display_source_class": "venue_official",
@@ -23730,6 +23768,44 @@
       "updated_at_utc": "2026-09-28T10:49:14Z",
       "url": "https://kyodo-osaka.co.jp/search/detail/11211",
       "venue_name": "大阪城ホール"
+    },
+    {
+      "artist_name": "HiGH&LOW",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2026-11-19",
+      "event_end_date": "2026-11-19",
+      "event_end_time": null,
+      "event_key": "bdb6e3c9bdb3601ec324",
+      "event_start_time": null,
+      "evidence_snippet": "11.18 WED 11.19 THU HiGH&LOW THE 戦国 LOVE&HATE 出演者は備考欄をご確認ください 公演時間 11.18 Wed ①開場 13:00 / 開演 14:00 ②開場 18:00 / 開演 19:00 11.19 Thu ①開場 13:00 / 開演 14:00 ②開場 18:00 / 開演 19:00",
+      "evidence_url": "https://ariake-arena.tokyo/event/next/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "HiGH&LOW",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/next/",
+          "priority": 20,
+          "record_id": "ce4d6cc1085f000a38f335c61c8ce81fbbf3e6f6eaa5b6aaf3bb7ed0479c2dae",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "HiGH&LOW THE 戦国 LOVE&HATE",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/next/"
+        }
+      ],
+      "title": "HiGH&LOW THE 戦国 LOVE&HATE",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/next/",
+      "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "センチミリメンタル",
@@ -35456,6 +35532,44 @@
       "venue_name": "フェスティバルホール"
     },
     {
+      "artist_name": "ミュージカル『刀剣乱舞』",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2027-01-28",
+      "event_end_date": "2027-01-28",
+      "event_end_time": null,
+      "event_key": "1c14e81d1ff53edd4b1a",
+      "event_start_time": "18:30",
+      "evidence_snippet": "1.28 THU - 1.31 SUN ミュージカル『刀剣乱舞』 ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～ 公演時間 1.28 Thu 開場 17:30 / 開演 18:30 1.29 Fri 開場17:30 / 開演 18:30 1.30 Sat ①開場 12:00 / 開演 13:00 ②開場 17:30 / 開演 18:30 1.31 Sun…",
+      "evidence_url": "https://ariake-arena.tokyo/event/three/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ミュージカル『刀剣乱舞』",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/three/",
+          "priority": 20,
+          "record_id": "b955542203289c40de71716d02e35e5684664ae6cb6752e3440e2da4aa41d9a8",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/three/"
+        }
+      ],
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/three/",
+      "venue_name": "有明アリーナ"
+    },
+    {
       "artist_name": "Bruno Mars",
       "capacity": null,
       "display_source_class": "promoter_official",
@@ -35530,6 +35644,44 @@
       "updated_at_utc": "2026-09-28T10:58:58Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158427",
       "venue_name": "Zepp Haneda(Tokyo)"
+    },
+    {
+      "artist_name": "ミュージカル『刀剣乱舞』",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2027-01-29",
+      "event_end_date": "2027-01-29",
+      "event_end_time": null,
+      "event_key": "ec47f6e334794807a9c8",
+      "event_start_time": "18:30",
+      "evidence_snippet": "1.28 THU - 1.31 SUN ミュージカル『刀剣乱舞』 ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～ 公演時間 1.28 Thu 開場 17:30 / 開演 18:30 1.29 Fri 開場17:30 / 開演 18:30 1.30 Sat ①開場 12:00 / 開演 13:00 ②開場 17:30 / 開演 18:30 1.31 Sun…",
+      "evidence_url": "https://ariake-arena.tokyo/event/three/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ミュージカル『刀剣乱舞』",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/three/",
+          "priority": 20,
+          "record_id": "42f2f98c1308bfc73bfd4bcc9d3c1206d70f291e4625ea950e891437c4c5d2d8",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/three/"
+        }
+      ],
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/three/",
+      "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "稲葉浩志",
@@ -35694,6 +35846,44 @@
       "updated_at_utc": "2026-09-19T08:45:30Z",
       "url": "https://www.hybejapan-concert.com/statics/txt_steal_the_wind_in_japan",
       "venue_name": "京セラドーム大阪"
+    },
+    {
+      "artist_name": "ミュージカル『刀剣乱舞』",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2027-01-30",
+      "event_end_date": "2027-01-30",
+      "event_end_time": null,
+      "event_key": "f1fd067a5dddb46c58fb",
+      "event_start_time": null,
+      "evidence_snippet": "1.28 THU - 1.31 SUN ミュージカル『刀剣乱舞』 ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～ 公演時間 1.28 Thu 開場 17:30 / 開演 18:30 1.29 Fri 開場17:30 / 開演 18:30 1.30 Sat ①開場 12:00 / 開演 13:00 ②開場 17:30 / 開演 18:30 1.31 Sun…",
+      "evidence_url": "https://ariake-arena.tokyo/event/three/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ミュージカル『刀剣乱舞』",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/three/",
+          "priority": 20,
+          "record_id": "6eed1c7f3ea90226695ca5e884f00f3b38ecd3c231c5f57ed04cb19cd4dcce38",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/three/"
+        }
+      ],
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/three/",
+      "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "ハラミちゃん",
@@ -35934,6 +36124,44 @@
       "updated_at_utc": "2026-09-19T08:45:30Z",
       "url": "https://www.hybejapan-concert.com/statics/txt_steal_the_wind_in_japan",
       "venue_name": "京セラドーム大阪"
+    },
+    {
+      "artist_name": "ミュージカル『刀剣乱舞』",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "その他",
+      "event_date": "2027-01-31",
+      "event_end_date": "2027-01-31",
+      "event_end_time": null,
+      "event_key": "feadd233f5cc5cc9793e",
+      "event_start_time": null,
+      "evidence_snippet": "1.28 THU - 1.31 SUN ミュージカル『刀剣乱舞』 ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～ 公演時間 1.28 Thu 開場 17:30 / 開演 18:30 1.29 Fri 開場17:30 / 開演 18:30 1.30 Sat ①開場 12:00 / 開演 13:00 ②開場 17:30 / 開演 18:30 1.31 Sun…",
+      "evidence_url": "https://ariake-arena.tokyo/event/three/",
+      "first_seen_at_utc": "2026-10-01T03:17:05Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "ミュージカル『刀剣乱舞』",
+      "raw_venue_name": "TOKYO ARIAKE ARENA",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://ariake-arena.tokyo/event/three/",
+          "priority": 20,
+          "record_id": "f1963c5bc93a1e02834a2b396dd50fc8c197c7535867a4ea640e3de027f855a8",
+          "source_class": "venue_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+          "updated_at_utc": "2026-10-01T03:17:05Z",
+          "url": "https://ariake-arena.tokyo/event/three/"
+        }
+      ],
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "updated_at_utc": "2026-10-01T03:17:05Z",
+      "url": "https://ariake-arena.tokyo/event/three/",
+      "venue_name": "有明アリーナ"
     },
     {
       "artist_name": "クリープハイプ",
@@ -40460,7 +40688,7 @@
       "venue_name": "GMOアリーナさいたま"
     }
   ],
-  "generated_at_utc": "2026-10-01T03:08:42Z",
+  "generated_at_utc": "2026-10-01T03:17:20Z",
   "history_start_date": "2026-07-03",
   "history_window_days": 90,
   "include_past": true,
@@ -40558,11 +40786,11 @@
       "kstyle_music": 67,
       "official_events": 601,
       "starto_concert": 94,
-      "venue_web_discovery": 273
+      "venue_web_discovery": 279
     },
-    "event_count": 1035,
+    "event_count": 1041,
     "location_held_record_count": 16,
-    "record_count_before_grouping": 1130,
+    "record_count_before_grouping": 1136,
     "start_time_split_event_count": 17,
     "start_time_split_group_count": 17,
     "supplemental_merged_group_count": 10,
