@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-10-02",
+  "as_of_date": "2026-10-03",
   "events": [
-    {
-      "artist_name": "KARA",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-07-04",
-      "event_end_date": "2026-07-04",
-      "event_end_time": null,
-      "event_key": "2252fe391280095ce13f",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京・TOYOTA ARENA TOKYO / 日時: 2026-07-04 / 日程:2026年7月4日(土)・5日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "KARA",
-      "raw_venue_name": "東京・TOYOTA ARENA TOKYO",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2277247",
-          "priority": 30,
-          "record_id": "f49d8b84fd490ce3f2617e7c337b2fc21cc6b0c0cfd0e461e50a0d75cc5daf90",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 KARA JAPAN FANMEETING : Hello, KAMILIA!",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2277247"
-        }
-      ],
-      "title": "2026 KARA JAPAN FANMEETING : Hello, KAMILIA!",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "venue_name": "東京・TOYOTA ARENA TOKYO"
-    },
     {
       "artist_name": "KARA",
       "capacity": null,
@@ -1114,44 +1076,6 @@
       "updated_at_utc": "2026-07-27T18:52:51Z",
       "url": "https://starto.jp/s/p/live/10507",
       "venue_name": "マリンメッセ福岡"
-    },
-    {
-      "artist_name": "FIFTY FIFTY",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-08-11",
-      "event_end_date": "2026-08-11",
-      "event_end_time": null,
-      "event_key": "b481f8a2a608da0f79e1",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京・大手町三井ホール / 日時: 2026-08-11 / 2026年8月11日(火・祝)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281765",
-      "first_seen_at_utc": "2026-08-16T12:23:45Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "FIFTY FIFTY",
-      "raw_venue_name": "東京・大手町三井ホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281765",
-          "priority": 30,
-          "record_id": "93ae4c86218b49a180f71d7eba7281abd927ea82e88e8e86a05b7c5c3a4dfc54",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 FIFTY FIFTY Asia Fancon Tour in Tokyo [Still LoBubble]",
-          "updated_at_utc": "2026-08-16T12:23:45Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2281765"
-        }
-      ],
-      "title": "2026 FIFTY FIFTY Asia Fancon Tour in Tokyo [Still LoBubble]",
-      "updated_at_utc": "2026-08-16T12:23:45Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2281765",
-      "venue_name": "東京・大手町三井ホール"
     },
     {
       "artist_name": "Big O!cean",
@@ -3652,12 +3576,62 @@
           "title": "INKIGAYO LIVE in TOKYO",
           "updated_at_utc": "2026-09-24T16:12:41Z",
           "url": "https://kstyle.com/article.ksn?articleNo=2281488"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281831",
+          "priority": 30,
+          "record_id": "333adc52ecf9437a0281dbe0adbbd7cbb3ca9c7cae3b41d6e3b20ef0b8715620",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-10-02T17:06:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281831"
         }
       ],
       "title": "INKIGAYO LIVE in TOKYO",
       "updated_at_utc": "2026-07-27T18:51:53Z",
       "url": "https://kstyle.com/article.ksn?articleNo=2280783",
       "venue_name": "ベルーナドーム"
+    },
+    {
+      "artist_name": "Kim A-in",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-09-22",
+      "event_end_date": "2026-09-22",
+      "event_end_time": null,
+      "event_key": "06cfe3262066a11cab01",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 横浜BUNTAI(神奈川県横浜市中区不老町2丁目7番1) / 日時: 2026-09-22 / 日時:2026年9月22日(火・祝日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283893",
+      "first_seen_at_utc": "2026-10-02T17:06:53Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "Kim A-in",
+      "raw_venue_name": "横浜BUNTAI(神奈川県横浜市中区不老町2丁目7番1)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283893",
+          "priority": 30,
+          "record_id": "7ce1521ca0f0653a0f2ee4b53f428cb574eeea735762c40ed9981a90b9d80116",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 NA-IN WOO Fanmeeting [LOVER : Falling in love] in Japan",
+          "updated_at_utc": "2026-10-02T17:06:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283893"
+        }
+      ],
+      "title": "2026 NA-IN WOO Fanmeeting [LOVER : Falling in love] in Japan",
+      "updated_at_utc": "2026-10-02T17:06:53Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283893",
+      "venue_name": "横浜BUNTAI"
     },
     {
       "artist_name": "オン・ソンウ",
@@ -3778,6 +3752,18 @@
           "title": "INKIGAYO LIVE in TOKYO",
           "updated_at_utc": "2026-09-24T16:12:41Z",
           "url": "https://kstyle.com/article.ksn?articleNo=2281488"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2281831",
+          "priority": 30,
+          "record_id": "edfbaf3e1e4b804d83519eb8d0a408a7035a1e2a1cb6826b9ea67cc34e881df2",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "INKIGAYO LIVE in TOKYO",
+          "updated_at_utc": "2026-10-02T17:06:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2281831"
         }
       ],
       "title": "INKIGAYO LIVE in TOKYO",
@@ -24436,6 +24422,44 @@
       "venue_name": "横浜アリーナ"
     },
     {
+      "artist_name": "YOU",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-12-06",
+      "event_end_date": "2026-12-06",
+      "event_end_time": null,
+      "event_key": "deb5492a9814853e5532",
+      "event_start_time": null,
+      "evidence_snippet": "会場: 東京 / Kanadevia Hall / 日時: 2026-12-06 / 2026年12月6日(日)開場16:00 / 開演17:00",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284761",
+      "first_seen_at_utc": "2026-10-02T17:06:53Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "YOU",
+      "raw_venue_name": "東京 / Kanadevia Hall",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284761",
+          "priority": 30,
+          "record_id": "4f1e28c420daff64087163f72b78e9b1272784cc63e1ba59ef6825f4e2ee7029",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 HWANG IN YOUP Fanmeeting Tour [To you] in TOKYO",
+          "updated_at_utc": "2026-10-02T17:06:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284761"
+        }
+      ],
+      "title": "2026 HWANG IN YOUP Fanmeeting Tour [To you] in TOKYO",
+      "updated_at_utc": "2026-10-02T17:06:53Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284761",
+      "venue_name": "TOKYO DOME CITY HALL"
+    },
+    {
       "artist_name": "神はサイコロを振らない",
       "capacity": 2886,
       "display_source_class": "venue_official",
@@ -25666,6 +25690,18 @@
           "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
           "updated_at_utc": "2026-09-27T16:05:46Z",
           "url": "https://kstyle.com/article.ksn?articleNo=2284494"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284788",
+          "priority": 30,
+          "record_id": "b1333858c0a755a7e717292f5c0432c34e0b8918ff413f9eb8b09b43f77a6d55",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+          "updated_at_utc": "2026-10-02T17:06:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284788"
         }
       ],
       "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
@@ -25842,6 +25878,18 @@
           "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
           "updated_at_utc": "2026-09-27T16:05:46Z",
           "url": "https://kstyle.com/article.ksn?articleNo=2284494"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284788",
+          "priority": 30,
+          "record_id": "13b0676518c444449c982cc5509e362c022fd280e6634a21becf6cfc672679ac",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
+          "updated_at_utc": "2026-10-02T17:06:53Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284788"
         }
       ],
       "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
@@ -37270,8 +37318,8 @@
       "venue_name": "GMOアリーナさいたま"
     }
   ],
-  "generated_at_utc": "2026-10-02T10:42:40Z",
-  "history_start_date": "2026-07-04",
+  "generated_at_utc": "2026-10-02T17:07:50Z",
+  "history_start_date": "2026-07-05",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -37372,11 +37420,11 @@
     },
     "event_count": 952,
     "location_held_record_count": 16,
-    "record_count_before_grouping": 1044,
+    "record_count_before_grouping": 1048,
     "start_time_split_event_count": 16,
     "start_time_split_group_count": 16,
-    "supplemental_merged_group_count": 9,
-    "supplemental_merged_record_count": 9,
+    "supplemental_merged_group_count": 11,
+    "supplemental_merged_record_count": 11,
     "suppressed_event_count": 1
   }
 }
