@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-10-03",
+  "as_of_date": "2026-10-04",
   "events": [
-    {
-      "artist_name": "KARA",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-07-05",
-      "event_end_date": "2026-07-05",
-      "event_end_time": null,
-      "event_key": "ae9069c0e9516fb2e595",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 東京・TOYOTA ARENA TOKYO / 日時: 2026-07-05 / 日程:2026年7月4日(土)・5日(日)",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "KARA",
-      "raw_venue_name": "東京・TOYOTA ARENA TOKYO",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2277247",
-          "priority": 30,
-          "record_id": "90b37045ddd8ad9ae894c223df35207b9d6eabd965cc34da94557593c67f1434",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 KARA JAPAN FANMEETING : Hello, KAMILIA!",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2277247"
-        }
-      ],
-      "title": "2026 KARA JAPAN FANMEETING : Hello, KAMILIA!",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2277247",
-      "venue_name": "東京・TOYOTA ARENA TOKYO"
-    },
     {
       "artist_name": "TREASURE",
       "capacity": null,
@@ -25985,18 +25947,6 @@
         },
         {
           "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284494",
-          "priority": 30,
-          "record_id": "b4964c137bcb86596048e27ab050ebcef57d98ec9aba72f3b7b694a0b141ba92",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
-          "updated_at_utc": "2026-09-27T16:05:46Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2284494"
-        },
-        {
-          "content_extractor": null,
           "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284788",
           "priority": 30,
           "record_id": "b1333858c0a755a7e717292f5c0432c34e0b8918ff413f9eb8b09b43f77a6d55",
@@ -26170,18 +26120,6 @@
           "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
           "updated_at_utc": "2026-09-24T03:14:34Z",
           "url": "https://www.music-bank.jp/"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284494",
-          "priority": 30,
-          "record_id": "d56fd072833d9f7fe07be3749bb9c86220ff10498ee036fe1346e8542d30aa4f",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 MUSIC BANK GLOBAL FESTIVAL IN JAPAN",
-          "updated_at_utc": "2026-09-27T16:05:46Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2284494"
         },
         {
           "content_extractor": null,
@@ -38040,8 +37978,8 @@
       "venue_name": "GMOアリーナさいたま"
     }
   ],
-  "generated_at_utc": "2026-10-03T10:01:50Z",
-  "history_start_date": "2026-07-05",
+  "generated_at_utc": "2026-10-03T15:31:22Z",
+  "history_start_date": "2026-07-06",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -38135,14 +38073,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 67,
+      "kstyle_music": 66,
       "official_events": 517,
       "starto_concert": 95,
       "venue_web_discovery": 292
     },
-    "event_count": 971,
+    "event_count": 970,
     "location_held_record_count": 16,
-    "record_count_before_grouping": 1067,
+    "record_count_before_grouping": 1064,
     "start_time_split_event_count": 16,
     "start_time_split_group_count": 16,
     "supplemental_merged_group_count": 11,
