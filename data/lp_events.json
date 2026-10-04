@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-10-04",
+  "as_of_date": "2026-10-05",
   "events": [
-    {
-      "artist_name": "UVERworld",
-      "capacity": 2886,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-06",
-      "event_end_date": "2026-07-06",
-      "event_end_time": null,
-      "event_key": "2afe94d098f81c2d934c",
-      "event_start_time": "18:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158070",
-      "first_seen_at_utc": "2026-06-04T08:34:15Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "UVERworld",
-      "raw_venue_name": "Zepp Haneda(Tokyo)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158070",
-          "priority": 10,
-          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158070",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "UVERworld THE LIVE 2026",
-          "updated_at_utc": "2026-07-31T07:02:43Z",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158070"
-        }
-      ],
-      "title": "UVERworld THE LIVE 2026",
-      "updated_at_utc": "2026-07-31T07:02:43Z",
-      "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158070",
-      "venue_name": "Zepp Haneda(Tokyo)"
-    },
     {
       "artist_name": "音楽隊 (陸上自衛隊)",
       "capacity": 37000,
@@ -51170,8 +51132,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-04T10:52:06Z",
-  "history_start_date": "2026-07-06",
+  "generated_at_utc": "2026-10-04T16:16:29Z",
+  "history_start_date": "2026-07-07",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -51266,13 +51228,13 @@
   "summary": {
     "counts_by_display_source": {
       "kstyle_music": 62,
-      "official_events": 865,
+      "official_events": 864,
       "starto_concert": 89,
       "venue_web_discovery": 298
     },
-    "event_count": 1314,
+    "event_count": 1313,
     "location_held_record_count": 16,
-    "record_count_before_grouping": 1418,
+    "record_count_before_grouping": 1417,
     "start_time_split_event_count": 16,
     "start_time_split_group_count": 16,
     "supplemental_merged_group_count": 11,
