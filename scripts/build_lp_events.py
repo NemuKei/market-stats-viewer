@@ -18,6 +18,7 @@ from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
+from .events.types import EVENT_HISTORY_WINDOW_DAYS
 from .events.category import (
     EVENT_CATEGORY_BASEBALL,
     EVENT_CATEGORY_CONCERT,
@@ -36,7 +37,7 @@ DATA_DIR = REPO_ROOT / "data"
 DEFAULT_EVENTS_DB_PATH = DATA_DIR / "events.sqlite"
 DEFAULT_EVENT_SIGNALS_DB_PATH = DATA_DIR / "event_signals.sqlite"
 DEFAULT_OUTPUT_PATH = DATA_DIR / "lp_events.json"
-DEFAULT_HISTORY_WINDOW_DAYS = 90
+DEFAULT_HISTORY_WINDOW_DAYS = EVENT_HISTORY_WINDOW_DAYS
 SUPPLEMENTAL_TITLE_MIN_LENGTH = 8
 SUPPLEMENTAL_TITLE_SIMILARITY_THRESHOLD = 0.80
 

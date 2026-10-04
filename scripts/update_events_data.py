@@ -24,7 +24,7 @@ import requests
 
 from .events.category import classify_event_category
 from .events.registry import load_registry
-from .events.types import EventRecord, VenueRecord
+from .events.types import EVENT_HISTORY_WINDOW_DAYS, EventRecord, VenueRecord
 from .events.sources.base import EventSource
 from .events.sources.html import HtmlSource
 from .events.sources.ics import IcsSource
@@ -163,16 +163,28 @@ def compute_venue_signature(events: list[EventRecord]) -> str:
 
 
 # Date window for filtering fetched events
-DATE_WINDOW_PAST_DAYS = 30
+DATE_WINDOW_PAST_DAYS = EVENT_HISTORY_WINDOW_DAYS
 DATE_WINDOW_FUTURE_DAYS = 365
 
 
 def filter_events_by_date(events: list[EventRecord]) -> list[EventRecord]:
-    """Filter events to date window: today-30 to today+365."""
+    """Retain fetched events ending within 90 days, including ongoing events."""
     today = date.today()
     earliest = (today - timedelta(days=DATE_WINDOW_PAST_DAYS)).isoformat()
     latest = (today + timedelta(days=DATE_WINDOW_FUTURE_DAYS)).isoformat()
-    return [e for e in events if earliest <= e.start_date <= latest]
+    kept = []
+    for event in events:
+        start = date.fromisoformat(event.start_date)
+        end = date.fromisoformat(event.end_date or event.start_date)
+        if start.isoformat() != event.start_date or (
+            event.end_date and end.isoformat() != event.end_date
+        ) or end < start:
+            # Bad source dates must be observable, not silently discarded or
+            # rewritten into an invented interval. main retains the venue DB.
+            raise ValueError(f"invalid event date interval: {event.event_uid}")
+        if end.isoformat() >= earliest and start.isoformat() <= latest:
+            kept.append(event)
+    return kept
 
 
 class DomainThrottle:
@@ -350,33 +362,6 @@ def resolve_source_artist(
     return text, "source"
 
 
-def prune_missing_events(
-    conn: sqlite3.Connection, venue_id: str, events: list[EventRecord]
-) -> int:
-    """Delete stale rows for venue_id that are not present in current fetch."""
-    keep_uids = sorted({e.event_uid for e in events if e.event_uid})
-    if not keep_uids:
-        cur = conn.execute("DELETE FROM events WHERE venue_id = ?", (venue_id,))
-        return max(cur.rowcount, 0)
-
-    conn.execute("DROP TABLE IF EXISTS tmp_keep_event_uids")
-    conn.execute("CREATE TEMP TABLE tmp_keep_event_uids (event_uid TEXT PRIMARY KEY)")
-    conn.executemany(
-        "INSERT INTO tmp_keep_event_uids(event_uid) VALUES (?)",
-        [(uid,) for uid in keep_uids],
-    )
-    cur = conn.execute(
-        """
-        DELETE FROM events
-        WHERE venue_id = ?
-          AND event_uid NOT IN (SELECT event_uid FROM tmp_keep_event_uids)
-        """,
-        (venue_id,),
-    )
-    conn.execute("DROP TABLE IF EXISTS tmp_keep_event_uids")
-    return max(cur.rowcount, 0)
-
-
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -454,33 +439,14 @@ def main() -> None:
             total_events += len(events)
 
             if not events:
-                pruned = prune_missing_events(conn, venue.venue_id, events)
-                if pruned > 0:
-                    logger.info("  pruned %d stale event(s)", pruned)
-                # Skip DB write if signature is already empty (no-op)
-                cur = conn.execute(
-                    "SELECT last_signature FROM venues WHERE venue_id = ?",
-                    (venue.venue_id,),
-                )
-                row = cur.fetchone()
-                if row and row[0] == "":
-                    if pruned > 0:
-                        conn.commit()
-                        total_changed += pruned
-                    logger.info("  no-op: still empty")
-                    success_count += 1
-                    continue
-                upsert_venue(conn, venue, "")
-                conn.commit()
-                total_changed += pruned
+                # Venue pages can roll over, be partial, or parse as empty. Absence
+                # is not authoritative evidence of deletion or cancellation.
+                logger.info("  empty fetch: retaining existing events and signature")
                 success_count += 1
                 continue
 
             # Compute venue signature for no-op detection
             sig = compute_venue_signature(events)
-            pruned = prune_missing_events(conn, venue.venue_id, events)
-            if pruned > 0:
-                logger.info("  pruned %d stale event(s)", pruned)
             cur = conn.execute(
                 "SELECT last_signature FROM venues WHERE venue_id = ?",
                 (venue.venue_id,),
@@ -493,9 +459,6 @@ def main() -> None:
                     artist_keep_map,
                     artist_compact_map,
                 )
-                if pruned > 0:
-                    conn.commit()
-                    total_changed += pruned
                 if changed > 0:
                     upsert_venue(conn, venue, sig)
                     conn.commit()
@@ -518,15 +481,15 @@ def main() -> None:
             )
             upsert_venue(conn, venue, sig)
             conn.commit()
-            total_changed += changed + pruned
+            total_changed += changed
             logger.info(
-                "  upserted %d changed event(s), pruned %d stale event(s)",
+                "  upserted %d changed event(s); absent rows retained",
                 changed,
-                pruned,
             )
             success_count += 1
 
         except Exception:
+            conn.rollback()
             logger.exception("  FAILED: %s", venue.venue_id)
             fail_count += 1
             continue

@@ -65,6 +65,33 @@
   - GitHub Actions の cron は「厳密に72時間ごと」を表現できないため、実運用は day-of-month step による「3日ごと目安」とする。
 - 目的: 失敗分離（events側の障害でcore統計更新を止めない）と運用負荷の分離。
 
+## 会場公式イベントの履歴保存
+
+- 取得対象は終了日（未指定なら開始日）が基準日の90日前以降、開始日が365日後まで。表示の90日契約と同じ `EVENT_HISTORY_WINDOW_DAYS` を使い、長期開催・境界当日を含める。
+- 非正規日付・終了日が開始日より前の取得行は当該会場の取得失敗として記録し、既存行を保持する。日付を推定修正して登録したり、黙って窓の外として捨てたりしない。
+- 会場ページの月替わり、部分取得、空取得は削除・中止の根拠にしない。取得にない既存行を保持し、空取得では既存行と会場signatureを変更しない。取得失敗時は当該transactionをrollbackする。
+- 明示された同一UIDの訂正・延期・中止は通常のupsertで更新する。日付・時刻の訂正でUIDが変わる場合、同一開催だと推測して旧行を削除しない。異UIDでの訂正は公式根拠による個別確認が必要であり、継続収集の完全な訂正解決を保証しない。
+- 永続DBの保存と公開JSONの90日表示範囲は分ける。自動履歴削除は行わず、保存済み過去分の公開は従来のLP統合・延期中止抑止・所在地確認・SideBiz掲載方針を通す。詳細は `docs/spec_data.md` と `docs/spec_event_status.md`。
+
+### オフラインの履歴加算復旧
+
+`python -m scripts.restore_event_history` は手動の復旧用。scheduled workflowへ追加しない。対象・操作の明示承認と、最新DB・設定・JSON・manifestの復旧点を確保してから、独立コピーで検証する。
+
+```bash
+python -m scripts.restore_event_history \
+  --target-db local-copy/data/events.sqlite \
+  --snapshot newest.sqlite --snapshot older.sqlite \
+  --as-of-date YYYY-MM-DD --report restore-plan.json
+```
+
+既定はdry-run。検証した同じ入力に `--apply` を付けた場合だけ追加する。snapshotは明示的に新しい順で指定し、最新UID版を90日判定より先に選ぶ。終了日が90日内かつ基準日より前の不足行だけを追加し、未来・開催中を含む全既存行の全列と会場表を変更しない。schema不一致は適用前に停止し、呼出側のcommit/rollbackを維持する。
+
+snapshotは停止済み/SQLite backupで作った単体ファイルを使う。非空の `-wal` sidecarが存在するsnapshotは訂正を見落とすため拒否し、稼働中DBの本体だけをコピーしない。復旧の日付は `YYYY-MM-DD` 正規形のみ採用する。CLIの指定report書込みに失敗した場合もDB適用をrollbackし、接続を閉じる。
+
+同一sourceの日時断片を外したkey、詳細URL、同一会場の正規化titleが現行または新しいsnapshotと衝突する場合は保留する。同じsnapshotで予定と延期・中止が衝突する場合も全て保留する。これは自動同一イベント判定ではなく、古い予定の復活を避ける保守的な審査入口であり、連続公演・再出演も保留され得る。古いsnapshotに記録されていない後日の訂正・中止は復旧だけでは確認できない。
+
+追加候補数、DB追加数、LP出力数、SideBiz掲載適格数を別々に報告する。再実行では追加0件を確認し、LP・manifest・consumer JSONを再生成して、既存未来行の不変、延期中止の非表示、公開年月件数を照合する。実公開は別の承認境界である。
+
 ## ICD/TA Additions
 - Add: `python -m scripts.update_icd_data`
 - Add: `python -m scripts.update_ta_data`

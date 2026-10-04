@@ -108,6 +108,7 @@
 - `manifest.json` は配布ファイルの鮮度と同一性を確認するためのメタデータであり、利用側は `generated_at_utc`、各 asset の `sha256`、`size_bytes` を確認できる。
 - LP向けイベント一覧は、重複統合済みの `lp_events.json` を読む。LP側で同じsource priorityを再実装しない。
 - `lp_events.json` のpayloadには `ticketjam_policy`、`discovery_source_ids`、`ticketjam_promoted_held_records`、`summary.ticketjam_*` を含めない。国内所在地を確定できない掲載候補は `location_held_records` にsource_id/record_id/reasonを残し、`summary.location_held_record_count` に件数を保持する。
+- 会場公式DBは取得に含まれない行を自動削除しない。空取得・部分取得・会場ページの月替わりで、保存済み履歴と未来予定を失わない。取得は終了日基準の90日範囲を使い、同一UIDの公式訂正・中止はupsertで維持する。手動の加算復旧・異UID訂正の留保・rollbackは `docs/spec_update_pipeline.md` の「会場公式イベントの履歴保存」を参照する。
 - `lp_events.json` の通常生成は、生成基準日以降の開催予定に加え、開催終了日が基準日の90日前以降であるイベントを含める。
   - `history_window_days=90` と `history_start_date` をpayloadへ保持し、外部アプリはこの範囲を「直近の開催済みイベント」として扱う。
   - 過去分は元DBに残る公開情報の範囲に限り、sourceごとの保存方針も異なるため、網羅的なイベントアーカイブとは表現しない。
