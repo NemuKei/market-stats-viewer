@@ -47,10 +47,11 @@
 1. 観光庁「旅行・観光消費動向調査」ページから `集計表` Excelリンクのみ収集する。
 2. 確報（年次・四半期）および2次速報（四半期）を対象にする。
 3. Excelの `表題` シート A1 を優先し、`period_type` / `period_key` / `release_type` を判定する。
-4. `T06` シートで `宿泊数` 行を起点に8行（1泊..8泊以上）を抽出する。
+4. `T06` シートで `宿泊数` 行を起点に8行（1泊..8泊以上）を抽出する。年次ブックでは最初の年次節だけを読み、後続の四半期節を年次キーへ重複格納しない。`T06!I2` の単位を読み、未対応の単位は失敗させる。
 5. `data/market_stats.sqlite` の `tcd_stay_nights` テーブルを再構築する。
-6. `data/meta_tcd.json` に `processed_files(url, sha256, title_a1, fetched_at)` を保存する。
-7. 取得元hashに差分がない場合は no-op とする。
+6. 保存前に期間キーと粒度の一意性を検査する。既知原本の再取得・解析が失敗した場合は既存DBを保持する。
+7. `data/meta_tcd.json` に `processed_files(url, sha256, title_a1, source_unit, fetched_at)` と抽出器版を保存する。
+8. 取得元hashと抽出器版に差分がなく、保存済み行の検査も通る場合は no-op とする。
 
 ## 追記: 自動更新スケジュール（2026-02-13）
 - GitHub Actions `update_data.yml` の定期実行は `cron: 0 3 * * 1`。

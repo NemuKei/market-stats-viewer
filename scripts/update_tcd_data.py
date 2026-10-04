@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import sqlite3
 import tempfile
@@ -24,6 +25,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_TCD_PATH = DATA_DIR / "meta_tcd.json"
 TABLE_NAME = "tcd_stay_nights"
+EXTRACTOR_VERSION = 3
 
 NIGHTS_BIN_ORDER = ["1泊", "2泊", "3泊", "4泊", "5泊", "6泊", "7泊", "8泊以上"]
 TARGET_SEGMENTS = [("domestic_total", 2), ("domestic_business", 5)]
@@ -219,6 +221,15 @@ def find_t06_section_rows(ws: Worksheet) -> list[int]:
     return starts
 
 
+def read_t06_unit(ws: Worksheet) -> str:
+    heading = normalize_text(ws["I2"].value).replace(" ", "").replace("　", "")
+    if "千泊" in heading:
+        return "千泊"
+    if heading in {"泊", "（泊）", "(泊)"}:
+        return "泊"
+    raise ValueError(f"T06 unit is not supported: {heading!r}")
+
+
 def find_period_for_section(
     ws: Worksheet,
     section_row: int,
@@ -250,6 +261,11 @@ def extract_t06_rows(
     section_rows = find_t06_section_rows(ws)
     if not section_rows:
         raise ValueError("Section key '宿泊数' was not found in T06.")
+    # Annual workbooks also contain quarterly detail sections. The first T06
+    # section is the annual total; later sections must not inherit the annual
+    # title period when their local header has no parseable year.
+    if title_period_fallback[0] == "annual":
+        section_rows = section_rows[:1]
 
     records: list[dict] = []
     for section_row in section_rows:
@@ -304,6 +320,7 @@ def load_existing_tcd_rows(sqlite_path: Path) -> pd.DataFrame:
 
 
 def build_tcd_sqlite(df: pd.DataFrame, sqlite_path: Path) -> None:
+    validate_tcd_rows(df)
     sqlite_path.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(str(sqlite_path)) as conn:
         df.to_sql(TABLE_NAME, conn, if_exists="replace", index=False)
@@ -316,6 +333,28 @@ def build_tcd_sqlite(df: pd.DataFrame, sqlite_path: Path) -> None:
         conn.execute(
             f"CREATE INDEX IF NOT EXISTS idx_{TABLE_NAME}_source ON {TABLE_NAME}(source_url, source_sha256)"
         )
+
+
+def validate_tcd_rows(df: pd.DataFrame) -> None:
+    if df.empty:
+        raise ValueError("No TCD rows to publish")
+    grain = ["period_type", "period_key", "release_type", "segment", "nights_bin"]
+    if df.duplicated(grain).any():
+        raise ValueError("Duplicate TCD grain: period/release/segment/nights bin")
+    for row in df.itertuples(index=False):
+        key = str(row.period_key)
+        if row.period_type == "annual":
+            valid_key = re.fullmatch(r"\d{4}", key) is not None
+        elif row.period_type == "quarter":
+            valid_key = re.fullmatch(r"\d{4}Q[1-4]", key) is not None
+        else:
+            valid_key = False
+        if not valid_key:
+            raise ValueError(f"Inconsistent TCD period key: {row.period_type}/{key}")
+        if row.segment not in {"domestic_total", "domestic_business"} or row.nights_bin not in NIGHTS_BIN_ORDER:
+            raise ValueError("Unexpected TCD segment or nights bin")
+        if not isinstance(row.value, (int, float)) or not math.isfinite(row.value) or row.value < 0:
+            raise ValueError("Missing TCD value")
 
 
 def build_available_periods(df: pd.DataFrame) -> list[dict]:
@@ -386,6 +425,13 @@ def main() -> int:
         if x.get("url")
     }
     old_rows = load_existing_tcd_rows(SQLITE_PATH)
+    old_rows_valid = False
+    if not old_rows.empty:
+        try:
+            validate_tcd_rows(old_rows)
+            old_rows_valid = True
+        except ValueError:
+            pass
 
     fetched_files: list[dict[str, str]] = []
     with tempfile.TemporaryDirectory() as td:
@@ -407,7 +453,7 @@ def main() -> int:
         hash_changed = any(old_processed.get(url) != sha for url, sha in current_processed.items())
         old_rows_available = not old_rows.empty
 
-        if not source_set_changed and not hash_changed and old_rows_available:
+        if not source_set_changed and not hash_changed and old_rows_available and old_rows_valid and old_meta.get("extractor_version") == EXTRACTOR_VERSION:
             print("No change: source file hash set unchanged.")
             return 0
 
@@ -422,9 +468,16 @@ def main() -> int:
             link_text = item["link_text"]
             local_path = Path(item["local_path"])
             title_a1 = old_titles.get(url, "")
+            known_target = (
+                "source_url" in old_rows.columns
+                and not old_rows.empty
+                and (old_rows["source_url"] == url).any()
+            )
 
             can_reuse = (
-                old_processed.get(url) == sha
+                old_meta.get("extractor_version") == EXTRACTOR_VERSION
+                and old_rows_valid
+                and old_processed.get(url) == sha
                 and has_reuse_columns
                 and not old_rows.empty
             )
@@ -437,11 +490,13 @@ def main() -> int:
             if not reused.empty:
                 title_a1 = normalize_text(reused["source_title"].iloc[0])
                 rebuilt_parts.append(reused)
+                prior_entry = next((entry for entry in old_meta.get("processed_files", []) if entry.get("url") == url), {})
                 processed_entries.append(
                     {
                         "url": url,
                         "sha256": sha,
                         "title_a1": title_a1,
+                        "source_unit": prior_entry.get("source_unit"),
                         "fetched_at": fetched_at,
                     }
                 )
@@ -452,6 +507,8 @@ def main() -> int:
                 wb = load_workbook(local_path, read_only=False, data_only=True)
                 title_a1 = get_title_a1(wb)
             except Exception as e:
+                if known_target:
+                    raise RuntimeError(f"Previously published TCD source could not be opened: {url}") from e
                 processed_entries.append(
                     {
                         "url": url,
@@ -476,6 +533,7 @@ def main() -> int:
                 period_type, period_key, period_label, release_type = parse_title_metadata(
                     title_a1, link_text
                 )
+                source_unit = read_t06_unit(wb["T06"])
                 parsed = extract_t06_rows(
                     workbook=wb,
                     source_url=url,
@@ -485,10 +543,13 @@ def main() -> int:
                     release_type=release_type,
                 )
             except Exception as e:
+                if known_target:
+                    raise RuntimeError(f"Previously published TCD source could not be parsed: {url}") from e
                 print(f"Skipped (non-target/unsupported): {url} ({e})")
                 continue
 
             rebuilt_parts.append(parsed)
+            processed_entries[-1]["source_unit"] = source_unit
             print(f"Parsed: {url}")
 
         if rebuilt_parts:
@@ -504,7 +565,7 @@ def main() -> int:
             new_df["segment"] = new_df["segment"].astype(str)
             new_df["release_type"] = new_df["release_type"].astype(str)
             new_df["period_type"] = new_df["period_type"].astype(str)
-            new_df["value"] = pd.to_numeric(new_df["value"], errors="coerce").fillna(0.0)
+            new_df["value"] = pd.to_numeric(new_df["value"], errors="coerce")
 
             nights_order = {label: i for i, label in enumerate(NIGHTS_BIN_ORDER)}
             new_df["_nights_sort"] = new_df["nights_bin"].map(lambda x: nights_order.get(x, 999))
@@ -523,6 +584,7 @@ def main() -> int:
         build_tcd_sqlite(new_df, SQLITE_PATH)
 
         new_meta = {
+            "extractor_version": EXTRACTOR_VERSION,
             "source_page_url": TCD_SOURCE_PAGE_URL,
             "last_checked_at": fetched_at,
             "processed_files": processed_entries,

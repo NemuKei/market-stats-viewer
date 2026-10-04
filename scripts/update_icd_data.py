@@ -40,11 +40,13 @@ def now_utc_iso() -> str:
 
 
 def normalize_text(value: object) -> str:
+    if pd.isna(value):
+        return ""
     return str(value or "").strip()
 
 
 def to_float(value: object) -> float | None:
-    if value is None:
+    if pd.isna(value):
         return None
     if isinstance(value, (int, float)):
         return float(value)
@@ -262,8 +264,8 @@ def parse_spend_sheet(
         ):
             current_group = col1
 
-        item = col3 or col2
-        if not item or item in {"-", "－", "…"}:
+        item = col3 or col2 or col1
+        if not item or item in group_ignore or item in {"-", "－", "…"}:
             continue
         if "全体" in item or "注" in item:
             continue
