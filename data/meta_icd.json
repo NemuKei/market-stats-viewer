@@ -1,13 +1,13 @@
 {
   "source_page_url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/gaikokujinshohidoko.html",
-  "source_excel_url": "https://www.mlit.go.jp/kankocho/content/002011743.xlsx",
-  "source_excel_link_text": "4-6月期 集計表（1次速報）［Excel:734KB］",
-  "source_excel_filename": "002011743.xlsx",
-  "source_excel_sha256": "9893f7502ceef6aec19bbcaf4eb00c10aebff0de6de97b879b7d8a65b7992ba5",
-  "fetched_at_utc": "2026-08-03T06:21:44.889706+00:00",
+  "source_excel_url": "https://www.mlit.go.jp/kankocho/content/002024944.xlsx",
+  "source_excel_link_text": "➤集計表",
+  "source_excel_filename": "002024944.xlsx",
+  "source_excel_sha256": "fe399bff388b3807c8f39b104d08ef4919f11104ea8a28c01305e799f4671c94",
+  "fetched_at_utc": "2026-10-05T10:01:07.693385+00:00",
   "period_label": "2026年4-6月期",
   "period_key": "2026Q2",
-  "release_type": "1次速報",
+  "release_type": "2次速報",
   "sheets_used": {
     "spend_items": [
       "参考2",
@@ -21,7 +21,7 @@
     ]
   },
   "row_counts": {
-    "icd_spend_items": 2150,
+    "icd_spend_items": 2100,
     "icd_entry_port_summary": 1850
   }
 }
