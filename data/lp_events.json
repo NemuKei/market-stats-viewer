@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-10-06",
+  "as_of_date": "2026-10-07",
   "events": [
-    {
-      "artist_name": "中森明菜",
-      "capacity": 2700,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-08",
-      "event_end_date": "2026-07-08",
-      "event_end_time": null,
-      "event_key": "dc5260dab78847a2cb12",
-      "event_start_time": "19:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.festivalhall.jp/events/6068/",
-      "first_seen_at_utc": "2026-04-07T06:03:40Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "中森明菜",
-      "raw_venue_name": "フェスティバルホール",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.festivalhall.jp/events/6068/",
-          "priority": 10,
-          "record_id": "festival_hall:https://www.festivalhall.jp/events/6068/",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "中森明菜 AKINA NAKAMORI LIVE TOUR 2026",
-          "updated_at_utc": "2026-07-31T07:04:47Z",
-          "url": "https://www.festivalhall.jp/events/6068/"
-        }
-      ],
-      "title": "中森明菜 AKINA NAKAMORI LIVE TOUR 2026",
-      "updated_at_utc": "2026-07-31T07:04:47Z",
-      "url": "https://www.festivalhall.jp/events/6068/",
-      "venue_name": "フェスティバルホール"
-    },
-    {
-      "artist_name": "TREASURE",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-07-08",
-      "event_end_date": "2026-07-08",
-      "event_end_time": null,
-      "event_key": "c6b966e472b36bc6c974",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 大阪城ホール / 日時: 2026-07-08 / 2026年7月8日(水) 開場 17:30 / 開演 18:30",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "first_seen_at_utc": "2026-07-27T18:51:53Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "TREASURE",
-      "raw_venue_name": "大阪城ホール",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2276584",
-          "priority": 30,
-          "record_id": "842ea7c391a178326a12b7da6b8357500280e81819cf45ce1a6501ad93507711",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "TREASURE THE STAGE 2026 IN JAPAN",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2276584"
-        }
-      ],
-      "title": "TREASURE THE STAGE 2026 IN JAPAN",
-      "updated_at_utc": "2026-07-27T18:51:53Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2276584",
-      "venue_name": "大阪城ホール"
-    },
     {
       "artist_name": "中森明菜",
       "capacity": 2700,
@@ -26254,6 +26178,44 @@
       "venue_name": "Zepp札幌"
     },
     {
+      "artist_name": "OMEGA X",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-10-31",
+      "event_end_date": "2026-10-31",
+      "event_end_time": null,
+      "event_key": "ab8f40d80971e3430998",
+      "event_start_time": null,
+      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-10-31 / 2026年10月31日(土)・11月1日(日)・11月3日(祝・火)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "first_seen_at_utc": "2026-10-06T17:41:11Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "OMEGA X",
+      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+          "priority": 30,
+          "record_id": "fc8970e92bc3f2ebea876d2bdde19d816614bd3af66a1d264604ab7d2a7aa4fb",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+          "updated_at_utc": "2026-10-06T17:41:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
+        }
+      ],
+      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+      "updated_at_utc": "2026-10-06T17:41:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "venue_name": "iBIG HALL"
+    },
+    {
       "artist_name": "コブクロ",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -26732,6 +26694,44 @@
       "updated_at_utc": "2026-10-04T10:31:57Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156657",
       "venue_name": "Zepp札幌"
+    },
+    {
+      "artist_name": "OMEGA X",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-01",
+      "event_end_date": "2026-11-01",
+      "event_end_time": null,
+      "event_key": "d7c69e7c7d98c855c295",
+      "event_start_time": null,
+      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-01 / 2026年10月31日(土)・11月1日(日)・11月3日(祝・火)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "first_seen_at_utc": "2026-10-06T17:41:11Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "OMEGA X",
+      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+          "priority": 30,
+          "record_id": "c2be57b9ac7fc4eca6b48a3574950d923095dfbf5f3c5d8925a2ea1c21bbf669",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+          "updated_at_utc": "2026-10-06T17:41:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
+        }
+      ],
+      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+      "updated_at_utc": "2026-10-06T17:41:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "venue_name": "iBIG HALL"
     },
     {
       "artist_name": "コブクロ",
@@ -27428,6 +27428,44 @@
       "updated_at_utc": "2026-10-04T10:31:57Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=156821",
       "venue_name": "Zepp札幌"
+    },
+    {
+      "artist_name": "OMEGA X",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-03",
+      "event_end_date": "2026-11-03",
+      "event_end_time": null,
+      "event_key": "e44abb4400db880bcb9c",
+      "event_start_time": null,
+      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-03 / 2026年10月31日(土)・11月1日(日)・11月3日(祝・火)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "first_seen_at_utc": "2026-10-06T17:41:11Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "OMEGA X",
+      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+          "priority": 30,
+          "record_id": "3fe0e3a523a1ac790c07a3c416ba695fa86b294938f46cbfb4b1c3d0031fd505",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+          "updated_at_utc": "2026-10-06T17:41:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
+        }
+      ],
+      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+      "updated_at_utc": "2026-10-06T17:41:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "venue_name": "iBIG HALL"
     },
     {
       "artist_name": "indigo la End",
@@ -28468,6 +28506,44 @@
       "venue_name": "Zepp札幌"
     },
     {
+      "artist_name": "OMEGA X",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-07",
+      "event_end_date": "2026-11-07",
+      "event_end_time": null,
+      "event_key": "1b0e10b3bd5ab2d028c9",
+      "event_start_time": null,
+      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-07 / 2026年11月7日(土)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "first_seen_at_utc": "2026-10-06T17:41:11Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "OMEGA X",
+      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+          "priority": 30,
+          "record_id": "af9591c5c305b9d716eb0b7541ddf3a50e9657b90d59506004240af4a4067f3e",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+          "updated_at_utc": "2026-10-06T17:41:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
+        }
+      ],
+      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+      "updated_at_utc": "2026-10-06T17:41:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "venue_name": "iBIG HALL"
+    },
+    {
       "artist_name": "MLBx: Fukuoka",
       "capacity": null,
       "display_source_class": "promoter_official",
@@ -28998,6 +29074,44 @@
       "updated_at_utc": "2026-10-04T10:41:50Z",
       "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157342",
       "venue_name": "Zepp Haneda(Tokyo)"
+    },
+    {
+      "artist_name": "OMEGA X",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-11-08",
+      "event_end_date": "2026-11-08",
+      "event_end_time": null,
+      "event_key": "d7ebbc7564ebb6e8dcb0",
+      "event_start_time": null,
+      "evidence_snippet": "会場: iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F) / 日時: 2026-11-08 / 2026年11月8日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "first_seen_at_utc": "2026-10-06T17:41:11Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "OMEGA X",
+      "raw_venue_name": "iBIG HALL(東京都新宿区新宿6-27-12ユニオン新宿ビル1F)",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2283925",
+          "priority": 30,
+          "record_id": "45ef753347c4db334da86cc52ce89a675c36c5f2ed314120a0b97aa676d277d7",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+          "updated_at_utc": "2026-10-06T17:41:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2283925"
+        }
+      ],
+      "title": "OMEGA X LIVE IN JAPAN BEYOND THE WAVE",
+      "updated_at_utc": "2026-10-06T17:41:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2283925",
+      "venue_name": "iBIG HALL"
     },
     {
       "artist_name": "舞台『ノッキンオン・ロックドドア』",
@@ -33354,44 +33468,6 @@
       "venue_name": "京セラドーム大阪"
     },
     {
-      "artist_name": "ジョンハン",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-11-21",
-      "event_end_date": "2026-11-21",
-      "event_end_time": null,
-      "event_key": "b4097813f609891ee45c",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 埼玉 ベルーナドーム / 日時: 2026-11-21 / 2026年11月21日(土)開場 15:00/開演 17:00",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284591",
-      "first_seen_at_utc": "2026-09-29T17:19:57Z",
-      "pref_name": "埼玉県",
-      "raw_artist_name": "ジョンハン",
-      "raw_venue_name": "埼玉 ベルーナドーム",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284591",
-          "priority": 30,
-          "record_id": "167a5efe80c5ff111945b01349ebc7c1d1568c56b12cfb69b4ac2f5d152dadc7",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN",
-          "updated_at_utc": "2026-09-29T17:19:57Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2284591"
-        }
-      ],
-      "title": "JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN",
-      "updated_at_utc": "2026-09-29T17:19:57Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2284591",
-      "venue_name": "埼玉 ベルーナドーム"
-    },
-    {
       "artist_name": "SixTONES",
       "capacity": null,
       "display_source_class": "",
@@ -33934,44 +34010,6 @@
       "updated_at_utc": "2026-10-03T04:05:23Z",
       "url": "https://www.buffaloes.co.jp/news/detail/202600803621.html",
       "venue_name": "京セラドーム大阪"
-    },
-    {
-      "artist_name": "ジョンハン",
-      "capacity": null,
-      "display_source_class": "",
-      "display_source_id": "kstyle_music",
-      "display_source_label": "Kstyle MUSIC",
-      "event_category": "コンサート",
-      "event_date": "2026-11-22",
-      "event_end_date": "2026-11-22",
-      "event_end_time": null,
-      "event_key": "56b638d57763d52deb7e",
-      "event_start_time": null,
-      "evidence_snippet": "会場: 埼玉 ベルーナドーム / 日時: 2026-11-22 / 2026年11月22日(日)開場 15:00/開演 17:00",
-      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284591",
-      "first_seen_at_utc": "2026-09-29T17:19:57Z",
-      "pref_name": "埼玉県",
-      "raw_artist_name": "ジョンハン",
-      "raw_venue_name": "埼玉 ベルーナドーム",
-      "source_priority": 30,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284591",
-          "priority": 30,
-          "record_id": "9a1046e265e338893e207b31d56d85956f75403225f96f86c1c09ca9221030fe",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN",
-          "updated_at_utc": "2026-09-29T17:19:57Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2284591"
-        }
-      ],
-      "title": "JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN",
-      "updated_at_utc": "2026-09-29T17:19:57Z",
-      "url": "https://kstyle.com/article.ksn?articleNo=2284591",
-      "venue_name": "埼玉 ベルーナドーム"
     },
     {
       "artist_name": "SixTONES",
@@ -38118,6 +38156,44 @@
       "updated_at_utc": "2026-10-04T10:33:42Z",
       "url": "https://txt.hybejapan.events/act_tomorrow_in_japan",
       "venue_name": "バンテリンドームナゴヤ"
+    },
+    {
+      "artist_name": "チャン・グンソク",
+      "capacity": null,
+      "display_source_class": "",
+      "display_source_id": "kstyle_music",
+      "display_source_label": "Kstyle MUSIC",
+      "event_category": "コンサート",
+      "event_date": "2026-12-06",
+      "event_end_date": "2026-12-06",
+      "event_end_time": null,
+      "event_key": "85db8c3a5f8e1659da76",
+      "event_start_time": null,
+      "evidence_snippet": "会場: パシフィコ横浜 国立大ホール / 日時: 2026-12-06 / 日程:2026年12月6日(日)",
+      "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284890",
+      "first_seen_at_utc": "2026-10-06T17:41:11Z",
+      "pref_name": "神奈川県",
+      "raw_artist_name": "チャン・グンソク",
+      "raw_venue_name": "パシフィコ横浜 国立大ホール",
+      "source_priority": 30,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2284890",
+          "priority": 30,
+          "record_id": "34b4c75f8997adaac5ef0a8285fab456e787477e67c0fdec58ccaa7238a8dd3f",
+          "source_class": "",
+          "source_id": "kstyle_music",
+          "source_label": "Kstyle MUSIC",
+          "title": "2026 JANG KEUN SUK Fantastic Night Live",
+          "updated_at_utc": "2026-10-06T17:41:11Z",
+          "url": "https://kstyle.com/article.ksn?articleNo=2284890"
+        }
+      ],
+      "title": "2026 JANG KEUN SUK Fantastic Night Live",
+      "updated_at_utc": "2026-10-06T17:41:11Z",
+      "url": "https://kstyle.com/article.ksn?articleNo=2284890",
+      "venue_name": "パシフィコ横浜 国立大ホール"
     },
     {
       "artist_name": "葉加瀬太郎",
@@ -52588,8 +52664,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-06T11:28:46Z",
-  "history_start_date": "2026-07-08",
+  "generated_at_utc": "2026-10-06T17:42:05Z",
+  "history_start_date": "2026-07-09",
   "history_window_days": 90,
   "include_past": true,
   "location_held_records": [
@@ -52645,11 +52721,6 @@
     },
     {
       "reason": "unresolved_domestic_location",
-      "record_id": "ab90bd356e7cd2a133570aab03d7f394c17fd644e050b96a0fcfc577d8e91ccc",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
       "record_id": "4996b3f8b859a8d0231c8f91de8943249305d029c0457f9178dd8d02cdae4e2b",
       "source_id": "kstyle_music"
     },
@@ -52678,14 +52749,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "kstyle_music": 62,
-      "official_events": 859,
+      "kstyle_music": 65,
+      "official_events": 858,
       "starto_concert": 89,
       "venue_web_discovery": 341
     },
-    "event_count": 1351,
-    "location_held_record_count": 15,
-    "record_count_before_grouping": 1456,
+    "event_count": 1353,
+    "location_held_record_count": 14,
+    "record_count_before_grouping": 1458,
     "start_time_split_event_count": 15,
     "start_time_split_group_count": 15,
     "supplemental_merged_group_count": 11,
