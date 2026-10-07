@@ -17470,44 +17470,6 @@
       "venue_name": "Zepp Namba(Osaka)"
     },
     {
-      "artist_name": "ミュージカル『新テニスの王子様』",
-      "capacity": null,
-      "display_source_class": "venue_official",
-      "display_source_id": "venue_web_discovery",
-      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
-      "event_category": "その他",
-      "event_date": "2026-10-06",
-      "event_end_date": "2026-10-06",
-      "event_end_time": null,
-      "event_key": "6b852ae1e67e8fb19bb5",
-      "event_start_time": "18:00",
-      "evidence_snippet": "公式公演表確認: 2026-10-06 Kanadevia Hall（TOKYO DOME CITY HALL） ミュージカル『新テニスの王子様』The Final Stage 開演 18:00。",
-      "evidence_url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
-      "first_seen_at_utc": "2026-09-07T15:33:00Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "ミュージカル『新テニスの王子様』",
-      "raw_venue_name": "Kanadevia Hall",
-      "source_priority": 20,
-      "supporting_sources": [
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
-          "priority": 20,
-          "record_id": "d5888fc1f3fe1c3fc05f87f6c3b73e0cdfe2869b08f60dae25b201329be491b9",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "ミュージカル『新テニスの王子様』The Final Stage",
-          "updated_at_utc": "2026-09-07T16:27:55Z",
-          "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/"
-        }
-      ],
-      "title": "ミュージカル『新テニスの王子様』The Final Stage",
-      "updated_at_utc": "2026-09-07T16:27:55Z",
-      "url": "https://www.tokyo-dome.co.jp/tdc-hall/event/",
-      "venue_name": "TOKYO DOME CITY HALL"
-    },
-    {
       "artist_name": "陰陽座",
       "capacity": 2473,
       "display_source_class": "venue_official",
@@ -19242,6 +19204,44 @@
       "venue_name": "エコパアリーナ"
     },
     {
+      "artist_name": "埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-10",
+      "event_end_date": "2026-10-10",
+      "event_end_time": null,
+      "event_key": "9d52b7fca75e59f27ad5",
+      "event_start_time": "14:00",
+      "evidence_snippet": "それに伴い、10月10日(土)～12日(月・祝)『2026 パーソル クライマックスシリーズ パ』のファーストステージは、当球団の本拠地のベルーナドームで開催することが決定いたしました。",
+      "evidence_url": "https://www.seibulions.co.jp/detail/00000743.html",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.seibulions.co.jp/detail/00000743.html",
+          "priority": 20,
+          "record_id": "f94639e49dab9f742274646f619cefb6353a95cfe7c86b241ef161bad44e3028",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 パーソル クライマックスシリーズ パ ファーストステージ 第1戦 埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.seibulions.co.jp/detail/00000743.html"
+        }
+      ],
+      "title": "2026 パーソル クライマックスシリーズ パ ファーストステージ 第1戦 埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.seibulions.co.jp/detail/00000743.html",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "藤井フミヤ",
       "capacity": 16000,
       "display_source_class": "venue_official",
@@ -19392,6 +19392,44 @@
       "updated_at_utc": "2026-09-28T11:01:55Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5718/",
       "venue_name": "東京ガーデンシアター"
+    },
+    {
+      "artist_name": "読売ジャイアンツ vs 横浜DeNAベイスターズ",
+      "capacity": null,
+      "display_source_class": "ticket_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-10",
+      "event_end_date": "2026-10-10",
+      "event_end_time": null,
+      "event_key": "887e065b4f9221568816",
+      "event_start_time": "14:00",
+      "evidence_snippet": "10/10<ファーストステージ･第1戦> 巨人×横浜DeNA 2026/10/10(土) 試合開始：14:00～ (開場 12:00～) 東京ドーム （東京都）",
+      "evidence_url": "https://eplus.jp/sf/detail/0206530001",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "読売ジャイアンツ vs 横浜DeNAベイスターズ",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://eplus.jp/sf/detail/0206530001",
+          "priority": 20,
+          "record_id": "7f4c5e4c44968b0083eafa6789180e0a76648a1990db7d195d2131e651d35bde",
+          "source_class": "ticket_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 JERA クライマックスシリーズ セ ファーストステージ 第1戦 巨人×横浜DeNA",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://eplus.jp/sf/detail/0206530001"
+        }
+      ],
+      "title": "2026 JERA クライマックスシリーズ セ ファーストステージ 第1戦 巨人×横浜DeNA",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://eplus.jp/sf/detail/0206530001",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "N.SSign",
@@ -19774,6 +19812,44 @@
       "venue_name": "フェスティバルホール"
     },
     {
+      "artist_name": "埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-11",
+      "event_end_date": "2026-10-11",
+      "event_end_time": null,
+      "event_key": "72dfc13940ad214c1c2c",
+      "event_start_time": "14:00",
+      "evidence_snippet": "それに伴い、10月10日(土)～12日(月・祝)『2026 パーソル クライマックスシリーズ パ』のファーストステージは、当球団の本拠地のベルーナドームで開催することが決定いたしました。",
+      "evidence_url": "https://www.seibulions.co.jp/detail/00000743.html",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.seibulions.co.jp/detail/00000743.html",
+          "priority": 20,
+          "record_id": "13164c5c331624b327e5507585d54baa91ed3b827047087d827ab1d3e3e862dd",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 パーソル クライマックスシリーズ パ ファーストステージ 第2戦 埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.seibulions.co.jp/detail/00000743.html"
+        }
+      ],
+      "title": "2026 パーソル クライマックスシリーズ パ ファーストステージ 第2戦 埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.seibulions.co.jp/detail/00000743.html",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "L'Arc〜en〜Ciel",
       "capacity": 12542,
       "display_source_class": "venue_official",
@@ -19962,6 +20038,44 @@
       "updated_at_utc": "2026-09-28T11:01:55Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5732/",
       "venue_name": "東京ガーデンシアター"
+    },
+    {
+      "artist_name": "読売ジャイアンツ vs 横浜DeNAベイスターズ",
+      "capacity": null,
+      "display_source_class": "ticket_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-11",
+      "event_end_date": "2026-10-11",
+      "event_end_time": null,
+      "event_key": "4fcfbd40f040ea7e9263",
+      "event_start_time": "14:00",
+      "evidence_snippet": "10/11<ファーストステージ･第2戦> 巨人×横浜DeNA 2026/10/11(日) 試合開始：14:00～ (開場 12:00～) 東京ドーム （東京都）",
+      "evidence_url": "https://eplus.jp/sf/detail/0206530001",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "東京都",
+      "raw_artist_name": "読売ジャイアンツ vs 横浜DeNAベイスターズ",
+      "raw_venue_name": "東京ドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://eplus.jp/sf/detail/0206530001",
+          "priority": 20,
+          "record_id": "9c9345537a9a9758f2aeb4238e56bb0818237b5dcbbb6cc12d78438065dd08b1",
+          "source_class": "ticket_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 JERA クライマックスシリーズ セ ファーストステージ 第2戦 巨人×横浜DeNA",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://eplus.jp/sf/detail/0206530001"
+        }
+      ],
+      "title": "2026 JERA クライマックスシリーズ セ ファーストステージ 第2戦 巨人×横浜DeNA",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://eplus.jp/sf/detail/0206530001",
+      "venue_name": "東京ドーム"
     },
     {
       "artist_name": "dustbox presents KOSHIROCK GALAXY 2026",
@@ -20812,6 +20926,44 @@
       "venue_name": "Zepp Osaka Bayside"
     },
     {
+      "artist_name": "福岡ソフトバンクホークス vs ファーストステージ勝者",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-14",
+      "event_end_date": "2026-10-14",
+      "event_end_time": null,
+      "event_key": "753180f680d4b0629efc",
+      "event_start_time": "18:00",
+      "evidence_snippet": "パーソル クライマックス パ応援特設サイト｜福岡ソフトバンクホークス パーソル CS パ ファイナルステージ みずほPayPayドーム 14 WED 18:00 15 THU 18:00 16 FRI 18:00 17 SAT 18:00 18 SUN 18:00 19 MON 18:00 20 TUE 18:00 チケット購入はこちら イベント EVEN…",
+      "evidence_url": "https://www.softbankhawks.co.jp/ex/climax/",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "福岡ソフトバンクホークス vs ファーストステージ勝者",
+      "raw_venue_name": "みずほPayPayドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.softbankhawks.co.jp/ex/climax/",
+          "priority": 20,
+          "record_id": "68c27eb4c6123855648c705fd70f72df6fbad7651b5a796ce63de24300f631ad",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 パーソル クライマックスシリーズ パ ファイナルステージ 第1戦",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.softbankhawks.co.jp/ex/climax/"
+        }
+      ],
+      "title": "2026 パーソル クライマックスシリーズ パ ファイナルステージ 第1戦",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.softbankhawks.co.jp/ex/climax/",
+      "venue_name": "みずほPayPayドーム福岡"
+    },
+    {
       "artist_name": "A.B.C-Z",
       "capacity": null,
       "display_source_class": "",
@@ -21076,6 +21228,44 @@
       "updated_at_utc": "2026-10-04T10:31:57Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=157824",
       "venue_name": "Zepp札幌"
+    },
+    {
+      "artist_name": "福岡ソフトバンクホークス vs ファーストステージ勝者",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-15",
+      "event_end_date": "2026-10-15",
+      "event_end_time": null,
+      "event_key": "78140a9f1962407419c5",
+      "event_start_time": "18:00",
+      "evidence_snippet": "パーソル クライマックス パ応援特設サイト｜福岡ソフトバンクホークス パーソル CS パ ファイナルステージ みずほPayPayドーム 14 WED 18:00 15 THU 18:00 16 FRI 18:00 17 SAT 18:00 18 SUN 18:00 19 MON 18:00 20 TUE 18:00 チケット購入はこちら イベント EVEN…",
+      "evidence_url": "https://www.softbankhawks.co.jp/ex/climax/",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "福岡ソフトバンクホークス vs ファーストステージ勝者",
+      "raw_venue_name": "みずほPayPayドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.softbankhawks.co.jp/ex/climax/",
+          "priority": 20,
+          "record_id": "2587d8acf01d88b409739ab5a14b27c23219eba101cf1ed6a5de90c5a36e5677",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 パーソル クライマックスシリーズ パ ファイナルステージ 第2戦",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.softbankhawks.co.jp/ex/climax/"
+        }
+      ],
+      "title": "2026 パーソル クライマックスシリーズ パ ファイナルステージ 第2戦",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.softbankhawks.co.jp/ex/climax/",
+      "venue_name": "みずほPayPayドーム福岡"
     },
     {
       "artist_name": "A.B.C-Z",
@@ -21456,6 +21646,44 @@
       "updated_at_utc": "2026-10-04T10:31:57Z",
       "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=157825",
       "venue_name": "Zepp札幌"
+    },
+    {
+      "artist_name": "福岡ソフトバンクホークス vs ファーストステージ勝者",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-10-16",
+      "event_end_date": "2026-10-16",
+      "event_end_time": null,
+      "event_key": "03783ab0275347a0d954",
+      "event_start_time": "18:00",
+      "evidence_snippet": "パーソル クライマックス パ応援特設サイト｜福岡ソフトバンクホークス パーソル CS パ ファイナルステージ みずほPayPayドーム 14 WED 18:00 15 THU 18:00 16 FRI 18:00 17 SAT 18:00 18 SUN 18:00 19 MON 18:00 20 TUE 18:00 チケット購入はこちら イベント EVEN…",
+      "evidence_url": "https://www.softbankhawks.co.jp/ex/climax/",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "福岡県",
+      "raw_artist_name": "福岡ソフトバンクホークス vs ファーストステージ勝者",
+      "raw_venue_name": "みずほPayPayドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.softbankhawks.co.jp/ex/climax/",
+          "priority": 20,
+          "record_id": "09762137c2aaf8f0a75838e969602e4340c5cdb7bc448bcc9049a833a0e87e11",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "2026 パーソル クライマックスシリーズ パ ファイナルステージ 第3戦",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.softbankhawks.co.jp/ex/climax/"
+        }
+      ],
+      "title": "2026 パーソル クライマックスシリーズ パ ファイナルステージ 第3戦",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.softbankhawks.co.jp/ex/climax/",
+      "venue_name": "みずほPayPayドーム福岡"
     },
     {
       "artist_name": "Novelbright",
@@ -35742,6 +35970,44 @@
       "updated_at_utc": "2026-10-04T10:33:42Z",
       "url": "https://starto.jp/s/p/live/10578",
       "venue_name": "バンテリンドームナゴヤ"
+    },
+    {
+      "artist_name": "埼玉西武ライオンズ",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "野球",
+      "event_date": "2026-11-28",
+      "event_end_date": "2026-11-28",
+      "event_end_time": null,
+      "event_key": "6c9669fa462a4968d47d",
+      "event_start_time": "12:00",
+      "evidence_snippet": "LIONS THANKS FESTA 2026(ライオンズ サンクスフェスタ2026) 実施概要 日程 11月28日( 土 )12:00頃～17:00頃(予定) ※ 開場時間は9:30を予定しております。 ※ 実施時間が予告なく変更となる場合がございます。 会場 ベルーナドーム",
+      "evidence_url": "https://www.seibulions.jp/news/detail/202600725331.html",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "埼玉西武ライオンズ",
+      "raw_venue_name": "ベルーナドーム",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.seibulions.jp/news/detail/202600725331.html",
+          "priority": 20,
+          "record_id": "c4c058000756ccf539b9beaff85a0d7846c1a289c85b0281ac49a5b1b566d27d",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "LIONS THANKS FESTA 2026",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.seibulions.jp/news/detail/202600725331.html"
+        }
+      ],
+      "title": "LIONS THANKS FESTA 2026",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.seibulions.jp/news/detail/202600725331.html",
+      "venue_name": "ベルーナドーム"
     },
     {
       "artist_name": "BIGBANG",
@@ -51980,6 +52246,44 @@
       "venue_name": "GMOアリーナさいたま"
     },
     {
+      "artist_name": "第111回日本陸上競技選手権大会",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "",
+      "event_date": "2027-06-11",
+      "event_end_date": "2027-06-11",
+      "event_end_time": null,
+      "event_key": "d2e34faadf83310b9450",
+      "event_start_time": null,
+      "evidence_snippet": "大会名：第111回 日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会 主 催：日本陸上競技連盟 共 催：大阪市（予定） 主 管：大阪陸上競技協会 期 日：2027年6月11日（金）～13日（日） 会 場：ヤンマースタジアム長居（大阪府大阪市）",
+      "evidence_url": "https://www.jaaf.or.jp/news/article/24089/",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "第111回日本陸上競技選手権大会",
+      "raw_venue_name": "ヤンマースタジアム長居",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.jaaf.or.jp/news/article/24089/",
+          "priority": 20,
+          "record_id": "f7997e1bbaaa1fd6ea9d4f610d18bea78ab37f72a205946a8ef654f5c51cd0e6",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "第111回日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.jaaf.or.jp/news/article/24089/"
+        }
+      ],
+      "title": "第111回日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.jaaf.or.jp/news/article/24089/",
+      "venue_name": "ヤンマースタジアム長居"
+    },
+    {
       "artist_name": "RADIOHEAD",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -52016,6 +52320,44 @@
       "updated_at_utc": "2026-09-26T11:31:01Z",
       "url": "https://www.saitama-arena.co.jp/schedule/radiohead-japan-2027/",
       "venue_name": "GMOアリーナさいたま"
+    },
+    {
+      "artist_name": "第111回日本陸上競技選手権大会",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "",
+      "event_date": "2027-06-12",
+      "event_end_date": "2027-06-12",
+      "event_end_time": null,
+      "event_key": "810146506e8de9234c8b",
+      "event_start_time": null,
+      "evidence_snippet": "大会名：第111回 日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会 主 催：日本陸上競技連盟 共 催：大阪市（予定） 主 管：大阪陸上競技協会 期 日：2027年6月11日（金）～13日（日） 会 場：ヤンマースタジアム長居（大阪府大阪市）",
+      "evidence_url": "https://www.jaaf.or.jp/news/article/24089/",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "第111回日本陸上競技選手権大会",
+      "raw_venue_name": "ヤンマースタジアム長居",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.jaaf.or.jp/news/article/24089/",
+          "priority": 20,
+          "record_id": "84c0955c59166a88ff43fb220d56e3657c268bad1953c23026337740814347ee",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "第111回日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.jaaf.or.jp/news/article/24089/"
+        }
+      ],
+      "title": "第111回日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.jaaf.or.jp/news/article/24089/",
+      "venue_name": "ヤンマースタジアム長居"
     },
     {
       "artist_name": "ブシロード20周年記念ライブ",
@@ -52130,6 +52472,44 @@
       "updated_at_utc": "2026-10-04T10:38:06Z",
       "url": "https://pia-arena-mm.jp/event/7278.html",
       "venue_name": "ぴあアリーナMM"
+    },
+    {
+      "artist_name": "第111回日本陸上競技選手権大会",
+      "capacity": null,
+      "display_source_class": "promoter_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "",
+      "event_date": "2027-06-13",
+      "event_end_date": "2027-06-13",
+      "event_end_time": null,
+      "event_key": "566cdb9c7476d3486160",
+      "event_start_time": null,
+      "evidence_snippet": "大会名：第111回 日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会 主 催：日本陸上競技連盟 共 催：大阪市（予定） 主 管：大阪陸上競技協会 期 日：2027年6月11日（金）～13日（日） 会 場：ヤンマースタジアム長居（大阪府大阪市）",
+      "evidence_url": "https://www.jaaf.or.jp/news/article/24089/",
+      "first_seen_at_utc": "2026-10-07T03:13:16Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "第111回日本陸上競技選手権大会",
+      "raw_venue_name": "ヤンマースタジアム長居",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://www.jaaf.or.jp/news/article/24089/",
+          "priority": 20,
+          "record_id": "f77da3f052fb5aca85d90fdebd374e0432369234dcbcd202f21791365a0ef37d",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "第111回日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会",
+          "updated_at_utc": "2026-10-07T03:13:16Z",
+          "url": "https://www.jaaf.or.jp/news/article/24089/"
+        }
+      ],
+      "title": "第111回日本陸上競技選手権大会 兼北京2027世界陸上競技選手権大会 日本代表選手選考競技会",
+      "updated_at_utc": "2026-10-07T03:13:16Z",
+      "url": "https://www.jaaf.or.jp/news/article/24089/",
+      "venue_name": "ヤンマースタジアム長居"
     },
     {
       "artist_name": "ブシロード20周年記念ライブ",
@@ -52664,7 +53044,7 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-06T17:42:05Z",
+  "generated_at_utc": "2026-10-07T03:13:30Z",
   "history_start_date": "2026-07-09",
   "history_window_days": 90,
   "include_past": true,
@@ -52752,15 +53132,15 @@
       "kstyle_music": 65,
       "official_events": 858,
       "starto_concert": 89,
-      "venue_web_discovery": 341
+      "venue_web_discovery": 351
     },
-    "event_count": 1353,
+    "event_count": 1363,
     "location_held_record_count": 14,
-    "record_count_before_grouping": 1458,
+    "record_count_before_grouping": 1467,
     "start_time_split_event_count": 15,
     "start_time_split_group_count": 15,
     "supplemental_merged_group_count": 11,
     "supplemental_merged_record_count": 11,
-    "suppressed_event_count": 1
+    "suppressed_event_count": 0
   }
 }
