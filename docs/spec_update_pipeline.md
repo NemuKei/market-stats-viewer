@@ -188,6 +188,12 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
     - DB更新根拠にできる `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` のみ。
     - Google検索結果、AI概要、一般ニュース、SNS単体、二次流通単体は発見導線として使えてもDB更新根拠にしない。
     - DB schema は増やさず、設定ファイルと `labels_json` で運用する。
+    - confirmed event は終了日後も取り込む。旧 `future_only` 設定は保存範囲を制限しない。保存済み行は取得漏れ・空結果・失敗や終了日経過で削除せず、旧 `prune_missing` / `drop_past_events` 設定でも削除を有効にできない。
+    - 同じ `signal_uid` の訂正は `upsert_existing=true` の既存経路で更新し、`first_seen_at_utc` を保持する。取得範囲の変更を中止・延期や別イベントの証拠にしない。
+    - 1回の取得内で同じ `signal_uid` の内容が競合した場合は、DB書き込み前に当該sourceを失敗させる。同じ内容の重複は1行にまとめる。過去行の品質不良もsource全体を失敗させ、保存済み履歴・未来予定・signatureを維持する。
+    - URL変更で収集UIDが変わった場合は旧行と新行を保持し、対応関係を推測しない。切替前に明示日時がローダーの対応形式で揃うことを確認する。日時が欠落・非対応形式の場合に現在時刻へfallbackする既存挙動は、反復取り込みの無変更を保証しない。
+    - 履歴保存への切替前に最新DBとconfigの全UID差分を確認する。未保存の過去行も通常取り込みで追加され得る。元の `first_seen_at_utc` が必要な欠落行は、最新DBをバックアップし、履歴根拠付きの行別復旧を別途承認・適用してから取り込みを再開する。古いDB全体への置換や、未採用の固定ID生成器・台帳の同時導入はしない。
+    - 2026-10-07の採用範囲は履歴保護コードのみ。関連自動収集・公開workflowを停止した状態で、DB復旧・内容差分更新・ID移行・公開変更・更新再開は別の承認まで行わない。コード採用だけでは既存の欠落データは戻らない。
     - `event_status=postponed|cancelled` の保存、LP表示抑止、振替公演、Release gateは `docs/spec_event_status.md` を正本とする。
     - Skill本文とconfigはCodex Automationから変更しない。automationが書くのは `data/venue_discovery_inbox.json` のみ。
     - 本文抽出providerは `content_extractor=requests_bs4|crawl4ai|browser` とする。既定は `requests_bs4`、`crawl4ai` は optional fallback provider であり、JS生成ページ、`requests_bs4` 失敗ページ、公式サイト内crawlやリンク探索が必要なページ、アーティスト公式サイトだけに使う。
@@ -199,6 +205,8 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
 - `starto_concert` / `kstyle_music` は日本公演のみ採用（都道府県/日本開催キーワードで判定）
 - Source failure isolation:
   - source単位で例外隔離（片方失敗でも片方は継続）
+  - sourceの書き込み中に失敗した場合はtransactionをrollbackしてから次のsourceへ進む。後続sourceのcommitへ部分書き込みを持ち越さない。
+  - 元の失敗を先に記録する。rollback自体に失敗した場合は接続を閉じ、後続sourceの実行を中止する。
 - No-op:
   - sourceごとに `signal_uid -> content_hash` から signature を算出
   - `signal_sources.last_signature` と一致する場合、当該sourceのDB更新をスキップ
@@ -218,6 +226,7 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
 - CLI:
   - `--only venue_web_discovery,starto_concert,kstyle_music`
   - `--verbose`
+  - `--rebuild` は `--only` が必須。`venue_web_discovery` を含む指定は混合指定も含めDB接続前に拒否する。欠落行の復旧はバックアップと行別差分を確認する別作業とし、DB全体を古いsnapshotで置換しない。
 - LP-ready output:
   - Script: `python -m scripts.build_lp_events`
   - Inputs: `data/events.sqlite`, `data/event_signals.sqlite`

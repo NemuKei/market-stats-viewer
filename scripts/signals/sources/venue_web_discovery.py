@@ -68,10 +68,9 @@ class VenueWebDiscoverySource(SignalSource):
             for value in cfg.get("rejected_source_classes", [])
             if str(value).strip()
         }
-        future_only = bool(cfg.get("future_only", True))
         today_iso = datetime.now(JST).date().isoformat()
 
-        records: list[SignalRecord] = []
+        records_by_uid: dict[str, SignalRecord] = {}
         for event in cfg.get("confirmed_events", []):
             if not isinstance(event, dict):
                 continue
@@ -80,12 +79,20 @@ class VenueWebDiscoverySource(SignalSource):
                 event=event,
                 accepted_source_classes=source_classes,
                 rejected_source_classes=rejected_source_classes,
-                future_only=future_only,
+                # Confirmed records also supply history. The legacy future_only
+                # flag must not age records out of persistent storage.
+                future_only=False,
                 today_iso=today_iso,
             )
             if rec is not None:
-                records.append(rec)
+                previous = records_by_uid.get(rec.signal_uid)
+                if previous is not None and previous.content_hash != rec.content_hash:
+                    raise ValueError(
+                        f"conflicting confirmed events for signal_uid={rec.signal_uid}"
+                    )
+                records_by_uid[rec.signal_uid] = rec
 
+        records = list(records_by_uid.values())
         records.sort(key=lambda row: (row.published_at_utc, row.title, row.signal_uid), reverse=True)
         logger.info("venue_web_discovery: loaded %d confirmed event signal(s)", len(records))
         return records

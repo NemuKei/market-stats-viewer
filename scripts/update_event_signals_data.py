@@ -122,8 +122,8 @@ DEFAULT_SOURCES = [
         "config_json": json.dumps(
             {
                 "config_path": "data/venue_web_discovery_config.json",
-                "prune_missing": True,
-                "drop_past_events": True,
+                "prune_missing": False,
+                "drop_past_events": False,
                 "upsert_existing": True,
             },
             ensure_ascii=False,
@@ -421,11 +421,16 @@ def load_source_config(config_json: str | None) -> dict[str, object]:
 
 
 def should_prune_missing_for_source(source: SignalSourceRecord) -> bool:
+    if source.source_id == "venue_web_discovery":
+        # A partial acquisition is not evidence that a confirmed event vanished.
+        return False
     cfg = load_source_config(source.config_json)
     return bool(cfg.get("prune_missing", True))
 
 
 def should_drop_past_events_for_source(source: SignalSourceRecord) -> bool:
+    if source.source_id == "venue_web_discovery":
+        return False
     cfg = load_source_config(source.config_json)
     return bool(cfg.get("drop_past_events", False))
 
@@ -595,6 +600,8 @@ def main() -> None:
 
     if args.rebuild and not only_ids:
         parser.error("--rebuild requires --only with one or more source_ids")
+    if args.rebuild and "venue_web_discovery" in only_ids:
+        parser.error("venue_web_discovery preserves history and does not support --rebuild")
 
     raw_session = requests.Session()
     raw_session.headers.update({"User-Agent": USER_AGENT})
@@ -725,6 +732,12 @@ def main() -> None:
 
         except Exception:
             logger.exception("  FAILED: %s", source.source_id)
+            try:
+                conn.rollback()
+            except Exception:
+                logger.exception("  rollback failed; aborting remaining sources")
+                conn.close()
+                raise
             fail_count += 1
             continue
 

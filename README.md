@@ -88,6 +88,8 @@ uv run streamlit run app.py
   - ニュース本文は保存しない
   - 保存対象は掲載日時・タイトル・URL・短い抜粋（取得できる場合のみ）
   - `venue_web_discovery` は公式/準公式ページ本文を根拠にした confirmed event のみ保存する
+  - confirmed event は終了日後や取得漏れでも履歴として残す。旧 `future_only` / `prune_missing` / `drop_past_events` 設定で削除は有効にならない。同じ収集IDの訂正は更新し、取得漏れから中止を推測しない
+  - `venue_web_discovery` を含む `--rebuild` はDB接続前に拒否する。履歴の復旧は最新DBをバックアップしたうえで欠落行だけを扱う別作業とする
   - 本文抽出は `requests_bs4` が既定。JS生成ページや複雑HTML、アーティスト公式サイトでは optional provider の `crawl4ai` をfallbackとして使える
 
 ### Venue Web Discovery optional provider

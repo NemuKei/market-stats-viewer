@@ -171,6 +171,10 @@
   - 保存対象は `掲載日時 / タイトル / URL / 短い抜粋（一覧で取得できる場合のみ）`
   - `venue_web_discovery` は `labels_json` に `event_start_date`、`event_end_date`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet` を保存する
   - `venue_web_discovery` の `source_class` は `venue_official` / `artist_official` / `promoter_official` / `ticket_official` に限定する
+  - `venue_web_discovery` は終了日経過、取得範囲の縮小、空結果、取得失敗を理由に保存済み行を削除しない。旧設定の `future_only=true`、`prune_missing=true`、`drop_past_events=true` でもこの保存方針を優先する。
+  - 同じ `signal_uid` の公式訂正は既存UPSERTで更新し、最初の観測日時を保持する。取得漏れを中止・延期と解釈せず、明示された `event_status` の扱いは `docs/spec_event_status.md` に従う。
+  - 同じ取得内の収集UID競合は保存前に拒否する。URL変更による別UIDを自動統合せず、旧行を保持する。取り込み失敗と日時の確認条件は `docs/spec_update_pipeline.md` を参照する。
+  - `--rebuild` に `venue_web_discovery` を含めるとDBを開く前に失敗する。履歴の意図的な削除・復旧は通常取り込みから分離し、対象行とバックアップを確認した別の承認作業とする。
   - `venue_web_discovery` の `content_extractor` は `requests_bs4` / `crawl4ai` / `browser` のどの方法で本文・公式公演表を確認したかを示す監査用ラベルであり、DB採用根拠そのものではない
 
 ### テーブル: `signal_sources`
