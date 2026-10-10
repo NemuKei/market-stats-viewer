@@ -120,7 +120,7 @@
 - 公式／準公式の延期・中止が下位sourceの開催予定を抑止する状態契約と `summary.suppressed_event_count` は、`docs/spec_event_status.md` を正本とする。
 - 外部アプリが「確定日程」として優先表示する場合は、まず `lp_events.json` を使う。元DBを直接使う場合も、同一日程が公式側に存在する場合は公式側を優先する。
 - 外部アプリが速報性を重視する場合は、`event_signals.sqlite` を使ってよい。ただし `source_id` ごとの性質を表示または内部判定に残し、公式/準公式Web検知とニュース由来を同じ信頼度として扱わない。
-- `lp_events.json` の同一イベント判定は、次の2段階とする。
+- `lp_events.json` の候補グループ判定は、次の2段階とする。属性から作る以下のキーは内部候補キーであり、公開する固定IDの訂正対応には使わない。
   1. 厳密統合: `event_date + canonical venue_name + canonical artist_name`
   2. 補助統合: 厳密統合後も分かれたグループのうち、`event_date` とcanonical会場が同じで、開始時刻が矛盾せず、正規化タイトルが完全一致するか、双方8文字以上かつ `difflib.SequenceMatcher` の類似度が `0.80` 以上のもの
   - 補助統合はcanonical会場の完全一致だけを使い、会場名の文字列類似だけでは統合しない。
@@ -128,10 +128,10 @@
   - 開始時刻はUnicode NFKC後の非空値を比較し、両方に値がある場合は一致したときだけ統合する。片方または両方が空なら矛盾なしとする。
   - 補助統合はsource priority、`updated_at_utc`、`record_id` で決まる代表グループを基準にする。全参加グループが同じ代表グループへ直接一致し、最終グループ内の非空開始時刻が1種類以下の場合だけ統合する。A-B、B-Cだけの連鎖一致ではA-Cを統合しない。
   - 開始時刻が空の代表グループが複数の異なる非空開始時刻へ同時に一致する場合は、任意の時刻を選ばず生成を停止する。
-  - 補助統合後の `event_key` は代表グループのキーを使い、入力順を変えても結果を変えない。
+  - 補助統合後の内部候補キーは代表グループのキーを使い、入力順を変えても結果を変えない。
 - 厳密キー内に異なる非空開始時刻がある場合は、補助統合より前に開始時刻ごとの公演へ分割する。
-  - 開始時刻が競合しない既存グループの `event_key` は変えない。
-  - 分割対象だけ、従来の厳密キーと正規化開始時刻から決定的な時刻付き `event_key` を生成する。
+  - 開始時刻が競合しない既存グループの内部候補キーは変えない。
+  - 分割対象だけ、従来の厳密キーと正規化開始時刻から決定的な時刻付き内部候補キーを生成する。
   - 同じ厳密キーに開始時刻が空のレコードもある場合、そのレコードは各時刻別公演の `supporting_sources` に保持する。表示元のレコードに時刻がなくても、出力の `event_start_time` には時刻別公演の一意な開始時刻を使う。
   - `events.sqlite` 側の `event_date` は `events.start_date` を使う。
   - `events.sqlite` 側の `canonical artist_name` は `artist_name_resolved` を優先し、空の場合のみ `performers` を使う。
@@ -143,6 +143,28 @@
   - `start_time_split_group_count`: 異なる非空開始時刻により分割した従来の厳密グループ数
   - `start_time_split_event_count`: 開始時刻分割によって増えた公演数
 - この変更のbeforeは厳密キーだけによる統合、afterは開始時刻分割を含む2段階統合である。既存fieldは削除・改名せず、追加summaryは後方互換とするため `schema_version=1` を維持する。consumer側の移行作業は不要で、`lp_events.json` の再生成だけをforward migrationとする。rollbackは実装と生成JSONを同じrevisionへ戻し、DBと旧pathは変更・削除しない。
+
+### 公開イベントの固定ID台帳
+
+`data/event_identity_registry.json` はGit管理する内部台帳である。DB、追加API、別の公開ID項目は増やさない。上記の候補生成後、台帳で確定したIDを既存 `event_key` に設定する。SideBizはその値を既存 `event_uid` に投影するため、公開23項目とその順序は変えない。初期登録は承認済み公開1,060件の全IDをそのまま保持する。
+
+IDの単位は1開催・公演。複数日展示は1開催、同日の昼夜別公演は別IDとする。時刻不明の旧集合行を個別公演だと断定しない。台帳は `schema_version=1`、`revision`、公開snapshotと元LPのseed hash、seed件数・ID集合・観測のhash、`events`、`relations` を持つ。観測は内部候補キー、日付・終了日・時刻・会場・出演者・タイトル、完全なsource namespace/record ID、fingerprint、active、確認根拠を保存する。fingerprintは不変IDではない。初期登録だけ、同じ公開IDかつhash/基準日/生成時刻で固定した元LPとの対応を使い、表示整形やsource IDの128文字切詰めを吸収する。以後は完全なsource IDを使う。
+
+未変更行は、候補キーと観測属性が完全一致し、登録済みsource recordを少なくとも1つ含む場合だけ同IDになる。追加根拠だけではIDを変えない。source record、日付、類似名、URLだけから訂正・統合対応を推測しない。新規未登録行、変更候補、廃止された旧観測、矛盾する複数候補は `identity_held_records` に理由と関連ID候補を保持して公開を保留する。他の確定行は配布できる。
+
+確認済み登録は公開URL・UTC確認時刻・理由を持つレビュー要求からだけ行う。`new` は旧IDなしで各開催へopaque IDを一度発行する。既存IDとsourceを共有する新規要求は、別開催だと確認した関連ID集合を `acknowledged_related_event_uids` に明記しない限り拒否し、その確認を関係履歴にも保存する。source共有だけでは同一/別開催を断定しない。`correction` は確定した1対1だけ旧IDを継承する。`split` は継続先が確定した子だけ旧ID、他は新ID。`merge` は確定した前身1件だけのIDまたは新IDとする。旧IDと観測履歴を残し、別イベントへ再利用しない。同一要求の再適用は何も発行しない。曖昧な対応はレビューを作らず保留を続ける。
+
+生成中の内部payloadには `identity_registry`（schema/revision/台帳bytes SHA-256）、`identity_held_records`、`summary.identity_held_record_count` を追加する。保存するLP/Release assetでは `identity_held_records` の詳細を除外し、台帳revision/hashと保留件数だけを残す。確認待ちはprivate previewで読む。既存SideBiz public projectionはこれらを公開行に含めない。表示件数・source別件数は確定行だけを数え、統合監査件数は候補生成時点を指す。台帳欠損・不正・重複、生成中のrevision変更、全候補保留、最終行の未確認変更、書込失敗では既存LPを置換しない。候補自体の不正shape/文字品質/日付/時刻/source IDでは生成を停止し、妥当だが未確認の候補だけを保留する。実入力0件と保留0件の場合だけ0件snapshotを許す。入力DB、台帳、利用者のメモは生成から変更しない。
+
+beforeは属性hashを公開IDに再計算する方式、afterは同じ公開fieldを台帳から供給する方式。forward migrationは初期台帳をレビュー付きcommitで保全し、掲載可能な未登録候補の新規/訂正関係を確認した上で、台帳と生成コード・LP・manifest・SideBiz生成物の対応する版を採用する。現行workflowはmainのコードを使うため、停止・backup・ID保全・公開差分の検証後、明示的な採用時だけ同版のcode/台帳/dataを反映する。欠損時の旧hash fallbackは追加しない。
+
+未登録候補のDB履歴復旧と固定IDの確認登録を分離する。DBに復旧した公式根拠付き候補も、旧公開IDとの同一性や新規開催回が確認できるまでprivate pendingへ保持する。既公開IDの補完は、承認済み公開snapshotと同世代の元LPを固定し、SideBizの実投影で全field一致を検査する専用コマンドだけを使う。旧1,060 IDに既公開35 IDを加算する場合も初期seedのID・観測・根拠を変更しない。訂正・分割で旧観測の活動flagを変更しても、そのIDと観測を履歴から消さない。
+
+hashは署名ではなく、偶発的な欠落・改変・版競合を検出する。relationのrequest hashは再適用の識別子で、要求全文を再構成する署名検証ではない。確認根拠とGitのレビュー済み版を正本とする。辞書更新や上位sourceへの切替で属性が変わる場合も確認待ちにし、対応する1対1訂正を確認してから同IDに戻す。曖昧候補だけ保留し他の確定行を配布する採用方針は維持し、今回、任意の件数縮小閾値や訂正batchを追加しない。
+
+rollbackでは採用済み台帳を削除せず、既発行IDと履歴を保全し、対応するコード・台帳revision・LP/manifest・SideBiz snapshotへ一体で戻す。新しいIDを公開した後は、そのIDと観測を履歴に残すforward修正を優先し、単に古い台帳へ戻して発行済みIDを失わない。旧hash方式への黙ったfallbackはしない。利用者のメモ・履歴は別保存のまま、訂正・分割・統合・未収録で自動移動・複製・削除・合併しない。運用コマンドとlockの扱いは `docs/spec_update_pipeline.md` の固定ID節を正本とする。
+### イベントデータの品質と利用側検査
+
 - 外部アプリがデータ品質を判断する場合、少なくとも次の情報を保持する。
   - `source_id`: `events.sqlite` 由来か、公式/準公式Web検知か、ニュース由来かを判定する。
   - `url`: 利用者が元ページで確認するための参照先。

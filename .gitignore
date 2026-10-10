@@ -75,3 +75,5 @@ assets/*
 *.sqlite-wal
 # Rebuilt and validated from the immutable checkout immediately before Release upload.
 /data/manifest.json
+# Local fixed-identity writer lock; never include owner/runtime metadata in Git.
+/data/.event_identity_registry.json.lock

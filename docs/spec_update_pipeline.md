@@ -229,7 +229,7 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
   - `--rebuild` は `--only` が必須。`venue_web_discovery` を含む指定は混合指定も含めDB接続前に拒否する。欠落行の復旧はバックアップと行別差分を確認する別作業とし、DB全体を古いsnapshotで置換しない。
 - LP-ready output:
   - Script: `python -m scripts.build_lp_events`
-  - Inputs: `data/events.sqlite`, `data/event_signals.sqlite`
+  - Inputs: `data/events.sqlite`, `data/event_signals.sqlite`, `data/event_identity_registry.json`
   - Output: `data/lp_events.json`
   - 通常生成の履歴範囲: 基準日から90日前まで。`--past-days N` でboundedな日数を変更でき、`--include-past` は監査・再生成用に保存済み過去行を全件含める。
   - 履歴判定は開催開始日ではなく `event_end_date` を使い、基準日時点で開催中の複数日イベントを過去扱いしない。
@@ -246,6 +246,77 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
   - data更新5 workflow（会場公式、ニュース、公式/準公式Web検知、市場統計、アーティスト辞書）は、`repo-write` concurrencyで待機した後に古いtrigger SHAから始めないよう、checkoutで`ref: ${{ github.ref }}`（branch先端）を指定する。
   - push前のrebaseは`python -m scripts.rebase_data_commit --branch "$branch"`で行う。旧`git pull --rebase -X ours`は衝突をupstream側で解決し、binaryのSQLiteでは衝突を報告しないまま自runのDB更新を捨ててcommitだけをpushしていた（2026-09-08 Ticketjam run `34202286910`の`e23929c`で、`lp_events.json`の26行がDBに存在しない状態で発生）。helperは`-X`なしでrebaseし、派生物の`data/lp_events.json`だけをCI内の`.git/info/attributes`でupstream側に固定する（直後に再生成するため）。`*.sqlite`を含むその他の衝突ではrebaseを中止し、`::error::`で衝突fileを示してpushせずworkflowを失敗させる。衝突は再試行せず、次回runが新しい先端から更新し直す。rebase後に自commitの`*.sqlite`が自runの出力と一致しない場合も失敗させる。retryはpush競合（non-fast-forward）だけに使う。
   - 旧`git pull --rebase -X ours`はJSONを行単位でmergeするため、`summary`と`events`が別buildに由来する不整合なJSONを作りえた（2026-09-16 `a9c045a`、2026-09-19 `c3c7cb9`で公開workflowの`publication summary does not match rows`として発生）。`lp_events.json`を生成する3 workflowは、rebase成功後に必ず`build_lp_events`をrebase後のDBから再実行し、`python -m scripts.validate_external_events --lp-events data/lp_events.json`で公開validatorと同じ行・summary検査を通してから、差分を自commitへ`--amend`してpushする。自commitの内容がすでにupstreamにありrebaseでdropされた場合（`HEAD`が`FETCH_HEAD`と一致）は、upstreamのcommitを書き換えずに再生成分を新しいcommitとして積む。検査に失敗した場合はpushせずworkflowを失敗させる。
+
+
+### 固定IDの確認登録と確認待ち
+
+意味・移行・rollbackは `docs/spec_data.md` の固定ID節を参照する。確認済みの台帳を各更新workflowが読み取り、未登録・変更候補はprivate previewで確認する。台帳を自動更新workflowが推測で書くことはない。実データ復旧・台帳移行・配布・SideBiz配備はそれぞれ最新backupと対象差分を検証して、明示承認された環境で行う。
+
+通常は既存台帳を使い、まず `python -m scripts.event_identity_registry validate`。初期seedを再生成しない。初回登録の再現時だけ、承認済み公開snapshotとその生成に使った元LPをhashで固定して、未作成の別pathへ次を実行する。基準日とUTC生成時刻、既存ID、sourceの対応も検査し、seedは既存台帳を上書きしない。
+
+```bash
+python -m scripts.event_identity_registry --registry scratch/identity.json seed \
+  --snapshot approved-market-portal.json --expected-count 1060 \
+  --expected-sha256 7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277 \
+  --lp-baseline approved-source-lp.json \
+  --expected-lp-sha256 64f33e65393b1cf51edbae009ab47d985ef7717ccd27b206ec2a202995528c38
+```
+
+一人での通常登録は次の3段階で行う。
+
+1. 通常は現在のsource DBを読み取って確認待ちを新規private previewへ出す。台帳・DB・公開LP・既存outputは変更しない。全候補が保留でも、候補生成/品質検査が通れば一覧化できる。
+
+   ```bash
+   python -m scripts.event_identity_registry pending --output pending-preview.json
+   ```
+
+   コピー済みの未解決候補LPを使う場合は `--lp-events copied-candidate-lp.json` を付ける（この経路はDBを開かない）。内部の解決済みpayloadも台帳SHA/revision一致と確定行を検査して読める。公開LPは保留詳細を除くため、そこから確認待ちを復元せず、通常のsource読取でpreviewを作る。
+
+2. previewの `held_records` から対象を選び、公式根拠で新規か訂正かを確認し、下のJSONを作る。各 `observation` には対象の `candidate_key`、`identity`、`source_records`、`fingerprint` の4項目をそのままコピーする。`reason` / `related_event_uids` はobservationに入れない。ただし関連IDがある候補は訂正/分割/統合を先に確認し、単にnewにしない。別開催だと公式根拠で確認した場合だけ、要求rootの `acknowledged_related_event_uids` に関連ID集合（重複なし・sort済み）を明記してnewを許す。この確認も台帳へ残す。候補・日付・source IDだけの一致を確認根拠にしない。`expected_revision` はpreviewのrevision。確認URL・UTC時刻・理由は実際の確認結果で埋める。未確認templateのnull evidenceは拒否される。
+
+   ```json
+   {
+     "schema_version": 1,
+     "expected_revision": 1,
+     "kind": "new",
+     "previous_ids": [],
+     "candidates": [{"event_uid": null, "observation": {}}],
+     "evidence": {"url": null, "reviewed_at_utc": null, "reason": null}
+   }
+   ```
+
+   新規が複数あり同じ確認根拠でレビューできた場合は `candidates` に複数を入れ、一度で登録できる。異なる確認根拠は別要求に分ける。`correction` は旧ID1件と候補1件で、candidateの `event_uid` をその旧IDにする。`split` は旧ID1件と候補2件以上、確認済み継続先だけ旧ID、他はnull。`merge` は旧ID2件以上と候補1件、確認済み継続IDまたはnull。継続先が不明なら保留を続ける。旧IDを履歴だけに残して各子に新IDを発行する方針が明示承認された場合だけ、splitの全candidate IDをnullにできる。
+
+3. 確認済みJSONを適用し、台帳diffと対象ID・関係をレビューして通常のlocal commitへまとめる。新IDはUUID由来で1回だけ発行し、同一要求を再適用しても増えない。revision競合では対象を読み直して再確認する。自動retryで別要求を作らない。
+
+   ```bash
+   python -m scripts.event_identity_registry apply-review --request reviewed.json
+   python -m scripts.event_identity_registry validate
+   python -m pytest tests/test_event_identity_registry.py tests/test_build_lp_events.py -q
+   ```
+
+公開が別途承認された環境でのみ、通常の `python -m scripts.build_lp_events`、`python -m scripts.validate_external_events --lp-events data/lp_events.json`、manifest検査、SideBizへの同じ版の取込へ進む。生成処理は台帳を読み取り、確定行だけを既存公開fieldへ供給する。保留詳細をLP保存前に除外し、既存の公開Release assetにも含めない。保留件数と台帳版だけを監査情報として残す。private previewをReleaseやGitへ同梱しない。現在のSideBiz consumerは同じ `event_uid` だけを使える。公開guideの従来の条件付きID説明は、台帳採用確認と同じ公開変更で更新するまで条件付きのままであり、このlocal commitだけで公開上の恒久性を告知しない。
+
+台帳とLPの置換は同directoryの一時file、一時fileのfsync、atomic replaceと台帳SHA/revisionの競合検査を使う。台帳lockは `data/.event_identity_registry.json.lock` の排他作成で、PID/UTC開始時刻を保存しGitから除外する。解放は自分のinodeに一致するlockだけに行う。既存lockがあれば停止し、owner/runが生きている間は削除しない。異常終了時は担当者がrun終了・他writer不在・台帳validateを確認してから残留lockだけを片付ける。シリアライズ済み台帳bytesが16MBを超える場合は置換前に停止し、旧台帳を読める状態で保持する。既存fileのpermissionは置換後も保つ。directory fsyncによる電源断耐久性は保証しない。初期台帳は約1.04MB/1,060 IDで、上限到達時期は新規・訂正頻度に依存し未推定。容量拡張は別のレビュー付き移行とし、履歴を自動間引きしない。台帳の保全・復旧はGitのレビュー済み版から行い、DB・独自メモの移行や削除は行わない。
+
+
+#### 既公開IDの補完移行
+
+`new`登録は新UUIDを発行するため、既に公開されたIDを登録する移行には使わない。`python -m scripts.preserve_published_event_ids`は、hashで固定した公開snapshotと同世代元LPを、SideBizの実exporter/掲載方針で全公開field・掲載方針まで照合し、明示承認された既公開ID集合だけを旧台帳へ加算する。別開催回・訂正・分割・統合をこの補完で推測しない。
+
+```bash
+python -m scripts.preserve_published_event_ids \
+  --registry data/event_identity_registry.json \
+  --request reviewed-preservation.json --expected-request-sha256 REVIEWED_REQUEST_SHA256 \
+  --snapshot approved-market-portal.json --lp-baseline same-generation-lp.json \
+  --consumer-scripts /path/to/SideBiz_HotelRM/02_Service/web_lp/scripts \
+  --source-policy /path/to/SideBiz_HotelRM/docs/operations/public-event-source-policy.json \
+  --origin-backup /private/backup/original-registry.json
+```
+
+既定はdry-run。初回は未作成backup pathを指定し、検証済みの同一入力に`--apply`を付けた時だけ、lock内で原本bytesを0600 backupへ排他的に保存して台帳をatomic置換する。後続の訂正・分割後も同じrequestとorigin backupから再実行でき、元ID・観測・根拠・journalを検証してbyte無変更とする。backupとprivate request/previewはGit・Releaseへ同梱しない。
+
+要求はschema_version=1、kind=`preserve_published`、origin_registry_sha256/revision、snapshot_sha256、lp_sha256、policy_sha256、追加IDのsort済みexact集合added_ids/added_count、確認evidenceを持つ。consumer_scripts_sha256はevent_source_policy.py・refresh_content_freshness.py・verify_external_events_asset.py・refresh_market_portal_data.pyの4fileを固定する。expected-request-sha256はレビューした要求file自体のSHA256である。consumerの変換をMSVへ複製せず、検証済みbytesから実helperだけを読み込む。公開JSON入力の上限は64MB、台帳は別の16MB上限を維持する。重複JSONkey/公開ID/候補key、生成時刻や基準日の不一致、全field差異、未確認source共有、台帳・inputの競合を拒否する。
 
 ## Addendum (2026-05-12) Event Signal Coverage and Normalization Audit
 - 目的:

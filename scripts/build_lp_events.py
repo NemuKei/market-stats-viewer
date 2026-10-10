@@ -9,7 +9,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import re
 import sqlite3
 import unicodedata
@@ -799,7 +798,7 @@ def assemble_lp_payload(
         "events": events,
     }
 
-def build_lp_events(
+def _build_lp_event_candidates(
     *, events_db_path: Path = DEFAULT_EVENTS_DB_PATH,
     event_signals_db_path: Path = DEFAULT_EVENT_SIGNALS_DB_PATH,
     include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
@@ -821,17 +820,42 @@ def build_lp_events(
     return payload
 
 
+def build_lp_events(
+    *, events_db_path: Path = DEFAULT_EVENTS_DB_PATH,
+    event_signals_db_path: Path = DEFAULT_EVENT_SIGNALS_DB_PATH,
+    include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
+    as_of_date: date | None = None,
+    identity_registry_path: Path | None = None,
+) -> dict[str, Any]:
+    from .event_identity_registry import DEFAULT_REGISTRY_PATH, apply_to_payload, load_registry
+
+    registry, registry_sha = load_registry(identity_registry_path or DEFAULT_REGISTRY_PATH)
+    candidates = _build_lp_event_candidates(events_db_path=events_db_path,
+        event_signals_db_path=event_signals_db_path, include_past=include_past,
+        past_days=past_days, as_of_date=as_of_date)
+    return apply_to_payload(candidates, registry, registry_sha)
+
+
 
 def write_lp_events(
-    payload: dict[str, Any], output_path: Path = DEFAULT_OUTPUT_PATH
+    payload: dict[str, Any], output_path: Path = DEFAULT_OUTPUT_PATH,
+    *, identity_registry_path: Path | None = None,
 ) -> None:
+    from .event_identity_registry import DEFAULT_REGISTRY_PATH, atomic_write, load_registry, registry_lock, require, validate_resolved_rows
+    from .validate_external_events import validate_payload
+
+    registry_path = identity_registry_path or DEFAULT_REGISTRY_PATH
+    require(isinstance(payload.get("identity_registry"), dict), "resolved identity metadata required before writing")
+    require(isinstance(payload.get("identity_held_records"), list), "internal identity candidates required before writing")
+    validate_payload(payload)
+    require(payload["events"] or payload["summary"]["identity_held_record_count"] == 0, "all candidates held; existing snapshot retained")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    temp_path = output_path.with_name(f".{output_path.name}.tmp")
-    temp_path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
-    os.replace(temp_path, output_path)
+    with registry_lock(registry_path):
+        registry, registry_sha = load_registry(registry_path)
+        require(payload["identity_registry"] == {"schema_version": 1, "revision": registry["revision"], "sha256": registry_sha}, "registry changed during generation")
+        validate_resolved_rows(payload["events"], registry)
+        public_payload = {key: value for key, value in payload.items() if key != "identity_held_records"}
+        atomic_write(output_path, (json.dumps(public_payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8"))
 
 
 def main() -> int:
@@ -843,6 +867,7 @@ def main() -> int:
         "--event-signals-db", type=Path, default=DEFAULT_EVENT_SIGNALS_DB_PATH
     )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
+    parser.add_argument("--identity-registry", type=Path, help="Reviewed fixed-ID registry; missing/invalid registry stops generation.")
     parser.add_argument(
         "--past-days",
         type=int,
@@ -857,10 +882,12 @@ def main() -> int:
     args = parser.parse_args()
     payload = build_lp_events(events_db_path=args.events_db,
         event_signals_db_path=args.event_signals_db,
-        include_past=bool(args.include_past), past_days=args.past_days)
-    write_lp_events(payload, args.output)
+        include_past=bool(args.include_past), past_days=args.past_days,
+        identity_registry_path=args.identity_registry)
+    write_lp_events(payload, args.output, identity_registry_path=args.identity_registry)
     print(
-        f"lp events written: {args.output} ({payload['summary']['event_count']} events)"
+        f"lp events written: {args.output} ({payload['summary']['event_count']} events; "
+        f"{payload['summary']['identity_held_record_count']} identity candidates held)"
     )
     return 0
 

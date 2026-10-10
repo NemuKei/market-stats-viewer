@@ -53,6 +53,8 @@ uv run streamlit run app.py
   - `uv run python -m pytest tests/test_build_events_artist_inferred.py -q`
 - Full local regression suite:
   - `uv run python -m pytest tests -q`
+- 固定ID台帳・確認待ち・保護付きLP生成:
+  - `uv run python -m pytest tests/test_event_identity_registry.py tests/test_preserve_published_event_ids.py tests/test_build_lp_events.py -q`
 - Docs-only whitespace / merge-marker check:
   - `git diff --check`
 
@@ -108,6 +110,8 @@ uv run streamlit run app.py
 - assets: `events.sqlite`, `event_signals.sqlite`, `lp_events.json`, `manifest.json`
 - `manifest.json` には生成時刻、配布元 commit、各 asset の `sha256` と `size_bytes` を保存する
 - LPイベント一覧は、重複統合済みの `lp_events.json` を読む
+- 固定IDは内部 `data/event_identity_registry.json` で保全し、既存 `event_key` から利用側の `event_uid` へ渡す。承認済みの既公開IDを保持し、未確認候補だけを保留する。独自メモの自動移動・削除はしない。
+- 確認登録/preview手順は `docs/spec_update_pipeline.md` の固定ID節を参照。公開の採用は台帳・元DB・LP/manifest・Release・SideBizの対応する版を検証して行う。
 - 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `venue_web_discovery` を公式/準公式Web検知、`starto_concert` / `kstyle_music` をニュース速報として扱う
 - 同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name` を基本とする
 - 表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music`

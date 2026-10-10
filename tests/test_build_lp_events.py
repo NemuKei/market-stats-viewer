@@ -6,7 +6,9 @@ from pathlib import Path
 import pytest
 
 from scripts.build_lp_events import (
-    build_lp_events,
+    # These tests cover source selection/grouping/history. Fixed-ID publication
+    # and the protected write path are covered below and in the registry suite.
+    _build_lp_event_candidates as build_lp_events,
     consolidate_events,
     event_group_key,
     normalize_supplemental_title,
@@ -290,6 +292,23 @@ def test_build_rejects_mojibake_before_output_payload(tmp_path: Path) -> None:
             events_db_path=events_db,
             event_signals_db_path=signals_db,
         )
+    # Also cover the published fixed-ID path, with an isolated valid registry.
+    from scripts import build_lp_events as producer
+    from scripts import event_identity_registry as ids
+    raw = ids.canonical_bytes({"events": {"items": [{
+        "event_uid": "fixture-id", "source_id": "official_events", "source_record_id": "fixture-record",
+        "source_policy_status": "approved", "title": "架空の公演", "start_date": "2026-12-06",
+        "end_date": "2026-12-06", "start_time": "", "venue_name": "架空会場", "artist_name": "架空出演者",
+    }], "publicationPolicy": {"status": "enforced", "defaultDeny": True, "publishedCount": 1}}})
+    registry_path = tmp_path / "identity.json"
+    ids.write_registry(ids.seed_registry(raw, expected_sha256=ids.digest(raw), expected_count=1), registry_path, expected_sha256=None)
+    before = registry_path.read_bytes()
+    output = tmp_path / "lp.json"
+    output.write_bytes(b"last verified snapshot")
+    with pytest.raises(EventTextQualityError, match="title=probable_utf8_mojibake"):
+        producer.build_lp_events(events_db_path=events_db, event_signals_db_path=signals_db,
+                                 identity_registry_path=registry_path)
+    assert output.read_bytes() == b"last verified snapshot" and registry_path.read_bytes() == before
 
 
 def _signal(
@@ -951,3 +970,37 @@ def test_consolidation_is_independent_of_input_order() -> None:
     reverse = consolidate_events(list(reversed(records)))
 
     assert forward == reverse
+
+
+def test_fixed_id_publication_reads_temp_dbs_and_preserves_source_and_notes(tmp_path):
+    from scripts import build_lp_events as producer
+    from scripts import event_identity_registry as ids
+
+    events_db, signals_db = tmp_path / "events.sqlite", tmp_path / "signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+    before = (events_db.read_bytes(), signals_db.read_bytes())
+    basis = dict(events_db_path=events_db, event_signals_db_path=signals_db,
+                 as_of_date=date(2026, 10, 6))
+    candidates = producer._build_lp_event_candidates(**basis)
+    public = [{"event_uid": row["event_key"], "source_id": row["display_source_id"],
+               "source_record_id": next(member["record_id"] for member in row["supporting_sources"] if member["source_id"] == row["display_source_id"]),
+               "source_policy_status": "approved", "title": row["title"],
+               "start_date": row["event_date"], "end_date": row["event_end_date"],
+               "start_time": row["event_start_time"], "venue_name": row["venue_name"],
+               "artist_name": row["artist_name"]} for row in candidates["events"]]
+    raw = ids.canonical_bytes({"events": {"items": public, "publicationPolicy": {
+        "status": "enforced", "defaultDeny": True, "publishedCount": len(public)}}})
+    registry = ids.seed_registry(raw, expected_sha256=ids.digest(raw), expected_count=len(public))
+    path = tmp_path / "identity.json"
+    ids.write_registry(registry, path, expected_sha256=None)
+    notes = tmp_path / "notes.json"
+    notes.write_bytes(ids.canonical_bytes({row["event_uid"]: "own note" for row in public}))
+    protected = (path.read_bytes(), notes.read_bytes())
+    result = producer.build_lp_events(**basis, identity_registry_path=path)
+    assert result["events"] == candidates["events"] and result["identity_held_records"] == []
+    output = tmp_path / "published-lp.json"
+    producer.write_lp_events(result, output, identity_registry_path=path)
+    assert json.loads(output.read_bytes())["events"] == candidates["events"]
+    assert before == (events_db.read_bytes(), signals_db.read_bytes())
+    assert protected == (path.read_bytes(), notes.read_bytes())

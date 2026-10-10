@@ -79,6 +79,28 @@ def validate_payload(payload: dict, *, expected_date: str | None = None) -> dict
         "counts_by_display_source"
     ] != dict(sources):
         raise ValueError("publication summary does not match rows")
+    if "identity_registry" in payload:
+        from .event_identity_registry import validate_observation
+
+        registry = payload["identity_registry"]
+        if (not isinstance(registry, dict) or set(registry) != {"schema_version", "revision", "sha256"}
+                or type(registry.get("schema_version")) is not int or registry["schema_version"] != 1
+                or type(registry.get("revision")) is not int or registry["revision"] < 1
+                or not isinstance(registry.get("sha256"), str) or len(registry["sha256"]) != 64
+                or any(character not in "0123456789abcdef" for character in registry["sha256"])):
+            raise ValueError("invalid identity registry metadata")
+        held = payload.get("identity_held_records")
+        if (type(summary.get("identity_held_record_count")) is not int or summary["identity_held_record_count"] < 0
+                or "identity_held_records" in payload and (not isinstance(held, list)
+                or summary["identity_held_record_count"] != len(held))):
+            raise ValueError("identity held summary mismatch")
+        for candidate in held or []:
+            if (not isinstance(candidate, dict) or set(candidate) != {"candidate_key", "identity", "source_records", "fingerprint", "reason", "related_event_uids"}
+                    or candidate["reason"] not in {"superseded_observation", "changed_or_unbound_observation", "unregistered_candidate", "multiple_candidates_for_fixed_id"}
+                    or not isinstance(candidate["related_event_uids"], list)
+                    or any(not isinstance(uid, str) or not uid for uid in candidate["related_event_uids"])):
+                raise ValueError("invalid identity held candidate")
+            validate_observation({key: candidate[key] for key in ["candidate_key", "identity", "source_records", "fingerprint"]})
     return {
         "event_count": len(events),
         "counts_by_display_source": dict(sources),
