@@ -1,120 +1,6 @@
 {
-  "as_of_date": "2026-10-11",
+  "as_of_date": "2026-10-12",
   "events": [
-    {
-      "artist_name": "離婚伝説",
-      "capacity": 2886,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-13",
-      "event_end_date": "2026-07-13",
-      "event_end_time": null,
-      "event_key": "4e59a4c9f99bdc2298e8",
-      "event_start_time": "19:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158072",
-      "first_seen_at_utc": "2026-04-10T06:14:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "離婚伝説",
-      "raw_venue_name": "Zepp Haneda(Tokyo)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158072",
-          "priority": 10,
-          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158072",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "ライブナタリー “離婚伝説 × 秦 基博”",
-          "updated_at_utc": "2026-07-31T07:02:43Z",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158072"
-        }
-      ],
-      "title": "ライブナタリー “離婚伝説 × 秦 基博”",
-      "updated_at_utc": "2026-07-31T07:02:43Z",
-      "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158072",
-      "venue_name": "Zepp Haneda(Tokyo)"
-    },
-    {
-      "artist_name": "辰巳ゆうと",
-      "capacity": 2700,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-13",
-      "event_end_date": "2026-07-13",
-      "event_end_time": null,
-      "event_key": "2017de235e40bba84936",
-      "event_start_time": "16:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.festivalhall.jp/events/6350/",
-      "first_seen_at_utc": "2026-04-16T06:21:21Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "辰巳ゆうと",
-      "raw_venue_name": "フェスティバルホール",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.festivalhall.jp/events/6350/",
-          "priority": 10,
-          "record_id": "festival_hall:https://www.festivalhall.jp/events/6350/",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "辰巳ゆうとスペシャルコンサート2026",
-          "updated_at_utc": "2026-07-31T07:04:47Z",
-          "url": "https://www.festivalhall.jp/events/6350/"
-        }
-      ],
-      "title": "辰巳ゆうとスペシャルコンサート2026",
-      "updated_at_utc": "2026-07-31T07:04:47Z",
-      "url": "https://www.festivalhall.jp/events/6350/",
-      "venue_name": "フェスティバルホール"
-    },
-    {
-      "artist_name": "HEROINES FES 〜なう♡すとれーじお披露目公演〜",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-13",
-      "event_end_date": "2026-07-13",
-      "event_end_time": null,
-      "event_key": "a174b0cc5fc99403231a",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8631.html",
-      "first_seen_at_utc": "2026-07-13T07:42:28Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "HEROINES FES 〜なう♡すとれーじお披露目公演〜",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8631.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8631.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "HEROINES FES 〜なう♡すとれーじお披露目公演〜",
-          "updated_at_utc": "2026-07-13T07:42:28Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8631.html"
-        }
-      ],
-      "title": "HEROINES FES 〜なう♡すとれーじお披露目公演〜",
-      "updated_at_utc": "2026-07-13T07:42:28Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8631.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "音楽隊 (海上自衛隊)",
       "capacity": 37000,
@@ -42622,8 +42508,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-11T10:59:46Z",
-  "history_start_date": "2026-07-13",
+  "generated_at_utc": "2026-10-11T17:44:49Z",
+  "history_start_date": "2026-07-14",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 25,
@@ -42807,13 +42693,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 789,
+      "official_events": 786,
       "venue_web_discovery": 289
     },
-    "event_count": 1078,
+    "event_count": 1075,
     "identity_held_record_count": 815,
     "location_held_record_count": 33,
-    "record_count_before_grouping": 2089,
+    "record_count_before_grouping": 2086,
     "start_time_split_event_count": 67,
     "start_time_split_group_count": 63,
     "supplemental_merged_group_count": 18,
