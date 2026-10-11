@@ -1,9 +1,242 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-10T15:50:40Z",
+  "run_at_utc": "2026-10-11T03:13:13Z",
   "automation_id": "msv-venue-discovery",
-  "candidates": [],
+  "candidates": [
+    {
+      "event_start_date": "2027-04-10",
+      "event_end_date": "2027-04-10",
+      "event_start_time": "17:35",
+      "venue_name": "横浜アリーナ",
+      "raw_venue_name": "横浜アリーナ",
+      "artist_name": "横浜エクセレンス vs 金沢サムライズ",
+      "raw_artist_name": "横浜エクセレンス vs 金沢サムライズ",
+      "title": "りそなグループ B.LEAGUE 2026-27 B.LEAGUE ONE リーグ戦 横浜エクセレンス vs 金沢サムライズ",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://yokohama-ex.jp/news/detail/202627hometownday/",
+      "evidence_snippet": "ALL 神奈川 Thanks day 【試合日時】 2027年4月10日(土)17:35試合開始予定 2027年4月11日(日)15:05試合開始予定 【対戦相手】 金沢サムライズ 【アリーナ】 横浜アリーナ",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "横浜エクセレンス 横浜アリーナ 2027 4月10日 11日 金沢 チケット",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-04-11",
+      "event_end_date": "2027-04-11",
+      "event_start_time": "15:05",
+      "venue_name": "横浜アリーナ",
+      "raw_venue_name": "横浜アリーナ",
+      "artist_name": "横浜エクセレンス vs 金沢サムライズ",
+      "raw_artist_name": "横浜エクセレンス vs 金沢サムライズ",
+      "title": "りそなグループ B.LEAGUE 2026-27 B.LEAGUE ONE リーグ戦 横浜エクセレンス vs 金沢サムライズ",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://yokohama-ex.jp/news/detail/202627hometownday/",
+      "evidence_snippet": "ALL 神奈川 Thanks day 【試合日時】 2027年4月10日(土)17:35試合開始予定 2027年4月11日(日)15:05試合開始予定 【対戦相手】 金沢サムライズ 【アリーナ】 横浜アリーナ",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "横浜エクセレンス 横浜アリーナ 2027 4月10日 11日 金沢 チケット",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-08-07",
+      "event_end_date": "2027-08-07",
+      "event_start_time": "17:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMO アリーナさいたま",
+      "artist_name": "ヒプノシスマイク",
+      "raw_artist_name": "ヒプノシスマイク",
+      "title": "ヒプノシスマイク -Division Rap Battle- 13th LIVE",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://hypster-fc.com/news/detail/1106",
+      "evidence_snippet": "■タイトル：『ヒプノシスマイク -Division Rap Battle- 13th LIVE 』 ■開催日程： 2027 年 8 月 7 日 ( 土 ) 15:00 開場／ 17:00 開演 2027 年 8 月 8 日 ( 日 ) 15:00 開場／ 17:00 開演 ■会場： GMO アリーナさいたま",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "ヒプノシスマイク 13th LIVE 2027 8 7 8 GMO 公式",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-08-08",
+      "event_end_date": "2027-08-08",
+      "event_start_time": "17:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMO アリーナさいたま",
+      "artist_name": "ヒプノシスマイク",
+      "raw_artist_name": "ヒプノシスマイク",
+      "title": "ヒプノシスマイク -Division Rap Battle- 13th LIVE",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://hypster-fc.com/news/detail/1106",
+      "evidence_snippet": "■タイトル：『ヒプノシスマイク -Division Rap Battle- 13th LIVE 』 ■開催日程： 2027 年 8 月 7 日 ( 土 ) 15:00 開場／ 17:00 開演 2027 年 8 月 8 日 ( 日 ) 15:00 開場／ 17:00 開演 ■会場： GMO アリーナさいたま",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "ヒプノシスマイク 13th LIVE 2027 8 7 8 GMO 公式",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-10-02",
+      "event_end_date": "2027-10-02",
+      "event_start_time": "17:00",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "artist_name": "SUPER BEAVER",
+      "raw_artist_name": "SUPER BEAVER",
+      "title": "SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://sp.super-beaver.com/live_information/detail/6065",
+      "evidence_snippet": "2027.10.02 Sat 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜 会場 神奈川｜Kアリーナ横浜 <アリーナツアー> 出演 ワンマン 開場/開演 15:30 / 17:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "SUPER BEAVER 2026 12 12 Kアリーナ ラクダムーン",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-10-03",
+      "event_end_date": "2027-10-03",
+      "event_start_time": "17:00",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "artist_name": "SUPER BEAVER",
+      "raw_artist_name": "SUPER BEAVER",
+      "title": "SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://sp.super-beaver.com/live_information/detail/6066",
+      "evidence_snippet": "2027.10.03 Sun 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜 会場 神奈川｜Kアリーナ横浜 <アリーナツアー> 出演 ワンマン 開場/開演 15:30 / 17:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "SUPER BEAVER 2026 12 12 Kアリーナ ラクダムーン",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-10-23",
+      "event_end_date": "2027-10-23",
+      "event_start_time": "17:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMOアリーナさいたま(さいたまスーパーアリーナ)",
+      "artist_name": "SUPER BEAVER",
+      "raw_artist_name": "SUPER BEAVER",
+      "title": "SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://sp.super-beaver.com/live_information/detail/6067",
+      "evidence_snippet": "2027.10.23 Sat 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜 会場 埼玉｜GMOアリーナさいたま(さいたまスーパーアリーナ) <アリーナツアー> 出演 ワンマン 開場/開演 15:30 / 17:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "GMOアリーナさいたま 公演 発表 2027 10月 公式",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-10-24",
+      "event_end_date": "2027-10-24",
+      "event_start_time": "17:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMOアリーナさいたま(さいたまスーパーアリーナ)",
+      "artist_name": "SUPER BEAVER",
+      "raw_artist_name": "SUPER BEAVER",
+      "title": "SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://sp.super-beaver.com/live_information/detail/6068",
+      "evidence_snippet": "2027.10.24 Sun 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜 会場 埼玉｜GMOアリーナさいたま(さいたまスーパーアリーナ) <アリーナツアー> 出演 ワンマン 開場/開演 15:30 / 17:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "GMOアリーナさいたま 公演 発表 2027 10月 公式",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    },
+    {
+      "event_start_date": "2027-12-11",
+      "event_end_date": "2027-12-11",
+      "event_start_time": "17:00",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "artist_name": "SUPER BEAVER",
+      "raw_artist_name": "SUPER BEAVER",
+      "title": "SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://sp.super-beaver.com/live_information/detail/6075",
+      "evidence_snippet": "2027.12.11 Sat 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜 会場 神奈川｜Kアリーナ横浜<アリーナツアー> 出演 ワンマン 開場/開演 15:30 / 17:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "SUPER BEAVER 2026 12 12 Kアリーナ ラクダムーン",
+      "verified_at_utc": "2026-10-11T03:13:13Z"
+    }
+  ],
   "rejected": [
+    {
+      "query": "ONE SAMURAI 4 2026 10 17 チケット 開演 15:30 16:00",
+      "reason": "2026-10-17 有明アリーナ ONE SAMURAI 4。今回の会場公式本文は開演15:30、主催公式本文では開始時刻を抽出できず、公式チケットZaikoはHTTP 403。過去の公式ページ間15:30/16:00不一致の解消を確認できず保留。",
+      "url": "https://www.onefc.com/jp/events/one-samurai-4/"
+    },
+    {
+      "query": "ヤンマースタジアム長居 2026 2027 コンサート 開催決定",
+      "reason": "2027-02-23 ヤンマースタジアム長居ランフェス。主催公式本文で日付・会場・名称を確認したが、募集は10km 200名、ハーフ300名、リレー200チーム、スポーツテスト400名の参加型大会。今回の大型会場公演の検知対象から除外。",
+      "url": "https://w5.sportsone.jp/yanmar-stadium/"
+    },
+    {
+      "query": "エイブル トライアウト2026 観戦 チケット",
+      "reason": "2026-11-17 バンテリンドーム ナゴヤ。選手の契約・キャリア支援のトライアウトで、主催公式本文は観戦方法・関連企画の詳細を後日発表としている。大型観客イベントとしての観戦条件・規模を確認できず、今回の大型会場公演候補から保留。",
+      "url": "https://jpbpa.net/2026/08/24/13277/"
+    },
+    {
+      "query": "MUFGスタジアム 開催決定 2026 2027 公式 スケジュール",
+      "reason": "みんなでつなごうリレーフェスティバル2026。参加型のリレー大会。大型観客公演としての規模を本文で確認できず対象外。",
+      "url": "https://jns-e.com/calendar/20261010-584/"
+    },
+    {
+      "query": "MUFGスタジアム 開催決定 2026 2027 公式 スケジュール",
+      "reason": "東京レガシーハーフマラソンEXPO 2026。ハーフマラソン関連EXPO。大型観客公演ではなく展示・参加者向けイベントのため対象外。",
+      "url": "https://jns-e.com/calendar/20261016-628/"
+    },
+    {
+      "query": "MUFGスタジアム 開催決定 2026 2027 公式 スケジュール",
+      "reason": "東京レガシーハーフマラソン2026。ハーフマラソン。道路で行う参加型大会であり、今回の大型会場公演候補から除外。",
+      "url": "https://jns-e.com/calendar/20261018-529/"
+    },
+    {
+      "query": "MUFGスタジアム 開催決定 2026 2027 公式 スケジュール",
+      "reason": "JFAユニクロサッカーキッズ in 東京。子どもの参加型サッカー体験大会。大型観客公演の対象外。",
+      "url": "https://jns-e.com/calendar/20261025-632/"
+    },
+    {
+      "query": "MUFGスタジアム 開催決定 2026 2027 公式 スケジュール",
+      "reason": "日清食品カップ 第42回全国小学生陸上競技交流大会。小学生陸上交流大会。大型観客公演としての規模を本文で確認できず対象外。",
+      "url": "https://jns-e.com/calendar/20261122-585/"
+    },
+    {
+      "query": "福島 ツエーゲン 2027 2月27日 国立 公式",
+      "reason": "2027-02-27 MUFGスタジアム 福島ユナイテッドFC vs ツエーゲン金沢。個別Jリーグ公式本文はJ3。以前の特設ページJ2表記との分類不一致が訂正されたことを今回の本文では確認できないため、引き続き保留。",
+      "url": "https://www.jleague.jp/match/j3/2027/022721/preview/"
+    },
+    {
+      "query": "MUFGスタジアム 2026 2027 開催決定 公式",
+      "url": "https://jns-e.com/calendar/20261115-641/",
+      "reason": "2026-11-15 ALTRA EKIDEN 2026。会場公式は参加者受付時刻を掲載。大型観客公演としての規模・観戦条件を本文で確認できず対象外。"
+    },
+    {
+      "query": "ヤンマースタジアム長居 2026 2027 開催決定 公演 公式",
+      "url": "https://do-sports-fes2026.osakasports.jp/",
+      "reason": "2026-10-17 Do Sports Fes OSAKA 2026。主催公式で会場・日付を確認したが、事前申込制のスポーツ体験・参加型イベントのため大型会場公演の対象外。"
+    },
+    {
+      "query": "東京ドーム クライマックスシリーズ 2026 チケット 公式",
+      "url": "https://eplus.jp/sf/detail/0206530001",
+      "reason": "2026-10-12 ファーストステージ第3戦。公式チケット本文がステージ勝者決定後の試合不開催を明記。開催が第1～2戦の結果に依存するため、確定日程候補から保留。"
+    },
+    {
+      "query": "ベルーナドーム クライマックスシリーズ 2026 チケット 公式",
+      "url": "https://www.seibulions.jp/news/detail/202600713780.html",
+      "reason": "2026-10-12 ファーストステージ第3戦。球団公式が第2戦で勝者決定した場合の第3戦不開催を明記。開催が先行試合の結果に依存するため保留。"
+    },
+    {
+      "query": "みずほPayPayドーム クライマックスシリーズ 2026 チケット 公式",
+      "url": "https://www.softbankhawks.co.jp/news/detail/202601075188.html",
+      "reason": "2026-10-17～20 ファイナルステージ第4～7戦。球団公式本文が勝敗の結果によっては開催されないと明記。第7戦は7試合制となる条件にも依存するため、確定日程候補から保留。"
+    },
     {
       "query": "ベルーナドーム 開催決定",
       "url": "https://bellunadome.seibulions.co.jp/",
@@ -13,6 +246,16 @@
       "query": "ベルーナドーム 開催決定",
       "url": "https://bellunadome.seibulions.co.jp/",
       "reason": "2026-11-22: JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN. Official venue text verified; already in official_events since 2026-10-01 and among the existing unregistered_candidate records. Preserve pending identity review; do not duplicate DB rows or register an inferred public ID."
+    },
+    {
+      "query": "Kアリーナ横浜 SUPER BEAVER 都会のラクダ TOUR 2027-2028",
+      "url": "https://k-arena.com/schedule/20271212-1/",
+      "reason": "SUPER BEAVER 都会のラクダ TOUR 2027-2028の12月12日。会場公式の月間・詳細本文は2026-12-12（土）だが、アーティスト公式個別本文 https://sp.super-beaver.com/live_information/detail/6076 は2027-12-12（日）。URL内の20271212だけでは本文の年不一致を解消できないため、両年とも候補から保留。"
+    },
+    {
+      "query": "東京ドーム 開催決定 TOKYO DOME PARK DAY 2026",
+      "url": "https://www.tokyo-dome.co.jp/dome/baseball/parkday/",
+      "reason": "2026-10-17 TOKYO DOME PARK DAY。会場公式本文で日付・会場・名称を確認したが、ボール遊びなどグラウンドを自由に楽しむ参加型開放イベント。今回の大型会場公演候補から除外。"
     }
   ]
 }
