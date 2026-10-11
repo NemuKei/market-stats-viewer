@@ -464,3 +464,13 @@ python -m scripts.preserve_published_event_ids \
 - inboxの`main`へのpushで`update_signals_venue_web_discovery.yml`が起動し、適用後にDB、LP、manifest対象assetを検証する。成功した上流workflowを`publish_external_events_assets.yml`の`workflow_run`が受け、manifest生成・検証を経てRelease `external-events-latest`を公開する。
 - `watch_automation_freshness.yml`は毎日実行し、inboxがない、または`run_at_utc`が3日より古い場合に失敗する。GitHub Actionsの失敗通知を停止検知に使う。
 - `as_of_date` の既定はAsia/Tokyoの日付。UTCの`generated_at_utc`と混同しない。`data/manifest.json`はGit管理せず、Release時にcheckoutしたcommitから生成する。国内所在地が確定できない上位sourceはLPから保留し、公開validatorが47都道府県の完全一致を確認する。
+
+### 全保存期間assetの追加配布
+
+外部イベント配布workflowは、従来の90日assetを生成済み入力として
+`python -m scripts.build_all_dates_lp_events` を実行する。入力と現行行の整合を確認した追加asset
+`lp_events_all.json` をmanifestへ含め、`python -m scripts.validate_external_events --require-all-dates`
+に成功してから追加assetを配布し、manifestを最後に更新する。新scriptはDBを更新しない。
+整合検証に失敗した場合は公開run全体を停止し、前回成功したReleaseを保持する。
+旧assetを先行公開して新旧source generationが不一致になる自動継続は行わない。
+SideBiz採用は追加asset配布の後に行う。全期間契約と互換・rollbackは `docs/spec_data.md` を参照する。

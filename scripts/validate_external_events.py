@@ -114,13 +114,19 @@ def validate_package(
     manifest_path: Path | None = None,
     expected_date: str | None = None,
     expected_commit: str | None = None,
+    require_all_dates: bool = False,
 ) -> dict:
     manifest = json.loads(
         (manifest_path or data_dir / "manifest.json").read_text(encoding="utf-8")
     )
     if expected_commit and manifest.get("source_commit_sha") != expected_commit:
         raise ValueError("manifest source commit does not match checkout")
-    for filename in DEFAULT_ASSET_FILENAMES:
+    from .build_external_events_manifest import ALL_DATES_ASSET_FILENAME
+    has_all_dates = ALL_DATES_ASSET_FILENAME in manifest.get("assets", {})
+    if require_all_dates and not has_all_dates:
+        raise ValueError("all-dates asset is missing from manifest")
+    filenames = DEFAULT_ASSET_FILENAMES + ((ALL_DATES_ASSET_FILENAME,) if has_all_dates else ())
+    for filename in filenames:
         path = data_dir / filename
         meta = manifest["assets"][filename]
         if (
@@ -137,10 +143,12 @@ def validate_package(
                     raise ValueError(f"database integrity error: {filename}")
             finally:
                 connection.close()
-    return validate_payload(
-        json.loads((data_dir / "lp_events.json").read_text(encoding="utf-8")),
-        expected_date=expected_date,
-    )
+    recent = json.loads((data_dir / "lp_events.json").read_text(encoding="utf-8"))
+    result = validate_payload(recent, expected_date=expected_date)
+    if has_all_dates:
+        from .build_all_dates_lp_events import validate_all_dates_payload
+        validate_all_dates_payload(json.loads((data_dir / ALL_DATES_ASSET_FILENAME).read_text(encoding="utf-8")), recent)
+    return result
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -149,6 +157,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--manifest", type=Path)
     parser.add_argument("--expected-as-of-date")
     parser.add_argument("--expected-commit")
+    parser.add_argument("--require-all-dates", action="store_true")
     parser.add_argument(
         "--lp-events",
         type=Path,
@@ -167,6 +176,7 @@ def main(argv: list[str] | None = None) -> int:
         manifest_path=args.manifest,
         expected_date=args.expected_as_of_date,
         expected_commit=args.expected_commit,
+        require_all_dates=args.require_all_dates,
     )
     print(json.dumps({"valid": True, **result}, ensure_ascii=False))
     return 0

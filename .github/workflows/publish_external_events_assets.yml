@@ -7,6 +7,7 @@ on:
     paths:
       - .github/workflows/publish_external_events_assets.yml
       - scripts/build_external_events_manifest.py
+      - scripts/build_all_dates_lp_events.py
       - scripts/validate_external_events.py
       - scripts/upload_release_assets.py
       - data/events.sqlite
@@ -48,8 +49,10 @@ jobs:
       - name: Build manifest
         run: |
           source_sha="$(git rev-parse HEAD)"
+          python -m scripts.build_all_dates_lp_events
           GITHUB_SHA="$source_sha" python -m scripts.build_external_events_manifest --release-tag external-events-latest
           python -m scripts.validate_external_events \
+            --require-all-dates \
             --expected-commit "$source_sha" \
             --expected-as-of-date "$(TZ=Asia/Tokyo date +%F)"
 
@@ -71,4 +74,4 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python -m scripts.upload_release_assets --tag external-events-latest \
-            data/events.sqlite data/event_signals.sqlite data/lp_events.json data/manifest.json
+            data/events.sqlite data/event_signals.sqlite data/lp_events.json data/lp_events_all.json data/manifest.json

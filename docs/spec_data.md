@@ -254,3 +254,24 @@ rollbackでは採用済み台帳を削除せず、既発行IDと履歴を保全�
 公開LPのpref_nameは国内47都道府県のいずれかを必須とする。公式確認した会場の所在地が省略されている場合は会場マスターの一致する所在地だけを補う。明示値とマスターが矛盾する場合は黙って置換しない。未登録会場は公式住所に基づく明示値が必要。
 
 国内所在地が確定できない上位sourceの行は統合入力から保留し、location_held_recordsにsource_id/record_id/reason、summary.location_held_record_countに件数を持つ。元DBは保持する。会場名らしい文字列やアーティストから所在地を推測しない。公開validatorが欠落・不正な都道府県を拒否し、公開JSONにあるのに国内検索から落ちる状態を防ぐ。
+
+### 全保存期間向けの追加LP asset
+
+既存 `lp_events.json` の90日範囲・shapeは維持し、`lp_events_all.json` を追加する。
+`python -m scripts.build_all_dates_lp_events` は既存の `build_lp_events(include_past=True)` で
+現在DBの保存情報を正規化し、同じ固定ID台帳と延期・取消抑止を適用する。
+過去のGit原本を自動復元したり、未確認IDを登録したりしない。
+
+追加assetは `history_scope=all_verified_retained`、`include_past=true`、
+`history_window_days=null`、`history_start_date=null` と、実行の最古/最新日
+`retained_from_date/retained_through_date` を持つ。現在の90日assetの全行・全項目、基準日、
+元生成日時、台帳revision/hashが一致しなければ保存しない。再exportで元生成日時を更新しない。
+旧90日範囲内の行集合は完全一致を要求し、追加行は終了日が旧履歴開始日より前のものに限る。
+保留レコードの詳細は公開せず、件数だけを残す。保存済み確定情報の全期間であり、
+未収集・未審査原本を含む網羅的な履歴または開催実績とは主張しない。
+
+manifestは従来3assetを維持したまま新assetのsize/SHA-256を追加し、配布workflowは
+`validate_external_events --require-all-dates` で全体を検証してからmanifestを最後に配布する。
+追加assetの採用を先に行い、その後にSideBizの専用イベントsnapshotへ移行する。
+旧90日利用者は変更不要。rollbackは生成codeと配布asset/manifestを同じ検証済みrevisionへ戻す。
+入力DB・固定ID台帳は変更せず、旧assetの削除は今回行わない。

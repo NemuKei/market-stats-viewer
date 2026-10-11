@@ -9,6 +9,7 @@ from pathlib import Path
 
 DEFAULT_RELEASE_TAG = "external-events-latest"
 DEFAULT_ASSET_FILENAMES = ("events.sqlite", "event_signals.sqlite", "lp_events.json")
+ALL_DATES_ASSET_FILENAME = "lp_events_all.json"
 
 
 def _compute_sha256(path: Path) -> str:
@@ -26,7 +27,10 @@ def _build_manifest(data_dir: Path, release_tag: str) -> dict[str, object]:
     assets: dict[str, dict[str, object]] = {}
     missing: list[str] = []
 
-    for filename in DEFAULT_ASSET_FILENAMES:
+    filenames = DEFAULT_ASSET_FILENAMES + (
+        (ALL_DATES_ASSET_FILENAME,) if (data_dir / ALL_DATES_ASSET_FILENAME).is_file() else ()
+    )
+    for filename in filenames:
         path = data_dir / filename
         if not path.exists():
             missing.append(filename)
