@@ -112,6 +112,7 @@ uv run streamlit run app.py
 - LPイベント一覧は、重複統合済みの `lp_events.json` を読む
 - 固定IDは内部 `data/event_identity_registry.json` で保全し、既存 `event_key` から利用側の `event_uid` へ渡す。承認済みの既公開IDを保持し、未確認候補だけを保留する。独自メモの自動移動・削除はしない。
 - 確認登録/preview手順は `docs/spec_update_pipeline.md` の固定ID節を参照。公開の採用は台帳・元DB・LP/manifest・Release・SideBizの対応する版を検証して行う。
+- 保存原本からの `schedule_day` は隔離オフラインpreviewに限定。個別日程・公演数とは区別し、固定ID v2と保持条件は `docs/spec_archival_schedule_days.md` を参照。
 - 外部アプリでは、`events.sqlite` を会場公式日程、`event_signals.sqlite` の `venue_web_discovery` を公式/準公式Web検知、`starto_concert` / `kstyle_music` をニュース速報として扱う
 - 同一日程の統合キーは `event_date + canonical venue_name + canonical artist_name` を基本とする
 - 表示source優先順位は `official_events > venue_web_discovery > starto_concert/kstyle_music`

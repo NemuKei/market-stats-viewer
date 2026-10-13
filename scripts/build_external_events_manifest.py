@@ -23,13 +23,22 @@ def _compute_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _build_manifest(data_dir: Path, release_tag: str) -> dict[str, object]:
+def _build_manifest(data_dir: Path, release_tag: str, *, include_public_schedule_days: bool = False,
+                    expected_public_sha256: str | None = None, expected_baseline_sha256: str | None = None,
+                    expected_approval_sha256: str | None = None) -> dict[str, object]:
     assets: dict[str, dict[str, object]] = {}
     missing: list[str] = []
 
     filenames = DEFAULT_ASSET_FILENAMES + (
         (ALL_DATES_ASSET_FILENAME,) if (data_dir / ALL_DATES_ASSET_FILENAME).is_file() else ()
     )
+    if include_public_schedule_days:
+        from .build_public_schedule_days import PUBLIC_ASSET_FILENAME, PUBLIC_BASELINE_FILENAME, validate_public_package
+        if any(v is None for v in (expected_public_sha256, expected_baseline_sha256, expected_approval_sha256)):
+            raise ValueError("public schedule distribution requires all three reviewed pins")
+        validate_public_package(data_dir, expected_public_sha256=expected_public_sha256,
+            expected_baseline_sha256=expected_baseline_sha256, expected_approval_sha256=expected_approval_sha256)
+        filenames += (PUBLIC_ASSET_FILENAME, PUBLIC_BASELINE_FILENAME)
     for filename in filenames:
         path = data_dir / filename
         if not path.exists():
@@ -69,11 +78,18 @@ def main() -> int:
     parser.add_argument("--data-dir", type=Path, default=Path("data"), help="Directory containing sqlite assets.")
     parser.add_argument("--output", type=Path, default=Path("data/manifest.json"), help="Output manifest path.")
     parser.add_argument("--release-tag", default=DEFAULT_RELEASE_TAG, help="Release tag name used for the assets.")
+    parser.add_argument("--include-public-schedule-days", action="store_true")
+    parser.add_argument("--expected-public-schedule-sha256")
+    parser.add_argument("--expected-public-baseline-sha256")
+    parser.add_argument("--expected-approval-set-sha256")
     args = parser.parse_args()
 
     data_dir = args.data_dir.resolve()
     output_path = args.output.resolve()
-    manifest = _build_manifest(data_dir=data_dir, release_tag=str(args.release_tag).strip() or DEFAULT_RELEASE_TAG)
+    manifest = _build_manifest(data_dir=data_dir, release_tag=str(args.release_tag).strip() or DEFAULT_RELEASE_TAG,
+        include_public_schedule_days=args.include_public_schedule_days,
+        expected_public_sha256=args.expected_public_schedule_sha256, expected_baseline_sha256=args.expected_public_baseline_sha256,
+        expected_approval_sha256=args.expected_approval_set_sha256)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(

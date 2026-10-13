@@ -10,6 +10,9 @@ on:
       - scripts/build_all_dates_lp_events.py
       - scripts/validate_external_events.py
       - scripts/upload_release_assets.py
+      - scripts/build_public_schedule_days.py
+      - data/public_schedule_days.json
+      - data/public_schedule_baseline.json
       - data/events.sqlite
       - data/event_signals.sqlite
       - data/lp_events.json
@@ -36,6 +39,12 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
+    env:
+      # No bootstrap or real pins are committed. Missing configuration stays disabled.
+      PUBLIC_SCHEDULE_DAYS_ENABLED: ${{ vars.PUBLIC_SCHEDULE_DAYS_ENABLED == 'true' && 'true' || 'false' }}
+      PUBLIC_SCHEDULE_DAYS_SHA256: ${{ vars.PUBLIC_SCHEDULE_DAYS_SHA256 }}
+      PUBLIC_SCHEDULE_BASELINE_SHA256: ${{ vars.PUBLIC_SCHEDULE_BASELINE_SHA256 }}
+      PUBLIC_SCHEDULE_APPROVAL_SHA256: ${{ vars.PUBLIC_SCHEDULE_APPROVAL_SHA256 }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -52,13 +61,23 @@ jobs:
 
       - name: Build manifest
         run: |
+          set -euo pipefail
           source_sha="$(git rev-parse HEAD)"
+          public_manifest_args=()
+          public_validation_args=()
+          if [[ "$PUBLIC_SCHEDULE_DAYS_ENABLED" == "true" ]]; then
+            public_pins=(--expected-public-schedule-sha256 "$PUBLIC_SCHEDULE_DAYS_SHA256"
+              --expected-public-baseline-sha256 "$PUBLIC_SCHEDULE_BASELINE_SHA256"
+              --expected-approval-set-sha256 "$PUBLIC_SCHEDULE_APPROVAL_SHA256")
+            public_manifest_args=(--include-public-schedule-days "${public_pins[@]}")
+            public_validation_args=(--require-public-schedule-days "${public_pins[@]}")
+          fi
           python -m scripts.build_all_dates_lp_events
-          GITHUB_SHA="$source_sha" python -m scripts.build_external_events_manifest --release-tag external-events-latest
+          GITHUB_SHA="$source_sha" python -m scripts.build_external_events_manifest --release-tag external-events-latest "${public_manifest_args[@]}"
           python -m scripts.validate_external_events \
             --require-all-dates \
             --expected-commit "$source_sha" \
-            --expected-as-of-date "$(TZ=Asia/Tokyo date +%F)"
+            --expected-as-of-date "$(TZ=Asia/Tokyo date +%F)" "${public_validation_args[@]}"
 
       - name: Ensure release exists
         env:
@@ -77,5 +96,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          python -m scripts.upload_release_assets --tag external-events-latest \
-            data/events.sqlite data/event_signals.sqlite data/lp_events.json data/lp_events_all.json data/manifest.json
+          set -euo pipefail
+          assets=(data/events.sqlite data/event_signals.sqlite data/lp_events.json data/lp_events_all.json)
+          if [[ "$PUBLIC_SCHEDULE_DAYS_ENABLED" == "true" ]]; then
+            assets+=(data/public_schedule_days.json data/public_schedule_baseline.json)
+          fi
+          assets+=(data/manifest.json)
+          python -m scripts.upload_release_assets --tag external-events-latest "${assets[@]}"

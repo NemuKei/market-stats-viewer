@@ -84,7 +84,7 @@ def validate_payload(payload: dict, *, expected_date: str | None = None) -> dict
 
         registry = payload["identity_registry"]
         if (not isinstance(registry, dict) or set(registry) != {"schema_version", "revision", "sha256"}
-                or type(registry.get("schema_version")) is not int or registry["schema_version"] != 1
+                or type(registry.get("schema_version")) is not int or registry["schema_version"] not in {1, 2}
                 or type(registry.get("revision")) is not int or registry["revision"] < 1
                 or not isinstance(registry.get("sha256"), str) or len(registry["sha256"]) != 64
                 or any(character not in "0123456789abcdef" for character in registry["sha256"])):
@@ -115,6 +115,10 @@ def validate_package(
     expected_date: str | None = None,
     expected_commit: str | None = None,
     require_all_dates: bool = False,
+    require_public_schedule_days: bool = False,
+    expected_public_sha256: str | None = None,
+    expected_baseline_sha256: str | None = None,
+    expected_approval_sha256: str | None = None,
 ) -> dict:
     manifest = json.loads(
         (manifest_path or data_dir / "manifest.json").read_text(encoding="utf-8")
@@ -126,6 +130,15 @@ def validate_package(
     if require_all_dates and not has_all_dates:
         raise ValueError("all-dates asset is missing from manifest")
     filenames = DEFAULT_ASSET_FILENAMES + ((ALL_DATES_ASSET_FILENAME,) if has_all_dates else ())
+    from .build_public_schedule_days import PUBLIC_ASSET_FILENAME, PUBLIC_BASELINE_FILENAME, validate_public_package
+    public_names = {PUBLIC_ASSET_FILENAME, PUBLIC_BASELINE_FILENAME}
+    present = public_names & set(manifest.get("assets", {}))
+    if present and present != public_names or require_public_schedule_days and present != public_names:
+        raise ValueError("public schedule asset/baseline pair is missing from manifest")
+    if require_public_schedule_days and any(v is None for v in (expected_public_sha256, expected_baseline_sha256, expected_approval_sha256)):
+        raise ValueError("public schedule validation requires all three reviewed pins")
+    if present:
+        filenames += (PUBLIC_ASSET_FILENAME, PUBLIC_BASELINE_FILENAME)
     for filename in filenames:
         path = data_dir / filename
         meta = manifest["assets"][filename]
@@ -148,6 +161,9 @@ def validate_package(
     if has_all_dates:
         from .build_all_dates_lp_events import validate_all_dates_payload
         validate_all_dates_payload(json.loads((data_dir / ALL_DATES_ASSET_FILENAME).read_text(encoding="utf-8")), recent)
+    if present:
+        result.update(validate_public_package(data_dir, expected_public_sha256=expected_public_sha256,
+            expected_baseline_sha256=expected_baseline_sha256, expected_approval_sha256=expected_approval_sha256))
     return result
 
 
@@ -158,6 +174,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--expected-as-of-date")
     parser.add_argument("--expected-commit")
     parser.add_argument("--require-all-dates", action="store_true")
+    parser.add_argument("--require-public-schedule-days", action="store_true")
+    parser.add_argument("--expected-public-schedule-sha256")
+    parser.add_argument("--expected-public-baseline-sha256")
+    parser.add_argument("--expected-approval-set-sha256")
     parser.add_argument(
         "--lp-events",
         type=Path,
@@ -177,6 +197,10 @@ def main(argv: list[str] | None = None) -> int:
         expected_date=args.expected_as_of_date,
         expected_commit=args.expected_commit,
         require_all_dates=args.require_all_dates,
+        require_public_schedule_days=args.require_public_schedule_days,
+        expected_public_sha256=args.expected_public_schedule_sha256,
+        expected_baseline_sha256=args.expected_public_baseline_sha256,
+        expected_approval_sha256=args.expected_approval_set_sha256,
     )
     print(json.dumps({"valid": True, **result}, ensure_ascii=False))
     return 0
