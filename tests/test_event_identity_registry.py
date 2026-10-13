@@ -198,7 +198,7 @@ def test_new_id_allocated_once_by_review_not_by_generation():
 
 @pytest.mark.parametrize("mutate", [
     lambda r: r.update(schema_version=True),
-    lambda r: r.update(schema_version=2),
+    lambda r: r.update(schema_version=3),
     lambda r: r.update(revision=True),
     lambda r: r.update(revision=2),
     lambda r: r["events"].append(deepcopy(r["events"][0])),

@@ -81,6 +81,12 @@ def identity_from_row(row: dict, *, public: bool = False) -> dict:
         date.fromisoformat(result[field])
     require(result["event_end_date"] >= result["event_date"], "invalid occurrence interval")
     require(not result["event_start_time"] or re.fullmatch(r"(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d)?", result["event_start_time"]), "invalid occurrence time")
+    # Absence is the sole legacy occurrence representation. Never add a default
+    # field to old observations: that would change their stored fingerprints.
+    if "record_kind" in row:
+        require(row["record_kind"] == "schedule_day", "unknown record kind")
+        require(result["event_end_date"] == result["event_date"] and not result["event_start_time"], "schedule-day identity must be one day without a performance time")
+        result["record_kind"] = "schedule_day"
     return result
 
 
@@ -114,7 +120,10 @@ def validate_observation(observation: dict, *, stored: bool = False) -> None:
     fields = {"candidate_key", "identity", "source_records", "fingerprint"}
     require(isinstance(observation, dict) and set(observation) == (fields | {"active", "evidence"} if stored else fields), "invalid observation schema")
     require(identifier(observation["candidate_key"]), "invalid candidate key")
-    require(isinstance(observation["identity"], dict) and set(observation["identity"]) == set(IDENTITY_FIELDS), "invalid identity schema")
+    require(isinstance(observation["identity"], dict) and set(observation["identity"]) in (set(IDENTITY_FIELDS), set(IDENTITY_FIELDS) | {"record_kind"}), "invalid identity schema")
+    if "record_kind" in observation["identity"]:
+        require(observation["candidate_key"].startswith("schedule_day:"), "schedule-day candidate namespace required")
+    require(not observation["candidate_key"].startswith("schedule_day:") or observation["identity"].get("record_kind") == "schedule_day", "schedule-day kind cannot be omitted")
     require(identity_from_row(observation["identity"]) == observation["identity"], "noncanonical identity")
     pairs = source_records_from_row({"supporting_sources": observation["source_records"]})
     require(pairs == observation["source_records"], "noncanonical source records")
@@ -144,7 +153,7 @@ def validate_evidence(evidence: dict) -> None:
 
 def validate_registry(registry: dict) -> None:
     require(isinstance(registry, dict) and set(registry) == {"schema_version", "revision", "seed_snapshot_sha256", "seed_lp_sha256", "seed_event_count", "seed_ids_sha256", "seed_observations_sha256", "events", "relations"}, "invalid registry schema")
-    require(type(registry["schema_version"]) is int and registry["schema_version"] == 1, "unsupported registry schema")
+    require(type(registry["schema_version"]) is int and registry["schema_version"] in {1, 2}, "unsupported registry schema")
     require(type(registry["revision"]) is int and registry["revision"] >= 1, "invalid registry revision")
     require(isinstance(registry["seed_snapshot_sha256"], str) and HASH.fullmatch(registry["seed_snapshot_sha256"]), "invalid seed digest")
     require(registry["seed_lp_sha256"] is None or isinstance(registry["seed_lp_sha256"], str) and HASH.fullmatch(registry["seed_lp_sha256"]), "invalid seed LP digest")
@@ -160,8 +169,12 @@ def validate_registry(registry: dict) -> None:
         require(isinstance(event["observations"], list) and event["observations"], "missing event observations")
         require(sum(obs.get("active") is True for obs in event["observations"] if isinstance(obs, dict)) <= 1, "multiple active occurrences for fixed ID")
         seen = set()
+        unit_kinds = set()
         for obs in event["observations"]:
             validate_observation(obs, stored=True)
+            unit_kinds.add(obs["identity"].get("record_kind", "occurrence"))
+            require(len(unit_kinds) == 1, "cross-kind observations cannot share a fixed ID")
+            require(registry["schema_version"] == 2 or "record_kind" not in obs["identity"], "schedule-day observations require registry schema v2")
             require(obs["fingerprint"] not in seen, "duplicate observation in event")
             seen.add(obs["fingerprint"])
             evidence = obs["evidence"]
@@ -198,14 +211,18 @@ def validate_registry(registry: dict) -> None:
         require((kind == "new" and not previous and len(following) >= 1) or (kind == "correction" and len(previous) == len(following) == 1 and previous == following) or (kind == "split" and len(previous) == 1 and len(following) >= 2) or (kind == "merge" and len(previous) >= 2 and len(following) == 1), "invalid relation cardinality")
         require(all(expected_active.get(uid) is not None for uid in previous), "relation reuses a retired or unknown ID")
         require(all(uid not in expected_active or uid in previous for uid in following), "relation reuses an unrelated ID")
+        predecessor_kinds = {observations[(uid, expected_active[uid])]["identity"].get("record_kind", "occurrence") for uid in previous}
         for uid in previous:
             expected_active[uid] = None
         require(isinstance(relation["candidates"], list) and len(relation["candidates"]) == len(following), "invalid relation candidates")
         require({candidate.get("event_uid") for candidate in relation["candidates"] if isinstance(candidate, dict)} == set(following), "relation candidate IDs mismatch")
+        unit_kinds = set()
         for candidate in relation["candidates"]:
             require(set(candidate) == {"event_uid", "fingerprint"} and (candidate["event_uid"], candidate["fingerprint"]) in observations, "relation refers to missing observation")
+            unit_kinds.add(observations[(candidate["event_uid"], candidate["fingerprint"])]["identity"].get("record_kind", "occurrence"))
             reviewed.add((candidate["event_uid"], candidate["fingerprint"], canonical_bytes(relation["evidence"])))
             expected_active[candidate["event_uid"]] = candidate["fingerprint"]
+        require(len(unit_kinds) == 1 and (not previous or predecessor_kinds == unit_kinds), "cross-kind ID inheritance is prohibited")
     for (uid, fp), obs in observations.items():
         require(obs["active"] == (expected_active.get(uid) == fp), "observation activity does not match reviewed history")
         if obs["evidence"] != {"published_seed_sha256": registry["seed_snapshot_sha256"]}:
@@ -309,7 +326,7 @@ def apply_to_payload(payload: dict, registry: dict, registry_sha256: str) -> dic
     result["events"], result["identity_held_records"] = resolve_rows(result["events"], registry)
     counts = Counter(row["display_source_id"] for row in result["events"])
     result["summary"].update(event_count=len(result["events"]), counts_by_display_source=dict(counts), identity_held_record_count=len(result["identity_held_records"]))
-    result["identity_registry"] = {"schema_version": 1, "revision": registry["revision"], "sha256": registry_sha256}
+    result["identity_registry"] = {"schema_version": registry["schema_version"], "revision": registry["revision"], "sha256": registry_sha256}
     return result
 
 
@@ -330,7 +347,7 @@ def apply_review(registry: dict, request: dict) -> dict:
     validate_registry(registry)
     fields = {"schema_version", "expected_revision", "kind", "previous_ids", "candidates", "evidence"}
     require(isinstance(request, dict) and set(request) in (fields, fields | {"acknowledged_related_event_uids"}), "invalid review request schema")
-    require(type(request["schema_version"]) is int and request["schema_version"] == 1 and type(request["expected_revision"]) is int, "invalid review request version")
+    require(type(request["schema_version"]) is int and request["schema_version"] in {1, 2} and type(request["expected_revision"]) is int, "invalid review request version")
     validate_evidence(request["evidence"])
     request_hash = digest(canonical_bytes(request))
     if any(relation["request_sha256"] == request_hash for relation in registry["relations"]):
@@ -345,6 +362,17 @@ def apply_review(registry: dict, request: dict) -> dict:
     require(isinstance(candidates, list) and candidates, "review candidates required")
     kind = request["kind"]
     require((kind == "new" and not previous) or (kind == "correction" and len(previous) == len(candidates) == 1) or (kind == "split" and len(previous) == 1 and len(candidates) >= 2) or (kind == "merge" and len(previous) >= 2 and len(candidates) == 1), "invalid review cardinality")
+    unit_kinds = set()
+    for candidate in candidates:
+        require(isinstance(candidate, dict) and set(candidate) == {"event_uid", "observation"}, "invalid reviewed candidate")
+        validate_observation(candidate["observation"])
+        unit_kinds.add(candidate["observation"]["identity"].get("record_kind", "occurrence"))
+    require(len(unit_kinds) == 1, "mixed information units in one review")
+    predecessor_kinds = {obs["identity"].get("record_kind", "occurrence") for uid in previous for obs in events[uid]["observations"] if obs["active"]}
+    require(not previous or predecessor_kinds == unit_kinds, "cross-kind ID inheritance is prohibited")
+    if "schedule_day" in unit_kinds:
+        require(request["schema_version"] == 2, "schedule-day review requires schema v2")
+        result["schema_version"] = 2
     acknowledged = request.get("acknowledged_related_event_uids", [])
     require(isinstance(acknowledged, list) and all(identifier(uid) for uid in acknowledged)
             and acknowledged == sorted(set(acknowledged)) and set(acknowledged) <= set(events), "invalid acknowledged related IDs")
@@ -496,7 +524,7 @@ def main(argv: list[str] | None = None) -> int:
         from scripts.validate_external_events import validate_payload
         validate_payload(source)
         if "identity_registry" in source:
-            require(source["identity_registry"] == {"schema_version": 1, "revision": registry["revision"], "sha256": sha}, "preview registry changed")
+            require(source["identity_registry"] == {"schema_version": registry["schema_version"], "revision": registry["revision"], "sha256": sha}, "preview registry changed")
             require(isinstance(source.get("identity_held_records"), list), "published LP omits held details; inspect current sources instead")
             validate_resolved_rows(source["events"], registry)
             rows, held = source["events"], source["identity_held_records"]

@@ -77,3 +77,10 @@ assets/*
 /data/manifest.json
 # Local fixed-identity writer lock; never include owner/runtime metadata in Git.
 /data/.event_identity_registry.json.lock
+# Private archival review inputs must stay outside the checkout; this is a second guard.
+private-data/
+raw-preserved-observations*.json
+preview-identity-registry.json
+private-plan.json
+reviewed-day-request.json
+lp_schedule_days.json
