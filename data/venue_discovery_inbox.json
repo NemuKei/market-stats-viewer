@@ -1,115 +1,97 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-12T03:18:56Z",
+  "run_at_utc": "2026-10-13T04:03:40Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2026-10-12",
-      "event_end_date": "2026-10-12",
-      "event_start_time": "14:00",
-      "venue_name": "ベルーナドーム",
-      "raw_venue_name": "ベルーナドーム",
-      "artist_name": "埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
-      "raw_artist_name": "埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
-      "title": "2026 パーソル クライマックスシリーズ パ ファーストステージ 第3戦 埼玉西武ライオンズ vs 北海道日本ハムファイターズ",
-      "event_category": "baseball",
-      "source_class": "promoter_official",
-      "confidence": "high",
-      "evidence_url": "https://npb.jp/scores/2026/1012/l-f-03/index.html",
-      "evidence_snippet": "2026年10月12日（月） ベルーナドーム 【CS ファーストステージ】 埼玉西武ライオンズ vs 北海道日本ハムファイターズ 第3戦 【試合開始前】 ◇開始 14:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "ベルーナドーム 2026 10月12日 クライマックス 第3戦 開催 公式",
-      "verified_at_utc": "2026-10-12T03:18:56Z"
-    },
-    {
-      "event_start_date": "2026-12-13",
-      "event_end_date": "2026-12-13",
+      "event_start_date": "2027-01-20",
+      "event_end_date": "2027-01-20",
       "event_start_time": "18:30",
-      "venue_name": "Kアリーナ横浜",
-      "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "優里",
-      "raw_artist_name": "優里",
-      "title": "2026年 最後の単独公演！の1週間前に追加公演",
+      "venue_name": "横浜アリーナ",
+      "raw_venue_name": "横浜アリーナ",
+      "artist_name": "超英雄祭",
+      "raw_artist_name": "超英雄祭",
+      "title": "超英雄祭 ALL HEROES LIVE & SHOW 2027 DAY1 -PROJECT R.E.D.& SUPER SENTAI-",
       "event_category": "コンサート",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://sogotokyo.com/live_information/detail/3175",
-      "evidence_snippet": "優里 OFFICIAL SITE EVENT TITLE 2026年 最後の単独公演！の1週間前に追加公演 DATE 2026.12.13 (Sun) VENUE Kアリーナ横浜 OPEN / START 17:00 / 18:30",
+      "evidence_url": "https://www.super-sentai-friends.com/topics/260920eiyu/",
+      "evidence_snippet": "超英雄祭 ALL HEROES LIVE & SHOW 2027 開催概要 開催会場 横浜アリーナ 開催会場 住所 〒222-0033神奈川県横浜市港北区新横浜3-10 会期 2027年 DAY1 -PROJECT R.E.D.& SUPER SENTAI- 1月20日（水） OPEN 17:30 ／ START 18:30 ※予定 DAY2 -KAMEN RIDER 55th- ：1月21日（木）OPEN 17:30 ／ START 18:30 ※予定",
       "content_extractor": "requests_bs4",
-      "discovery_query": "優里 2026 12月13日 Kアリーナ 追加公演 18:30 公式",
-      "verified_at_utc": "2026-10-12T03:18:56Z"
+      "discovery_query": "横浜アリーナ 2027 開催決定 超英雄祭 1月20日 公式",
+      "verified_at_utc": "2026-10-13T04:03:40Z"
     },
     {
-      "event_start_date": "2027-03-06",
-      "event_end_date": "2027-03-06",
-      "event_start_time": "18:00",
-      "venue_name": "横浜アリーナ",
-      "raw_venue_name": "横浜アリーナ",
+      "event_start_date": "2027-05-11",
+      "event_end_date": "2027-05-11",
+      "event_start_time": "19:00",
+      "venue_name": "有明アリーナ",
+      "raw_venue_name": "有明アリーナ",
       "artist_name": "スピッツ",
-      "raw_artist_name": "スピッツ",
+      "raw_artist_name": "SPITZ",
       "title": "SPITZ JAMBOREE TOUR 2027 “kettle”",
-      "event_category": "コンサート",
-      "source_class": "venue_official",
-      "confidence": "high",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/spitz-jamboree-tour-2027-%E2%80%9Ckettle%E2%80%9D",
-      "evidence_snippet": "横浜アリーナで開催されるイベント情報 SPITZ JAMBOREE TOUR 2027 “kettle” アーティスト SPITZ 日程 2027/03/06 (土) 開場 17:00 開演 18:00 2027/03/07 (日) 開場 17:00 開演 18:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "スピッツ SPITZ JAMBOREE TOUR 2027 kettle 横浜アリーナ 3/6 3/7 公式",
-      "verified_at_utc": "2026-10-12T03:18:56Z"
-    },
-    {
-      "event_start_date": "2027-03-07",
-      "event_end_date": "2027-03-07",
-      "event_start_time": "18:00",
-      "venue_name": "横浜アリーナ",
-      "raw_venue_name": "横浜アリーナ",
-      "artist_name": "スピッツ",
-      "raw_artist_name": "スピッツ",
-      "title": "SPITZ JAMBOREE TOUR 2027 “kettle”",
-      "event_category": "コンサート",
-      "source_class": "venue_official",
-      "confidence": "high",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/spitz-jamboree-tour-2027-%E2%80%9Ckettle%E2%80%9D",
-      "evidence_snippet": "横浜アリーナで開催されるイベント情報 SPITZ JAMBOREE TOUR 2027 “kettle” アーティスト SPITZ 日程 2027/03/06 (土) 開場 17:00 開演 18:00 2027/03/07 (日) 開場 17:00 開演 18:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "スピッツ SPITZ JAMBOREE TOUR 2027 kettle 横浜アリーナ 3/6 3/7 公式",
-      "verified_at_utc": "2026-10-12T03:18:56Z"
-    },
-    {
-      "event_start_date": "2027-11-27",
-      "event_end_date": "2027-11-27",
-      "event_start_time": "18:00",
-      "venue_name": "横浜アリーナ",
-      "raw_venue_name": "横浜アリーナ",
-      "artist_name": "Vaundy",
-      "raw_artist_name": "Vaundy",
-      "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
       "event_category": "コンサート",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://sogotokyo.com/live_information/detail/2962",
-      "evidence_snippet": "Vaundy OFFICIAL SITE EVENT TITLE Vaundy JAPAN ARENA TOUR 2027-2028 DATE 2027.11.27 (Sat) 2027.11.28 (Sun) VENUE 横浜アリーナ OPEN / START 11月27日(土) 開場17:00／開演18:00 11月28日(日) 開場15:00／開演16:00",
+      "evidence_url": "https://vintage-rock.com/artists_events/spitz/",
+      "evidence_snippet": "公演 SPITZ JAMBOREE TOUR 2027 “kettle” 出演 SPITZ 日時 2027年05月11日（火） OPEN 18:00 | START 19:00 会場 有明アリーナ",
       "content_extractor": "requests_bs4",
-      "discovery_query": "Vaundy JAPAN ARENA TOUR 2027 2028 横浜アリーナ 11月27日 公式",
-      "verified_at_utc": "2026-10-12T03:18:56Z"
+      "discovery_query": "スピッツ 有明アリーナ 2027 公式",
+      "verified_at_utc": "2026-10-13T04:03:40Z"
     },
     {
-      "event_start_date": "2027-11-28",
-      "event_end_date": "2027-11-28",
+      "event_start_date": "2027-05-12",
+      "event_end_date": "2027-05-12",
+      "event_start_time": "19:00",
+      "venue_name": "有明アリーナ",
+      "raw_venue_name": "有明アリーナ",
+      "artist_name": "スピッツ",
+      "raw_artist_name": "SPITZ",
+      "title": "SPITZ JAMBOREE TOUR 2027 “kettle”",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://vintage-rock.com/artists_events/spitz/",
+      "evidence_snippet": "公演 SPITZ JAMBOREE TOUR 2027 “kettle” 出演 SPITZ 日時 2027年05月12日（水） OPEN 18:00 | START 19:00 会場 有明アリーナ",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "スピッツ 有明アリーナ 2027 公式",
+      "verified_at_utc": "2026-10-13T04:03:40Z"
+    },
+    {
+      "event_start_date": "2027-09-18",
+      "event_end_date": "2027-09-18",
+      "event_start_time": "18:00",
+      "venue_name": "有明アリーナ",
+      "raw_venue_name": "有明アリーナ",
+      "artist_name": "GAN",
+      "raw_artist_name": "GAN（岩田剛典）",
+      "title": "GAN 5TH ANNIVERSARY LIVE \"2.0\"",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://sogotokyo.com/live_information/detail/3177",
+      "evidence_snippet": "GAN OFFICIAL SITE EVENT TITLE GAN 5TH ANNIVERSARY LIVE \"2.0\" DATE 2027.09.18 (Sat) 2027.09.19 (Sun) VENUE 有明アリーナ OPEN / START ＜2027年9月18日(土)＞開場 17：00 / 開演 18：00 ＜2027年9月19日(日)＞開場 15：00 / 開演 16：00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "有明アリーナ 2027 GAN 開催決定 公式",
+      "verified_at_utc": "2026-10-13T04:03:40Z"
+    },
+    {
+      "event_start_date": "2027-09-19",
+      "event_end_date": "2027-09-19",
       "event_start_time": "16:00",
-      "venue_name": "横浜アリーナ",
-      "raw_venue_name": "横浜アリーナ",
-      "artist_name": "Vaundy",
-      "raw_artist_name": "Vaundy",
-      "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
+      "venue_name": "有明アリーナ",
+      "raw_venue_name": "有明アリーナ",
+      "artist_name": "GAN",
+      "raw_artist_name": "GAN（岩田剛典）",
+      "title": "GAN 5TH ANNIVERSARY LIVE \"2.0\"",
       "event_category": "コンサート",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://sogotokyo.com/live_information/detail/2962",
-      "evidence_snippet": "Vaundy OFFICIAL SITE EVENT TITLE Vaundy JAPAN ARENA TOUR 2027-2028 DATE 2027.11.27 (Sat) 2027.11.28 (Sun) VENUE 横浜アリーナ OPEN / START 11月27日(土) 開場17:00／開演18:00 11月28日(日) 開場15:00／開演16:00",
+      "evidence_url": "https://sogotokyo.com/live_information/detail/3177",
+      "evidence_snippet": "GAN OFFICIAL SITE EVENT TITLE GAN 5TH ANNIVERSARY LIVE \"2.0\" DATE 2027.09.18 (Sat) 2027.09.19 (Sun) VENUE 有明アリーナ OPEN / START ＜2027年9月18日(土)＞開場 17：00 / 開演 18：00 ＜2027年9月19日(日)＞開場 15：00 / 開演 16：00",
       "content_extractor": "requests_bs4",
-      "discovery_query": "Vaundy JAPAN ARENA TOUR 2027 2028 横浜アリーナ 11月27日 公式",
-      "verified_at_utc": "2026-10-12T03:18:56Z"
+      "discovery_query": "有明アリーナ 2027 GAN 開催決定 公式",
+      "verified_at_utc": "2026-10-13T04:03:40Z"
     }
   ],
   "rejected": [
@@ -164,11 +146,6 @@
       "reason": "2026-10-17 Do Sports Fes OSAKA 2026。主催公式で会場・日付を確認したが、事前申込制のスポーツ体験・参加型イベントのため大型会場公演の対象外。"
     },
     {
-      "query": "東京ドーム クライマックスシリーズ 2026 チケット 公式",
-      "url": "https://eplus.jp/sf/detail/0206530001",
-      "reason": "2026-10-12 東京ドーム ファーストステージ第3戦。NPB公式試合結果 https://npb.jp/bis/teams/results_g_po.html で10/10・11の巨人連敗を確認。公式チケット本文は勝者決定後の試合不開催を明記しており、開催条件を満たさないため候補から除外。"
-    },
-    {
       "query": "みずほPayPayドーム クライマックスシリーズ 2026 チケット 公式",
       "url": "https://www.softbankhawks.co.jp/news/detail/202601075188.html",
       "reason": "2026-10-17～20 ファイナルステージ第4～7戦。球団公式本文が勝敗の結果によっては開催されないと明記。第7戦は7試合制となる条件にも依存するため、確定日程候補から保留。"
@@ -176,12 +153,12 @@
     {
       "query": "ベルーナドーム 開催決定",
       "url": "https://bellunadome.seibulions.co.jp/",
-      "reason": "2026-11-21: JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN. Official venue text reverified on 2026-10-12; already in official_events since 2026-10-01 and among the existing unregistered_candidate records. Preserve pending identity review; do not duplicate DB rows or register an inferred public ID."
+      "reason": "2026-11-21 JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN。会場公式本文で再確認済み。公式イベントDBにも既存行があるため、LP未掲載を新規公演の根拠にせず追加しない。既存の公開ID確認待ちとして前回から引き継ぐ。"
     },
     {
       "query": "ベルーナドーム 開催決定",
       "url": "https://bellunadome.seibulions.co.jp/",
-      "reason": "2026-11-22: JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN. Official venue text reverified on 2026-10-12; already in official_events since 2026-10-01 and among the existing unregistered_candidate records. Preserve pending identity review; do not duplicate DB rows or register an inferred public ID."
+      "reason": "2026-11-22 JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN。会場公式本文で再確認済み。公式イベントDBにも既存行があるため、LP未掲載を新規公演の根拠にせず追加しない。既存の公開ID確認待ちとして前回から引き継ぐ。"
     },
     {
       "query": "Kアリーナ横浜 SUPER BEAVER 都会のラクダ TOUR 2027-2028",
@@ -212,6 +189,11 @@
       "query": "札幌ドーム 開催決定 チケット 2026 2027",
       "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20270223",
       "reason": "2027-02-23 第32回「赤い羽根」ティーボール北の甲子園大会 北海道知事Cup。会場公式本文で日付・名称を確認したが、参加型大会で大型観客公演としての規模を確認できず対象外。"
+    },
+    {
+      "query": "横浜アリーナ 2027 開催決定 超英雄祭 1月21日 公式",
+      "url": "https://www.tv-asahi.co.jp/my-th/eiyusai2027/",
+      "reason": "2027-01-21 超英雄祭 ALL HEROES LIVE & SHOW 2027 DAY2。主催公式本文で日付・会場・開演18:30を確認したが、公式イベントDBに同日・同会場・同イベントの既存行があるため追加しない。LPにないことだけで新規候補にしない。"
     }
   ]
 }
