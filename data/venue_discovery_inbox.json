@@ -1,133 +1,43 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-14T03:15:57Z",
+  "run_at_utc": "2026-10-15T03:50:44Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-02-13",
-      "event_end_date": "2027-02-13",
-      "event_start_time": "17:00",
+      "event_start_date": "2027-06-26",
+      "event_end_date": "2027-06-26",
+      "event_start_time": null,
       "venue_name": "Kアリーナ横浜",
       "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "KAWAII LAB.",
-      "raw_artist_name": "FRUITS ZIPPER / CANDY TUNE / SWEET STEADY / CUTIE STREET / MORE STAR",
-      "title": "KAWAII LAB. 5th ANNIVERSARY TOUR",
+      "artist_name": "765 MILLIONSTARS",
+      "raw_artist_name": "765 MILLIONSTARS",
+      "title": "ミリシタ10周年記念ライブ",
       "event_category": "コンサート",
-      "source_class": "venue_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://k-arena.com/schedule/20270213-1/",
-      "evidence_snippet": "2027 02.13 Sat. KAWAII LAB. 5th ANNIVERSARY TOUR ARTIST FRUITS ZIPPER / CANDY TUNE / SWEET STEADY / CUTIE STREET / MORE STAR OPEN/START OPEN 15:00 / START 17:00",
+      "evidence_url": "https://idolmaster-official.jp/news/01_19883",
+      "evidence_snippet": "ミリシタ10周年記念ライブ 開催決定！ ミリシタ10周年を記念したライブの開催が決定しました！ 日時 2027年6月26(土)・27日(日) 会場 Kアリーナ横浜 出演者 765 MILLIONSTARS 続報をおたのしみに！",
       "content_extractor": "requests_bs4",
-      "discovery_query": "Kアリーナ横浜 開催決定 KAWAII LAB. 5th ANNIVERSARY TOUR 2027",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
+      "discovery_query": "Kアリーナ横浜 ミリシタ10周年記念ライブ 2027 6月26日 27日 開催決定",
+      "verified_at_utc": "2026-10-15T03:50:44Z"
     },
     {
-      "event_start_date": "2027-02-14",
-      "event_end_date": "2027-02-14",
-      "event_start_time": "16:00",
+      "event_start_date": "2027-06-27",
+      "event_end_date": "2027-06-27",
+      "event_start_time": null,
       "venue_name": "Kアリーナ横浜",
       "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "KAWAII LAB.",
-      "raw_artist_name": "FRUITS ZIPPER / CANDY TUNE / SWEET STEADY / CUTIE STREET / MORE STAR",
-      "title": "KAWAII LAB. 5th ANNIVERSARY TOUR",
+      "artist_name": "765 MILLIONSTARS",
+      "raw_artist_name": "765 MILLIONSTARS",
+      "title": "ミリシタ10周年記念ライブ",
       "event_category": "コンサート",
-      "source_class": "venue_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://k-arena.com/schedule/20270214-1/",
-      "evidence_snippet": "2027 02.14 Sun. KAWAII LAB. 5th ANNIVERSARY TOUR ARTIST FRUITS ZIPPER / CANDY TUNE / SWEET STEADY / CUTIE STREET / MORE STAR OPEN/START OPEN 14:00 / START 16:00",
+      "evidence_url": "https://idolmaster-official.jp/news/01_19883",
+      "evidence_snippet": "ミリシタ10周年記念ライブ 開催決定！ ミリシタ10周年を記念したライブの開催が決定しました！ 日時 2027年6月26(土)・27日(日) 会場 Kアリーナ横浜 出演者 765 MILLIONSTARS 続報をおたのしみに！",
       "content_extractor": "requests_bs4",
-      "discovery_query": "Kアリーナ横浜 開催決定 KAWAII LAB. 5th ANNIVERSARY TOUR 2027",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
-    },
-    {
-      "event_start_date": "2027-03-27",
-      "event_end_date": "2027-03-27",
-      "event_start_time": "17:00",
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "有明アリーナ",
-      "artist_name": "いきづらい部！",
-      "raw_artist_name": "「イキヅライブ! LOVELIVE! BLUEBIRD」いきづらい部!",
-      "title": "いきづらい部！ 3rd LIVE ～いつかみんなで叶いそう～",
-      "event_category": "コンサート",
-      "source_class": "ticket_official",
-      "confidence": "high",
-      "evidence_url": "https://eplus.jp/sf/detail/4360810001-P0030007P021002?P1=0817",
-      "evidence_snippet": "いきづらい部! 3rd LIVE ～いつかみんなで叶いそう～ 2027/3/27(土) 開演：17:00～ (開場 16:00～) 有明アリーナ （東京都） 2027/ 3/27(土) いきづらい部! 3rd LIVE ～いつかみんなで叶いそう～ 有明アリーナ （東京都） 開演：17:00～",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 2027 チケット イキヅライブ いきづらい部 3rd LIVE",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
-    },
-    {
-      "event_start_date": "2027-03-28",
-      "event_end_date": "2027-03-28",
-      "event_start_time": "16:00",
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "有明アリーナ",
-      "artist_name": "いきづらい部！",
-      "raw_artist_name": "「イキヅライブ! LOVELIVE! BLUEBIRD」いきづらい部!",
-      "title": "いきづらい部！ 3rd LIVE ～いつかみんなで叶いそう～",
-      "event_category": "コンサート",
-      "source_class": "ticket_official",
-      "confidence": "high",
-      "evidence_url": "https://eplus.jp/sf/detail/4360810001-P0030007P021001?P1=0817",
-      "evidence_snippet": "いきづらい部! 3rd LIVE ～いつかみんなで叶いそう～ 2027/3/28(日) 開演：16:00～ (開場 15:00～) 有明アリーナ （東京都） 2027/ 3/28(日) いきづらい部! 3rd LIVE ～いつかみんなで叶いそう～ 有明アリーナ （東京都） 開演：16:00～",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 2027 チケット イキヅライブ いきづらい部 3rd LIVE",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
-    },
-    {
-      "event_start_date": "2027-04-17",
-      "event_end_date": "2027-04-17",
-      "event_start_time": "17:00",
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "有明アリーナ",
-      "artist_name": "sumika",
-      "raw_artist_name": "sumika",
-      "title": "sumika Live Tour 2027『Laurens Library』",
-      "event_category": "コンサート",
-      "source_class": "ticket_official",
-      "confidence": "high",
-      "evidence_url": "https://eplus.jp/sf/detail/1385010001-P0030193P021002?P1=0817",
-      "evidence_snippet": "sumika のチケット情報 (東京都・2027/4/17(土)) 2027/4/17(土)に有明アリーナ(東京都)で行われるsumikaのチケット情報ページです。",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 2027 sumika チケット 開催決定",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
-    },
-    {
-      "event_start_date": "2027-04-18",
-      "event_end_date": "2027-04-18",
-      "event_start_time": "16:00",
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "有明アリーナ",
-      "artist_name": "sumika",
-      "raw_artist_name": "sumika",
-      "title": "sumika Live Tour 2027『Laurens Library』",
-      "event_category": "コンサート",
-      "source_class": "ticket_official",
-      "confidence": "high",
-      "evidence_url": "https://eplus.jp/sf/detail/1385010001-P0030193P021001?P1=0817",
-      "evidence_snippet": "sumika のチケット情報 (東京都・2027/4/18(日)) 2027/4/18(日)に有明アリーナ(東京都)で行われるsumikaのチケット情報ページです。",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 2027 sumika チケット 開催決定",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
-    },
-    {
-      "event_start_date": "2027-12-12",
-      "event_end_date": "2027-12-12",
-      "event_start_time": "17:00",
-      "venue_name": "Kアリーナ横浜",
-      "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "SUPER BEAVER",
-      "raw_artist_name": "SUPER BEAVER",
-      "title": "SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜ラクダムーンと、サンサンサンライズ〜",
-      "event_category": "コンサート",
-      "source_class": "venue_official",
-      "confidence": "high",
-      "evidence_url": "https://k-arena.com/schedule/20271212-1/",
-      "evidence_snippet": "2027 12.12 Sun. SUPER BEAVER 都会のラクダ TOUR 2027-2028 〜 ラクダムーンと、サンサンサンライズ 〜 ARTIST SUPER BEAVER OPEN/START OPEN 15:30 / START 17:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "Kアリーナ横浜 SUPER BEAVER 都会のラクダ TOUR 2027-2028 12月12日 年不一致再確認",
-      "verified_at_utc": "2026-10-14T03:15:57Z"
+      "discovery_query": "Kアリーナ横浜 ミリシタ10周年記念ライブ 2027 6月26日 27日 開催決定",
+      "verified_at_utc": "2026-10-15T03:50:44Z"
     }
   ],
   "rejected": [
@@ -255,6 +165,36 @@
       "query": "有明アリーナ 2027 ナポリ10 チケット",
       "url": "https://ariake-arena.tokyo/event/last/",
       "reason": "2027-02-11 ナポリ10。会場公式本文で日程・名称・開演17:00を確認したが、公式イベントDBに同日・同会場・同イベントの既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+    },
+    {
+      "query": "GMOアリーナさいたま iLiFE! JAPANLiFE!2027 4月6日 公式",
+      "url": "https://ilife-heroines.com/topics/",
+      "reason": "2027-04-06 GMOアリーナさいたま iLiFE!「JAPANLiFE!2027」の発見導線はSNS・一般記事。アーティスト公式NEWS本文には当該日程・会場を確認できず、公式リンク先TimeTreeはJavaScript無効案内のみを抽出。Crawl4AI未導入。公式/準公式本文に日付・会場・名称が揃う根拠を取得できないため保留。"
+    },
+    {
+      "query": "東京ドーム 2027 TOKYO SPACESHIP 開催決定",
+      "url": "https://www.event-td.com/tokyospaceship/",
+      "reason": "2027-02-13・14 東京ドーム「TOKYO SPACESHIP」。主催公式本文の2026年9月30日付告知が両日程の実施見合わせを明記。予定日を確定開催候補として追加しない。"
+    },
+    {
+      "query": "バンテリンドームナゴヤ Snow Man DOME TOUR 2026-2027 ALL SUITE",
+      "url": "https://www.nagoya-dome.co.jp/enjoy/index.php",
+      "reason": "2026-11-26～29 Snow Man DOME TOUR 2026-2027 ALL SUITE。会場公式本文で日程・名称を確認したが、公式イベントDBとstarto_concertに既存行があるため追加しない。LPに欠ける日を新規と扱って既存の公開ID確認を迂回しない。"
+    },
+    {
+      "query": "みずほPayPayドーム Snow Man 2026 12月 開催決定",
+      "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
+      "reason": "2026-12-04～06 Snow Man。会場公式本文で各日と開演17:00/17:00/16:00を確認したが、公式イベントDBとstarto_concertに既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+    },
+    {
+      "query": "みずほPayPayドーム Hey! Say! JUMP 2026 12月 Juliet",
+      "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
+      "reason": "2026-12-12・13 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。会場公式本文で日程・名称・開演18:00/15:00を確認したが、starto_concertに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+    },
+    {
+      "query": "みずほPayPayドーム TOMORROW X TOGETHER STEAL THE WIND 2026 12月19日 20日",
+      "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
+      "reason": "2026-12-19・20 TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞ IN JAPAN。会場公式本文で日程・名称・開演17:00/16:00を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
     }
   ]
 }
