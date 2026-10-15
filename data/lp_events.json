@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-10-15",
+  "as_of_date": "2026-10-16",
   "events": [
-    {
-      "artist_name": "渋谷すばる",
-      "capacity": 2530,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-17",
-      "event_end_date": "2026-07-17",
-      "event_end_time": null,
-      "event_key": "cbc4442d459dacdd6e17",
-      "event_start_time": "15:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=158212",
-      "first_seen_at_utc": "2026-06-13T08:03:44Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "渋谷すばる",
-      "raw_venue_name": "Zepp Namba(Osaka)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=158212",
-          "priority": 10,
-          "record_id": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=158212",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "「渋⾕すばる FAN MEETING 2026」〜昼からすばる〜 「渋⾕すばる FAN MEETING 2026」〜夜もすばる〜",
-          "updated_at_utc": "2026-07-31T07:03:48Z",
-          "url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=158212"
-        }
-      ],
-      "title": "「渋⾕すばる FAN MEETING 2026」〜昼からすばる〜 「渋⾕すばる FAN MEETING 2026」〜夜もすばる〜",
-      "updated_at_utc": "2026-07-31T07:03:48Z",
-      "url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=158212",
-      "venue_name": "Zepp Namba(Osaka)"
-    },
-    {
-      "artist_name": "佐田玲子",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-17",
-      "event_end_date": "2026-07-17",
-      "event_end_time": null,
-      "event_key": "e82268f7514e373fcb18",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202604/8506.html",
-      "first_seen_at_utc": "2026-07-01T08:30:05Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "REIKO",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202604/8506.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202604/8506.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "REIKO REIKO One-man tour \"VOICE\"",
-          "updated_at_utc": "2026-07-01T08:30:05Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202604/8506.html"
-        }
-      ],
-      "title": "REIKO REIKO One-man tour \"VOICE\"",
-      "updated_at_utc": "2026-07-01T08:30:05Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202604/8506.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "渋谷すばる",
       "capacity": 2530,
@@ -3938,18 +3862,6 @@
           "title": "CNBLUE 2026 CNBLUE LIVE ‘3LOGY’ IN JAPAN 追加公演",
           "updated_at_utc": "2026-06-10T08:25:57Z",
           "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5208/"
-        },
-        {
-          "content_extractor": null,
-          "evidence_url": "https://kstyle.com/article.ksn?articleNo=2279984",
-          "priority": 30,
-          "record_id": "ac194c1d4cd768f390271bbbe5f26c5c19c3a6ec49bcabd3365bf8979c4ccb95",
-          "source_class": "",
-          "source_id": "kstyle_music",
-          "source_label": "Kstyle MUSIC",
-          "title": "2026 CNBLUE LIVE '3LOGY' IN JAPAN 追加公演",
-          "updated_at_utc": "2026-07-27T18:51:53Z",
-          "url": "https://kstyle.com/article.ksn?articleNo=2279984"
         }
       ],
       "title": "CNBLUE 2026 CNBLUE LIVE ‘3LOGY’ IN JAPAN 追加公演",
@@ -41734,8 +41646,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-15T09:22:04Z",
-  "history_start_date": "2026-07-17",
+  "generated_at_utc": "2026-10-15T16:54:30Z",
+  "history_start_date": "2026-07-18",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 25,
@@ -41753,26 +41665,6 @@
       "reason": "unresolved_domestic_location",
       "record_id": "615d426852e7736ba133252ee68d985653d7fa6b99df881d43cc6f848184bfae",
       "source_id": "starto_concert"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "3204bec217372cec5146a053f95edb87cd5e726c5457cbd90a9f5f7410913246",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "a6f015d882426109fdd75622153c27f3ade788cb023c570f89df82b55a46e2f2",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "bc96e29a399cd581947a882bf319c1b80ff584c74b0eb640e14c044b6a9973ce",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "73e9c5b5dc99981c19edd470ce69125c035d31101d4cfcff08a46b4d92be7796",
-      "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
@@ -41881,12 +41773,32 @@
     },
     {
       "reason": "unresolved_domestic_location",
+      "record_id": "36e26a6d5dfbfd126a8cae6b930f15ab376aca9c024304e59373ae5d287b6802",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "8c1071298e343505882f0567e2e2679ba137162b6666928e5cc3ab6bf769f7d9",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
       "record_id": "85d50465e4beb83978b457fafb3865c994e32f7093159bf09ad7d42bc12475bf",
       "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
       "record_id": "a1102ac4f143a4f637a36f798bd829e2356e14035750ea8468158dbad0fd85f9",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "c5dadf3f536f642e9b94b488d044e331c2ecd968a57bb4e208348105085f2646",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "5a9609d9462b3a7462e8ec68c3b7a27fded93acb2c113467f6a4dc112bfbbcaf",
       "source_id": "kstyle_music"
     },
     {
@@ -41929,16 +41841,16 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 768,
+      "official_events": 766,
       "venue_web_discovery": 286
     },
-    "event_count": 1054,
-    "identity_held_record_count": 885,
+    "event_count": 1052,
+    "identity_held_record_count": 880,
     "location_held_record_count": 35,
-    "record_count_before_grouping": 2145,
+    "record_count_before_grouping": 2137,
     "start_time_split_event_count": 68,
     "start_time_split_group_count": 64,
-    "supplemental_merged_group_count": 18,
+    "supplemental_merged_group_count": 16,
     "supplemental_merged_record_count": 20,
     "suppressed_event_count": 4
   }
