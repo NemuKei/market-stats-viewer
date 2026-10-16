@@ -23806,6 +23806,27 @@
       "url": "https://idolmaster-official.jp/news/01_19883",
       "venue_name": "Kアリーナ横浜",
       "verified_at_utc": "2026-10-15T03:50:44Z"
+    },
+    {
+      "artist_name": "Chevon",
+      "confidence": "high",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "Kアリーナ横浜 Chevon 2027 開催決定",
+      "enabled": true,
+      "event_category": "コンサート",
+      "event_end_date": "2027-09-23",
+      "event_id": "vwd-64b7d1fb663a",
+      "event_start_date": "2027-09-23",
+      "event_start_time": "18:30",
+      "evidence_snippet": "Chevon OFFICIAL SITE EVENT TITLE Chevon ONE MAN TOUR 2027 DATE 2027.09.23 (Thu) VENUE Kアリーナ横浜 OPEN / START 17:00 / 18:30",
+      "evidence_url": "https://sogotokyo.com/live_information/detail/3117",
+      "raw_artist_name": "Chevon",
+      "raw_venue_name": "Kアリーナ横浜",
+      "source_class": "promoter_official",
+      "title": "Chevon ONE MAN TOUR 2027",
+      "url": "https://sogotokyo.com/live_information/detail/3117",
+      "venue_name": "Kアリーナ横浜",
+      "verified_at_utc": "2026-10-16T03:10:57Z"
     }
   ],
   "future_only": true,
