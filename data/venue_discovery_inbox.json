@@ -1,43 +1,25 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-15T03:50:44Z",
+  "run_at_utc": "2026-10-16T03:10:57Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-06-26",
-      "event_end_date": "2027-06-26",
-      "event_start_time": null,
+      "event_start_date": "2027-09-23",
+      "event_end_date": "2027-09-23",
+      "event_start_time": "18:30",
       "venue_name": "Kアリーナ横浜",
       "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "765 MILLIONSTARS",
-      "raw_artist_name": "765 MILLIONSTARS",
-      "title": "ミリシタ10周年記念ライブ",
+      "artist_name": "Chevon",
+      "raw_artist_name": "Chevon",
+      "title": "Chevon ONE MAN TOUR 2027",
       "event_category": "コンサート",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://idolmaster-official.jp/news/01_19883",
-      "evidence_snippet": "ミリシタ10周年記念ライブ 開催決定！ ミリシタ10周年を記念したライブの開催が決定しました！ 日時 2027年6月26(土)・27日(日) 会場 Kアリーナ横浜 出演者 765 MILLIONSTARS 続報をおたのしみに！",
+      "evidence_url": "https://sogotokyo.com/live_information/detail/3117",
+      "evidence_snippet": "Chevon OFFICIAL SITE EVENT TITLE Chevon ONE MAN TOUR 2027 DATE 2027.09.23 (Thu) VENUE Kアリーナ横浜 OPEN / START 17:00 / 18:30",
       "content_extractor": "requests_bs4",
-      "discovery_query": "Kアリーナ横浜 ミリシタ10周年記念ライブ 2027 6月26日 27日 開催決定",
-      "verified_at_utc": "2026-10-15T03:50:44Z"
-    },
-    {
-      "event_start_date": "2027-06-27",
-      "event_end_date": "2027-06-27",
-      "event_start_time": null,
-      "venue_name": "Kアリーナ横浜",
-      "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "765 MILLIONSTARS",
-      "raw_artist_name": "765 MILLIONSTARS",
-      "title": "ミリシタ10周年記念ライブ",
-      "event_category": "コンサート",
-      "source_class": "promoter_official",
-      "confidence": "high",
-      "evidence_url": "https://idolmaster-official.jp/news/01_19883",
-      "evidence_snippet": "ミリシタ10周年記念ライブ 開催決定！ ミリシタ10周年を記念したライブの開催が決定しました！ 日時 2027年6月26(土)・27日(日) 会場 Kアリーナ横浜 出演者 765 MILLIONSTARS 続報をおたのしみに！",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "Kアリーナ横浜 ミリシタ10周年記念ライブ 2027 6月26日 27日 開催決定",
-      "verified_at_utc": "2026-10-15T03:50:44Z"
+      "discovery_query": "Kアリーナ横浜 Chevon 2027 開催決定",
+      "verified_at_utc": "2026-10-16T03:10:57Z"
     }
   ],
   "rejected": [
@@ -53,7 +35,7 @@
     },
     {
       "query": "エイブル トライアウト2026 観戦 チケット",
-      "reason": "2026-11-17 バンテリンドーム ナゴヤ。選手の契約・キャリア支援のトライアウトで、主催公式本文は観戦方法・関連企画の詳細を後日発表としている。大型観客イベントとしての観戦条件・規模を確認できず、今回の大型会場公演候補から保留。",
+      "reason": "2026-11-17 バンテリンドーム ナゴヤ エイブル トライアウト2026。会場公式本文に開場15:00・開始16:00が追加されたが、選手の契約・キャリア支援のトライアウトで、主催公式本文は観戦方法・関連企画の詳細を後日発表としている。大型観客イベントとしての観戦条件・規模を確認できず保留。",
       "url": "https://jpbpa.net/2026/08/24/13277/"
     },
     {
@@ -195,6 +177,26 @@
       "query": "みずほPayPayドーム TOMORROW X TOGETHER STEAL THE WIND 2026 12月19日 20日",
       "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2026/",
       "reason": "2026-12-19・20 TOMORROW X TOGETHER WORLD TOUR ＜STEAL THE WIND＞ IN JAPAN。会場公式本文で日程・名称・開演17:00/16:00を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+    },
+    {
+      "query": "京セラドーム大阪 Hey! Say! JUMP 2027 開催決定",
+      "url": "https://www.kyoceradome-osaka.jp/schedule/?yearId=2027&monthId=01&cat=concert",
+      "reason": "2027-01-10・11・12 Hey!Say!JUMP DOME TOUR 2026-2027 Juliet。会場公式本文に追加された日程・名称・開演17:00/17:00/16:00を確認したが、starto_concertに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+    },
+    {
+      "query": "札幌ドーム 開催決定 プレコン 2026",
+      "url": "https://www.sapporo-dome.co.jp/information/2026/10/15/26978/",
+      "reason": "2026-12-11 プレコン！～ときめき巡る、大人の縁結びフェス～。会場公式本文で日付・会場・名称・開始19:00を確認したが、20～37歳の未婚男女が参加する恋活・婚活・友活イベント。大型観客公演の対象外。"
+    },
+    {
+      "query": "札幌ドーム 2026 11月 展望台ナイトヨガ",
+      "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261105",
+      "reason": "2026-11-05・09・19・24 展望台ナイトヨガ。会場公式イベントリストに追加された日程と11月5日詳細本文を確認。展望台で行う参加型ヨガであり、大型観客公演の対象外。"
+    },
+    {
+      "query": "Kアリーナ横浜 Tele 2027 開催決定",
+      "url": "https://k-arena.com/schedule/20270322-1/",
+      "reason": "2027-03-22 Tele Tour 2027「風の脆さを知る友へ」。会場公式本文の新タイトルと開演17:30を確認したが、confirmed_events・LP・venue_web_discoveryに「Tele / Kアリーナ公演（タイトル未定）」の同日・同会場・同アーティスト既存行がある。名称更新を新規公演として追加せず、既存行の訂正は今回のinbox追加範囲外とする。"
     }
   ]
 }
