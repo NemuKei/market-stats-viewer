@@ -1,25 +1,43 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-16T03:10:57Z",
+  "run_at_utc": "2026-10-17T03:11:41Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-09-23",
-      "event_end_date": "2027-09-23",
-      "event_start_time": "18:30",
-      "venue_name": "Kアリーナ横浜",
-      "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "Chevon",
-      "raw_artist_name": "Chevon",
-      "title": "Chevon ONE MAN TOUR 2027",
+      "event_start_date": "2027-02-24",
+      "event_end_date": "2027-02-24",
+      "event_start_time": null,
+      "venue_name": "バンテリンドームナゴヤ",
+      "raw_venue_name": "バンテリンドーム ナゴヤ",
+      "artist_name": "＝LOVE",
+      "raw_artist_name": "＝LOVE",
+      "title": "＝LOVE DOME LIVE in NAGOYA「全ては＝LOVE」",
       "event_category": "コンサート",
-      "source_class": "promoter_official",
+      "source_class": "artist_official",
       "confidence": "high",
-      "evidence_url": "https://sogotokyo.com/live_information/detail/3117",
-      "evidence_snippet": "Chevon OFFICIAL SITE EVENT TITLE Chevon ONE MAN TOUR 2027 DATE 2027.09.23 (Thu) VENUE Kアリーナ横浜 OPEN / START 17:00 / 18:30",
+      "evidence_url": "https://equal-love.jp/news/detail/12275",
+      "evidence_snippet": "＝ LOVE DOME LIVE in NAGOYA 「全ては＝ LOVE 」の開催が決定いたしました！ 【日 程】 2027 年 2 月 24 日 ( 水 ) 、 25 日 ( 木 ) 愛知県・バンテリンドーム ナゴヤ",
       "content_extractor": "requests_bs4",
-      "discovery_query": "Kアリーナ横浜 Chevon 2027 開催決定",
-      "verified_at_utc": "2026-10-16T03:10:57Z"
+      "discovery_query": "バンテリンドームナゴヤ ＝LOVE 2027 開催決定",
+      "verified_at_utc": "2026-10-17T03:11:41Z"
+    },
+    {
+      "event_start_date": "2027-02-25",
+      "event_end_date": "2027-02-25",
+      "event_start_time": null,
+      "venue_name": "バンテリンドームナゴヤ",
+      "raw_venue_name": "バンテリンドーム ナゴヤ",
+      "artist_name": "＝LOVE",
+      "raw_artist_name": "＝LOVE",
+      "title": "＝LOVE DOME LIVE in NAGOYA「全ては＝LOVE」",
+      "event_category": "コンサート",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://equal-love.jp/news/detail/12275",
+      "evidence_snippet": "＝ LOVE DOME LIVE in NAGOYA 「全ては＝ LOVE 」の開催が決定いたしました！ 【日 程】 2027 年 2 月 24 日 ( 水 ) 、 25 日 ( 木 ) 愛知県・バンテリンドーム ナゴヤ",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "バンテリンドームナゴヤ ＝LOVE 2027 開催決定",
+      "verified_at_utc": "2026-10-17T03:11:41Z"
     }
   ],
   "rejected": [
@@ -75,8 +93,8 @@
     },
     {
       "query": "みずほPayPayドーム クライマックスシリーズ 2026 チケット 公式",
-      "url": "https://www.softbankhawks.co.jp/news/detail/202601075188.html",
-      "reason": "2026-10-17～20 ファイナルステージ第4～7戦。球団公式本文が勝敗の結果によっては開催されないと明記。第7戦は7試合制となる条件にも依存するため、確定日程候補から保留。"
+      "url": "https://www.softbankhawks.co.jp/news/detail/202601104809.html",
+      "reason": "2026-10-17～20 ファイナルステージ第4～7戦。球団公式の10月16日付本文が勝者決定により4日間の試合が未開催となることと払戻対象日を明記。条件付き保留から未開催確定の除外に更新し、開催候補には追加しない。"
     },
     {
       "query": "ベルーナドーム 開催決定",
@@ -197,6 +215,16 @@
       "query": "Kアリーナ横浜 Tele 2027 開催決定",
       "url": "https://k-arena.com/schedule/20270322-1/",
       "reason": "2027-03-22 Tele Tour 2027「風の脆さを知る友へ」。会場公式本文の新タイトルと開演17:30を確認したが、confirmed_events・LP・venue_web_discoveryに「Tele / Kアリーナ公演（タイトル未定）」の同日・同会場・同アーティスト既存行がある。名称更新を新規公演として追加せず、既存行の訂正は今回のinbox追加範囲外とする。"
+    },
+    {
+      "query": "バンテリンドームナゴヤ 冬スポ 2026 開催決定",
+      "url": "https://www.nagoya-dome.co.jp/enjoy/index.php",
+      "reason": "2026-12-11～13 冬スポ!! WINTER SPORTS FESTA SEASON 26。会場公式の新掲載日程と主催公式本文を確認したが、スキー・スノーボード用品の展示販売会。大型観客公演の対象外。"
+    },
+    {
+      "query": "有明アリーナ 陣 presents CL6th LDH紅白頂上決戦 2026 チケット",
+      "url": "https://www.ldh.co.jp/news/detail.php?lang=jpn&newsid=0000055731&site=TRIBE",
+      "reason": "2026-12-10 陣 presents『CL6th LDH紅白頂上決戦』。会場・主催公式本文で日付・会場・名称・開演18:00を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
     }
   ]
 }
