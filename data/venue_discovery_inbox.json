@@ -1,97 +1,25 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-20T03:17:52Z",
+  "run_at_utc": "2026-10-21T04:57:20Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-01-10",
-      "event_end_date": "2027-01-10",
-      "event_start_time": "17:00",
+      "event_start_date": "2027-03-24",
+      "event_end_date": "2027-03-24",
+      "event_start_time": "19:00",
       "venue_name": "有明アリーナ",
       "raw_venue_name": "有明アリーナ",
-      "artist_name": "Ado",
-      "raw_artist_name": "Ado",
-      "title": "Adoの歌ってみたツアー2027",
+      "artist_name": "TOTO",
+      "raw_artist_name": "TOTO",
+      "title": "TOTO 50TH ANNIVERSARY TOUR",
       "event_category": "コンサート",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://www.universal-music.co.jp/ado/news/2026-10-19/",
-      "evidence_snippet": "「 Ado の歌ってみたツアー 2027 」 【日程／会場】 2027年1月10日(日)・11日(月・祝) 東京・有明アリーナ (問い合わせ先：ディスクガレージ https://info.diskgarage.com/ ) 2027年1月30日(土)・31日(日) 大阪・Asueアリーナ大阪 (問い合わせ先：キョードーインフォメーション 0570-200-888) 2027年2月27日(土)・28日(日) 愛知・ポートメッセなごや 第1展示館 (問い合わせ先：サンデーフォークプロモーション 052-320-9100) 【 OPEN ／ START 】 各会場共通 公演1日目：15:30／17:00 公演2日目：14:30／16:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 開催決定 2027 after:2026-10-17",
-      "verified_at_utc": "2026-10-20T03:17:52Z"
-    },
-    {
-      "event_start_date": "2027-01-11",
-      "event_end_date": "2027-01-11",
-      "event_start_time": "16:00",
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "有明アリーナ",
-      "artist_name": "Ado",
-      "raw_artist_name": "Ado",
-      "title": "Adoの歌ってみたツアー2027",
-      "event_category": "コンサート",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://www.universal-music.co.jp/ado/news/2026-10-19/",
-      "evidence_snippet": "「 Ado の歌ってみたツアー 2027 」 【日程／会場】 2027年1月10日(日)・11日(月・祝) 東京・有明アリーナ (問い合わせ先：ディスクガレージ https://info.diskgarage.com/ ) 2027年1月30日(土)・31日(日) 大阪・Asueアリーナ大阪 (問い合わせ先：キョードーインフォメーション 0570-200-888) 2027年2月27日(土)・28日(日) 愛知・ポートメッセなごや 第1展示館 (問い合わせ先：サンデーフォークプロモーション 052-320-9100) 【 OPEN ／ START 】 各会場共通 公演1日目：15:30／17:00 公演2日目：14:30／16:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 開催決定 2027 after:2026-10-17",
-      "verified_at_utc": "2026-10-20T03:17:52Z"
-    },
-    {
-      "event_start_date": "2027-04-15",
-      "event_end_date": "2027-04-15",
-      "event_start_time": null,
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "有明アリーナ",
-      "artist_name": "大相撲",
-      "raw_artist_name": "大相撲有明場所",
-      "title": "令和9年春巡業 大相撲有明場所",
-      "event_category": "その他",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://liveforward.co.jp/2026/10/ariake2027.html",
-      "evidence_snippet": "令和9年春巡業 大相撲有明場所 2027年4月15日（木） at 有明アリーナ 一般発売：10/20（火）15:00 ▶ チケット詳細はこちら NEWS ●一般発売開始！10月20日（火）15:00〜 開催日時 2027年4月15日（木） 9:00 開場（OPEN） ／ 14:30 打ち出し・終了（END） 会場 有明アリーナ 〒135-0063 東京都江東区有明1丁目11番1号 主催 大相撲有明場所実行委員会、 株式会社東京有明アリーナ、 吉本興業株式会社、株式会社LIVE FORWARD 後援 東京商工会議所江東支部、江東区観光協会",
+      "evidence_url": "https://www.udo.jp/shows/TOTO27",
+      "evidence_snippet": "2027 年 3 月 24 日 有明アリーナ 18:00 open 19:00 start",
       "content_extractor": "requests_bs4",
-      "discovery_query": "有明アリーナ 2027 10月20日",
-      "verified_at_utc": "2026-10-20T03:17:52Z"
-    },
-    {
-      "event_start_date": "2027-04-17",
-      "event_end_date": "2027-04-17",
-      "event_start_time": null,
-      "venue_name": "Kアリーナ横浜",
-      "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "Novelbright",
-      "raw_artist_name": "Novelbright",
-      "title": "Novelbright ARENA TOUR 2027",
-      "event_category": "コンサート",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://novelbright.jp/news/detail/2501",
-      "evidence_snippet": "2027年4月からNovelbright史上最大規模となる「Novelbright ARENA TOUR 2027」開催が決定！ チケット情報は後日公開いたします。 ▼2027ツアースケジュール 4月17日(土) 【神奈川】Kアリーナ横浜 4月18日(日) 【神奈川】Kアリーナ横浜",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "Novelbright ARENA TOUR 2027 公式 横浜 有明",
-      "verified_at_utc": "2026-10-20T03:17:52Z"
-    },
-    {
-      "event_start_date": "2027-04-18",
-      "event_end_date": "2027-04-18",
-      "event_start_time": null,
-      "venue_name": "Kアリーナ横浜",
-      "raw_venue_name": "Kアリーナ横浜",
-      "artist_name": "Novelbright",
-      "raw_artist_name": "Novelbright",
-      "title": "Novelbright ARENA TOUR 2027",
-      "event_category": "コンサート",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://novelbright.jp/news/detail/2501",
-      "evidence_snippet": "2027年4月からNovelbright史上最大規模となる「Novelbright ARENA TOUR 2027」開催が決定！ チケット情報は後日公開いたします。 ▼2027ツアースケジュール 4月17日(土) 【神奈川】Kアリーナ横浜 4月18日(日) 【神奈川】Kアリーナ横浜",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "Novelbright ARENA TOUR 2027 公式 横浜 有明",
-      "verified_at_utc": "2026-10-20T03:17:52Z"
+      "discovery_query": "有明アリーナ 開催決定 2027 after:2026-10-19",
+      "verified_at_utc": "2026-10-21T04:57:20Z"
     }
   ],
   "rejected": [
@@ -193,7 +121,7 @@
     {
       "query": "東京ドーム 開催決定 Hey! Say! JUMP 2026 2027 Juliet",
       "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-      "reason": "2026-12-29・30、2027-01-01 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。会場公式本文で日程・名称・開演17:00を確認したが、収集済みsignalsのstarto_concertに同日・同会場・同公演の既存行がある。LP未掲載を新規と扱って既存の公開ID確認を迂回しないため追加しない。"
+      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回の同URL本文抽出では対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2026-12-29・30、2027-01-01 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。前回までの会場公式本文で日程・名称・開演17:00を確認したが、収集済みsignalsのstarto_concertに同日・同会場・同公演の既存行がある。LP未掲載を新規と扱って既存の公開ID確認を迂回しないため追加しない。"
     },
     {
       "query": "バンテリンドームナゴヤ Hey! Say! JUMP 2026 2027 Juliet",
@@ -203,7 +131,7 @@
     {
       "query": "東京ドーム 開催決定 Kis-My-Ft2 2027",
       "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-      "reason": "2027-02-21～23 Kis-My-Ft2 DOME TOUR 2026-2027 fan IS······。会場公式本文で日程・名称・開演時刻を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回の同URL本文抽出では対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2027-02-21～23 Kis-My-Ft2 DOME TOUR 2026-2027 fan IS······。前回までの会場公式本文で日程・名称・開演時刻を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
     },
     {
       "query": "有明アリーナ Hearts2Hearts 2026 チケット",
@@ -283,7 +211,7 @@
     {
       "query": "横浜アリーナ 開催決定 2027 10月17日 公式",
       "url": "https://www.yokohama-arena.co.jp/event/",
-      "reason": "2026-10-18 横浜アリーナBIGフリーマーケット。会場公式本文で日付・名称・開演10:00を確認したが、物販のフリーマーケットであり今回の大型会場公演の対象外。"
+      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回の同URL本文抽出では対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2026-10-18 横浜アリーナBIGフリーマーケット。前回までの会場公式本文で日付・名称・開演10:00を確認したが、物販のフリーマーケットであり今回の大型会場公演の対象外。"
     },
     {
       "query": "\"第33回\" \"全九州大学野球選手権大会\" \"2026\"",
@@ -299,6 +227,16 @@
       "query": "バンテリンドームナゴヤ 開催決定 2027",
       "url": "https://tv-aichi.co.jp/wannyan/2027/",
       "reason": "2027-02-13～14 わんにゃんドーム2027。主催公式本文に日付・会場・名称が揃うが、ペット同伴の展示・参加型イベントであり、今回の大型会場公演の対象外。"
+    },
+    {
+      "query": "GMOアリーナさいたま 開催決定 2027",
+      "url": "https://acosta.jp/event/saitama/27-0102/",
+      "reason": "2027-01-02～03 acosta!＠GMOアリーナさいたま。主催公式本文は屋外・けやきひろば・TOIROでのコスプレ撮影交流会と案内し、アリーナ内での撮影不可を明記。大型会場の観客公演ではないため対象外。"
+    },
+    {
+      "query": "札幌ドーム 開催決定 2027 after:2026-10-18",
+      "url": "https://www.sapporo-dome.co.jp/eventlist/",
+      "reason": "2026-12-02 会場公式イベントリストに企業創業者のお別れの会が追加された。式典・追悼行事であり、今回の大型会場公演の対象外。"
     }
   ]
 }
