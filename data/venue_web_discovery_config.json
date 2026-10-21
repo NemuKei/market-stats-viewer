@@ -24121,6 +24121,27 @@
       "url": "https://novelbright.jp/news/detail/2501",
       "venue_name": "Kアリーナ横浜",
       "verified_at_utc": "2026-10-20T03:17:52Z"
+    },
+    {
+      "artist_name": "TOTO",
+      "confidence": "high",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "有明アリーナ 開催決定 2027 after:2026-10-19",
+      "enabled": true,
+      "event_category": "コンサート",
+      "event_end_date": "2027-03-24",
+      "event_id": "vwd-eefa2509bd0f",
+      "event_start_date": "2027-03-24",
+      "event_start_time": "19:00",
+      "evidence_snippet": "2027 年 3 月 24 日 有明アリーナ 18:00 open 19:00 start",
+      "evidence_url": "https://www.udo.jp/shows/TOTO27",
+      "raw_artist_name": "TOTO",
+      "raw_venue_name": "有明アリーナ",
+      "source_class": "promoter_official",
+      "title": "TOTO 50TH ANNIVERSARY TOUR",
+      "url": "https://www.udo.jp/shows/TOTO27",
+      "venue_name": "有明アリーナ",
+      "verified_at_utc": "2026-10-21T04:57:20Z"
     }
   ],
   "future_only": true,
