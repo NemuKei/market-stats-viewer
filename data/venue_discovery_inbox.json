@@ -1,61 +1,79 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-23T03:18:32Z",
+  "run_at_utc": "2026-10-24T03:09:36Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-10-22",
-      "event_end_date": "2027-10-22",
-      "event_start_time": null,
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "東京・有明アリーナ",
-      "artist_name": "水樹奈々",
-      "raw_artist_name": "水樹奈々",
-      "title": "水樹奈々 2027年夏ツアー",
+      "event_start_date": "2027-05-02",
+      "event_end_date": "2027-05-02",
+      "event_start_time": "10:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMOアリーナさいたま（さいたまスーパーアリーナ）",
+      "artist_name": "VIVA LA ROCK 2027",
+      "raw_artist_name": "VIVA LA ROCK 2027",
+      "title": "VIVA LA ROCK 2027",
       "event_category": "コンサート",
-      "source_class": "artist_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://www.mizukinana.jp/news/100.json",
-      "evidence_snippet": "・2027年10月22日（金）東京・有明アリーナ",
+      "evidence_url": "https://vivalarock.jp/2027/about/",
+      "evidence_snippet": "開催概要 VIVA LA ROCK 2027 日程 2027年5月2日(日)、3日(月祝)、4日(火祝)、5日(水祝) 会場 GMOアリーナさいたま（さいたまスーパーアリーナ） 開場 / 開演 8:30 / 10:00（予定）",
       "content_extractor": "requests_bs4",
-      "discovery_query": "水樹奈々 2027 夏ツアー 10月22日 有明アリーナ site:mizukinana.jp",
-      "verified_at_utc": "2026-10-23T03:18:32Z"
+      "discovery_query": "GMOアリーナさいたま 開催決定 2027 after:2026-10-21",
+      "verified_at_utc": "2026-10-24T03:09:36Z"
     },
     {
-      "event_start_date": "2027-10-23",
-      "event_end_date": "2027-10-23",
-      "event_start_time": null,
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "東京・有明アリーナ",
-      "artist_name": "水樹奈々",
-      "raw_artist_name": "水樹奈々",
-      "title": "水樹奈々 2027年夏ツアー",
+      "event_start_date": "2027-05-03",
+      "event_end_date": "2027-05-03",
+      "event_start_time": "10:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMOアリーナさいたま（さいたまスーパーアリーナ）",
+      "artist_name": "VIVA LA ROCK 2027",
+      "raw_artist_name": "VIVA LA ROCK 2027",
+      "title": "VIVA LA ROCK 2027",
       "event_category": "コンサート",
-      "source_class": "artist_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://www.mizukinana.jp/news/100.json",
-      "evidence_snippet": "・2027年10月23日（土）東京・有明アリーナ",
+      "evidence_url": "https://vivalarock.jp/2027/about/",
+      "evidence_snippet": "開催概要 VIVA LA ROCK 2027 日程 2027年5月2日(日)、3日(月祝)、4日(火祝)、5日(水祝) 会場 GMOアリーナさいたま（さいたまスーパーアリーナ） 開場 / 開演 8:30 / 10:00（予定）",
       "content_extractor": "requests_bs4",
-      "discovery_query": "水樹奈々 2027 夏ツアー 10月22日 有明アリーナ site:mizukinana.jp",
-      "verified_at_utc": "2026-10-23T03:18:32Z"
+      "discovery_query": "GMOアリーナさいたま 開催決定 2027 after:2026-10-21",
+      "verified_at_utc": "2026-10-24T03:09:36Z"
     },
     {
-      "event_start_date": "2027-10-24",
-      "event_end_date": "2027-10-24",
-      "event_start_time": null,
-      "venue_name": "有明アリーナ",
-      "raw_venue_name": "東京・有明アリーナ",
-      "artist_name": "水樹奈々",
-      "raw_artist_name": "水樹奈々",
-      "title": "水樹奈々 2027年夏ツアー",
+      "event_start_date": "2027-05-04",
+      "event_end_date": "2027-05-04",
+      "event_start_time": "10:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMOアリーナさいたま（さいたまスーパーアリーナ）",
+      "artist_name": "VIVA LA ROCK 2027",
+      "raw_artist_name": "VIVA LA ROCK 2027",
+      "title": "VIVA LA ROCK 2027",
       "event_category": "コンサート",
-      "source_class": "artist_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://www.mizukinana.jp/news/100.json",
-      "evidence_snippet": "・2027年10月24日（日）東京・有明アリーナ",
+      "evidence_url": "https://vivalarock.jp/2027/about/",
+      "evidence_snippet": "開催概要 VIVA LA ROCK 2027 日程 2027年5月2日(日)、3日(月祝)、4日(火祝)、5日(水祝) 会場 GMOアリーナさいたま（さいたまスーパーアリーナ） 開場 / 開演 8:30 / 10:00（予定）",
       "content_extractor": "requests_bs4",
-      "discovery_query": "水樹奈々 2027 夏ツアー 10月22日 有明アリーナ site:mizukinana.jp",
-      "verified_at_utc": "2026-10-23T03:18:32Z"
+      "discovery_query": "GMOアリーナさいたま 開催決定 2027 after:2026-10-21",
+      "verified_at_utc": "2026-10-24T03:09:36Z"
+    },
+    {
+      "event_start_date": "2027-05-05",
+      "event_end_date": "2027-05-05",
+      "event_start_time": "10:00",
+      "venue_name": "GMOアリーナさいたま",
+      "raw_venue_name": "GMOアリーナさいたま（さいたまスーパーアリーナ）",
+      "artist_name": "VIVA LA ROCK 2027",
+      "raw_artist_name": "VIVA LA ROCK 2027",
+      "title": "VIVA LA ROCK 2027",
+      "event_category": "コンサート",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://vivalarock.jp/2027/about/",
+      "evidence_snippet": "開催概要 VIVA LA ROCK 2027 日程 2027年5月2日(日)、3日(月祝)、4日(火祝)、5日(水祝) 会場 GMOアリーナさいたま（さいたまスーパーアリーナ） 開場 / 開演 8:30 / 10:00（予定）",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "GMOアリーナさいたま 開催決定 2027 after:2026-10-21",
+      "verified_at_utc": "2026-10-24T03:09:36Z"
     }
   ],
   "rejected": [
@@ -127,27 +145,27 @@
     {
       "query": "東京ドーム 開催決定 TOKYO DOME PARK DAY 2026",
       "url": "https://www.tokyo-dome.co.jp/dome/baseball/parkday/",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-10-17 TOKYO DOME PARK DAY。前回公式本文で確認したボール遊び等の参加型開放イベントで、対象外の判断を引き継ぐ。今回は同URLの本文取得に失敗したため、今回再確認済みとは扱わない。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-10-17 TOKYO DOME PARK DAY。前回公式本文で確認したボール遊び等の参加型開放イベントで、対象外の判断を引き継ぐ。今回は同URLの本文取得に失敗したため、今回再確認済みとは扱わない。"
     },
     {
       "query": "札幌ドーム 開催決定 チケット 2026 2027",
       "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261103",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-03～04 みんなのピックルボール IN PREMIST DOME。会場公式本文で開催日時・名称を確認したが、参加体験型イベント。大型観客公演としての観戦条件・規模を確認できず対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-03～04 みんなのピックルボール IN PREMIST DOME。会場公式本文で開催日時・名称を確認したが、参加体験型イベント。大型観客公演としての観戦条件・規模を確認できず対象外。"
     },
     {
       "query": "札幌ドーム 開催決定 チケット 2026 2027",
       "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261121",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-21 コープさっぽろ 食べる・たいせつフェスティバル2026。会場公式本文で名称・日時・入場無料を確認。食育・展示イベントであり今回の大型会場公演の対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-21 コープさっぽろ 食べる・たいせつフェスティバル2026。会場公式本文で名称・日時・入場無料を確認。食育・展示イベントであり今回の大型会場公演の対象外。"
     },
     {
       "query": "札幌ドーム 開催決定 チケット 2026 2027",
       "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261219",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-19～20 コンサドーレ・エスポラーダカップ 全道市町村サッカー・フットサル大会。会場公式本文は開催要項を案内し開始時刻未定。地域参加型大会で、大型観客公演としての規模を確認できず対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-19～20 コンサドーレ・エスポラーダカップ 全道市町村サッカー・フットサル大会。会場公式本文は開催要項を案内し開始時刻未定。地域参加型大会で、大型観客公演としての規模を確認できず対象外。"
     },
     {
       "query": "札幌ドーム 開催決定 チケット 2026 2027",
       "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20270223",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2027-02-23 第32回「赤い羽根」ティーボール北の甲子園大会 北海道知事Cup。会場公式本文で日付・名称を確認したが、参加型大会で大型観客公演としての規模を確認できず対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2027-02-23 第32回「赤い羽根」ティーボール北の甲子園大会 北海道知事Cup。会場公式本文で日付・名称を確認したが、参加型大会で大型観客公演としての規模を確認できず対象外。"
     },
     {
       "query": "横浜アリーナ 2027 開催決定 超英雄祭 1月21日 公式",
@@ -157,17 +175,17 @@
     {
       "query": "東京ドーム 開催決定 Hey! Say! JUMP 2026 2027 Juliet",
       "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回（2026-10-23）の同URL本文抽出でも対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2026-12-29・30、2027-01-01 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。前回までの会場公式本文で日程・名称・開演17:00を確認したが、収集済みsignalsのstarto_concertに同日・同会場・同公演の既存行がある。LP未掲載を新規と扱って既存の公開ID確認を迂回しないため追加しない。"
+      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回（2026-10-24）の同URL本文抽出でも対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2026-12-29・30、2027-01-01 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。前回までの会場公式本文で日程・名称・開演17:00を確認したが、収集済みsignalsのstarto_concertに同日・同会場・同公演の既存行がある。LP未掲載を新規と扱って既存の公開ID確認を迂回しないため追加しない。"
     },
     {
       "query": "バンテリンドームナゴヤ Hey! Say! JUMP 2026 2027 Juliet",
       "url": "https://www.nagoya-dome.co.jp/enjoy/index.php",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は会場公式トップ本文は2026-10-21 21:00から終了未定の緊急システムメンテナンスを案内し、対象URLはHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-19・20 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。会場公式本文で日程・名称を確認したが、公式イベントDBとstarto_concertに既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は会場公式トップ本文は2026-10-21 21:00から終了未定の緊急システムメンテナンスを案内し、対象URLはHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-19・20 Hey! Say! JUMP DOME TOUR 2026-2027 Juliet。会場公式本文で日程・名称を確認したが、公式イベントDBとstarto_concertに既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
     },
     {
       "query": "東京ドーム 開催決定 Kis-My-Ft2 2027",
       "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回（2026-10-23）の同URL本文抽出でも対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2027-02-21～23 Kis-My-Ft2 DOME TOUR 2026-2027 fan IS······。前回までの会場公式本文で日程・名称・開演時刻を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
+      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回（2026-10-24）の同URL本文抽出でも対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2027-02-21～23 Kis-My-Ft2 DOME TOUR 2026-2027 fan IS······。前回までの会場公式本文で日程・名称・開演時刻を確認したが、公式イベントDBに同日・同会場・同公演の既存行があるため追加しない。LP未掲載を新規公演の根拠にしない。"
     },
     {
       "query": "有明アリーナ Hearts2Hearts 2026 チケット",
@@ -197,7 +215,7 @@
     {
       "query": "バンテリンドームナゴヤ Snow Man DOME TOUR 2026-2027 ALL SUITE",
       "url": "https://www.nagoya-dome.co.jp/enjoy/index.php",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は会場公式トップ本文は2026-10-21 21:00から終了未定の緊急システムメンテナンスを案内し、対象URLはHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-26～29 Snow Man DOME TOUR 2026-2027 ALL SUITE。会場公式本文で日程・名称を確認したが、公式イベントDBとstarto_concertに既存行があるため追加しない。LPに欠ける日を新規と扱って既存の公開ID確認を迂回しない。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は会場公式トップ本文は2026-10-21 21:00から終了未定の緊急システムメンテナンスを案内し、対象URLはHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-26～29 Snow Man DOME TOUR 2026-2027 ALL SUITE。会場公式本文で日程・名称を確認したが、公式イベントDBとstarto_concertに既存行があるため追加しない。LPに欠ける日を新規と扱って既存の公開ID確認を迂回しない。"
     },
     {
       "query": "みずほPayPayドーム Snow Man 2026 12月 開催決定",
@@ -222,12 +240,12 @@
     {
       "query": "札幌ドーム 開催決定 プレコン 2026",
       "url": "https://www.sapporo-dome.co.jp/information/2026/10/15/26978/",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-11 プレコン！～ときめき巡る、大人の縁結びフェス～。会場公式本文で日付・会場・名称・開始19:00を確認したが、20～37歳の未婚男女が参加する恋活・婚活・友活イベント。大型観客公演の対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-11 プレコン！～ときめき巡る、大人の縁結びフェス～。会場公式本文で日付・会場・名称・開始19:00を確認したが、20～37歳の未婚男女が参加する恋活・婚活・友活イベント。大型観客公演の対象外。"
     },
     {
       "query": "札幌ドーム 2026 11月 展望台ナイトヨガ",
       "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261105",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-05・09・19・24 展望台ナイトヨガ。会場公式イベントリストに追加された日程と11月5日詳細本文を確認。展望台で行う参加型ヨガであり、大型観客公演の対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-11-05・09・19・24 展望台ナイトヨガ。会場公式イベントリストに追加された日程と11月5日詳細本文を確認。展望台で行う参加型ヨガであり、大型観客公演の対象外。"
     },
     {
       "query": "Kアリーナ横浜 Tele 2027 開催決定",
@@ -237,7 +255,7 @@
     {
       "query": "バンテリンドームナゴヤ 冬スポ 2026 開催決定",
       "url": "https://www.nagoya-dome.co.jp/enjoy/index.php",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は会場公式トップ本文は2026-10-21 21:00から終了未定の緊急システムメンテナンスを案内し、対象URLはHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-11～13 冬スポ!! WINTER SPORTS FESTA SEASON 26。会場公式の新掲載日程と主催公式本文を確認したが、スキー・スノーボード用品の展示販売会。大型観客公演の対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は会場公式トップ本文は2026-10-21 21:00から終了未定の緊急システムメンテナンスを案内し、対象URLはHTTP 404。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-11～13 冬スポ!! WINTER SPORTS FESTA SEASON 26。会場公式の新掲載日程と主催公式本文を確認したが、スキー・スノーボード用品の展示販売会。大型観客公演の対象外。"
     },
     {
       "query": "有明アリーナ 陣 presents CL6th LDH紅白頂上決戦 2026 チケット",
@@ -247,7 +265,7 @@
     {
       "query": "横浜アリーナ 開催決定 2027 10月17日 公式",
       "url": "https://www.yokohama-arena.co.jp/event/",
-      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回（2026-10-23）の同URL本文抽出でも対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2026-10-18 横浜アリーナBIGフリーマーケット。前回までの会場公式本文で日付・名称・開演10:00を確認したが、物販のフリーマーケットであり今回の大型会場公演の対象外。"
+      "reason": "前回までの公式本文確認・除外判断を引き継ぐ。今回（2026-10-24）の同URL本文抽出でも対象の過去／将来月行を再取得できず、日程情報の今回再確認済みとは扱わない。2026-10-18 横浜アリーナBIGフリーマーケット。前回までの会場公式本文で日付・名称・開演10:00を確認したが、物販のフリーマーケットであり今回の大型会場公演の対象外。"
     },
     {
       "query": "\"第33回\" \"全九州大学野球選手権大会\" \"2026\"",
@@ -272,7 +290,7 @@
     {
       "query": "札幌ドーム 開催決定 2027 after:2026-10-18",
       "url": "https://www.sapporo-dome.co.jp/eventlist/",
-      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-23）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-02 会場公式イベントリストに企業創業者のお別れの会が追加された。式典・追悼行事であり、今回の大型会場公演の対象外。"
+      "reason": "前回までの除外・保留判断を引き継ぐ。今回（2026-10-24）は対象URLのrequests_bs4本文取得はHTTP 503。日程本文の今回再確認済みとは扱わず、取得失敗を公演なし・中止の根拠にしない。 2026-12-02 会場公式イベントリストに企業創業者のお別れの会が追加された。式典・追悼行事であり、今回の大型会場公演の対象外。"
     },
     {
       "query": "MUFGスタジアム 開催決定 2027 after:2026-10-20",
