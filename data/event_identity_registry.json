@@ -25379,7 +25379,7 @@
       "event_uid": "a5e6ad5ed43b160d67f0",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "a5e6ad5ed43b160d67f0",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -25391,6 +25391,30 @@
             "event_end_date": "2027-01-16",
             "event_start_time": "18:00",
             "title": "ユニコーン2026ー2027ツアー「こえてたあ」",
+            "venue_name": "フェスティバルホール"
+          },
+          "source_records": [
+            {
+              "record_id": "festival_hall:https://www.festivalhall.jp/events/6910/",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "a5e6ad5ed43b160d67f0",
+          "evidence": {
+            "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+            "reviewed_at_utc": "2026-10-25T10:02:31.896652+00:00",
+            "url": "https://www.unicorn.jp/special/ataetekoetetaa/"
+          },
+          "fingerprint": "4d22d7847edcfe1f1f9afba4027cd512125a26e58c1544c07e41eeac0c87e8f5",
+          "identity": {
+            "artist_name": "UNICORN",
+            "event_date": "2027-01-16",
+            "event_end_date": "2027-01-16",
+            "event_start_time": "18:00",
+            "title": "ユニコーン2026-2027ツアー「こえてたあ」",
             "venue_name": "フェスティバルホール"
           },
           "source_records": [
@@ -27839,7 +27863,7 @@
       "event_uid": "823d29f9c693139b2b20",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "823d29f9c693139b2b20",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -27851,6 +27875,30 @@
             "event_end_date": "2027-03-06",
             "event_start_time": "18:00",
             "title": "ReoNa ReoNa ONE-MAN Concert 2027 「ハロー、アンハッピー」 at ぴあアリーナMM ～逃げて逢おうね～",
+            "venue_name": "ぴあアリーナMM"
+          },
+          "source_records": [
+            {
+              "record_id": "pia_arena_mm:event/6602.html",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "823d29f9c693139b2b20",
+          "evidence": {
+            "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+            "reviewed_at_utc": "2026-10-25T10:02:32.020465+00:00",
+            "url": "https://pia-arena-mm.jp/event/6602.html"
+          },
+          "fingerprint": "e750fc05ad20dcc86e0b62d8ab383ec030b22ffe6bb004ea8034d17a0b9db963",
+          "identity": {
+            "artist_name": "ReoNa",
+            "event_date": "2027-03-06",
+            "event_end_date": "2027-03-06",
+            "event_start_time": "18:00",
+            "title": "ReoNa ReoNa ANIME & GAME スーパーベストコンサート “ハロー、アンハッピー ー⻘ー 〜逃げて逢おうね〜” at ぴあアリーナMM",
             "venue_name": "ぴあアリーナMM"
           },
           "source_records": [
@@ -27978,7 +28026,7 @@
       "event_uid": "e02eb3d7b012112a9d4a",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "e02eb3d7b012112a9d4a",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -27990,6 +28038,30 @@
             "event_end_date": "2027-03-07",
             "event_start_time": "17:00",
             "title": "ReoNa ReoNa ONE-MAN Concert 2027 「ハロー、アンハッピー」 at ぴあアリーナMM ～やっぱり人が好き～",
+            "venue_name": "ぴあアリーナMM"
+          },
+          "source_records": [
+            {
+              "record_id": "pia_arena_mm:event/6605.html",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "e02eb3d7b012112a9d4a",
+          "evidence": {
+            "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+            "reviewed_at_utc": "2026-10-25T10:02:32.081840+00:00",
+            "url": "https://pia-arena-mm.jp/event/6605.html"
+          },
+          "fingerprint": "d173262bac62f09b9c2dec60bc8bb1098b8a7db4c7029c9787683e2d1f58d897",
+          "identity": {
+            "artist_name": "ReoNa",
+            "event_date": "2027-03-07",
+            "event_end_date": "2027-03-07",
+            "event_start_time": "17:00",
+            "title": "ReoNa ReoNa ANIME & GAME スーパーベストコンサート “ハロー、アンハッピー ー赤ー 〜やっぱり人が好き〜” at ぴあアリーナMM",
             "venue_name": "ぴあアリーナMM"
           },
           "source_records": [
@@ -28499,7 +28571,7 @@
       "event_uid": "3dbb286da45344bfa8b6",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "3dbb286da45344bfa8b6",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -28511,6 +28583,30 @@
             "event_end_date": "2027-03-31",
             "event_start_time": "18:00",
             "title": "布施明 LIVE TOUR 2026-2027  うた語り 思(おもい)の道",
+            "venue_name": "フェスティバルホール"
+          },
+          "source_records": [
+            {
+              "record_id": "festival_hall:https://www.festivalhall.jp/events/6537/",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "3dbb286da45344bfa8b6",
+          "evidence": {
+            "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+            "reviewed_at_utc": "2026-10-25T10:02:31.959908+00:00",
+            "url": "https://fuse-akira.com/concert/1296/"
+          },
+          "fingerprint": "0073005882eb83cbe7042afd96508be8ad97bfa07894a638f2c4676a75aadf97",
+          "identity": {
+            "artist_name": "布施明",
+            "event_date": "2027-03-31",
+            "event_end_date": "2027-03-31",
+            "event_start_time": "18:00",
+            "title": "布施明 LIVE TOUR 2026-2027  うた語り思(おもい)の道",
             "venue_name": "フェスティバルホール"
           },
           "source_records": [
@@ -31879,9 +31975,93 @@
         "evt_9ed03e8e41844fbcb47cf985fcafa6a6"
       ],
       "request_sha256": "62a5ee002ca0fe47d5277636da99eb0f1a8e7926e7eca3d99ddc23dc9f49e5ea"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "a5e6ad5ed43b160d67f0",
+          "fingerprint": "4d22d7847edcfe1f1f9afba4027cd512125a26e58c1544c07e41eeac0c87e8f5"
+        }
+      ],
+      "evidence": {
+        "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+        "reviewed_at_utc": "2026-10-25T10:02:31.896652+00:00",
+        "url": "https://www.unicorn.jp/special/ataetekoetetaa/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "a5e6ad5ed43b160d67f0"
+      ],
+      "previous_ids": [
+        "a5e6ad5ed43b160d67f0"
+      ],
+      "request_sha256": "3bf791ac55c0675da7f41abacff0c44f648734cbe77f6fc2cdc0c00a622b8bdf"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "3dbb286da45344bfa8b6",
+          "fingerprint": "0073005882eb83cbe7042afd96508be8ad97bfa07894a638f2c4676a75aadf97"
+        }
+      ],
+      "evidence": {
+        "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+        "reviewed_at_utc": "2026-10-25T10:02:31.959908+00:00",
+        "url": "https://fuse-akira.com/concert/1296/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "3dbb286da45344bfa8b6"
+      ],
+      "previous_ids": [
+        "3dbb286da45344bfa8b6"
+      ],
+      "request_sha256": "0181dc004cb5c0e88796b55773fdaefdd1183c81f496a23e2e36c57fb0372545"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "823d29f9c693139b2b20",
+          "fingerprint": "e750fc05ad20dcc86e0b62d8ab383ec030b22ffe6bb004ea8034d17a0b9db963"
+        }
+      ],
+      "evidence": {
+        "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+        "reviewed_at_utc": "2026-10-25T10:02:32.020465+00:00",
+        "url": "https://pia-arena-mm.jp/event/6602.html"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "823d29f9c693139b2b20"
+      ],
+      "previous_ids": [
+        "823d29f9c693139b2b20"
+      ],
+      "request_sha256": "e6d29509ff3745c9d31a311f2fd5e85e0b364d96c40724510ada8c323c79772d"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "e02eb3d7b012112a9d4a",
+          "fingerprint": "d173262bac62f09b9c2dec60bc8bb1098b8a7db4c7029c9787683e2d1f58d897"
+        }
+      ],
+      "evidence": {
+        "reason": "現行公式本文で同じ開催日・会場・開演時刻・出演者を確認。原公式source recordも同じで、中止・延期の告知は確認されない。会場公式の公演題名更新を同一公演の訂正として既存IDへ結び付け、旧観測を保存する。UNICORNは年区切り記号、布施明は題名中空白、ReoNaはANIME & GAME公演名の具体化と公式h3出演者ReoNaの取得復旧であり、新規公演やID分割ではない。",
+        "reviewed_at_utc": "2026-10-25T10:02:32.081840+00:00",
+        "url": "https://pia-arena-mm.jp/event/6605.html"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "e02eb3d7b012112a9d4a"
+      ],
+      "previous_ids": [
+        "e02eb3d7b012112a9d4a"
+      ],
+      "request_sha256": "187ed4cd6d5f8db9e8c3a57462dc2b894065f2edaa69dfbdfa5293abe9420278"
     }
   ],
-  "revision": 29,
+  "revision": 33,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",

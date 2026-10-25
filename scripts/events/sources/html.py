@@ -2029,6 +2029,9 @@ class _PiaArenaMmSchedule(_BaseStrategy):
         year: int,
         seen_uids: set[str],
     ) -> list[EventRecord]:
+        from ...signals.entity_aliases import load_artist_lookup_maps, normalize_with_lookup
+
+        artist_keep_map, artist_compact_map = load_artist_lookup_maps()
         events: list[EventRecord] = []
 
         for a_tag in soup.select("a.event-list[href]"):
@@ -2049,6 +2052,15 @@ class _PiaArenaMmSchedule(_BaseStrategy):
             title = re.sub(r"\s+", " ", title).strip()
             if not title or title.upper() == "PRIVATE":
                 continue
+
+            # The separate artist heading remains valid when a program title
+            # changes. Unknown/event headings keep the existing inference path.
+            artist_node = detail_node.select_one(".title h3")
+            artist, recognized = normalize_with_lookup(
+                artist_node.get_text(" ", strip=True) if artist_node else "",
+                artist_keep_map,
+                artist_compact_map,
+            )
 
             href = a_tag["href"]
             event_url = href
@@ -2091,7 +2103,7 @@ class _PiaArenaMmSchedule(_BaseStrategy):
                 status="scheduled",
                 url=event_url,
                 description=None,
-                performers=None,
+                performers=artist if recognized else None,
                 capacity=None,
                 source_type=venue.source_type,
                 source_url=source_url,

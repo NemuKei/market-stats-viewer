@@ -370,6 +370,8 @@ python -m scripts.preserve_published_event_ids \
     - 会場名変更の場合は `venue_id` を変更せず、旧名称を `venue_aliases.csv` に追加する候補として出力する。
   - アーティスト正規化:
     - `raw_artist_name` を `artist_registry.seed.csv`、`artist_registry.jp.seed.csv`、`artist_registry.manual.csv` で解決できるか確認する。
+    - ぴあアリーナMMは公式一覧の独立した出演者見出し（`.event-list__detail .title h3`）が既存辞書と一致するとき、その出演者を取得する。公演名が変わっても題名推定だけに依存しない。見出しが欠ける・未確認のときは従来の推定・保留を維持する。
+    - 既掲載公演の題名変更で固定IDが保留された場合は、開催日・会場・開演時刻・公式根拠を確認し、同一公演だけを既存IDの`correction`としてレビューする。アーティスト解決の失敗やID保留を中止・取り下げと解釈しない。
     - 未解決、曖昧一致、短いaliasによる誤一致候補を `artist_alias_candidates` として出力する。
     - `manual` 辞書は自動上書きしない。自動反映する場合もCodex automationが差分を作成し、verifyを通す。
   - カテゴリ精査:
