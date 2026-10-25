@@ -30835,6 +30835,180 @@
           ]
         }
       ]
+    },
+    {
+      "event_uid": "evt_c78a6441f465402584f038874ad89830",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "fe1f4f80281378b00296",
+          "evidence": {
+            "reason": "アーティスト公式本文のADDED OSAKAに、2027-01-16と01-17の京セラドーム大阪追加公演、両日OPEN 15:00 / START 17:00を確認。既存台帳の全active/履歴観測に同会場・日付を含む開催はなく、source共有・関連IDもない。別日2公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+            "reviewed_at_utc": "2026-10-25T08:41:15.120864Z",
+            "url": "https://befirst.tokyo/tour/dometour2027/"
+          },
+          "fingerprint": "4583f5e0c4d1da49b7f9bef9af45846f3c049d262bb48fa4917b9518dc3b5241",
+          "identity": {
+            "artist_name": "BE:FIRST",
+            "event_date": "2027-01-16",
+            "event_end_date": "2027-01-16",
+            "event_start_time": "17:00",
+            "title": "BE:FIRST 5th Anniversary DOME TOUR 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "77980accba3960dc71ae329149d5dd5effb4ef25d72e5ee55a6dfd2ff548dad1",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_4210da4979fc4975815a4256262822e2",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "25db79450b776ea9175e",
+          "evidence": {
+            "reason": "アーティスト公式本文のADDED OSAKAに、2027-01-16と01-17の京セラドーム大阪追加公演、両日OPEN 15:00 / START 17:00を確認。既存台帳の全active/履歴観測に同会場・日付を含む開催はなく、source共有・関連IDもない。別日2公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+            "reviewed_at_utc": "2026-10-25T08:41:15.120864Z",
+            "url": "https://befirst.tokyo/tour/dometour2027/"
+          },
+          "fingerprint": "e1de9187d63926bedc8abcb39e7ba2458d1e1f6518ce414815941a435fd85555",
+          "identity": {
+            "artist_name": "BE:FIRST",
+            "event_date": "2027-01-17",
+            "event_end_date": "2027-01-17",
+            "event_start_time": "17:00",
+            "title": "BE:FIRST 5th Anniversary DOME TOUR 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "8487894a6b917e0551b11bd0a2316292fc4d5f1eb65a995a93c7cb78db9cc565",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_31424af2e9a242b1bf50367aacd75a12",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "81eafc6c028e79973210",
+          "evidence": {
+            "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+            "reviewed_at_utc": "2026-10-25T08:41:15.121318Z",
+            "url": "https://cf.lapone.jp/news/detail/203"
+          },
+          "fingerprint": "478a17d8e45874fe691ba7063444b25da7641fbb778fdbc797746f05b6cbb837",
+          "identity": {
+            "artist_name": "LAPOSTA 2027",
+            "event_date": "2027-01-23",
+            "event_end_date": "2027-01-23",
+            "event_start_time": "18:00",
+            "title": "LAPOSTA 2027",
+            "venue_name": "東京ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "855021b855778f5592ddcc0e58f0d45b825f3460cbbff5ebecc5e820efd220cd",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_144810f51c944ce7844f3cd5fc1698a1",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "4dc0e661b81cec2d92f2",
+          "evidence": {
+            "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+            "reviewed_at_utc": "2026-10-25T08:41:15.121318Z",
+            "url": "https://cf.lapone.jp/news/detail/203"
+          },
+          "fingerprint": "0853a9d0d9d705cbe4c4e89264aff73c0bbf9f7f54ab6dca51a42ab64e37be16",
+          "identity": {
+            "artist_name": "LAPOSTA 2027",
+            "event_date": "2027-01-24",
+            "event_end_date": "2027-01-24",
+            "event_start_time": "17:00",
+            "title": "LAPOSTA 2027",
+            "venue_name": "東京ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "6b144abe897437e139d26099e706af873418a8a8fb67b80af343e2579477d6ef",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_0ec60951998848e1b42cc81862ce2f1b",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "f73bafa8583b0a6b59c7",
+          "evidence": {
+            "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+            "reviewed_at_utc": "2026-10-25T08:41:15.121318Z",
+            "url": "https://cf.lapone.jp/news/detail/203"
+          },
+          "fingerprint": "aa847f985f9dcded411f66c1cc22a360aab81a085c5e91d65e5fe534fb6d0f87",
+          "identity": {
+            "artist_name": "LAPOSTA 2027",
+            "event_date": "2027-02-06",
+            "event_end_date": "2027-02-06",
+            "event_start_time": "18:00",
+            "title": "LAPOSTA 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "9ec131b5fc0406616044d1b76fb83bdb7925a8375fb142278897b49800871832",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_9ed03e8e41844fbcb47cf985fcafa6a6",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "47ccf598dfaf52644821",
+          "evidence": {
+            "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+            "reviewed_at_utc": "2026-10-25T08:41:15.121318Z",
+            "url": "https://cf.lapone.jp/news/detail/203"
+          },
+          "fingerprint": "2c724e6cf1c24fb4677f1815a57aa708492a11c41c06234c19dd6d0ae0648356",
+          "identity": {
+            "artist_name": "LAPOSTA 2027",
+            "event_date": "2027-02-07",
+            "event_end_date": "2027-02-07",
+            "event_start_time": "16:00",
+            "title": "LAPOSTA 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "01573fb82e7ce08a2702863848dd40f558cdb90af3165dc291278d97639431b8",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -31549,9 +31723,67 @@
         "f8d90fccfc1062c1d279"
       ],
       "request_sha256": "3776f28bc7c1a781fb7eff760c3746cc70077b1080407ee1f263e9e9c2ef57b5"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_c78a6441f465402584f038874ad89830",
+          "fingerprint": "4583f5e0c4d1da49b7f9bef9af45846f3c049d262bb48fa4917b9518dc3b5241"
+        },
+        {
+          "event_uid": "evt_4210da4979fc4975815a4256262822e2",
+          "fingerprint": "e1de9187d63926bedc8abcb39e7ba2458d1e1f6518ce414815941a435fd85555"
+        }
+      ],
+      "evidence": {
+        "reason": "アーティスト公式本文のADDED OSAKAに、2027-01-16と01-17の京セラドーム大阪追加公演、両日OPEN 15:00 / START 17:00を確認。既存台帳の全active/履歴観測に同会場・日付を含む開催はなく、source共有・関連IDもない。別日2公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+        "reviewed_at_utc": "2026-10-25T08:41:15.120864Z",
+        "url": "https://befirst.tokyo/tour/dometour2027/"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_c78a6441f465402584f038874ad89830",
+        "evt_4210da4979fc4975815a4256262822e2"
+      ],
+      "previous_ids": [],
+      "request_sha256": "ce38a677e3052ed1cbde84a473ad76548b306d51dfd99211900538b7cc61434c"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_31424af2e9a242b1bf50367aacd75a12",
+          "fingerprint": "478a17d8e45874fe691ba7063444b25da7641fbb778fdbc797746f05b6cbb837"
+        },
+        {
+          "event_uid": "evt_144810f51c944ce7844f3cd5fc1698a1",
+          "fingerprint": "0853a9d0d9d705cbe4c4e89264aff73c0bbf9f7f54ab6dca51a42ab64e37be16"
+        },
+        {
+          "event_uid": "evt_0ec60951998848e1b42cc81862ce2f1b",
+          "fingerprint": "aa847f985f9dcded411f66c1cc22a360aab81a085c5e91d65e5fe534fb6d0f87"
+        },
+        {
+          "event_uid": "evt_9ed03e8e41844fbcb47cf985fcafa6a6",
+          "fingerprint": "2c724e6cf1c24fb4677f1815a57aa708492a11c41c06234c19dd6d0ae0648356"
+        }
+      ],
+      "evidence": {
+        "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
+        "reviewed_at_utc": "2026-10-25T08:41:15.121318Z",
+        "url": "https://cf.lapone.jp/news/detail/203"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_31424af2e9a242b1bf50367aacd75a12",
+        "evt_144810f51c944ce7844f3cd5fc1698a1",
+        "evt_0ec60951998848e1b42cc81862ce2f1b",
+        "evt_9ed03e8e41844fbcb47cf985fcafa6a6"
+      ],
+      "previous_ids": [],
+      "request_sha256": "aabc055990179561d10a4e2c4f5936dbaf38350d615ccddc42429e991a12df34"
     }
   ],
-  "revision": 25,
+  "revision": 27,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",

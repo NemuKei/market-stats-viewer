@@ -295,6 +295,12 @@ python -m scripts.event_identity_registry --registry scratch/identity.json seed 
    python -m pytest tests/test_event_identity_registry.py tests/test_build_lp_events.py -q
    ```
 
+#### 取り込み後の確認待ちの引き継ぎ
+
+- 収集担当（Codex Automation）はinboxだけを更新し、取り込み担当（GitHub Actions）はconfig・DB・LPの更新と検証を行う。inboxへの候補数、DBへの取り込み数、固定ID保留数、LP掲載数は別々に報告し、取り込み成功だけでLPへの新着反映完了としない。
+- 固定IDレビュー担当は、新規に取り込まれた対象と上記のprivate pending previewを突き合わせ、公式本文と既存台帳のactive・履歴観測から新規／訂正／重複を分類する。確認できた対象だけに根拠URL・UTC確認時刻・理由を付け、既存の`apply-review`で登録する。情報不足や曖昧な対応は保留を続ける。担当未割り当て・未処理はレビュー未完了として引き継ぎ、収集担当や更新workflowが未確認IDを自動発行して補わない。
+- 公開担当は、台帳の既存ID・履歴保全、同一レビュー再適用、LPの追加・変更・削除差分、保持期間全体のassetとmanifestを検証し、承認された台帳とLPを同じ変更にまとめる。`data/lp_events.json`のmain反映は公開workflowのpush triggerなので、公開承認を得てから反映し、Releaseと利用側の同版取込まで確認する。private previewやレビュー入力の作業fileをGit・Releaseへ含めない。
+
 公開が別途承認された環境でのみ、通常の `python -m scripts.build_lp_events`、`python -m scripts.validate_external_events --lp-events data/lp_events.json`、manifest検査、SideBizへの同じ版の取込へ進む。生成処理は台帳を読み取り、確定行だけを既存公開fieldへ供給する。保留詳細をLP保存前に除外し、既存の公開Release assetにも含めない。保留件数と台帳版だけを監査情報として残す。private previewをReleaseやGitへ同梱しない。現在のSideBiz consumerは同じ `event_uid` だけを使える。公開guideの従来の条件付きID説明は、台帳採用確認と同じ公開変更で更新するまで条件付きのままであり、このlocal commitだけで公開上の恒久性を告知しない。
 
 台帳とLPの置換は同directoryの一時file、一時fileのfsync、atomic replaceと台帳SHA/revisionの競合検査を使う。台帳lockは `data/.event_identity_registry.json.lock` の排他作成で、PID/UTC開始時刻を保存しGitから除外する。解放は自分のinodeに一致するlockだけに行う。既存lockがあれば停止し、owner/runが生きている間は削除しない。異常終了時は担当者がrun終了・他writer不在・台帳validateを確認してから残留lockだけを片付ける。シリアライズ済み台帳bytesが16MBを超える場合は置換前に停止し、旧台帳を読める状態で保持する。既存fileのpermissionは置換後も保つ。directory fsyncによる電源断耐久性は保証しない。初期台帳は約1.04MB/1,060 IDで、上限到達時期は新規・訂正頻度に依存し未推定。容量拡張は別のレビュー付き移行とし、履歴を自動間引きしない。台帳の保全・復旧はGitのレビュー済み版から行い、DB・独自メモの移行や削除は行わない。
