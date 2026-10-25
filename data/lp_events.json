@@ -35784,6 +35784,56 @@
       "venue_name": "みずほPayPayドーム福岡"
     },
     {
+      "artist_name": "JO1、INI、DXTEEN、KO1KEYZ、ME:I、IS:SUE",
+      "capacity": 55000,
+      "display_source_class": "venue_official",
+      "display_source_id": "official_events",
+      "display_source_label": "会場公式",
+      "event_category": "コンサート",
+      "event_date": "2027-02-06",
+      "event_end_date": "2027-02-06",
+      "event_end_time": null,
+      "event_key": "evt_0ec60951998848e1b42cc81862ce2f1b",
+      "event_start_time": "18:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://cf.lapone.jp/feature/laposta2027",
+      "first_seen_at_utc": "2026-10-25T08:53:28Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "JO1、INI、DXTEEN、KO1KEYZ、ME:I、IS:SUE",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 10,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://cf.lapone.jp/feature/laposta2027",
+          "priority": 10,
+          "record_id": "kyocera_dome_osaka:https://cf.lapone.jp/feature/laposta2027#d=2027-02-06#t=18:00",
+          "source_class": "venue_official",
+          "source_id": "official_events",
+          "source_label": "会場公式",
+          "title": "LAPOSTA 2027",
+          "updated_at_utc": "2026-10-25T08:53:28Z",
+          "url": "https://cf.lapone.jp/feature/laposta2027"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://cf.lapone.jp/news/detail/203",
+          "priority": 20,
+          "record_id": "9ec131b5fc0406616044d1b76fb83bdb7925a8375fb142278897b49800871832",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "LAPOSTA 2027",
+          "updated_at_utc": "2026-10-25T03:11:25Z",
+          "url": "https://cf.lapone.jp/news/detail/203"
+        }
+      ],
+      "title": "LAPOSTA 2027",
+      "updated_at_utc": "2026-10-25T08:53:28Z",
+      "url": "https://cf.lapone.jp/feature/laposta2027",
+      "venue_name": "京セラドーム大阪"
+    },
+    {
       "artist_name": "私立恵比寿中学",
       "capacity": 8000,
       "display_source_class": "venue_official",
@@ -35996,6 +36046,56 @@
       "updated_at_utc": "2026-10-25T08:54:11Z",
       "url": "https://enhypen-jp.weverse.io/news/932a12458df2",
       "venue_name": "みずほPayPayドーム福岡"
+    },
+    {
+      "artist_name": "JO1、INI、DXTEEN、KO1KEYZ、ME:I、IS:SUE",
+      "capacity": 55000,
+      "display_source_class": "venue_official",
+      "display_source_id": "official_events",
+      "display_source_label": "会場公式",
+      "event_category": "コンサート",
+      "event_date": "2027-02-07",
+      "event_end_date": "2027-02-07",
+      "event_end_time": null,
+      "event_key": "evt_9ed03e8e41844fbcb47cf985fcafa6a6",
+      "event_start_time": "16:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://cf.lapone.jp/feature/laposta2027",
+      "first_seen_at_utc": "2026-10-25T08:53:28Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "JO1、INI、DXTEEN、KO1KEYZ、ME:I、IS:SUE",
+      "raw_venue_name": "京セラドーム大阪",
+      "source_priority": 10,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://cf.lapone.jp/feature/laposta2027",
+          "priority": 10,
+          "record_id": "kyocera_dome_osaka:https://cf.lapone.jp/feature/laposta2027#d=2027-02-07#t=16:00",
+          "source_class": "venue_official",
+          "source_id": "official_events",
+          "source_label": "会場公式",
+          "title": "LAPOSTA 2027",
+          "updated_at_utc": "2026-10-25T08:53:28Z",
+          "url": "https://cf.lapone.jp/feature/laposta2027"
+        },
+        {
+          "content_extractor": "requests_bs4",
+          "evidence_url": "https://cf.lapone.jp/news/detail/203",
+          "priority": 20,
+          "record_id": "01573fb82e7ce08a2702863848dd40f558cdb90af3165dc291278d97639431b8",
+          "source_class": "promoter_official",
+          "source_id": "venue_web_discovery",
+          "source_label": "Venue Web Discovery (Official/Semi-official)",
+          "title": "LAPOSTA 2027",
+          "updated_at_utc": "2026-10-25T03:11:25Z",
+          "url": "https://cf.lapone.jp/news/detail/203"
+        }
+      ],
+      "title": "LAPOSTA 2027",
+      "updated_at_utc": "2026-10-25T08:53:28Z",
+      "url": "https://cf.lapone.jp/feature/laposta2027",
+      "venue_name": "京セラドーム大阪"
     },
     {
       "artist_name": "BUMP OF CHICKEN",
@@ -40548,13 +40648,13 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-25T09:21:35Z",
+  "generated_at_utc": "2026-10-25T09:44:21Z",
   "history_start_date": "2026-07-27",
   "history_window_days": 90,
   "identity_registry": {
-    "revision": 27,
+    "revision": 29,
     "schema_version": 1,
-    "sha256": "54895733e92820dad01ecd8cd8ae3147fa030258b3e356630d090bfd065d87d8"
+    "sha256": "65670119cecff659e7401c6ae668231879804ded68a6bec0849e5fb67670b2df"
   },
   "include_past": true,
   "location_held_records": [
@@ -40743,11 +40843,11 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 732,
+      "official_events": 734,
       "venue_web_discovery": 287
     },
-    "event_count": 1019,
-    "identity_held_record_count": 938,
+    "event_count": 1021,
+    "identity_held_record_count": 936,
     "location_held_record_count": 35,
     "record_count_before_grouping": 2189,
     "start_time_split_event_count": 68,

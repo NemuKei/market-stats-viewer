@@ -30956,7 +30956,7 @@
       "event_uid": "evt_0ec60951998848e1b42cc81862ce2f1b",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "f73bafa8583b0a6b59c7",
           "evidence": {
             "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
@@ -30978,6 +30978,34 @@
               "source_id": "venue_web_discovery"
             }
           ]
+        },
+        {
+          "active": true,
+          "candidate_key": "e05337c825a31cbff175",
+          "evidence": {
+            "reason": "2026-10-25に主催LAPONE公式告知と特設ページ本文を再確認。LAPOSTA 2027 京セラドーム大阪2027-02-06 18:00/02-07 16:00と全6出演グループJO1・INI・DXTEEN・KO1KEYZ・ME:I・IS:SUEが一致。日付・会場・開演時刻・公演題名および既採用のdiscovery根拠レコードが同じであり、自動会場公式取込による出演者表記の具体化と根拠追加。別公演や分割ではなく同一公演の訂正として既存IDを継承し旧観測を履歴保存する。",
+            "reviewed_at_utc": "2026-10-25T09:44:20.495827+00:00",
+            "url": "https://cf.lapone.jp/news/detail/203"
+          },
+          "fingerprint": "338f7d695b7459a9d6e41b13662b7a5d6b4aef9569532fff184502d3b04d6d10",
+          "identity": {
+            "artist_name": "JO1、INI、DXTEEN、KO1KEYZ、ME:I、IS:SUE",
+            "event_date": "2027-02-06",
+            "event_end_date": "2027-02-06",
+            "event_start_time": "18:00",
+            "title": "LAPOSTA 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:https://cf.lapone.jp/feature/laposta2027#d=2027-02-06#t=18:00",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "9ec131b5fc0406616044d1b76fb83bdb7925a8375fb142278897b49800871832",
+              "source_id": "venue_web_discovery"
+            }
+          ]
         }
       ]
     },
@@ -30985,7 +31013,7 @@
       "event_uid": "evt_9ed03e8e41844fbcb47cf985fcafa6a6",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "47ccf598dfaf52644821",
           "evidence": {
             "reason": "主催LAPONE公式の2026-10-24告知本文でLAPOSTA 2027を確認。東京ドーム2027-01-23 18:00/01-24 17:00、京セラドーム大阪02-06 18:00/02-07 16:00の4公演。既存台帳の全active/履歴観測に各同会場・日付を含む開催はなく、source共有・関連IDもない。別日4公演の新規登録とし、既存IDの訂正・分割・統合ではない。",
@@ -31002,6 +31030,34 @@
             "venue_name": "京セラドーム大阪"
           },
           "source_records": [
+            {
+              "record_id": "01573fb82e7ce08a2702863848dd40f558cdb90af3165dc291278d97639431b8",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "b8473e62d4bdd42dc973",
+          "evidence": {
+            "reason": "2026-10-25に主催LAPONE公式告知と特設ページ本文を再確認。LAPOSTA 2027 京セラドーム大阪2027-02-06 18:00/02-07 16:00と全6出演グループJO1・INI・DXTEEN・KO1KEYZ・ME:I・IS:SUEが一致。日付・会場・開演時刻・公演題名および既採用のdiscovery根拠レコードが同じであり、自動会場公式取込による出演者表記の具体化と根拠追加。別公演や分割ではなく同一公演の訂正として既存IDを継承し旧観測を履歴保存する。",
+            "reviewed_at_utc": "2026-10-25T09:44:20.553862+00:00",
+            "url": "https://cf.lapone.jp/news/detail/203"
+          },
+          "fingerprint": "306f6f1bef568544e35f108a4df7d53ff4a4b8bad7d7c7daa437fab9fccc8a72",
+          "identity": {
+            "artist_name": "JO1、INI、DXTEEN、KO1KEYZ、ME:I、IS:SUE",
+            "event_date": "2027-02-07",
+            "event_end_date": "2027-02-07",
+            "event_start_time": "16:00",
+            "title": "LAPOSTA 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:https://cf.lapone.jp/feature/laposta2027#d=2027-02-07#t=16:00",
+              "source_id": "official_events"
+            },
             {
               "record_id": "01573fb82e7ce08a2702863848dd40f558cdb90af3165dc291278d97639431b8",
               "source_id": "venue_web_discovery"
@@ -31781,9 +31837,51 @@
       ],
       "previous_ids": [],
       "request_sha256": "aabc055990179561d10a4e2c4f5936dbaf38350d615ccddc42429e991a12df34"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_0ec60951998848e1b42cc81862ce2f1b",
+          "fingerprint": "338f7d695b7459a9d6e41b13662b7a5d6b4aef9569532fff184502d3b04d6d10"
+        }
+      ],
+      "evidence": {
+        "reason": "2026-10-25に主催LAPONE公式告知と特設ページ本文を再確認。LAPOSTA 2027 京セラドーム大阪2027-02-06 18:00/02-07 16:00と全6出演グループJO1・INI・DXTEEN・KO1KEYZ・ME:I・IS:SUEが一致。日付・会場・開演時刻・公演題名および既採用のdiscovery根拠レコードが同じであり、自動会場公式取込による出演者表記の具体化と根拠追加。別公演や分割ではなく同一公演の訂正として既存IDを継承し旧観測を履歴保存する。",
+        "reviewed_at_utc": "2026-10-25T09:44:20.495827+00:00",
+        "url": "https://cf.lapone.jp/news/detail/203"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "evt_0ec60951998848e1b42cc81862ce2f1b"
+      ],
+      "previous_ids": [
+        "evt_0ec60951998848e1b42cc81862ce2f1b"
+      ],
+      "request_sha256": "956619712c700e83b1aad1233c9b3aaa98e11af65ecf5bdea0b4fcdcad1c9a60"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_9ed03e8e41844fbcb47cf985fcafa6a6",
+          "fingerprint": "306f6f1bef568544e35f108a4df7d53ff4a4b8bad7d7c7daa437fab9fccc8a72"
+        }
+      ],
+      "evidence": {
+        "reason": "2026-10-25に主催LAPONE公式告知と特設ページ本文を再確認。LAPOSTA 2027 京セラドーム大阪2027-02-06 18:00/02-07 16:00と全6出演グループJO1・INI・DXTEEN・KO1KEYZ・ME:I・IS:SUEが一致。日付・会場・開演時刻・公演題名および既採用のdiscovery根拠レコードが同じであり、自動会場公式取込による出演者表記の具体化と根拠追加。別公演や分割ではなく同一公演の訂正として既存IDを継承し旧観測を履歴保存する。",
+        "reviewed_at_utc": "2026-10-25T09:44:20.553862+00:00",
+        "url": "https://cf.lapone.jp/news/detail/203"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "evt_9ed03e8e41844fbcb47cf985fcafa6a6"
+      ],
+      "previous_ids": [
+        "evt_9ed03e8e41844fbcb47cf985fcafa6a6"
+      ],
+      "request_sha256": "62a5ee002ca0fe47d5277636da99eb0f1a8e7926e7eca3d99ddc23dc9f49e5ea"
     }
   ],
-  "revision": 27,
+  "revision": 29,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
