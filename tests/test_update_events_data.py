@@ -1,11 +1,9 @@
 from __future__ import annotations
 
-import sqlite3
 import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.events.sources.base import compute_data_hash
 from scripts.events.types import EventRecord
 from scripts.update_events_data import init_db, upsert_events
 

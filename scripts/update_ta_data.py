@@ -14,6 +14,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from stats.ta import is_ta_summary_company
+
 TA_SOURCE_INDEX_URL = (
     "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku.html"
 )
@@ -23,6 +25,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta_ta.json"
 TABLE_NAME = "ta_company_amounts"
+EXTRACTOR_VERSION = 1
 
 
 def now_utc_iso() -> str:
@@ -234,7 +237,7 @@ def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]
             continue
         if "会社" in company_raw and "名" in company_raw:
             continue
-        if "合計" in company_raw or "参考値" in company_raw:
+        if is_ta_summary_company(company_raw) or "参考値" in company_raw:
             continue
 
         company = normalize_company_name(company_raw)
@@ -277,6 +280,24 @@ def build_signature(excel_hashes: list[dict[str, str]]) -> str:
     by_url = {item["excel_url"]: item["sha256"] for item in excel_hashes}
     payload = "\n".join(f"{url}|{by_url[url]}" for url in sorted(by_url))
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def has_usable_ta_table(sqlite_path: Path) -> bool:
+    if not sqlite_path.is_file():
+        return False
+    try:
+        with sqlite3.connect(
+            f"{sqlite_path.resolve().as_uri()}?mode=ro", uri=True
+        ) as conn:
+            return (
+                conn.execute(
+                    f"SELECT fiscal_year, period, company, segment, amount "
+                    f"FROM {TABLE_NAME} LIMIT 1"
+                ).fetchone()
+                is not None
+            )
+    except sqlite3.DatabaseError:
+        return False
 
 
 def main() -> int:
@@ -343,8 +364,27 @@ def main() -> int:
         if not fetched_excel_hashes:
             raise RuntimeError("No TA source Excel files were downloaded.")
 
+        for item in fetched_excel_files:
+            if not item["fiscal_year"]:
+                raise RuntimeError(
+                    f"TA source fiscal year unknown: {item['excel_url']}"
+                )
+            if not item["period"]:
+                raise RuntimeError(
+                    f"TA source period unknown: {item['excel_url']} "
+                    f"({item['excel_link_text']})"
+                )
+            if item["ext"] == ".xls":
+                raise RuntimeError(
+                    f"TA source format unsupported (.xls): {item['excel_url']}"
+                )
+
         signature = build_signature(fetched_excel_hashes)
-        if old_meta.get("signature") == signature:
+        if (
+            old_meta.get("signature") == signature
+            and old_meta.get("extractor_version") == EXTRACTOR_VERSION
+            and has_usable_ta_table(SQLITE_PATH)
+        ):
             print("No change: source Excel signature unchanged.")
             return 0
 
@@ -352,20 +392,8 @@ def main() -> int:
             fiscal_year = item["fiscal_year"]
             period = item["period"]
             link_url = item["excel_url"]
-            ext = item["ext"]
             local_path = Path(item["local_path"])
             source_sha256 = item["sha256"]
-
-            if not fiscal_year:
-                print(f"Skipped page (fiscal year unknown): {item['page_url']}")
-                continue
-            if not period:
-                print(f"Skipped link (period unknown): {item['excel_link_text']}")
-                continue
-
-            if ext == ".xls":
-                print(f"Skipped .xls file (unsupported for TA parser): {link_url}")
-                continue
 
             try:
                 parsed = parse_ta_excel_rows(
@@ -374,12 +402,10 @@ def main() -> int:
                     period=period,
                 )
             except Exception as e:
-                print(f"Skipped (parse failed): {link_url} ({e})")
-                continue
+                raise RuntimeError(f"TA source parse failed: {link_url} ({e})") from e
 
             if not parsed:
-                print(f"Skipped (no rows): {link_url}")
-                continue
+                raise RuntimeError(f"TA source has no company rows: {link_url}")
 
             all_records.extend(parsed)
             processed_files.append(
@@ -432,6 +458,7 @@ def main() -> int:
     meta = {
         "source_index_url": TA_SOURCE_INDEX_URL,
         "signature": signature,
+        "extractor_version": EXTRACTOR_VERSION,
         "last_checked_at": now_utc_iso(),
         "processed_files": processed_files,
         "row_count": int(len(df)),

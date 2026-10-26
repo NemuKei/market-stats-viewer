@@ -49,6 +49,9 @@ uv run streamlit run app.py
 
 ## Verification
 
+- Pull requests and pushes to `main` run Ruff and the full pytest suite on Python 3.11 / 3.12 with frozen dependencies (`.github/workflows/test.yml`). These checks do not collect or publish data.
+- TA / TCD calculation, parsing and display regressions:
+  - `uv run --frozen python -m pytest tests/test_stats_ta.py tests/test_update_ta_data.py tests/test_stats_tcd.py tests/test_stats_views.py -q`
 - Focused parser regression for official-event artist/category inference:
   - `uv run python -m pytest tests/test_build_events_artist_inferred.py -q`
 - Full local regression suite:
