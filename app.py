@@ -4276,54 +4276,27 @@ def main() -> None:
         st.caption(
             "\u30b5\u30fc\u30d3\u30b9\u8a73\u7d30\u30fb\u304a\u554f\u3044\u5408\u308f\u305b\u306f\u3053\u3061\u3089"
         )
-        # --- 統計データ / 参考情報 の排他 radio ---
-        _STATS_OPTIONS = [
+        dataset_options = [
             DATASET_LABEL_STAY,
             DATASET_LABEL_TCD,
             DATASET_LABEL_ICD,
             DATASET_LABEL_AIRPORT_VOLUME,
             DATASET_LABEL_TA,
-        ]
-        _REF_OPTIONS = [
             DATASET_LABEL_EVENTS_OFFICIAL,
             DATASET_LABEL_EVENTS_SIGNALS,
         ]
 
-        if "_active_dataset" not in st.session_state:
-            st.session_state["_active_dataset"] = _STATS_OPTIONS[0]
+        if st.session_state.get("_active_dataset") not in dataset_options:
+            st.session_state["_active_dataset"] = dataset_options[0]
 
-        active = st.session_state["_active_dataset"]
-        _is_ref = active in _REF_OPTIONS
-
-        # Reset the browser selection after all queued callbacks have run.
-        if _is_ref:
-            st.session_state["_stats_sel"] = None
-        else:
-            st.session_state["_ref_sel"] = None
-
-        def _on_stats_change():
-            st.session_state["_active_dataset"] = st.session_state["_stats_sel"]
-
-        def _on_ref_change():
-            st.session_state["_active_dataset"] = st.session_state["_ref_sel"]
-
-        st.radio(
-            "統計データ",
-            _STATS_OPTIONS,
-            index=None if _is_ref else _STATS_OPTIONS.index(active),
-            key="_stats_sel",
-            on_change=_on_stats_change,
+        # One native radio group stays exclusive even while a slow render is
+        # running. Separate groups require asynchronous resets that can race
+        # with the next click and overwrite it with an unselected value.
+        dataset_type = st.radio(
+            "統計データ・参考情報",
+            dataset_options,
+            key="_active_dataset",
         )
-        st.markdown("---")
-        st.radio(
-            "参考情報",
-            _REF_OPTIONS,
-            index=_REF_OPTIONS.index(active) if _is_ref else None,
-            key="_ref_sel",
-            on_change=_on_ref_change,
-        )
-
-        dataset_type = st.session_state["_active_dataset"]
 
     if dataset_type == DATASET_LABEL_STAY:
         render_stay_stats_view()
