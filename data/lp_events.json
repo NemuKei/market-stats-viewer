@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-10-26",
+  "as_of_date": "2026-10-27",
   "events": [
-    {
-      "artist_name": "手越祐也",
-      "capacity": 2009,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-28",
-      "event_end_date": "2026-07-28",
-      "event_end_time": null,
-      "event_key": "b02a2abc34993d50049c",
-      "event_start_time": "18:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160191",
-      "first_seen_at_utc": "2026-04-19T06:04:54Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "手越祐也",
-      "raw_venue_name": "Zepp札幌",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160191",
-          "priority": 10,
-          "record_id": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160191",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "手越祐也 LIVE TOUR 2026 SUPER STAR",
-          "updated_at_utc": "2026-07-31T06:51:03Z",
-          "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160191"
-        }
-      ],
-      "title": "手越祐也 LIVE TOUR 2026 SUPER STAR",
-      "updated_at_utc": "2026-07-31T06:51:03Z",
-      "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160191",
-      "venue_name": "Zepp札幌"
-    },
     {
       "artist_name": "手越祐也",
       "capacity": 2009,
@@ -40800,8 +40762,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-26T10:27:25Z",
-  "history_start_date": "2026-07-28",
+  "generated_at_utc": "2026-10-26T18:44:07Z",
+  "history_start_date": "2026-07-29",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 33,
@@ -40995,13 +40957,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 738,
+      "official_events": 737,
       "venue_web_discovery": 287
     },
-    "event_count": 1025,
-    "identity_held_record_count": 938,
+    "event_count": 1024,
+    "identity_held_record_count": 937,
     "location_held_record_count": 35,
-    "record_count_before_grouping": 2195,
+    "record_count_before_grouping": 2193,
     "start_time_split_event_count": 68,
     "start_time_split_group_count": 64,
     "supplemental_merged_group_count": 23,
