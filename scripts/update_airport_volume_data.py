@@ -12,7 +12,10 @@ from urllib.parse import urljoin
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+
 from openpyxl import load_workbook
+
+from scripts.stats_update_store import StatsUpdate, stats_update
 
 SOURCE_NAME = "e-Stat \u51fa\u5165\u56fd\u7ba1\u7406\u7d71\u8a08\uff08\u6e2f\u5225 \u51fa\u5165\u56fd\u8005\uff09"
 SOURCE_LIST_BASE_URL = (
@@ -75,11 +78,6 @@ def load_meta() -> dict:
     if not META_PATH.exists():
         return {}
     return json.loads(META_PATH.read_text(encoding="utf-8"))
-
-
-def save_meta(meta: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    META_PATH.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def fetch_html(url: str) -> str:
@@ -266,6 +264,11 @@ def build_sqlite(df: pd.DataFrame, sqlite_path: Path) -> None:
 
 
 def main() -> int:
+    with stats_update(SQLITE_PATH) as update:
+        return _main(update)
+
+
+def _main(update: StatsUpdate) -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     sources = collect_recent_source_entries(MAX_MONTHS)
@@ -349,7 +352,6 @@ def main() -> int:
             drop=True
         )
 
-        build_sqlite(df, SQLITE_PATH)
 
         latest = sorted(processed_sources, key=lambda x: x["period_key"], reverse=True)[0]
         period_values = sorted(df["period_key"].dropna().astype(str).unique().tolist())
@@ -374,7 +376,7 @@ def main() -> int:
             ),
             "unit": UNIT,
         }
-        save_meta(meta)
+        update.save(META_PATH, meta, lambda path: build_sqlite(df, path))
 
     print(
         f"Updated {TABLE_NAME}: periods={df['period_key'].nunique()} "

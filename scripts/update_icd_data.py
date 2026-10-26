@@ -13,6 +13,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from scripts.stats_update_store import StatsUpdate, stats_update
+
 ICD_SOURCE_PAGE_URL = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/gaikokujinshohidoko.html"
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -73,14 +75,6 @@ def fetch_html(url: str) -> str:
     if not res.encoding or res.encoding.lower() == "iso-8859-1":
         res.encoding = res.apparent_encoding
     return res.text
-
-
-def save_meta(meta: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    META_PATH.write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
 
 
 def load_meta() -> dict:
@@ -429,6 +423,11 @@ def build_sqlite(spend_df: pd.DataFrame, entry_df: pd.DataFrame, sqlite_path: Pa
 
 
 def main() -> int:
+    with stats_update(SQLITE_PATH) as update:
+        return _main(update)
+
+
+def _main(update: StatsUpdate) -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     html = fetch_html(ICD_SOURCE_PAGE_URL)
@@ -530,7 +529,6 @@ def main() -> int:
         if entry_df.empty:
             raise RuntimeError("ICD entry port summary could not be parsed from target sheets.")
 
-        build_sqlite(spend_df, entry_df, SQLITE_PATH)
 
         meta = {
             "source_page_url": ICD_SOURCE_PAGE_URL,
@@ -548,7 +546,7 @@ def main() -> int:
                 ENTRY_TABLE_NAME: int(len(entry_df)),
             },
         }
-        save_meta(meta)
+        update.save(META_PATH, meta, lambda path: build_sqlite(spend_df, entry_df, path))
 
         print(
             f"Updated ICD data: spend_rows={len(spend_df)} "

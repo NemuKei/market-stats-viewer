@@ -43,6 +43,41 @@
   - `python -m scripts.update_airport_volume_data`
 - 差分がある場合は `data/` を含めて commit/push する。
 
+### 統計DBとメタデータの保存・復旧（R05）
+
+- 上記5コマンドは `scripts.stats_update_store` の同じ固定lockを取得し、
+  前回の未完了保存を復旧してから、原本取得・旧メタ読込・変更なし判定へ進む。
+  同時実行した2本目は失敗させる。対象環境は macOS / Linux のローカルfilesystem。
+- 保存単位は**各コマンドが更新する全表と、そのコマンドのmeta JSON**である。
+  workflow内の5コマンド全体を一括で戻すものではない。取得・解析・再処理条件は変更しない。
+- 以前は `to_sql(..., if_exists="replace")` とmeta書込を直接順次実行していた。
+  これからは同じディレクトリ内の作業コピーへ全表を書き、SQLite `quick_check` と
+  metaの生成に成功してから、旧DB・旧metaのSHA-256付き復旧情報を確定する。
+  DB、metaの順に `os.replace` し、両方の配置を同期してから保存完了を記録する。
+  対象外の表・索引・トリガー、他のmetaは保持する。
+- 保存完了より前の例外では、旧DB・旧metaをbytes単位で復元する。
+  初回で存在しなかったファイルは復旧後も存在しない。プロセスの強制終了、または
+  復旧途中の失敗ではjournalを残し、次のいずれかの統計更新コマンドが先に復旧する。
+  完了記録後の中断なら新しい一式を保持する。復旧用コピーは両方の復元が完了するまで保持する。
+- `.market_stats.sqlite.update/` と `.market_stats.sqlite.update.lock` は `data/` 内の
+  local-only管理ファイルで、commit・配布しない。lockはinodeを保つため削除しない。
+  journalが残っている場合も手動削除せず、通常コマンドによる復旧を先に行う。
+  コピーのchecksum不一致や復旧の失敗では取得・更新を停止し、journalを保持して調査する。
+- 全writerがこのlockを使うことを前提とする。既存DBに `-wal` / `-shm` / `-journal`
+  があれば安全のため停止する。稼働中SQLiteの本体だけをコピーしたり、sidecarを自動削除したりしない。
+  他の書込プロセスを正常終了し、checkpoint / 接続終了を確認して再実行する。
+  読取側はSQLiteをread-onlyで開く。更新中の無調整な外部writerは対象外。
+- DBとJSONの2パスを一瞬で同時切替する読取snapshotではない。
+  切替途中または強制終了直後の読取では一時的に世代が異なり得るため、
+  配布・利用はコマンド成功後か復旧後に行う。電源断・媒体障害の全保証や
+  GitHub Releaseの世代切替（R06）は今回の対象外である。
+- schema、JSONのshape、ファイル名、原本・履歴の意味に変更はなく、実データ移行は不要。
+  導入は次回の通常更新から有効。コードを戻す場合は、先に新コードでjournalの復旧を完了し、
+  未完了journalがないことを確認する。旧保存経路は残さず、この共通保存処理に集約する。
+- 検証: `python -m pytest tests/test_stats_update_store.py tests/test_update_data.py tests/test_update_ta_data.py tests/test_update_tcd_data.py tests/test_update_icd_data.py -q`。
+  合成fixtureで表書込・meta作成・journal確定・両配置・完了記録の障害、
+  subprocessの強制終了、復旧再試行、初回保存、同時writer、WAL拒否を確認する。
+
 ## 追記: TCD更新パイプライン（MVP）
 1. 観光庁「旅行・観光消費動向調査」ページから `集計表` Excelリンクのみ収集する。
 2. 確報（年次・四半期）および2次速報（四半期）を対象にする。

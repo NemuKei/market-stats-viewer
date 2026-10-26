@@ -292,3 +292,39 @@ def test_unclassified_sources_preserve_database_and_metadata(
 
     assert sqlite_path.read_bytes() == database_before
     assert meta_path.read_bytes() == metadata_before
+
+
+def test_metadata_write_failure_preserves_pair_and_retry_is_idempotent(
+    published_two_periods: tuple[Path, Path, dict[str, str], dict[str, Path]],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    sqlite_path, meta_path, _, sources = published_two_periods
+    source = sources["https://example.test/monthly.xlsx"]
+    write_ta_workbook(source, ["会社C"])
+    source_before = source.read_bytes()
+    database_before = sqlite_path.read_bytes()
+    metadata_before = meta_path.read_bytes()
+    write_text = Path.write_text
+
+    def fail_metadata(path: Path, *args, **kwargs):
+        if path.name == "meta_ta.json":
+            raise OSError("injected metadata write failure")
+        return write_text(path, *args, **kwargs)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(Path, "write_text", fail_metadata)
+        with pytest.raises(OSError, match="injected metadata"):
+            updater.main()
+
+    assert sqlite_path.read_bytes() == database_before
+    assert meta_path.read_bytes() == metadata_before
+    assert source.read_bytes() == source_before
+    assert updater.main() == 0
+    with sqlite3.connect(sqlite_path) as conn:
+        assert conn.execute("SELECT DISTINCT company FROM ta_company_amounts ORDER BY 1").fetchall() == [
+            ("JTB（6社計）",), ("会社C",)
+        ]
+        assert conn.execute("SELECT count(*) FROM ta_company_amounts").fetchone() == (8,)
+    successful = sqlite_path.read_bytes(), meta_path.read_bytes()
+    assert updater.main() == 0
+    assert (sqlite_path.read_bytes(), meta_path.read_bytes()) == successful

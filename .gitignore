@@ -73,6 +73,9 @@ assets/*
 # SQLite sidecar files are local runtime artifacts; keep tracked *.sqlite DB files visible.
 *.sqlite-shm
 *.sqlite-wal
+# Core-statistics save journal and stable writer lock (local recovery only).
+/data/.market_stats.sqlite.update/
+/data/.market_stats.sqlite.update.lock
 # Rebuilt and validated from the immutable checkout immediately before Release upload.
 /data/manifest.json
 # Local fixed-identity writer lock; never include owner/runtime metadata in Git.

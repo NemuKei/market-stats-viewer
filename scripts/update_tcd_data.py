@@ -13,9 +13,12 @@ from urllib.parse import urljoin
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+
 from openpyxl import load_workbook
 from openpyxl.workbook.workbook import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
+
+from scripts.stats_update_store import StatsUpdate, stats_update
 
 # 観光庁: 旅行・観光消費動向調査
 TCD_SOURCE_PAGE_URL = "https://www.mlit.go.jp/kankocho/siryou/toukei/shouhidoukou.html"
@@ -47,13 +50,6 @@ def load_meta_tcd() -> dict:
     if not META_TCD_PATH.exists():
         return {}
     return json.loads(META_TCD_PATH.read_text(encoding="utf-8"))
-
-
-def save_meta_tcd(meta: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    META_TCD_PATH.write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
 
 
 def fetch_source_page(url: str) -> str:
@@ -408,6 +404,11 @@ def empty_tcd_dataframe() -> pd.DataFrame:
 
 
 def main() -> int:
+    with stats_update(SQLITE_PATH) as update:
+        return _main(update)
+
+
+def _main(update: StatsUpdate) -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     html = fetch_source_page(TCD_SOURCE_PAGE_URL)
@@ -581,7 +582,6 @@ def main() -> int:
             ).drop(columns=["_nights_sort"])
             new_df = new_df.reset_index(drop=True)
 
-        build_tcd_sqlite(new_df, SQLITE_PATH)
 
         new_meta = {
             "extractor_version": EXTRACTOR_VERSION,
@@ -591,7 +591,7 @@ def main() -> int:
             "available_periods": build_available_periods(new_df),
             "note": "最新（確報優先）は同一period_type内で最新period_keyを選び、同一期に確報と2次速報がある場合は確報を優先する。",
         }
-        save_meta_tcd(new_meta)
+        update.save(META_TCD_PATH, new_meta, lambda path: build_tcd_sqlite(new_df, path))
 
         print(
             f"Updated {TABLE_NAME}: rows={len(new_df)} files={len(processed_entries)} "
