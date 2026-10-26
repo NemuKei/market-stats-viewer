@@ -1,4 +1,4 @@
-"""Cross-menu events use real Streamlit widgets, callbacks and SessionState."""
+"""Navigation uses real Streamlit widget transport and SessionState."""
 
 import pytest
 import streamlit as st
@@ -34,44 +34,39 @@ def assert_selected(page, selected):
     assert [
         item.value for item in page.caption if item.value in ROUTES.values()
     ] == [ROUTES[selected]]
-    assert sum(widget.value is not None for widget in page.radio) == 1
+    assert len(page.radio) == 1
+    assert page.radio(key="_active_dataset").value == selected
 
 
 @pytest.mark.parametrize(
-    "stats_choice,ref_choice",
+    "choices",
     [
-        ("空港別入国者数", "全国イベント情報（会場公式）"),
+        ("全国イベント情報（会場公式）", "インバウンド消費動向調査"),
+        ("インバウンド消費動向調査", "全国イベント情報（会場公式）"),
+        ("全国イベント速報（ニュース）", "旅行業者取扱額"),
         ("旅行業者取扱額", "全国イベント速報（ニュース）"),
+        tuple(ROUTES),
+        tuple(reversed(ROUTES)),
     ],
 )
 @pytest.mark.parametrize("initial_ref", [False, True])
-@pytest.mark.parametrize("reverse_order", [False, True])
-def test_coalesced_menu_events_keep_last_callback_selection(
-    page, stats_choice, ref_choice, initial_ref, reverse_order
-):
+def test_pending_menu_changes_transport_only_the_last_selection(page, choices, initial_ref):
     if initial_ref:
-        page.session_state["_active_dataset"] = (
-            "全国イベント速報（ニュース）"
-            if ref_choice == "全国イベント情報（会場公式）"
-            else "全国イベント情報（会場公式）"
-        )
+        page.session_state["_active_dataset"] = "全国イベント速報（ニュース）"
     page.run()
-    assert not page.exception
-    # Two user changes arrive before the next rerun, as with rapid clicks or
-    # delayed transport. AppTest normally sends widget states in DOM order.
-    page.radio(key="_stats_sel").set_value(stats_choice)
-    page.radio(key="_ref_sel").set_value(ref_choice)
-    if reverse_order:
-        # The pinned Streamlit runner consumes this same protobuf transport.
-        # Reverse only its order; keep callback execution and state real.
-        incoming = page._tree.get_widget_states()
-        page._run(WidgetStates(widgets=list(reversed(incoming.widgets))))
-    else:
-        page.run()
-    selected = stats_choice if reverse_order else ref_choice
-    assert_selected(page, selected)
+    assert len(page.radio) == 1
+    for selected in choices:
+        page.radio(key="_active_dataset").set_value(selected)
+    incoming = page._tree.get_widget_states()
+    # Native radios share one group; pending changes cannot include a second
+    # group reset (None) that later overwrites the user's selection.
+    assert len(incoming.widgets) == 1
+    page._run(WidgetStates(widgets=incoming.widgets))
+    assert_selected(page, choices[-1])
+    # Re-delivery and ordinary reruns keep the same choice and visible route.
+    page._run(WidgetStates(widgets=incoming.widgets))
     page.run()
-    assert_selected(page, selected)
+    assert_selected(page, choices[-1])
 
 
 @pytest.mark.parametrize("reverse_route_order", [False, True])
@@ -82,32 +77,20 @@ def test_sequential_navigation_visits_all_routes_and_preserves_selection(
     routes = list(ROUTES)
     if reverse_route_order:
         routes.reverse()
+    widget_id = page.radio(key="_active_dataset").proto.id
     for selected in [*routes, "宿泊旅行統計調査"]:
-        key = "_ref_sel" if selected.startswith("全国イベント") else "_stats_sel"
-        page.radio(key=key).set_value(selected).run()
+        page.radio(key="_active_dataset").set_value(selected).run()
         assert_selected(page, selected)
+        # A stable identity keeps in-flight input attached to the same widget.
+        assert page.radio(key="_active_dataset").proto.id == widget_id
 
 
-@pytest.mark.parametrize("select_reference", [False, True])
-def test_cross_menu_change_explicitly_clears_the_browser_selection(
-    page, select_reference
-):
-    if not select_reference:
-        page.session_state["_active_dataset"] = "全国イベント速報（ニュース）"
+@pytest.mark.parametrize("previous", [None, "obsolete", "全国イベント情報（会場公式）"])
+def test_existing_session_keeps_a_valid_choice_and_recovers_an_invalid_one(page, previous):
+    page.session_state["_active_dataset"] = previous
+    # Old browser sessions may still contain keys from the two-group menu.
+    page.session_state["_stats_sel"] = None
+    page.session_state["_ref_sel"] = "全国イベント速報（ニュース）"
     page.run()
-    selected = (
-        "全国イベント情報（会場公式）"
-        if select_reference
-        else "インバウンド消費動向調査"
-    )
-    active_key = "_ref_sel" if select_reference else "_stats_sel"
-    inactive_key = "_stats_sel" if select_reference else "_ref_sel"
-    page.radio(key=active_key).set_value(selected).run()
-    assert_selected(page, selected)
-    # Server-side None alone leaves an existing browser mark intact. The real
-    # radio delta must explicitly request a reset with no selected value.
-    inactive = page.radio(key=inactive_key)
-    assert inactive.proto.set_value
-    assert not inactive.proto.HasField("value")
-    page.run()
-    assert_selected(page, selected)
+    assert_selected(page, previous if previous in ROUTES else "宿泊旅行統計調査")
+    assert page.radio(key="_active_dataset").options == list(ROUTES)
