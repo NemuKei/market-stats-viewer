@@ -24,6 +24,7 @@ INCLUDE_GLOBS = [
     "make_release_zip.py",
     ".github/**",
     "scripts/**",
+    "stats/**",
     # Docs (spec/handovers/logs/templates)
     "docs/**",
     # Misc

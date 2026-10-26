@@ -16,6 +16,15 @@ from openpyxl.chart import BarChart, Reference
 from openpyxl.chart.axis import ChartLines
 from openpyxl.chart.layout import Layout, ManualLayout
 
+from stats.ta import filter_ta_company_rows, select_ta_amount_rows
+from stats.tcd import (
+    TCD_NIGHTS_BIN_ORDER,
+    TCD_SEGMENT_LABELS,
+    estimate_tcd_los_by_segment,
+    is_complete_tcd_period,
+    resolve_tcd_source_unit,
+)
+
 try:
     from scripts.signals.artist_registry import (
         load_registry as load_artist_registry,
@@ -1467,10 +1476,6 @@ TCD_TABLE_NAME = "tcd_stay_nights"
 RELEASE_FINAL = "確報"
 RELEASE_SECOND_PRELIM = "2次速報"
 
-TCD_SEGMENT_LABELS = {
-    "domestic_total": "\u56fd\u5185\u65c5\u884c\uff08\u5408\u8a08\uff09",
-    "domestic_business": "\u56fd\u5185\u65c5\u884c\uff08\u51fa\u5f35\u30fb\u696d\u52d9\uff09",
-}
 TCD_PERIOD_TYPE_LABELS = {
     "annual": "\u5e74\u6b21",
     "quarter": "\u56db\u534a\u671f",
@@ -1481,16 +1486,6 @@ TCD_RELEASE_FILTERS = {
     "\u78ba\u5831": RELEASE_FINAL,
     "2\u6b21\u901f\u5831": RELEASE_SECOND_PRELIM,
 }
-TCD_NIGHTS_BIN_ORDER = [
-    "1泊",
-    "2泊",
-    "3泊",
-    "4泊",
-    "5泊",
-    "6泊",
-    "7泊",
-    "8泊以上",
-]
 
 
 def load_tcd_meta() -> dict:
@@ -1595,81 +1590,9 @@ def resolve_tcd_latest_period_rows(
     return latest_rows, latest_period_key, release_type
 
 
-def estimate_tcd_los_by_segment(
-    df_period: pd.DataFrame, upper_open_bin_nights: float = 8.5
-) -> pd.DataFrame:
-    """
-    Approximate LOS (average length of stay) from nights-bin total nights.
-    8泊以上 is treated as `upper_open_bin_nights`.
-    """
-    representative_nights = {
-        "1\u6cca": 1.0,
-        "2\u6cca": 2.0,
-        "3\u6cca": 3.0,
-        "4\u6cca": 4.0,
-        "5\u6cca": 5.0,
-        "6\u6cca": 6.0,
-        "7\u6cca": 7.0,
-        "8\u6cca\u4ee5\u4e0a": float(upper_open_bin_nights),
-    }
-
-    work = (
-        df_period.groupby(["segment", "nights_bin"], as_index=False)["value"]
-        .sum()
-        .copy()
-    )
-    work["rep_nights"] = pd.to_numeric(
-        work["nights_bin"].map(representative_nights), errors="coerce"
-    )
-    work = work[work["rep_nights"].notna()].copy()
-    if work.empty:
-        return pd.DataFrame()
-
-    work["estimated_stays"] = work["value"] / work["rep_nights"]
-    summary = (
-        work.groupby("segment", as_index=False)
-        .agg(total_nights=("value", "sum"), estimated_stays=("estimated_stays", "sum"))
-        .copy()
-    )
-    summary = summary[summary["estimated_stays"] > 0].copy()
-    if summary.empty:
-        return pd.DataFrame()
-
-    one_night = (
-        work[work["nights_bin"] == "1\u6cca"]
-        .groupby("segment", as_index=False)["estimated_stays"]
-        .sum()
-        .rename(columns={"estimated_stays": "one_night_stays"})
-    )
-    summary = summary.merge(one_night, on="segment", how="left")
-    summary["one_night_stays"] = summary["one_night_stays"].fillna(0.0)
-    summary["two_plus_stays"] = (
-        summary["estimated_stays"] - summary["one_night_stays"]
-    ).clip(lower=0.0)
-
-    summary["estimated_los"] = summary["total_nights"] / summary["estimated_stays"]
-    summary["one_night_share_pct"] = (
-        summary["one_night_stays"] / summary["estimated_stays"] * 100.0
-    )
-    summary["two_plus_share_pct"] = (
-        summary["two_plus_stays"] / summary["estimated_stays"] * 100.0
-    )
-    summary["segment_label"] = summary["segment"].map(TCD_SEGMENT_LABELS)
-
-    segment_order = list(TCD_SEGMENT_LABELS.keys())
-    summary["segment_order"] = summary["segment"].map(
-        {segment: idx for idx, segment in enumerate(segment_order)}
-    )
-    summary = summary.sort_values("segment_order").drop(columns=["segment_order"])
-    return summary.reset_index(drop=True)
-
-
-def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
-    chart_df = (
-        df_period.groupby(["nights_bin", "segment"], as_index=False)["value"]
-        .sum()
-        .copy()
-    )
+def build_tcd_chart(df_period: pd.DataFrame, source_unit: str) -> alt.Chart:
+    chart_df = df_period[["nights_bin", "segment", "value"]].copy()
+    value_title = f"延べ泊数（{source_unit}）"
     chart_df["segment_label"] = chart_df["segment"].map(TCD_SEGMENT_LABELS)
 
     available_bins = [
@@ -1690,7 +1613,7 @@ def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
             xOffset=alt.XOffset(
                 "segment_label:N", sort=list(TCD_SEGMENT_LABELS.values())
             ),
-            y=alt.Y("value:Q", title="\u5ef6\u3079\u6cca\u6570"),
+            y=alt.Y("value:Q", title=value_title),
             color=alt.Color(
                 "segment_label:N",
                 title="\u7cfb\u5217",
@@ -1699,7 +1622,7 @@ def build_tcd_chart(df_period: pd.DataFrame) -> alt.Chart:
             tooltip=[
                 alt.Tooltip("nights_bin:N", title="\u5bbf\u6cca\u6570\u533a\u5206"),
                 alt.Tooltip("segment_label:N", title="\u7cfb\u5217"),
-                alt.Tooltip("value:Q", title="\u5ef6\u3079\u6cca\u6570", format=",.0f"),
+                alt.Tooltip("value:Q", title=value_title, format=",.0f"),
             ],
         )
     )
@@ -1727,13 +1650,7 @@ def render_tcd_view() -> None:
         )
         return
 
-    work = df[df["segment"].isin(TCD_SEGMENT_LABELS.keys())].copy()
-    if work.empty:
-        st.error(
-            "\u8868\u793a\u306b\u5fc5\u8981\u306a\u7cfb\u5217"
-            "\uff08domestic_total / domestic_business\uff09\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3002"
-        )
-        return
+    work = df.copy()
 
     col1, col2, col3 = st.columns([2, 2, 4])
     with col1:
@@ -1805,74 +1722,116 @@ def render_tcd_view() -> None:
     period_label = period_label_map.get(selected_period_key, selected_period_key)
     st.caption(f"\u8868\u793a\u4e2d: {period_label} / {selected_release_type}")
 
-    los_open_bin = st.number_input(
-        "LOS\u6982\u7b97: 8\u6cca\u4ee5\u4e0a\u306e\u4ee3\u8868\u5024\uff08\u6cca\uff09",
-        min_value=8.0,
-        max_value=15.0,
-        value=8.5,
-        step=0.5,
-        key="tcd_los_open_bin",
-    )
-    los_summary = estimate_tcd_los_by_segment(
-        filtered, upper_open_bin_nights=los_open_bin
-    )
-    if not los_summary.empty:
-        st.subheader("LOS\uff08\u5e73\u5747\u6cca\u6570\uff09\u6982\u7b97")
-        metric_cols = st.columns(len(los_summary))
-        for col, row in zip(metric_cols, los_summary.itertuples(index=False)):
-            col.metric(str(row.segment_label), f"{row.estimated_los:.2f} \u6cca")
-        st.caption(
-            "\u8a08\u7b97\u5f0f: LOS \u2248 \u03a3(\u5ef6\u3079\u6cca\u6570) / "
-            "\u03a3(\u5404\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
+    source_unit = resolve_tcd_source_unit(filtered, meta)
+    complete_period = is_complete_tcd_period(filtered)
+    if source_unit is None:
+        st.warning(
+            "原表の単位を確認できないため、平均泊数・シェアと比較グラフの表示を保留しています。"
+        )
+    else:
+        st.caption(f"単位：{source_unit}（原表の値）")
+    if not complete_period:
+        st.warning(
+            "泊数区分の不足・重複、または値の異常があるため、両系列の平均泊数・シェアを保留しています。"
         )
 
-        share_display = (
-            los_summary[["segment_label", "one_night_share_pct", "two_plus_share_pct"]]
-            .rename(
-                columns={
-                    "segment_label": "\u7cfb\u5217",
-                    "one_night_share_pct": "1\u6cca\u30b7\u30a7\u30a2",
-                    "two_plus_share_pct": "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2",
-                }
+    values = filtered["value"]
+    comparable_rows = (
+        not filtered.duplicated(["segment", "nights_bin"]).any()
+        and filtered["segment"].isin(TCD_SEGMENT_LABELS).all()
+        and filtered["nights_bin"].isin(TCD_NIGHTS_BIN_ORDER).all()
+        and values.notna().all()
+        and values.ge(0).all()
+        and values.lt(float("inf")).all()
+    )
+    if source_unit is None or not comparable_rows:
+        raw_table = filtered[["segment", "nights_bin", "value"]].copy()
+        raw_table["segment"] = (
+            raw_table["segment"].map(TCD_SEGMENT_LABELS).fillna(raw_table["segment"])
+        )
+        value_label = (
+            f"延べ泊数（{source_unit}）" if source_unit else "原表の値（単位未確認）"
+        )
+        raw_table = raw_table.rename(
+            columns={
+                "segment": "系列",
+                "nights_bin": "宿泊数区分",
+                "value": value_label,
+            }
+        )
+        st.subheader("原表から取得した値")
+        st.dataframe(raw_table, use_container_width=True, hide_index=True)
+    else:
+        los_open_bin = st.number_input(
+            "LOS\u6982\u7b97: 8\u6cca\u4ee5\u4e0a\u306e\u4ee3\u8868\u5024\uff08\u6cca\uff09",
+            min_value=8.0,
+            max_value=15.0,
+            value=8.5,
+            step=0.5,
+            key="tcd_los_open_bin",
+            disabled=not complete_period,
+        )
+        los_summary = estimate_tcd_los_by_segment(
+            filtered, upper_open_bin_nights=los_open_bin
+        )
+        if not los_summary.empty:
+            st.subheader("LOS\uff08\u5e73\u5747\u6cca\u6570\uff09\u6982\u7b97")
+            metric_cols = st.columns(len(los_summary))
+            for col, row in zip(metric_cols, los_summary.itertuples(index=False)):
+                col.metric(str(row.segment_label), f"{row.estimated_los:.2f} \u6cca")
+            st.caption(
+                "\u8a08\u7b97\u5f0f: LOS \u2248 \u03a3(\u5ef6\u3079\u6cca\u6570) / "
+                "\u03a3(\u5404\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
             )
-            .copy()
+
+            share_display = (
+                los_summary[
+                    ["segment_label", "one_night_share_pct", "two_plus_share_pct"]
+                ]
+                .rename(
+                    columns={
+                        "segment_label": "\u7cfb\u5217",
+                        "one_night_share_pct": "1\u6cca\u30b7\u30a7\u30a2",
+                        "two_plus_share_pct": "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2",
+                    }
+                )
+                .copy()
+            )
+            share_display["1\u6cca\u30b7\u30a7\u30a2"] = share_display[
+                "1\u6cca\u30b7\u30a7\u30a2"
+            ].map(lambda v: f"{v:.1f}%")
+            share_display["2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"] = share_display[
+                "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"
+            ].map(lambda v: f"{v:.1f}%")
+            st.subheader(
+                "\u5bbf\u6cca\u65e5\u6570\u30b7\u30a7\u30a2\uff08\u63a8\u5b9a\u4ef6\u6570\u30d9\u30fc\u30b9\uff09"
+            )
+            st.dataframe(share_display, use_container_width=True, hide_index=True)
+            st.caption(
+                "\u8a08\u7b97\u5f0f: \u30b7\u30a7\u30a2 \u2248 "
+                "\u03a3(\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024) / "
+                "\u03a3(\u5168\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
+            )
+
+        chart = build_tcd_chart(filtered, source_unit).properties(height=500)
+        st.altair_chart(chart, use_container_width=True)
+
+        table_df = filtered[["nights_bin", "segment", "value"]].copy()
+        table_df["segment_label"] = table_df["segment"].map(TCD_SEGMENT_LABELS)
+        table_pivot = (
+            table_df.pivot(index="nights_bin", columns="segment_label", values="value")
+            .reindex(
+                index=TCD_NIGHTS_BIN_ORDER, columns=list(TCD_SEGMENT_LABELS.values())
+            )
+            .reset_index()
         )
-        share_display["1\u6cca\u30b7\u30a7\u30a2"] = share_display[
-            "1\u6cca\u30b7\u30a7\u30a2"
-        ].map(lambda v: f"{v:.1f}%")
-        share_display["2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"] = share_display[
-            "2\u6cca\u4ee5\u4e0a\u30b7\u30a7\u30a2"
-        ].map(lambda v: f"{v:.1f}%")
-        st.subheader(
-            "\u5bbf\u6cca\u65e5\u6570\u30b7\u30a7\u30a2\uff08\u63a8\u5b9a\u4ef6\u6570\u30d9\u30fc\u30b9\uff09"
-        )
-        st.dataframe(share_display, use_container_width=True, hide_index=True)
-        st.caption(
-            "\u8a08\u7b97\u5f0f: \u30b7\u30a7\u30a2 \u2248 "
-            "\u03a3(\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024) / "
-            "\u03a3(\u5168\u533a\u5206\u306e\u5ef6\u3079\u6cca\u6570 / \u533a\u5206\u4ee3\u8868\u5024)"
+        table_pivot = table_pivot.rename(
+            columns={"nights_bin": "\u5bbf\u6cca\u6570\u533a\u5206"}
         )
 
-    chart = build_tcd_chart(filtered).properties(height=500)
-    st.altair_chart(chart, use_container_width=True)
-
-    table_df = (
-        filtered.groupby(["nights_bin", "segment"], as_index=False)["value"]
-        .sum()
-        .copy()
-    )
-    table_df["segment_label"] = table_df["segment"].map(TCD_SEGMENT_LABELS)
-    table_pivot = (
-        table_df.pivot(index="nights_bin", columns="segment_label", values="value")
-        .reindex(TCD_NIGHTS_BIN_ORDER)
-        .reset_index()
-    )
-    table_pivot = table_pivot.rename(
-        columns={"nights_bin": "\u5bbf\u6cca\u6570\u533a\u5206"}
-    )
-
-    st.subheader("\u8868")
-    st.dataframe(table_pivot, use_container_width=True, hide_index=True)
+        st.subheader("\u8868")
+        st.dataframe(table_pivot, use_container_width=True, hide_index=True)
+    st.caption("出典：観光庁『旅行・観光消費動向調査』（集計表Excelを取得して整形）")
     st.caption(
         "\u30c7\u30fc\u30bf\u306f\u6bce\u9031\u81ea\u52d5\u66f4\u65b0\u3067\u3059\u3002"
         "\u53d6\u5f97\u5143\u30b5\u30a4\u30c8\u306e\u69cb\u9020\u5909\u66f4\u7b49\u306b\u3088\u308a"
@@ -2559,7 +2518,7 @@ def load_ta_data() -> pd.DataFrame:
     if "amount" in df.columns:
         df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
 
-    return df
+    return filter_ta_company_rows(df)
 
 
 def render_ta_view() -> None:
@@ -2627,21 +2586,24 @@ def render_ta_view() -> None:
         )
 
     period_data = fy_data[fy_data["period"] == period].copy()
-    if segment_label != "\u5168\u30bb\u30b0\u30e1\u30f3\u30c8":
-        segment_key = TA_SEGMENT_KEYS[segment_label]
+    segment_key = TA_SEGMENT_KEYS.get(segment_label)
+    if segment_key is not None:
         period_data = period_data[period_data["segment"] == segment_key].copy()
 
-    total_amount = float(period_data["amount"].sum()) if not period_data.empty else 0.0
-    st.metric(
-        "\u7dcf\u8a08\uff08\u5343\u5186\uff09",
-        format_metric_value(total_amount),
-    )
+    amount_rows = select_ta_amount_rows(period_data, segment_key)
+    total_amount = amount_rows["amount"].sum(min_count=1)
+    st.metric("総計（千円）", format_metric_value(total_amount))
+    if pd.isna(total_amount):
+        st.info("選択した区分の取扱額がないため、総計・ランキングを表示できません。")
+    if segment_key is None:
+        st.caption("総計・ランキングは各社の合計区分を使用しています。")
 
     st.subheader("\u4f1a\u793e\u5225\u30e9\u30f3\u30ad\u30f3\u30b0")
     top_n = st.slider("TopN", min_value=5, max_value=30, value=15, key="ta_top_n")
     ranking = (
-        period_data.groupby("company", as_index=False)["amount"]
-        .sum()
+        amount_rows.groupby("company", as_index=False)["amount"]
+        .sum(min_count=1)
+        .dropna(subset=["amount"])
         .sort_values("amount", ascending=False)
         .head(top_n)
     )
@@ -2669,6 +2631,8 @@ def render_ta_view() -> None:
         "\u30bb\u30b0\u30e1\u30f3\u30c8\u5225\u63a8\u79fb\uff08\u6708\u6b21\uff09"
     )
     monthly = fy_data[fy_data["period"].str.match(r"\d{4}-\d{2}$", na=False)].copy()
+    if segment_key is None:
+        monthly = monthly[monthly["segment"] != "total"].copy()
     if monthly.empty:
         st.info(
             "\u6708\u6b21\u30c7\u30fc\u30bf\u304c\u672a\u53d6\u5f97\u3067\u3059\u3002"
@@ -2676,7 +2640,7 @@ def render_ta_view() -> None:
     else:
         monthly_summary = (
             monthly.groupby(["period", "segment"], as_index=False)["amount"]
-            .sum()
+            .sum(min_count=1)
             .copy()
         )
         monthly_summary["segment_label"] = monthly_summary["segment"].map(
