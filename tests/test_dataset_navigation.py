@@ -86,3 +86,28 @@ def test_sequential_navigation_visits_all_routes_and_preserves_selection(
         key = "_ref_sel" if selected.startswith("全国イベント") else "_stats_sel"
         page.radio(key=key).set_value(selected).run()
         assert_selected(page, selected)
+
+
+@pytest.mark.parametrize("select_reference", [False, True])
+def test_cross_menu_change_explicitly_clears_the_browser_selection(
+    page, select_reference
+):
+    if not select_reference:
+        page.session_state["_active_dataset"] = "全国イベント速報（ニュース）"
+    page.run()
+    selected = (
+        "全国イベント情報（会場公式）"
+        if select_reference
+        else "インバウンド消費動向調査"
+    )
+    active_key = "_ref_sel" if select_reference else "_stats_sel"
+    inactive_key = "_stats_sel" if select_reference else "_ref_sel"
+    page.radio(key=active_key).set_value(selected).run()
+    assert_selected(page, selected)
+    # Server-side None alone leaves an existing browser mark intact. The real
+    # radio delta must explicitly request a reset with no selected value.
+    inactive = page.radio(key=inactive_key)
+    assert inactive.proto.set_value
+    assert not inactive.proto.HasField("value")
+    page.run()
+    assert_selected(page, selected)

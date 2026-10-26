@@ -4295,11 +4295,11 @@ def main() -> None:
         active = st.session_state["_active_dataset"]
         _is_ref = active in _REF_OPTIONS
 
-        # Clear the inactive menu only after all queued callbacks have run.
+        # Reset the browser selection after all queued callbacks have run.
         if _is_ref:
-            st.session_state.pop("_stats_sel", None)
+            st.session_state["_stats_sel"] = None
         else:
-            st.session_state.pop("_ref_sel", None)
+            st.session_state["_ref_sel"] = None
 
         def _on_stats_change():
             st.session_state["_active_dataset"] = st.session_state["_stats_sel"]
