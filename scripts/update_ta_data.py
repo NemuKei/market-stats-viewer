@@ -14,6 +14,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from scripts.stats_update_store import StatsUpdate, stats_update
 from stats.ta import is_ta_summary_company
 
 TA_SOURCE_INDEX_URL = (
@@ -56,14 +57,6 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
-
-
-def save_meta(meta: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    META_PATH.write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
 
 
 def load_meta() -> dict:
@@ -301,6 +294,11 @@ def has_usable_ta_table(sqlite_path: Path) -> bool:
 
 
 def main() -> int:
+    with stats_update(SQLITE_PATH) as update:
+        return _main(update)
+
+
+def _main(update: StatsUpdate) -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     index_html = fetch_html(TA_SOURCE_INDEX_URL)
@@ -453,7 +451,6 @@ def main() -> int:
     ).drop(columns=["_period_sort_year", "_period_sort_month"])
     df = df.reset_index(drop=True)
 
-    build_sqlite(df, SQLITE_PATH)
 
     meta = {
         "source_index_url": TA_SOURCE_INDEX_URL,
@@ -467,7 +464,7 @@ def main() -> int:
         "segments": sorted(df["segment"].unique().tolist()),
         "unit": "thousand_yen",
     }
-    save_meta(meta)
+    update.save(META_PATH, meta, lambda path: build_sqlite(df, path))
 
     print(
         f"Updated {TABLE_NAME}: rows={len(df)} files={len(processed_files)} "

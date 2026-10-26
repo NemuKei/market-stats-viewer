@@ -14,11 +14,13 @@ from bs4 import BeautifulSoup
 from openpyxl import load_workbook
 
 try:
+    from .stats_update_store import StatsUpdate, stats_update
     from .parse_ts_table import (
         build_raw_from_three_sheets,
         parse_facility_occupancy_monthly_sheet,
     )
 except ImportError:  # pragma: no cover - fallback for direct script execution
+    from stats_update_store import StatsUpdate, stats_update
     from parse_ts_table import (
         build_raw_from_three_sheets,
         parse_facility_occupancy_monthly_sheet,
@@ -215,13 +217,6 @@ def load_meta() -> dict:
     return json.loads(META_PATH.read_text(encoding="utf-8"))
 
 
-def save_meta(meta: dict) -> None:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    META_PATH.write_text(
-        json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-
-
 def download_file(url: str, dst: Path, timeout_sec: int = 60) -> None:
     with requests.get(url, stream=True, timeout=timeout_sec) as r:
         r.raise_for_status()
@@ -267,6 +262,11 @@ def build_sqlite(
 
 
 def main() -> int:
+    with stats_update(SQLITE_PATH) as update:
+        return _main(update)
+
+
+def _main(update: StatsUpdate) -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     html = fetch_html_text(SOURCE_PAGE_URL, timeout_sec=60)
@@ -314,7 +314,6 @@ def main() -> int:
             subset=["occupancy_rate"]
         ).copy()
 
-        build_sqlite(df, df_facility_occupancy, SQLITE_PATH)
 
         now = datetime.now(timezone.utc).isoformat()
         new_meta = {
@@ -330,7 +329,10 @@ def main() -> int:
             "facility_occupancy_min_ym": str(df_facility_occupancy["ym"].min()),
             "facility_occupancy_max_ym": str(df_facility_occupancy["ym"].max()),
         }
-        save_meta(new_meta)
+        update.save(
+            META_PATH, new_meta,
+            lambda path: build_sqlite(df, df_facility_occupancy, path),
+        )
 
         print(
             "Updated: "
