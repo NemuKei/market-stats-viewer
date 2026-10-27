@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-10-27",
+  "as_of_date": "2026-10-28",
   "events": [
-    {
-      "artist_name": "手越祐也",
-      "capacity": 2009,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-29",
-      "event_end_date": "2026-07-29",
-      "event_end_time": null,
-      "event_key": "3b98ae71b231b02c4dbc",
-      "event_start_time": "18:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160192",
-      "first_seen_at_utc": "2026-04-19T06:04:54Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "手越祐也",
-      "raw_venue_name": "Zepp札幌",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160192",
-          "priority": 10,
-          "record_id": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160192",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "手越祐也 LIVE TOUR 2026 SUPER STAR",
-          "updated_at_utc": "2026-07-31T06:51:03Z",
-          "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160192"
-        }
-      ],
-      "title": "手越祐也 LIVE TOUR 2026 SUPER STAR",
-      "updated_at_utc": "2026-07-31T06:51:03Z",
-      "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160192",
-      "venue_name": "Zepp札幌"
-    },
     {
       "artist_name": "ヨルシカ",
       "capacity": 17000,
@@ -40762,8 +40724,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-27T10:11:16Z",
-  "history_start_date": "2026-07-29",
+  "generated_at_utc": "2026-10-27T17:59:04Z",
+  "history_start_date": "2026-07-30",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 33,
@@ -40785,11 +40747,6 @@
     {
       "reason": "unresolved_domestic_location",
       "record_id": "466cb915b78fdac1061377460c321cb0e578057414d5c9dcbfb413d8ebe06bd1",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
-      "record_id": "7ae4303173a54a0cc633d0b9a6091f68082583adb93b53b2b4398984d5870d3c",
       "source_id": "kstyle_music"
     },
     {
@@ -40957,13 +40914,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 737,
+      "official_events": 736,
       "venue_web_discovery": 287
     },
-    "event_count": 1024,
-    "identity_held_record_count": 940,
-    "location_held_record_count": 35,
-    "record_count_before_grouping": 2196,
+    "event_count": 1023,
+    "identity_held_record_count": 932,
+    "location_held_record_count": 34,
+    "record_count_before_grouping": 2187,
     "start_time_split_event_count": 68,
     "start_time_split_group_count": 64,
     "supplemental_merged_group_count": 23,
