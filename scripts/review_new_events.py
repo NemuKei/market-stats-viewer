@@ -234,7 +234,7 @@ def fetch_official(url: str):
         return extract_with_requests_bs4(safe_url(url, resolve=True), session=session)
 
 
-def verify_evidence(row: dict, held: dict, evidence: dict, *, now: str, fetch=fetch_official) -> dict:
+def evidence_fields(row: dict, held: dict, evidence: dict, *, now: str) -> dict:
     fields = {"fingerprint", "identity", "url", "source_class", "reviewed_at_utc", "context", "date_text", "venue_text", "artist_text", "time_text", "end_date_text"}
     ids.require(isinstance(evidence, dict) and set(evidence) == fields, "incomplete official evidence")
     ids.require(evidence["fingerprint"] == held["fingerprint"] and evidence["identity"] == held["identity"], "evidence observation mismatch")
@@ -261,10 +261,37 @@ def verify_evidence(row: dict, held: dict, evidence: dict, *, now: str, fetch=fe
     if ident["event_start_time"]:
         marker = r"(?:開演|開始|START|キックオフ)\s*[】:：]?\s*" + re.escape(ident["event_start_time"][:5]) + r"(?!\d)"
         ids.require(isinstance(evidence["time_text"], str) and evidence["time_text"] in context and re.search(marker, evidence["time_text"], re.I), "explicit performance time required; OPEN alone is insufficient")
-    page = fetch(evidence["url"])
-    ids.require(page.success and page.status_code == 200 and context in page.text, "official context was not retrieved unchanged")
     return {"url": evidence["url"], "reviewed_at_utc": evidence["reviewed_at_utc"],
         "reason": AUTO_REASON + " date, venue, artist" + (", performance time" if ident["event_start_time"] else "") + "; context_sha256=" + ids.digest(context.encode())}
+
+
+def verify_evidence(row: dict, held: dict, evidence: dict, *, now: str, fetch=fetch_official) -> dict:
+    checked = evidence_fields(row, held, evidence, now=now)
+    page = fetch(evidence["url"])
+    ids.require(page.success and page.status_code == 200 and evidence["context"] in page.text, "official context was not retrieved unchanged")
+    return checked
+
+
+def index_evidence(plan: dict, evidence: list[dict]) -> dict:
+    ids.require(isinstance(evidence, list), "evidence must be an array")
+    by_fp = {}
+    for value in evidence:
+        ids.require(isinstance(value, dict) and isinstance(value.get("fingerprint"), str)
+            and value["fingerprint"] not in by_fp, "duplicate or invalid evidence fingerprint")
+        by_fp[value["fingerprint"]] = value
+    ids.require(set(by_fp) <= {h["fingerprint"] for h in plan["eligible"]}, "evidence includes a non-new, related, duplicate, or other-cohort candidate")
+    return by_fp
+
+
+def registry_bytes(registry: dict) -> bytes:
+    return json.dumps(registry, ensure_ascii=False, sort_keys=True, indent=2).encode() + b"\n"
+
+
+def validate_public_baseline(public: dict, registry: dict) -> None:
+    validate_payload(public)
+    ids.require(public.get("identity_registry") == {"schema_version": registry["schema_version"],
+        "revision": registry["revision"], "sha256": ids.digest(registry_bytes(registry))}, "published LP is not bound to the prepared registry")
+    ids.validate_resolved_rows(public["events"], registry)
 
 
 def assert_additive(before: dict, after: dict, before_rows: list[dict], after_rows: list[dict], new_ids: set[str]) -> None:
@@ -283,15 +310,10 @@ def check_plan_time(plan: dict, now: str) -> None:
     ids.require(stamp(now).astimezone(JST).date().isoformat() == plan["day_jst"], "review crossed JST quota day; prepare again")
 
 
-def stage(payload: dict, registry: dict, plan: dict, evidence: list[dict], *, now: str, fetch=fetch_official) -> dict:
+def stage(payload: dict, registry: dict, plan: dict, evidence: list[dict], *, public_baseline: dict, now: str, fetch=fetch_official) -> dict:
     check_plan_time(plan, now)
-    ids.require(isinstance(evidence, list), "evidence must be an array")
-    by_fp = {}
-    for value in evidence:
-        ids.require(isinstance(value, dict) and value.get("fingerprint") not in by_fp, "duplicate evidence fingerprint")
-        by_fp[value.get("fingerprint")] = value
-    eligible = {h["fingerprint"] for h in plan["eligible"]}
-    ids.require(set(by_fp) <= eligible, "evidence includes a non-new, related, duplicate, or other-cohort candidate")
+    validate_public_baseline(public_baseline, registry)
+    by_fp = index_evidence(plan, evidence)
     rows = {r["event_key"]: r for r in payload["events"]}
     working, state, items, held, requests = deepcopy(registry), deepcopy(plan["state"]), [], [], []
     accepted_identities = []
@@ -325,17 +347,79 @@ def stage(payload: dict, registry: dict, plan: dict, evidence: list[dict], *, no
     if items:
         state["batches"].append({"day_jst": plan["day_jst"], "staged_at_utc": now, "ingestion": plan.get("ingestion"), "items": items})
     validate_state(state, working)
-    before_rows, _ = ids.resolve_rows(payload["events"], registry)
     after_rows, _ = ids.resolve_rows(payload["events"], working)
-    assert_additive(registry, working, before_rows, after_rows, {i["event_uid"] for i in items})
+    assert_additive(registry, working, public_baseline["events"], after_rows, {i["event_uid"] for i in items})
     # Serialization must agree with the digest referenced by the LP.
-    registry_bytes = json.dumps(working, ensure_ascii=False, sort_keys=True, indent=2).encode() + b"\n"
-    lp = ids.apply_to_payload(payload, working, ids.digest(registry_bytes))
+    lp = ids.apply_to_payload(payload, working, ids.digest(registry_bytes(working)))
     lp.pop("identity_held_records")
     validate_payload(lp)
-    return {"registry": working, "lp": lp, "state": state, "requests": requests,
-        "report": {"status": "stopped" if plan["stops"] else "staged", "stops": plan["stops"], "new_ids": [i["event_uid"] for i in items], "held": held,
+    return {"registry": working, "lp": lp, "state": state, "requests": requests, "evidence": evidence,
+        "report": {"schema_version": 1, "plan_sha256": ids.digest(ids.canonical_bytes(plan)), "staged_at_utc": now,
+            "status": "stopped" if plan["stops"] else "staged", "stops": plan["stops"], "new_ids": [i["event_uid"] for i in items], "held": held,
             "daily_used_after": plan["daily_used"] + len(items), "promotion_requires_independent_review": True, "mail_send_enabled": False}}
+
+
+def audit_bundle(payload: dict, before: dict, plan: dict, public_baseline: dict, *, after: dict,
+                 after_sha: str, lp: dict, state: dict, report: dict, requests: list[dict], evidence: list[dict], now: str) -> list[tuple[dict, dict, dict]]:
+    """Replay exact reviewed requests; only allocated UUID values are reused.
+
+    This checks file/plan integrity. Live retrieval and independent semantic
+    review remain required by the CLI before it can return audit=passed.
+    """
+    check_plan_time(plan, now)
+    validate_public_baseline(public_baseline, before)
+    ids.require(report.get("schema_version") == 1 and report.get("plan_sha256") == ids.digest(ids.canonical_bytes(plan)), "stage belongs to another plan")
+    ids.require(stamp(plan["prepared_at_utc"]) <= stamp(report["staged_at_utc"]) <= stamp(now), "invalid stage time")
+    ids.require(report["status"] == ("stopped" if plan["stops"] else "staged") and report["stops"] == plan["stops"], "stage stop conditions changed")
+    ids.require(report["mail_send_enabled"] is False and report["promotion_requires_independent_review"] is True, "stage review boundary changed")
+    ids.require(isinstance(requests, list) and len(requests) == len(report["new_ids"]) <= plan["limit"], "stage request count/quota mismatch")
+    by_fp = index_evidence(plan, evidence)
+    eligible = {h["fingerprint"]: h for h in plan["eligible"]}
+    positions = {h["fingerprint"]: n for n, h in enumerate(plan["eligible"])}
+    rows = {r["event_key"]: r for r in payload["events"]}
+    expected, items, accepted, checks = deepcopy(before), [], [], []
+    previous_position = -1
+    for request, uid in zip(requests, report["new_ids"]):
+        ids.require(isinstance(uid, str) and re.fullmatch(r"evt_[0-9a-f]{32}", uid), "invalid staged UUID")
+        candidates = request.get("candidates")
+        ids.require(isinstance(candidates, list) and len(candidates) == 1, "one new observation per prepared request required")
+        observation = candidates[0].get("observation", {})
+        fp = observation.get("fingerprint")
+        ids.require(fp in eligible and fp in by_fp, "staged addition is not a prepared eligible/evidenced candidate")
+        h = eligible[fp]
+        ids.require(positions[fp] > previous_position and not any(duplicate_occurrence(h["identity"], other) for other in accepted), "staged order or occurrence is duplicated")
+        previous_position = positions[fp]
+        checked = evidence_fields(rows[h["candidate_key"]], h, by_fp[fp], now=now)
+        exact = {"schema_version": 1, "kind": "new", "expected_revision": expected["revision"], "previous_ids": [],
+            "candidates": [{"event_uid": None, "observation": {k: h[k] for k in ("candidate_key", "identity", "source_records", "fingerprint")}}], "evidence": checked}
+        ids.require(request == exact, "staged request differs from the exact prepared observation/official evidence")
+        replay = ids.apply_review(expected, request)
+        # apply_review allocates one random UUID; retain only the reviewed UUID
+        # value from this stage, then validate the full replayed journal again.
+        replay["events"][-1]["event_uid"] = uid
+        replay["relations"][-1]["next_ids"] = [uid]
+        replay["relations"][-1]["candidates"][0]["event_uid"] = uid
+        ids.validate_registry(replay)
+        expected = replay
+        key = observation_key(h)
+        items.append({"event_uid": uid, "fingerprint": fp, "observation_key": key,
+            "cohort": plan["state"]["observed"][key]["cohort"], "request_sha256": ids.digest(ids.canonical_bytes(request))})
+        accepted.append(h["identity"])
+        checks.append((rows[h["candidate_key"]], h, by_fp[fp]))
+    ids.require(expected == after, "staged registry differs from replay of prepared requests")
+    expected_state = deepcopy(plan["state"])
+    if items:
+        expected_state["batches"].append({"day_jst": plan["day_jst"], "staged_at_utc": report["staged_at_utc"], "ingestion": plan.get("ingestion"), "items": items})
+    ids.require(state == expected_state, "staged state changed prior history/quota or the prepared cohort")
+    validate_state(state, after)
+    ids.require(report["daily_used_after"] == plan["daily_used"] + len(items), "stage daily quota report changed")
+    held_fps = [h["fingerprint"] for h in report["held"]]
+    ids.require(len(held_fps) == len(set(held_fps)) and set(held_fps) == set(eligible) - {h["fingerprint"] for _, h, _ in checks}, "stage held inventory mismatch")
+    expected_lp = ids.apply_to_payload(payload, after, after_sha)
+    expected_lp.pop("identity_held_records")
+    ids.require(expected_lp == lp, "staged LP differs from source rebuild")
+    assert_additive(before, after, public_baseline["events"], lp["events"], set(report["new_ids"]))
+    return checks
 
 
 CONSUMER_FILES = ("02_Service/web_lp/scripts/event_source_policy.py",
@@ -380,14 +464,24 @@ print(json.dumps({'keys':[r['event_uid'] for r in rows],'published':ordinary}))
     return set(value["keys"]), [ids.identity_from_row(r, public=True) for r in value["published"]]
 
 
+def clean_commit(path: Path, label: str) -> str:
+    commit = subprocess.check_output(["git", "-C", str(path), "rev-parse", "HEAD"], text=True).strip()
+    ids.require(re.fullmatch(r"[a-f0-9]{40}", commit), f"{label} known commit required")
+    dirty = subprocess.check_output(["git", "-C", str(path), "status", "--porcelain=v1", "--untracked-files=all"], text=True)
+    ids.require(not dirty, f"{label} checkout must be clean; unrelated or unpublished work must stay separate")
+    return commit
+
+
 def input_pins(state_path: Path | None, consumer: Path | None = None) -> dict:
+    source_commit = clean_commit(ROOT, "MSV")
+    consumer_commit = clean_commit(consumer, "SideBiz") if consumer else None
     paths = sorted(set(git("ls-files", "data", "scripts", ".github/workflows").splitlines()) | {"scripts/review_new_events.py"})
     pins = {p: ids.digest((ROOT / p).read_bytes()) for p in paths if (ROOT / p).is_file()}
-    return {"source_commit": git("rev-parse", "HEAD"), "files": pins,
+    return {"source_commit": source_commit, "files": pins,
         "state_path": str(state_path.resolve()) if state_path else None,
         "state_sha256": ids.digest(state_path.read_bytes()) if state_path else None,
         "consumer_path": str(consumer.resolve()) if consumer else None,
-        "consumer_commit": subprocess.check_output(["git", "-C", str(consumer), "rev-parse", "HEAD"], text=True).strip() if consumer else None,
+        "consumer_commit": consumer_commit,
         "consumer_files": consumer_files(consumer) if consumer else {}}
 
 
@@ -401,13 +495,17 @@ def private_directory(path: Path) -> None:
     path.mkdir(mode=0o700, parents=True, exist_ok=False)
 
 
-def read_prepared(directory: Path) -> tuple[dict, dict, dict]:
+def read_prepared(directory: Path) -> tuple[dict, dict, dict, dict]:
     plan = ids.parse_json((directory / "plan.json").read_bytes())
     verify_pins(plan["pins"])
     payload = ids.parse_json((directory / "candidates.json").read_bytes())
     registry = ids.parse_json((directory / "registry-before.json").read_bytes())
     current, _ = ids.load_registry()
     ids.require(registry == current, "private registry baseline changed")
+    raw_public = (directory / "published-lp-before.json").read_bytes()
+    ids.require(ids.digest(raw_public) == plan["published_baseline_sha256"] and raw_public == (ROOT / "data/lp_events.json").read_bytes(), "saved published LP baseline changed")
+    public_baseline = ids.parse_json(raw_public)
+    validate_public_baseline(public_baseline, registry)
     rebuilt = builder._build_lp_event_candidates(as_of_date=date.fromisoformat(payload["as_of_date"]))
     rebuilt["generated_at_utc"] = payload["generated_at_utc"]
     ids.require(rebuilt == payload, "private candidate baseline changed")
@@ -420,7 +518,29 @@ def read_prepared(directory: Path) -> tuple[dict, dict, dict]:
     expected = prepare(payload, registry, original_state, now=plan["prepared_at_utc"], cohort=plan["cohort"],
         limit=plan["requested_limit"], publishable_keys=scope, published_identities=published)
     ids.require(all(expected[k] == plan[k] for k in expected), "private selection/quota changed")
-    return plan, payload, registry
+    return plan, payload, registry, public_baseline
+
+
+BUNDLE_FILES = ("event_identity_registry.json", "lp_events.json", "new_event_review_state.json",
+    "report.json", "requests.json", "official-evidence.json")
+
+
+def bundle_hashes(root: Path) -> dict[str, str]:
+    return {name: ids.digest((root / name).read_bytes()) for name in BUNDLE_FILES}
+
+
+def independent_review(value: dict, plan: dict, root: Path, checks: list, *, staged_at: str, now: str) -> None:
+    ids.require(set(value) == {"schema_version", "reviewer_role", "plan_sha256", "bundle_sha256", "reviewed_at_utc", "findings"}, "independent review required")
+    ids.require(value["schema_version"] == 1 and value["reviewer_role"] == "independent_reviewer", "separate semantic reviewer required")
+    ids.require(value["plan_sha256"] == ids.digest(ids.canonical_bytes(plan)) and value["bundle_sha256"] == bundle_hashes(root), "independent review is for another plan/staged bundle")
+    ids.require(stamp(staged_at) <= stamp(value["reviewed_at_utc"]) <= stamp(now), "independent review time is invalid")
+    findings = value["findings"]
+    ids.require(isinstance(findings, list) and len(findings) == len(checks), "independent findings count mismatch")
+    for finding, (_, h, evidence) in zip(findings, checks):
+        ids.require(isinstance(finding, dict) and set(finding) == {"fingerprint", "url", "same_occurrence_confirmed", "cancellation_status", "reason"}, "occurrence attribution and cancellation review required")
+        ids.require(finding["fingerprint"] == h["fingerprint"] and finding["url"] == evidence["url"]
+            and finding["same_occurrence_confirmed"] is True and finding["cancellation_status"] == "not_cancelled_or_postponed"
+            and isinstance(finding["reason"], str) and 0 < len(finding["reason"].strip()) <= 1000, "independent occurrence/cancellation check did not pass")
 
 
 def main(argv=None) -> int:
@@ -439,10 +559,18 @@ def main(argv=None) -> int:
     s.add_argument("--evidence", type=Path, required=True)
     a = sub.add_parser("audit")
     a.add_argument("--prepared", type=Path, required=True)
+    a.add_argument("--independent-review", type=Path, required=True, help="Private findings from a separate reviewer, bound to this plan and staged bytes.")
     args = parser.parse_args(argv)
     now = now_z()
     if args.command == "prepare":
         ids.require(bool(args.state) != args.initialize, "supply persisted --state OR explicit private --initialize")
+        canonical_state = ROOT / "data/new_event_review_state.json"
+        if args.state:
+            ids.require(args.state.resolve() == canonical_state.resolve() or not args.state.resolve().is_relative_to(ROOT), "state must be canonical or private outside the checkout")
+        pins = input_pins(args.state, args.consumer_repo)
+        if args.state and args.state.resolve() == canonical_state.resolve():
+            committed_state = subprocess.check_output(["git", "-C", str(ROOT), "show", "HEAD:data/new_event_review_state.json"])
+            ids.require(committed_state == canonical_state.read_bytes(), "canonical state must match the committed main input")
         receipt = read_ingestion(args.ingestion_run_id, now)
         registry, _ = ids.load_registry()
         payload = builder._build_lp_event_candidates()
@@ -450,45 +578,53 @@ def main(argv=None) -> int:
         scope, published = consumer_context(payload, args.consumer_repo)
         plan = prepare(payload, registry, state, now=now, cohort=args.cohort, limit=args.limit,
             publishable_keys=scope, published_identities=published)
-        plan.update(ingestion=receipt, pins=input_pins(args.state, args.consumer_repo), bootstrap=args.initialize, requested_limit=args.limit)
+        public_raw = (ROOT / "data/lp_events.json").read_bytes()
+        validate_public_baseline(ids.parse_json(public_raw), registry)
+        verify_pins(pins)
+        plan.update(ingestion=receipt, pins=pins, bootstrap=args.initialize, requested_limit=args.limit,
+            published_baseline_sha256=ids.digest(public_raw))
         private_directory(args.output)
         for name, value in {"plan.json": plan, "candidates.json": payload, "registry-before.json": registry, "state-before.json": state}.items():
             write_json(args.output / name, value)
+        ids.atomic_write(args.output / "published-lp-before.json", public_raw, replace=False)
         print(json.dumps({"eligible": len(plan["eligible"]), "limit": plan["limit"],
             "stops": [{"reason": s["reason"], "count": len(s["fingerprints"]) if "fingerprints" in s else s["count"]} for s in plan["stops"]], "bootstrap": args.initialize}))
     elif args.command == "stage":
-        plan, payload, registry = read_prepared(args.prepared)
-        result = stage(payload, registry, plan, json.loads(args.evidence.read_bytes()), now=now)
+        plan, payload, registry, public_baseline = read_prepared(args.prepared)
+        raw_evidence = ids.parse_json(b'{"evidence":' + args.evidence.read_bytes() + b'}')["evidence"]
+        result = stage(payload, registry, plan, raw_evidence, public_baseline=public_baseline, now=now)
         target = args.prepared / "staged"
         private_directory(target)
         for name, value in {"event_identity_registry.json": result["registry"], "lp_events.json": result["lp"], "new_event_review_state.json": result["state"], "report.json": result["report"]}.items():
             write_json(target / name, value)
         write_json(target / "requests.json", {"requests": result["requests"]})
+        write_json(target / "official-evidence.json", {"evidence": result["evidence"]})
         report = result["report"]
         print(json.dumps({"status": report["status"], "new_count": len(report["new_ids"]),
             "held_counts": dict(Counter(h["reason"] for h in report["held"])), "daily_used_after": report["daily_used_after"], "mail_send_enabled": False}))
     else:
-        plan, payload, before = read_prepared(args.prepared)
+        plan, payload, before, public_baseline = read_prepared(args.prepared)
         root = args.prepared / "staged"
         after, after_sha = ids.load_registry(root / "event_identity_registry.json")
         state = ids.parse_json((root / "new_event_review_state.json").read_bytes())
         lp = ids.parse_json((root / "lp_events.json").read_bytes())
         report = ids.parse_json((root / "report.json").read_bytes())
-        validate_state(state, after)
-        new_ids = {e["event_uid"] for e in after["events"]} - {e["event_uid"] for e in before["events"]}
-        before_rows, _ = ids.resolve_rows(payload["events"], before)
-        assert_additive(before, after, before_rows, lp["events"], new_ids)
-        expected = ids.apply_to_payload(payload, after, after_sha)
-        expected.pop("identity_held_records")
-        ids.require(expected == lp and new_ids == set(report["new_ids"]), "staged LP/report differs from independent rebuild")
-        validate_payload(lp)
+        requests = ids.parse_json((root / "requests.json").read_bytes())["requests"]
+        evidence = ids.parse_json((root / "official-evidence.json").read_bytes())["evidence"]
+        checks = audit_bundle(payload, before, plan, public_baseline, after=after, after_sha=after_sha,
+            lp=lp, state=state, report=report, requests=requests, evidence=evidence, now=now)
         ids.require(not plan["bootstrap"] and not plan["stops"] and report["status"] == "staged", "promotion stopped: bootstrap baseline or unresolved stop conditions")
-        check_plan_time(plan, now)
+        ids.require(plan["pins"]["state_path"] == str((ROOT / "data/new_event_review_state.json").resolve()), "promotion requires committed canonical review state; private state is dry-run only")
+        independent_review(ids.parse_json(args.independent_review.read_bytes()), plan, root, checks, staged_at=report["staged_at_utc"], now=now)
+        for row, h, evidence in checks:
+            verify_evidence(row, h, evidence, now=now)
         ids.require(read_ingestion(plan["ingestion"]["run_id"], now) == plan["ingestion"], "ingestion receipt changed")
         remote = git("ls-remote", "origin", "refs/heads/main").split()[0]
         ids.require(remote == plan["pins"]["source_commit"], "origin/main moved or review did not start from main; re-prepare without rebasing")
-        ids.require(len(new_ids) <= plan["limit"], "staged quota exceeded")
-        print(json.dumps({"audit": "passed", "new_count": len(new_ids), "mail_send_enabled": False}))
+        consumer_remote = subprocess.check_output(["git", "-C", plan["pins"]["consumer_path"], "ls-remote", "origin", "refs/heads/main"], text=True).split()[0]
+        ids.require(consumer_remote == plan["pins"]["consumer_commit"], "SideBiz main moved; prepare with the current consumer")
+        verify_pins(plan["pins"])
+        print(json.dumps({"audit": "passed", "new_count": len(report["new_ids"]), "mail_send_enabled": False}))
     return 0
 
 

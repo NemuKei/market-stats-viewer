@@ -357,21 +357,24 @@ python -m scripts.review_new_events prepare --state data/new_event_review_state.
   --consumer-repo /path/to/SideBiz_HotelRM --output /private/path/new-review-run
 python -m scripts.review_new_events stage --prepared /private/path/new-review-run \
   --evidence /private/path/official-evidence.json
-python -m scripts.review_new_events audit --prepared /private/path/new-review-run
+python -m scripts.review_new_events audit --prepared /private/path/new-review-run \
+  --independent-review /private/path/independent-review.json
 ```
 
 - **取込完了**: `gh api`で既存 `update_signals_venue_web_discovery.yml` のmain実行がsuccess、完了後24時間以内、head SHAがcheckoutの祖先、その版のinbox bytesが現在と同一であることを検査する。実行時刻だけ、別workflow、実行中・失敗、古いinboxの成功は使わない。新権限・新認証が必要なら停止する。
 - **公開対象**: 現在の候補をSideBizの実exporterと実source policyへ通す。consumerのcommit、Python helper群（追加import先を含む）とpolicyをSHA-256で固定し、公開方針外を審査しない。MSVにconsumerの方針を複製しない。対象は将来開催の `unregistered_candidate`、`related_event_uids=[]`、通常occurrenceのみ。`schedule_day`や未公開TAの生成物・設定には触れない。
-- **公式確認**: 各evidenceはfingerprint、identity、URL、source_class、UTC確認時刻、2,000字以内の連続した該当箇所、`date_text / end_date_text / venue_text / artist_text / time_text`を持つ。既存supporting sourceの公式URL本文を、ログインなしのrequests/BeautifulSoupで再取得する。全日付（年を含む）、canonical会場・出演者、既知の開演時刻が一致することを確認する。OPENを開演としない。同日複数回の帰属や会場aliasなどの意味判断が曖昧なら個別保留とする。本文抜粋・preview・要求fileはGit/Releaseに含めず、台帳evidenceにはURL、時刻、短い確認理由とcontext hashを残す。
+- **公式確認**: 各evidenceはfingerprint、identity、URL、source_class、UTC確認時刻、2,000字以内の連続した該当箇所、`date_text / end_date_text / venue_text / artist_text / time_text`を持つ。既存supporting sourceの公式URL本文を、ログインなしのrequests/BeautifulSoupで再取得する。全日付（年を含む）、canonical会場・出演者、既知の開演時刻が一致することを確認する。OPENを開演としない。本文の部分一致だけで同一公演や開催継続を確定しない。同日複数回の帰属、別会場への取り違え、中止/延期の有無は独立担当が確認し、曖昧なら個別保留とする。本文抜粋・preview・要求file・独立確認結果はcheckout外のprivate directoryだけに保存し、Git/Releaseに含めない。台帳evidenceにはURL、時刻、短い確認理由とcontext hashを残す。
 - **上限と同日再実行**: `data/new_event_review_state.json` のbatch journalにJST日付と採用ID・要求hashを保存し、backlogとdailyの合計で1日最大50件。同じ要求の再適用でIDが増えないことを検査する。超過は候補として残し、次回に再取得・再確認する。stateの消失・初期化でquotaを戻せないよう、台帳の自動審査journalとの対応も検査する。JST日付をまたいだ準備結果、1時間を超えた準備結果、6時間を超えた公式確認は再準備する。
 - **停止と保留**: 公開方針内に既存ID関連（訂正/分割/統合相当）を検出した実行は公開停止とする。個々の新規公式確認はdry-runできるが、停止を解除したことにはしない。検査失敗、input/state/consumerの変化、履歴・既存行の変更/削除、同一会場・同日・同出演者/高類似title・互換時刻の二重化も通さない。新しい候補の1日累計が `max(50, 過去7観測日の新候補数の平均×3を切上げ)` を超えたら形式変更疑いで停止する。初回積残しは急増数に含めない。公式取得失敗、根拠不足、曖昧な候補は個別保留。例外は作業結果へ報告し、Slack投稿は別途指示された送信だけに限る。
-- **排他と競合**: 専用checkoutは単一Mac reviewerが所有し、既存作業元を再利用しない。準備時のcommit、全tracked data/script/workflow、state、consumerのhelper・policy・既公開 `events.json` のhashをstage/auditで再検査し、private候補もsourceから独立再構築して比較する。既公開snapshotの通常occurrenceとも二重化を確認し、日単位IDを通常occurrenceへ読み替えない。staged結果を別writerが上書きできないよう新規directoryとexclusive file作成を使う。公開直前にorigin/mainをfetchして準備元との一致を確認し、相違は自動rebaseせず再準備する。mainへの通常fast-forward pushが最終的な競合検査になる。同じbaseからの別writerはpush拒否後に同じstaged IDを押し直さない。Actions側の既存 `repo-write` / `release-assets` concurrencyは維持する。
+- **排他と競合**: 専用checkoutは単一Mac reviewerが所有し、既存作業元を再利用しない。MSVとSideBiz consumerは既知commitのclean checkoutを要求し、未追跡fileを含む他のdirtyは開始時に停止する。private出力とprivate stateを試す場合の例外pathはcheckout外だけで、hashを固定する。公開gateはcanonicalなtracked `data/new_event_review_state.json` が必要。準備時のcommit、全tracked data/script/workflow、state、consumerのhelper・policy・既公開 `events.json` のhashをstage/auditで再検査し、private候補もsourceから独立再構築して比較する。既公開snapshotの通常occurrenceとも二重化を確認し、日単位IDを通常occurrenceへ読み替えない。staged結果を別writerが上書きできないよう新規directoryとexclusive file作成を使う。公開直前に両repoのremote mainが準備commitと同じか確認し、相違は自動rebaseせず再準備する。mainへの通常fast-forward pushが最終的な競合検査になる。同じbaseからの別writerはpush拒否後に同じstaged IDを押し直さない。Actions側の既存 `repo-write` / `release-assets` concurrencyは維持する。
 - **積残しとメール境界**: 初回previewの将来保留をbacklogとして固定し、同一identityの追加sourceでcohortを変更しない。baseline以前のsource初出または時刻不明もbacklogとする。以後に初出したものだけdailyへ分ける。stateは `mail_send_enabled=false / mail_baseline_required=true` を強制する。これはメール実装ではない。積残しの処理・保留理由を整理後、メール側でその時点の公開世代と既知の全IDをbaselineにするまで送信を開始しない。今回の公開承認をメール開始承認に読み替えない。
 
-**公開前の独立確認**は、候補を選んだ担当と別のレビューで、保存した公式根拠とstage後の実差分を確認する。`audit`はprivate情報を信頼せずsourceから候補を再構築し、既存台帳・履歴がbyte相当で不変、新規relationのみ、LPの既存行が不変で追加ID集合だけが増えることを検査する。bootstrapや停止条件が残ると非0終了する。これに加え、下記focused tests、通常LP/全保持期間assetの生成・manifest検証、SideBizの実変換結果に新IDだけが増える確認を行う。初回は最大3件。公演日の補正、既存IDのacknowledgementやschema migrationで通すことは禁止する。
+**公開前の独立確認**は、候補を選んだ担当と別のレビューで、保存した公式根拠とstage後の実差分を確認する。`prepare`は現在保存済みの公開 `data/lp_events.json` bytesも別に保存する。`stage/audit`は再計算したLPだけでなくその公開baselineと比較し、既存行の変更/削除を拒否する。`audit`はsourceから候補を再構築し、privateのrequestsと公式contextを再読取する。要求をplan.eligibleへexactに束縛して既存apply_reviewを再生し、発行済みUUID値だけをstageから引き継いで台帳全体を比較する。stateはplan.state＋その回のbatchのみとの完全一致を要求し、過去batchのJST日付・時刻・quotaも変更できない。公式contextは公開gate直前に再取得する。bootstrapや停止条件が残ると非0終了する。
+
+別担当はprivateの `independent-review.json` に `schema_version=1`、`reviewer_role=independent_reviewer`、planのcanonical SHA-256、stage 6file（registry/LP/state/report/requests/official-evidence）のraw bytes SHA-256、UTC確認時刻、採用候補ごとの `fingerprint/url/same_occurrence_confirmed=true/cancellation_status=not_cancelled_or_postponed/reason` を記録する。これは同じ公演への帰属と中止/延期情報を確認した結果であり、作成担当が自分の本文部分一致を独立確認と読み替えて作らない。scriptは結果の対象・時刻・一式の一致を検査し、担当の独立性や意味判断そのものを暗号的に保証するものではない。通常の別担当QAがこの判断を担う。異なるplan/cohort/bundleの確認結果は拒否する。これに加え、下記focused tests、通常LP/全保持期間assetの生成・manifest検証、SideBizの実変換結果に新IDだけが増える確認を行う。初回は最大3件。公演日の補正、既存IDのacknowledgementやschema migrationで通すことは禁止する。
 
 ```bash
-python -m pytest tests/test_review_new_events.py tests/test_event_identity_registry.py \
+python -m pytest tests/test_review_new_events.py tests/test_review_new_events_cli.py tests/test_event_identity_registry.py \
   tests/test_build_lp_events.py tests/test_build_all_dates_lp_events.py \
   tests/test_build_external_events_manifest.py tests/test_validate_external_events.py -q
 python -m scripts.event_identity_registry --registry /private/path/new-review-run/staged/event_identity_registry.json validate

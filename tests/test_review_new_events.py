@@ -59,11 +59,17 @@ def page(e):
     return SimpleNamespace(success=True, status_code=200, text=e["context"])
 
 
+def baseline(p, registry):
+    result = ids.apply_to_payload(p, registry, ids.digest(review.registry_bytes(registry)))
+    result.pop("identity_held_records")
+    return result
+
+
 def run(p, registry, state, *, limit=50, now=NOW):
     plan = review.prepare(p, registry, state, now=now, limit=limit)
     evidence = [evidence_for(h) for h in plan["eligible"]]
     pages = {e["url"]: page(e) for e in evidence}
-    return review.stage(p, registry, plan, evidence, now=now, fetch=pages.__getitem__)
+    return review.stage(p, registry, plan, evidence, public_baseline=baseline(p, registry), now=now, fetch=pages.__getitem__)
 
 
 def test_additive_review_replay_and_same_day_rerun_do_not_create_duplicates():
@@ -133,7 +139,7 @@ def test_same_batch_duplicate_is_held_instead_of_allocating_second_id():
     state = review.initial_state(combined, registry, now=NOW, source_sha="a" * 40)
     plan = review.prepare(combined, registry, state, now=NOW)
     evidence = [evidence_for(h) for h in held]
-    result = review.stage(combined, registry, plan, evidence, now=NOW, fetch=lambda _: page(evidence[0]))
+    result = review.stage(combined, registry, plan, evidence, public_baseline=baseline(combined, registry), now=NOW, fetch=lambda _: page(evidence[0]))
     assert len(result["report"]["new_ids"]) == 1
     assert any(h["reason"] == "possible_batch_duplicate" for h in result["report"]["held"])
 
@@ -146,7 +152,7 @@ def test_official_failure_holds_only_that_candidate():
         if url.endswith("A"):
             raise ConnectionError("fictional outage")
         return page(evidence[1])
-    result = review.stage(p, registry, plan, evidence, now=NOW, fetch=fetch)
+    result = review.stage(p, registry, plan, evidence, public_baseline=baseline(p, registry), now=NOW, fetch=fetch)
     assert len(result["report"]["new_ids"]) == 1
     assert result["report"]["held"][0]["error_type"] == "ConnectionError"
 
@@ -162,7 +168,7 @@ def test_ambiguous_or_unofficial_evidence_is_not_applied(change):
     plan = review.prepare(p, registry, state, now=NOW)
     e = evidence_for(plan["eligible"][0])
     e.update(change)
-    result = review.stage(p, registry, plan, [e], now=NOW, fetch=lambda _: page(e))
+    result = review.stage(p, registry, plan, [e], public_baseline=baseline(p, registry), now=NOW, fetch=lambda _: page(e))
     assert result["registry"] == registry
     assert result["report"]["new_ids"] == []
 
@@ -171,7 +177,7 @@ def test_context_must_be_present_on_live_official_page():
     p, registry, state = setup()
     plan = review.prepare(p, registry, state, now=NOW)
     e = evidence_for(plan["eligible"][0])
-    result = review.stage(p, registry, plan, [e], now=NOW,
+    result = review.stage(p, registry, plan, [e], public_baseline=baseline(p, registry), now=NOW,
         fetch=lambda _: SimpleNamespace(success=True, status_code=200, text="unrelated calendar"))
     assert result["registry"] == registry
 
@@ -206,7 +212,7 @@ def test_prepared_review_cannot_cross_jst_midnight():
     p, registry, state = setup()
     plan = review.prepare(p, registry, state, now="2026-10-28T14:59:00Z")
     with pytest.raises(ValueError, match="crossed JST"):
-        review.stage(p, registry, plan, [], now="2026-10-28T15:00:00Z")
+        review.stage(p, registry, plan, [], public_baseline=baseline(p, registry), now="2026-10-28T15:00:00Z")
 
 
 def test_additive_audit_rejects_existing_id_mutation_or_row_deletion():
