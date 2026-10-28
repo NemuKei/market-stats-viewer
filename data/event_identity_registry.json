@@ -16283,7 +16283,7 @@
       "event_uid": "2e21730d3ce68d395eba",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "2e21730d3ce68d395eba",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -16295,6 +16295,30 @@
             "event_end_date": "2026-11-06",
             "event_start_time": "",
             "title": "爆音漫才選集",
+            "venue_name": "豊洲PIT"
+          },
+          "source_records": [
+            {
+              "record_id": "toyosu_pit:../../../schedule/202604/8500.html",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "ec2c6e042c63e33e9484",
+          "evidence": {
+            "reason": "Same 2026-11-06 Toyosu PIT event: original venue record links directly to the organizer detail. Correct event-name labels only from Bakoon Manzai Senshu to Tokyo Bakoon Manzai Senshu. Performer-list discrepancy (organizer 22, venue 21 acts) remains HELD, with no cast additions/removals or selection. Preserve current blank time and event-level ID/unit. Official evidence SHA256=f0f13540c0c78ed52065b7e14771ae602955a58e42806c09e6e7ea168601257c",
+            "reviewed_at_utc": "2026-10-28T14:56:01Z",
+            "url": "https://live.yoshimoto.co.jp/live/live-32134/"
+          },
+          "fingerprint": "57a56b475c23a9faa9a793dae545a08461846c7fac3ae230373bca7632545566",
+          "identity": {
+            "artist_name": "東京爆音漫才選集",
+            "event_date": "2026-11-06",
+            "event_end_date": "2026-11-06",
+            "event_start_time": "",
+            "title": "東京爆音漫才選集",
             "venue_name": "豊洲PIT"
           },
           "source_records": [
@@ -17826,7 +17850,7 @@
       "event_uid": "9e185368a185dc170e14",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "9e185368a185dc170e14",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -17841,6 +17865,34 @@
             "venue_name": "札幌ドーム"
           },
           "source_records": [
+            {
+              "record_id": "b32dc441b5772e1343a90131a49c762f17c0d4354378c9a08937e53d0ea60b69",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "9e185368a185dc170e14",
+          "evidence": {
+            "reason": "Same 2026-11-14 18:00 YOASOBI event at Sapporo Dome (Daiwa House Premist Dome). Current official title adds Chou Wakusei, and adds the venue official source alongside the prior discovery source. Retain existing ID, venue, date and start time. Official evidence SHA256=ad17c30f9ba03d737d3ad22544077bd73fa4fa9092edacab7ad1c0921cdf33f2",
+            "reviewed_at_utc": "2026-10-28T14:56:02Z",
+            "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261114"
+          },
+          "fingerprint": "8ea0c345d27c0d99797459d9ff68d45c4bded1681ee261eddda82beffbe20865",
+          "identity": {
+            "artist_name": "YOASOBI",
+            "event_date": "2026-11-14",
+            "event_end_date": "2026-11-14",
+            "event_start_time": "18:00",
+            "title": "YOASOBI ASIA 10-CITY DOME & STADIUM TOUR 2026-2027 “超惑星”",
+            "venue_name": "札幌ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261114",
+              "source_id": "official_events"
+            },
             {
               "record_id": "b32dc441b5772e1343a90131a49c762f17c0d4354378c9a08937e53d0ea60b69",
               "source_id": "venue_web_discovery"
@@ -20577,7 +20629,7 @@
       "event_uid": "3aad26e408c4ce5a70d9",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "3aad26e408c4ce5a70d9",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20588,6 +20640,30 @@
             "event_date": "2026-12-02",
             "event_end_date": "2026-12-02",
             "event_start_time": "",
+            "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
+            "venue_name": "フェスティバルホール"
+          },
+          "source_records": [
+            {
+              "record_id": "festival_hall:https://www.festivalhall.jp/events/6137/",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "3aad26e408c4ce5a70d9",
+          "evidence": {
+            "reason": "Same 2026-12-02 Sada Masashi Festival Hall performance. Artist official dated detail and tour listing confirm the same day/venue and 18:00 start. Fill previously blank start, retaining existing ID and this single-day unit. Official evidence SHA256=d03ea57e709f00eb2839db2ee2764a9311f73b665c04738fff5956e1722bc228",
+            "reviewed_at_utc": "2026-10-28T14:56:01Z",
+            "url": "https://masasingtown.com/concert/13719/"
+          },
+          "fingerprint": "440a7ba1d2ecab885a3515e9fdae41b74609096504758365b9815a5a9aa04ba1",
+          "identity": {
+            "artist_name": "さだまさし",
+            "event_date": "2026-12-02",
+            "event_end_date": "2026-12-02",
+            "event_start_time": "18:00",
             "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
             "venue_name": "フェスティバルホール"
           },
@@ -20716,7 +20792,7 @@
       "event_uid": "d90d4b0861e067c032bd",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "d90d4b0861e067c032bd",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20727,6 +20803,30 @@
             "event_date": "2026-12-03",
             "event_end_date": "2026-12-03",
             "event_start_time": "",
+            "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
+            "venue_name": "フェスティバルホール"
+          },
+          "source_records": [
+            {
+              "record_id": "festival_hall:https://www.festivalhall.jp/events/6140/",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "d90d4b0861e067c032bd",
+          "evidence": {
+            "reason": "Same 2026-12-03 Sada Masashi Festival Hall performance. Artist official dated detail and tour listing confirm the same day/venue and 18:00 start. Fill previously blank start, retaining existing ID and a separate single-day unit from December 2. Official evidence SHA256=1d57528ae13cb071aa17356eb4a994f74641604fc198908c398376d7c2c7b6c1",
+            "reviewed_at_utc": "2026-10-28T14:56:01Z",
+            "url": "https://masasingtown.com/concert/13737/"
+          },
+          "fingerprint": "c4ce5f3a985dbd2d1fdcd91821f7818c4d7b922057f443b470d181382f79a056",
+          "identity": {
+            "artist_name": "さだまさし",
+            "event_date": "2026-12-03",
+            "event_end_date": "2026-12-03",
+            "event_start_time": "18:00",
             "title": "さだまさしコンサートツアー2026 神さまの言うとおり",
             "venue_name": "フェスティバルホール"
           },
@@ -21094,7 +21194,7 @@
       "event_uid": "b773f534a3d52adb5405",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "b773f534a3d52adb5405",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -21109,6 +21209,34 @@
             "venue_name": "バンテリンドームナゴヤ"
           },
           "source_records": [
+            {
+              "record_id": "7d39259c2f6ca64c676e2eb52c3dd4b1bebc46bbf0570cda1c458d6e5c40366b",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "b773f534a3d52adb5405",
+          "evidence": {
+            "reason": "Same 2026-12-05 17:00 BIGBANG Nagoya performance. Correct to the current 2026-2027 XX : COSMOS tour title and include venue official support. Date/start unchanged; the December 6 time-change notice is not applied to this performance. Official evidence SHA256=c5411fe876efd15a1fd118259e6cf39e6a0018baf1f43fc000d18a6e7a43f713",
+            "reviewed_at_utc": "2026-10-28T14:56:00Z",
+            "url": "https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003005&fdate=2026-12-05&ldate=2026-12-06"
+          },
+          "fingerprint": "fa8768ccf4df0f53937a2ae76f199ee027408aefede4b9b02c3767e2aac3cf10",
+          "identity": {
+            "artist_name": "BIGBANG",
+            "event_date": "2026-12-05",
+            "event_end_date": "2026-12-05",
+            "event_start_time": "17:00",
+            "title": "BIGBANG 2026-2027 WORLD TOUR ＜ XX : COSMOS ＞ IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003005&fdate=2026-12-05&ldate=2026-12-06#d=2026-12-05#t=17:00",
+              "source_id": "official_events"
+            },
             {
               "record_id": "7d39259c2f6ca64c676e2eb52c3dd4b1bebc46bbf0570cda1c458d6e5c40366b",
               "source_id": "venue_web_discovery"
@@ -21283,7 +21411,7 @@
       "event_uid": "8dc31e5ffdb5ca062368",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "8dc31e5ffdb5ca062368",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -21298,6 +21426,34 @@
             "venue_name": "バンテリンドームナゴヤ"
           },
           "source_records": [
+            {
+              "record_id": "34833ade3c951e1fd4b60e4e2178f9a7d72d264714f6992d6c4c1990bf1db37f",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "8dc31e5ffdb5ca062368",
+          "evidence": {
+            "reason": "Same 2026-12-06 BIGBANG Nagoya performance: official notice 1134230 explicitly changes doors13:00/start15:00 to doors15:00/start17:00 for THIS date/venue. Correct the existing discovery entry and combine it with current official support, preserving its source UID, initial published_at and first_seen. Retain existing event UID; allocate no new ID. Other dates/venues in the notice are untouched. Official evidence SHA256=546258a029ee5c7db086883a47b45e98629857b6e4997d151d515f775e034560",
+            "reviewed_at_utc": "2026-10-28T14:56:00Z",
+            "url": "https://ygex.jp/bigbang/20th-anniv/news/detail.php?id=1134230"
+          },
+          "fingerprint": "e78d6fda5beba4c7a738e8ec27191a2933b10404066e03c2b222fa59b5187689",
+          "identity": {
+            "artist_name": "BIGBANG",
+            "event_date": "2026-12-06",
+            "event_end_date": "2026-12-06",
+            "event_start_time": "17:00",
+            "title": "BIGBANG 2026-2027 WORLD TOUR ＜ XX : COSMOS ＞ IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003005&fdate=2026-12-05&ldate=2026-12-06#d=2026-12-06#t=17:00",
+              "source_id": "official_events"
+            },
             {
               "record_id": "34833ade3c951e1fd4b60e4e2178f9a7d72d264714f6992d6c4c1990bf1db37f",
               "source_id": "venue_web_discovery"
@@ -21912,7 +22068,7 @@
       "event_uid": "2403f399e720d5f5d0ec",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "2403f399e720d5f5d0ec",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -21924,6 +22080,30 @@
             "event_end_date": "2026-12-10",
             "event_start_time": "19:00",
             "title": "虹のコンキスタドール ONE-MAN LIVE「タイトル未定」",
+            "venue_name": "Zepp DiverCity(Tokyo)"
+          },
+          "source_records": [
+            {
+              "record_id": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=162389",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "2403f399e720d5f5d0ec",
+          "evidence": {
+            "reason": "Same 2026-12-10 19:00 Niji no Conquistador Zepp DiverCity event. Venue and artist official pages confirm the formal DIVER de FEVER title replacing undecided title. Retain existing ID, date, venue, group and time; do not split by members. Official evidence SHA256=0e9e254b08f3bdadc78f961f15b98c8c2ff8615ffee0ae636294849255f0050e",
+            "reviewed_at_utc": "2026-10-28T14:56:02Z",
+            "url": "https://2zicon.tokyo/information/261210_zepp/"
+          },
+          "fingerprint": "c2b4384401f9f6adafa30dc27eef3be14a4abb29e76aeecdf7e0b6a80c929921",
+          "identity": {
+            "artist_name": "虹のコンキスタドール",
+            "event_date": "2026-12-10",
+            "event_end_date": "2026-12-10",
+            "event_start_time": "19:00",
+            "title": "虹のコンキスタドール ONE-MAN LIVE 「DIVER de FEVER!? 〜夢⾒⼼地♡カーニバル〜」",
             "venue_name": "Zepp DiverCity(Tokyo)"
           },
           "source_records": [
@@ -24055,7 +24235,7 @@
       "event_uid": "9fd8c159194e393e9400",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "9fd8c159194e393e9400",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -24066,6 +24246,34 @@
             "event_date": "2026-12-31",
             "event_end_date": "2026-12-31",
             "event_start_time": "",
+            "title": "桑田佳祐 夏祭りツアー 2026 supported by カンロ",
+            "venue_name": "横浜アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "yokohama_arena:/event/detail/%E6%A1%91%E7%94%B0%E4%BD%B3%E7%A5%90-%E5%A4%8F%E7%A5%AD%E3%82%8A%E3%83%84%E3%82%A2%E3%83%BC-2026-supported-%E3%82%AB%E3%83%B3%E3%83%AD",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "a58e224cf45a5b2e2a2c554aef624dde3f177b0f44036a17903e6184d9f1405b",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "9fd8c159194e393e9400",
+          "evidence": {
+            "reason": "Same 2026-12-31 Keisuke Kuwata Yokohama Arena performance. Venue/artist schedule gives 21:30, explicitly subject to production-related later start. Fill blank start while retaining existing ID/date/venue/title. Separate Kumamoto replacement performances and generic cancellation terms do not change this event's date/status. Official evidence SHA256=bc26cd038d7172eaff0f00556f93b641a3ae446b9d9e1777a034d232e232976e",
+            "reviewed_at_utc": "2026-10-28T14:56:02Z",
+            "url": "https://southernallstars.jp/feature/kuwata2026live"
+          },
+          "fingerprint": "8bfecc5909e592d57f076c261e1da27aefba2476fb51592306762380d726aed0",
+          "identity": {
+            "artist_name": "桑田佳祐",
+            "event_date": "2026-12-31",
+            "event_end_date": "2026-12-31",
+            "event_start_time": "21:30",
             "title": "桑田佳祐 夏祭りツアー 2026 supported by カンロ",
             "venue_name": "横浜アリーナ"
           },
@@ -26990,7 +27198,7 @@
       "event_uid": "f070e651b08c2b149e10",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "f070e651b08c2b149e10",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -27002,6 +27210,30 @@
             "event_end_date": "2027-02-11",
             "event_start_time": "18:00",
             "title": "Ｃ＆Ｋ　日本全国地元化計画 ～引き続きシンプルにライブします！ でも③パターンあります！",
+            "venue_name": "フェスティバルホール"
+          },
+          "source_records": [
+            {
+              "record_id": "festival_hall:https://www.festivalhall.jp/events/6973/",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "f070e651b08c2b149e10",
+          "evidence": {
+            "reason": "Same 2027-02-11 18:00 C&K performance at Festival Hall. Current venue title changes one U+3000 space to U+0020 only; artist official detail confirms the same date, venue and start. Retain existing ID, date, venue, artist, time and information unit. Official evidence SHA256=9ccdcfb57e36f370632fcc70df015b271a3162e76bb50a3edeeb4e366efbb062",
+            "reviewed_at_utc": "2026-10-28T14:57:19Z",
+            "url": "https://www.festivalhall.jp/events/6973/"
+          },
+          "fingerprint": "6e61a44fb11b174344fab7f727250bcb2d090e32bf06dc48af8d21a9b4eae6dc",
+          "identity": {
+            "artist_name": "C&K",
+            "event_date": "2027-02-11",
+            "event_end_date": "2027-02-11",
+            "event_start_time": "18:00",
+            "title": "Ｃ＆Ｋ 日本全国地元化計画 ～引き続きシンプルにライブします！ でも③パターンあります！",
             "venue_name": "フェスティバルホール"
           },
           "source_records": [
@@ -28189,7 +28421,7 @@
       "event_uid": "f07d2b26ed72dcec1ff6",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "f07d2b26ed72dcec1ff6",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -28201,6 +28433,30 @@
             "event_end_date": "2027-03-14",
             "event_start_time": "",
             "title": "UNICORN UNICORN全国ツアー2026-2027「こえてたあ」",
+            "venue_name": "東京ガーデンシアター"
+          },
+          "source_records": [
+            {
+              "record_id": "tokyo_garden_theater:https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5548/",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "f07d2b26ed72dcec1ff6",
+          "evidence": {
+            "reason": "Same UNICORN Tokyo Garden Theater 2027-03-13/14 two-day unit; current venue page gives starts 18:00 and 16:00 respectively. Correct title only. Preserve existing ID, both dates and blank aggregate start time; no split into days. Official evidence SHA256=228d28c0aacc1685b5b7fdab37bc28c34e88602c8aa20d740944c44f13209937",
+            "reviewed_at_utc": "2026-10-28T14:56:00Z",
+            "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5548/"
+          },
+          "fingerprint": "2f207ee4b3e4be9e6a25f2342add46dfd0bd0479347b8a64052621e1f7090718",
+          "identity": {
+            "artist_name": "UNICORN",
+            "event_date": "2027-03-13",
+            "event_end_date": "2027-03-14",
+            "event_start_time": "",
+            "title": "UNICORN ユニコーン2026-2027ツアー「こえてたあ」",
             "venue_name": "東京ガーデンシアター"
           },
           "source_records": [
@@ -32059,9 +32315,219 @@
         "e02eb3d7b012112a9d4a"
       ],
       "request_sha256": "187ed4cd6d5f8db9e8c3a57462dc2b894065f2edaa69dfbdfa5293abe9420278"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "f070e651b08c2b149e10",
+          "fingerprint": "6e61a44fb11b174344fab7f727250bcb2d090e32bf06dc48af8d21a9b4eae6dc"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2027-02-11 18:00 C&K performance at Festival Hall. Current venue title changes one U+3000 space to U+0020 only; artist official detail confirms the same date, venue and start. Retain existing ID, date, venue, artist, time and information unit. Official evidence SHA256=9ccdcfb57e36f370632fcc70df015b271a3162e76bb50a3edeeb4e366efbb062",
+        "reviewed_at_utc": "2026-10-28T14:57:19Z",
+        "url": "https://www.festivalhall.jp/events/6973/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "f070e651b08c2b149e10"
+      ],
+      "previous_ids": [
+        "f070e651b08c2b149e10"
+      ],
+      "request_sha256": "ffed3840b92a28c7dd7bf9ebe3d17a8470715db3870949d01257956acc6f52ef"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "f07d2b26ed72dcec1ff6",
+          "fingerprint": "2f207ee4b3e4be9e6a25f2342add46dfd0bd0479347b8a64052621e1f7090718"
+        }
+      ],
+      "evidence": {
+        "reason": "Same UNICORN Tokyo Garden Theater 2027-03-13/14 two-day unit; current venue page gives starts 18:00 and 16:00 respectively. Correct title only. Preserve existing ID, both dates and blank aggregate start time; no split into days. Official evidence SHA256=228d28c0aacc1685b5b7fdab37bc28c34e88602c8aa20d740944c44f13209937",
+        "reviewed_at_utc": "2026-10-28T14:56:00Z",
+        "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5548/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "f07d2b26ed72dcec1ff6"
+      ],
+      "previous_ids": [
+        "f07d2b26ed72dcec1ff6"
+      ],
+      "request_sha256": "56bbbebf912374b0a5efd8a8e800a55a348fc16a91b77fc83964bee67552c393"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "2e21730d3ce68d395eba",
+          "fingerprint": "57a56b475c23a9faa9a793dae545a08461846c7fac3ae230373bca7632545566"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-11-06 Toyosu PIT event: original venue record links directly to the organizer detail. Correct event-name labels only from Bakoon Manzai Senshu to Tokyo Bakoon Manzai Senshu. Performer-list discrepancy (organizer 22, venue 21 acts) remains HELD, with no cast additions/removals or selection. Preserve current blank time and event-level ID/unit. Official evidence SHA256=f0f13540c0c78ed52065b7e14771ae602955a58e42806c09e6e7ea168601257c",
+        "reviewed_at_utc": "2026-10-28T14:56:01Z",
+        "url": "https://live.yoshimoto.co.jp/live/live-32134/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "2e21730d3ce68d395eba"
+      ],
+      "previous_ids": [
+        "2e21730d3ce68d395eba"
+      ],
+      "request_sha256": "a1d59deb2bec9997e652a7f220e05cf1ef27ea297f82532013c52cc02edc801f"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "9e185368a185dc170e14",
+          "fingerprint": "8ea0c345d27c0d99797459d9ff68d45c4bded1681ee261eddda82beffbe20865"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-11-14 18:00 YOASOBI event at Sapporo Dome (Daiwa House Premist Dome). Current official title adds Chou Wakusei, and adds the venue official source alongside the prior discovery source. Retain existing ID, venue, date and start time. Official evidence SHA256=ad17c30f9ba03d737d3ad22544077bd73fa4fa9092edacab7ad1c0921cdf33f2",
+        "reviewed_at_utc": "2026-10-28T14:56:02Z",
+        "url": "https://www.sapporo-dome.co.jp/schedule/detail?date=20261114"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "9e185368a185dc170e14"
+      ],
+      "previous_ids": [
+        "9e185368a185dc170e14"
+      ],
+      "request_sha256": "61167c09eafa4d80be6b34a5a91a150493f312815a67c5f6e0a8fd48753aab16"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "3aad26e408c4ce5a70d9",
+          "fingerprint": "440a7ba1d2ecab885a3515e9fdae41b74609096504758365b9815a5a9aa04ba1"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-12-02 Sada Masashi Festival Hall performance. Artist official dated detail and tour listing confirm the same day/venue and 18:00 start. Fill previously blank start, retaining existing ID and this single-day unit. Official evidence SHA256=d03ea57e709f00eb2839db2ee2764a9311f73b665c04738fff5956e1722bc228",
+        "reviewed_at_utc": "2026-10-28T14:56:01Z",
+        "url": "https://masasingtown.com/concert/13719/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "3aad26e408c4ce5a70d9"
+      ],
+      "previous_ids": [
+        "3aad26e408c4ce5a70d9"
+      ],
+      "request_sha256": "cfb0a5e826c0ee7160bd83e46ccbf0319221ec437891ee506d39083837add0f6"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "d90d4b0861e067c032bd",
+          "fingerprint": "c4ce5f3a985dbd2d1fdcd91821f7818c4d7b922057f443b470d181382f79a056"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-12-03 Sada Masashi Festival Hall performance. Artist official dated detail and tour listing confirm the same day/venue and 18:00 start. Fill previously blank start, retaining existing ID and a separate single-day unit from December 2. Official evidence SHA256=1d57528ae13cb071aa17356eb4a994f74641604fc198908c398376d7c2c7b6c1",
+        "reviewed_at_utc": "2026-10-28T14:56:01Z",
+        "url": "https://masasingtown.com/concert/13737/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "d90d4b0861e067c032bd"
+      ],
+      "previous_ids": [
+        "d90d4b0861e067c032bd"
+      ],
+      "request_sha256": "de2f0ecfeaceefa05035998226a92676aa9b32d1384546b8ddf90141d073990f"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "b773f534a3d52adb5405",
+          "fingerprint": "fa8768ccf4df0f53937a2ae76f199ee027408aefede4b9b02c3767e2aac3cf10"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-12-05 17:00 BIGBANG Nagoya performance. Correct to the current 2026-2027 XX : COSMOS tour title and include venue official support. Date/start unchanged; the December 6 time-change notice is not applied to this performance. Official evidence SHA256=c5411fe876efd15a1fd118259e6cf39e6a0018baf1f43fc000d18a6e7a43f713",
+        "reviewed_at_utc": "2026-10-28T14:56:00Z",
+        "url": "https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003005&fdate=2026-12-05&ldate=2026-12-06"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "b773f534a3d52adb5405"
+      ],
+      "previous_ids": [
+        "b773f534a3d52adb5405"
+      ],
+      "request_sha256": "48a3c3c8a7d5bfb2a11a52c3ab00e88f33e0191f21d3aec7bae9e7bb9885eb2b"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "8dc31e5ffdb5ca062368",
+          "fingerprint": "e78d6fda5beba4c7a738e8ec27191a2933b10404066e03c2b222fa59b5187689"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-12-06 BIGBANG Nagoya performance: official notice 1134230 explicitly changes doors13:00/start15:00 to doors15:00/start17:00 for THIS date/venue. Correct the existing discovery entry and combine it with current official support, preserving its source UID, initial published_at and first_seen. Retain existing event UID; allocate no new ID. Other dates/venues in the notice are untouched. Official evidence SHA256=546258a029ee5c7db086883a47b45e98629857b6e4997d151d515f775e034560",
+        "reviewed_at_utc": "2026-10-28T14:56:00Z",
+        "url": "https://ygex.jp/bigbang/20th-anniv/news/detail.php?id=1134230"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "8dc31e5ffdb5ca062368"
+      ],
+      "previous_ids": [
+        "8dc31e5ffdb5ca062368"
+      ],
+      "request_sha256": "323840df84494b5a4ce691813b7c1fcc859844acc2ad7b82410f578c8db5bcae"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "2403f399e720d5f5d0ec",
+          "fingerprint": "c2b4384401f9f6adafa30dc27eef3be14a4abb29e76aeecdf7e0b6a80c929921"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-12-10 19:00 Niji no Conquistador Zepp DiverCity event. Venue and artist official pages confirm the formal DIVER de FEVER title replacing undecided title. Retain existing ID, date, venue, group and time; do not split by members. Official evidence SHA256=0e9e254b08f3bdadc78f961f15b98c8c2ff8615ffee0ae636294849255f0050e",
+        "reviewed_at_utc": "2026-10-28T14:56:02Z",
+        "url": "https://2zicon.tokyo/information/261210_zepp/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "2403f399e720d5f5d0ec"
+      ],
+      "previous_ids": [
+        "2403f399e720d5f5d0ec"
+      ],
+      "request_sha256": "8378b2c849ecf1496c5ba1a7ce738bc9b7a76d037ec8ff051761e71fe60bffb3"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "9fd8c159194e393e9400",
+          "fingerprint": "8bfecc5909e592d57f076c261e1da27aefba2476fb51592306762380d726aed0"
+        }
+      ],
+      "evidence": {
+        "reason": "Same 2026-12-31 Keisuke Kuwata Yokohama Arena performance. Venue/artist schedule gives 21:30, explicitly subject to production-related later start. Fill blank start while retaining existing ID/date/venue/title. Separate Kumamoto replacement performances and generic cancellation terms do not change this event's date/status. Official evidence SHA256=bc26cd038d7172eaff0f00556f93b641a3ae446b9d9e1777a034d232e232976e",
+        "reviewed_at_utc": "2026-10-28T14:56:02Z",
+        "url": "https://southernallstars.jp/feature/kuwata2026live"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "9fd8c159194e393e9400"
+      ],
+      "previous_ids": [
+        "9fd8c159194e393e9400"
+      ],
+      "request_sha256": "25dc2f44784115072e953a2699d64eb35324926e54dd7311557a41d07b3f339f"
     }
   ],
-  "revision": 33,
+  "revision": 43,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
