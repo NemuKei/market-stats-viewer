@@ -260,3 +260,7 @@
   - イベント情報（日時/会場要約）
 - エクスポート（固定スキーマ）:
   - `signal_uid, source_id, source_name, published_at_utc, score, title, url, snippet, labels_json, updated_at_utc`
+
+## 利用側へ渡す情報
+
+成果は市場統計・大型イベントを利用側が鮮度と意味を確認できる配布dataとして提供すること。LP実装はSideBizが持ち、本repoはデータの根拠/正規化/統合/配布を持つ。下流影響は件数、category、統合、鮮度、manifest、source優先度を分けて確認する。

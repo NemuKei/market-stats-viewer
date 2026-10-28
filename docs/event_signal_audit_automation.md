@@ -15,9 +15,9 @@ Codex automation は、監査レポート生成、低リスク修正案の作成
 - `data/event_signal_audit_report.json`
 - `data/event_signal_audit_report.md`
 - `docs/spec_update_pipeline.md`
-- `docs/context/PROJECT_CONTEXT.md`
+- [現行仕様/課題](spec_data.md)
 - [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32)
-- `docs/context/DECISIONS.md`
+- [現行仕様/課題](spec_data.md)
 
 必要に応じて読む入力:
 
@@ -43,9 +43,9 @@ Automation 実行時は、長い prompt ではなく次の contract を満たす
 ### Required Reads
 
 - `AGENTS.md`
-- `docs/context/PROJECT_CONTEXT.md` の `Always Read Block`
+- [現行仕様/課題](spec_data.md) の `Always Read Block`
 - [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32)
-- `docs/context/DECISIONS.md`
+- [現行仕様/課題](spec_data.md)
 - `docs/spec_update_pipeline.md`
 - `docs/event_signal_audit_automation.md`
 - `data/event_signal_audit_report.json`

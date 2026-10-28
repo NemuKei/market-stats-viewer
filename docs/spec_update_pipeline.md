@@ -517,3 +517,7 @@ python -m scripts.preserve_published_event_ids \
 整合検証に失敗した場合は公開run全体を停止し、前回成功したReleaseを保持する。
 旧assetを先行公開して新旧source generationが不一致になる自動継続は行わない。
 SideBiz採用は追加asset配布の後に行う。全期間契約と互換・rollbackは `docs/spec_data.md` を参照する。
+
+## 探索と配布の分離
+
+探索の書込先はdata/venue_discovery_inbox.jsonのみ。Actionsが検証・適用してDB/LP/manifest/Releaseを更新する。inbox run_at_utcの鮮度監視は3日。Ticketjamの収集・公式確認・レビュー運用は撤去済みで、LPの表示/時刻補完/直接sourceに復活させない。公開はworkflowと配布入力のpath条件に従い、探索側のpushだけで下流検証済みとしない。

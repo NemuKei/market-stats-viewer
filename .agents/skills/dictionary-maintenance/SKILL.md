@@ -31,7 +31,7 @@ artist/venue の表記ゆれを継続的に抑え、会場公式とニュース�
    - `uv run python -m scripts.update_event_signals_data --only starto_concert,kstyle_music --rebuild`
    - 2. を再実行し、未解決候補が減っていることを確認
 6. 仕様変更を伴う場合のみ正本を更新する。
-   - `docs/spec_data.md` / `docs/spec_update_pipeline.md` / `docs/context/DECISIONS.md`
+   - `docs/spec_data.md` / `docs/spec_update_pipeline.md` / [現行仕様/課題](../../../docs/spec_data.md)
 
 # Rules
 - アーティスト辞書:

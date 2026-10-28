@@ -212,8 +212,8 @@ data:
 
 ## 7. docs
 
-- MSV: `AGENTS.md`（Source Mapからticketjam automation文書を除去、automation責務を1行で記載）、`docs/spec_update_pipeline.md`、`docs/spec_data.md`、`docs/context/DECISIONS.md`（新decision）、`docs/context/STATUS.md`、README
-- RTR: `AGENTS.md`（automationはexportだけを書く旨）、`docs/spec_002_review_workflow.md`、`docs/context/DECISIONS.md`（D-20260902-019をsupersede）、`docs/context/STATUS.md`
+- MSV: `AGENTS.md`（Source Mapからticketjam automation文書を除去、automation責務を1行で記載）、`docs/spec_update_pipeline.md`、`docs/spec_data.md`、[現行仕様/課題](../../spec_data.md)（新decision）、`docs/context/STATUS.md`、README
+- RTR: `AGENTS.md`（automationはexportだけを書く旨）、`docs/spec_002_review_workflow.md`、[現行仕様/課題](../../spec_data.md)（D-20260902-019をsupersede）、`docs/context/STATUS.md`
 - SideBiz: 運用docとDECISIONS
 
 ## 8. 実行方法

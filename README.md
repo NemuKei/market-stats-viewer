@@ -161,6 +161,6 @@ uv run streamlit run app.py
 
 ## 常設コンテキスト
 - `AGENTS.md`: MSV作業入口、読み順、安全境界、Git/verifyの最小ルール
-- `docs/context/PROJECT_CONTEXT.md`: optional upper premise layer（目的、判断原則、非目的、LP掲載優先）
+- [現行仕様/課題](docs/spec_data.md): optional upper premise layer（目的、判断原則、非目的、LP掲載優先）
 - [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32): 現在地（最新スナップショット）
-- `docs/context/DECISIONS.md`: 意思決定ログ
+- [現行仕様/課題](docs/spec_data.md): 意思決定ログ

@@ -20,7 +20,7 @@ description: 会場起点のWeb検索・公式/準公式ページ確認で大型
 
 ## 手順
 
-1. `docs/context/PROJECT_CONTEXT.md` の `Always Read Block` と、`docs/spec_data.md` / `docs/spec_update_pipeline.md` のイベント配布契約を確認する。
+1. [現行仕様/課題](../../../docs/spec_data.md) の `Always Read Block` と、`docs/spec_data.md` / `docs/spec_update_pipeline.md` のイベント配布契約を確認する。
 2. `data/venue_web_discovery_config.json` の `provider_policy`、`watch_venues`、`query_templates`、`accepted_source_classes`、`preferred_domains`、`preferred_domain_extractors`、`rejected_domains` を読む。
 3. 会場別名を使って検索し、`content_extractor=requests_bs4|crawl4ai` で公式/準公式ページ本文を確認する。
    - 既定は `python -m scripts.venue_web_discovery_extract <url> --content-extractor requests_bs4`

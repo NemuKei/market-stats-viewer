@@ -809,9 +809,9 @@ Expected: PASS、`fresh`
 - Modify: `docs/spec_update_pipeline.md`（ticketjam節とtickejam review節の削除、venue discovery節にinbox→Actions適用フロー、鮮度監視を追加、workflow一覧更新）
 - Modify: `docs/spec_data.md`（ticketjam source、review queue/state、`ticketjam_policy`等payload field削除を反映）
 - Modify: `docs/spec_app.md`, `docs/spec_event_status.md`, `docs/event_signal_audit_automation.md`, `README.md`（ticketjam記述の削除・更新）
-- Modify: `docs/context/DECISIONS.md`（新decision: ticketjam撤去、判断はinbox、反映はActions、鮮度監視。過去decisionは消さずsupersede注記）
+- Modify: [現行仕様/課題](../../spec_data.md)（新decision: ticketjam撤去、判断はinbox、反映はActions、鮮度監視。過去decisionは消さずsupersede注記）
 - Modify: `docs/context/STATUS.md`（現在地とre-entry）
-- Modify: `docs/context/PROJECT_CONTEXT.md`（ticketjam記述のみ）
+- Modify: [現行仕様/課題](../../spec_data.md)（ticketjam記述のみ）
 
 - [ ] **Step 1: 編集**
 - [ ] **Step 2: 確認**
@@ -1035,7 +1035,7 @@ Expected: 全PASS、`articles=143`
 **Files:**
 - Modify: `AGENTS.md`（Product And Publication Boundariesに「automationは`exports/public_rm_articles.json`だけを書き、SideBiz反映はSideBiz Actionsが行う」を1行）
 - Modify: `docs/spec_002_review_workflow.md`（自動化節: automationの責務をexport更新までに、export schemaと検証上限、SideBiz取込、鮮度監視7日）
-- Modify: `docs/context/DECISIONS.md`（D-20260923-020: exportを公開正本、SideBiz pull、automationはRTRのみ、model `gpt-6-luna`。D-20260902-019をsupersede）
+- Modify: [現行仕様/課題](../../spec_data.md)（D-20260923-020: exportを公開正本、SideBiz pull、automationはRTRのみ、model `gpt-6-luna`。D-20260902-019をsupersede）
 - Modify: `docs/context/STATUS.md`
 - Modify: `README.md`（`validate-public-export` command）
 
@@ -1051,7 +1051,7 @@ Expected: 全PASS、`articles=143`
 - Create: `.github/workflows/sync_overseas_rm_articles.yml`
 - Modify: `02_Service/web_lp/scripts/refresh_market_portal_data.py:368-371,434-438`
 - Modify: `02_Service/web_lp/tests/test_event_source_policy.py`（ticketjamを前提にしたcaseを「未知sourceはnews扱い」または削除）
-- Modify: `docs/operations/public-lp-publication-pipeline.md`、`docs/context/DECISIONS.md`、`docs/context/STATUS.md`
+- Modify: `docs/operations/public-lp-publication-pipeline.md`、[現行仕様/課題](../../spec_data.md)、`docs/context/STATUS.md`
 
 - [ ] **Step 1: ticketjam分岐削除**
 
