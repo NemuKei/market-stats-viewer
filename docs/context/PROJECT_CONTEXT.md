@@ -18,14 +18,14 @@
 
 この文書は、MSV の optional upper premise layer である。`AGENTS.md` を作業入口としつつ、複数の仕様判断、運用判断、automation 判断で再利用する上位目的、背景意図、判断原則、非目的をここに記録する。
 
-個別仕様、テーブル、列、workflow 条件、コマンドは `docs/spec_*.md` に置く。日付付きで確定した個別判断は `docs/context/DECISIONS.md` に置く。次スレッドの再開地点と現在の作業順は `docs/context/STATUS.md` に置く。
+個別仕様、テーブル、列、workflow 条件、コマンドは `docs/spec_*.md` に置く。日付付きで確定した個別判断は `docs/context/DECISIONS.md` に置く。次スレッドの再開地点と現在の作業順は [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32) に置く。
 
 ## Source-of-Truth Routing
 
 - `AGENTS.md`: repo-wide の運用入口、Codex の読み順、Git/verify、安全境界、repo固有の常時ルールを置く。
 - `docs/context/PROJECT_CONTEXT.md`: optional upper premise layer。目的、成功条件、非目標、source-of-truth routing、判断原則、LP掲載優先を置く。
 - `docs/context/DECISIONS.md`: 日付付きで確定した個別判断を置く。
-- `docs/context/STATUS.md`: 次スレッドが最初に読む現在地を置く。
+- [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32): 次スレッドが最初に読む現在地を置く。
 - `docs/spec_*.md`: 実装仕様、入出力契約、禁止条件、verify 条件を置く。
 
 ## Success Conditions

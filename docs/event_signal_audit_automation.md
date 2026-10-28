@@ -16,7 +16,7 @@ Codex automation は、監査レポート生成、低リスク修正案の作成
 - `data/event_signal_audit_report.md`
 - `docs/spec_update_pipeline.md`
 - `docs/context/PROJECT_CONTEXT.md`
-- `docs/context/STATUS.md`
+- [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32)
 - `docs/context/DECISIONS.md`
 
 必要に応じて読む入力:
@@ -44,7 +44,7 @@ Automation 実行時は、長い prompt ではなく次の contract を満たす
 
 - `AGENTS.md`
 - `docs/context/PROJECT_CONTEXT.md` の `Always Read Block`
-- `docs/context/STATUS.md`
+- [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32)
 - `docs/context/DECISIONS.md`
 - `docs/spec_update_pipeline.md`
 - `docs/event_signal_audit_automation.md`
@@ -67,7 +67,7 @@ Automation 実行時は、長い prompt ではなく次の contract を満たす
 - `tests/test_kstyle_source.py` など、既存挙動を固定するための狭いテスト追加
 - `scripts/signals/sources/kstyle.py` の狭い parser 形式対応
 - `scripts/update_event_signals_data.py` の `kstyle_music.backfill_article_urls` 追加
-- `docs/context/STATUS.md` の実行結果更新
+- [関連Issue/整理前記録](https://github.com/NemuKei/market-stats-viewer/issues/32) の実行結果更新
 
 ### Prohibited Changes
 
