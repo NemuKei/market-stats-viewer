@@ -334,11 +334,61 @@ python -m scripts.event_identity_registry --registry scratch/identity.json seed 
 
 - 収集担当（Codex Automation）はinboxだけを更新し、取り込み担当（GitHub Actions）はconfig・DB・LPの更新と検証を行う。inboxへの候補数、DBへの取り込み数、固定ID保留数、LP掲載数は別々に報告し、取り込み成功だけでLPへの新着反映完了としない。
 - 固定IDレビュー担当は、新規に取り込まれた対象と上記のprivate pending previewを突き合わせ、公式本文と既存台帳のactive・履歴観測から新規／訂正／重複を分類する。確認できた対象だけに根拠URL・UTC確認時刻・理由を付け、既存の`apply-review`で登録する。情報不足や曖昧な対応は保留を続ける。担当未割り当て・未処理はレビュー未完了として引き継ぎ、収集担当や更新workflowが未確認IDを自動発行して補わない。
-- 公開担当は、台帳の既存ID・履歴保全、同一レビュー再適用、LPの追加・変更・削除差分、保持期間全体のassetとmanifestを検証し、承認された台帳とLPを同じ変更にまとめる。`data/lp_events.json`のmain反映は公開workflowのpush triggerなので、公開承認を得てから反映し、Releaseと利用側の同版取込まで確認する。private previewやレビュー入力の作業fileをGit・Releaseへ含めない。
+- 公開担当は、台帳の既存ID・履歴保全、同一レビュー再適用、LPの追加・変更・削除差分、保持期間全体のassetとmanifestを検証し、承認された台帳とLPを同じ変更にまとめる。`data/lp_events.json`のmain反映は公開workflowのpush triggerなので、下記の限定承認または対象操作の公開承認を確認して反映し、Releaseと利用側の同版取込まで確認する。private previewやレビュー入力の作業fileをGit・Releaseへ含めない。
 
-公開が別途承認された環境でのみ、通常の `python -m scripts.build_lp_events`、`python -m scripts.validate_external_events --lp-events data/lp_events.json`、manifest検査、SideBizへの同じ版の取込へ進む。生成処理は台帳を読み取り、確定行だけを既存公開fieldへ供給する。保留詳細をLP保存前に除外し、既存の公開Release assetにも含めない。保留件数と台帳版だけを監査情報として残す。private previewをReleaseやGitへ同梱しない。現在のSideBiz consumerは同じ `event_uid` だけを使える。公開guideの従来の条件付きID説明は、台帳採用確認と同じ公開変更で更新するまで条件付きのままであり、このlocal commitだけで公開上の恒久性を告知しない。
+下記の限定承認または対象操作の明示承認がある環境でのみ、通常の `python -m scripts.build_lp_events`、`python -m scripts.validate_external_events --lp-events data/lp_events.json`、manifest検査、SideBizへの同じ版の取込へ進む。生成処理は台帳を読み取り、確定行だけを既存公開fieldへ供給する。保留詳細をLP保存前に除外し、既存の公開Release assetにも含めない。保留件数と台帳版だけを監査情報として残す。private previewをReleaseやGitへ同梱しない。現在のSideBiz consumerは同じ `event_uid` だけを使える。公開guideの従来の条件付きID説明は、台帳採用確認と同じ公開変更で更新するまで条件付きのままであり、このlocal commitだけで公開上の恒久性を告知しない。
 
 台帳とLPの置換は同directoryの一時file、一時fileのfsync、atomic replaceと台帳SHA/revisionの競合検査を使う。台帳lockは `data/.event_identity_registry.json.lock` の排他作成で、PID/UTC開始時刻を保存しGitから除外する。解放は自分のinodeに一致するlockだけに行う。既存lockがあれば停止し、owner/runが生きている間は削除しない。異常終了時は担当者がrun終了・他writer不在・台帳validateを確認してから残留lockだけを片付ける。シリアライズ済み台帳bytesが16MBを超える場合は置換前に停止し、旧台帳を読める状態で保持する。既存fileのpermissionは置換後も保つ。directory fsyncによる電源断耐久性は保証しない。初期台帳は約1.04MB/1,060 IDで、上限到達時期は新規・訂正頻度に依存し未推定。容量拡張は別のレビュー付き移行とし、履歴を自動間引きしない。台帳の保全・復旧はGitのレビュー済み版から行い、DB・独自メモの移行や削除は行わない。
+
+#### Macでの限定新着審査（2026-10-28）
+
+利用者の「Claude の案で進めて」（2026-10-28 11:23 UTC）により、日次取込成功後に公式本文で確認できた**新規だけ**を、確認登録から既存公開経路まで進める範囲を採用した。通常の収集automationがinboxだけを書く境界は維持し、審査は専用checkoutで別の役割として行う。この実装の初回受入は専用branch・draft PR・合成テスト・少数dry-runまで。main反映、初回baselineの保存、定期設定の変更・有効化は親QA結果後に同threadで行う。メール送信開始は含めない。
+
+`python -m scripts.review_new_events` は既存の候補生成、`apply_review`、台帳検証、LP validatorを利用し、checkout外の新規private directoryにだけ準備結果を作る。script自身はcheckoutのdata、main、Release、SideBiz、automation設定を変更しない。依存追加はない。
+
+```bash
+# 初回のみ。公開前に積残し境界を確認・保存するためのprivate preview。
+python -m scripts.review_new_events prepare --initialize --cohort backlog --limit 3 \
+  --ingestion-run-id COMPLETED_RUN_ID --consumer-repo /path/to/SideBiz_HotelRM \
+  --output /private/path/new-review-first
+# 通常は確認済みbaseline/前回の状態を読み、dailyとbacklogを別実行で扱う。
+python -m scripts.review_new_events prepare --state data/new_event_review_state.json \
+  --cohort daily --ingestion-run-id COMPLETED_RUN_ID \
+  --consumer-repo /path/to/SideBiz_HotelRM --output /private/path/new-review-run
+python -m scripts.review_new_events stage --prepared /private/path/new-review-run \
+  --evidence /private/path/official-evidence.json
+python -m scripts.review_new_events audit --prepared /private/path/new-review-run \
+  --independent-review /private/path/independent-review.json
+```
+
+- **取込完了**: `gh api`で既存 `update_signals_venue_web_discovery.yml` のmain実行がsuccess、完了後24時間以内、head SHAがcheckoutの祖先、その版のinbox bytesが現在と同一であることを検査する。実行時刻だけ、別workflow、実行中・失敗、古いinboxの成功は使わない。新権限・新認証が必要なら停止する。
+- **公開対象**: 現在の候補をSideBizの実exporterと実source policyへ通す。consumerのcommit、Python helper群（追加import先を含む）とpolicyをSHA-256で固定し、公開方針外を審査しない。MSVにconsumerの方針を複製しない。対象は将来開催の `unregistered_candidate`、`related_event_uids=[]`、通常occurrenceのみ。`schedule_day`や未公開TAの生成物・設定には触れない。
+- **公式確認**: 各evidenceはfingerprint、identity、URL、source_class、UTC確認時刻、2,000字以内の連続した該当箇所、`date_text / end_date_text / venue_text / artist_text / time_text`を持つ。既存supporting sourceの公式URL本文を、ログインなしのrequests/BeautifulSoupで再取得する。全日付（年を含む）、canonical会場・出演者、既知の開演時刻が一致することを確認する。OPENを開演としない。本文の部分一致だけで同一公演や開催継続を確定しない。同日複数回の帰属、別会場への取り違え、中止/延期の有無は独立担当が確認し、曖昧なら個別保留とする。本文抜粋・preview・要求file・独立確認結果はcheckout外のprivate directoryだけに保存し、Git/Releaseに含めない。台帳evidenceにはURL、時刻、短い確認理由とcontext hashを残す。
+- **上限と同日再実行**: `data/new_event_review_state.json` のbatch journalにJST日付と採用ID・要求hashを保存し、backlogとdailyの合計で1日最大50件。同じ要求の再適用でIDが増えないことを検査する。超過は候補として残し、次回に再取得・再確認する。stateの消失・初期化でquotaを戻せないよう、台帳の自動審査journalとの対応も検査する。JST日付をまたいだ準備結果、1時間を超えた準備結果、6時間を超えた公式確認は再準備する。
+- **終了時の時刻確認**: CLI開始時のUTC時刻を長い処理後の判定へ流用しない。prepare保存前、stage保存前後、auditの公式取得・取込確認・remote照合・入力再検査が全て終わった成功直前に実時計を読み、JST日付、prepareの1時間、公式確認の6時間、取込成功の24時間を再検査する。stageのbatch時刻は処理完了時刻とする。保存中に期限を超えたprivate一式も不採用で、既存出力を上書きせず新しいprepareからやり直す。audit成功直前には独立確認fileとstage一式のhashも再照合する。
+- **停止と保留**: 公開方針内に既存ID関連（訂正/分割/統合相当）を検出した実行は公開停止とする。個々の新規公式確認はdry-runできるが、停止を解除したことにはしない。検査失敗、input/state/consumerの変化、履歴・既存行の変更/削除、同一会場・開催日が重なる同出演者/高類似titleの二重化も通さない。`related_event_uids=[]`はsource/recordの一致がないというだけで、別公演の証明ではない。時刻不一致は既存訂正または同日複数回の疑いとして `possible_existing_correction_or_multiple_performances` で保留する。空時刻も別公演の証明にせず、台帳の過去観測と既公開consumer snapshotを照合するため旧候補が現在sourceから消えても保留する。stageとauditも台帳/保存済み公開LPに対して再検査し、旧版で作ったstageも通さない。同一batch内も時刻差だけで2件目の新IDを自動発行しない。正当な複数回公演は独立確認後の別の固定IDレビューへ送り、この自動new経路に自己申告の解除flagは設けない。新しい候補の1日累計が `max(50, 過去7観測日の新候補数の平均×3を切上げ)` を超えたら形式変更疑いで停止する。初回積残しは急増数に含めない。公式取得失敗、根拠不足、曖昧な候補は個別保留。例外は作業結果へ報告し、Slack投稿は別途指示された送信だけに限る。
+- **排他と競合**: 専用checkoutは単一Mac reviewerが所有し、既存作業元を再利用しない。MSVとSideBiz consumerは既知commitのclean checkoutを要求し、未追跡fileを含む他のdirtyは開始時に停止する。private出力とprivate stateを試す場合の例外pathはcheckout外だけで、hashを固定する。公開gateはcanonicalなtracked `data/new_event_review_state.json` が必要。準備時のcommit、全tracked data/script/workflow、state、consumerのhelper・policy・既公開 `events.json` のhashをstage/auditで再検査し、private候補もsourceから独立再構築して比較する。既公開snapshotの通常occurrenceとも二重化を確認し、日単位IDを通常occurrenceへ読み替えない。staged結果を別writerが上書きできないよう新規directoryとexclusive file作成を使う。公開直前に両repoのremote mainが準備commitと同じか確認し、相違は自動rebaseせず再準備する。mainへの通常fast-forward pushが最終的な競合検査になる。同じbaseからの別writerはpush拒否後に同じstaged IDを押し直さない。Actions側の既存 `repo-write` / `release-assets` concurrencyは維持する。
+- **積残しとメール境界**: 初回previewの将来保留をbacklogとして固定し、同一identityの追加sourceでcohortを変更しない。baseline以前のsource初出または時刻不明もbacklogとする。以後に初出したものだけdailyへ分ける。stateは `mail_send_enabled=false / mail_baseline_required=true` を強制する。これはメール実装ではない。積残しの処理・保留理由を整理後、メール側でその時点の公開世代と既知の全IDをbaselineにするまで送信を開始しない。今回の公開承認をメール開始承認に読み替えない。
+
+**公開前の独立確認**は、候補を選んだ担当と別のレビューで、保存した公式根拠とstage後の実差分を確認する。`prepare`は現在保存済みの公開 `data/lp_events.json` bytesも別に保存する。`stage/audit`は再計算したLPだけでなくその公開baselineと比較し、既存行の変更/削除を拒否する。`audit`はsourceから候補を再構築し、privateのrequestsと公式contextを再読取する。要求をplan.eligibleへexactに束縛して既存apply_reviewを再生し、発行済みUUID値だけをstageから引き継いで台帳全体を比較する。stateはplan.state＋その回のbatchのみとの完全一致を要求し、過去batchのJST日付・時刻・quotaも変更できない。公式contextは公開gate直前に再取得する。bootstrapや停止条件が残ると非0終了する。
+
+別担当はprivateの `independent-review.json` に `schema_version=1`、`reviewer_role=independent_reviewer`、planのcanonical SHA-256、stage 6file（registry/LP/state/report/requests/official-evidence）のraw bytes SHA-256、UTC確認時刻、採用候補ごとの `fingerprint/url/same_occurrence_confirmed=true/not_existing_identity_change_confirmed=true/cancellation_status=not_cancelled_or_postponed/reason` を記録する。`not_existing_identity_change_confirmed`は、固定した台帳の過去観測・公開baseline・consumerの既公開公演と照合し、既存IDの時刻/名称訂正・分割・統合・再掲ではないことを別担当が明示確認した結果である。欠落、false、文字列や数値のtrueは拒否する。これは同じ公演への帰属と中止/延期情報を確認した結果であり、作成担当が自分の本文部分一致やrelated空を独立確認と読み替えて作らない。scriptは結果の対象・時刻・一式の一致を検査し、担当の独立性や意味判断そのものを暗号的に保証するものではない。通常の別担当QAがこの判断を担う。異なるplan/cohort/bundleの確認結果は拒否する。これに加え、下記focused tests、通常LP/全保持期間assetの生成・manifest検証、SideBizの実変換結果に新IDだけが増える確認を行う。初回は最大3件。公演日の補正、既存IDのacknowledgementやschema migrationで通すことは禁止する。
+
+```bash
+python -m pytest tests/test_review_new_events.py tests/test_review_new_events_cli.py tests/test_event_identity_registry.py \
+  tests/test_build_lp_events.py tests/test_build_all_dates_lp_events.py \
+  tests/test_build_external_events_manifest.py tests/test_validate_external_events.py -q
+python -m scripts.event_identity_registry --registry /private/path/new-review-run/staged/event_identity_registry.json validate
+python -m scripts.validate_external_events --lp-events /private/path/new-review-run/staged/lp_events.json
+```
+
+公開時に変更するのは確認済み `data/event_identity_registry.json`、同版の `data/lp_events.json`、対応する `data/new_event_review_state.json` の3fileだけ。DB・inbox・辞書・parser・配布仕様は変更しない。private stageを検証後に専用checkoutへ適用し、同じcommitでstageする。multi-file置換はfilesystem上の一括atomicではないため、途中失敗時はcommit/pushせず専用checkoutの3fileを保存した準備元へ戻す。mainへpushする前に既存台帳lock・他writer不在・input一致を再確認する。
+
+**組込先**は既存Mac automation `msv-venue-discovery` の収集/commit/push成功後の完了待ちであり、重複した公開cronを追加しない。収集の禁止条件は収集checkout内に維持し、審査役は専用checkoutを使う。現行は毎日12:10（Mac local time、実runは03時台UTC）、取込はinbox pushと04:35 UTC、SideBizは10:00 UTC。実行前に設定と最新runを再確認する。Codex app起動・Macログイン・ネット接続が必要で、sleep/offline中の指定時刻実行や自動追いつきは保証しない。成功runが見つからない日は公開を止め、次の起動で最新取込を再確認する。電源/権限設定を無断変更しない。
+
+**公開後の独立確認**は `docs/event_signal_audit_automation.md` のPost-merge Auditと同様に、採用判断ではなく実際の成果物を調べる。fresh fetchしたmainの3fileとcommit差分、公開workflow success、Release manifestのsource commit/size/digestと同世代LP、追加IDの根拠・件数・既存ID不変を確認する。続いてSideBizの日次取込を待ち、現行のイベント配信正本 `data/events.json` と90日互換 `market_portal.json` で、同じ元生成時刻・新ID集合・実projectorの公開fieldが一致することを確認する。既採用の日単位履歴はSideBizの既存経路が保持し、審査役は変更しない。MSVのRelease完了だけでLP反映完了と報告しない。元データ以外の公開JSON再生成で鮮度を若返らせない。
+
+失敗時は次の自動審査を停止し `needs_fix_pr / needs_revert_pr / human_review_required` として報告する。未公開ならstaged結果を破棄できる。公開済みなら、最新mainとの差と問題batchを特定したdraft修正/切戻しPRへ分ける。既公開ID・台帳履歴・quota journal・後続commit・ユーザーのメモを保ち、3file全体の機械的revertやIDの再発行は行わない。既存IDの訂正や撤回が必要なため、審査役が自動適用せず、対象差分を独立レビューして既存公開経路へ戻す。SideBizは古い元時刻への巻戻しを拒否するので、古いRelease bytesの単純な再uploadをrollback完了としない。既公開の誤りを無人で撤回する機能はこのscriptにない。切戻し経路の検証を含む親QAが完了するまでは定期公開を有効化しない。
 
 
 #### 既公開IDの補完移行
