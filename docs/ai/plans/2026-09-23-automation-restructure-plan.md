@@ -817,7 +817,7 @@ Expected: PASS、`fresh`
 - [ ] **Step 2: 確認**
 
 ```bash
-git grep -n -i ticketjam -- AGENTS.md README.md docs .agents | grep -v "docs/context/DECISIONS.md" | grep -v "docs/ai/plans/"
+git grep -n -i ticketjam -- AGENTS.md README.md docs .agents | grep -v "docs/ai/plans/"
 git diff --check
 ```
 
