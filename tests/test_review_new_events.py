@@ -28,8 +28,8 @@ def payload(rows):
     return builder.assemble_lp_payload(rows, as_of_date=date(2026, 10, 28))
 
 
-def seed():
-    r = payload([row("SEED")])["events"][0]
+def seed(seed_row=None):
+    r = payload([seed_row or row("SEED")])["events"][0]
     public = dict(event_uid=r["event_key"], title=r["title"], venue_name=r["venue_name"],
         artist_name=r["artist_name"], start_date=r["event_date"], end_date=r["event_end_date"],
         start_time=r["event_start_time"], source_id="official_events",
@@ -121,6 +121,128 @@ def test_possible_published_duplicate_with_different_source_is_held():
     duplicate = row("SEED", record_id="different-id", event_start_time="")
     plan = review.prepare(payload([row("SEED"), duplicate]), registry, state, now=NOW)
     assert not plan["eligible"]
+
+
+def retimed_source(*, old_time="15:00", new_time="17:00", **changes):
+    old = row("SEED", event_date="2026-12-06", event_end_date="2026-12-06",
+        event_start_time=old_time, artist_name="BIGBANG", title="BIGBANG 2026 WORLD TOUR IN JAPAN")
+    registry = seed(old)
+    current = {**old, "record_id": "new-official-record", "event_start_time": new_time,
+        "title": "BIGBANG 2026-2027 WORLD TOUR XX : COSMOS IN JAPAN", **changes}
+    # The old source can disappear entirely; registry history still matters.
+    p = payload([current])
+    state = review.initial_state(p, registry, now=NOW, source_sha="a" * 40)
+    h = ids.resolve_rows(p["events"], registry)[1][0]
+    assert h["reason"] == "unregistered_candidate" and not h["related_event_uids"]
+    return p, registry, state, h
+
+
+def test_bigbang_style_1500_to_1700_with_disjoint_source_and_missing_old_candidate_is_held():
+    p, registry, state, h = retimed_source()
+    plan = review.prepare(p, registry, state, now=NOW)
+    assert plan["eligible"] == []
+    assert plan["deferred"] == [{"fingerprint": h["fingerprint"],
+        "reason": "possible_existing_correction_or_multiple_performances"}]
+    assert registry == seed(row("SEED", event_date="2026-12-06", event_end_date="2026-12-06",
+        event_start_time="15:00", artist_name="BIGBANG", title="BIGBANG 2026 WORLD TOUR IN JAPAN"))
+
+
+def test_real_separate_same_day_performance_needs_separate_identity_review():
+    # Even an actual matinee/evening pair cannot be distinguished from a time
+    # correction by disjoint source IDs, matching text and different times alone.
+    p, registry, state, h = retimed_source(title="別の夜公演", new_time="20:00")
+    plan = review.prepare(p, registry, state, now=NOW)
+    assert plan["eligible"] == []
+    assert plan["deferred"][0]["fingerprint"] == h["fingerprint"]
+    assert p["events"][0]["event_start_time"] == "20:00"
+    assert registry["events"][0]["observations"][0]["identity"]["event_start_time"] == "15:00"
+
+
+@pytest.mark.parametrize("old_time,new_time", [("", "17:00"), ("15:00", ""), ("", "")])
+def test_missing_start_time_never_proves_a_new_occurrence(old_time, new_time):
+    p, registry, state, _ = retimed_source(old_time=old_time, new_time=new_time)
+    assert not review.prepare(p, registry, state, now=NOW)["eligible"]
+
+
+@pytest.mark.parametrize("changes", [
+    {"artist_name": "無関係な出演者", "title": "まったく別の公演"},
+    {"venue_name": "別の会場"},
+    {"event_date": "2026-12-07", "event_end_date": "2026-12-07"},
+])
+def test_unrelated_artist_venue_or_day_can_still_be_new(changes):
+    p, registry, state, h = retimed_source(**changes)
+    assert review.prepare(p, registry, state, now=NOW)["eligible"] == [h]
+
+
+def test_similar_title_with_changed_artist_label_is_also_held():
+    p, registry, state, _ = retimed_source(artist_name="BIGBANG 表記追加",
+        title="BIGBANG 2026 WORLD TOUR IN JAPAN")
+    assert not review.prepare(p, registry, state, now=NOW)["eligible"]
+
+
+def test_consumer_published_time_mismatch_is_held_even_without_registry_source_link():
+    p, registry, state = setup()
+    h = ids.resolve_rows(p["events"], registry)[1][0]
+    public = {**h["identity"], "event_start_time": "15:00"}
+    assert not review.prepare(p, registry, state, now=NOW, published_identities=[public])["eligible"]
+
+
+def test_stage_defends_against_an_old_plan_that_eligible_time_changed_existing_event():
+    p, registry, state, h = retimed_source()
+    plan = review.prepare(p, registry, state, now=NOW)
+    plan["eligible"], plan["deferred"] = [h], []  # Simulate an old unsafe selection.
+    e = evidence_for(h)
+    result = review.stage(p, registry, plan, [e], public_baseline=baseline(p, registry), now=NOW,
+        fetch=lambda _: pytest.fail("existing occurrence must be held before fetching"))
+    assert result["report"]["new_ids"] == []
+    assert result["registry"] == registry and result["requests"] == []
+    assert result["report"]["held"][0]["reason"] == "possible_existing_correction_or_multiple_performances"
+
+
+def test_audit_rejects_legacy_staged_time_changed_new_event_even_with_exact_plan_binding(monkeypatch):
+    p, registry, state, h = retimed_source()
+    # Produce the self-consistent private transaction that the old time check
+    # allowed. Restore the guard before auditing the plan and all staged files.
+    with monkeypatch.context() as old:
+        old.setattr(review, "duplicate_occurrence", lambda *_: False)
+        plan = review.prepare(p, registry, state, now=NOW)
+        e = evidence_for(h)
+        e["url"] = p["events"][0]["url"]
+        result = review.stage(p, registry, plan, [e], public_baseline=baseline(p, registry),
+            now=NOW, fetch=lambda _: page(e))
+    assert len(result["report"]["new_ids"]) == 1
+    with pytest.raises(ValueError, match="existing identity correction or multiple performances"):
+        review.audit_bundle(p, registry, plan, baseline(p, registry), after=result["registry"],
+            after_sha=ids.digest(review.registry_bytes(result["registry"])), lp=result["lp"], state=result["state"],
+            report=result["report"], requests=result["requests"], evidence=result["evidence"], now=NOW)
+
+
+def test_time_difference_within_one_batch_is_not_automatic_proof_of_two_new_performances():
+    registry = seed()
+    p = payload([row("SEED"), row("A", event_start_time="15:00", record_id="matinee"),
+        row("A", event_start_time="17:00", record_id="evening")])
+    state = review.initial_state(p, registry, now=NOW, source_sha="a" * 40)
+    plan = review.prepare(p, registry, state, now=NOW)
+    assert len(plan["eligible"]) == 2
+    evidence = [evidence_for(h) for h in plan["eligible"]]
+    context = " / ".join(e["context"] for e in evidence)
+    for e in evidence:
+        e["context"] = context
+    result = review.stage(p, registry, plan, evidence, public_baseline=baseline(p, registry),
+        now=NOW, fetch=lambda _: page(evidence[0]))
+    assert len(result["report"]["new_ids"]) == 1
+    assert result["report"]["held"][0]["reason"] == "possible_batch_duplicate"
+    assert len(result["registry"]["events"]) == len(registry["events"]) + 1
+    assert sorted(r["event_start_time"] for r in p["events"] if r["artist_name"] == "架空出演者A") == ["15:00", "17:00"]
+
+
+def test_existing_two_day_unit_cannot_be_automatically_split_into_a_new_second_day():
+    old = row("SEED", event_date="2027-03-13", event_end_date="2027-03-14", event_start_time="")
+    registry = seed(old)
+    p = payload([{**old, "event_date": "2027-03-14", "event_start_time": "16:00",
+        "record_id": "new-second-day-record", "title": old["title"] + " 日別表記"}])
+    state = review.initial_state(p, registry, now=NOW, source_sha="a" * 40)
+    assert not review.prepare(p, registry, state, now=NOW)["eligible"]
 
 
 def test_same_batch_duplicate_is_held_instead_of_allocating_second_id():

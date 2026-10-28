@@ -104,7 +104,8 @@ def cli(tmp_path, monkeypatch):
         value = {"schema_version": 1, "reviewer_role": "independent_reviewer", "plan_sha256": ids.digest(ids.canonical_bytes(plan)),
             "bundle_sha256": review.bundle_hashes(root), "reviewed_at_utc": data["now"],
             "findings": [{"fingerprint": q["candidates"][0]["observation"]["fingerprint"], "url": q["evidence"]["url"],
-                "same_occurrence_confirmed": True, "cancellation_status": "not_cancelled_or_postponed", "reason": "Fictional independent occurrence and cancellation check."} for q in requests]}
+                "same_occurrence_confirmed": True, "not_existing_identity_change_confirmed": True,
+                "cancellation_status": "not_cancelled_or_postponed", "reason": "Fictional independent occurrence, existing identity and cancellation check."} for q in requests]}
         path = private / (target.name + "-independent.json")
         put(path, value)
         return path
@@ -275,6 +276,40 @@ def test_cli_audit_requires_independent_occurrence_and_cancellation_checks(cli, 
     put(path, approval)
     with pytest.raises(ValueError, match="occurrence/cancellation check"):
         cli["audit"](target, path)
+
+
+@pytest.mark.parametrize("value", [False, "true", 1, None])
+def test_cli_audit_requires_explicit_independent_not_existing_identity_change_confirmation(cli, value):
+    target = cli["prepare"]("newness")
+    cli["stage"](target)
+    path = cli["approval"](target)
+    approval = json.loads(path.read_bytes())
+    finding = approval["findings"][0]
+    if value is not None:
+        finding["not_existing_identity_change_confirmed"] = value
+    else:
+        finding.pop("not_existing_identity_change_confirmed", None)
+    put(path, approval)
+    with pytest.raises(ValueError, match="existing identity|new occurrence"):
+        cli["audit"](target, path)
+
+
+def test_cli_prepare_and_stage_reject_time_changed_new_source_evidence(cli):
+    changed = row("SEED", record_id="different-official-record", event_start_time="20:00",
+        title="架空公演SEED 夜公演")
+    cli["data"]["payload"] = payload([row("SEED"), changed, row("A")])
+    target = cli["prepare"]("time-conflict")
+    plan = json.loads((target / "plan.json").read_bytes())
+    _, held = ids.resolve_rows(cli["data"]["payload"]["events"], seed())
+    h = next(h for h in held if h["identity"]["event_start_time"] == "20:00")
+    assert h["reason"] == "unregistered_candidate" and h["related_event_uids"] == []
+    assert h["fingerprint"] not in {e["fingerprint"] for e in plan["eligible"]}
+    assert {"fingerprint": h["fingerprint"], "reason": "possible_existing_correction_or_multiple_performances"} in plan["deferred"]
+    evidence = cli["private"] / "time-conflict-evidence.json"
+    put(evidence, [evidence_for(h)])
+    with pytest.raises(ValueError, match="non-new, related, duplicate"):
+        review.main(["stage", "--prepared", str(target), "--evidence", str(evidence)])
+    assert not (target / "staged").exists()
 
 
 def test_cli_audit_rejects_independent_findings_from_another_bundle(cli):

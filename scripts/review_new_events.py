@@ -125,12 +125,23 @@ def validate_state(state: dict, registry: dict) -> None:
 
 
 def duplicate_occurrence(identity: dict, other: dict) -> bool:
-    if (identity["event_date"], identity["venue_name"]) != (other["event_date"], other["venue_name"]):
+    """A time difference is not proof of a separate, new occurrence.
+
+    Same-day performances and corrections both need separate identity review.
+    Include overlapping multi-day units and canonical venue spelling variants.
+    """
+    if (identity["event_date"] > other["event_end_date"] or other["event_date"] > identity["event_end_date"]
+            or builder.normalize_key_part(identity["venue_name"]) != builder.normalize_key_part(other["venue_name"])):
         return False
     artist = builder.normalize_key_part(identity["artist_name"])
     same_artist = bool(artist) and artist == builder.normalize_key_part(other["artist_name"])
     same_title = builder.supplemental_titles_match(identity["title"], other["title"])
-    return (same_artist or same_title) and builder.start_times_compatible(identity["event_start_time"], other["event_start_time"])
+    return same_artist or same_title
+
+
+def known_identities(registry: dict, published: list[dict] | None = None) -> list[dict]:
+    # Source disappearance or a retired observation does not prove a new event.
+    return [o["identity"] for e in registry["events"] for o in e["observations"]] + (published or [])
 
 
 def prepare(payload: dict, registry: dict, state: dict, *, now: str, cohort: str = "backlog", limit: int = DAILY_LIMIT,
@@ -172,8 +183,7 @@ def prepare(payload: dict, registry: dict, state: dict, *, now: str, cohort: str
     if changed:
         stops.append({"reason": "existing_identity_review_required", "fingerprints": [h["fingerprint"] for h in changed]})
     used = sum(len(b["items"]) for b in state["batches"] if b["day_jst"] == day)
-    active = [o["identity"] for e in registry["events"] for o in e["observations"] if o["active"]]
-    active.extend(published_identities or [])
+    existing = known_identities(registry, published_identities)
     eligible, deferred = [], []
     for h in future:
         reason = None
@@ -183,8 +193,10 @@ def prepare(payload: dict, registry: dict, state: dict, *, now: str, cohort: str
             reason = h["reason"]
         elif "record_kind" in h["identity"]:
             reason = "separate_schedule_day_lane"
-        elif any(duplicate_occurrence(h["identity"], other) for other in active):
-            reason = "possible_published_duplicate"
+        elif conflicts := [other for other in existing if duplicate_occurrence(h["identity"], other)]:
+            reason = "possible_existing_correction_or_multiple_performances" if any(
+                not builder.start_times_compatible(h["identity"]["event_start_time"], other["event_start_time"]) for other in conflicts
+            ) else "possible_published_duplicate"
         elif updated["observed"][observation_key(h)]["cohort"] != cohort:
             reason = "other_cohort"
         if reason:
@@ -326,9 +338,13 @@ def stage(payload: dict, registry: dict, plan: dict, evidence: list[dict], *, pu
     by_fp = index_evidence(plan, evidence)
     rows = {r["event_key"]: r for r in payload["events"]}
     working, state, items, held, requests = deepcopy(registry), deepcopy(plan["state"]), [], [], []
+    existing = known_identities(registry, [ids.identity_from_row(r) for r in public_baseline["events"]])
     accepted_identities = []
     for h in plan["eligible"]:
         fp = h["fingerprint"]
+        if any(duplicate_occurrence(h["identity"], other) for other in existing):
+            held.append({"fingerprint": fp, "reason": "possible_existing_correction_or_multiple_performances"})
+            continue
         if fp not in by_fp:
             held.append({"fingerprint": fp, "reason": "official_evidence_pending"})
             continue
@@ -387,6 +403,7 @@ def audit_bundle(payload: dict, before: dict, plan: dict, public_baseline: dict,
     eligible = {h["fingerprint"]: h for h in plan["eligible"]}
     positions = {h["fingerprint"]: n for n, h in enumerate(plan["eligible"])}
     rows = {r["event_key"]: r for r in payload["events"]}
+    existing = known_identities(before, [ids.identity_from_row(r) for r in public_baseline["events"]])
     expected, items, accepted, checks = deepcopy(before), [], [], []
     previous_position = -1
     for request, uid in zip(requests, report["new_ids"]):
@@ -397,6 +414,8 @@ def audit_bundle(payload: dict, before: dict, plan: dict, public_baseline: dict,
         fp = observation.get("fingerprint")
         ids.require(fp in eligible and fp in by_fp, "staged addition is not a prepared eligible/evidenced candidate")
         h = eligible[fp]
+        ids.require(not any(duplicate_occurrence(h["identity"], other) for other in existing),
+            "staged new occurrence may be an existing identity correction or multiple performances; separate review required")
         ids.require(positions[fp] > previous_position and not any(duplicate_occurrence(h["identity"], other) for other in accepted), "staged order or occurrence is duplicated")
         previous_position = positions[fp]
         checked = evidence_fields(rows[h["candidate_key"]], h, by_fp[fp], now=now)
@@ -547,10 +566,12 @@ def independent_review(value: dict, plan: dict, root: Path, checks: list, *, sta
     findings = value["findings"]
     ids.require(isinstance(findings, list) and len(findings) == len(checks), "independent findings count mismatch")
     for finding, (_, h, evidence) in zip(findings, checks):
-        ids.require(isinstance(finding, dict) and set(finding) == {"fingerprint", "url", "same_occurrence_confirmed", "cancellation_status", "reason"}, "occurrence attribution and cancellation review required")
+        ids.require(isinstance(finding, dict) and set(finding) == {"fingerprint", "url", "same_occurrence_confirmed", "not_existing_identity_change_confirmed", "cancellation_status", "reason"}, "new occurrence, existing identity change and cancellation review required")
         ids.require(finding["fingerprint"] == h["fingerprint"] and finding["url"] == evidence["url"]
             and finding["same_occurrence_confirmed"] is True and finding["cancellation_status"] == "not_cancelled_or_postponed"
             and isinstance(finding["reason"], str) and 0 < len(finding["reason"].strip()) <= 1000, "independent occurrence/cancellation check did not pass")
+        ids.require(finding["not_existing_identity_change_confirmed"] is True,
+            "independent check did not confirm a new occurrence rather than an existing identity change")
 
 
 def main(argv=None) -> int:
