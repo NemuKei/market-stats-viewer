@@ -40,7 +40,8 @@ def cli(tmp_path, monkeypatch):
     original = payload([row("SEED"), row("A")])
     state = review.initial_state(original, registry, now="2026-10-28T10:00:00Z", source_sha="a" * 40)
     current = payload([row("SEED"), row("A"), row("B", first_seen_at_utc="2026-10-28T10:30:00Z")])
-    data = {"payload": current, "fetches": 0}
+    data = {"payload": current, "fetches": 0, "now": NOW, "evidence_at": NOW,
+        "on_fetch": None, "on_ingestion": None}
     for path, value in {"data/event_identity_registry.json": registry, "data/lp_events.json": baseline(current, registry),
             "data/new_event_review_state.json": state}.items():
         put(source / path, value)
@@ -57,11 +58,15 @@ def cli(tmp_path, monkeypatch):
     real_load = ids.load_registry
     monkeypatch.setattr(ids, "load_registry", lambda path=source / "data/event_identity_registry.json": real_load(path))
     monkeypatch.setattr(review, "ROOT", source)
-    monkeypatch.setattr(review, "now_z", lambda: NOW)
+    monkeypatch.setattr(review, "now_z", lambda: data["now"])
     monkeypatch.setattr(builder, "_build_lp_event_candidates", lambda **_: deepcopy(data["payload"]))
     monkeypatch.setattr(review, "consumer_context", lambda p, _: ({r["event_key"] for r in p["events"]}, []))
     receipt = {"run_id": 123, "head_sha": "a" * 40, "completed_at_utc": NOW, "inbox_sha256": "b" * 64}
-    monkeypatch.setattr(review, "read_ingestion", lambda *_: receipt)
+    def fake_ingestion(*_):
+        if data["on_ingestion"]:
+            data["on_ingestion"]()
+        return receipt
+    monkeypatch.setattr(review, "read_ingestion", fake_ingestion)
     live_pages = {}
     def add_pages(p):
         for r in p["events"]:
@@ -72,6 +77,8 @@ def cli(tmp_path, monkeypatch):
     real_verify = review.verify_evidence
     def fake_fetch(url):
         data["fetches"] += 1
+        if data["on_fetch"]:
+            data["on_fetch"]()
         return live_pages[url]
     monkeypatch.setattr(review, "verify_evidence", lambda r, h, e, *, now, fetch=None: real_verify(r, h, e, now=now, fetch=fake_fetch))
 
@@ -84,6 +91,8 @@ def cli(tmp_path, monkeypatch):
     def stage(target):
         plan = json.loads((target / "plan.json").read_bytes())
         evidence = [evidence_for(h) for h in plan["eligible"]]
+        for e in evidence:
+            e["reviewed_at_utc"] = data["evidence_at"]
         epath = private / (target.name + "-evidence.json")
         put(epath, evidence)
         review.main(["stage", "--prepared", str(target), "--evidence", str(epath)])
@@ -93,7 +102,7 @@ def cli(tmp_path, monkeypatch):
         root = target / "staged"
         requests = json.loads((root / "requests.json").read_bytes())["requests"]
         value = {"schema_version": 1, "reviewer_role": "independent_reviewer", "plan_sha256": ids.digest(ids.canonical_bytes(plan)),
-            "bundle_sha256": review.bundle_hashes(root), "reviewed_at_utc": NOW,
+            "bundle_sha256": review.bundle_hashes(root), "reviewed_at_utc": data["now"],
             "findings": [{"fingerprint": q["candidates"][0]["observation"]["fingerprint"], "url": q["evidence"]["url"],
                 "same_occurrence_confirmed": True, "cancellation_status": "not_cancelled_or_postponed", "reason": "Fictional independent occurrence and cancellation check."} for q in requests]}
         path = private / (target.name + "-independent.json")
@@ -277,3 +286,88 @@ def test_cli_audit_rejects_independent_findings_from_another_bundle(cli):
     put(path, value)
     with pytest.raises(ValueError, match="another plan/staged bundle"):
         cli["audit"](target, path)
+
+
+EXPIRING_FETCHES = [
+    ("2026-10-28T14:59:50Z", NOW, "2026-10-28T15:00:10Z", "crossed JST"),
+    (NOW, NOW, "2026-10-28T12:00:01Z", "prepared review expired"),
+    (NOW, "2026-10-28T05:00:01Z", "2026-10-28T11:00:02Z", "official review expired"),
+]
+
+
+@pytest.mark.parametrize("start,evidence_at,end,message", EXPIRING_FETCHES)
+def test_cli_stage_rechecks_real_clock_after_official_fetch_before_writing(cli, capsys, start, evidence_at, end, message):
+    cli["data"].update(now=start, evidence_at=evidence_at)
+    target = cli["prepare"]("stage-expiry")
+    capsys.readouterr()
+    cli["data"]["on_fetch"] = lambda: cli["data"].update(now=end)
+    with pytest.raises(ValueError, match=message):
+        cli["stage"](target)
+    assert not (target / "staged").exists()
+    assert capsys.readouterr().out == ""
+
+
+@pytest.mark.parametrize("start,evidence_at,end,message", EXPIRING_FETCHES)
+def test_cli_audit_rechecks_real_clock_after_official_fetch_before_success(cli, capsys, start, evidence_at, end, message):
+    cli["data"].update(now=start, evidence_at=evidence_at)
+    target = cli["prepare"]("audit-expiry")
+    cli["stage"](target)
+    approval = cli["approval"](target)
+    capsys.readouterr()
+    cli["data"]["on_fetch"] = lambda: cli["data"].update(now=end)
+    with pytest.raises(ValueError, match=message):
+        cli["audit"](target, approval)
+    assert '"audit": "passed"' not in capsys.readouterr().out
+
+
+@pytest.mark.parametrize("phase", ["ingestion", "remote"])
+def test_cli_audit_deadline_is_checked_after_late_external_lookups(cli, monkeypatch, capsys, phase):
+    target = cli["prepare"]("lookup-expiry")
+    cli["stage"](target)
+    approval = cli["approval"](target)
+    capsys.readouterr()
+    def expire():
+        cli["data"]["now"] = "2026-10-28T12:00:01Z"
+    if phase == "ingestion":
+        cli["data"]["on_ingestion"] = expire
+    else:
+        real_git = review.git
+        def git(*args):
+            result = real_git(*args)
+            if args[0] == "ls-remote":
+                expire()
+            return result
+        monkeypatch.setattr(review, "git", git)
+    with pytest.raises(ValueError, match="prepared review expired"):
+        cli["audit"](target, approval)
+    assert '"audit": "passed"' not in capsys.readouterr().out
+
+
+def test_cli_stage_checks_the_clock_again_after_private_writes(cli, monkeypatch, capsys):
+    cli["data"]["now"] = "2026-10-28T14:59:50Z"
+    target = cli["prepare"]("write-expiry")
+    capsys.readouterr()
+    real_write = review.write_json
+    def write(path, value):
+        real_write(path, value)
+        cli["data"]["now"] = "2026-10-28T15:00:10Z"
+    monkeypatch.setattr(review, "write_json", write)
+    with pytest.raises(ValueError, match="crossed JST"):
+        cli["stage"](target)
+    assert capsys.readouterr().out == ""
+
+
+def test_cli_prepare_rejects_a_receipt_lookup_that_outlasts_the_plan(cli):
+    cli["data"]["on_ingestion"] = lambda: cli["data"].update(now="2026-10-28T12:00:01Z")
+    with pytest.raises(ValueError, match="prepared review expired"):
+        cli["prepare"]("prepare-expiry")
+    assert not (cli["private"] / "prepare-expiry").exists()
+
+
+def test_cli_within_deadline_uses_completion_time_for_the_new_batch(cli):
+    target = cli["prepare"]("slow-valid")
+    cli["data"]["on_fetch"] = lambda: cli["data"].update(now="2026-10-28T11:02:00Z")
+    cli["stage"](target)
+    state = json.loads((target / "staged/new_event_review_state.json").read_bytes())
+    assert state["batches"][-1]["staged_at_utc"] == "2026-10-28T11:02:00Z"
+    assert cli["audit"](target) == 0

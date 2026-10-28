@@ -310,6 +310,16 @@ def check_plan_time(plan: dict, now: str) -> None:
     ids.require(stamp(now).astimezone(JST).date().isoformat() == plan["day_jst"], "review crossed JST quota day; prepare again")
 
 
+def check_completion_time(plan: dict, checks: list, now: str) -> None:
+    """Re-read the clock after blocking work, without another network request."""
+    check_plan_time(plan, now)
+    if plan.get("ingestion"):
+        age = stamp(now) - stamp(plan["ingestion"]["completed_at_utc"])
+        ids.require(timedelta(0) <= age <= timedelta(hours=24), "ingestion receipt expired or future dated")
+    for row, held, evidence in checks:
+        evidence_fields(row, held, evidence, now=now)
+
+
 def stage(payload: dict, registry: dict, plan: dict, evidence: list[dict], *, public_baseline: dict, now: str, fetch=fetch_official) -> dict:
     check_plan_time(plan, now)
     validate_public_baseline(public_baseline, registry)
@@ -583,6 +593,7 @@ def main(argv=None) -> int:
         verify_pins(pins)
         plan.update(ingestion=receipt, pins=pins, bootstrap=args.initialize, requested_limit=args.limit,
             published_baseline_sha256=ids.digest(public_raw))
+        check_completion_time(plan, [], now_z())
         private_directory(args.output)
         for name, value in {"plan.json": plan, "candidates.json": payload, "registry-before.json": registry, "state-before.json": state}.items():
             write_json(args.output / name, value)
@@ -592,13 +603,23 @@ def main(argv=None) -> int:
     elif args.command == "stage":
         plan, payload, registry, public_baseline = read_prepared(args.prepared)
         raw_evidence = ids.parse_json(b'{"evidence":' + args.evidence.read_bytes() + b'}')["evidence"]
-        result = stage(payload, registry, plan, raw_evidence, public_baseline=public_baseline, now=now)
+        result = stage(payload, registry, plan, raw_evidence, public_baseline=public_baseline, now=now_z())
+        verify_pins(plan["pins"])
+        completed_at = now_z()
+        result["report"]["staged_at_utc"] = completed_at
+        if result["report"]["new_ids"]:
+            result["state"]["batches"][-1]["staged_at_utc"] = completed_at
+        checks = audit_bundle(payload, registry, plan, public_baseline, after=result["registry"],
+            after_sha=ids.digest(registry_bytes(result["registry"])), lp=result["lp"], state=result["state"],
+            report=result["report"], requests=result["requests"], evidence=result["evidence"], now=completed_at)
+        check_completion_time(plan, checks, now_z())
         target = args.prepared / "staged"
         private_directory(target)
         for name, value in {"event_identity_registry.json": result["registry"], "lp_events.json": result["lp"], "new_event_review_state.json": result["state"], "report.json": result["report"]}.items():
             write_json(target / name, value)
         write_json(target / "requests.json", {"requests": result["requests"]})
         write_json(target / "official-evidence.json", {"evidence": result["evidence"]})
+        check_completion_time(plan, checks, now_z())
         report = result["report"]
         print(json.dumps({"status": report["status"], "new_count": len(report["new_ids"]),
             "held_counts": dict(Counter(h["reason"] for h in report["held"])), "daily_used_after": report["daily_used_after"], "mail_send_enabled": False}))
@@ -615,15 +636,20 @@ def main(argv=None) -> int:
             lp=lp, state=state, report=report, requests=requests, evidence=evidence, now=now)
         ids.require(not plan["bootstrap"] and not plan["stops"] and report["status"] == "staged", "promotion stopped: bootstrap baseline or unresolved stop conditions")
         ids.require(plan["pins"]["state_path"] == str((ROOT / "data/new_event_review_state.json").resolve()), "promotion requires committed canonical review state; private state is dry-run only")
-        independent_review(ids.parse_json(args.independent_review.read_bytes()), plan, root, checks, staged_at=report["staged_at_utc"], now=now)
+        independent_raw = args.independent_review.read_bytes()
+        independent = ids.parse_json(independent_raw)
+        independent_review(independent, plan, root, checks, staged_at=report["staged_at_utc"], now=now_z())
         for row, h, evidence in checks:
-            verify_evidence(row, h, evidence, now=now)
-        ids.require(read_ingestion(plan["ingestion"]["run_id"], now) == plan["ingestion"], "ingestion receipt changed")
+            verify_evidence(row, h, evidence, now=now_z())
+        ids.require(read_ingestion(plan["ingestion"]["run_id"], now_z()) == plan["ingestion"], "ingestion receipt changed")
         remote = git("ls-remote", "origin", "refs/heads/main").split()[0]
         ids.require(remote == plan["pins"]["source_commit"], "origin/main moved or review did not start from main; re-prepare without rebasing")
         consumer_remote = subprocess.check_output(["git", "-C", plan["pins"]["consumer_path"], "ls-remote", "origin", "refs/heads/main"], text=True).split()[0]
         ids.require(consumer_remote == plan["pins"]["consumer_commit"], "SideBiz main moved; prepare with the current consumer")
         verify_pins(plan["pins"])
+        ids.require(args.independent_review.read_bytes() == independent_raw, "independent findings changed during audit")
+        independent_review(independent, plan, root, checks, staged_at=report["staged_at_utc"], now=now_z())
+        check_completion_time(plan, checks, now_z())
         print(json.dumps({"audit": "passed", "new_count": len(report["new_ids"]), "mail_send_enabled": False}))
     return 0
 
