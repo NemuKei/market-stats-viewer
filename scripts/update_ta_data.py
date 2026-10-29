@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import math
@@ -28,7 +29,12 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta_ta.json"
 TABLE_NAME = "ta_company_amounts"
-EXTRACTOR_VERSION = 4
+EXTRACTOR_VERSION = 5
+TA_KEY_FIELDS = ("fiscal_year", "period", "company", "segment")
+HIS_MAIN_SELECTION = "his-2026-03-main-table"
+HIS_MAIN_KEY = ("2025", "2026-03", "エイチ・アイ・エス（6社計 ＊4）", "total")
+HIS_SOURCE_URL = "https://www.mlit.go.jp/kankocho/content/002002289.xlsx"
+HIS_SOURCE_SHA256 = "c01db7269370a8cd593e3d3bdb5f97d7aee11fb52a4df9c0be1cff0391595b67"
 
 
 def now_utc_iso() -> str:
@@ -298,6 +304,88 @@ def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]
     return records
 
 
+def resolve_ta_records(
+    records: list[dict], *, duplicate_selection: str | None = None
+) -> list[dict]:
+    """Merge equal values; reject conflicts unless the caller explicitly selects
+    the narrowly pinned HIS proposal. Input order never chooses the value.
+    """
+    if duplicate_selection not in (None, HIS_MAIN_SELECTION):
+        raise ValueError("Unknown TA duplicate selection")
+    groups: dict[tuple[str, ...], list[dict]] = {}
+    for row in records:
+        key = tuple(str(row[field]) for field in TA_KEY_FIELDS)
+        amount = row["amount"]
+        if isinstance(amount, bool) or not isinstance(amount, (int, float)) or not math.isfinite(amount):
+            raise ValueError(f"Invalid TA amount for {key}")
+        groups.setdefault(key, []).append(row)
+    result = []
+    for key, rows in sorted(groups.items()):
+        amounts = {float(row["amount"]) for row in rows}
+        if len(amounts) == 1:
+            amount = next(iter(amounts))
+        elif (
+            duplicate_selection == HIS_MAIN_SELECTION
+            and key == HIS_MAIN_KEY
+            and amounts == {38188442.0, 38188444.0}
+            and all(row.get("_source_sha256") == HIS_SOURCE_SHA256
+                    and row.get("_source_url") == HIS_SOURCE_URL for row in rows)
+        ):
+            amount = 38188442.0
+        else:
+            raise ValueError(f"Conflicting TA duplicate: {key} amounts={sorted(amounts)}")
+        result.append(dict(zip(TA_KEY_FIELDS, key)) | {"amount": amount})
+    return result
+
+
+def ta_payload_sha256(payload: list[dict]) -> str:
+    return hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True,
+                                     separators=(",", ":"), allow_nan=False).encode("utf-8")).hexdigest()
+
+
+def ta_changes(before: list[dict], after: list[dict]) -> list[dict]:
+    def index(rows: list[dict]) -> dict:
+        return {tuple(str(row[field]) for field in TA_KEY_FIELDS): float(row["amount"]) for row in rows}
+    old, new = index(before), index(after)
+    changes = []
+    for key in sorted(old.keys() | new.keys()):
+        if key in old and key in new and old[key] == new[key]:
+            continue
+        kind = "added" if key not in old else "removed" if key not in new else "changed"
+        changes.append(dict(zip(TA_KEY_FIELDS, key)) | {
+            "change": kind, "before_amount": old.get(key), "after_amount": new.get(key)
+        })
+    return changes
+
+
+def validate_approved_preview(
+    preview: dict, sources: list[dict], rows: list[dict], duplicate_selection: str | None
+) -> None:
+    """Bind a future application to the reviewed baseline, all sources and every
+    resulting row/change. Reading this manifest is not itself user approval.
+    """
+    if (preview.get("schema_version") != 1
+            or preview.get("extractor_version") != EXTRACTOR_VERSION
+            or preview.get("duplicate_selection") != duplicate_selection):
+        raise ValueError("TA approval preview policy/version mismatch")
+    for path, field in ((SQLITE_PATH, "database_sha256"), (META_PATH, "metadata_sha256")):
+        if sha256_file(path) != preview.get(field):
+            raise ValueError(f"TA approval preview baseline mismatch: {path.name}")
+    expected = preview.get("sources", [])
+    actual_sources = sorted((row["excel_url"], row["sha256"]) for row in sources)
+    expected_sources = sorted((row["excel_url"], row["sha256"]) for row in expected)
+    if not actual_sources or actual_sources != expected_sources:
+        raise ValueError("TA approval preview source set/hash mismatch")
+    if ta_payload_sha256(rows) != preview.get("resolved_rows_sha256"):
+        raise ValueError("TA approval preview rows mismatch")
+    with sqlite3.connect(SQLITE_PATH.resolve().as_uri() + "?mode=ro", uri=True) as conn:
+        before = [dict(zip((*TA_KEY_FIELDS, "amount"), row)) for row in conn.execute(
+            f"SELECT fiscal_year, period, company, segment, amount FROM {TABLE_NAME}"
+        )]
+    if ta_payload_sha256(ta_changes(before, rows)) != preview.get("changes_sha256"):
+        raise ValueError("TA approval preview changes mismatch")
+
+
 def build_sqlite(df: pd.DataFrame, sqlite_path: Path) -> None:
     sqlite_path.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(str(sqlite_path)) as conn:
@@ -340,12 +428,13 @@ def has_usable_ta_table(sqlite_path: Path) -> bool:
         return False
 
 
-def main() -> int:
+def main(*, duplicate_selection: str | None = None, approved_preview: Path | None = None) -> int:
+    preview = json.loads(approved_preview.read_text(encoding="utf-8")) if approved_preview else None
     with stats_update(SQLITE_PATH) as update:
-        return _main(update)
+        return _main(update, duplicate_selection=duplicate_selection, preview=preview)
 
 
-def _main(update: StatsUpdate) -> int:
+def _main(update: StatsUpdate, *, duplicate_selection: str | None = None, preview: dict | None = None) -> int:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     index_html = fetch_html(TA_SOURCE_INDEX_URL)
@@ -426,7 +515,9 @@ def _main(update: StatsUpdate) -> int:
 
         signature = build_signature(fetched_excel_hashes)
         if (
-            old_meta.get("signature") == signature
+            preview is None
+            and old_meta.get("duplicate_selection") == duplicate_selection
+            and old_meta.get("signature") == signature
             and old_meta.get("extractor_version") == EXTRACTOR_VERSION
             and has_usable_ta_table(SQLITE_PATH)
         ):
@@ -452,7 +543,8 @@ def _main(update: StatsUpdate) -> int:
             if not parsed:
                 raise RuntimeError(f"TA source has no company rows: {link_url}")
 
-            all_records.extend(parsed)
+            all_records.extend(row | {"_source_sha256": source_sha256, "_source_url": link_url}
+                               for row in parsed)
             processed_files.append(
                 {
                     "page_url": item["page_url"],
@@ -472,16 +564,15 @@ def _main(update: StatsUpdate) -> int:
     if not all_records:
         raise RuntimeError("No TA rows were parsed from source pages.")
 
-    df = pd.DataFrame(all_records)
+    resolved = resolve_ta_records(all_records, duplicate_selection=duplicate_selection)
+    if preview is not None:
+        validate_approved_preview(preview, fetched_excel_hashes, resolved, duplicate_selection)
+    df = pd.DataFrame(resolved)
     df["fiscal_year"] = df["fiscal_year"].astype(str)
     df["period"] = df["period"].astype(str)
     df["company"] = df["company"].astype(str)
     df["segment"] = df["segment"].astype(str)
-    df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
-    df = df.dropna(subset=["amount"]).copy()
-    df = df.drop_duplicates(
-        subset=["fiscal_year", "period", "company", "segment"], keep="last"
-    )
+    df["amount"] = pd.to_numeric(df["amount"], errors="raise")
 
     def period_sort_value(value: str) -> tuple[int, int]:
         if value == "total":
@@ -503,6 +594,7 @@ def _main(update: StatsUpdate) -> int:
         "source_index_url": TA_SOURCE_INDEX_URL,
         "signature": signature,
         "extractor_version": EXTRACTOR_VERSION,
+        "duplicate_selection": duplicate_selection,
         "last_checked_at": now_utc_iso(),
         "processed_files": processed_files,
         "row_count": int(len(df)),
@@ -511,6 +603,9 @@ def _main(update: StatsUpdate) -> int:
         "segments": sorted(df["segment"].unique().tolist()),
         "unit": "thousand_yen",
     }
+    if preview is not None:
+        # Recheck immediately before the recoverable DB/meta save as well.
+        validate_approved_preview(preview, fetched_excel_hashes, resolved, duplicate_selection)
     update.save(META_PATH, meta, lambda path: build_sqlite(df, path))
 
     print(
@@ -521,4 +616,8 @@ def _main(update: StatsUpdate) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    parser = argparse.ArgumentParser(description="Refresh TA statistics; explicit selections require prior user approval.")
+    parser.add_argument("--duplicate-selection", choices=[HIS_MAIN_SELECTION], default=None)
+    parser.add_argument("--approved-preview", type=Path, help="Reviewed preview manifest to verify before writing")
+    args = parser.parse_args()
+    raise SystemExit(main(duplicate_selection=args.duplicate_selection, approved_preview=args.approved_preview))

@@ -106,7 +106,7 @@ def read_stored_rows(sqlite_path: Path) -> list[tuple]:
         ).fetchall()
 
 
-@pytest.mark.parametrize("old_version", [None, 0, 1, 2, 3])
+@pytest.mark.parametrize("old_version", [None, 0, 1, 2, 3, 4])
 def test_unchanged_source_reprocesses_with_missing_or_old_extractor_version(
     update_paths: tuple[Path, Path], old_version: int | None
 ) -> None:
@@ -522,3 +522,129 @@ def test_cancelled_amount_without_replacement_stops():
     from openpyxl.cell.text import InlineFont
     with pytest.raises(ValueError, match="no uncancelled value"):
         updater.to_float(CellRichText(TextBlock(InlineFont(strike=True), "1,000")))
+
+
+def duplicate_row(amount, **overrides):
+    row = dict(zip(updater.TA_KEY_FIELDS, updater.HIS_MAIN_KEY)) | {
+        "amount": amount, "_source_url": updater.HIS_SOURCE_URL,
+        "_source_sha256": updater.HIS_SOURCE_SHA256,
+    }
+    return row | overrides
+
+
+@pytest.mark.parametrize("reverse", [False, True])
+def test_duplicate_resolution_is_explicit_and_order_independent(reverse):
+    rows = [duplicate_row(38188442), duplicate_row(38188444)]
+    if reverse:
+        rows.reverse()
+    with pytest.raises(ValueError, match="Conflicting TA duplicate"):
+        updater.resolve_ta_records(rows)
+    resolved = updater.resolve_ta_records(rows, duplicate_selection=updater.HIS_MAIN_SELECTION)
+    assert resolved == [dict(zip(updater.TA_KEY_FIELDS, updater.HIS_MAIN_KEY)) | {"amount": 38188442.0}]
+    assert updater.resolve_ta_records([rows[0], rows[0]]) == [
+        dict(zip(updater.TA_KEY_FIELDS, updater.HIS_MAIN_KEY)) | {"amount": float(rows[0]["amount"])}
+    ]
+
+
+@pytest.mark.parametrize("override", [
+    {"fiscal_year": "2024"}, {"period": "2026-02"}, {"company": "Other"},
+    {"segment": "domestic"}, {"_source_sha256": "changed source"},
+    {"_source_url": "https://example.test/replacement.xlsx"}, {"amount": 38188445},
+])
+def test_his_exception_cannot_cover_other_keys_sources_or_values(override):
+    rows = [duplicate_row(38188442), duplicate_row(38188444)]
+    # For a different key, keep both rows at that same key so it remains a conflict.
+    if set(override) & set(updater.TA_KEY_FIELDS):
+        rows = [r | override for r in rows]
+    else:
+        rows[1] |= override
+    with pytest.raises(ValueError, match="Conflicting TA duplicate"):
+        updater.resolve_ta_records(rows, duplicate_selection=updater.HIS_MAIN_SELECTION)
+
+
+def test_unknown_resolution_is_not_accepted():
+    with pytest.raises(ValueError, match="Unknown TA duplicate selection"):
+        updater.resolve_ta_records([], duplicate_selection="keep-first")
+
+
+def test_conflicting_workbook_preserves_db_and_meta(published_two_periods):
+    sqlite_path, meta_path, _, sources = published_two_periods
+    before = sqlite_path.read_bytes(), meta_path.read_bytes()
+    book = load_workbook(sources["https://example.test/monthly.xlsx"])
+    book.active["B8"] = "会社B"
+    book.active["C8"] = 999
+    book.save(sources["https://example.test/monthly.xlsx"])
+    book.close()
+    with pytest.raises(ValueError, match="Conflicting TA duplicate"):
+        updater.main()
+    assert (sqlite_path.read_bytes(), meta_path.read_bytes()) == before
+
+
+@pytest.fixture
+def reviewed_preview(update_paths):
+    sqlite_path, meta_path = update_paths
+    assert updater.main() == 0
+    with sqlite3.connect(sqlite_path) as conn:
+        rows = [dict(zip((*updater.TA_KEY_FIELDS, "amount"), row)) for row in conn.execute(
+            "SELECT fiscal_year,period,company,segment,amount FROM ta_company_amounts"
+        )]
+    rows = updater.resolve_ta_records(rows)
+    sources = [{"excel_url": row["excel_url"], "sha256": row["sha256"]}
+               for row in json.loads(meta_path.read_text())["processed_files"]]
+    preview = {
+        "schema_version": 1, "extractor_version": updater.EXTRACTOR_VERSION,
+        "duplicate_selection": None,
+        "database_sha256": updater.sha256_file(sqlite_path),
+        "metadata_sha256": updater.sha256_file(meta_path),
+        "sources": sources,
+        "resolved_rows_sha256": updater.ta_payload_sha256(rows),
+        "changes_sha256": updater.ta_payload_sha256([]),
+    }
+    return preview, sources, rows
+
+
+def test_matching_preview_validates_without_writing(reviewed_preview, update_paths):
+    preview, sources, rows = reviewed_preview
+    db, meta = update_paths
+    before = db.read_bytes(), meta.read_bytes()
+    updater.validate_approved_preview(preview, sources, rows, None)
+    assert (db.read_bytes(), meta.read_bytes()) == before
+
+
+@pytest.mark.parametrize("field,new_value", [
+    ("database_sha256", "drift"), ("metadata_sha256", "drift"),
+    ("extractor_version", -1), ("duplicate_selection", updater.HIS_MAIN_SELECTION),
+    ("sources", []), ("sources", [{"excel_url": "different", "sha256": "source hash"}]),
+    ("sources", [{"excel_url": "https://example.test/companies.xlsx", "sha256": "different"}]),
+    ("resolved_rows_sha256", "different"), ("changes_sha256", "different"),
+])
+def test_preview_rejects_any_unreviewed_baseline_source_or_change(reviewed_preview, field, new_value):
+    preview, sources, rows = reviewed_preview
+    with pytest.raises(ValueError, match="TA approval preview"):
+        updater.validate_approved_preview(preview | {field: new_value}, sources, rows, None)
+
+
+def test_preview_mismatch_stops_real_update_before_save(reviewed_preview, update_paths, tmp_path):
+    preview, _, _ = reviewed_preview
+    db, meta = update_paths
+    before = db.read_bytes(), meta.read_bytes()
+    manifest = tmp_path / "approval.json"
+    manifest.write_text(json.dumps(preview | {"database_sha256": "drift"}), encoding="utf-8")
+    with pytest.raises(ValueError, match="TA approval preview baseline mismatch"):
+        updater.main(approved_preview=manifest)
+    assert (db.read_bytes(), meta.read_bytes()) == before
+
+
+
+def test_matching_preview_reprocesses_and_saves_only_after_validation(reviewed_preview, update_paths, tmp_path):
+    preview, _, rows = reviewed_preview
+    db, meta = update_paths
+    manifest = tmp_path / "approval.json"
+    manifest.write_text(json.dumps(preview), encoding="utf-8")
+    assert updater.main(approved_preview=manifest) == 0
+    with sqlite3.connect(db) as conn:
+        stored = [dict(zip((*updater.TA_KEY_FIELDS, "amount"), row)) for row in conn.execute(
+            "SELECT fiscal_year,period,company,segment,amount FROM ta_company_amounts"
+        )]
+    assert updater.resolve_ta_records(stored) == rows
+    assert json.loads(meta.read_text())["extractor_version"] == updater.EXTRACTOR_VERSION
