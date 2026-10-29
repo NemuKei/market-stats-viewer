@@ -648,3 +648,44 @@ def test_matching_preview_reprocesses_and_saves_only_after_validation(reviewed_p
         )]
     assert updater.resolve_ta_records(stored) == rows
     assert json.loads(meta.read_text())["extractor_version"] == updater.EXTRACTOR_VERSION
+
+
+
+@pytest.mark.parametrize("value", [None, [], [{}], "manifest", 0, 1, True, False])
+def test_non_object_preview_stops_before_fetch_or_save(
+    update_paths, tmp_path, monkeypatch, value
+):
+    # Use the actual updater/StatsUpdate save path, with a changed source that
+    # would otherwise replace the persisted amount 10 with 999 (null used to do so).
+    db, meta = update_paths
+    assert updater.main() == 0
+    before = db.read_bytes(), meta.read_bytes()
+    source = tmp_path / "companies.xlsx"
+    book = load_workbook(source)
+    book.active["C7"] = 999
+    book.save(source)
+    book.close()
+    manifest = tmp_path / "approval.json"
+    manifest.write_text(json.dumps(value), encoding="utf-8")
+    calls = []
+    stats_update = updater.stats_update
+    fetch_html = updater.fetch_html
+
+    def track_stats_update(*args, **kwargs):
+        calls.append("stats_update")
+        return stats_update(*args, **kwargs)
+
+    def track_fetch_html(*args, **kwargs):
+        calls.append("fetch_html")
+        return fetch_html(*args, **kwargs)
+
+    monkeypatch.setattr(updater, "stats_update", track_stats_update)
+    monkeypatch.setattr(updater, "fetch_html", track_fetch_html)
+    with pytest.raises(ValueError, match="TA approval preview must be a JSON object"):
+        updater.main(approved_preview=manifest)
+    assert calls == []
+    assert (db.read_bytes(), meta.read_bytes()) == before
+    with sqlite3.connect(db) as conn:
+        assert conn.execute(
+            "SELECT amount FROM ta_company_amounts WHERE segment='overseas'"
+        ).fetchall() == [(10.0,)]

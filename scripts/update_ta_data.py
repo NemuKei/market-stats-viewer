@@ -429,7 +429,11 @@ def has_usable_ta_table(sqlite_path: Path) -> bool:
 
 
 def main(*, duplicate_selection: str | None = None, approved_preview: Path | None = None) -> int:
-    preview = json.loads(approved_preview.read_text(encoding="utf-8")) if approved_preview else None
+    preview = None
+    if approved_preview is not None:
+        preview = json.loads(approved_preview.read_text(encoding="utf-8"))
+        if not isinstance(preview, dict):
+            raise ValueError("TA approval preview must be a JSON object")
     with stats_update(SQLITE_PATH) as update:
         return _main(update, duplicate_selection=duplicate_selection, preview=preview)
 
