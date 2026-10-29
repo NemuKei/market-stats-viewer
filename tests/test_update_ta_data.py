@@ -4,7 +4,7 @@ import sqlite3
 from pathlib import Path
 
 import pytest
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 
 from scripts import update_ta_data as updater
 
@@ -106,7 +106,7 @@ def read_stored_rows(sqlite_path: Path) -> list[tuple]:
         ).fetchall()
 
 
-@pytest.mark.parametrize("old_version", [None, 0])
+@pytest.mark.parametrize("old_version", [None, 0, 1])
 def test_unchanged_source_reprocesses_with_missing_or_old_extractor_version(
     update_paths: tuple[Path, Path], old_version: int | None
 ) -> None:
@@ -146,7 +146,7 @@ def test_unchanged_source_rebuilds_an_unusable_existing_table(
     sqlite_path, meta_path = update_paths
     assert updater.main() == 0
     old_meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    old_meta["extractor_version"] = 1
+    old_meta["extractor_version"] = updater.EXTRACTOR_VERSION
     meta_path.write_text(json.dumps(old_meta), encoding="utf-8")
     if table_state == "missing_database":
         sqlite_path.unlink()
@@ -176,7 +176,7 @@ def test_current_extractor_and_usable_table_skip_unchanged_source(
     sqlite_path, meta_path = update_paths
     assert updater.main() == 0
     old_meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    old_meta["extractor_version"] = 1
+    old_meta["extractor_version"] = updater.EXTRACTOR_VERSION
     old_meta["last_checked_at"] = "previous-successful-parse"
     meta_path.write_text(json.dumps(old_meta), encoding="utf-8")
     database_before = sqlite_path.read_bytes()
@@ -328,3 +328,54 @@ def test_metadata_write_failure_preserves_pair_and_retry_is_idempotent(
     successful = sqlite_path.read_bytes(), meta_path.read_bytes()
     assert updater.main() == 0
     assert (sqlite_path.read_bytes(), meta_path.read_bytes()) == successful
+
+
+def write_annual_ta_workbook(path: Path, *, previous_first: bool = False) -> None:
+    # Synthetic fixture matching the layout of MLIT 002006785.xlsx (2025 total).
+    book = Workbook()
+    sheet = book.active
+    sheet["A5"] = "会　社　名"
+    for col, label, amount in [(2, "海外旅行", 10), (5, "外国人旅行", 20),
+                                (8, "国内旅行", 30), (11, "合計", 60)]:
+        sheet.cell(4, col, label)
+        for offset, year in enumerate(([2024, 2025] if previous_first else [2025, 2024])):
+            sheet.cell(5, col + offset, f"{year}年度取扱額")
+            sheet.cell(6, col + offset, "（千円）")
+            sheet.cell(7, col + offset, amount if year == 2025 else 999)
+            sheet.cell(8, col + offset, amount)
+        sheet.cell(5, col + 2, "2024年度")
+        sheet.cell(6, col + 2, "比％")
+    sheet["A7"] = "会社A"
+    sheet["A8"] = "合　計"
+    book.save(path)
+    book.close()
+
+
+@pytest.mark.parametrize("previous_first", [False, True])
+def test_annual_layout_selects_company_and_requested_year(tmp_path, previous_first):
+    source = tmp_path / "annual.xlsx"
+    write_annual_ta_workbook(source, previous_first=previous_first)
+    rows = updater.parse_ta_excel_rows(source, "2025", "total")
+    assert [(r["company"], r["segment"], r["amount"]) for r in rows] == [
+        ("会社A", "overseas", 10.0), ("会社A", "foreign", 20.0),
+        ("会社A", "domestic", 30.0), ("会社A", "total", 60.0),
+    ]
+    assert all(r["fiscal_year"] == "2025" and r["period"] == "total" for r in rows)
+
+
+def test_annual_layout_rejects_missing_requested_year(tmp_path):
+    source = tmp_path / "annual.xlsx"
+    write_annual_ta_workbook(source)
+    with pytest.raises(ValueError, match="Amount columns"):
+        updater.parse_ta_excel_rows(source, "2026", "total")
+
+
+def test_annual_layout_does_not_borrow_next_segment_column(tmp_path):
+    source = tmp_path / "annual.xlsx"
+    write_annual_ta_workbook(source)
+    book = load_workbook(source)
+    book.active["B5"] = "unknown"
+    book.save(source)
+    book.close()
+    with pytest.raises(ValueError, match="Amount columns"):
+        updater.parse_ta_excel_rows(source, "2025", "total")

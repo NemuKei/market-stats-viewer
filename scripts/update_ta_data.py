@@ -26,7 +26,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta_ta.json"
 TABLE_NAME = "ta_company_amounts"
-EXTRACTOR_VERSION = 1
+EXTRACTOR_VERSION = 2
 
 
 def now_utc_iso() -> str:
@@ -180,11 +180,19 @@ def find_amount_column(
     ws: openpyxl.worksheet.worksheet.Worksheet,
     start_col: int,
     current_period_token: str,
+    end_col: int,
+    annual_layout: bool = False,
 ) -> int | None:
     candidate_col: int | None = None
-    for c in range(start_col, start_col + 5):
+    for c in range(start_col, end_col):
         year_label = normalize_text(ws.cell(row=5, column=c).value)
         unit_label = normalize_text(ws.cell(row=6, column=c).value)
+        if annual_layout:
+            # Annual totals put both year and measure in row 5; never fall
+            # back to the previous year or a neighbouring segment.
+            if re.sub(r"\s+", "", year_label) == f"{current_period_token}年度取扱額":
+                return c
+            continue
         if "取扱額" not in unit_label:
             continue
         if candidate_col is None:
@@ -213,19 +221,29 @@ def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]
     if not segment_starts:
         raise ValueError("Segment headers were not detected in TA workbook.")
 
-    current_period_token = normalize_text(ws.cell(row=5, column=3).value)
+    company_header = re.sub(r"\s+", "", normalize_text(ws.cell(row=5, column=1).value))
+    annual_layout = company_header == "会社名"
+    company_col = 1 if annual_layout else 2
+    current_period_token = (
+        fiscal_year if annual_layout else normalize_text(ws.cell(row=5, column=3).value)
+    )
     amount_cols: dict[str, int] = {}
+    starts = sorted(segment_starts.values())
     for segment, start_col in segment_starts.items():
-        amount_col = find_amount_column(ws, start_col, current_period_token)
+        index = starts.index(start_col)
+        end_col = starts[index + 1] if index + 1 < len(starts) else ws.max_column + 1
+        amount_col = find_amount_column(
+            ws, start_col, current_period_token, end_col, annual_layout
+        )
         if amount_col is not None:
             amount_cols[segment] = amount_col
 
-    if not amount_cols:
+    if len(amount_cols) != len(segment_starts):
         raise ValueError("Amount columns were not detected in TA workbook.")
 
     records: list[dict] = []
     for r in range(7, ws.max_row + 1):
-        company_raw = normalize_text(ws.cell(row=r, column=2).value)
+        company_raw = normalize_text(ws.cell(row=r, column=company_col).value)
         if not company_raw:
             continue
         if "会社" in company_raw and "名" in company_raw:
