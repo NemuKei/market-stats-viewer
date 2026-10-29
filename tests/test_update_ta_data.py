@@ -106,7 +106,7 @@ def read_stored_rows(sqlite_path: Path) -> list[tuple]:
         ).fetchall()
 
 
-@pytest.mark.parametrize("old_version", [None, 0, 1, 2])
+@pytest.mark.parametrize("old_version", [None, 0, 1, 2, 3])
 def test_unchanged_source_reprocesses_with_missing_or_old_extractor_version(
     update_paths: tuple[Path, Path], old_version: int | None
 ) -> None:
@@ -414,3 +414,111 @@ def test_legacy_current_amount_in_row_five_has_priority(
         ("JTB", "overseas", 13208650.0), ("JTB", "foreign", 20.0),
         ("JTB", "domestic", 30.0), ("JTB", "total", 60.0),
     ]
+
+
+@pytest.mark.parametrize("corrected,cancelled", [
+    ("0\n", "343,304"), ("343,304\n", "0"),
+    ("9,458\n", "13,604"), ("1,283,097\n", "1,278,950"),
+    ("1,388,477\n", "1,388,476"), ("19,978\n", "14,376"),
+    ("1,447,289\n", "1,452,890"), ("1,606,944\n", "1,606,943"),
+    ("23,651\n", "5,194"), ("1,691,501\n", "1,709,958"),
+    ("14,429\n", "0"), ("1,136,356\n", "1,150,785"),
+])
+def test_corrected_rich_text_amount_excludes_cancelled_run(corrected, cancelled):
+    from openpyxl.cell.rich_text import CellRichText, TextBlock
+    from openpyxl.cell.text import InlineFont
+    value = CellRichText(corrected, TextBlock(InlineFont(strike=True), cancelled))
+    assert updater.to_float(value) == float(corrected.strip().replace(",", ""))
+
+
+@pytest.mark.parametrize("storage", ["inline", "shared"])
+def test_workbook_preserves_strike_correction_including_zero(tmp_path, storage):
+    from openpyxl.cell.rich_text import CellRichText, TextBlock
+    from openpyxl.cell.text import InlineFont
+    from zipfile import ZipFile, ZIP_DEFLATED
+    import xml.etree.ElementTree as ET
+
+    source = tmp_path / "corrected.xlsx"
+    write_ta_workbook(source, [])
+    book = load_workbook(source)
+    sheet = book.active
+    sheet["B5"] = "会　社　名"
+    for column in (3, 8, 13, 18):
+        sheet.cell(5, column, "取　扱　額")
+        sheet.cell(6, column, "（千円）")
+    sheet["B28"] = "（株）IACEトラベル"
+    sheet["C28"] = 100
+    sheet["H28"] = CellRichText("0\n", TextBlock(InlineFont(strike=True), "343,304"))
+    sheet["M28"] = CellRichText("343,304", "\n", TextBlock(InlineFont(strike=True), "0"))
+    sheet["R28"] = 343404
+    book.save(source)
+    book.close()
+    if storage == "shared":
+        # Real MLIT corrections use sharedStrings runs, rather than the inline
+        # rich text produced by openpyxl. Keep run properties intact in the fixture.
+        ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+        with ZipFile(source) as archive:
+            files = {name: archive.read(name) for name in archive.namelist()}
+        root = ET.fromstring(files["xl/worksheets/sheet1.xml"])
+        shared = ET.Element(f"{{{ns}}}sst", count="2", uniqueCount="2")
+        index = 0
+        for cell in root.iter(f"{{{ns}}}c"):
+            if cell.get("r") not in {"H28", "M28"}:
+                continue
+            inline = cell.find(f"{{{ns}}}is")
+            inline.tag = f"{{{ns}}}si"
+            cell.remove(inline)
+            shared.append(inline)
+            cell.set("t", "s")
+            ET.SubElement(cell, f"{{{ns}}}v").text = str(index)
+            index += 1
+        files["xl/worksheets/sheet1.xml"] = ET.tostring(root)
+        files["xl/sharedStrings.xml"] = ET.tostring(shared)
+        ct_ns = "http://schemas.openxmlformats.org/package/2006/content-types"
+        ct = ET.fromstring(files["[Content_Types].xml"])
+        ET.SubElement(ct, f"{{{ct_ns}}}Override", PartName="/xl/sharedStrings.xml",
+                      ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml")
+        files["[Content_Types].xml"] = ET.tostring(ct)
+        with ZipFile(source, "w", ZIP_DEFLATED) as archive:
+            for name, data in files.items():
+                archive.writestr(name, data)
+    rows = updater.parse_ta_excel_rows(source, "2023", "2024-03")
+    amounts = {r["segment"]: r["amount"] for r in rows}
+    assert amounts == {"overseas": 100, "foreign": 0, "domestic": 343304, "total": 343404}
+
+
+def test_unknown_amount_stops_and_preserves_database_and_metadata(published_two_periods):
+    sqlite_path, meta_path, _, sources = published_two_periods
+    before = sqlite_path.read_bytes(), meta_path.read_bytes()
+    source = sources["https://example.test/monthly.xlsx"]
+    book = load_workbook(source)
+    book.active["H7"] = "23,000\n24,000"
+    book.save(source)
+    book.close()
+    with pytest.raises(RuntimeError, match="TA source parse failed.*H7"):
+        updater.main()
+    assert (sqlite_path.read_bytes(), meta_path.read_bytes()) == before
+
+
+@pytest.mark.parametrize("value", [None, "", "-", "－", "…"])
+def test_explicit_missing_amounts_remain_missing(value):
+    assert updater.to_float(value) is None
+
+
+@pytest.mark.parametrize("value", ["NaN", "inf", float("nan"), float("inf"), "1,23", True])
+def test_unknown_numeric_values_raise_instead_of_becoming_missing(value):
+    with pytest.raises(ValueError):
+        updater.to_float(value)
+
+
+def test_unresolved_rich_text_with_two_active_numbers_stops():
+    from openpyxl.cell.rich_text import CellRichText
+    with pytest.raises(ValueError, match="Unrecognised amount"):
+        updater.to_float(CellRichText("1,000\n", "2,000"))
+
+
+def test_cancelled_amount_without_replacement_stops():
+    from openpyxl.cell.rich_text import CellRichText, TextBlock
+    from openpyxl.cell.text import InlineFont
+    with pytest.raises(ValueError, match="no uncancelled value"):
+        updater.to_float(CellRichText(TextBlock(InlineFont(strike=True), "1,000")))

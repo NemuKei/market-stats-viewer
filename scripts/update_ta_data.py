@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import sqlite3
 import tempfile
@@ -13,6 +14,7 @@ import openpyxl
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from openpyxl.cell.rich_text import CellRichText, TextBlock
 
 from scripts.stats_update_store import StatsUpdate, stats_update
 from stats.ta import is_ta_summary_company
@@ -26,7 +28,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta_ta.json"
 TABLE_NAME = "ta_company_amounts"
-EXTRACTOR_VERSION = 3
+EXTRACTOR_VERSION = 4
 
 
 def now_utc_iso() -> str:
@@ -40,15 +42,30 @@ def normalize_text(value: object) -> str:
 def to_float(value: object) -> float | None:
     if value is None:
         return None
+    if isinstance(value, CellRichText):
+        # MLIT corrections retain the cancelled amount as a struck run in the
+        # same cell. Preserve run boundaries until the cancelled text is gone.
+        current = "".join(
+            str(run) for run in value
+            if not (isinstance(run, TextBlock) and run.font.strike)
+        )
+        if not current.strip():
+            raise ValueError("Corrected amount has no uncancelled value")
+        value = current
+    if isinstance(value, bool):
+        raise ValueError("Boolean amount is not numeric")
     if isinstance(value, (int, float)):
-        return float(value)
-    s = normalize_text(value).replace(",", "")
-    if not s or s in {"-", "－", "…"}:
-        return None
-    try:
-        return float(s)
-    except ValueError:
-        return None
+        amount = float(value)
+    else:
+        text = normalize_text(value)
+        if not text or text in {"-", "－", "…"}:
+            return None
+        if not re.fullmatch(r"[+-]?(?:[0-9]+|[0-9]{1,3}(?:,[0-9]{3})+)(?:\.[0-9]+)?", text):
+            raise ValueError(f"Unrecognised amount: {text!r}")
+        amount = float(text.replace(",", ""))
+    if not math.isfinite(amount):
+        raise ValueError("Non-finite amount")
+    return amount
 
 
 def sha256_file(path: Path) -> str:
@@ -213,7 +230,7 @@ def normalize_company_name(name: str) -> str:
 
 
 def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]:
-    wb = openpyxl.load_workbook(path, data_only=True, read_only=False)
+    wb = openpyxl.load_workbook(path, data_only=True, read_only=False, rich_text=True)
     ws = wb[wb.sheetnames[0]]
 
     segment_starts: dict[str, int] = {}
@@ -251,14 +268,20 @@ def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]
         company_raw = normalize_text(ws.cell(row=r, column=company_col).value)
         if not company_raw:
             continue
-        if "会社" in company_raw and "名" in company_raw:
+        if re.sub(r"\s+", "", company_raw) == "会社名":
             continue
         if is_ta_summary_company(company_raw) or "参考値" in company_raw:
             continue
 
         company = normalize_company_name(company_raw)
         for segment, col in amount_cols.items():
-            amount = to_float(ws.cell(row=r, column=col).value)
+            cell = ws.cell(row=r, column=col)
+            try:
+                if cell.value is not None and cell.font.strike:
+                    raise ValueError("Amount cell is cancelled without a replacement")
+                amount = to_float(cell.value)
+            except ValueError as exc:
+                raise ValueError(f"Invalid TA amount at {ws.title}!{cell.coordinate}: {exc}") from exc
             if amount is None:
                 continue
             records.append(
@@ -271,6 +294,7 @@ def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]
                 }
             )
 
+    wb.close()
     return records
 
 
