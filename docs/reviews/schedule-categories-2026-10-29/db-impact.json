@@ -1,0 +1,4108 @@
+{
+  "database_sha256": "9f59a884d914830dd7eeb87738ecb520d93c81f269e1944a78f2e3ab3f2f313f",
+  "rule_sha256": "7ce552e24c26d19cc58dd941d15eed9403000b2a515262ced35c947103fa03f7",
+  "row_count": 2196,
+  "changed_count": 510,
+  "before": {
+    "コンサート": 1415,
+    "その他": 567,
+    "野球": 214
+  },
+  "after": {
+    "コンサート": 1359,
+    "未分類": 474,
+    "その他": 144,
+    "野球": 219
+  },
+  "transitions": {
+    "その他 -> 未分類": 397,
+    "その他 -> コンサート": 24,
+    "コンサート -> 未分類": 77,
+    "コンサート -> その他": 3,
+    "野球 -> その他": 2,
+    "その他 -> 野球": 7
+  },
+  "concert_drop_count": 80,
+  "changes": [
+    {
+      "event_uid": "ariake_arena:detail-310",
+      "title": "ACEes",
+      "date": "2026-07-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-314",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-07-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-319",
+      "title": "HIROMITSU KITAYAMA",
+      "date": "2026-09-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-320",
+      "title": "KEY TO LIT",
+      "date": "2026-08-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-325",
+      "title": "ねぽっくす！ 〜ねぽらぼ×秘密結社holoX〜",
+      "date": "2026-09-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-327",
+      "title": "LANY",
+      "date": "2026-10-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-332",
+      "title": "CANNONBALL外伝",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-333",
+      "title": "有明アリーナ",
+      "date": "2026-07-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-339",
+      "title": "ONE",
+      "date": "2026-10-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-340",
+      "title": "SLS",
+      "date": "2026-11-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-343",
+      "title": "BALLISTIK BOYZ",
+      "date": "2026-11-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-344",
+      "title": "浦島坂田船",
+      "date": "2026-10-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-346",
+      "title": "L'Arc-en-Ciel",
+      "date": "2026-12-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-347",
+      "title": "L'Arc-en-Ciel",
+      "date": "2026-12-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-350",
+      "title": "HiGH&LOW THE 戦国 LOVE&HATE",
+      "date": "2026-11-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-353",
+      "title": "ミュージカル『刀剣乱舞』",
+      "date": "2027-01-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-359",
+      "title": "ナポリ10",
+      "date": "2027-02-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "ariake_arena:detail-360",
+      "title": "陣 presents 『CL6th LDH紅白頂上決戦』",
+      "date": "2026-12-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "asue_arena_osaka:https://www.yahataya-park.jp/arena_events/15925/",
+      "title": "KIDS CheerDance CUP 2026 開催決定！",
+      "date": "2026-12-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "asue_arena_osaka:https://www.yahataya-park.jp/arena_events/16319/",
+      "title": "ミズノ 夏休み 苦手克服！鉄棒教室",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "asue_arena_osaka:https://www.yahataya-park.jp/arena_events/16457/",
+      "title": "ミズノ 運動会目前！！ 走り方教室",
+      "date": "2026-09-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "belluna_dome:https://www.seibulions.jp/news/detail/202600725331.html#d=2026-11-28",
+      "title": "LIONS THANKS FESTA 2026 詳細",
+      "date": "2026-11-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "belluna_dome:https://www.seibulions.jp/special/lionsnatsumatsuri/#d=2026-07-18",
+      "title": "イベント ライオンズ夏祭り2026 Supported by SUNTORY 詳細",
+      "date": "2026-07-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "belluna_dome:https://www.seibulions.jp/special/lionsnatsumatsuri/#d=2026-07-19",
+      "title": "イベント ライオンズ夏祭り2026 Supported by SUNTORY 詳細",
+      "date": "2026-07-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5562/",
+      "title": "読売日本交響楽団　第45回大阪定期演奏会",
+      "date": "2026-09-30",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5563/",
+      "title": "読売日本交響楽団　第46回大阪定期演奏会",
+      "date": "2026-12-17",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5750/",
+      "title": "大阪フィルハーモニー交響楽団　第600回定期演奏会",
+      "date": "2026-07-17",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5751/",
+      "title": "大阪フィルハーモニー交響楽団　第600回定期演奏会",
+      "date": "2026-07-18",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5752/",
+      "title": "大阪フィルハーモニー交響楽団　第601回定期演奏会",
+      "date": "2026-09-25",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5754/",
+      "title": "大阪フィルハーモニー交響楽団　第601回定期演奏会",
+      "date": "2026-09-26",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5833/",
+      "title": "大阪フィルハーモニー交響楽団 ３大交響曲の夕べ",
+      "date": "2026-08-08",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5984/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-20",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5997/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5998/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5999/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6000/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-23",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6001/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6003/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-26",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6004/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6005/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6006/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-28",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6007/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-29",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6008/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-29",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6009/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6079/",
+      "title": "大阪新音フロイデ合唱団 モーツァルト「ハ短調ミサ」",
+      "date": "2026-08-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6152/",
+      "title": "牧阿佐美バレヱ団 子供のためのバレエ「シンデレラ」",
+      "date": "2026-09-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6165/",
+      "title": "ヴァシリー・ペトレンコ指揮 ロイヤル・フィルハーモニー管弦楽団 ピアノ：辻井伸行",
+      "date": "2026-09-13",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:フィルハーモニー"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6207/",
+      "title": "大和証券グループ Presents リッカルド・ムーティ指揮  ウィーン・フィルハーモニー管弦楽団",
+      "date": "2026-11-05",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:フィルハーモニー"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6298/",
+      "title": "地主薫バレエ団公演「パキータ」「ラ・シルフィード」",
+      "date": "2026-07-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6379/",
+      "title": "大阪クラシック 2026 第60公演",
+      "date": "2026-09-12",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6427/",
+      "title": "大阪フィルハーモニー交響楽団　第602回定期演奏会",
+      "date": "2026-10-16",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6429/",
+      "title": "大阪フィルハーモニー交響楽団　第602回定期演奏会",
+      "date": "2026-10-17",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6430/",
+      "title": "大阪フィルハーモニー交響楽団　第603回定期演奏会",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6432/",
+      "title": "大阪フィルハーモニー交響楽団　第603回定期演奏会",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6434/",
+      "title": "大阪フィルハーモニー交響楽団　第604回定期演奏会",
+      "date": "2027-01-21",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6436/",
+      "title": "大阪フィルハーモニー交響楽団　第604回定期演奏会",
+      "date": "2027-01-22",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6437/",
+      "title": "大阪フィルハーモニー交響楽団　第605回定期演奏会",
+      "date": "2027-02-12",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6439/",
+      "title": "大阪フィルハーモニー交響楽団　第605回定期演奏会",
+      "date": "2027-02-13",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6440/",
+      "title": "大阪フィルハーモニー交響楽団　第606回定期演奏会",
+      "date": "2027-03-19",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6442/",
+      "title": "大阪フィルハーモニー交響楽団　第606回定期演奏会",
+      "date": "2027-03-20",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6493/",
+      "title": "チャイコフスキー・バレエ劇場「白鳥の湖」",
+      "date": "2027-01-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6543/",
+      "title": "大阪芸術大学サマーミュージックフェスティバル2026",
+      "date": "2026-08-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6634/",
+      "title": "ディズニー・オン・クラシック ～まほうの夜の音楽会 2026",
+      "date": "2026-12-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6638/",
+      "title": "ディズニー・オン・クラシック ～まほうの夜の音楽会 2026",
+      "date": "2026-12-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6639/",
+      "title": "ディズニー・オン・クラシック ～まほうの夜の音楽会 2026",
+      "date": "2026-12-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6686/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6720/",
+      "title": "松山バレエ団 「くるみ割り人形」全幕",
+      "date": "2026-11-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6754/",
+      "title": "大阪フィルハーモニー交響楽団　第９シンフォニーの夕べ",
+      "date": "2026-12-29",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6755/",
+      "title": "大阪フィルハーモニー交響楽団　第９シンフォニーの夕べ",
+      "date": "2026-12-30",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6779/",
+      "title": "法村友井バレエ団 公演『リーズの結婚』（La Fille mal gardée）",
+      "date": "2026-10-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6784/",
+      "title": "第4回 「玉響」 還暦記念公演",
+      "date": "2026-12-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6790/",
+      "title": "昭和101年スーパーソングブックショウ！〜昭和のベストヒット・グラフィティー〜",
+      "date": "2026-10-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6822/",
+      "title": "第54回 天王寺楽所 雅亮会 雅楽公演会「江戸幕府と天王寺舞楽」",
+      "date": "2026-11-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6828/",
+      "title": "大阪新音フロイデ合唱団 ベートーヴェン「第九」",
+      "date": "2026-12-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6861/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-25",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6862/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6863/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6864/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-28",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6865/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-01",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6866/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-02",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6867/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-04",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6868/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-04",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6869/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-05",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6870/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-06",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6871/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-06",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6872/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-07",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6873/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-09",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6874/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-10",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6875/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6876/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6925/",
+      "title": "大野智 1st Birthday Event  「さと島 -SATOSHI OHNO 45→46」",
+      "date": "2026-11-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6952/",
+      "title": "～清水ミチコ 40th BEST～ 「SHOW MUST GOING MY WAY」",
+      "date": "2026-12-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6953/",
+      "title": "大阪芸術大学 特別演奏会2026",
+      "date": "2026-12-16",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:演奏会"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6954/",
+      "title": "久石譲×日本センチュリー交響楽団 特別演奏会",
+      "date": "2026-12-25",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6957/",
+      "title": "久石譲×日本センチュリー交響楽団 特別演奏会",
+      "date": "2026-12-26",
+      "old_category": "その他",
+      "new_category": "コンサート",
+      "rule": "concert_keyword:交響楽団"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6958/",
+      "title": "大野智 1st Birthday Event  「さと島 -SATOSHI OHNO 45→46」",
+      "date": "2026-11-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6965/",
+      "title": "EGO-WRAPPIN’　「Midnight Dejavu」",
+      "date": "2026-12-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/7002/",
+      "title": "VOW WOW 「THE 40 YEARS OF V CELEBRATION」",
+      "date": "2027-03-27",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/7045/",
+      "title": "民音タンゴ・シリーズ＜56＞THE MAESTROS ～二大巨匠が描くタンゴの真髄～",
+      "date": "2027-02-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/7047/",
+      "title": "民音タンゴ・シリーズ＜56＞THE MAESTROS ～二大巨匠が描くタンゴの真髄",
+      "date": "2027-02-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:/ex/specialmatch/2026/#d=2026-11-23",
+      "title": "FUKUOKA OH SADAHARU LEGACY PROJECT SPECIAL MATCH",
+      "date": "2026-11-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:/ex/specialmatch/2026/#d=2026-11-23#t=11:30",
+      "title": "FUKUOKA OH SADAHARU LEGACY PROJECT SPECIAL MATCH",
+      "date": "2026-11-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://anisama.tv/2026/index.html#d=2027-03-13",
+      "title": "ANISAMA FUKUOKA 2027",
+      "date": "2027-03-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://anisama.tv/2026/index.html#d=2027-03-14",
+      "title": "ANISAMA FUKUOKA 2027",
+      "date": "2027-03-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://e-zofukuoka.com/news/teamlabforest/2026062636837/#d=2026-07-18",
+      "title": "【7/18】みずほPayPayドームフィールド無料開放！",
+      "date": "2026-07-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://e-zofukuoka.com/news/teamlabforest/2026062636837/#d=2026-07-19",
+      "title": "【7/19】みずほPayPayドームフィールド無料開放！",
+      "date": "2026-07-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://e-zofukuoka.com/news/teamlabforest/2026062636837/#d=2026-07-20",
+      "title": "【7/20】みずほPayPayドームフィールド無料開放！",
+      "date": "2026-07-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-30#t=10:20",
+      "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
+      "date": "2027-01-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-31#t=10:20",
+      "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
+      "date": "2027-01-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://fukurock.com/#d=2026-08-29#t=11:30",
+      "title": "THE GREATEST ROCK FUKUOKA",
+      "date": "2026-08-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://numbershot.jp/2026/#d=2026-08-01#t=20:30",
+      "title": "NUMBER SHOT2026",
+      "date": "2026-08-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://numbershot.jp/2026/#d=2026-08-02#t=20:30",
+      "title": "NUMBER SHOT2026",
+      "date": "2026-08-02",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://shochufes.jp/#d=2026-07-25",
+      "title": "本格焼酎・泡盛とうまいもん祭2026",
+      "date": "2026-07-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://shochufes.jp/#d=2026-07-26",
+      "title": "本格焼酎・泡盛とうまいもん祭2026",
+      "date": "2026-07-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://tomicaexpo-fukuoka.softbankhawks.co.jp/#d=2027-01-01",
+      "title": "トミカ博 in FUKUOKA",
+      "date": "2027-01-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://tomicaexpo-fukuoka.softbankhawks.co.jp/#d=2027-01-02",
+      "title": "トミカ博 in FUKUOKA",
+      "date": "2027-01-02",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://tomicaexpo-fukuoka.softbankhawks.co.jp/#d=2027-01-03",
+      "title": "トミカ博 in FUKUOKA",
+      "date": "2027-01-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://tomicaexpo-fukuoka.softbankhawks.co.jp/#d=2027-01-04",
+      "title": "トミカ博 in FUKUOKA",
+      "date": "2027-01-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://www.mlb.com/ja/mlbx-fukuoka#d=2026-11-07#t=13:00",
+      "title": "MLBx: Fukuoka",
+      "date": "2026-11-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://www.pethaku.com/fukuoka/#d=2026-08-08",
+      "title": "Pet博2026 福岡 Pet Exposition 2026 in Fukuoka",
+      "date": "2026-08-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "ambiguous_non_music:expo"
+    },
+    {
+      "event_uid": "fukuoka_paypay_dome:https://www.pethaku.com/fukuoka/#d=2026-08-09",
+      "title": "Pet博2026 福岡 Pet Exposition 2026 in Fukuoka",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "ambiguous_non_music:expo"
+    },
+    {
+      "event_uid": "k_arena_yokohama:https://k-arena.com/schedule/20260922-1/",
+      "title": "HiGH&LOW 10th ANNIVERSARY FEVER EXILE THE SECOND / DOBERMAN INFINITY / THE RAMPAGE / FANTASTICS / BALLISTIK BOYZ / PSYCHIC FEVER ...and more",
+      "date": "2026-09-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:0e98bb723df6144d",
+      "title": "2026 MAMA AWARDS",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:1fc2513b7ab3a843",
+      "title": "2026 MAMA AWARDS Presented by Visa",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:3bc1fa5635f95aee",
+      "title": "非公開イベント",
+      "date": "2026-10-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:4418759f13e9e0ab",
+      "title": "2026 MAMA AWARDS Presented by Visa",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:b6feefc1fc33891c",
+      "title": "2026 MAMA AWARDS",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:befac12bb4a3d58d",
+      "title": "2026 MAMA AWARDS Presented by Visa",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:ed16d6667845ba18",
+      "title": "2026 MAMA AWARDS Presented by Visa",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:h:fe439c800d39c1f9",
+      "title": "非公開イベント",
+      "date": "2026-10-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:https://jp.rizinff.com/_ct/17834937#d=2026-09-10#t=16:00",
+      "title": "ANGEL CHAMPAGNE presents 超RIZIN.5　浪速の超復活祭り",
+      "date": "2026-09-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:https://npb.jp/promotion/pe-lesson/event/20260615.html#d=2026-08-17",
+      "title": "エデュすぽ！～教員のための体育授業研究会～",
+      "date": "2026-08-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:https://www.buffaloes.co.jp/news/detail/202600803621.html#d=2026-11-22",
+      "title": "Bs Fan-Festa2026",
+      "date": "2026-11-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "kyocera_dome_osaka:https://www.kansai-collection.net/#d=2026-08-13#t=13:00",
+      "title": "KANSAI COLLECTION 2026 AUTUMN&WINTER",
+      "date": "2026-08-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/0725_15800.php",
+      "title": "BOOSTランニングフェスタ（ナイト） in 味の素スタジアム",
+      "date": "2026-07-25",
+      "old_category": "コンサート",
+      "new_category": "その他",
+      "rule": "non_music_keyword:ランニング"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/0803_16230.php",
+      "title": "東京2020大会５周年記念事業「夏休み親子スタジアム・アリーナツアー」",
+      "date": "2026-08-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "conflicting_evidence:ツアー/大会"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/0903_16236.php",
+      "title": "京王電鉄presents 第2回 FC東京 味スタナイトヨガ",
+      "date": "2026-09-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1003_16240.php",
+      "title": "TOKYO ROKUTAI FES 2026",
+      "date": "2026-10-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1004_16241.php",
+      "title": "TOKYO ROKUTAI FES 2026",
+      "date": "2026-10-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1004_16366.php",
+      "title": "スフィーダ世田谷FC×オルカ鴨川FC",
+      "date": "2026-10-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1012_16264.php",
+      "title": "調布市スポーツ協会創立70周年記念 第44回調布市民スポーツまつり",
+      "date": "2026-10-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1018_16359.php",
+      "title": "味の素スタジアムBIGフリーマーケット",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1031_16300.php",
+      "title": "ロナルド・マクドナルド・ハウス支援 チャリティラン＆ウォーク",
+      "date": "2026-10-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1031_16338.php",
+      "title": "「東京2020オリンピック・パラリンピック５周年記念 武蔵野の森ハロウィンウォーキング～仮装して楽しく秋の健康ウォーキング！～」",
+      "date": "2026-10-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1101_16260.php",
+      "title": "みたかわんぱくスポーツDAY2026",
+      "date": "2026-11-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1101_16567.php",
+      "title": "2026/27 U-21 Jリーグ 交流戦ラウンド第1節 U-21東京ヴェルディ vs U-21名古屋グランパス",
+      "date": "2026-11-01",
+      "old_category": "野球",
+      "new_category": "その他",
+      "rule": "sports_match:東京ヴェルディ"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1103_16568.php",
+      "title": "インディペンデンスリーグ2025【関東】チャンピオンシップ 決勝",
+      "date": "2026-11-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1114_16273.php",
+      "title": "京王駅伝フェスティバル 2026",
+      "date": "2026-11-14",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1122_16360.php",
+      "title": "味の素スタジアムBIGフリーマーケット",
+      "date": "2026-11-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1128_16282.php",
+      "title": "BOOSTランニングフェスタ in 味の素スタジアム",
+      "date": "2026-11-28",
+      "old_category": "コンサート",
+      "new_category": "その他",
+      "rule": "non_music_keyword:ランニング"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1206_16575.php",
+      "title": "味の素スタジアム ラン＆ウォーク Presented by 味の素KK",
+      "date": "2026-12-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1213_16559.php",
+      "title": "味の素スタジアムBIGフリーマーケット",
+      "date": "2026-12-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1214_16561.php",
+      "title": "AJINOMOTO × ハルメク 荻原次晴さんと歩こう！ 味スタウォーク",
+      "date": "2026-12-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a508084d0907",
+      "title": "【中止となりました】フリーマーケット",
+      "date": "2026-09-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a6446c4ece6a",
+      "title": "新横浜パフォーマンス2026",
+      "date": "2026-10-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a6450cb7e688",
+      "title": "新横浜パフォーマンス2026",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a86b20b64c58",
+      "title": "YOKOHAMAスポーツ・レクリエーションフェスティバル2026",
+      "date": "2026-10-12",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a8908f74e96e",
+      "title": "港北区アーバンスポーツ体験会",
+      "date": "2026-10-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a977f074c929",
+      "title": "第２８回日本フットボールリーグ Ｙ.Ｓ.Ｃ.Ｃ.横浜 vs ラインメール青森",
+      "date": "2026-10-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6ac995ccb25b3",
+      "title": "【事前申込制】新横浜公園相撲体験",
+      "date": "2026-10-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:h:6c56cba3d32d90e6",
+      "title": "第45回全日本小学生バンドフェスティバル(フロア部門) ・第39回全日本マーチングコンテスト(中学生の部)",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:h:c5602d8a00a2bdd7",
+      "title": "大阪メチャハピー祭「本祭」",
+      "date": "2026-10-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:h:e459c25b47bee6f7",
+      "title": "第39回全日本マーチングコンテスト(高等学校以上の部)",
+      "date": "2026-11-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/11448#d=2026-10-11#t=17:30",
+      "title": "石田組",
+      "date": "2026-10-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/12312#d=2026-08-19#t=19:00",
+      "title": "Kvi Baba",
+      "date": "2026-08-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/12752#d=2026-09-22#t=14:00",
+      "title": "ZASSO.2026 ～アメ村えれふぁんと15周年～",
+      "date": "2026-09-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13211#d=2027-07-17#t=18:00",
+      "title": "Eve",
+      "date": "2027-07-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13211#d=2027-07-18#t=17:00",
+      "title": "Eve",
+      "date": "2027-07-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13613#d=2026-12-16#t=18:30",
+      "title": "L'Arc-en-Ciel",
+      "date": "2026-12-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13613#d=2026-12-17#t=18:30",
+      "title": "L'Arc-en-Ciel",
+      "date": "2026-12-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-08#t=10:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-09#t=10:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-10#t=11:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-11#t=11:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-12#t=11:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-13#t=11:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-14#t=11:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-15#t=10:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.ctv.co.jp/disneyonice/#d=2026-08-16#t=11:00",
+      "title": "ディズニー・オン・アイス",
+      "date": "2026-08-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.greens-corp.co.jp/schedule/info/index.php?event_id=13728#d=2027-04-03#t=17:00",
+      "title": "HEY-SMITH",
+      "date": "2027-04-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.greens-corp.co.jp/schedule/info/index.php?event_id=14119#d=2026-11-03#t=17:00",
+      "title": "秦 基博",
+      "date": "2026-11-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.mbs.jp/daiku/outline/#d=2026-12-06#t=15:00",
+      "title": "サントリー1万人の第九",
+      "date": "2026-12-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.sound-c.co.jp/schedule/detail/10416/#d=2026-08-22#t=18:00",
+      "title": "浦島坂田船",
+      "date": "2026-08-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.sound-c.co.jp/schedule/detail/10416/#d=2026-08-23#t=15:00",
+      "title": "浦島坂田船",
+      "date": "2026-08-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.sukusuku.com/event/ss2026/#d=2026-08-29#t=10:30",
+      "title": "おかあさんといっしょスペシャルステージ2026　おおさか公演",
+      "date": "2026-08-29",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.sukusuku.com/event/ss2026/#d=2026-08-30#t=10:30",
+      "title": "おかあさんといっしょスペシャルステージ2026　おおさか公演",
+      "date": "2026-08-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.yumebanchi.jp/event/50388/#d=2026-09-01#t=16:00",
+      "title": "新しい地図(稲垣吾郎 草彅 剛 香取慎吾)",
+      "date": "2026-09-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.yumebanchi.jp/event/50388/#d=2026-09-02#t=12:00",
+      "title": "新しい地図(稲垣吾郎 草彅 剛 香取慎吾)",
+      "date": "2026-09-02",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.yumebanchi.jp/event/56203/#d=2026-12-10#t=18:00",
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "date": "2026-12-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.yumebanchi.jp/event/56203/#d=2026-12-11#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "date": "2026-12-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:https://www.gamba-osaka.net/#d=2026-11-22#t=14:00",
+      "title": "U-21 Jリーグ 交流戦ラウンド第2節 U-21東京ヴェルディ",
+      "date": "2026-11-22",
+      "old_category": "野球",
+      "new_category": "その他",
+      "rule": "sports_match:東京ヴェルディ"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:https://www.gamba-osaka.net/#d=2027-02-21",
+      "title": "U-21 Jリーグ 東西リーグラウンド（WEST）第7節 U-21名古屋グランパス",
+      "date": "2027-02-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:https://www.gamba-osaka.net/#d=2027-03-14",
+      "title": "U-21 Jリーグ 東西リーグラウンド（WEST）第2節 U-21ファジアーノ岡山",
+      "date": "2027-03-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:イベント#d=2026-10-04",
+      "title": "イベント",
+      "date": "2026-10-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:イベント準備#d=2026-10-03",
+      "title": "イベント準備",
+      "date": "2026-10-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催備#d=2026-09-22",
+      "title": "試合開催備",
+      "date": "2026-09-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-10-23",
+      "title": "試合開催準備",
+      "date": "2026-10-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-11-07",
+      "title": "試合開催準備",
+      "date": "2026-11-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-11-20",
+      "title": "試合開催準備",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-12-05",
+      "title": "試合開催準備",
+      "date": "2026-12-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-12-11",
+      "title": "試合開催準備",
+      "date": "2026-12-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-12-15",
+      "title": "試合開催準備",
+      "date": "2026-12-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "panasonic_stadium_suita:試合開催準備#d=2026-12-18",
+      "title": "試合開催準備",
+      "date": "2026-12-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6653.html",
+      "title": "FNC BAND KINGDOM 2026",
+      "date": "2026-07-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6655.html",
+      "title": "FNC BAND KINGDOM 2026",
+      "date": "2026-07-12",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6660.html",
+      "title": "Augusta Camp 「Augusta Camp 2026 〜HATA MOTOHIRO & NAGASAWA TOMOYUKI 20th Anniversary〜」前夜祭",
+      "date": "2026-08-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6666.html",
+      "title": "Augusta Camp 「Augusta Camp 2026 〜HATA MOTOHIRO & NAGASAWA TOMOYUKI 20th Anniversary〜」",
+      "date": "2026-08-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6743.html",
+      "title": "FULL METAL JAPAN 2026 ～Powered by WACKEN～",
+      "date": "2026-10-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6745.html",
+      "title": "FULL METAL JAPAN 2026 ～Powered by WACKEN～",
+      "date": "2026-10-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6809.html",
+      "title": "s**t kingz s**t kingz Fes 2026 会社",
+      "date": "2026-07-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6811.html",
+      "title": "s**t kingz s**t kingz Fes 2026 会社",
+      "date": "2026-07-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6827.html",
+      "title": "ときのそら ときのそら 9th Anniversary Party「Everyday of Light」",
+      "date": "2026-11-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6940.html",
+      "title": "NAKAMA to MEETING Vol.5",
+      "date": "2026-08-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6942.html",
+      "title": "NAKAMA to MEETING Vol.5",
+      "date": "2026-08-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6946.html",
+      "title": "シャインポスト シャインポスト BRiGHT STARS FESTIVAL 2026 \"The Girls Beyond the Rainbow\"",
+      "date": "2026-09-13",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6981.html",
+      "title": "ぴあ Presents エンタメ業界研究フェス VOL.2",
+      "date": "2026-08-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7007.html",
+      "title": "T.O.P T.O.P JAPAN OFFICIAL FAN COMMUNITY EXCLUSIVE FREE INVITATION 「T.O.P JAPAN FANMEETING2026 -RE:UNION(再会)-」 T.O.P WITH THE FANS",
+      "date": "2026-07-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7039.html",
+      "title": "『ヒプノシスマイク -Division Rap Battle-』Rule the Stage -Battle of Pride 2026-",
+      "date": "2026-10-02",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7111.html",
+      "title": "2026 FNC KINGDOM - THE FLOATING BAZAAR -",
+      "date": "2026-12-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7113.html",
+      "title": "2026 FNC KINGDOM - THE FLOATING BAZAAR -",
+      "date": "2026-12-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7173.html",
+      "title": "STARフェス",
+      "date": "2026-10-10",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7175.html",
+      "title": "STARフェス",
+      "date": "2026-10-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7266.html",
+      "title": "劇場版 七次元生徒会！ ～ずっと一緒大作戦！～",
+      "date": "2027-01-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "portmesse_nagoya:2026-11-21:マイナビインターンシップ＆キャリア発見EXPO 名古屋会場",
+      "title": "マイナビインターンシップ＆キャリア発見EXPO 名古屋会場",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "ambiguous_non_music:expo"
+    },
+    {
+      "event_uid": "portmesse_nagoya:https://chubu-shokuten.nikkan.co.jp/",
+      "title": "第1回 中部食品産業創造展’26",
+      "date": "2026-11-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "portmesse_nagoya:https://lifeguardtec.com/",
+      "title": "第14回中部ライフガードTEC2026",
+      "date": "2026-11-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "portmesse_nagoya:https://www.messenagoya.jp/",
+      "title": "メッセナゴヤ2026",
+      "date": "2026-11-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "portmesse_nagoya:https://www.techbizexpo.com/",
+      "title": "第15回次世代ものづくり基盤技術産業展2026",
+      "date": "2026-11-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260801",
+      "title": "SAPP‿RO × エコチル 環境広場さっぽろ2026",
+      "date": "2026-08-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260805",
+      "title": "北海道武蔵女子短期大学「ドーム聖地化プロジェクト」 プレドワクワクDAY（屋外エントランス広場・西棟会議室開催）",
+      "date": "2026-08-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260811",
+      "title": "第1回 北海道 紙ひこうき選手権",
+      "date": "2026-08-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260812",
+      "title": "サンセット芝ヨガ＜Shiba Yoga＞",
+      "date": "2026-08-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260816",
+      "title": "とよひらく × ぴあ スポーツバイキング 2026 inプレミストドーム",
+      "date": "2026-08-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260819",
+      "title": "満腹ドーム！ジンギスカンフェスト",
+      "date": "2026-08-19",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260905",
+      "title": "水曜どうでしょう祭UNITE2026 本祭",
+      "date": "2026-09-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260913",
+      "title": "スーパーマリオ : RUN TO THE GOAL in Hokkaido 2026",
+      "date": "2026-09-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260921",
+      "title": "HBA Special Night 道新・秋華火",
+      "date": "2026-09-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260926",
+      "title": "SBI MUSIC CIRCUS HOKKAIDO 第一部",
+      "date": "2026-09-26",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260930",
+      "title": "展望台ナイトヨガ",
+      "date": "2026-09-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261018",
+      "title": "EZOist JAPAN 2026",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261103",
+      "title": "みんなのピックルボール IN PREMIST DOME",
+      "date": "2026-11-03",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261105",
+      "title": "展望台ナイトヨガ",
+      "date": "2026-11-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261121",
+      "title": "コープさっぽろ 食べる・たいせつフェスティバル2026",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261122",
+      "title": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "date": "2026-11-22",
+      "old_category": "コンサート",
+      "new_category": "その他",
+      "rule": "non_music_keyword:ハンドメイド"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261211",
+      "title": "プレコン！～ときめき巡る、大人の縁結びフェス～",
+      "date": "2026-12-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://bmsg.tokyo/topic/b-town-briefing-2026/#d=2026-09-22#t=16:00",
+      "title": "B-Town Architect Briefing'26",
+      "date": "2026-09-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://bullettrain.jp/news/news26406/#d=2026-09-20#t=14:30",
+      "title": "【10万人記念】チャーはんがパラパラと達成記念イベントしたら楽しすぎる未来しか見えないww",
+      "date": "2026-09-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://event.1242.com/events/ungjp-event/#d=2026-11-21#t=17:00",
+      "title": "オールナイトニッポンPODCAST アンガールズのジャンピンpresents ジャンピン戦国絵巻 〜後楽園の陣〜",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-19#t=18:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-20#t=17:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-21#t=17:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-22#t=12:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-23#t=12:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-25#t=17:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10163#d=2026-08-26#t=12:00",
+      "title": "AmBitious 夏魂 2026",
+      "date": "2026-08-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10168?ima=2303&artist=#d=2026-08-29#t=13:00",
+      "title": "ジュニア 夏祭り 2026",
+      "date": "2026-08-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10168?ima=2303&artist=#d=2026-08-30#t=13:00",
+      "title": "ジュニア 夏祭り 2026",
+      "date": "2026-08-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://jr-official.starto.jp/s/jr/live/10168?ima=2303&artist=#d=2026-08-31#t=13:00",
+      "title": "ジュニア 夏祭り 2026",
+      "date": "2026-08-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://kei-sugawara.jp/contents/1089197#d=2026-09-19#t=18:00",
+      "title": "Kei Sugawara Release Party \"孔雀\"",
+      "date": "2026-09-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-17#t=18:30",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-18#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-20#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-21#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-22#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-23#t=18:30",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-24#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://musical-toukenranbu.jp/pages/autumn2026#d=2026-10-25#t=13:00",
+      "title": "ミュージカル『刀剣乱舞』 〜月夜一縷〜",
+      "date": "2026-10-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://ssj.net/news/260424-1/#d=2026-07-07#t=14:00",
+      "title": "志尊淳デビュー15周年イベント「S.S.J 15th」",
+      "date": "2026-07-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://taskhavefun.net/contents/1085432#d=2026-09-21#t=17:00",
+      "title": "TASK THE SHOW at Kanadevia Hall ー衝動の夜,衝動の衝突ー",
+      "date": "2026-09-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://ticketdive.com/event/riri260714#d=2026-07-14#t=17:00",
+      "title": "心花りり生誕祭2026 『めろめろきゅーとな白米6合-DAY1-』",
+      "date": "2026-07-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.bluenote.co.jp/jp/lp/jazz-fusion-summit-2026/#d=2026-11-01#t=15:00",
+      "title": "JAZZ-FUSION SUMMIT 2026",
+      "date": "2026-11-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.creativeman.co.jp/event/belle-sebastian_2026/#d=2026-09-24#t=19:00",
+      "title": "BELLE & SEBASTIAN -performing \"Tigermilk\"-",
+      "date": "2026-09-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.creativeman.co.jp/event/belle-sebastian_2026/#d=2026-09-25#t=19:00",
+      "title": "BELLE & SEBASTIAN -performing \"If You're Feeling Sinister\"-",
+      "date": "2026-09-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-02#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-02",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-03#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-04#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-06#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-07#t=13:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-08#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-09#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-10#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-11#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-10-12#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-10-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-06#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-07#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-08#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-10#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-11#t=13:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-12#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-13#t=18:00",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-14#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://www.tennimu.com/tennimu2_2026/#d=2026-11-15#t=12:30",
+      "title": "ミュージカル『新テニスの王子様』The Final Stage",
+      "date": "2026-11-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:/dome/baseball/giants/#d=2026-10-03#t=18:00",
+      "title": "巨人ーDeNA",
+      "date": "2026-10-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://chanmina.com/feature/area_of_diamond_final#d=2026-07-11#t=18:00",
+      "title": "CHANMINA AREA OF DIAMOND FINAL",
+      "date": "2026-07-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://chanmina.com/feature/area_of_diamond_final#d=2026-07-12#t=18:00",
+      "title": "CHANMINA AREA OF DIAMOND FINAL",
+      "date": "2026-07-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://contents-abema.com/cdf2026/#d=2026-07-30#t=16:30",
+      "title": "Creator Dream Fes 2026 ～produced by Com.～",
+      "date": "2026-07-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://da-ice-ai.jp/support#d=2027-02-04#t=18:00",
+      "title": "a-i事務局",
+      "date": "2027-02-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://info2.y-tickets.jp/inquiry/input#d=2026-12-13#t=17:00",
+      "title": "チケット事務局",
+      "date": "2026-12-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://info2.y-tickets.jp/inquiry/input#d=2026-12-14#t=18:00",
+      "title": "チケット事務局",
+      "date": "2026-12-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://info2.y-tickets.jp/inquiry/input#d=2026-12-15#t=18:00",
+      "title": "チケット事務局",
+      "date": "2026-12-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://ini-official.com/feature/entry#d=2026-09-16#t=18:30",
+      "title": "新規入会",
+      "date": "2026-09-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://ini-official.com/feature/entry#d=2026-09-17#t=14:30",
+      "title": "新規入会",
+      "date": "2026-09-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://npb.jp/allstar/2026/#d=2026-07-28#t=15:30",
+      "title": "マイナビオールスターゲーム2026",
+      "date": "2026-07-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://suntory.jp/DREAMMATCH/#d=2026-07-27#t=16:00",
+      "title": "サントリードリームマッチ2026",
+      "date": "2026-07-27",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://wrestlekingdom.njpw.co.jp/#d=2027-01-04#t=16:30",
+      "title": "闘魂55年 WRESTLE KINGDOM 21 in 東京ドーム",
+      "date": "2027-01-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.buffaloes.co.jp/news/detail/202600731783.html#d=2026-08-03",
+      "title": "オリックスー楽天",
+      "date": "2026-08-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.jaba.or.jp/97cityopposition/?oytype=S#d=2026-09-01",
+      "title": "第97回都市対抗野球大会",
+      "date": "2026-09-01",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_keyword:野球"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.jaba.or.jp/97cityopposition/?oytype=S#d=2026-09-02",
+      "title": "第97回都市対抗野球大会",
+      "date": "2026-09-02",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_keyword:野球"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.jaba.or.jp/97cityopposition/?oytype=S#d=2026-09-03",
+      "title": "第97回都市対抗野球大会",
+      "date": "2026-09-03",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_keyword:野球"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.jaba.or.jp/97cityopposition/?oytype=S#d=2026-09-04",
+      "title": "第97回都市対抗野球大会",
+      "date": "2026-09-04",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_keyword:野球"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.jaba.or.jp/97cityopposition/?oytype=S#d=2026-09-05",
+      "title": "第97回都市対抗野球大会",
+      "date": "2026-09-05",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_keyword:野球"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.jaba.or.jp/97cityopposition/?oytype=S#d=2026-09-06",
+      "title": "第97回都市対抗野球大会",
+      "date": "2026-09-06",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_keyword:野球"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.kyodoyokohama.com/#d=2026-08-05#t=18:00",
+      "title": "キョードー横浜",
+      "date": "2026-08-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.kyodoyokohama.com/#d=2026-08-06#t=18:00",
+      "title": "キョードー横浜",
+      "date": "2026-08-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.livenationhip.co.jp/all-events/maroon-5-tickets-ae618#d=2027-01-30#t=18:00",
+      "title": "Maroon 5 Asia 2027",
+      "date": "2027-01-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.livenationhip.co.jp/all-events/maroon-5-tickets-ae618#d=2027-01-31#t=17:00",
+      "title": "Maroon 5 Asia 2027",
+      "date": "2027-01-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.livenationhip.co.jp/all-events/maroon-5-tickets-ae618#d=2027-02-02#t=19:00",
+      "title": "Maroon 5 Asia 2027",
+      "date": "2027-02-02",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.mtvjapan.com/event/vmaj/2026/#d=2026-10-29#t=18:00",
+      "title": "MTV VMAJ 2026",
+      "date": "2026-10-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.seibulions.jp/news/detail/202600668682.html#d=2026-08-18",
+      "title": "西武ーオリックス",
+      "date": "2026-08-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.tokyo-dome.co.jp/dome/baseball/parkday/#d=2026-10-17",
+      "title": "TOKYO DOME PARK DAY",
+      "date": "2026-10-17",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:01271ad9fb745112",
+      "title": "関係者イベント",
+      "date": "2026-10-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:100d47206427315b",
+      "title": "関係者イベント",
+      "date": "2026-10-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:14b4fb1fe9f8f339",
+      "title": "関係者イベント",
+      "date": "2026-09-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:14f66294abed18cf",
+      "title": "エイブル トライアウト2026～挑め、その先へ～",
+      "date": "2026-11-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:2f405ea27b90bb8b",
+      "title": "中日ドラゴンズ ファンフェスタ2026",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:3584f457a9a66cdb",
+      "title": "関係者イベント",
+      "date": "2026-10-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:3765d2f6eeeb0d05",
+      "title": "関係者イベント",
+      "date": "2026-09-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:41124527ce53b01e",
+      "title": "関係者イベント",
+      "date": "2026-07-26",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:467b578545ab70a4",
+      "title": "関係者イベント",
+      "date": "2026-08-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:5110197ef73d8223",
+      "title": "関係者イベント",
+      "date": "2026-10-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:597027ada8aca491",
+      "title": "関係者イベント",
+      "date": "2026-09-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:5c8d60b905fc0fb3",
+      "title": "関係者イベント",
+      "date": "2026-08-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:67e2ef76576ce03a",
+      "title": "関係者イベント",
+      "date": "2026-10-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:782231cc67b65247",
+      "title": "関係者イベント",
+      "date": "2026-09-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:7bced63fe07a43c0",
+      "title": "関係者イベント",
+      "date": "2026-07-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:8c7b7d5b243ba136",
+      "title": "福富家・宮坂家　結婚式",
+      "date": "2026-08-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ae977cfb00d5e1bd",
+      "title": "関係者イベント",
+      "date": "2026-07-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:b5471f9fc905d00e",
+      "title": "関係者イベント",
+      "date": "2026-09-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:bc43b0e32a792633",
+      "title": "関係者イベント",
+      "date": "2026-10-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:c847d314e4b601f6",
+      "title": "関係者イベント",
+      "date": "2026-10-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ca104e367ee75d3f",
+      "title": "関係者イベント",
+      "date": "2026-09-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ceaa1e142fb2522b",
+      "title": "エデュすぽ！～教員のための体育授業研究会～",
+      "date": "2026-08-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:dc38173f271963b1",
+      "title": "関係者イベント",
+      "date": "2026-09-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:e5d25033bc758c40",
+      "title": "関係者イベント",
+      "date": "2026-07-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ec31a1ee44ae5b49",
+      "title": "関係者イベント",
+      "date": "2026-07-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ed02ab748decdca3",
+      "title": "関係者イベント",
+      "date": "2026-10-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ef1254f9dae4e59f",
+      "title": "NTPグループ 創業70周年記念 わくわくフェスタ",
+      "date": "2026-08-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:f210625e4c495f8c",
+      "title": "関係者イベント",
+      "date": "2026-10-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:fc34f7b83b82fdf5",
+      "title": "関係者イベント",
+      "date": "2026-07-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:http://www.softball.or.jp/nichibei2026softball/#d=2026-11-19#t=19:00",
+      "title": "日米対抗ソフトボール2026",
+      "date": "2026-11-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://cloud.jo1.jp/feature/jo1dershow2026_eien#d=2026-07-19#t=18:00",
+      "title": "JO1DER SHOW 2026 ‘EIEN 永縁’ FINAL",
+      "date": "2026-07-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://cloud.jo1.jp/feature/jo1dershow2026_eien#d=2026-07-20#t=15:00",
+      "title": "JO1DER SHOW 2026 ‘EIEN 永縁’ FINAL",
+      "date": "2026-07-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://dragons.jp/junior/queens/#d=2026-08-15#t=09:00",
+      "title": "愛知トヨタ presents 第1回 中日ドラゴンズ クイーンズカップ 2025 Center League Summer Tournament",
+      "date": "2026-08-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "conflicting_evidence:tour/カップ"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://dragons.jp/special/fanfesta/2025/#d=2026-11-22#t=13:00",
+      "title": "中日ドラゴンズ ファンフェスタ2025",
+      "date": "2026-11-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://dragons.jp/special/fanfesta/2026/#d=2026-11-21#t=13:00",
+      "title": "中日ドラゴンズ ファンフェスタ2026",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://jpbpa.net/fantomo/tryout2026/#d=2026-11-17#t=16:00",
+      "title": "エイブル トライアウト2026～挑め、その先へ～",
+      "date": "2026-11-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://static.chunichi.co.jp/chunichi/pages/event/domedodge/index.html#d=2026-11-09#t=08:30",
+      "title": "JAグループ愛知 ドームドッジ2025 in ナゴヤ",
+      "date": "2026-11-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://static.chunichi.co.jp/chunichi/pages/event/legendsmatch/#d=2026-11-22#t=13:00",
+      "title": "ホームメイト presents 中日ドラゴンズ×読売ジャイアンツ LEGENDS MATCH 2026",
+      "date": "2026-11-22",
+      "old_category": "その他",
+      "new_category": "野球",
+      "rule": "baseball_team_matchup:ジャイアンツ"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://three-gong.com/#d=2026-11-20#t=10:30",
+      "title": "THREE GONG.4 -GRAND SLAM- in NAGOYA",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://tv-aichi.co.jp/wannyan/2027/#d=2027-02-13#t=17:00",
+      "title": "わんにゃんドーム2027",
+      "date": "2027-02-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://tv-aichi.co.jp/wannyan/2027/#d=2027-02-14#t=17:00",
+      "title": "わんにゃんドーム2027",
+      "date": "2027-02-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.aichi-shigaku.gr.jp/file/shigakuten2027.pdf#d=2026-08-19#t=18:00",
+      "title": "第42回 2027 愛知の私立学校展",
+      "date": "2026-08-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.aichi-shigaku.gr.jp/file/shigakuten2027.pdf#d=2026-08-20#t=17:00",
+      "title": "第42回 2027 愛知の私立学校展",
+      "date": "2026-08-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.fuyusupo.jp#d=2026-12-11#t=20:00",
+      "title": "冬スポ!! WINTER SPORTS FESTA SEASON 26",
+      "date": "2026-12-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.fuyusupo.jp#d=2026-12-12#t=20:00",
+      "title": "冬スポ!! WINTER SPORTS FESTA SEASON 26",
+      "date": "2026-12-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.fuyusupo.jp#d=2026-12-13#t=18:00",
+      "title": "冬スポ!! WINTER SPORTS FESTA SEASON 26",
+      "date": "2026-12-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.fuyusupo.jp#d=2026-12-13#t=20:00",
+      "title": "冬スポ!! WINTER SPORTS FESTA SEASON 25",
+      "date": "2026-12-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.fuyusupo.jp#d=2026-12-14#t=18:00",
+      "title": "冬スポ!! WINTER SPORTS FESTA SEASON 25",
+      "date": "2026-12-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/40856/?_bdld=18izc4.pOuf+Ey.1772181596#d=2026-08-09#t=16:00",
+      "title": "三代目 J SOUL BROTHERS PRESENTS \"JSB LAND ～FOREVER～\"",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E3%81%8A%E3%81%8B%E3%81%82%E3%81%95%E3%82%93%E3%81%A8%E3%81%84%E3%81%A3%E3%81%97%E3%82%87%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%B9%E3%83%86%E3%83%BC%E3%82%B8%EF%BC%92%EF%BC%90%EF%BC%92%EF%BC%96%E3%80%80%E3%82%86%E3%82%81%E3%81%AE%E3%81%A8%E3%81%B3%E3%82%89",
+      "title": "おかあさんといっしょスペシャルステージ２０２６　ゆめのとびら",
+      "date": "2026-08-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%83%BB%E3%82%AA%E3%83%B3%E3%83%BB%E3%82%A2%E3%82%A4%E3%82%B9%E3%80%80%E2%80%9C-let%E2%80%99s-party%E2%80%9D",
+      "title": "ディズニー・オン・アイス　“ Let’s Party!”",
+      "date": "2026-08-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E3%83%88%E3%82%A4%E3%83%AD%E3%83%95%E3%82%A7%E3%82%B92027",
+      "title": "トイロフェス2027",
+      "date": "2027-01-09",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E3%83%8A%E3%82%A4%E3%83%B3%E3%83%86%E3%82%A3%E3%83%8A%E3%82%A4%E3%83%B3%E3%81%AE-%E3%82%AA%E3%83%BC%E3%83%AB%E3%83%8A%E3%82%A4%E3%83%88%E3%83%8B%E3%83%83%E3%83%9D%E3%83%B3%E6%AD%8C%E8%AC%A1%E7%A5%AD",
+      "title": "ナインティナインの オールナイトニッポン歌謡祭",
+      "date": "2026-10-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E3%83%9F%E3%83%A5%E3%83%BC%E3%82%B8%E3%82%AB%E3%83%AB%E3%80%8E%E5%88%80%E5%89%A3%E4%B9%B1%E8%88%9E%E3%80%8F-%EF%BD%9E%E7%9C%9F%E5%89%A3%E4%B9%B1%E8%88%9E%E7%A5%AD2026%EF%BD%9E",
+      "title": "ミュージカル『刀剣乱舞』 ～真剣乱舞祭2026～",
+      "date": "2026-12-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E4%BB%A4%E5%92%8C8%E5%B9%B4%E5%BA%A6%E3%80%80%E6%97%A5%E6%9C%AC%E4%BD%93%E8%82%B2%E5%A4%A7%E5%AD%A6%E3%80%8C%E7%AC%AC63%E5%9B%9E%E4%BD%93%E8%82%B2%E7%A0%94%E7%A9%B6%E7%99%BA%E8%A1%A8%E5%AE%9F%E6%BC%94%E4%BC%9A%E3%80%8D",
+      "title": "令和8年度　日本体育大学「第63回体育研究発表実演会」",
+      "date": "2026-11-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E6%9D%B1%E6%AD%A6%E9%89%84%E9%81%93-presents-animax-musix-2026-supported-lemino",
+      "title": "東武鉄道 presents ANIMAX MUSIX 2026 supported by Lemino",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E6%A8%AA%E6%B5%9C%E3%82%A2%E3%83%AA%E3%83%BC%E3%83%8Abig%E3%83%95%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%BC%E3%82%B1%E3%83%83%E3%83%88-2",
+      "title": "横浜アリーナBIGフリーマーケット",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E6%A8%AA%E6%B5%9C%E5%B8%82-%E4%BB%A4%E5%92%8C%EF%BC%99%E5%B9%B4-%E4%BA%8C%E5%8D%81%E6%AD%B3%E3%81%AE%E5%B8%82%E6%B0%91%E3%82%92%E7%A5%9D%E3%81%86%E3%81%A4%E3%81%A9%E3%81%84",
+      "title": "横浜市 令和９年 二十歳の市民を祝うつどい",
+      "date": "2027-01-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E7%89%A9%E8%B2%A9%E5%82%AC%E4%BA%8B-36",
+      "title": "物販催事",
+      "date": "2026-10-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E7%AC%AC%EF%BC%92%E5%9B%9E%E3%81%BF%E3%82%93%E3%81%AA%E3%81%A7%E2%99%AA%E3%83%A8%E3%82%B3%E3%82%A2%E3%83%AA%E3%82%A6%E3%82%A9%E3%83%BC%E3%82%AF",
+      "title": "第２回みんなで♪ヨコアリウォーク",
+      "date": "2026-09-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E7%AC%AC43%E5%9B%9E-%E3%83%9E%E3%82%A4%E3%83%8A%E3%83%93-%E6%9D%B1%E4%BA%AC%E3%82%AC%E3%83%BC%E3%83%AB%E3%82%BA%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3-2026-autumnwinter",
+      "title": "第43回 マイナビ 東京ガールズコレクション 2026 AUTUMN/WINTER",
+      "date": "2026-09-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E8%B6%85%E3%81%A8%E3%81%8D%E3%82%81%E3%81%8D%E2%99%A1stage-2027%E3%80%80%E3%81%82%E3%81%91%E3%81%8A%E3%82%81%E6%96%B0%E5%B9%B4%E4%BC%9A%E3%83%95%E3%82%A9%E3%83%BC%E3%82%A8%E3%83%90%E3%83%BC",
+      "title": "超ときめき♡STAGE 2027　あけおめ新年会フォーエバー",
+      "date": "2027-01-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/2026-%E3%81%B5%E3%82%8B%E3%81%95%E3%81%A8%E6%B8%AF%E5%8C%97%E3%81%B5%E3%82%8C%E3%81%82%E3%81%84%E3%81%BE%E3%81%A4%E3%82%8A%E3%83%BB%E7%A7%8B%E3%81%AE%E3%83%A8%E3%82%B3%E3%82%A2%E3%83%AA%E3%81%8F%E3%82%93%E3%81%BE%E3%81%A4%E3%82%8A%EF%BC%88%E5%90%88%E5%90%8C%E9%96%8B%E5%82%AC%EF%BC%89",
+      "title": "2026 ふるさと港北ふれあいまつり・秋のヨコアリくんまつり（合同開催）",
+      "date": "2026-11-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/idol-runway-collection-2026-autumnwinter-%E3%80%80agestock2026-%E6%A8%AA%E6%B5%9C%E3%82%A2%E3%83%AA%E3%83%BC%E3%83%8A",
+      "title": "IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER 　AGESTOCK2026 in 横浜アリーナ",
+      "date": "2026-09-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/idol-xmas-fes-2026",
+      "title": "Idol Xmas Fes 2026",
+      "date": "2026-12-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/jam-expo-2026-supported-t",
+      "title": "@JAM EXPO 2026 supported by UP-T",
+      "date": "2026-08-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "ambiguous_non_music:expo"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/mamo%EF%BD%9Estar%EF%BD%9E",
+      "title": "with MAMO～STAR～",
+      "date": "2026-10-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/talking-rock-fes2026",
+      "title": "Talking Rock! FES.2026",
+      "date": "2026-07-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6034&etype=1",
+      "title": "THE K4SEN CON 2026",
+      "date": "2026-08-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6035&etype=1",
+      "title": "THE K4SEN CON 2026",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6052&etype=1",
+      "title": "LOVE IT！ROCK2026",
+      "date": "2026-08-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6053&etype=1",
+      "title": "日曜劇場『VIVANT』PREMIUM SUMMER PARTY",
+      "date": "2026-08-23",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6081&etype=1",
+      "title": "SJJIF World Jiu Jitsu Championship 2026",
+      "date": "2026-09-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6082&etype=1",
+      "title": "SJJIF World Jiu Jitsu Championship 2026",
+      "date": "2026-09-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6083&etype=1",
+      "title": "SJJIF World Jiu Jitsu Championship 2026",
+      "date": "2026-09-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6084&etype=1",
+      "title": "SJJIF World Jiu Jitsu Championship 2026",
+      "date": "2026-09-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6085&etype=1",
+      "title": "TRANOÏ TOKYO",
+      "date": "2026-09-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6086&etype=1",
+      "title": "TRANOÏ TOKYO",
+      "date": "2026-09-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6116&etype=1",
+      "title": "刀剣乱舞 - ICE BLADE -",
+      "date": "2026-10-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6117&etype=1",
+      "title": "刀剣乱舞 - ICE BLADE -",
+      "date": "2026-10-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6142&etype=1",
+      "title": "murffin discs 20th Anniversary “murffin Carnival!!”",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6168&etype=2",
+      "title": "F GAME.7",
+      "date": "2026-11-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6170&etype=2",
+      "title": "OKKAKE感謝祭☆代々木体育館に集合！みんなで秋の大運動会？！﻿",
+      "date": "2026-11-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=153699",
+      "title": "『リアフェスin全Zepp』",
+      "date": "2026-09-13",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=156378",
+      "title": "SHELTER 35th Anniversary Finale \" ZeppがSHELTERになります \" DAY1",
+      "date": "2026-11-01",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=156379",
+      "title": "SHELTER 35th Anniversary Finale \" ZeppがSHELTERになります \" DAY2",
+      "date": "2026-11-02",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157110",
+      "title": "FCインティライミ ファン感謝祭2026",
+      "date": "2026-07-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157167",
+      "title": "史上最大の極寿司炎～超Zeppin～",
+      "date": "2026-08-20",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157339",
+      "title": "スーパー戦隊魂 XX 2026“東京DAY1”",
+      "date": "2026-11-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157340",
+      "title": "スーパー戦隊魂 XX 2026“東京DAY2”",
+      "date": "2026-11-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157532",
+      "title": "スーパーヒーロー魂2026 “夏の陣”",
+      "date": "2026-08-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157533",
+      "title": "スーパーアニソン魂2026 “夏の陣” ～THE LEGENDS～",
+      "date": "2026-08-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157534",
+      "title": "2026 MJ FANMEETING ＜The Hangout＞ in Japan",
+      "date": "2026-08-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157559",
+      "title": "スナッグスですよ！全員集合〜冒険冒険また冒険〜",
+      "date": "2026-08-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158491",
+      "title": "BEAST IN BLACKDIVE TO DAIVA 2026東京狂宴～Tokyo Crazy Party～",
+      "date": "2026-09-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158492",
+      "title": "BEAST IN BLACKDIVE TO DAIVA 2026東京狂宴～Tokyo Crazy Party～",
+      "date": "2026-09-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158645",
+      "title": "HERO COMPLEX “情熱たましい 2026”",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159001",
+      "title": "ロックスター症候群",
+      "date": "2026-09-03",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159319",
+      "title": "\"なるべく近く、できるだけ遠く\"",
+      "date": "2026-10-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159334",
+      "title": "Hello! Project 研修生発表会 2026 9月 ～新風～",
+      "date": "2026-09-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159485",
+      "title": "kurayamisaka tte, doko? #8「Zepp DiverCity単独公演編」",
+      "date": "2026-10-17",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159508",
+      "title": "The Performance Zero",
+      "date": "2026-10-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159648",
+      "title": "Hello! Project 研修生発表会 2026 12月 ～光星～",
+      "date": "2026-12-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159756",
+      "title": "Museum of FamBam",
+      "date": "2026-08-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159786",
+      "title": "EBiDAN NEXT 「星男祭2026」",
+      "date": "2026-08-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159979",
+      "title": "HEAVENESE FREEDOM FIGHT-16",
+      "date": "2026-08-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=160303",
+      "title": "UNLIMITED X -THE FINALE-",
+      "date": "2026-12-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=160304",
+      "title": "UNLIMITED X -THE FINALE-",
+      "date": "2026-12-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=160381",
+      "title": "Lucky’s club party",
+      "date": "2026-07-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=160551",
+      "title": "LIL LEAGUE's place \"ATELIER\" 2026",
+      "date": "2026-11-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=161258",
+      "title": "corom real fes 2026",
+      "date": "2026-10-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=161889",
+      "title": "きゅるにじすたんだーど",
+      "date": "2026-11-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=161896",
+      "title": "IWA ROCK presented by e-Broad",
+      "date": "2026-12-19",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=162110",
+      "title": "FURAAMAN ANTHEM",
+      "date": "2027-01-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=162891",
+      "title": "BLACK FLAP 1st CEREMONY『翔命』",
+      "date": "2027-01-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=162921",
+      "title": "BEEEEM FES Vol.11 DX SP",
+      "date": "2026-09-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=163429",
+      "title": "この街を出て、Zepp東名阪。",
+      "date": "2027-03-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=163595",
+      "title": "ブザフェス~10th Anniversary year~",
+      "date": "2026-08-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=166884",
+      "title": "iMiN! × AsIs × ハルニシオン",
+      "date": "2026-10-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=155887",
+      "title": "【中止】TOKYOMONSOON × SpringWave Taiwan 2026",
+      "date": "2026-11-01",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=155888",
+      "title": "【中止】TOKYOMONSOON × SpringWave Taiwan 2026",
+      "date": "2026-10-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158071",
+      "title": "『Juice=Juice 松永里愛バースデーイベント2026』",
+      "date": "2026-07-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158073",
+      "title": "日本工学院ミュージックカレッジ presentsCROSS SPARK",
+      "date": "2026-07-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158124",
+      "title": "UMIMOYASU 2026-2027 MOVE",
+      "date": "2026-10-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158125",
+      "title": "UMIMOYASU 2026-2027 MOVE",
+      "date": "2027-01-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158569",
+      "title": "こながめでたい日2026",
+      "date": "2026-08-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158750",
+      "title": "VERSE BY VERSE #1",
+      "date": "2026-08-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158877",
+      "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+      "date": "2026-10-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=159172",
+      "title": "MOTTO! MOTTO!! + presents JAM PARTY 2026 〜We Can Fly ! 〜",
+      "date": "2026-07-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=159540",
+      "title": "HAZIMAZA EXTRA SHOW",
+      "date": "2026-10-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=159625",
+      "title": "ブルアカ 5th Anniversary DJふぇす！つあー☆",
+      "date": "2026-10-10",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160148",
+      "title": "2026 TEAM H RIGHT NOW - NEW EDITION",
+      "date": "2026-10-14",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160693",
+      "title": "ON TIME 2026",
+      "date": "2026-11-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160694",
+      "title": "齋藤飛鳥15周年マガジン‘neighbourhood’発売記念イベント『my hood』",
+      "date": "2026-11-30",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=160775",
+      "title": "KengNamping 1ST FANMEETING IN JAPAN",
+      "date": "2026-09-11",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=161374",
+      "title": "BB4P SHOW 2",
+      "date": "2026-12-07",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162212",
+      "title": "FREEDOM NAGOYA × 見放題 × TOKYO CALLING presentsフリ放題コーリング2027",
+      "date": "2027-01-24",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162628",
+      "title": "GANG PARADE「LAST SAY HELLO」",
+      "date": "2026-10-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162686",
+      "title": "Lienel New Year Party 〜あけおめ2027〜",
+      "date": "2027-01-09",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=163772",
+      "title": "ナナクロニクル Zepp Haneda 公演",
+      "date": "2027-03-26",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=164690",
+      "title": "サントリー ノンアルコール アイドルパーティー Vol.0 Produced by @JAM",
+      "date": "2026-08-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=167142",
+      "title": "GO-AheadZ FutureZ",
+      "date": "2026-09-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=167513",
+      "title": "&横アリ 其の一",
+      "date": "2026-10-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=167571",
+      "title": "BRIMOIRE -ブリモワール-",
+      "date": "2026-11-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155448",
+      "title": "We are SneakerStep! -2nd Step-",
+      "date": "2026-08-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155455",
+      "title": "Hello! Project 研修生発表会 2026 9月 〜新風〜",
+      "date": "2026-09-06",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155458",
+      "title": "ロックロックこんにちは！Ver.28 ～にゃーロック！ホームズ～",
+      "date": "2026-09-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=156611",
+      "title": "Luxury Soul Night",
+      "date": "2026-08-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159273",
+      "title": "J:COM Presents 高校軽音フェスティバル2026",
+      "date": "2026-11-01",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159402",
+      "title": "Music Splash!!",
+      "date": "2026-11-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159903",
+      "title": "やすともの黒白歌合戦2026",
+      "date": "2026-08-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159904",
+      "title": "やすともの黒白歌合戦",
+      "date": "2026-08-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=160028",
+      "title": "ロックロックこんにちは！Ver.28 ～にゃーロック！ホームズ～",
+      "date": "2026-09-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=160579",
+      "title": "Hideki Saijo 55th AnniversaryHIDEKI FESTA2026 秋",
+      "date": "2026-09-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=161493",
+      "title": "We are SneakerStep! -2nd Step-",
+      "date": "2026-08-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=165144",
+      "title": "LIL LEAGUE's place \"ATELIER\" 2026",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=168307",
+      "title": "みんがるSP in Zepp Namba",
+      "date": "2026-10-25",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=152927",
+      "title": "リアフェスin全Zepp",
+      "date": "2026-08-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=155440",
+      "title": "NMB48 夏の全力！歌って踊って大爆笑",
+      "date": "2026-07-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=155441",
+      "title": "NMB48 SUMMER PARTY 2026",
+      "date": "2026-07-18",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156498",
+      "title": "Hideki Saijo 55th AnniversaryHIDEKI FESTA2026 秋",
+      "date": "2026-09-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=157281",
+      "title": "大阪爆音漫才選集",
+      "date": "2026-09-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158646",
+      "title": "ロックスター症候群",
+      "date": "2026-09-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158860",
+      "title": "xikers <2nd FANMEETING : road𝓨map to univer𝓍ity> IN JAPAN",
+      "date": "2026-10-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=158948",
+      "title": "ぼーんとぅ盆踊り2026夏～私たちは盆踊りをするために生まれてきた～in OSAKA",
+      "date": "2026-08-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=159626",
+      "title": "ブルアカ 5th Anniversary DJふぇす！つあー☆",
+      "date": "2026-09-22",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=160365",
+      "title": "TEAM H ［RIGHT NOW 2026］",
+      "date": "2026-08-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=160366",
+      "title": "TEAM H ［RIGHT NOW 2026］",
+      "date": "2026-08-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=160511",
+      "title": "BM-ECHOES FESTIVAL 2026",
+      "date": "2026-09-05",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=160660",
+      "title": "【速報】しまさかでバースデーイベントやるってよwww >>10th anniversary 〜Present For You出",
+      "date": "2026-12-05",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=161096",
+      "title": "RESISTANCE",
+      "date": "2026-11-21",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=161399",
+      "title": "2026 MJ FANMEETING ＜The Hangout＞ in Japan",
+      "date": "2026-08-28",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=162293",
+      "title": "⼤阪国際⽂化芸術プロジェクト「JAPANIMATION ROCKS」",
+      "date": "2026-11-29",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=162465",
+      "title": "FREEDOM NAGOYA × 見放題 × TOKYO CALLING presentsフリ放題コーリング2027",
+      "date": "2027-01-31",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=162516",
+      "title": "この街を出て、Zepp東名阪。",
+      "date": "2027-03-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=162694",
+      "title": "齋藤飛鳥15周年マガジン’neighbourhood’発売記念イベント 『my hood』",
+      "date": "2026-11-08",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=163664",
+      "title": "RESISTANCE SURVIVAL",
+      "date": "2026-11-20",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=164681",
+      "title": "A Perfect Circleplus Special Guest PUSCIFER",
+      "date": "2026-12-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=166065",
+      "title": "WEEZER",
+      "date": "2027-02-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=166582",
+      "title": "FM大阪 \"推したい夢\" 超ときめき♡宣伝部のめっちゃわかりみ〜!! 超♡わかりみ～てぃんぐ!! Vol.3supported by JR東海",
+      "date": "2026-11-13",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=166915",
+      "title": "クリスマスやで☆しらんけど",
+      "date": "2026-12-25",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=167119",
+      "title": "rockinʼon sonic extra",
+      "date": "2027-01-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=167570",
+      "title": "BRIMOIRE",
+      "date": "2026-11-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=152839",
+      "title": "全国のZeppをリアルピースがジャック！『リアフェスin全Zepp』",
+      "date": "2026-07-18",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=157792",
+      "title": "第⼀⽣命 SD.LEAGUE 2026 北⽇本予選",
+      "date": "2026-08-16",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=158883",
+      "title": "ON-GAE-SHI 2026 Summer in 札幌",
+      "date": "2026-08-17",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=159631",
+      "title": "ブルアカ 5th Anniversary DJふぇす！つあー☆",
+      "date": "2026-08-15",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=160284",
+      "title": "HAMMER BALL 2026",
+      "date": "2026-12-12",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=166764",
+      "title": "ザ・ホルモネア",
+      "date": "2026-11-04",
+      "old_category": "その他",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=167860",
+      "title": "NORTHERN LIGHTS CHRISTMAS GIG at Zepp Sapporo",
+      "date": "2026-12-03",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    }
+  ]
+}

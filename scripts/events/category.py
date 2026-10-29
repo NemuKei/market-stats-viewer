@@ -7,6 +7,7 @@ filter without re-implementing app-layer rules.
 from __future__ import annotations
 
 import re
+import unicodedata
 
 EVENT_CATEGORY_CONCERT = "コンサート"
 EVENT_CATEGORY_BASEBALL = "野球"
@@ -21,7 +22,7 @@ def classify_event_category(title: object, artist_name: object, description: obj
 def classify_event_category_with_reason(title: object, artist_name: object, description: object) -> tuple[str, str]:
     """Return the stored category and the first matching rule, without guessing names."""
     text = " ".join([str(title or ""), str(artist_name or ""), str(description or "")])
-    normalized_text = text.lower()
+    normalized_text = unicodedata.normalize("NFKC", text).lower()
 
     baseball_keywords = [
         "野球",
@@ -68,7 +69,7 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
         "ロッテ",
         "マリーンズ",
     ]
-    versus_keywords = ["vs", "ｖｓ", "対", " 対戦 "]
+    versus_keywords = ["vs", "対", "×"]
     non_music_keywords = [
         "就活",
         "就職",
@@ -93,40 +94,25 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
         "カップ",
         "m-1",
         "スポーツフェスティバル",
+        "アメリカンフットボール",
+        "アメフト",
+        "ハンドメイド",
+        "ランニング",
+        "プロレス",
     ]
-    has_non_music_keyword = any(keyword in normalized_text for keyword in non_music_keywords)
-    has_versus = any(keyword in normalized_text for keyword in versus_keywords)
-    sports = re.search(r"j[123](?:リーグ|league|百年構想リーグ)|b[.．]league|バスケットボール|バスケ|サッカー|フットサル|ラグビー|バレーボール", normalized_text)
-    if sports and (has_versus or re.search(r"第\s*\d+\s*節", normalized_text) or any(word in normalized_text for word in ("ホームゲーム", "試合", "season"))):
-        return EVENT_CATEGORY_OTHER, "sports_match:" + sports.group()
-    if any(keyword in normalized_text for keyword in baseball_keywords):
-        return EVENT_CATEGORY_BASEBALL, "baseball_keyword:" + next(k for k in baseball_keywords if k in normalized_text)
-    if has_non_music_keyword and has_versus:
-        return EVENT_CATEGORY_OTHER, "non_music_matchup"
-    has_team_keyword = any(keyword in normalized_text for keyword in baseball_team_keywords)
-    if has_team_keyword and has_versus:
-        return EVENT_CATEGORY_BASEBALL, "baseball_team_matchup:" + next(k for k in baseball_team_keywords if k in normalized_text)
-
     concert_keywords = [
         "ライブ",
         "コンサート",
         "音楽イベント",
-        "公演",
         "ツアー",
-        "フェス",
         "リサイタル",
         "オーケストラ",
-        "music",
+        "交響楽団",
+        "フィルハーモニー",
+        "演奏会",
         "concert",
-        "festival",
-        "band",
-        "gig",
         "live",
         "tour",
-        "dome",
-        "arena",
-        "hall",
-        "zepp",
         "oneman",
         "one man",
         "world tour",
@@ -138,14 +124,34 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
         "ドームツアー",
         "アリーナツアー",
     ]
-    has_concert_keyword = any(keyword in normalized_text for keyword in concert_keywords)
-    if has_non_music_keyword and not str(artist_name or "").strip():
-        return EVENT_CATEGORY_OTHER, "non_music_keyword:" + next(k for k in non_music_keywords if k in normalized_text)
-    if has_non_music_keyword and not has_concert_keyword:
-        return EVENT_CATEGORY_OTHER, "non_music_keyword:" + next(k for k in non_music_keywords if k in normalized_text)
-
+    concert_match = next((k for k in concert_keywords if k in normalized_text), None)
+    other_match = next((k for k in non_music_keywords if k in normalized_text), None)
+    sports = re.search(r"j[123](?:リーグ|league|百年構想リーグ)|b[.]league|sv[.]league|なでしこリーグ|jfl|fc東京|東京ヴェルディ|バスケットボール|バスケ|サッカー|フットサル|ラグビー|バレーボール", normalized_text)
+    has_versus = any(k in normalized_text for k in versus_keywords)
+    sports_match = sports and (has_versus or re.search(r"第\s*\d+\s*節|ホームゲーム|試合|season", normalized_text))
+    baseball_match = next((k for k in baseball_keywords if k in normalized_text), None)
+    if concert_match and (other_match or sports_match or baseball_match):
+        return EVENT_CATEGORY_UNKNOWN, "conflicting_evidence:" + concert_match + "/" + (other_match or baseball_match or sports.group())
+    ambiguous = next((k for k in ("expo", "党大会", "卒業式") if k in normalized_text), None)
+    if ambiguous:
+        return EVENT_CATEGORY_UNKNOWN, "ambiguous_non_music:" + ambiguous
+    if sports_match:
+        return EVENT_CATEGORY_OTHER, "sports_match:" + sports.group()
+    # Non-baseball sports can also say オープン戦; do not let that generic word win.
+    non_baseball = next((k for k in ("アメリカンフットボール", "アメフト", "プロレス", "ランニング", "ハンドメイド") if k in normalized_text), None)
+    if non_baseball:
+        return EVENT_CATEGORY_OTHER, "non_music_keyword:" + non_baseball
+    if baseball_match:
+        return EVENT_CATEGORY_BASEBALL, "baseball_keyword:" + baseball_match
+    if other_match and has_versus:
+        return EVENT_CATEGORY_OTHER, "non_music_matchup"
+    team_match = next((k for k in baseball_team_keywords if k in normalized_text), None)
+    if team_match and has_versus:
+        return EVENT_CATEGORY_BASEBALL, "baseball_team_matchup:" + team_match
+    if other_match:
+        return EVENT_CATEGORY_OTHER, "non_music_keyword:" + other_match
     if str(artist_name or "").strip():
         return EVENT_CATEGORY_CONCERT, "artist_name"
-    if has_concert_keyword:
-        return EVENT_CATEGORY_CONCERT, "concert_keyword:" + next(k for k in concert_keywords if k in normalized_text)
+    if concert_match:
+        return EVENT_CATEGORY_CONCERT, "concert_keyword:" + concert_match
     return EVENT_CATEGORY_UNKNOWN, "insufficient_evidence"

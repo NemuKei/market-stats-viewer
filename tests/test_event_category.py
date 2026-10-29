@@ -1,4 +1,5 @@
 import ast
+import json
 from pathlib import Path
 
 import pytest
@@ -36,3 +37,31 @@ def test_unknown_has_a_visible_app_filter():
     options = next(node.value for node in tree.body if isinstance(node, ast.Assign)
                    and any(isinstance(t, ast.Name) and t.id == 'EVENT_CATEGORY_OPTIONS' for t in node.targets))
     assert any(isinstance(value, ast.Name) and value.id == 'EVENT_CATEGORY_UNKNOWN' for value in options.elts)
+
+
+REVIEW_CASES = json.loads(Path('tests/fixtures/category_review_cases.json').read_text())
+
+
+@pytest.mark.parametrize('case', REVIEW_CASES, ids=lambda case: case['event_uid'])
+def test_nine_reviewed_misclassifications(case):
+    assert classify_event_category(case['title'], '', '') == case['expected']
+
+
+@pytest.mark.parametrize('title,expected', [
+    ('OSAKA-JO HALL', '未分類'), ('TOKYO DOME', '未分類'), ('ARENA zepp フェス', '未分類'),
+    ('LIVE 展示会', '未分類'), ('野球コンサート', '未分類'), ('コンサート 卒業式', '未分類'),
+    ('ＦＣ東京×浦和レッズ', 'その他'),
+    ('2026なでしこリーグ 第1節 A×B', 'その他'), ('SV.LEAGUE A×B', 'その他'),
+    ('大阪交響楽団 定期演奏会', 'コンサート'), ('東京フィルハーモニー', 'コンサート'),
+    ('大石昌良×川崎鷹也', '未分類'),
+])
+def test_conflicts_weak_words_and_new_evidence(title, expected):
+    assert classify_event_category(title, '', '') == expected
+
+
+def test_review_asset_matches_all_nine_regressions():
+    asset = json.loads(Path('docs/reviews/schedule-categories-2026-10-29/public_schedule_days.preview.json').read_text())
+    by_id = {row['event_uid']: row for row in asset['events']}
+    for case in REVIEW_CASES:
+        assert by_id[case['event_uid']]['title'] == case['title']
+        assert by_id[case['event_uid']]['event_category'] == case['expected']

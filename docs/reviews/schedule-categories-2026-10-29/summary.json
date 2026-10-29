@@ -1,18 +1,18 @@
 {
   "status": "review_only",
   "input_public_sha256": "d926a67b855720dfd7ccbb165f1e2caeeb813c632f62cc44a41b2a4764d13303",
-  "output_public_sha256": "e92a63a38eb3d4a3e1344752214e72add2a8cd7e244f1180fea42d82de56495b",
-  "rule_sha256": "f3082fa5f36fcdeaca3860da9b42691ce32c4ace8e4037f5bf42338e912e991d",
+  "output_public_sha256": "e587a0beca17809c73c2829db2dedf33ab6d742bbe082afe867a0a24daf7a712",
+  "rule_sha256": "7ce552e24c26d19cc58dd941d15eed9403000b2a515262ced35c947103fa03f7",
   "count": 1017,
-  "changed_count": 657,
+  "changed_count": 651,
   "before": {
     "未分類": 1017
   },
   "after": {
-    "コンサート": 563,
-    "未分類": 360,
-    "その他": 30,
-    "野球": 64
+    "コンサート": 538,
+    "未分類": 366,
+    "その他": 51,
+    "野球": 62
   },
   "samples": {
     "その他": [
@@ -26,11 +26,47 @@
         "date": "2026-02-02"
       },
       {
+        "event_uid": "evt_c2c36f23f4dd46c7ac0cf0e305911e53",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:fc東京",
+        "title": "ＦＣ東京×鹿島アントラーズ",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-07"
+      },
+      {
+        "event_uid": "evt_c71f1ab562d24398a189fa5d11fb01e5",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:東京ヴェルディ",
+        "title": "東京ヴェルディ×水戸ホーリーホック",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-08"
+      },
+      {
+        "event_uid": "evt_678f9ab88cc845448bc883bb8c723311",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:fc東京",
+        "title": "ＦＣ東京×浦和レッズ",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-14"
+      },
+      {
         "event_uid": "evt_db28fc3903a148c3bfe100d3d9b20c76",
         "old_category": "未分類",
         "new_category": "その他",
         "rule": "sports_match:ラグビー",
         "title": "NTTジャパンラグビー リーグワン 2025-26 ディビジョン3 クリタウォーターガッシュ昭島vsマツダスカイアクティブズ広島",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-21"
+      },
+      {
+        "event_uid": "evt_57d1b18f2d574fa5ada6059be3007e1b",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:東京ヴェルディ",
+        "title": "東京ヴェルディ×FC町田ゼルビア",
         "venue_name": "味の素スタジアム",
         "date": "2026-02-21"
       },
@@ -44,6 +80,15 @@
         "date": "2026-02-28"
       },
       {
+        "event_uid": "evt_6c04490bfc3e449fb3d13d8d779026a6",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:fc東京",
+        "title": "ＦＣ東京×柏レイソル",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-28"
+      },
+      {
         "event_uid": "evt_654d8b50b17c4e1fae6e699d2f58652c",
         "old_category": "未分類",
         "new_category": "その他",
@@ -53,15 +98,6 @@
         "date": "2026-03-01"
       },
       {
-        "event_uid": "evt_23f97f6fb73c436887ed8783be03605e",
-        "old_category": "未分類",
-        "new_category": "その他",
-        "rule": "non_music_keyword:就職",
-        "title": "イベント マイナビ就職EXPO幕張会場",
-        "venue_name": "幕張メッセ",
-        "date": "2026-03-02"
-      },
-      {
         "event_uid": "evt_b86b5ac0cfab4c11b173287f340a6621",
         "old_category": "未分類",
         "new_category": "その他",
@@ -69,42 +105,6 @@
         "title": "イベント 八千代松陰高等学校 第46回 卒業証書授与式",
         "venue_name": "幕張メッセ",
         "date": "2026-03-04"
-      },
-      {
-        "event_uid": "evt_e1bbc58a1c8742c5b129a1be82e630e1",
-        "old_category": "未分類",
-        "new_category": "その他",
-        "rule": "sports_match:ラグビー",
-        "title": "NTTジャパンラグビー リーグワン 2025-26ディビジョン2 日野レッドドルフィンズvsグリーンロケッツ東葛",
-        "venue_name": "味の素スタジアム",
-        "date": "2026-03-07"
-      },
-      {
-        "event_uid": "evt_0073e92f143245e99c1cd3955db0199c",
-        "old_category": "未分類",
-        "new_category": "その他",
-        "rule": "sports_match:b.league",
-        "title": "りそなグループB.LEAGUE 2025-26 SEASON ウエインズトヨタ神奈川 presents 24節 横浜ビー・コルセアーズ vs レバンガ北海道",
-        "venue_name": "横浜アリーナ",
-        "date": "2026-03-07"
-      },
-      {
-        "event_uid": "evt_a592c9251a7548e8b957dead0dc42107",
-        "old_category": "未分類",
-        "new_category": "その他",
-        "rule": "non_music_keyword:スポーツフェスティバル",
-        "title": "朝日新聞 スポーツフェスティバル",
-        "venue_name": "味の素スタジアム",
-        "date": "2026-03-07"
-      },
-      {
-        "event_uid": "evt_4d8819c1d2e845f98154dc0fc8bf7dc9",
-        "old_category": "未分類",
-        "new_category": "その他",
-        "rule": "non_music_keyword:expo",
-        "title": "そよぎフラクタル 梵そよぎ 1st EXPO『0rigin』 そよぎフラクタル 梵そよぎ 1st EXPO『0rigin』",
-        "venue_name": "東京ガーデンシアター",
-        "date": "2026-03-08"
       }
     ],
     "コンサート": [
@@ -154,15 +154,6 @@
         "date": "2026-02-01"
       },
       {
-        "event_uid": "evt_9b7c06f7bbb44e84a6ed792bb58700db",
-        "old_category": "未分類",
-        "new_category": "コンサート",
-        "rule": "concert_keyword:festival",
-        "title": "ジュニア STAR to FESTIVAL 2026",
-        "venue_name": "横浜アリーナ",
-        "date": "2026-02-01"
-      },
-      {
         "event_uid": "evt_0badc8043f004f73bd1bb39794ca9821",
         "old_category": "未分類",
         "new_category": "コンサート",
@@ -197,6 +188,15 @@
         "title": "なにわ男子 1st DOME LIVE ‘VoyAGE’",
         "venue_name": "京セラドーム大阪",
         "date": "2026-02-03"
+      },
+      {
+        "event_uid": "evt_216813953d2b43a0b823346b7778e91a",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:tour",
+        "title": "CUTIE STREET OFFICIAL FAN CLUB TOUR 2026 WINTER きゅーてすとのつどい",
+        "venue_name": "Zepp Osaka Bayside",
+        "date": "2026-02-04"
       }
     ],
     "未分類": [
@@ -225,6 +225,15 @@
         "rule": "insufficient_evidence",
         "title": "『sound stock Vol.7 × iCON DOLL LOUNGE 2026 【part.1】』",
         "venue_name": "豊洲PIT",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_9b7c06f7bbb44e84a6ed792bb58700db",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "ジュニア STAR to FESTIVAL 2026",
+        "venue_name": "横浜アリーナ",
         "date": "2026-02-01"
       },
       {
@@ -280,15 +289,6 @@
         "title": "RIP SLYME / Creepy Nuts RIP SLYME presents BACK to BACK",
         "venue_name": "豊洲PIT",
         "date": "2026-02-03"
-      },
-      {
-        "event_uid": "evt_50d25edff2c4470fbaaced7cf76625cc",
-        "old_category": "未分類",
-        "new_category": "未分類",
-        "rule": "insufficient_evidence",
-        "title": "autechre japan twentytwentysix",
-        "venue_name": "Zepp DiverCity(Tokyo)",
-        "date": "2026-02-04"
       }
     ],
     "野球": [
