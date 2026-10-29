@@ -419,3 +419,13 @@ def test_metadata_retains_exact_space_variants_and_fullwidth_venue_note():
     row = next(r for r in rows if r["title"] == "架空の同番組")
     assert metadata[row["event_key"]]["observedTitles"] == [" 架空の同番組 ", "架空の同番組"]
     assert metadata[row["event_key"]]["venueNotes"] == ["原本の会場区分: 架空広場"]
+
+
+def test_archival_categories_use_shared_rules_without_changing_units():
+    inv, raw, baseline = fixture()
+    rows, meta, _ = days.build_candidates(inv, raw, baseline)
+    by_title = {r['title']: r for r in rows}
+    assert by_title['架空の同番組']['event_category'] == '未分類'
+    assert by_title['架空大会の日程']['event_category'] == 'その他'
+    assert all(r['artist_name'] == '' and r['record_kind'] == 'schedule_day' for r in rows)
+    assert all(m['performanceCount'] is None for m in meta.values())

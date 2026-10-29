@@ -17,6 +17,7 @@ import unicodedata
 from urllib.parse import urlsplit
 
 from . import event_identity_registry as ids
+from .events.category import classify_event_category
 from .events.types import JAPAN_PREFECTURES
 
 CANDIDATE = "confident_additional_archival_schedule_candidate"
@@ -111,7 +112,7 @@ def build_candidates(inventory: list[dict], raw: list[dict], baseline: dict) -> 
         row = {"event_key": key, "record_kind": KIND, "event_date": day, "event_end_date": day,
             "event_start_time": "", "event_end_time": "", "venue_name": next(iter(venues)),
             "raw_venue_name": min(r["venue_name"] for r in facts), "artist_name": "", "raw_artist_name": "",
-            "title": min(r["title"] for r in facts), "pref_name": next(iter(prefs)), "event_category": "未分類",
+            "title": min(r["title"] for r in facts), "pref_name": next(iter(prefs)), "event_category": classify_event_category(min(r["title"] for r in facts), "", ""),
             "url": calendar, "evidence_url": calendar, "evidence_snippet": "", "capacity": None,
             "display_source_id": "official_events", "display_source_label": "会場公式（保存日程）",
             "display_source_class": "venue_official", "first_seen_at_utc": min((v["record"]["first_seen_at_utc"] for v in originals), key=utc_order),
