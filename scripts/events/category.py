@@ -6,12 +6,20 @@ filter without re-implementing app-layer rules.
 
 from __future__ import annotations
 
+import re
+
 EVENT_CATEGORY_CONCERT = "コンサート"
 EVENT_CATEGORY_BASEBALL = "野球"
 EVENT_CATEGORY_OTHER = "その他"
+EVENT_CATEGORY_UNKNOWN = "未分類"
 
 
 def classify_event_category(title: object, artist_name: object, description: object) -> str:
+    return classify_event_category_with_reason(title, artist_name, description)[0]
+
+
+def classify_event_category_with_reason(title: object, artist_name: object, description: object) -> tuple[str, str]:
+    """Return the stored category and the first matching rule, without guessing names."""
     text = " ".join([str(title or ""), str(artist_name or ""), str(description or "")])
     normalized_text = text.lower()
 
@@ -88,13 +96,16 @@ def classify_event_category(title: object, artist_name: object, description: obj
     ]
     has_non_music_keyword = any(keyword in normalized_text for keyword in non_music_keywords)
     has_versus = any(keyword in normalized_text for keyword in versus_keywords)
-    if has_non_music_keyword and has_versus:
-        return EVENT_CATEGORY_OTHER
+    sports = re.search(r"j[123](?:リーグ|league|百年構想リーグ)|b[.．]league|バスケットボール|バスケ|サッカー|フットサル|ラグビー|バレーボール", normalized_text)
+    if sports and (has_versus or re.search(r"第\s*\d+\s*節", normalized_text) or any(word in normalized_text for word in ("ホームゲーム", "試合", "season"))):
+        return EVENT_CATEGORY_OTHER, "sports_match:" + sports.group()
     if any(keyword in normalized_text for keyword in baseball_keywords):
-        return EVENT_CATEGORY_BASEBALL
+        return EVENT_CATEGORY_BASEBALL, "baseball_keyword:" + next(k for k in baseball_keywords if k in normalized_text)
+    if has_non_music_keyword and has_versus:
+        return EVENT_CATEGORY_OTHER, "non_music_matchup"
     has_team_keyword = any(keyword in normalized_text for keyword in baseball_team_keywords)
     if has_team_keyword and has_versus:
-        return EVENT_CATEGORY_BASEBALL
+        return EVENT_CATEGORY_BASEBALL, "baseball_team_matchup:" + next(k for k in baseball_team_keywords if k in normalized_text)
 
     concert_keywords = [
         "ライブ",
@@ -129,12 +140,12 @@ def classify_event_category(title: object, artist_name: object, description: obj
     ]
     has_concert_keyword = any(keyword in normalized_text for keyword in concert_keywords)
     if has_non_music_keyword and not str(artist_name or "").strip():
-        return EVENT_CATEGORY_OTHER
+        return EVENT_CATEGORY_OTHER, "non_music_keyword:" + next(k for k in non_music_keywords if k in normalized_text)
     if has_non_music_keyword and not has_concert_keyword:
-        return EVENT_CATEGORY_OTHER
+        return EVENT_CATEGORY_OTHER, "non_music_keyword:" + next(k for k in non_music_keywords if k in normalized_text)
 
     if str(artist_name or "").strip():
-        return EVENT_CATEGORY_CONCERT
+        return EVENT_CATEGORY_CONCERT, "artist_name"
     if has_concert_keyword:
-        return EVENT_CATEGORY_CONCERT
-    return EVENT_CATEGORY_OTHER
+        return EVENT_CATEGORY_CONCERT, "concert_keyword:" + next(k for k in concert_keywords if k in normalized_text)
+    return EVENT_CATEGORY_UNKNOWN, "insufficient_evidence"

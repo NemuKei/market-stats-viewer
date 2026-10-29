@@ -1,0 +1,387 @@
+{
+  "status": "review_only",
+  "input_public_sha256": "d926a67b855720dfd7ccbb165f1e2caeeb813c632f62cc44a41b2a4764d13303",
+  "output_public_sha256": "e92a63a38eb3d4a3e1344752214e72add2a8cd7e244f1180fea42d82de56495b",
+  "rule_sha256": "f3082fa5f36fcdeaca3860da9b42691ce32c4ace8e4037f5bf42338e912e991d",
+  "count": 1017,
+  "changed_count": 657,
+  "before": {
+    "未分類": 1017
+  },
+  "after": {
+    "コンサート": 563,
+    "未分類": 360,
+    "その他": 30,
+    "野球": 64
+  },
+  "samples": {
+    "その他": [
+      {
+        "event_uid": "evt_073ef25b9c1d4759a0ed5b86c6b2de7c",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "non_music_keyword:就活",
+        "title": "イベント マイナビ就活直前フェア幕張会場",
+        "venue_name": "幕張メッセ",
+        "date": "2026-02-02"
+      },
+      {
+        "event_uid": "evt_db28fc3903a148c3bfe100d3d9b20c76",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:ラグビー",
+        "title": "NTTジャパンラグビー リーグワン 2025-26 ディビジョン3 クリタウォーターガッシュ昭島vsマツダスカイアクティブズ広島",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-21"
+      },
+      {
+        "event_uid": "evt_b7441b59b58f4bcf89700bd93227c849",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:ラグビー",
+        "title": "NTTジャパンラグビー リーグワン 2025-26ディビジョン2 日野レッドドルフィンズvsレッドハリケーンズ大阪",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-02-28"
+      },
+      {
+        "event_uid": "evt_654d8b50b17c4e1fae6e699d2f58652c",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:ラグビー",
+        "title": "NTTジャパンラグビー リーグワン 2025-26 ディビジョン3 クリタウォーターガッシュ昭島vsルリーロ福岡",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-03-01"
+      },
+      {
+        "event_uid": "evt_23f97f6fb73c436887ed8783be03605e",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "non_music_keyword:就職",
+        "title": "イベント マイナビ就職EXPO幕張会場",
+        "venue_name": "幕張メッセ",
+        "date": "2026-03-02"
+      },
+      {
+        "event_uid": "evt_b86b5ac0cfab4c11b173287f340a6621",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "non_music_keyword:授与式",
+        "title": "イベント 八千代松陰高等学校 第46回 卒業証書授与式",
+        "venue_name": "幕張メッセ",
+        "date": "2026-03-04"
+      },
+      {
+        "event_uid": "evt_e1bbc58a1c8742c5b129a1be82e630e1",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:ラグビー",
+        "title": "NTTジャパンラグビー リーグワン 2025-26ディビジョン2 日野レッドドルフィンズvsグリーンロケッツ東葛",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-03-07"
+      },
+      {
+        "event_uid": "evt_0073e92f143245e99c1cd3955db0199c",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "sports_match:b.league",
+        "title": "りそなグループB.LEAGUE 2025-26 SEASON ウエインズトヨタ神奈川 presents 24節 横浜ビー・コルセアーズ vs レバンガ北海道",
+        "venue_name": "横浜アリーナ",
+        "date": "2026-03-07"
+      },
+      {
+        "event_uid": "evt_a592c9251a7548e8b957dead0dc42107",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "non_music_keyword:スポーツフェスティバル",
+        "title": "朝日新聞 スポーツフェスティバル",
+        "venue_name": "味の素スタジアム",
+        "date": "2026-03-07"
+      },
+      {
+        "event_uid": "evt_4d8819c1d2e845f98154dc0fc8bf7dc9",
+        "old_category": "未分類",
+        "new_category": "その他",
+        "rule": "non_music_keyword:expo",
+        "title": "そよぎフラクタル 梵そよぎ 1st EXPO『0rigin』 そよぎフラクタル 梵そよぎ 1st EXPO『0rigin』",
+        "venue_name": "東京ガーデンシアター",
+        "date": "2026-03-08"
+      }
+    ],
+    "コンサート": [
+      {
+        "event_uid": "evt_262327dc60294952a06bba96d2e6c884",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:live",
+        "title": "DEEN LIVE JOY-Break27〜ROCK IN CITY〜",
+        "venue_name": "Zepp Namba(Osaka)",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_ce3dad7ef1644e169f7a6ef8b5d45a7c",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:live",
+        "title": "FRUITS ZIPPER SPECIAL LIVE 2026「ENERGY」",
+        "venue_name": "東京ドーム",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_ca99165e4bcd454abef71c469a0a3f77",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:ツアー",
+        "title": "SCANDAL TOUR 2026 『SCANDALの対バンツアー』",
+        "venue_name": "Zepp Haneda(Tokyo)",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_f46ae9f3fbc140f5b3332ed792e53ab6",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:tour",
+        "title": "SUPER BEAVER 20th Anniversary 「都会のラクダ TOUR 2026 〜 ラクダトゥインクルー 〜」 SUPER BEAVER",
+        "venue_name": "Kアリーナ横浜",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_504e75c4a0c84ff7af3f8a546f15c71e",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:live",
+        "title": "なにわ男子 1st DOME LIVE ‘VoyAGE’",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_9b7c06f7bbb44e84a6ed792bb58700db",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:festival",
+        "title": "ジュニア STAR to FESTIVAL 2026",
+        "venue_name": "横浜アリーナ",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_0badc8043f004f73bd1bb39794ca9821",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:コンサート",
+        "title": "高嶋ちさ子 12人のヴァイオリニスト コンサートツアー 2025～2026",
+        "venue_name": "フェスティバルホール",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_3f4ec896f2b143358cb185e546b13738",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:live",
+        "title": "なにわ男子 1st DOME LIVE ‘VoyAGE’",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-02-02"
+      },
+      {
+        "event_uid": "evt_e9a6d4f715a44a7bbc1a0ec03b9eaf48",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:ライブ",
+        "title": "花いろは 7thワンマンライブ「君と咲かせた世界」",
+        "venue_name": "TOKYO DOME CITY HALL",
+        "date": "2026-02-02"
+      },
+      {
+        "event_uid": "evt_0140e3aa11b34255a5ba21adf01e5d0b",
+        "old_category": "未分類",
+        "new_category": "コンサート",
+        "rule": "concert_keyword:live",
+        "title": "なにわ男子 1st DOME LIVE ‘VoyAGE’",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-02-03"
+      }
+    ],
+    "未分類": [
+      {
+        "event_uid": "evt_c14f769fe638407db3a9edcfecbaa1ea",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "ONE N' ONLY「ドタバタ!? SWAGとひとつ屋根の下で⋯」",
+        "venue_name": "Zepp札幌",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_a6916c23c85f40c0ae63bab09737238e",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "RejetFes.2026 Answer",
+        "venue_name": "TOKYO DOME CITY HALL",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_23d347a036ca40fcae48006e4dde6b8b",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "『sound stock Vol.7 × iCON DOLL LOUNGE 2026 【part.1】』",
+        "venue_name": "豊洲PIT",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_548e4d8e41d64e8283c5eb048c808eff",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "タイマン舞台〜芸人与太郎 せーの！鼻水がダラダラダラ〜",
+        "venue_name": "Zepp DiverCity(Tokyo)",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_3df3123342a74092b744bbc2d0804c48",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "学びリンク 通信制高校 合同相談会",
+        "venue_name": "GMOアリーナさいたま",
+        "date": "2026-02-01"
+      },
+      {
+        "event_uid": "evt_a2a8ce3faf3e4f8fb0e4d03ec56ccbe7",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "#らぶこん vol.57-はやて生誕祭 Doll’s Funeral Féte-",
+        "venue_name": "Zepp Haneda(Tokyo)",
+        "date": "2026-02-02"
+      },
+      {
+        "event_uid": "evt_68fd68091e8e44c59aec4a1d19f12b6f",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "RIP SLYME / KICK THE CAN CREW RIP SLYME presents BACK to BACK",
+        "venue_name": "豊洲PIT",
+        "date": "2026-02-02"
+      },
+      {
+        "event_uid": "evt_589c439e7013495b965ebd8e068a67d2",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "マーキュロ主催『グラン・ギニュルー』Vol.28",
+        "venue_name": "Zepp DiverCity(Tokyo)",
+        "date": "2026-02-02"
+      },
+      {
+        "event_uid": "evt_e98134ef67374c5b81cebb45222da47c",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "RIP SLYME / Creepy Nuts RIP SLYME presents BACK to BACK",
+        "venue_name": "豊洲PIT",
+        "date": "2026-02-03"
+      },
+      {
+        "event_uid": "evt_50d25edff2c4470fbaaced7cf76625cc",
+        "old_category": "未分類",
+        "new_category": "未分類",
+        "rule": "insufficient_evidence",
+        "title": "autechre japan twentytwentysix",
+        "venue_name": "Zepp DiverCity(Tokyo)",
+        "date": "2026-02-04"
+      }
+    ],
+    "野球": [
+      {
+        "event_uid": "evt_fa666d2adec54ddda756bb0537f3e6ef",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_team_matchup:オリックス",
+        "title": "2026 WBC東京プール presented by ディップ 強化試合 オリックス・バファローズvs韓国",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-03-03"
+      },
+      {
+        "event_uid": "evt_526e1219507b44dc90c4eb514afc306c",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_team_matchup:阪神",
+        "title": "2026 WBC東京プール presented by ディップ 強化試合 阪神タイガースvs日本",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-03-03"
+      },
+      {
+        "event_uid": "evt_1148fae25dcf44bfa8733821731e8827",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:オープン戦",
+        "title": "オープン戦 オリックスvs広島",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-03-04"
+      },
+      {
+        "event_uid": "evt_93974763373f44a88be8dc240e54ca65",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:ベースボール",
+        "title": "2026 ワールドベースボールクラシック™ 東京プール presented by ディップ",
+        "venue_name": "東京ドーム",
+        "date": "2026-03-05"
+      },
+      {
+        "event_uid": "evt_bf627d8f72cd4c8aadb2d815d85ef2de",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:ベースボール",
+        "title": "2026 ワールドベースボールクラシック™ 東京プール presented by ディップ",
+        "venue_name": "東京ドーム",
+        "date": "2026-03-06"
+      },
+      {
+        "event_uid": "evt_0d2711e6390d4a6eb8bff3ca41628e0c",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:オープン戦",
+        "title": "オープン戦 オリックスvs巨人",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-03-06"
+      },
+      {
+        "event_uid": "evt_11db5abbb6694e069ab8415fe2ad9c54",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:ベースボール",
+        "title": "2026 ワールドベースボールクラシック™ 東京プール presented by ディップ",
+        "venue_name": "東京ドーム",
+        "date": "2026-03-07"
+      },
+      {
+        "event_uid": "evt_e4c87f448c554b9cb834756edd6118ee",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:オープン戦",
+        "title": "オープン戦 オリックスvs巨人",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-03-07"
+      },
+      {
+        "event_uid": "evt_9285c61742e645d8ac18f3d8b98b39b6",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:ベースボール",
+        "title": "2026 ワールドベースボールクラシック™ 東京プール presented by ディップ",
+        "venue_name": "東京ドーム",
+        "date": "2026-03-08"
+      },
+      {
+        "event_uid": "evt_38dfe24b315a44e89a87c252a1b711ee",
+        "old_category": "未分類",
+        "new_category": "野球",
+        "rule": "baseball_keyword:オープン戦",
+        "title": "オープン戦 オリックスvsソフトバンク",
+        "venue_name": "京セラドーム大阪",
+        "date": "2026-03-08"
+      }
+    ]
+  }
+}
