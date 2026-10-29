@@ -65,3 +65,35 @@ def test_review_asset_matches_all_nine_regressions():
     for case in REVIEW_CASES:
         assert by_id[case['event_uid']]['title'] == case['title']
         assert by_id[case['event_uid']]['event_category'] == case['expected']
+
+
+@pytest.mark.parametrize('title', [
+    'FUKUOKA MUSIC FES.2027 supported by Trunk',
+    'FNC BAND KINGDOM 2026',
+    'CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026',
+    'HOKKAIDO MUSIC FESTIVAL2026雪まつりSPECIAL!',
+    '第76回さっぽろ雪まつり17thKPF（K-POP FESTIVAL）2026',
+    'beat crazy Presents Special Gig「B.C. ONLY +1 2026」',
+    'kurayamisaka tte, doko? #8「Zepp DiverCity単独公演編」',
+    'アイドル音楽フェス The ONE ～一音一生～',
+    '大阪芸術大学サマーミュージックフェスティバル2026',
+    'J:COM Presents 高校軽音フェスティバル2026',
+    '第9回大阪府職場・一般吹奏楽フェスティバル',
+    'ミュージカル十二国記 アリーナライブ',
+])
+def test_explicit_music_phrases(title):
+    assert classify_event_category(title, '', '') == 'コンサート'
+
+
+@pytest.mark.parametrize('title,expected', [
+    ('漫才単独公演', '未分類'), ('劇団の単独公演', '未分類'),
+    ('吹奏楽フェス 展示会', '未分類'), ('軽音 卒業式', '未分類'),
+    ('K-POP FESTIVAL ハンドメイドフェア', '未分類'),
+    ('GIG プロレス', '未分類'), ('音楽フェス ランニング', '未分類'),
+    ('Music Festival 野球大会', '未分類'), ('単独公演 アメフト', '未分類'),
+    ('gigantic arena', '未分類'), ('bandwidth dome', '未分類'),
+    ('music festivity hall', '未分類'), ('music zepp フェス', '未分類'),
+    ('中央フェスティバル', '未分類'),
+])
+def test_music_phrase_boundaries_and_conflicts(title, expected):
+    assert classify_event_category(title, '', '') == expected

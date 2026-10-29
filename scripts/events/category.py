@@ -104,6 +104,11 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
         "ライブ",
         "コンサート",
         "音楽イベント",
+        "単独公演",
+        "音楽フェス",
+        "ミュージック",
+        "軽音",
+        "吹奏楽",
         "ツアー",
         "リサイタル",
         "オーケストラ",
@@ -125,6 +130,15 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
         "アリーナツアー",
     ]
     concert_match = next((k for k in concert_keywords if k in normalized_text), None)
+    extended_match = concert_match in {"単独公演", "音楽フェス", "ミュージック", "軽音", "吹奏楽"}
+    if concert_match is None:
+        phrase = re.search(r"(?<![a-z0-9_])(?:music\s+(?:&\s*entertainment\s+)?(?:festival|fes)(?![a-z_])|k[ -]pop\s+festival(?![a-z_])|(?:gig|band)(?!\w))", normalized_text)
+        concert_match = phrase.group() if phrase else None
+        extended_match = phrase is not None
+    # A generic solo performance may also be theatre or comedy; keep the conflict explicit.
+    performance_conflict = re.search(r"漫才|お笑い|コント|演劇|劇団|歌舞伎|バレエ|ミュージカル", normalized_text)
+    if extended_match and performance_conflict:
+        return EVENT_CATEGORY_UNKNOWN, "conflicting_evidence:" + concert_match + "/" + performance_conflict.group()
     other_match = next((k for k in non_music_keywords if k in normalized_text), None)
     sports = re.search(r"j[123](?:リーグ|league|百年構想リーグ)|b[.]league|sv[.]league|なでしこリーグ|jfl|fc東京|東京ヴェルディ|バスケットボール|バスケ|サッカー|フットサル|ラグビー|バレーボール", normalized_text)
     has_versus = any(k in normalized_text for k in versus_keywords)

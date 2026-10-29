@@ -1,28 +1,28 @@
 {
   "database_sha256": "9f59a884d914830dd7eeb87738ecb520d93c81f269e1944a78f2e3ab3f2f313f",
-  "rule_sha256": "7ce552e24c26d19cc58dd941d15eed9403000b2a515262ced35c947103fa03f7",
+  "rule_sha256": "63719030775ef1afe45e607da009cbb81543383c6ff4bee5a5665841f68685d3",
   "row_count": 2196,
-  "changed_count": 510,
+  "changed_count": 502,
   "before": {
     "コンサート": 1415,
     "その他": 567,
     "野球": 214
   },
   "after": {
-    "コンサート": 1359,
-    "未分類": 474,
+    "コンサート": 1368,
+    "未分類": 465,
     "その他": 144,
     "野球": 219
   },
   "transitions": {
-    "その他 -> 未分類": 397,
-    "その他 -> コンサート": 24,
-    "コンサート -> 未分類": 77,
+    "その他 -> 未分類": 396,
+    "その他 -> コンサート": 25,
+    "コンサート -> 未分類": 69,
     "コンサート -> その他": 3,
     "野球 -> その他": 2,
     "その他 -> 野球": 7
   },
-  "concert_drop_count": 80,
+  "concert_drop_count": 72,
   "changes": [
     {
       "event_uid": "ariake_arena:detail-310",
@@ -513,14 +513,6 @@
       "rule": "insufficient_evidence"
     },
     {
-      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6543/",
-      "title": "大阪芸術大学サマーミュージックフェスティバル2026",
-      "date": "2026-08-31",
-      "old_category": "コンサート",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
       "event_uid": "festival_hall:https://www.festivalhall.jp/events/6634/",
       "title": "ディズニー・オン・クラシック ～まほうの夜の音楽会 2026",
       "date": "2026-12-18",
@@ -877,22 +869,6 @@
       "title": "【7/20】みずほPayPayドームフィールド無料開放！",
       "date": "2026-07-20",
       "old_category": "その他",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
-      "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-30#t=10:20",
-      "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
-      "date": "2027-01-30",
-      "old_category": "コンサート",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
-      "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-31#t=10:20",
-      "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
-      "date": "2027-01-31",
-      "old_category": "コンサート",
       "new_category": "未分類",
       "rule": "insufficient_evidence"
     },
@@ -1645,22 +1621,6 @@
       "title": "試合開催準備",
       "date": "2026-12-18",
       "old_category": "その他",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
-      "event_uid": "pia_arena_mm:event/6653.html",
-      "title": "FNC BAND KINGDOM 2026",
-      "date": "2026-07-11",
-      "old_category": "コンサート",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
-      "event_uid": "pia_arena_mm:event/6655.html",
-      "title": "FNC BAND KINGDOM 2026",
-      "date": "2026-07-12",
-      "old_category": "コンサート",
       "new_category": "未分類",
       "rule": "insufficient_evidence"
     },
@@ -3385,14 +3345,6 @@
       "rule": "insufficient_evidence"
     },
     {
-      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159485",
-      "title": "kurayamisaka tte, doko? #8「Zepp DiverCity単独公演編」",
-      "date": "2026-10-17",
-      "old_category": "コンサート",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
       "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159508",
       "title": "The Performance Zero",
       "date": "2026-10-12",
@@ -3565,8 +3517,8 @@
       "title": "日本工学院ミュージックカレッジ presentsCROSS SPARK",
       "date": "2026-07-14",
       "old_category": "その他",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
+      "new_category": "コンサート",
+      "rule": "concert_keyword:ミュージック"
     },
     {
       "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158124",
@@ -3765,14 +3717,6 @@
       "title": "Luxury Soul Night",
       "date": "2026-08-08",
       "old_category": "その他",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
-      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159273",
-      "title": "J:COM Presents 高校軽音フェスティバル2026",
-      "date": "2026-11-01",
-      "old_category": "コンサート",
       "new_category": "未分類",
       "rule": "insufficient_evidence"
     },
@@ -4093,14 +4037,6 @@
       "title": "ザ・ホルモネア",
       "date": "2026-11-04",
       "old_category": "その他",
-      "new_category": "未分類",
-      "rule": "insufficient_evidence"
-    },
-    {
-      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=167860",
-      "title": "NORTHERN LIGHTS CHRISTMAS GIG at Zepp Sapporo",
-      "date": "2026-12-03",
-      "old_category": "コンサート",
       "new_category": "未分類",
       "rule": "insufficient_evidence"
     }
