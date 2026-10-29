@@ -106,7 +106,7 @@ def read_stored_rows(sqlite_path: Path) -> list[tuple]:
         ).fetchall()
 
 
-@pytest.mark.parametrize("old_version", [None, 0, 1])
+@pytest.mark.parametrize("old_version", [None, 0, 1, 2])
 def test_unchanged_source_reprocesses_with_missing_or_old_extractor_version(
     update_paths: tuple[Path, Path], old_version: int | None
 ) -> None:
@@ -379,3 +379,38 @@ def test_annual_layout_does_not_borrow_next_segment_column(tmp_path):
     book.close()
     with pytest.raises(ValueError, match="Amount columns"):
         updater.parse_ta_excel_rows(source, "2025", "total")
+
+
+@pytest.mark.parametrize("period,previous_headers,previous_units", [
+    ("2024-07", ["2023年同月", "2019年同月"], ["取扱額（千円）", "取扱額（千円）"]),
+    ("2023-02", ["2019年同月"], ["取扱額（千円）"]),
+    ("2022-04", ["2021年同月取", "2019年同月取"], ["扱額（千円）", "扱額（千円）"]),
+    ("2021-04", ["前年同月取", "前々年同月取"], ["扱額（千円）", "扱額（千円）"]),
+    ("total", ["2022年度取扱額", "2019年度取扱額"], ["（千円）", "（千円）"]),
+])
+def test_legacy_current_amount_in_row_five_has_priority(
+    tmp_path, period, previous_headers, previous_units
+):
+    # Synthetic values, verbatim header shapes from MLIT 2021-2024 workbooks.
+    source = tmp_path / "legacy.xlsx"
+    book = Workbook()
+    sheet = book.active
+    sheet["B5"] = "会　社　名"
+    for start, label, amount in [(3, "海外旅行", 13208650), (8, "外国人旅行", 20),
+                                  (13, "国内旅行", 30), (18, "合計", 60)]:
+        sheet.cell(4, start, label)
+        sheet.cell(5, start, "取　扱　額")
+        sheet.cell(6, start, "（千円）")
+        sheet.cell(7, start, amount)
+        for offset, (header, unit) in enumerate(zip(previous_headers, previous_units), start=1):
+            sheet.cell(5, start + offset, header)
+            sheet.cell(6, start + offset, unit)
+            sheet.cell(7, start + offset, 44771108)
+    sheet["B7"] = "JTB"
+    book.save(source)
+    book.close()
+    rows = updater.parse_ta_excel_rows(source, "2023", period)
+    assert [(r["company"], r["segment"], r["amount"]) for r in rows] == [
+        ("JTB", "overseas", 13208650.0), ("JTB", "foreign", 20.0),
+        ("JTB", "domestic", 30.0), ("JTB", "total", 60.0),
+    ]

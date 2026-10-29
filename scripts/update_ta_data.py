@@ -26,7 +26,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta_ta.json"
 TABLE_NAME = "ta_company_amounts"
-EXTRACTOR_VERSION = 2
+EXTRACTOR_VERSION = 3
 
 
 def now_utc_iso() -> str:
@@ -183,7 +183,14 @@ def find_amount_column(
     end_col: int,
     annual_layout: bool = False,
 ) -> int | None:
-    candidate_col: int | None = None
+    # Older monthly and annual sheets label the current amount in row 5,
+    # while row 6 contains only its unit. Comparative columns can themselves
+    # contain "取扱額" in row 6, so select the explicit current header first.
+    for c in range(start_col, end_col):
+        header = re.sub(r"\s+", "", normalize_text(ws.cell(row=5, column=c).value))
+        if header == "取扱額":
+            return c
+
     for c in range(start_col, end_col):
         year_label = normalize_text(ws.cell(row=5, column=c).value)
         unit_label = normalize_text(ws.cell(row=6, column=c).value)
@@ -195,11 +202,9 @@ def find_amount_column(
             continue
         if "取扱額" not in unit_label:
             continue
-        if candidate_col is None:
-            candidate_col = c
         if year_label == current_period_token:
             return c
-    return candidate_col
+    return None
 
 
 def normalize_company_name(name: str) -> str:
