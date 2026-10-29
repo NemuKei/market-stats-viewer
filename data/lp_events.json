@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-10-29",
+  "as_of_date": "2026-10-30",
   "events": [
-    {
-      "artist_name": "ET-KING",
-      "capacity": 2700,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-07-31",
-      "event_end_date": "2026-07-31",
-      "event_end_time": null,
-      "event_key": "20039332792f2da351da",
-      "event_start_time": "18:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.festivalhall.jp/events/5466/",
-      "first_seen_at_utc": "2026-02-27T03:42:15Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "ET-KING",
-      "raw_venue_name": "フェスティバルホール",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.festivalhall.jp/events/5466/",
-          "priority": 10,
-          "record_id": "festival_hall:https://www.festivalhall.jp/events/5466/",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "ET-KING　三都市ワンマンライブ2026 「全箇所ちゃうことやりまっせ」",
-          "updated_at_utc": "2026-07-31T07:04:47Z",
-          "url": "https://www.festivalhall.jp/events/5466/"
-        }
-      ],
-      "title": "ET-KING　三都市ワンマンライブ2026 「全箇所ちゃうことやりまっせ」",
-      "updated_at_utc": "2026-07-31T07:04:47Z",
-      "url": "https://www.festivalhall.jp/events/5466/",
-      "venue_name": "フェスティバルホール"
-    },
     {
       "artist_name": "DAIENKAI 2026",
       "capacity": 8000,
@@ -40976,8 +40938,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-29T11:03:51Z",
-  "history_start_date": "2026-07-31",
+  "generated_at_utc": "2026-10-29T18:30:06Z",
+  "history_start_date": "2026-08-01",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 43,
@@ -40998,7 +40960,12 @@
     },
     {
       "reason": "unresolved_domestic_location",
-      "record_id": "466cb915b78fdac1061377460c321cb0e578057414d5c9dcbfb413d8ebe06bd1",
+      "record_id": "5b17b84851571d02a99ec89af927edac28379e881b19210e756dba43b2949ec8",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "2cb79656908333a3afd62c7348191a62d4a44249fe44e3118400004ddbc1a3e9",
       "source_id": "kstyle_music"
     },
     {
@@ -41166,13 +41133,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 742,
+      "official_events": 741,
       "venue_web_discovery": 287
     },
-    "event_count": 1029,
-    "identity_held_record_count": 920,
-    "location_held_record_count": 34,
-    "record_count_before_grouping": 2173,
+    "event_count": 1028,
+    "identity_held_record_count": 923,
+    "location_held_record_count": 35,
+    "record_count_before_grouping": 2175,
     "start_time_split_event_count": 67,
     "start_time_split_group_count": 63,
     "supplemental_merged_group_count": 23,
