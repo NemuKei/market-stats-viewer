@@ -241,32 +241,76 @@ def _qid_from_uri(uri: str) -> str:
     return qid
 
 
-def build_country_filtered_query(country_codes: list[str]) -> str:
+def build_country_filtered_query(
+    country_codes: list[str], artist_kind: str | None = None
+) -> str:
     country_qids = [
         COUNTRY_QID_MAP[code] for code in country_codes if code in COUNTRY_QID_MAP
     ]
     if not country_qids:
         return SPARQL_QUERY_LEGACY
 
+    person_pattern = """?item wdt:P31 wd:Q5 ;
+          wdt:P27 ?country ;
+          wdt:P106/wdt:P279* wd:Q639669 ."""
+    group_pattern = """?item wdt:P31/wdt:P279* wd:Q215380 ;
+          wdt:P495 ?country ."""
+    if artist_kind == "person":
+        pattern = person_pattern
+    elif artist_kind == "group":
+        pattern = group_pattern
+    elif artist_kind is None:
+        pattern = "{ " + person_pattern + " } UNION { " + group_pattern + " }"
+    else:
+        raise ValueError(f"Unknown artist kind: {artist_kind}")
     values = " ".join(f"wd:{qid}" for qid in country_qids)
     return f"""
 SELECT ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?alias; separator="|") AS ?aliases) WHERE {{
   VALUES ?country {{ {values} }}
-  {{
-    ?item wdt:P31 wd:Q5 ;
-          wdt:P27 ?country ;
-          wdt:P106/wdt:P279* wd:Q639669 .
-  }}
-  UNION
-  {{
-    ?item wdt:P31/wdt:P279* wd:Q215380 ;
-          wdt:P495 ?country .
-  }}
+  {pattern}
   OPTIONAL {{ ?item skos:altLabel ?alias . FILTER (lang(?alias) IN ("ja","en","ko")) }}
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "ja,en,ko,[AUTO_LANGUAGE],mul". }}
 }}
 GROUP BY ?item ?itemLabel
 """.strip()
+
+
+def fetch_seed_rows(
+    country_codes: list[str], request_timeout: int
+) -> list[dict[str, object]]:
+    # Keep the existing Korean/legacy request; Japan no longer runs the UNION.
+    kinds = ["person", "group"] if "jp" in country_codes else [None]
+    by_id: dict[str, dict[str, object]] = {}
+    for kind in kinds:
+        logger.info(
+            "Fetching artist registry: countries=%s kind=%s",
+            country_codes,
+            kind or "combined",
+        )
+        payload = fetch_sparql_with_retry(
+            SPARQL_ENDPOINT,
+            build_country_filtered_query(country_codes, kind),
+            request_timeout=request_timeout,
+        )
+        rows = build_seed_rows(payload)
+        if not rows:
+            raise RuntimeError(f"Wikidata returned no usable artists: kind={kind}")
+        for row in rows:
+            artist_id = str(row["artist_id"])
+            if artist_id not in by_id:
+                by_id[artist_id] = row
+                continue
+            existing = by_id[artist_id]
+            aliases = json.loads(str(existing["aliases_json"])) + json.loads(
+                str(row["aliases_json"])
+            )
+            if row["canonical_name"] != existing["canonical_name"]:
+                aliases.append(str(row["canonical_name"]))
+            existing["aliases_json"] = json.dumps(
+                sorted(set(aliases) - {str(existing["canonical_name"])}),
+                ensure_ascii=False,
+            )
+    return sorted(by_id.values(), key=lambda row: str(row["canonical_name"]))
 
 
 def parse_args() -> argparse.Namespace:
@@ -300,16 +344,10 @@ def main() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     countries = [
-        c.strip().lower()
-        for c in str(args.countries).split(",")
-        if c and c.strip()
+        c.strip().lower() for c in str(args.countries).split(",") if c and c.strip()
     ]
-    query = build_country_filtered_query(countries)
     output_path = Path(args.output)
-    payload = fetch_sparql_with_retry(
-        SPARQL_ENDPOINT, query, request_timeout=max(10, int(args.request_timeout))
-    )
-    rows = build_seed_rows(payload)
+    rows = fetch_seed_rows(countries, max(10, int(args.request_timeout)))
     rows = stabilize_updated_at_with_existing(
         rows=rows,
         path=output_path,

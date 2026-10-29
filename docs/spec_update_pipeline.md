@@ -198,7 +198,7 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
 - Schedule: monthly (`cron: 20 3 1 * *`) + `workflow_dispatch`
 - Flow:
   1. `artist_registry.seed.csv` を Wikidata（`--countries kr`）で更新
-  2. `artist_registry.jp.seed.csv` を Wikidata（`--countries jp`）で更新
+  2. `artist_registry.jp.seed.csv` を Wikidata（`--countries jp`）で更新。個人とグループは別クエリで取得し、両方の成功後に `artist_id` で統合する（重複IDのaliasも統合）。タイムアウト・空結果・利用可能な行のない結果ではseedを書き換えず失敗にする。
   3. `build_events_artist_inferred` を実行して補完CSVを再生成
 - No-op policy:
   - seed生成時、`artist_id` ごとに実データ（canonical/aliases/source/is_enabled）が不変なら既存 `updated_at` を保持する。
