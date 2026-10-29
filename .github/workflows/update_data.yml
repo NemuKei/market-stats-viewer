@@ -38,7 +38,9 @@ jobs:
           uv run python -m scripts.update_data
           uv run python -m scripts.update_tcd_data
           uv run python -m scripts.update_icd_data
-          uv run python -m scripts.update_ta_data
+          # Paused for #34: resume only after corrected values and 266 summary-row
+          # exclusions receive user approval following re-review.
+          echo "TA update temporarily paused pending Issue 34 data approval."
           uv run python -m scripts.update_airport_volume_data
 
       - name: Commit changes (if any)
