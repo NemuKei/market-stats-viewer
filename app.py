@@ -11,6 +11,8 @@ from urllib.parse import urlparse
 
 import altair as alt
 import pandas as pd
+from scripts.events.category import EVENT_CATEGORY_UNKNOWN, classify_event_category
+
 import streamlit as st
 from openpyxl.chart import BarChart, Reference
 from openpyxl.chart.axis import ChartLines
@@ -3021,137 +3023,8 @@ EVENT_CATEGORY_OPTIONS = [
     EVENT_CATEGORY_CONCERT,
     EVENT_CATEGORY_BASEBALL,
     EVENT_CATEGORY_OTHER,
+    EVENT_CATEGORY_UNKNOWN,
 ]
-
-
-def classify_event_category(title: str, artist_name: str, description: str) -> str:
-    text = " ".join([str(title or ""), str(artist_name or ""), str(description or "")])
-    normalized_text = text.lower()
-
-    baseball_keywords = [
-        "野球",
-        "ベースボール",
-        "baseball",
-        "npb",
-        "プロ野球",
-        "甲子園",
-        "侍ジャパン",
-        "オープン戦",
-        "公式戦",
-        "ファーム",
-        "クライマックスシリーズ",
-        "日本シリーズ",
-        "セ・リーグ",
-        "パ・リーグ",
-        "交流戦",
-    ]
-    baseball_team_keywords = [
-        "オリックス",
-        "バファローズ",
-        "阪神",
-        "タイガース",
-        "巨人",
-        "ジャイアンツ",
-        "ヤクルト",
-        "スワローズ",
-        "広島",
-        "カープ",
-        "中日",
-        "ドラゴンズ",
-        "dena",
-        "ベイスターズ",
-        "ベイス",
-        "ソフトバンク",
-        "ホークス",
-        "日本ハム",
-        "日ハム",
-        "ファイターズ",
-        "楽天",
-        "イーグルス",
-        "西武",
-        "ライオンズ",
-        "ロッテ",
-        "マリーンズ",
-    ]
-    versus_keywords = ["vs", "ｖｓ", "対", " 対戦 "]
-    if any(keyword in normalized_text for keyword in baseball_keywords):
-        return EVENT_CATEGORY_BASEBALL
-    has_team_keyword = any(
-        keyword in normalized_text for keyword in baseball_team_keywords
-    )
-    has_versus = any(keyword in normalized_text for keyword in versus_keywords)
-    if has_team_keyword and has_versus:
-        return EVENT_CATEGORY_BASEBALL
-
-    concert_keywords = [
-        "ライブ",
-        "コンサート",
-        "音楽イベント",
-        "公演",
-        "ツアー",
-        "フェス",
-        "リサイタル",
-        "オーケストラ",
-        "music",
-        "concert",
-        "festival",
-        "band",
-        "gig",
-        "live",
-        "tour",
-        "dome",
-        "arena",
-        "hall",
-        "zepp",
-        "oneman",
-        "one man",
-        "world tour",
-        "fan meeting",
-        "showcase",
-        "弾き語り",
-        "ワンマン",
-        "ワールドツアー",
-        "ドームツアー",
-        "アリーナツアー",
-    ]
-    has_concert_keyword = any(
-        keyword in normalized_text for keyword in concert_keywords
-    )
-    non_music_keywords = [
-        "就活",
-        "就職",
-        "説明会",
-        "展示会",
-        "見本市",
-        "expo",
-        "フェア",
-        "学会",
-        "式典",
-        "授与式",
-        "卒業式",
-        "入学式",
-        "サッカー",
-        "フットサル",
-        "マラソン",
-        "グランプリ",
-        "大会",
-        "カップ",
-        "m-1",
-        "スポーツフェスティバル",
-    ]
-    has_non_music_keyword = any(
-        keyword in normalized_text for keyword in non_music_keywords
-    )
-    if has_non_music_keyword and not str(artist_name or "").strip():
-        return EVENT_CATEGORY_OTHER
-    if has_non_music_keyword and not has_concert_keyword:
-        return EVENT_CATEGORY_OTHER
-
-    if str(artist_name or "").strip():
-        return EVENT_CATEGORY_CONCERT
-    if has_concert_keyword:
-        return EVENT_CATEGORY_CONCERT
-    return EVENT_CATEGORY_OTHER
 
 
 @st.cache_data(show_spinner=False)

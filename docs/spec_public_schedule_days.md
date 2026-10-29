@@ -281,3 +281,17 @@ Its `write_cli_fixture(root, consumer_scripts=..., source_policy=...)`
 helper accepts the actual captured consumer helpers and a synthetic policy for
 an independent producer-to-consumer smoke. The existing manifest, all-dates LP,
 package validation and publication workflow focused regression tests also run.
+
+### Reviewed category-only derivation
+
+`python -m scripts.prepare_schedule_categories` accepts the exact hash-pinned,
+validated existing public package. It derives only `event_category` from the
+public representative title using the shared classifier; all IDs, source-pair
+digests, baseline bytes, observation provenance and schedule metadata remain
+unchanged. The original private-asset hash describes the preserved observations,
+not a claim that those private bytes have been rewritten. The new public hash,
+classifier hash, complete per-ID reason CSV and samples form the review boundary.
+This is a separate explicit derivation after the original private-to-public
+projection; a direct re-export of the old private package does not apply it.
+Outputs are created only in a new Git-free review directory. Publishing the
+candidate package and adopting its new hash downstream require separate approval.

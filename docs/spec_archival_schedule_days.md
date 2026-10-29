@@ -31,3 +31,7 @@ python -m scripts.build_archival_schedule_days \
 ```
 
 このcommandは公開配備・実DB復旧・実台帳採用ではない。private-plan/registry/要求/保存原本はGit・Release・公開JSONへ含めない。現行のlp_events/lp_events_all、manifest、通常workflowは変更しない。将来の採用にはv2対応codeと対応台帳を同時に検証し、日別assetの配布契約と通常更新の保持経路を別途整備する。旧readerはv2を拒否するため、旧readerだけへのrollbackで台帳を読ませない。
+
+## 分類の訂正候補
+
+保存日程の新規生成は `scripts.events.category.classify_event_category` を使う。材料不足は「未分類」のままにし、artist_name・公演数を補わない。すでに公開した保存日程の分類だけを見直すときは `scripts.prepare_schedule_categories` を明示実行し、旧公開資産のSHAを固定したGit外の候補を作る。元観測provenance・ID・日程・補足は保持し、分類を派生値として新しいpublic asset SHAと理由一覧でレビューする。候補はReleaseや実DBへ自動反映しない。[2026-10-29の候補と採用手順](reviews/schedule-categories-2026-10-29/README.md)を参照。

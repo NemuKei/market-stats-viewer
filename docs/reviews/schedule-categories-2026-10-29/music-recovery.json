@@ -1,0 +1,928 @@
+{
+  "status": "review_only",
+  "previous_rule_sha256": "7ce552e24c26d19cc58dd941d15eed9403000b2a515262ced35c947103fa03f7",
+  "current_rule_sha256": "949db868480bac004e93b0db165674efdb9982ce88b5084a8942b578309ab812",
+  "database_row_count": 2196,
+  "saved": {
+    "changed_count": 14,
+    "transitions": {
+      "未分類 -> コンサート": 14
+    },
+    "restored_music": [
+      {
+        "event_uid": "evt_2c632f52d46a47f3b8aae245c58a1f28",
+        "title": "beat crazy Presents Special Gig「B.C. ONLY +1 2026」",
+        "date": "2026-04-08",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_323d33963c7b492cb1cfa98b5b375a20",
+        "title": "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026 『CENTRAL STAGE』 ちゃんみな / HANA / 優里",
+        "date": "2026-04-05",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_5030c36b47de43b4903e55a9b61bc4ba",
+        "title": "beat crazy Presents Special Gig「B.C. ONLY +1 2026」",
+        "date": "2026-04-07",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_55a415811e72422f9a2d2628db316198",
+        "title": "第76回さっぽろ雪まつり17thKPF（K-POP FESTIVAL）2026",
+        "date": "2026-02-07",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_5b598f41f8af44bd89e64bceecb0008e",
+        "title": "Kiramune Music Festival 2026",
+        "date": "2026-05-10",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_6617fab186394cc6beec073cb44fcf4f",
+        "title": "ambitious Zepp Sapporo単独公演-5th Anniversary PartY-",
+        "date": "2026-04-11",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_924513e265d4483eaced91568307881e",
+        "title": "キミノウィルス 【キミノウィルス単独公演】桜蘭ノ刻 -朧郷-",
+        "date": "2026-04-14",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_a7fa82a2bd8f44d99fbedbfef047fd81",
+        "title": "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026 『CENTRAL STAGE』 =LOVE / 乃木坂46 / FRUITS ZIPPER / モーニング娘。'26 ※乃木坂46は16名前後のメンバーでの出演を予定しております。",
+        "date": "2026-04-03",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_b49d6569aadb4eeeb57e6f5598f77d51",
+        "title": "beat crazy Presents Special Gig「B.C. ONLY +1 2026」",
+        "date": "2026-04-03",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_bed6c3682fb643de93cfe26b5956b0d8",
+        "title": "HOKKAIDO MUSIC FESTIVAL2026雪まつりSPECIAL!",
+        "date": "2026-02-11",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_c322717a2cfd4faab7311a9369af75ef",
+        "title": "アイドル音楽フェス The ONE ～一音一生～",
+        "date": "2026-05-02",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_cfe3ab20afa84e41b3450ea8ed1f7c9b",
+        "title": "第9回大阪府職場・一般吹奏楽フェスティバル",
+        "date": "2026-04-12",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_d7e307469632445ca63af9967777cac0",
+        "title": "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026 『CENTRAL STAGE』 amazarashi / ORANGE RANGE / 結束バンド / 凛として時雨",
+        "date": "2026-04-04",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_df005ebe10f44e19922421bc20748d87",
+        "title": "MVサイバー衣装お披露目！「BRAVE GROOVE」リリース記念 iLiFE!単独公演",
+        "date": "2026-02-18",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      }
+    ],
+    "removed_music": [],
+    "changes": [
+      {
+        "event_uid": "evt_2c632f52d46a47f3b8aae245c58a1f28",
+        "title": "beat crazy Presents Special Gig「B.C. ONLY +1 2026」",
+        "date": "2026-04-08",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_323d33963c7b492cb1cfa98b5b375a20",
+        "title": "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026 『CENTRAL STAGE』 ちゃんみな / HANA / 優里",
+        "date": "2026-04-05",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_5030c36b47de43b4903e55a9b61bc4ba",
+        "title": "beat crazy Presents Special Gig「B.C. ONLY +1 2026」",
+        "date": "2026-04-07",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_55a415811e72422f9a2d2628db316198",
+        "title": "第76回さっぽろ雪まつり17thKPF（K-POP FESTIVAL）2026",
+        "date": "2026-02-07",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_5b598f41f8af44bd89e64bceecb0008e",
+        "title": "Kiramune Music Festival 2026",
+        "date": "2026-05-10",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_6617fab186394cc6beec073cb44fcf4f",
+        "title": "ambitious Zepp Sapporo単独公演-5th Anniversary PartY-",
+        "date": "2026-04-11",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_924513e265d4483eaced91568307881e",
+        "title": "キミノウィルス 【キミノウィルス単独公演】桜蘭ノ刻 -朧郷-",
+        "date": "2026-04-14",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_a7fa82a2bd8f44d99fbedbfef047fd81",
+        "title": "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026 『CENTRAL STAGE』 =LOVE / 乃木坂46 / FRUITS ZIPPER / モーニング娘。'26 ※乃木坂46は16名前後のメンバーでの出演を予定しております。",
+        "date": "2026-04-03",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_b49d6569aadb4eeeb57e6f5598f77d51",
+        "title": "beat crazy Presents Special Gig「B.C. ONLY +1 2026」",
+        "date": "2026-04-03",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_bed6c3682fb643de93cfe26b5956b0d8",
+        "title": "HOKKAIDO MUSIC FESTIVAL2026雪まつりSPECIAL!",
+        "date": "2026-02-11",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_c322717a2cfd4faab7311a9369af75ef",
+        "title": "アイドル音楽フェス The ONE ～一音一生～",
+        "date": "2026-05-02",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_cfe3ab20afa84e41b3450ea8ed1f7c9b",
+        "title": "第9回大阪府職場・一般吹奏楽フェスティバル",
+        "date": "2026-04-12",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_d7e307469632445ca63af9967777cac0",
+        "title": "CENTRAL MUSIC & ENTERTAINMENT FESTIVAL 2026 『CENTRAL STAGE』 amazarashi / ORANGE RANGE / 結束バンド / 凛として時雨",
+        "date": "2026-04-04",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "evt_df005ebe10f44e19922421bc20748d87",
+        "title": "MVサイバー衣装お披露目！「BRAVE GROOVE」リリース記念 iLiFE!単独公演",
+        "date": "2026-02-18",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      }
+    ]
+  },
+  "database": {
+    "changed_count": 9,
+    "transitions": {
+      "未分類 -> コンサート": 9
+    },
+    "restored_music": [
+      {
+        "event_uid": "festival_hall:https://www.festivalhall.jp/events/6543/",
+        "title": "大阪芸術大学サマーミュージックフェスティバル2026",
+        "date": "2026-08-31",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-30#t=10:20",
+        "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
+        "date": "2027-01-30",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-31#t=10:20",
+        "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
+        "date": "2027-01-31",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "pia_arena_mm:event/6653.html",
+        "title": "FNC BAND KINGDOM 2026",
+        "date": "2026-07-11",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "pia_arena_mm:event/6655.html",
+        "title": "FNC BAND KINGDOM 2026",
+        "date": "2026-07-12",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159485",
+        "title": "kurayamisaka tte, doko? #8「Zepp DiverCity単独公演編」",
+        "date": "2026-10-17",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158073",
+        "title": "日本工学院ミュージックカレッジ presentsCROSS SPARK",
+        "date": "2026-07-14",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159273",
+        "title": "J:COM Presents 高校軽音フェスティバル2026",
+        "date": "2026-11-01",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=167860",
+        "title": "NORTHERN LIGHTS CHRISTMAS GIG at Zepp Sapporo",
+        "date": "2026-12-03",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      }
+    ],
+    "removed_music": [],
+    "changes": [
+      {
+        "event_uid": "festival_hall:https://www.festivalhall.jp/events/6543/",
+        "title": "大阪芸術大学サマーミュージックフェスティバル2026",
+        "date": "2026-08-31",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-30#t=10:20",
+        "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
+        "date": "2027-01-30",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "fukuoka_paypay_dome:https://fukuokamusic-fes.com/2027/index.html#d=2027-01-31#t=10:20",
+        "title": "FUKUOKA MUSIC FES.2027 supported by Trunk",
+        "date": "2027-01-31",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "pia_arena_mm:event/6653.html",
+        "title": "FNC BAND KINGDOM 2026",
+        "date": "2026-07-11",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "pia_arena_mm:event/6655.html",
+        "title": "FNC BAND KINGDOM 2026",
+        "date": "2026-07-12",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=159485",
+        "title": "kurayamisaka tte, doko? #8「Zepp DiverCity単独公演編」",
+        "date": "2026-10-17",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=158073",
+        "title": "日本工学院ミュージックカレッジ presentsCROSS SPARK",
+        "date": "2026-07-14",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159273",
+        "title": "J:COM Presents 高校軽音フェスティバル2026",
+        "date": "2026-11-01",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      },
+      {
+        "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=167860",
+        "title": "NORTHERN LIGHTS CHRISTMAS GIG at Zepp Sapporo",
+        "date": "2026-12-03",
+        "previous_category": "未分類",
+        "new_category": "コンサート"
+      }
+    ]
+  },
+  "database_original_concert_exclusions": [
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5984/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-20",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5997/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5998/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/5999/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6000/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-23",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6001/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6003/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-26",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6004/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6005/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6006/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-28",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6007/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-29",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6008/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-29",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6009/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6298/",
+      "title": "地主薫バレエ団公演「パキータ」「ラ・シルフィード」",
+      "date": "2026-07-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6379/",
+      "title": "大阪クラシック 2026 第60公演",
+      "date": "2026-09-12",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6686/",
+      "title": "2026年劇団☆新感線46周年興行・夏公演 SHINKANSEN☆RSP 怪奇骨董音楽劇『アケチコ！～蒸気の黒ダイヤ、あるいは狂気の島 ～』",
+      "date": "2026-08-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6779/",
+      "title": "法村友井バレエ団 公演『リーズの結婚』（La Fille mal gardée）",
+      "date": "2026-10-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6784/",
+      "title": "第4回 「玉響」 還暦記念公演",
+      "date": "2026-12-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6822/",
+      "title": "第54回 天王寺楽所 雅亮会 雅楽公演会「江戸幕府と天王寺舞楽」",
+      "date": "2026-11-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6861/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-25",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6862/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6863/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6864/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-02-28",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6865/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-01",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6866/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-02",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6867/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-04",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6868/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-04",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6869/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-05",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6870/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-06",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6871/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-06",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6872/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-07",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6873/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-09",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6874/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-10",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6875/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "festival_hall:https://www.festivalhall.jp/events/6876/",
+      "title": "2026年劇団☆新感線46周年興行・冬公演 いのうえ歌舞伎 『髑髏城の七人 LAST STAND』",
+      "date": "2027-03-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/0725_15800.php",
+      "title": "BOOSTランニングフェスタ（ナイト） in 味の素スタジアム",
+      "date": "2026-07-25",
+      "old_category": "コンサート",
+      "new_category": "その他",
+      "rule": "non_music_keyword:ランニング"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1114_16273.php",
+      "title": "京王駅伝フェスティバル 2026",
+      "date": "2026-11-14",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "mufg_stadium:/schedule/2026/1128_16282.php",
+      "title": "BOOSTランニングフェスタ in 味の素スタジアム",
+      "date": "2026-11-28",
+      "old_category": "コンサート",
+      "new_category": "その他",
+      "rule": "non_music_keyword:ランニング"
+    },
+    {
+      "event_uid": "nissan_stadium:https://www.nissan-stadium.jp/calendar/detail.php?id6a86b20b64c58",
+      "title": "YOKOHAMAスポーツ・レクリエーションフェスティバル2026",
+      "date": "2026-10-12",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:h:6c56cba3d32d90e6",
+      "title": "第45回全日本小学生バンドフェスティバル(フロア部門) ・第39回全日本マーチングコンテスト(中学生の部)",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.sukusuku.com/event/ss2026/#d=2026-08-29#t=10:30",
+      "title": "おかあさんといっしょスペシャルステージ2026　おおさか公演",
+      "date": "2026-08-29",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "osaka_jo_hall:https://www.sukusuku.com/event/ss2026/#d=2026-08-30#t=10:30",
+      "title": "おかあさんといっしょスペシャルステージ2026　おおさか公演",
+      "date": "2026-08-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6946.html",
+      "title": "シャインポスト シャインポスト BRiGHT STARS FESTIVAL 2026 \"The Girls Beyond the Rainbow\"",
+      "date": "2026-09-13",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/6981.html",
+      "title": "ぴあ Presents エンタメ業界研究フェス VOL.2",
+      "date": "2026-08-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7173.html",
+      "title": "STARフェス",
+      "date": "2026-10-10",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "pia_arena_mm:event/7175.html",
+      "title": "STARフェス",
+      "date": "2026-10-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260819",
+      "title": "満腹ドーム！ジンギスカンフェスト",
+      "date": "2026-08-19",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20260926",
+      "title": "SBI MUSIC CIRCUS HOKKAIDO 第一部",
+      "date": "2026-09-26",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261103",
+      "title": "みんなのピックルボール IN PREMIST DOME",
+      "date": "2026-11-03",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261121",
+      "title": "コープさっぽろ 食べる・たいせつフェスティバル2026",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261122",
+      "title": "北海道最大のハンドメイドフェスティバル サッポロ モノ ヴィレッジ 2026 秋",
+      "date": "2026-11-22",
+      "old_category": "コンサート",
+      "new_category": "その他",
+      "rule": "non_music_keyword:ハンドメイド"
+    },
+    {
+      "event_uid": "sapporo_dome:https://www.sapporo-dome.co.jp/schedule/detail?date=20261211",
+      "title": "プレコン！～ときめき巡る、大人の縁結びフェス～",
+      "date": "2026-12-11",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tdc_hall:https://taskhavefun.net/contents/1085432#d=2026-09-21#t=17:00",
+      "title": "TASK THE SHOW at Kanadevia Hall ー衝動の夜,衝動の衝突ー",
+      "date": "2026-09-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "tokyo_dome:https://www.tokyo-dome.co.jp/dome/baseball/parkday/#d=2026-10-17",
+      "title": "TOKYO DOME PARK DAY",
+      "date": "2026-10-17",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:2f405ea27b90bb8b",
+      "title": "中日ドラゴンズ ファンフェスタ2026",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:h:ef1254f9dae4e59f",
+      "title": "NTPグループ 創業70周年記念 わくわくフェスタ",
+      "date": "2026-08-24",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://dragons.jp/special/fanfesta/2025/#d=2026-11-22#t=13:00",
+      "title": "中日ドラゴンズ ファンフェスタ2025",
+      "date": "2026-11-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "vantelin_dome_nagoya:https://dragons.jp/special/fanfesta/2026/#d=2026-11-21#t=13:00",
+      "title": "中日ドラゴンズ ファンフェスタ2026",
+      "date": "2026-11-21",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "yokohama_arena:/event/detail/%E3%83%88%E3%82%A4%E3%83%AD%E3%83%95%E3%82%A7%E3%82%B92027",
+      "title": "トイロフェス2027",
+      "date": "2027-01-09",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=153699",
+      "title": "『リアフェスin全Zepp』",
+      "date": "2026-09-13",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=156378",
+      "title": "SHELTER 35th Anniversary Finale \" ZeppがSHELTERになります \" DAY1",
+      "date": "2026-11-01",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=156379",
+      "title": "SHELTER 35th Anniversary Finale \" ZeppがSHELTERになります \" DAY2",
+      "date": "2026-11-02",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=157167",
+      "title": "史上最大の極寿司炎～超Zeppin～",
+      "date": "2026-08-20",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=163429",
+      "title": "この街を出て、Zepp東名阪。",
+      "date": "2027-03-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=163595",
+      "title": "ブザフェス~10th Anniversary year~",
+      "date": "2026-08-31",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=163772",
+      "title": "ナナクロニクル Zepp Haneda 公演",
+      "date": "2027-03-26",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=159402",
+      "title": "Music Splash!!",
+      "date": "2026-11-22",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=168307",
+      "title": "みんがるSP in Zepp Namba",
+      "date": "2026-10-25",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=152927",
+      "title": "リアフェスin全Zepp",
+      "date": "2026-08-30",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=160511",
+      "title": "BM-ECHOES FESTIVAL 2026",
+      "date": "2026-09-05",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=162516",
+      "title": "この街を出て、Zepp東名阪。",
+      "date": "2027-03-27",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    },
+    {
+      "event_uid": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=152839",
+      "title": "全国のZeppをリアルピースがジャック！『リアフェスin全Zepp』",
+      "date": "2026-07-18",
+      "old_category": "コンサート",
+      "new_category": "未分類",
+      "rule": "insufficient_evidence"
+    }
+  ]
+}
