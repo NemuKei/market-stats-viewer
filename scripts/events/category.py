@@ -132,7 +132,7 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
     concert_match = next((k for k in concert_keywords if k in normalized_text), None)
     extended_match = concert_match in {"単独公演", "音楽フェス", "ミュージック", "軽音", "吹奏楽"}
     if concert_match is None:
-        phrase = re.search(r"(?<![a-z0-9_])(?:music\s+(?:&\s*entertainment\s+)?(?:festival|fes)(?![a-z_])|k[ -]pop\s+festival(?![a-z_])|(?:gig|band)(?!\w))", normalized_text)
+        phrase = re.search(r"(?<![a-z0-9_])(?:music\s+(?:&\s*entertainment\s+)?(?:festival|fes)(?![a-z_])|k[ -]pop\s+festival(?![a-z_]))|(?<!\w)(?:gig|band)(?!\w)", normalized_text)
         concert_match = phrase.group() if phrase else None
         extended_match = phrase is not None
     # A generic solo performance may also be theatre or comedy; keep the conflict explicit.

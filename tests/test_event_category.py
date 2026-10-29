@@ -91,7 +91,7 @@ def test_explicit_music_phrases(title):
     ('K-POP FESTIVAL ハンドメイドフェア', '未分類'),
     ('GIG プロレス', '未分類'), ('音楽フェス ランニング', '未分類'),
     ('Music Festival 野球大会', '未分類'), ('単独公演 アメフト', '未分類'),
-    ('gigantic arena', '未分類'), ('bandwidth dome', '未分類'),
+    ('gigantic arena', '未分類'), ('運動band', '未分類'), ('bandwidth dome', '未分類'),
     ('music festivity hall', '未分類'), ('music zepp フェス', '未分類'),
     ('中央フェスティバル', '未分類'),
 ])
