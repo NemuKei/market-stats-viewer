@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-10-30",
+  "as_of_date": "2026-10-31",
   "events": [
     {
       "artist_name": "DAIENKAI 2026",
@@ -40,296 +40,6 @@
       "venue_name": "東京ガーデンシアター"
     },
     {
-      "artist_name": "LE SSERAFIM",
-      "capacity": 20033,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "af633e94f9a4db88b13b",
-      "event_start_time": "18:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://k-arena.com/schedule/20260801-1/",
-      "first_seen_at_utc": "2026-08-01T08:10:16Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "LE SSERAFIM",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://k-arena.com/schedule/20260801-1/",
-          "priority": 10,
-          "record_id": "k_arena_yokohama:https://k-arena.com/schedule/20260801-1/",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "2026 LE SSERAFIM TOUR ‘PUREFLOW’ IN JAPAN LE SSERAFIM",
-          "updated_at_utc": "2026-08-31T10:44:52Z",
-          "url": "https://k-arena.com/schedule/20260801-1/"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://www.hybejapan-concert.com/statics/le-sserafim_pureflow",
-          "priority": 20,
-          "record_id": "3bd9398f643caa6a52f17424f91df08f8b363aa8fce6c30b98fea998c0db21b4",
-          "source_class": "promoter_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "2026 LE SSERAFIM TOUR 'PUREFLOW' IN JAPAN",
-          "updated_at_utc": "2026-10-10T15:18:49Z",
-          "url": "https://www.hybejapan-concert.com/statics/le-sserafim_pureflow"
-        }
-      ],
-      "title": "2026 LE SSERAFIM TOUR ‘PUREFLOW’ IN JAPAN LE SSERAFIM",
-      "updated_at_utc": "2026-08-31T10:44:52Z",
-      "url": "https://k-arena.com/schedule/20260801-1/",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
-      "artist_name": "ファントムシータ",
-      "capacity": 2886,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "4c572b9c270aa4dc348c",
-      "event_start_time": "17:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157223",
-      "first_seen_at_utc": "2026-05-04T06:56:57Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "ファントムシータ",
-      "raw_venue_name": "Zepp Haneda(Tokyo)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157223",
-          "priority": 10,
-          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157223",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "ファントムシータ Zepp TOUR 2026 「ふぁんとむ♥らんど」",
-          "updated_at_utc": "2026-08-31T10:57:31Z",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157223"
-        }
-      ],
-      "title": "ファントムシータ Zepp TOUR 2026 「ふぁんとむ♥らんど」",
-      "updated_at_utc": "2026-08-31T10:57:31Z",
-      "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=157223",
-      "venue_name": "Zepp Haneda(Tokyo)"
-    },
-    {
-      "artist_name": "相川七瀬",
-      "capacity": 2530,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "c746ee630f9c50d58d43",
-      "event_start_time": "17:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155445",
-      "first_seen_at_utc": "2026-07-19T06:48:39Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "相川七瀬",
-      "raw_venue_name": "Zepp Namba(Osaka)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155445",
-          "priority": 10,
-          "record_id": "zepp_namba:https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155445",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "相川七瀬 30th Anniversary ROCK KINGDOM TOUR 2026",
-          "updated_at_utc": "2026-08-31T10:58:37Z",
-          "url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155445"
-        }
-      ],
-      "title": "相川七瀬 30th Anniversary ROCK KINGDOM TOUR 2026",
-      "updated_at_utc": "2026-08-31T10:58:37Z",
-      "url": "https://www.zepp.co.jp/hall/namba/schedule/single/?rid=155445",
-      "venue_name": "Zepp Namba(Osaka)"
-    },
-    {
-      "artist_name": "SOPHIA",
-      "capacity": 2009,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "cc16f37659d1f1afdd15",
-      "event_start_time": "17:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155370",
-      "first_seen_at_utc": "2026-04-19T06:04:54Z",
-      "pref_name": "北海道",
-      "raw_artist_name": "SOPHIA",
-      "raw_venue_name": "Zepp札幌",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155370",
-          "priority": 10,
-          "record_id": "zepp_sapporo:https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155370",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "SOPHIA TOUR 2026 “We Believe ALIVE”",
-          "updated_at_utc": "2026-08-31T10:45:20Z",
-          "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155370"
-        }
-      ],
-      "title": "SOPHIA TOUR 2026 “We Believe ALIVE”",
-      "updated_at_utc": "2026-08-31T10:45:20Z",
-      "url": "https://www.zepp.co.jp/hall/sapporo/schedule/single/?rid=155370",
-      "venue_name": "Zepp札幌"
-    },
-    {
-      "artist_name": "BABYMONSTER",
-      "capacity": 12360,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "452306ecba4e6e6f3b04",
-      "event_start_time": "18:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://pia-arena-mm.jp/event/6627.html",
-      "first_seen_at_utc": "2026-03-23T05:47:47Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "BABYMONSTER",
-      "raw_venue_name": "ぴあアリーナMM",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://pia-arena-mm.jp/event/6627.html",
-          "priority": 10,
-          "record_id": "pia_arena_mm:event/6627.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "BABYMONSTER 2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN",
-          "updated_at_utc": "2026-08-31T10:52:50Z",
-          "url": "https://pia-arena-mm.jp/event/6627.html"
-        }
-      ],
-      "title": "BABYMONSTER 2026-27 BABYMONSTER WORLD TOUR [춤(CHOOM)] IN JAPAN",
-      "updated_at_utc": "2026-08-31T10:52:50Z",
-      "url": "https://pia-arena-mm.jp/event/6627.html",
-      "venue_name": "ぴあアリーナMM"
-    },
-    {
-      "artist_name": "SUPER BEAVER",
-      "capacity": 55000,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "142546af44b2635e5144",
-      "event_start_time": "17:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026",
-      "first_seen_at_utc": "2026-02-27T03:37:12Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "SUPER BEAVER",
-      "raw_venue_name": "京セラドーム大阪",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026",
-          "priority": 10,
-          "record_id": "kyocera_dome_osaka:h:b0046e205fc67fc5",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "SUPER BEAVER「都会のラクダ DOME TOUR 2026」",
-          "updated_at_utc": "2026-03-02T07:09:01Z",
-          "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://sp.super-beaver.com/live_information/list/?range=future",
-          "priority": 20,
-          "record_id": "242a7a916d555114d6635666729bc8623eb1713805a982267ff837bf9af95a09",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "SUPER BEAVER <ドームツアー>",
-          "updated_at_utc": "2026-10-10T15:18:49Z",
-          "url": "https://sp.super-beaver.com/live_information/list/?range=future"
-        }
-      ],
-      "title": "SUPER BEAVER「都会のラクダ DOME TOUR 2026」",
-      "updated_at_utc": "2026-03-02T07:09:01Z",
-      "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=08&yearId=2026",
-      "venue_name": "京セラドーム大阪"
-    },
-    {
-      "artist_name": "ケツメイシ",
-      "capacity": 12542,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "27c5f1db4f4804a3fb5f",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6030&etype=1",
-      "first_seen_at_utc": "2026-08-01T08:24:21Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "ケツメイシ",
-      "raw_venue_name": "国立代々木競技場第一体育館",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6030&etype=1",
-          "priority": 10,
-          "record_id": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6030&etype=1",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "ケツメイシ 25th Anniversary TOUR　ケツメンCAMP 2026",
-          "updated_at_utc": "2026-08-31T10:59:53Z",
-          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6030&etype=1"
-        }
-      ],
-      "title": "ケツメイシ 25th Anniversary TOUR　ケツメンCAMP 2026",
-      "updated_at_utc": "2026-08-31T10:59:53Z",
-      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6030&etype=1",
-      "venue_name": "国立代々木競技場第一体育館"
-    },
-    {
       "artist_name": "ME:I",
       "capacity": 15000,
       "display_source_class": "venue_official",
@@ -366,44 +76,6 @@
       "updated_at_utc": "2026-08-31T10:59:51Z",
       "url": "https://me-i.jp/",
       "venue_name": "有明アリーナ"
-    },
-    {
-      "artist_name": "SUPER JUNIOR 83z",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-01",
-      "event_end_date": "2026-08-01",
-      "event_end_time": null,
-      "event_key": "4f536674e66ce9f3c0b9",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8653.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "SUPER JUNIOR 83z",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8653.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8653.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "SUPER JUNIOR 83z 2026 SUPER JUNIOR 83z FAN-CON TOUR [1983] IN JAPAN",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8653.html"
-        }
-      ],
-      "title": "SUPER JUNIOR 83z 2026 SUPER JUNIOR 83z FAN-CON TOUR [1983] IN JAPAN",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8653.html",
-      "venue_name": "豊洲PIT"
     },
     {
       "artist_name": "LE SSERAFIM",
@@ -40938,8 +40610,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-10-30T10:59:56Z",
-  "history_start_date": "2026-08-01",
+  "generated_at_utc": "2026-10-30T18:04:02Z",
+  "history_start_date": "2026-08-02",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 43,
@@ -40966,6 +40638,26 @@
     {
       "reason": "unresolved_domestic_location",
       "record_id": "2cb79656908333a3afd62c7348191a62d4a44249fe44e3118400004ddbc1a3e9",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "3204bec217372cec5146a053f95edb87cd5e726c5457cbd90a9f5f7410913246",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "a6f015d882426109fdd75622153c27f3ade788cb023c570f89df82b55a46e2f2",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "bc96e29a399cd581947a882bf319c1b80ff584c74b0eb640e14c044b6a9973ce",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "73e9c5b5dc99981c19edd470ce69125c035d31101d4cfcff08a46b4d92be7796",
       "source_id": "kstyle_music"
     },
     {
@@ -41115,11 +40807,6 @@
     },
     {
       "reason": "unresolved_domestic_location",
-      "record_id": "5a16c4cf44e7a5f2150471664af6a780e509765f2a6b752dd6bccbd181bafa80",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
       "record_id": "c58a9ca127d2d4526d9b158297355231b434fec57e09326b1aad4d01dbe89b7f",
       "source_id": "kstyle_music"
     }
@@ -41133,13 +40820,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 741,
+      "official_events": 733,
       "venue_web_discovery": 287
     },
-    "event_count": 1028,
-    "identity_held_record_count": 923,
-    "location_held_record_count": 35,
-    "record_count_before_grouping": 2175,
+    "event_count": 1020,
+    "identity_held_record_count": 916,
+    "location_held_record_count": 38,
+    "record_count_before_grouping": 2158,
     "start_time_split_event_count": 67,
     "start_time_split_group_count": 63,
     "supplemental_merged_group_count": 23,
