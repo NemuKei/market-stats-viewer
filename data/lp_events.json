@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-11-01",
+  "as_of_date": "2026-11-02",
   "events": [
-    {
-      "artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-03",
-      "event_end_date": "2026-08-03",
-      "event_end_time": null,
-      "event_key": "93d715c02f5dfae31c43",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202604/8452.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202604/8452.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202604/8452.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～ ①ぽかぽか×めざましライブ in めざましWANGANフェス\r\n②めざましライブ モナキ in めざましWANGANフェス",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202604/8452.html"
-        }
-      ],
-      "title": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～ ①ぽかぽか×めざましライブ in めざましWANGANフェス\r\n②めざましライブ モナキ in めざましWANGANフェス",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202604/8452.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "LANA",
       "capacity": 12542,
@@ -40066,8 +40028,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-01T11:27:52Z",
-  "history_start_date": "2026-08-03",
+  "generated_at_utc": "2026-11-01T17:58:26Z",
+  "history_start_date": "2026-08-04",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 43,
@@ -40271,13 +40233,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 726,
+      "official_events": 725,
       "venue_web_discovery": 280
     },
-    "event_count": 1006,
-    "identity_held_record_count": 956,
+    "event_count": 1005,
+    "identity_held_record_count": 952,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 2197,
+    "record_count_before_grouping": 2192,
     "start_time_split_event_count": 67,
     "start_time_split_group_count": 63,
     "supplemental_merged_group_count": 23,
