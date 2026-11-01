@@ -47,7 +47,7 @@ def mock_japan_payload(params):
 def test_japan_fetches_ids_before_attributes_and_deduplicates(monkeypatch):
     calls = []
 
-    def fetch(endpoint, params, request_timeout, *args):
+    def fetch(endpoint, params, request_timeout, *args, **kwargs):
         calls.append(params)
         return mock_japan_payload(params)
 
@@ -67,7 +67,7 @@ def test_japan_fetches_ids_before_attributes_and_deduplicates(monkeypatch):
 def test_non_japanese_queries_remain_single_request(monkeypatch, countries):
     calls = []
 
-    def fetch(endpoint, query, request_timeout):
+    def fetch(endpoint, query, request_timeout, **kwargs):
         calls.append(query)
         return payload()
 
@@ -102,7 +102,7 @@ def test_incomplete_fetch_preserves_seed_and_manual(
     manual.write_text("existing manual", encoding="utf-8")
     calls = 0
 
-    def fetch(endpoint, params, request_timeout, *args):
+    def fetch(endpoint, params, request_timeout, *args, **kwargs):
         nonlocal calls
         calls += 1
         if calls == fail_at:
@@ -131,7 +131,7 @@ def test_success_writes_both_kinds_and_preserves_watch_settings(cli_paths, monke
     monkeypatch.setattr(
         builder,
         "_fetch_json_with_retry",
-        lambda endpoint, params, *a: mock_japan_payload(params),
+        lambda endpoint, params, *a, **k: mock_japan_payload(params),
     )
     builder.main()
     with output.open(encoding="utf-8") as f:
@@ -182,3 +182,28 @@ def test_timeout_exhaustion(monkeypatch):
     with pytest.raises(RuntimeError, match="after 5 attempts"):
         builder.fetch_sparql_with_retry("https://example.test", "query")
     assert len(calls) == 5
+
+
+@pytest.mark.parametrize("reason", ["deadline", "name"])
+def test_late_validation_failure_keeps_seed_and_manual(cli_paths, monkeypatch, reason):
+    output, manual = cli_paths
+    builder.write_seed_csv_noop(builder.build_seed_rows(payload()), output)
+    manual.write_bytes(b"unchanged manual\n")
+    seed_before = output.read_bytes()
+    clock = [0.0]
+    monkeypatch.setattr(builder.time, "monotonic", lambda: clock[0])
+
+    def fetch(endpoint, params, *args, **kwargs):
+        result = mock_japan_payload(params)
+        if "ids" in params:
+            if reason == "deadline":
+                clock[0] = builder.MAX_FETCH_SECONDS + 1
+            else:
+                result["entities"]["Q1"]["labels"] = {}
+        return result
+
+    monkeypatch.setattr(builder, "_fetch_json_with_retry", fetch)
+    with pytest.raises(RuntimeError, match="deadline|name.*guard"):
+        builder.main()
+    assert output.read_bytes() == seed_before
+    assert manual.read_bytes() == b"unchanged manual\n"

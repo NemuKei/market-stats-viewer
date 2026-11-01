@@ -1,7 +1,7 @@
 """Fetch boundaries: incomplete or partial Wikidata data must not replace a seed."""
 
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime
 
 import pytest
@@ -100,7 +100,7 @@ def test_entity_requests_at_most_50_and_language_fallback(monkeypatch):
     def get(url, params, headers, timeout):
         batch = params["ids"].split("|")
         batches.append(batch)
-        assert params["maxlag"] == 5 and params["languages"] == "ja|en|ko"
+        assert params["maxlag"] == 5 and params["languages"] == "ja|en|ko|mul"
         assert headers["User-Agent"] == b.USER_AGENT
         return Response(
             {
@@ -156,7 +156,12 @@ def test_http200_invalid_sparql_is_failure(monkeypatch, bad):
 
 @pytest.mark.parametrize(
     "retry_after",
-    ["12", format_datetime(datetime.now(timezone.utc).replace(year=2099), usegmt=True)],
+    [
+        "12",
+        format_datetime(
+            datetime.now(timezone.utc) + timedelta(seconds=120), usegmt=True
+        ),
+    ],
 )
 def test_429_retry_after_is_respected(monkeypatch, retry_after):
     replies = iter(
@@ -262,3 +267,120 @@ def test_later_attribute_batch_failure_preserves_files(tmp_path, monkeypatch):
         b.main()
     assert output.read_bytes() == b"existing seed\n"
     assert manual.read_bytes() == b"existing manual\n"
+
+
+@pytest.mark.parametrize("language", ["ja", "en", "ko", "mul"])
+def test_label_priority_includes_mul_but_alias_languages_stay_unchanged(
+    monkeypatch, language
+):
+    order = ["ja", "en", "ko", "mul"]
+    start = order.index(language)
+
+    def get(url, params, **kwargs):
+        assert "mul" in params["languages"].split("|")
+        return Response(
+            {
+                "entities": {
+                    "Q1": {
+                        "labels": {
+                            lang: {"value": lang + " name"} for lang in order[start:]
+                        },
+                        "aliases": {
+                            lang: [{"value": lang + " alias"}] for lang in order
+                        },
+                    }
+                }
+            }
+        )
+
+    monkeypatch.setattr(b.requests, "get", get)
+    monkeypatch.setattr(b.time, "sleep", lambda _: None)
+    row = b.fetch_entity_rows({"Q1"}, 60)[0]
+    assert row["canonical_name"] == language + " name"
+    aliases = json.loads(row["aliases_json"])
+    assert set(["ja alias", "en alias", "ko alias"]) <= set(aliases)
+    assert "mul alias" not in aliases
+    assert "mul name" not in aliases
+
+
+def test_existing_named_id_cannot_degrade_to_qid(tmp_path):
+    path = tmp_path / "seed.csv"
+    b.write_seed_csv_noop(
+        [{"artist_id": "wd:Q1", "canonical_name": "Named artist"}], path
+    )
+    before = path.read_bytes()
+    with pytest.raises(RuntimeError, match="name.*guard"):
+        b.validate_seed_size(seed_rows(["Q1"]), path)
+    assert path.read_bytes() == before
+
+
+@pytest.mark.parametrize(
+    "retry_after",
+    [
+        "301",
+        "21601",
+        format_datetime(datetime(2099, 1, 1, tzinfo=timezone.utc), usegmt=True),
+    ],
+)
+def test_excessive_retry_after_stops_without_sleep_or_second_request(
+    monkeypatch, retry_after
+):
+    waits = []
+    calls = []
+
+    def get(*args, **kwargs):
+        calls.append(1)
+        return Response(status=429, headers={"Retry-After": retry_after})
+
+    monkeypatch.setattr(b.requests, "get", get)
+    monkeypatch.setattr(b.time, "sleep", waits.append)
+    with pytest.raises(RuntimeError, match="wait.*limit"):
+        b.fetch_sparql_with_retry("https://example.test", "query")
+    assert calls == [1]
+    assert waits == [5]
+
+
+def test_request_deadline_stops_before_retry(monkeypatch):
+    now = [0.0]
+    waits = []
+    calls = []
+
+    def get(*args, **kwargs):
+        calls.append(1)
+        now[0] = 100.0
+        return Response(status=429, headers={"Retry-After": "12"})
+
+    monkeypatch.setattr(b.time, "monotonic", lambda: now[0])
+    monkeypatch.setattr(b.time, "sleep", waits.append)
+    monkeypatch.setattr(b.requests, "get", get)
+    with pytest.raises(RuntimeError, match="deadline"):
+        b._fetch_json_with_retry("https://example.test", {}, 60, deadline=100.0)
+    assert calls == [1] and waits == [5]
+
+
+def test_expired_budget_stops_before_subdivision(monkeypatch):
+    now = [0.0]
+    calls = []
+
+    def fetch(*args, **kwargs):
+        calls.append(1)
+        now[0] = 101.0
+        raise b.WikidataQueryTimeout("timeout")
+
+    monkeypatch.setattr(b.time, "monotonic", lambda: now[0])
+    monkeypatch.setattr(b, "fetch_sparql_with_retry", fetch)
+    with pytest.raises(RuntimeError, match="deadline"):
+        b.fetch_artist_ids(["jp"], "person", ["Q100", "Q200"], 60, deadline=100.0)
+    assert calls == [1]
+
+
+def test_partition_reserves_request_time_from_original_deadline(monkeypatch):
+    monkeypatch.setattr(b.time, "monotonic", lambda: 80.0)
+    monkeypatch.setattr(b.time, "sleep", lambda _: None)
+
+    def unexpected_request(*args, **kwargs):
+        raise AssertionError("not enough acquisition time to start a request")
+
+    monkeypatch.setattr(b.requests, "get", unexpected_request)
+    with pytest.raises(RuntimeError, match="deadline"):
+        b.fetch_artist_ids(["jp"], "person", ["Q177220"], 60, deadline=100.0)
