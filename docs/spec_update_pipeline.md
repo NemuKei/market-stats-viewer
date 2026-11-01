@@ -198,7 +198,7 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
 - Schedule: monthly (`cron: 20 3 1 * *`) + `workflow_dispatch`
 - Flow:
   1. `artist_registry.seed.csv` を Wikidata（`--countries kr`）で更新
-  2. `artist_registry.jp.seed.csv` を Wikidata（`--countries jp`）で更新。個人とグループは別クエリで取得し、両方の成功後に `artist_id` で統合する（重複IDのaliasも統合）。タイムアウト・空結果・利用可能な行のない結果ではseedを書き換えず失敗にする。
+  2. `artist_registry.jp.seed.csv` を Wikidata（`--countries jp`）で更新。職業の下位分類を先取りし、個人・グループのIDだけをSPARQLで取得して重複を統合する。大分類は単独、他は最大50職業ずつ。タイムアウト時は職業集合を分割し、単独分類でも失敗するとQIDの十進接頭辞で網羅的に分割する（接頭辞そのもののIDも含める。深さ上限では成功扱いにせず失敗する）。名前・別名は `wbgetentities` APIで50 IDずつ、ja/en/koから取得する。従来と同じく個人は `P31=Q5` を要件とする。空の職業組は正常だが、全体が空・不正JSON・HTTP 200内のTimeoutException・欠損した属性応答ではseedを書き換えない。
   3. `build_events_artist_inferred` を実行して補完CSVを再生成
 - No-op policy:
   - seed生成時、`artist_id` ごとに実データ（canonical/aliases/source/is_enabled）が不変なら既存 `updated_at` を保持する。
@@ -206,6 +206,8 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
   - 生成結果がファイル同一なら commit しない。
 - Manual override policy:
   - `artist_registry.manual.csv` は workflow で上書きしない。
+  - 各要求前に5秒待機する。429のRetry-After（秒数/HTTP-date）とAPIのmaxlagを尊重する。タイムアウトしたIDクエリは同じ重い要求を繰り返す代わりに分割する。
+  - 国ごとの全取得が成功してから、総ID件数と既存IDの保持数がそれぞれ既存の90%以上であること、既存seedの監視対象IDが全て残ることを確認して書く。新規IDで大量の消失を相殺することはできない。取得・検査の失敗時はseed/manualを変更しない。韓国・legacyのクエリ範囲は維持する。
   - 同一 `artist_id` が seed と manual にある場合、利用時は manual を優先する（ローダーで後勝ちマージ）。
 
 ## Addendum (2026-02-23) Event Signals (News / Secondary Reference)

@@ -1,4 +1,4 @@
-"""Build artist registry seed CSV from Wikidata SPARQL results."""
+"""Build artist registry seeds; Japan fetches IDs before API attributes."""
 
 from __future__ import annotations
 
@@ -6,9 +6,12 @@ import argparse
 import csv
 import json
 import logging
+import math
+import re
 import random
 import time
-from datetime import date
+from datetime import date, datetime, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import requests
@@ -17,6 +20,14 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 SEED_PATH = DATA_DIR / "artist_registry.seed.csv"
 MANUAL_PATH = DATA_DIR / "artist_registry.manual.csv"
+
+API_ENDPOINT = "https://www.wikidata.org/w/api.php"
+REQUEST_INTERVAL_SECONDS = 5.0
+MIN_SEED_ROW_RATIO = 0.9
+OCCUPATION_BATCH_SIZE = 50
+MUSICIAN_OCCUPATIONS_QUERY = (
+    "SELECT DISTINCT ?occupation WHERE { ?occupation wdt:P279* wd:Q639669 . }"
+)
 
 SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
 USER_AGENT = "market-stats-viewer/1.0 (+https://github.com/NemuKei/market-stats-viewer)"
@@ -50,45 +61,121 @@ SEED_COLUMNS = [
 ]
 
 
+class WikidataQueryTimeout(RuntimeError):
+    """A query partition exceeded the server/client time limit."""
+
+
+def _retry_after_seconds(value: str) -> float:
+    try:
+        return max(0.0, float(value))
+    except ValueError:
+        try:
+            return max(
+                0.0,
+                (
+                    parsedate_to_datetime(value) - datetime.now(timezone.utc)
+                ).total_seconds(),
+            )
+        except (TypeError, ValueError, OverflowError):
+            return 0.0
+
+
+def _fetch_json_with_retry(
+    endpoint: str,
+    params: dict[str, object],
+    request_timeout: int,
+    max_attempts: int = 5,
+    base_wait: float = 1.5,
+    retry_timeouts: bool = True,
+) -> dict:
+    headers = {"Accept": "application/json", "User-Agent": USER_AGENT}
+    if endpoint == SPARQL_ENDPOINT:
+        headers["Accept"] = "application/sparql-results+json"
+    for attempt in range(1, max_attempts + 1):
+        retry_after = 0.0
+        try:
+            time.sleep(REQUEST_INTERVAL_SECONDS)
+            resp = requests.get(
+                endpoint, params=params, headers=headers, timeout=request_timeout
+            )
+            retry_after = _retry_after_seconds(
+                getattr(resp, "headers", {}).get("Retry-After", "")
+            )
+            if resp.status_code in {429, 500, 502, 503, 504}:
+                if (
+                    "TimeoutException" in getattr(resp, "text", "")
+                    or resp.status_code == 504
+                ):
+                    raise WikidataQueryTimeout("WDQS query timed out")
+                raise requests.HTTPError(f"retryable status={resp.status_code}")
+            if resp.status_code != 200:
+                resp.raise_for_status()
+            if "TimeoutException" in getattr(resp, "text", ""):
+                raise WikidataQueryTimeout("WDQS timeout in HTTP 200 body")
+            payload = resp.json()
+            if not isinstance(payload, dict):
+                raise ValueError("Wikidata response must be an object")
+            if "error" in payload:
+                error = payload["error"]
+                if isinstance(error, dict) and error.get("code") == "maxlag":
+                    retry_after = max(retry_after, 5.0)
+                raise RuntimeError("Wikidata API error: " + str(error))
+            return payload
+        except (requests.RequestException, ValueError, RuntimeError) as exc:
+            if attempt >= max_attempts or (
+                not retry_timeouts
+                and isinstance(exc, (WikidataQueryTimeout, requests.Timeout))
+            ):
+                error_type = (
+                    WikidataQueryTimeout
+                    if isinstance(exc, (WikidataQueryTimeout, requests.Timeout))
+                    else RuntimeError
+                )
+                raise error_type(
+                    f"Wikidata fetch failed after {attempt} attempts"
+                ) from exc
+            wait = max(
+                retry_after, base_wait * (2 ** (attempt - 1)) + random.uniform(0.0, 0.6)
+            )
+            logger.warning(
+                "Retry %d/%d after %s (wait %.1fs)",
+                attempt,
+                max_attempts,
+                type(exc).__name__,
+                wait,
+            )
+            time.sleep(wait)
+    raise RuntimeError("Wikidata fetch failed")
+
+
+def sparql_bindings(payload: dict) -> list[dict]:
+    results = payload.get("results") if isinstance(payload, dict) else None
+    bindings = results.get("bindings") if isinstance(results, dict) else None
+    if not isinstance(bindings, list) or any(
+        not isinstance(row, dict) for row in bindings
+    ):
+        raise RuntimeError("Malformed Wikidata SPARQL result")
+    return bindings
+
+
 def fetch_sparql_with_retry(
     endpoint: str,
     query: str,
     max_attempts: int = 5,
     base_wait: float = 1.5,
     request_timeout: int = 60,
+    split_on_timeout: bool = False,
 ) -> dict:
-    headers = {
-        "Accept": "application/sparql-results+json",
-        "User-Agent": USER_AGENT,
-    }
-    params = {"query": query, "format": "json"}
-
-    for attempt in range(1, max_attempts + 1):
-        try:
-            resp = requests.get(
-                endpoint, params=params, headers=headers, timeout=request_timeout
-            )
-            if resp.status_code == 200:
-                return resp.json()
-            if resp.status_code in {429, 500, 502, 503, 504}:
-                raise requests.HTTPError(f"retryable status={resp.status_code}")
-            resp.raise_for_status()
-        except Exception as exc:
-            if attempt >= max_attempts:
-                raise RuntimeError(
-                    f"Wikidata fetch failed after {attempt} attempts"
-                ) from exc
-            wait = base_wait * (2 ** (attempt - 1)) + random.uniform(0.0, 0.6)
-            logger.warning(
-                "Retry %d/%d after error: %s (wait %.1fs)",
-                attempt,
-                max_attempts,
-                exc,
-                wait,
-            )
-            time.sleep(wait)
-
-    raise RuntimeError("Wikidata fetch failed")
+    payload = _fetch_json_with_retry(
+        endpoint,
+        {"query": query, "format": "json"},
+        request_timeout,
+        max_attempts,
+        base_wait,
+        not split_on_timeout,
+    )
+    sparql_bindings(payload)
+    return payload
 
 
 def build_seed_rows(payload: dict) -> list[dict[str, object]]:
@@ -275,42 +362,222 @@ GROUP BY ?item ?itemLabel
 """.strip()
 
 
+def occupation_batches(qids: list[str]) -> list[list[str]]:
+    unique = sorted(set(qids))
+    broad = [[q] for q in ("Q639669", "Q177220") if q in unique]
+    rest = [q for q in unique if q not in {"Q639669", "Q177220"}]
+    return broad + [
+        rest[i : i + OCCUPATION_BATCH_SIZE]
+        for i in range(0, len(rest), OCCUPATION_BATCH_SIZE)
+    ]
+
+
+def fetch_musician_occupations(request_timeout: int) -> list[str]:
+    payload = fetch_sparql_with_retry(
+        SPARQL_ENDPOINT, MUSICIAN_OCCUPATIONS_QUERY, request_timeout=request_timeout
+    )
+    qids = {
+        _qid_from_uri(_value(row, "occupation")) for row in sparql_bindings(payload)
+    }
+    if not qids or any(not re.fullmatch(r"Q[1-9][0-9]*", q) for q in qids):
+        raise RuntimeError("Invalid musician occupation set")
+    return sorted(qids)
+
+
+def build_id_query(
+    countries: list[str],
+    kind: str,
+    occupations: list[str] | None = None,
+    prefix: str = "",
+    exact: bool = False,
+) -> str:
+    values = " ".join(f"wd:{COUNTRY_QID_MAP[c]}" for c in countries)
+    restriction = f"VALUES ?item {{ wd:Q{prefix} }}" if exact else ""
+    prefix_filter = (
+        f'FILTER(STRSTARTS(STR(?item), "http://www.wikidata.org/entity/Q{prefix}"))'
+        if prefix and not exact
+        else ""
+    )
+    if kind == "person":
+        if not occupations or any(
+            not re.fullmatch(r"Q[1-9][0-9]*", q) for q in occupations
+        ):
+            raise ValueError("Explicit occupations required")
+        occupation_values = " ".join(f"wd:{q}" for q in occupations)
+        # Preserve the original human constraint. Filter a shard before joining occupations.
+        pattern = f"""?item wdt:P27 ?country .
+  {prefix_filter}
+  VALUES ?occupation {{ {occupation_values} }}
+  ?item wdt:P106 ?occupation ; wdt:P31 wd:Q5 ."""
+    elif kind == "group":
+        pattern = f"?item wdt:P495 ?country . {prefix_filter} ?item wdt:P31/wdt:P279* wd:Q215380 ."
+    else:
+        raise ValueError("Unknown artist kind")
+    return f'SELECT DISTINCT ?item WHERE {{ hint:Query hint:optimizer "None" . VALUES ?country {{ {values} }} {restriction} {pattern} }}'
+
+
+def fetch_artist_ids(
+    countries: list[str],
+    kind: str,
+    occupations: list[str] | None,
+    request_timeout: int,
+    prefix: str = "",
+    exact: bool = False,
+) -> set[str]:
+    query = build_id_query(countries, kind, occupations, prefix, exact)
+    try:
+        payload = fetch_sparql_with_retry(
+            SPARQL_ENDPOINT,
+            query,
+            request_timeout=request_timeout,
+            split_on_timeout=True,
+        )
+        qids = {_qid_from_uri(_value(row, "item")) for row in sparql_bindings(payload)}
+        if any(not re.fullmatch(r"Q[1-9][0-9]*", q) for q in qids):
+            raise RuntimeError("Invalid artist ID result")
+        return qids
+    except WikidataQueryTimeout:
+        if exact or len(prefix) >= 12:
+            raise
+        if occupations and len(occupations) > 1:
+            mid = len(occupations) // 2
+            return fetch_artist_ids(
+                countries, kind, occupations[:mid], request_timeout, prefix
+            ) | fetch_artist_ids(
+                countries, kind, occupations[mid:], request_timeout, prefix
+            )
+        # Decimal prefixes exhaust the QID namespace without a high-water cutoff.
+        # Keep the exact prefix itself: Q1 is not in Q10* ... Q19*.
+        found = (
+            fetch_artist_ids(
+                countries, kind, occupations, request_timeout, prefix, True
+            )
+            if prefix
+            else set()
+        )
+        for digit in "0123456789" if prefix else "123456789":
+            found |= fetch_artist_ids(
+                countries, kind, occupations, request_timeout, prefix + digit
+            )
+        return found
+
+
+def fetch_entity_rows(qids: set[str], request_timeout: int) -> list[dict[str, object]]:
+    ordered = sorted(qids, key=lambda q: int(q[1:]))
+    rows = []
+    for start in range(0, len(ordered), 50):
+        batch = ordered[start : start + 50]
+        payload = _fetch_json_with_retry(
+            API_ENDPOINT,
+            {
+                "action": "wbgetentities",
+                "format": "json",
+                "ids": "|".join(batch),
+                "props": "labels|aliases",
+                "languages": "ja|en|ko",
+                "maxlag": 5,
+            },
+            request_timeout,
+        )
+        entities = payload.get("entities")
+        if not isinstance(entities, dict):
+            raise RuntimeError("Malformed entity result")
+        for qid in batch:
+            entity = entities.get(qid)
+            if not isinstance(entity, dict) or "missing" in entity:
+                raise RuntimeError(f"Missing requested entity: {qid}")
+            labels, aliases = entity.get("labels"), entity.get("aliases")
+            if not isinstance(labels, dict) or not isinstance(aliases, dict):
+                raise RuntimeError(f"Malformed entity attributes: {qid}")
+            names, alternate = [], []
+            for language in ("ja", "en", "ko"):
+                if language in labels:
+                    label = labels[language]
+                    if not isinstance(label, dict) or not isinstance(
+                        label.get("value"), str
+                    ):
+                        raise RuntimeError(f"Malformed label: {qid}")
+                    names.append(label["value"])
+                language_aliases = aliases.get(language, [])
+                if not isinstance(language_aliases, list):
+                    raise RuntimeError(f"Malformed aliases: {qid}")
+                for alias in language_aliases:
+                    if not isinstance(alias, dict) or not isinstance(
+                        alias.get("value"), str
+                    ):
+                        raise RuntimeError(f"Malformed alias: {qid}")
+                    alternate.append(alias["value"])
+            canonical = next((n for n in names if n.strip()), qid)
+            # Build directly rather than delimiting aliases: a name can contain '|'.
+            row = build_seed_rows(
+                {
+                    "results": {
+                        "bindings": [
+                            {
+                                "item": {
+                                    "value": f"http://www.wikidata.org/entity/{qid}"
+                                },
+                                "itemLabel": {"value": canonical},
+                            }
+                        ]
+                    }
+                }
+            )[0]
+            row["aliases_json"] = json.dumps(
+                sorted(set(names + alternate) - {canonical, ""}), ensure_ascii=False
+            )
+            rows.append(row)
+        logger.info(
+            "Fetched attributes: %d/%d IDs", min(start + 50, len(ordered)), len(ordered)
+        )
+    return sorted(rows, key=lambda row: str(row["canonical_name"]))
+
+
+def validate_seed_size(rows: list[dict[str, object]], path: Path) -> None:
+    existing = _load_existing_rows(path)
+    fetched = {str(row["artist_id"]) for row in rows}
+    minimum = max(1, math.ceil(len(existing) * MIN_SEED_ROW_RATIO))
+    retained = fetched & existing.keys()
+    missing_watch = {
+        qid
+        for qid, row in existing.items()
+        if str(row.get("ticketjam_watch", "")).lower() in {"1", "true", "yes"}
+    } - fetched
+    if missing_watch:
+        raise RuntimeError(
+            f"Artist watch guard: {len(missing_watch)} watched IDs missing"
+        )
+    if len(fetched) < minimum or (existing and len(retained) < minimum):
+        raise RuntimeError(
+            f"Artist seed shrink/ID-loss guard: existing={len(existing)} fetched={len(fetched)} retained={len(retained)} minimum={minimum}"
+        )
+
+
 def fetch_seed_rows(
     country_codes: list[str], request_timeout: int
 ) -> list[dict[str, object]]:
-    # Keep the existing Korean/legacy request; Japan no longer runs the UNION.
-    kinds = ["person", "group"] if "jp" in country_codes else [None]
-    by_id: dict[str, dict[str, object]] = {}
-    for kind in kinds:
-        logger.info(
-            "Fetching artist registry: countries=%s kind=%s",
-            country_codes,
-            kind or "combined",
-        )
+    if "jp" not in country_codes:
         payload = fetch_sparql_with_retry(
             SPARQL_ENDPOINT,
-            build_country_filtered_query(country_codes, kind),
+            build_country_filtered_query(country_codes),
             request_timeout=request_timeout,
         )
         rows = build_seed_rows(payload)
         if not rows:
-            raise RuntimeError(f"Wikidata returned no usable artists: kind={kind}")
-        for row in rows:
-            artist_id = str(row["artist_id"])
-            if artist_id not in by_id:
-                by_id[artist_id] = row
-                continue
-            existing = by_id[artist_id]
-            aliases = json.loads(str(existing["aliases_json"])) + json.loads(
-                str(row["aliases_json"])
-            )
-            if row["canonical_name"] != existing["canonical_name"]:
-                aliases.append(str(row["canonical_name"]))
-            existing["aliases_json"] = json.dumps(
-                sorted(set(aliases) - {str(existing["canonical_name"])}),
-                ensure_ascii=False,
-            )
-    return sorted(by_id.values(), key=lambda row: str(row["canonical_name"]))
+            raise RuntimeError("Wikidata returned no usable artists")
+        return rows
+    occupations = fetch_musician_occupations(request_timeout)
+    qids = set()
+    batches = occupation_batches(occupations)
+    for index, batch in enumerate(batches, 1):
+        qids |= fetch_artist_ids(country_codes, "person", batch, request_timeout)
+        logger.info(
+            "Fetched person IDs: batch=%d/%d unique=%d", index, len(batches), len(qids)
+        )
+    qids |= fetch_artist_ids(country_codes, "group", None, request_timeout)
+    if not qids:
+        raise RuntimeError("Wikidata returned no usable artists")
+    return fetch_entity_rows(qids, request_timeout)
 
 
 def parse_args() -> argparse.Namespace:
@@ -348,6 +615,7 @@ def main() -> None:
     ]
     output_path = Path(args.output)
     rows = fetch_seed_rows(countries, max(10, int(args.request_timeout)))
+    validate_seed_size(rows, output_path)
     rows = stabilize_updated_at_with_existing(
         rows=rows,
         path=output_path,
