@@ -1,8 +1,63 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-10-29T03:16:57Z",
+  "run_at_utc": "2026-11-02T03:12:54Z",
   "automation_id": "msv-venue-discovery",
-  "candidates": [],
+  "candidates": [
+    {
+      "event_start_date": "2027-02-10",
+      "event_end_date": "2027-02-10",
+      "event_start_time": "19:00",
+      "venue_name": "有明アリーナ",
+      "raw_venue_name": "有明アリーナ",
+      "artist_name": "INI",
+      "raw_artist_name": "INI",
+      "title": "Thank YOU From INI ～5th Anniversary Fan Meeting～",
+      "event_category": "concert",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://www.tfm.co.jp/5th_fromini/",
+      "evidence_snippet": "LIVE 公演名 Thank YOU From INI ～5th Anniversary Fan Meeting～ 開催日時 2027年2月10日（水） OPEN 18:00 ／ START 19:00 開催場所 有明アリーナ（東京） 出演 INI",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "有明アリーナ INI 開催決定",
+      "verified_at_utc": "2026-11-02T03:12:54Z"
+    },
+    {
+      "event_start_date": "2027-02-25",
+      "event_end_date": "2027-02-25",
+      "event_start_time": "19:00",
+      "venue_name": "東京ドーム",
+      "raw_venue_name": "東京ドーム",
+      "artist_name": "BON JOVI",
+      "raw_artist_name": "BON JOVI",
+      "title": "BON JOVI FOREVER TOUR",
+      "event_category": "concert",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://www.universal-music.co.jp/bon-jovi/news/2026-10-30/",
+      "evidence_snippet": "2018年以来、9年ぶりとなるボン・ジョヴィの来日公演が決定しました！ 日本公演スケジュール 2027年2月25日（木）東京ドーム － 17:30開場/19:00開演 2027年2月27日（土）東京ドーム － 15:30開場/17:00開演",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム BON JOVI 開催決定",
+      "verified_at_utc": "2026-11-02T03:12:54Z"
+    },
+    {
+      "event_start_date": "2027-02-27",
+      "event_end_date": "2027-02-27",
+      "event_start_time": "17:00",
+      "venue_name": "東京ドーム",
+      "raw_venue_name": "東京ドーム",
+      "artist_name": "BON JOVI",
+      "raw_artist_name": "BON JOVI",
+      "title": "BON JOVI FOREVER TOUR",
+      "event_category": "concert",
+      "source_class": "artist_official",
+      "confidence": "high",
+      "evidence_url": "https://www.universal-music.co.jp/bon-jovi/news/2026-10-30/",
+      "evidence_snippet": "2018年以来、9年ぶりとなるボン・ジョヴィの来日公演が決定しました！ 日本公演スケジュール 2027年2月25日（木）東京ドーム － 17:30開場/19:00開演 2027年2月27日（土）東京ドーム － 15:30開場/17:00開演",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム BON JOVI 開催決定",
+      "verified_at_utc": "2026-11-02T03:12:54Z"
+    }
+  ],
   "rejected": [
     {
       "query": "ONE SAMURAI 4 2026 10 17 チケット 開演 15:30 16:00",
@@ -237,7 +292,17 @@
     {
       "query": "なにわ男子 東京ドーム 京セラドーム大阪 開催決定 2026-2027 ND⁵⁺",
       "url": "https://starto.jp/s/p/live/10617",
-      "reason": "2026-10-28発表 なにわ男子 DOME LIVE 2026-2027「ND⁵⁺」～あけおめぇ 初夢ぇ Stay with MEE～。公式公開HTML内live_info_itemに2026-12-31 京セラドーム大阪22:00、2027-01-01 同18:00、01-15 東京ドーム18:00、01-16 同17:00を確認。ただし指定のrequests_bs4抽出本文ではSCHEDULEの見出しのみで日付・会場が揃わず、公式ファンクラブ公開本文も公演決定告知のみ。Crawl4AI未導入。本文根拠の取得まで4公演を保留し、ニュース記事で代替しない。"
+      "reason": "2026-11-02再確認。STARTO公式のrequests_bs4本文は依然として日程欄を抽出できない。京セラドーム会場公式の2026年12月・2027年1月本文で12/31 22:00、1/1 18:00を確認したが、events.sqliteに同日同会場同名の会場公式行が既存のため追加対象外。東京ドーム1/15・1/16は公式本文で日付・会場・名称の組を抽出できず引き続き保留。検索結果や旧ツアーの日程は根拠に使用しない。"
+    },
+    {
+      "query": "2027 2027-01-27 横浜アリーナ KATSEYE: THE WILDWORLD TOUR",
+      "url": "https://www.universal-music.co.jp/katseye/news/2026-10-29/",
+      "reason": "2027-01-27 横浜アリーナ KATSEYE: THE WILDWORLD TOUR。アーティスト公式本文で日付・会場・名称を確認。現行LPの表示期間外だがevents.sqliteに同日同会場同名の会場公式行が既存のため、新規候補への追加を見送る。"
+    },
+    {
+      "query": "2027 2027-02-11 有明アリーナ ナポリ10",
+      "url": "https://ariake-arena.tokyo/event/three/",
+      "reason": "2027-02-11 有明アリーナ ナポリ10。会場公式2027年2月本文で日付・名称・開演17:00を確認。現行LPの表示期間外だがevents.sqliteに同日同会場同名の会場公式行が既存のため、新規候補への追加を見送る。"
     }
   ]
 }
