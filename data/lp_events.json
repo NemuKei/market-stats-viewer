@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-11-02",
+  "as_of_date": "2026-11-03",
   "events": [
-    {
-      "artist_name": "LANA",
-      "capacity": 12542,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-04",
-      "event_end_date": "2026-08-04",
-      "event_end_time": null,
-      "event_key": "8d6691ae6fd43fbf59c7",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6032&etype=1",
-      "first_seen_at_utc": "2026-08-01T08:24:21Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "LANA",
-      "raw_venue_name": "国立代々木競技場第一体育館",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6032&etype=1",
-          "priority": 10,
-          "record_id": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6032&etype=1",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "LANA LIVE TOUR 2026 “DIAMONDS IN THE SKY” FINAL",
-          "updated_at_utc": "2026-08-31T10:59:53Z",
-          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6032&etype=1"
-        }
-      ],
-      "title": "LANA LIVE TOUR 2026 “DIAMONDS IN THE SKY” FINAL",
-      "updated_at_utc": "2026-08-31T10:59:53Z",
-      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6032&etype=1",
-      "venue_name": "国立代々木競技場第一体育館"
-    },
-    {
-      "artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-04",
-      "event_end_date": "2026-08-04",
-      "event_end_time": null,
-      "event_key": "7e449e97132607515d2f",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8618.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8618.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8618.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～ ①萩原利久のwkwkはぎわランド 夏ピーヤ祭\r\n②めざましライブ × イマドキ\r\n③めざましライブ ILLIT × CUTIE STREET",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8618.html"
-        }
-      ],
-      "title": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～ ①萩原利久のwkwkはぎわランド 夏ピーヤ祭\r\n②めざましライブ × イマドキ\r\n③めざましライブ ILLIT × CUTIE STREET",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8618.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "日向坂46",
       "capacity": 2801,
@@ -40028,8 +39952,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-02T12:49:50Z",
-  "history_start_date": "2026-08-04",
+  "generated_at_utc": "2026-11-02T21:46:08Z",
+  "history_start_date": "2026-08-05",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 43,
@@ -40233,13 +40157,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 725,
+      "official_events": 723,
       "venue_web_discovery": 280
     },
-    "event_count": 1005,
-    "identity_held_record_count": 956,
+    "event_count": 1003,
+    "identity_held_record_count": 953,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 2196,
+    "record_count_before_grouping": 2191,
     "start_time_split_event_count": 67,
     "start_time_split_group_count": 63,
     "supplemental_merged_group_count": 23,
