@@ -28,7 +28,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_TCD_PATH = DATA_DIR / "meta_tcd.json"
 TABLE_NAME = "tcd_stay_nights"
-EXTRACTOR_VERSION = 3
+EXTRACTOR_VERSION = 4
 
 NIGHTS_BIN_ORDER = ["1泊", "2泊", "3泊", "4泊", "5泊", "6泊", "7泊", "8泊以上"]
 TARGET_SEGMENTS = [("domestic_total", 2), ("domestic_business", 5)]
@@ -301,6 +301,44 @@ def extract_t06_rows(
     return df
 
 
+def consolidate_tcd_sources(
+    df: pd.DataFrame, source_units: dict[str, str | None],
+) -> tuple[pd.DataFrame, list[dict]]:
+    """Merge only equal observations; keep every duplicate source in metadata.
+
+    Lexicographic URL/SHA order selects a stable representative, independently
+    of page/link order. This does not imply that one publication is newer.
+    """
+    grain = ["period_type", "period_key", "release_type", "segment", "nights_bin"]
+    provenance: list[dict] = []
+    ordered = df.sort_values(grain + ["source_url", "source_sha256", "source_title"])
+    for key, group in ordered.groupby(grain, sort=True):
+        if len(group) < 2:
+            continue
+        units = {source_units.get(url) for url in group.source_url}
+        if None in units or "" in units:
+            raise ValueError(f"Missing TCD source unit: {key}")
+        if len(units) != 1 or group.value.nunique(dropna=False) != 1:
+            raise ValueError(
+                f"Conflicting TCD sources: {key}: "
+                f"{group[['source_url', 'value']].to_dict('records')} units={units}"
+            )
+        provenance.append({
+            **dict(zip(grain, key)),
+            "source_unit": next(iter(units)),
+            "sources": [
+                {"url": row.source_url, "sha256": row.source_sha256,
+                 "title_a1": row.source_title}
+                for row in group.drop_duplicates(
+                    ["source_url", "source_sha256", "source_title"]
+                ).itertuples(index=False)
+            ],
+        })
+    result = ordered.drop_duplicates(grain).reset_index(drop=True)
+    validate_tcd_rows(result)
+    return result, provenance
+
+
 def load_existing_tcd_rows(sqlite_path: Path) -> pd.DataFrame:
     if not sqlite_path.exists():
         return pd.DataFrame()
@@ -475,8 +513,11 @@ def _main(update: StatsUpdate) -> int:
                 and (old_rows["source_url"] == url).any()
             )
 
+            # A merged representative is not a per-source cache: reparse all
+            # aliases on rebuild so a changed alias cannot hide a conflict.
             can_reuse = (
                 old_meta.get("extractor_version") == EXTRACTOR_VERSION
+                and not old_meta.get("duplicate_sources")
                 and old_rows_valid
                 and old_processed.get(url) == sha
                 and has_reuse_columns
@@ -583,7 +624,11 @@ def _main(update: StatsUpdate) -> int:
             new_df = new_df.reset_index(drop=True)
 
 
+        new_df, duplicate_sources = consolidate_tcd_sources(
+            new_df, {entry["url"]: entry.get("source_unit") for entry in processed_entries}
+        )
         new_meta = {
+            "duplicate_sources": duplicate_sources,
             "extractor_version": EXTRACTOR_VERSION,
             "source_page_url": TCD_SOURCE_PAGE_URL,
             "last_checked_at": fetched_at,
