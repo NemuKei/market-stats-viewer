@@ -86,7 +86,8 @@
 5. `data/market_stats.sqlite` の `tcd_stay_nights` テーブルを再構築する。
 6. 保存前に期間キーと粒度の一意性を検査する。既知原本の再取得・解析が失敗した場合は既存DBを保持する。
 7. `data/meta_tcd.json` に `processed_files(url, sha256, title_a1, source_unit, fetched_at)` と抽出器版を保存する。
-8. 取得元hashと抽出器版に差分がなく、保存済み行の検査も通る場合は no-op とする。
+8. 同一期間・公表・区分・泊数の別URL資料は、値と単位が一致する場合のみ統合する。代表行はURL・SHA・表題の辞書順で選び、優先公表の意味は持たせない。異値・単位不一致・重複元の単位不明は保存前に停止する。全取得資料は `processed_files`、統合したキーごとの全出典は `duplicate_sources` に残す。統合済みキャッシュは再構築時に資料別として再利用せず、全資料を再抽出する（資料集合・SHA不変時の更新不要判定は維持）。
+9. 取得元hashと抽出器版に差分がなく、保存済み行の検査も通る場合は no-op とする。
 
 ## 追記: 自動更新スケジュール（2026-02-13）
 - GitHub Actions `update_data.yml` の定期実行は `cron: 0 3 * * 1`。
