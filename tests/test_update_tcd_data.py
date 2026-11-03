@@ -155,7 +155,8 @@ def test_conflicting_source_values_or_units_are_rejected():
     assert len(result) == 32
 
 
-def test_duplicate_sources_saved_with_provenance_and_conflict_preserves_files(tmp_path, monkeypatch):
+@pytest.mark.parametrize("failure", ["value", "unknown_unit", "corrupt"])
+def test_duplicate_sources_saved_with_provenance_and_conflict_preserves_files(tmp_path, monkeypatch, failure):
     source = tmp_path / 'source.xlsx'
     book = annual_book_with_quarter_detail()
     book.create_sheet('表題')['A1'] = '2025年旅行・観光消費動向調査（確報）'
@@ -181,7 +182,13 @@ def test_duplicate_sources_saved_with_provenance_and_conflict_preserves_files(tm
     assert updater.main() == 0
     assert before == [p.read_bytes() for p in [updater.SQLITE_PATH, updater.META_TCD_PATH]]
     book['T06']['B69'] = 999
+    if failure == 'unknown_unit':
+        book['T06']['I2'] = '不明'
     book.save(second)
-    with pytest.raises(ValueError, match='Conflicting TCD'):
+    if failure == 'corrupt':
+        second.write_bytes(b'broken workbook')
+    error, message = ((ValueError, 'Conflicting TCD') if failure == 'value' else
+                      (RuntimeError, 'Previously published TCD source could not be'))
+    with pytest.raises(error, match=message):
         updater.main()
     assert before == [p.read_bytes() for p in [updater.SQLITE_PATH, updater.META_TCD_PATH]]

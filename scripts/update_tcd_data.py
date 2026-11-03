@@ -463,7 +463,17 @@ def _main(update: StatsUpdate) -> int:
         for x in old_meta.get("processed_files", [])
         if x.get("url")
     }
+    # Merged aliases remain published sources even though the DB stores only
+    # the representative URL. Do not silently skip an alias that becomes invalid.
+    known_source_urls = {
+        str(source["url"])
+        for duplicate in old_meta.get("duplicate_sources", [])
+        for source in duplicate.get("sources", [])
+        if source.get("url")
+    }
     old_rows = load_existing_tcd_rows(SQLITE_PATH)
+    if "source_url" in old_rows.columns:
+        known_source_urls.update(old_rows["source_url"].dropna().astype(str))
     old_rows_valid = False
     if not old_rows.empty:
         try:
@@ -507,11 +517,7 @@ def _main(update: StatsUpdate) -> int:
             link_text = item["link_text"]
             local_path = Path(item["local_path"])
             title_a1 = old_titles.get(url, "")
-            known_target = (
-                "source_url" in old_rows.columns
-                and not old_rows.empty
-                and (old_rows["source_url"] == url).any()
-            )
+            known_target = url in known_source_urls
 
             # A merged representative is not a per-source cache: reparse all
             # aliases on rebuild so a changed alias cannot hide a conflict.
