@@ -1,115 +1,43 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-11-03T03:10:59Z",
+  "run_at_utc": "2026-11-04T03:10:24Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
       "event_start_date": "2027-03-20",
       "event_end_date": "2027-03-20",
-      "event_start_time": "18:00",
-      "venue_name": "横浜アリーナ",
-      "raw_venue_name": "横浜アリーナ",
-      "artist_name": "HANA",
-      "raw_artist_name": "HANA",
-      "title": "HANA Arena Tour 2027 “Born to Bloom Ⅱ”",
+      "event_start_time": "17:30",
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "artist_name": "トゲナシトゲアリ",
+      "raw_artist_name": "トゲナシトゲアリ",
+      "title": "トゲナシトゲアリ ONE-MAN LIVE “凛音の耀”",
       "event_category": "concert",
-      "source_class": "artist_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://hana.b-rave.tokyo/live/hanaarenatour2027-borntobloom2/",
-      "evidence_snippet": "『HANA Arena Tour 2027 “Born to Bloom Ⅱ”』開催決定 … 【神奈川】横浜アリーナ 2027年3月20日(土) 開場 17:00 / 開演 18:00 2027年3月21日(日) 開場 16:00 / 開演 17:00",
+      "evidence_url": "https://girls-band-cry.com/live/post-26.html",
+      "evidence_snippet": "トゲナシトゲアリ ONE-MAN LIVE “凛音の耀” ■開催日時・会場 2027年3月20日（土） OPEN 16:00 / START 17:30 Kアリーナ横浜",
       "content_extractor": "requests_bs4",
-      "discovery_query": "横浜アリーナ 開催決定 2027 HANA",
-      "verified_at_utc": "2026-11-03T03:10:59Z"
+      "discovery_query": "Kアリーナ 2027 11.03 トゲナシトゲアリ 凛音の耀",
+      "verified_at_utc": "2026-11-04T03:10:24Z"
     },
     {
-      "event_start_date": "2027-03-21",
-      "event_end_date": "2027-03-21",
-      "event_start_time": "17:00",
-      "venue_name": "横浜アリーナ",
-      "raw_venue_name": "横浜アリーナ",
-      "artist_name": "HANA",
-      "raw_artist_name": "HANA",
-      "title": "HANA Arena Tour 2027 “Born to Bloom Ⅱ”",
+      "event_start_date": "2027-11-03",
+      "event_end_date": "2027-11-03",
+      "event_start_time": null,
+      "venue_name": "Kアリーナ横浜",
+      "raw_venue_name": "Kアリーナ横浜",
+      "artist_name": "リアルピース",
+      "raw_artist_name": "リアルピース",
+      "title": "リアルピース 5th ワンマンライブ",
       "event_category": "concert",
       "source_class": "artist_official",
       "confidence": "high",
-      "evidence_url": "https://hana.b-rave.tokyo/live/hanaarenatour2027-borntobloom2/",
-      "evidence_snippet": "『HANA Arena Tour 2027 “Born to Bloom Ⅱ”』開催決定 … 【神奈川】横浜アリーナ 2027年3月20日(土) 開場 17:00 / 開演 18:00 2027年3月21日(日) 開場 16:00 / 開演 17:00",
+      "evidence_url": "https://realpiece-fc.jp/ticket/detail/CwJR7yvsLCnBeIkDXwUW",
+      "evidence_snippet": "リアルピース 5th ワンマンライブ 受付期間 2026.11.03 〜 2026.11.15 お申し込みは下部の「お申し込みはこちら」ボタンよりお進みください。※ログイン状態で表示されます。 公演概要 【日程】2027年11月3日(水・祝) 【会場】Kアリーナ横浜",
       "content_extractor": "requests_bs4",
-      "discovery_query": "横浜アリーナ 開催決定 2027 HANA",
-      "verified_at_utc": "2026-11-03T03:10:59Z"
-    },
-    {
-      "event_start_date": "2027-07-10",
-      "event_end_date": "2027-07-10",
-      "event_start_time": "17:00",
-      "venue_name": "GMOアリーナさいたま",
-      "raw_venue_name": "GMOアリーナさいたま（さいたまスーパーアリーナ）",
-      "artist_name": "HANA",
-      "raw_artist_name": "HANA",
-      "title": "HANA Arena Tour 2027 “Born to Bloom Ⅱ”",
-      "event_category": "concert",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://hana.b-rave.tokyo/live/hanaarenatour2027-borntobloom2/",
-      "evidence_snippet": "『HANA Arena Tour 2027 “Born to Bloom Ⅱ”』開催決定 … 【埼玉】GMOアリーナさいたま（さいたまスーパーアリーナ） 2027年7月10日(土) 開場 15:00 / 開演 17:00 2027年7月11日(日) 開場 14:00 / 開演 16:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "GMOアリーナさいたま 開催決定 2027 HANA",
-      "verified_at_utc": "2026-11-03T03:10:59Z"
-    },
-    {
-      "event_start_date": "2027-07-11",
-      "event_end_date": "2027-07-11",
-      "event_start_time": "16:00",
-      "venue_name": "GMOアリーナさいたま",
-      "raw_venue_name": "GMOアリーナさいたま（さいたまスーパーアリーナ）",
-      "artist_name": "HANA",
-      "raw_artist_name": "HANA",
-      "title": "HANA Arena Tour 2027 “Born to Bloom Ⅱ”",
-      "event_category": "concert",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://hana.b-rave.tokyo/live/hanaarenatour2027-borntobloom2/",
-      "evidence_snippet": "『HANA Arena Tour 2027 “Born to Bloom Ⅱ”』開催決定 … 【埼玉】GMOアリーナさいたま（さいたまスーパーアリーナ） 2027年7月10日(土) 開場 15:00 / 開演 17:00 2027年7月11日(日) 開場 14:00 / 開演 16:00",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "GMOアリーナさいたま 開催決定 2027 HANA",
-      "verified_at_utc": "2026-11-03T03:10:59Z"
-    },
-    {
-      "event_start_date": "2027-10-23",
-      "event_end_date": "2027-10-23",
-      "event_start_time": "17:00",
-      "venue_name": "ヤンマースタジアム長居",
-      "raw_venue_name": "ヤンマースタジアム長居",
-      "artist_name": "三代目 J SOUL BROTHERS",
-      "raw_artist_name": "三代目 J SOUL BROTHERS",
-      "title": "三代目 J SOUL BROTHERS 2027年スタジアム公演",
-      "event_category": "concert",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/47124/?lang=ja",
-      "evidence_snippet": "三代目 J SOUL BROTHERS 2027年スタジアム公演 【日程】 2027/10/23(土) 開場15:00 / 開演17:00 2027/10/24(日) 開場15:00 / 開演17:00 【会場】 ヤンマースタジアム長居",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "ヤンマースタジアム長居 開催決定 2027",
-      "verified_at_utc": "2026-11-03T03:10:59Z"
-    },
-    {
-      "event_start_date": "2027-10-24",
-      "event_end_date": "2027-10-24",
-      "event_start_time": "17:00",
-      "venue_name": "ヤンマースタジアム長居",
-      "raw_venue_name": "ヤンマースタジアム長居",
-      "artist_name": "三代目 J SOUL BROTHERS",
-      "raw_artist_name": "三代目 J SOUL BROTHERS",
-      "title": "三代目 J SOUL BROTHERS 2027年スタジアム公演",
-      "event_category": "concert",
-      "source_class": "artist_official",
-      "confidence": "high",
-      "evidence_url": "https://www.ldh-liveschedule.jp/sys/news/47124/?lang=ja",
-      "evidence_snippet": "三代目 J SOUL BROTHERS 2027年スタジアム公演 【日程】 2027/10/23(土) 開場15:00 / 開演17:00 2027/10/24(日) 開場15:00 / 開演17:00 【会場】 ヤンマースタジアム長居",
-      "content_extractor": "requests_bs4",
-      "discovery_query": "ヤンマースタジアム長居 開催決定 2027",
-      "verified_at_utc": "2026-11-03T03:10:59Z"
+      "discovery_query": "Kアリーナ 2027 11.03 リアルピース",
+      "verified_at_utc": "2026-11-04T03:10:24Z"
     }
   ],
   "rejected": [
@@ -346,7 +274,7 @@
     {
       "query": "なにわ男子 東京ドーム 京セラドーム大阪 開催決定 2026-2027 ND⁵⁺",
       "url": "https://starto.jp/s/p/live/10617",
-      "reason": "2026-11-02再確認。STARTO公式のrequests_bs4本文は依然として日程欄を抽出できない。京セラドーム会場公式の2026年12月・2027年1月本文で12/31 22:00、1/1 18:00を確認したが、events.sqliteに同日同会場同名の会場公式行が既存のため追加対象外。東京ドーム1/15・1/16は公式本文で日付・会場・名称の組を抽出できず引き続き保留。検索結果や旧ツアーの日程は根拠に使用しない。 2026-11-03のrequests_bs4再抽出でも日程欄は取得できず、保留を継続。"
+      "reason": "2026-11-02再確認。STARTO公式のrequests_bs4本文は依然として日程欄を抽出できない。京セラドーム会場公式の2026年12月・2027年1月本文で12/31 22:00、1/1 18:00を確認したが、events.sqliteに同日同会場同名の会場公式行が既存のため追加対象外。東京ドーム1/15・1/16は公式本文で日付・会場・名称の組を抽出できず引き続き保留。検索結果や旧ツアーの日程は根拠に使用しない。 2026-11-03のrequests_bs4再抽出でも日程欄は取得できず、保留を継続。 2026-11-04のrequests_bs4でも東京公演日程欄は本文に含まれず保留継続。"
     },
     {
       "query": "2027 2027-01-27 横浜アリーナ KATSEYE: THE WILDWORLD TOUR",
@@ -366,7 +294,7 @@
     {
       "query": "有明アリーナ 開催決定 2027 [Alexandros] VIP PARTY TOUR",
       "url": "https://alexandros.jp/contents/1124117",
-      "reason": "2026-11-03 requests_bs4でアーティスト公式告知と個別公演ページ1124122の本文抽出を試みたがHTTP 403。検索で見つけた2027-09-04・05 有明アリーナ [Alexandros] VIP PARTY TOURは指定extractorの本文根拠を取得できず保留。optional crawl4aiは未導入。検索結果・一般ニュースだけでは採用しない。"
+      "reason": "2026-11-03 requests_bs4でアーティスト公式告知と個別公演ページ1124122の本文抽出を試みたがHTTP 403。検索で見つけた2027-09-04・05 有明アリーナ [Alexandros] VIP PARTY TOURは指定extractorの本文根拠を取得できず保留。optional crawl4aiは未導入。検索結果・一般ニュースだけでは採用しない。 2026-11-04もrequests_bs4で告知・公演・公式LIVE一覧の本文抽出を試みたがHTTP 403。本文根拠未取得のため保留継続。"
     }
   ]
 }
