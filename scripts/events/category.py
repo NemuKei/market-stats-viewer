@@ -139,7 +139,14 @@ def classify_event_category_with_reason(title: object, artist_name: object, desc
     performance_conflict = re.search(r"漫才|お笑い|コント|演劇|劇団|歌舞伎|バレエ|ミュージカル", normalized_text)
     if extended_match and performance_conflict:
         return EVENT_CATEGORY_UNKNOWN, "conflicting_evidence:" + concert_match + "/" + performance_conflict.group()
-    other_match = next((k for k in non_music_keywords if k in normalized_text), None)
+    # フェア is also the beginning of words such as フェアリーランド and
+    # フェアウェイ.  A fair may have a Japanese compound before it, but a
+    # following katakana character continues the word rather than naming a fair.
+    other_match = next(
+        (k for k in non_music_keywords
+         if (re.search(r"フェア(?![ァ-ヺー])", normalized_text) if k == "フェア" else k in normalized_text)),
+        None,
+    )
     sports = re.search(r"j[123](?:リーグ|league|百年構想リーグ)|b[.]league|sv[.]league|なでしこリーグ|jfl|fc東京|東京ヴェルディ|バスケットボール|バスケ|サッカー|フットサル|ラグビー|バレーボール", normalized_text)
     has_versus = any(k in normalized_text for k in versus_keywords)
     sports_match = sports and (has_versus or re.search(r"第\s*\d+\s*節|ホームゲーム|試合|season", normalized_text))

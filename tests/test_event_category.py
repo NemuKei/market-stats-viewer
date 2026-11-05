@@ -97,3 +97,20 @@ def test_explicit_music_phrases(title):
 ])
 def test_music_phrase_boundaries_and_conflicts(title, expected):
     assert classify_event_category(title, '', '') == expected
+
+
+@pytest.mark.parametrize('title,artist,expected', [
+    ('ALI PROJECT A級ヒットパレード2026「魔夏の夜の夢〜暗⿊フェアリーランド」', 'ALI PROJECT', 'コンサート'),
+    ('フェアリーテイル', '', '未分類'),
+    ('フェアウェイ展示会', '', 'その他'),
+    ('就活フェア2026', '', 'その他'),
+    ('ハンドメイドフェア', '', 'その他'),
+    ('フェアリーランド 展示フェア', 'Artist', 'その他'),
+    ('音楽ライブ 展示フェア', 'Artist', '未分類'),
+    ('音楽ライブ プロレス', 'Artist', '未分類'),
+    ('野球大会', '', '野球'),
+    ('演劇 単独公演', '', '未分類'),
+    ('卒業式', '', '未分類'),
+])
+def test_fair_word_boundary_and_other_categories(title, artist, expected):
+    assert classify_event_category(title, artist, '') == expected
