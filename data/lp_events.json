@@ -1,5 +1,5 @@
 {
-  "as_of_date": "2026-11-06",
+  "as_of_date": "2026-11-07",
   "events": [
     {
       "artist_name": "New HISTORY COMING ARENA LIVE  -The Imperial Theatre Symphony-",
@@ -38,170 +38,6 @@
       "updated_at_utc": "2026-04-19T06:17:56Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4676/",
       "venue_name": "東京ガーデンシアター"
-    },
-    {
-      "artist_name": "超特急",
-      "capacity": 20033,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-08",
-      "event_end_date": "2026-08-08",
-      "event_end_time": null,
-      "event_key": "c1e5b371784c22554f44",
-      "event_start_time": "18:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://k-arena.com/schedule/20260808-1/",
-      "first_seen_at_utc": "2026-08-01T08:10:16Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "超特急",
-      "raw_venue_name": "Kアリーナ横浜",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://k-arena.com/schedule/20260808-1/",
-          "priority": 10,
-          "record_id": "k_arena_yokohama:https://k-arena.com/schedule/20260808-1/",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "超特急 BULLET TRAIN ARENA TOUR 2026 ESCORT 超特急",
-          "updated_at_utc": "2026-08-31T10:44:52Z",
-          "url": "https://k-arena.com/schedule/20260808-1/"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://k-arena.com/schedule/20260808-1/",
-          "priority": 20,
-          "record_id": "d69fe1ffc42cc46ee432b83364d6b6898953da01890bee385019a8b166dd74b5",
-          "source_class": "venue_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "超特急 BULLET TRAIN ARENA TOUR 2026 ESCORT",
-          "updated_at_utc": "2026-10-10T15:18:49Z",
-          "url": "https://k-arena.com/schedule/20260808-1/"
-        }
-      ],
-      "title": "超特急 BULLET TRAIN ARENA TOUR 2026 ESCORT 超特急",
-      "updated_at_utc": "2026-08-31T10:44:52Z",
-      "url": "https://k-arena.com/schedule/20260808-1/",
-      "venue_name": "Kアリーナ横浜"
-    },
-    {
-      "artist_name": "女王蜂",
-      "capacity": 2886,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-08",
-      "event_end_date": "2026-08-08",
-      "event_end_time": null,
-      "event_key": "f2d9b00fa7e1609e4087",
-      "event_start_time": "18:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=156937",
-      "first_seen_at_utc": "2026-06-16T09:41:54Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "女王蜂",
-      "raw_venue_name": "Zepp Haneda(Tokyo)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=156937",
-          "priority": 10,
-          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=156937",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "女王蜂 単独公演「蜂月蜂日～サスペンス～」",
-          "updated_at_utc": "2026-08-31T10:57:31Z",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=156937"
-        }
-      ],
-      "title": "女王蜂 単独公演「蜂月蜂日～サスペンス～」",
-      "updated_at_utc": "2026-08-31T10:57:31Z",
-      "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=156937",
-      "venue_name": "Zepp Haneda(Tokyo)"
-    },
-    {
-      "artist_name": "SOPHIA",
-      "capacity": 2801,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-08",
-      "event_end_date": "2026-08-08",
-      "event_end_time": null,
-      "event_key": "cab4cda661ea76411364",
-      "event_start_time": "16:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156941",
-      "first_seen_at_utc": "2026-04-28T06:49:48Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "SOPHIA",
-      "raw_venue_name": "Zepp Osaka Bayside",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156941",
-          "priority": 10,
-          "record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156941",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "SOPHIA TOUR 2026“そして僕らは老けて行く”",
-          "updated_at_utc": "2026-08-31T10:58:59Z",
-          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156941"
-        }
-      ],
-      "title": "SOPHIA TOUR 2026“そして僕らは老けて行く”",
-      "updated_at_utc": "2026-08-31T10:58:59Z",
-      "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=156941",
-      "venue_name": "Zepp Osaka Bayside"
-    },
-    {
-      "artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-08",
-      "event_end_date": "2026-08-08",
-      "event_end_time": null,
-      "event_key": "7992c8fa18db46c408ab",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8622.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8622.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8622.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～ ①めざましライブ ×突然ですが占ってもいいですか？ ONE N’ ONLY × BUDDiiS\r\n②.ENDRECHERI. presents ココロノノリモノ",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8622.html"
-        }
-      ],
-      "title": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～ ①めざましライブ ×突然ですが占ってもいいですか？ ONE N’ ONLY × BUDDiiS\r\n②.ENDRECHERI. presents ココロノノリモノ",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8622.html",
-      "venue_name": "豊洲PIT"
     },
     {
       "artist_name": "超特急",
@@ -39746,8 +39582,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-06T12:24:42Z",
-  "history_start_date": "2026-08-08",
+  "generated_at_utc": "2026-11-06T19:21:08Z",
+  "history_start_date": "2026-08-09",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 51,
@@ -39941,13 +39777,13 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 717,
+      "official_events": 713,
       "venue_web_discovery": 279
     },
-    "event_count": 996,
-    "identity_held_record_count": 958,
+    "event_count": 992,
+    "identity_held_record_count": 956,
     "location_held_record_count": 35,
-    "record_count_before_grouping": 2186,
+    "record_count_before_grouping": 2179,
     "start_time_split_event_count": 66,
     "start_time_split_group_count": 62,
     "supplemental_merged_group_count": 20,
