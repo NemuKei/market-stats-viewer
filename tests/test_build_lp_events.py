@@ -1004,3 +1004,14 @@ def test_fixed_id_publication_reads_temp_dbs_and_preserves_source_and_notes(tmp_
     assert json.loads(output.read_bytes())["events"] == candidates["events"]
     assert before == (events_db.read_bytes(), signals_db.read_bytes())
     assert protected == (path.read_bytes(), notes.read_bytes())
+
+
+def test_held_candidates_are_visible_in_workflow_summary(tmp_path, monkeypatch, capsys):
+    from scripts.build_lp_events import report_identity_holds
+    summary = tmp_path / "summary"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+    report_identity_holds(4)
+    assert "4" in summary.read_text()
+    assert "::warning::" in capsys.readouterr().out
+    report_identity_holds(0)
+    assert "::warning::" not in capsys.readouterr().out

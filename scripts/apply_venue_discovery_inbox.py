@@ -102,7 +102,9 @@ def apply_inbox(inbox: dict[str, Any], config: dict[str, Any], *, venue_maps, ar
     result = ApplyResult(config=copy.deepcopy(config))
     events = result.config.setdefault("confirmed_events", [])
     watch = _watch_venue_names(config, venue_maps)
-    seen = {_dedup_key(e, venue_maps, artist_maps) for e in events}
+    seen: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
+    for event in events:
+        seen.setdefault(_dedup_key(event, venue_maps, artist_maps), []).append(event)
     for cand in inbox["candidates"]:
         reason = _reject_reason(cand, config, watch, venue_maps)
         if reason:
@@ -110,6 +112,11 @@ def apply_inbox(inbox: dict[str, Any], config: dict[str, Any], *, venue_maps, ar
             continue
         key = _dedup_key(cand, venue_maps, artist_maps)
         if key in seen:
+            candidate_time = str(cand.get("event_start_time") or "").strip()
+            known_times = {str(event.get("event_start_time") or "").strip() for event in seen[key]}
+            if candidate_time and any(time and time != candidate_time for time in known_times):
+                result.rejected.append({"title": cand.get("title"), "reason": "conflicting_start_time_requires_review"})
+                continue
             result.duplicates.append({"title": cand.get("title"), "key": list(key)})
             continue
         row = dict(cand)
@@ -121,7 +128,7 @@ def apply_inbox(inbox: dict[str, Any], config: dict[str, Any], *, venue_maps, ar
         row["enabled"] = True
         row["event_id"] = "vwd-" + hashlib.sha1("|".join(key).encode("utf-8")).hexdigest()[:12]
         events.append(row)
-        seen.add(key)
+        seen.setdefault(key, []).append(row)
         result.applied.append({"title": row["title"], "event_id": row["event_id"]})
     return result
 
@@ -146,6 +153,8 @@ def main(argv: list[str] | None = None) -> int:
     summary = (f"venue discovery inbox: applied={len(result.applied)} "
                f"duplicates={len(result.duplicates)} rejected={len(result.rejected)}")
     print(summary)
+    if any(row["reason"] == "conflicting_start_time_requires_review" for row in result.rejected):
+        print("::warning::Venue discovery has conflicting start times; review the inbox and confirmed events.")
     for row in result.rejected:
         print(f"  rejected: {row['reason']}: {row['title']}")
     if os.environ.get("GITHUB_STEP_SUMMARY"):

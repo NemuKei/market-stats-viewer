@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sqlite3
 import unicodedata
@@ -858,6 +859,17 @@ def write_lp_events(
         atomic_write(output_path, (json.dumps(public_payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8"))
 
 
+def report_identity_holds(count: int) -> None:
+    if not count:
+        return
+    message = f"{count} event identity candidates are held; review the private pending preview before reporting publication complete."
+    print(f"::warning::{message}")
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary_path:
+        with open(summary_path, "a", encoding="utf-8") as stream:
+            stream.write(message + "\n")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Build LP-ready consolidated event JSON."
@@ -885,6 +897,7 @@ def main() -> int:
         include_past=bool(args.include_past), past_days=args.past_days,
         identity_registry_path=args.identity_registry)
     write_lp_events(payload, args.output, identity_registry_path=args.identity_registry)
+    report_identity_holds(payload["summary"]["identity_held_record_count"])
     print(
         f"lp events written: {args.output} ({payload['summary']['event_count']} events; "
         f"{payload['summary']['identity_held_record_count']} identity candidates held)"

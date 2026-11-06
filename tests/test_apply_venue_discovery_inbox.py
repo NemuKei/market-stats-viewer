@@ -91,3 +91,18 @@ class ApplyInboxTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_different_times_require_review_without_changing_config():
+    first = run(inbox(cand(event_start_time="19:00")))
+    second = run(inbox(cand(event_start_time="18:30")), config=first.config)
+    assert second.config == first.config
+    assert not second.duplicates
+    assert second.rejected[0]["reason"] == "conflicting_start_time_requires_review"
+
+
+def test_same_time_is_still_a_duplicate():
+    first = run(inbox(cand(event_start_time="18:30")))
+    second = run(inbox(cand(event_start_time="18:30")), config=first.config)
+    assert len(second.duplicates) == 1
+    assert not second.rejected

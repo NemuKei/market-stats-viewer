@@ -24514,7 +24514,7 @@
       "event_uid": "11415d518f4d2b9b4e24",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "11415d518f4d2b9b4e24",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -24525,6 +24525,30 @@
             "event_date": "2027-01-04",
             "event_end_date": "2027-01-04",
             "event_start_time": "19:00",
+            "title": "Bruno Mars - The Romantic Tour in Japan",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "f24fe396225b1023fd20720d4b0646234ecd3952d782725f66b57bf8b7faaae9",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "11415d518f4d2b9b4e24",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "246cfe24e133b7b14db55f2cd44a0a7bd813d480847767bd471377803733b7d3",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-04",
+            "event_end_date": "2027-01-04",
+            "event_start_time": "18:00",
             "title": "Bruno Mars - The Romantic Tour in Japan",
             "venue_name": "バンテリンドームナゴヤ"
           },
@@ -24931,7 +24955,7 @@
       "event_uid": "3a000ab22b633d3fafd7",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "3a000ab22b633d3fafd7",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -24942,6 +24966,30 @@
             "event_date": "2027-01-10",
             "event_end_date": "2027-01-10",
             "event_start_time": "17:00",
+            "title": "Bruno Mars - The Romantic Tour in Japan",
+            "venue_name": "札幌ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "c54ae927d993fee3191fedcf0a875c0c4c7b67493ae67a07d56dc7ce15a1641f",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "3a000ab22b633d3fafd7",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "925dda0107b41261e88345e436aa6fa84d9dc44286c2fb847d5d28206d0f099f",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-10",
+            "event_end_date": "2027-01-10",
+            "event_start_time": "16:00",
             "title": "Bruno Mars - The Romantic Tour in Japan",
             "venue_name": "札幌ドーム"
           },
@@ -25317,7 +25365,7 @@
       "event_uid": "ab6c2d71a16a965f4761",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "ab6c2d71a16a965f4761",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -25328,6 +25376,30 @@
             "event_date": "2027-01-15",
             "event_end_date": "2027-01-15",
             "event_start_time": "18:30",
+            "title": "Bruno Mars - The Romantic Tour in Japan",
+            "venue_name": "ベルーナドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "adfc30e207c20a1ff8a0c15289b3b8436ba9c25257fd8db83621f1105e01f229",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "ab6c2d71a16a965f4761",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "e67052531a7297eb9188ca4cac296363548614326fc2ca56fa425c39d3083551",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-15",
+            "event_end_date": "2027-01-15",
+            "event_start_time": "17:30",
             "title": "Bruno Mars - The Romantic Tour in Japan",
             "venue_name": "ベルーナドーム"
           },
@@ -25804,7 +25876,7 @@
       "event_uid": "afc489602bd1669c3d81",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "afc489602bd1669c3d81",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -25824,6 +25896,34 @@
               "source_id": "official_events"
             }
           ]
+        },
+        {
+          "active": true,
+          "candidate_key": "0afbe114ed78f7b5b881",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "1e0a7da9c50d6398b98192f75254ec2a9a4dc3c255f7f6fa24691f86eb00520b",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-19",
+            "event_end_date": "2027-01-19",
+            "event_start_time": "18:30",
+            "title": "Bruno Mars : The Romantic Tour in Japan",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754#d=2027-01-19#t=18:30",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "53bfb093133dd64fb16a9cceac1e527f2b3ab030a42ad6d0a269fce091c65c53",
+              "source_id": "venue_web_discovery"
+            }
+          ]
         }
       ]
     },
@@ -25831,7 +25931,7 @@
       "event_uid": "d54be9aef58e47494606",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "d54be9aef58e47494606",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -26005,7 +26105,7 @@
       "event_uid": "f7f36bd5e6fa560585e4",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "f7f36bd5e6fa560585e4",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -26016,6 +26116,30 @@
             "event_date": "2027-01-23",
             "event_end_date": "2027-01-23",
             "event_start_time": "18:00",
+            "title": "Bruno Mars - The Romantic Tour in Japan",
+            "venue_name": "みずほPayPayドーム福岡"
+          },
+          "source_records": [
+            {
+              "record_id": "61c8ef981b7a23b610c28dfb6b278d52e19235ec205d4751d372954a4942dcce",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "f7f36bd5e6fa560585e4",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "49ef1453d4416f93a0ef1fc0a0dfb97e0128096db9f01ec50713e49271eaed5a",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-23",
+            "event_end_date": "2027-01-23",
+            "event_start_time": "17:00",
             "title": "Bruno Mars - The Romantic Tour in Japan",
             "venue_name": "みずほPayPayドーム福岡"
           },
@@ -26086,7 +26210,7 @@
       "event_uid": "3bfd902e6cc7c29affed",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "3bfd902e6cc7c29affed",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -26097,6 +26221,30 @@
             "event_date": "2027-01-24",
             "event_end_date": "2027-01-24",
             "event_start_time": "17:00",
+            "title": "Bruno Mars - The Romantic Tour in Japan",
+            "venue_name": "みずほPayPayドーム福岡"
+          },
+          "source_records": [
+            {
+              "record_id": "9a2697adcd09174bd9f5394700a745e7a13d4878f13a000dd7a06c84cd10d44e",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "3bfd902e6cc7c29affed",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "8f1905f872535f0681930ebc44cd04f8eb7b76395d8050324600f03d4c30cc8d",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-24",
+            "event_end_date": "2027-01-24",
+            "event_start_time": "16:30",
             "title": "Bruno Mars - The Romantic Tour in Japan",
             "venue_name": "みずほPayPayドーム福岡"
           },
@@ -26198,7 +26346,7 @@
       "event_uid": "c7157e56e68caf5e4f03",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "c7157e56e68caf5e4f03",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -26209,6 +26357,30 @@
             "event_date": "2027-01-27",
             "event_end_date": "2027-01-27",
             "event_start_time": "19:00",
+            "title": "Bruno Mars - The Romantic Tour in Japan",
+            "venue_name": "東京ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "ea99204a9f65c71167a0f131049a7ce30efbf75f43feec84199a187815152558",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "c7157e56e68caf5e4f03",
+          "evidence": {
+            "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+          },
+          "fingerprint": "abd567243edb18c20d3eb34de237d9965135453a129308b96166edb0d6afb843",
+          "identity": {
+            "artist_name": "Bruno Mars",
+            "event_date": "2027-01-27",
+            "event_end_date": "2027-01-27",
+            "event_start_time": "18:00",
             "title": "Bruno Mars - The Romantic Tour in Japan",
             "venue_name": "東京ドーム"
           },
@@ -31417,6 +31589,204 @@
           ]
         }
       ]
+    },
+    {
+      "event_uid": "evt_d06b4428b86b415ba6da3da258af3757",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "efb475001a8e9aa04bba",
+          "evidence": {
+            "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://starto.jp/s/p/live/10602?ima=0057"
+          },
+          "fingerprint": "035440454a83b5e374e9f50fa06cb939538c7fb2fe21ffb76208031cdebc18b9",
+          "identity": {
+            "artist_name": "Hey! Say! JUMP",
+            "event_date": "2026-12-29",
+            "event_end_date": "2026-12-29",
+            "event_start_time": "17:00",
+            "title": "Hey! Say! JUMP DOME TOUR 2026-2027 Juliet",
+            "venue_name": "東京ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "tokyo_dome:https://starto.jp/s/p/live/10602?tab=schedule#d=2026-12-29#t=17:00",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "b7f45508d90e9ac23b2120b650d2e8017c97351a922d2f75cddc8c2ba67637a8",
+              "source_id": "starto_concert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_c3a4ed3aebf84957bc6ff905a4a3ea55",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "b78732b207b0dd20a726",
+          "evidence": {
+            "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://starto.jp/s/p/live/10602?ima=0057"
+          },
+          "fingerprint": "dfd0c64067c70186977d50d17b3329d484b7e631de489f1b2aa16347fb82ed0f",
+          "identity": {
+            "artist_name": "Hey! Say! JUMP",
+            "event_date": "2026-12-30",
+            "event_end_date": "2026-12-30",
+            "event_start_time": "17:00",
+            "title": "Hey! Say! JUMP DOME TOUR 2026-2027 Juliet",
+            "venue_name": "東京ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "tokyo_dome:https://starto.jp/s/p/live/10602?tab=schedule#d=2026-12-30#t=17:00",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "56726fae3f8bc8e08686f08129f42078c7186995da4ae6061b00f3574871bbc3",
+              "source_id": "starto_concert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_76b1d338dcc64e429bcf2d99d2770db2",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "b68664eef45af70ed772",
+          "evidence": {
+            "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://starto.jp/s/p/live/10602?ima=0057"
+          },
+          "fingerprint": "bd69fc5b38e0187367f0af5eaa8947c1e49f27b3ae4bffc39d323ada5a11c14e",
+          "identity": {
+            "artist_name": "Hey! Say! JUMP",
+            "event_date": "2027-01-01",
+            "event_end_date": "2027-01-01",
+            "event_start_time": "17:00",
+            "title": "Hey! Say! JUMP DOME TOUR 2026-2027 Juliet",
+            "venue_name": "東京ドーム"
+          },
+          "source_records": [
+            {
+              "record_id": "tokyo_dome:https://starto.jp/s/p/live/10602?tab=schedule#d=2027-01-01#t=17:00",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "3ce2ce29e8b39b08278063b7dd6f92a5439a9d0b0da8bc7341acb42ddd17fa28",
+              "source_id": "starto_concert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_24547d679366424188fb1717f3b4d1b6",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "fbcaff554b1a849a23a6",
+          "evidence": {
+            "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://starto.jp/s/p/live/10602?ima=0057"
+          },
+          "fingerprint": "27fc7a8a6303cd023ddddff1aef5cebc276f2e302b1d45f895e0fe78805535c9",
+          "identity": {
+            "artist_name": "Hey! Say! JUMP",
+            "event_date": "2027-01-10",
+            "event_end_date": "2027-01-10",
+            "event_start_time": "17:00",
+            "title": "Hey!Say!JUMP DOME TOUR 2026-2027 Juliet",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:h:fbe7a5904842c8c0",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "2a98504003bd2c79f9b6d35097add1ac701f2a656f586a9ac7579ccf2775aeb4",
+              "source_id": "starto_concert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_c0dbe62503ce47f4a897120677a9488f",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "3ae6e66a646dd9a5cda9",
+          "evidence": {
+            "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://starto.jp/s/p/live/10602?ima=0057"
+          },
+          "fingerprint": "cee63088d30c2dec2e5286556001f5914e0926573f40ec6c514dd4f63c4af4c9",
+          "identity": {
+            "artist_name": "Hey! Say! JUMP",
+            "event_date": "2027-01-11",
+            "event_end_date": "2027-01-11",
+            "event_start_time": "17:00",
+            "title": "Hey!Say!JUMP DOME TOUR 2026-2027 Juliet",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:h:3aae06b89bfbf63c",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "e75c32d8eb5341807898b5c4fdfb050a2f3358c2b1e7876d7af27b6ac7fe6775",
+              "source_id": "starto_concert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_40de142452b548fe93f2dfa1295c2111",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "d096a15b3fc0a28a2ac8",
+          "evidence": {
+            "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+            "reviewed_at_utc": "2026-11-06T06:45:45Z",
+            "url": "https://starto.jp/s/p/live/10602?ima=0057"
+          },
+          "fingerprint": "be05feff5337feb50c4c8b22ab127ec84fff84d95f03bbb1970a8fcc9fe041a5",
+          "identity": {
+            "artist_name": "Hey! Say! JUMP",
+            "event_date": "2027-01-12",
+            "event_end_date": "2027-01-12",
+            "event_start_time": "16:00",
+            "title": "Hey!Say!JUMP DOME TOUR 2026-2027 Juliet",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:h:c20dffb0ddcd625b",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "bc3cb6149e3c4e928e2e8c6428421552c6ae308e00129e1e61fd764aa47b3e54",
+              "source_id": "starto_concert"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -32525,9 +32895,201 @@
         "9fd8c159194e393e9400"
       ],
       "request_sha256": "25dc2f44784115072e953a2699d64eb35324926e54dd7311557a41d07b3f339f"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "11415d518f4d2b9b4e24",
+          "fingerprint": "246cfe24e133b7b14db55f2cd44a0a7bd813d480847767bd471377803733b7d3"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "11415d518f4d2b9b4e24"
+      ],
+      "previous_ids": [
+        "11415d518f4d2b9b4e24"
+      ],
+      "request_sha256": "5e370de50e0f25e120001dd5c6b4c579cfbba849dd341ccac1d82f6bccb8367f"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "3a000ab22b633d3fafd7",
+          "fingerprint": "925dda0107b41261e88345e436aa6fa84d9dc44286c2fb847d5d28206d0f099f"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "3a000ab22b633d3fafd7"
+      ],
+      "previous_ids": [
+        "3a000ab22b633d3fafd7"
+      ],
+      "request_sha256": "b13ae581ddf84d6c09785cb02f4ddffb75e4e2910ddc22f024937d43550a67b0"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "ab6c2d71a16a965f4761",
+          "fingerprint": "e67052531a7297eb9188ca4cac296363548614326fc2ca56fa425c39d3083551"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "ab6c2d71a16a965f4761"
+      ],
+      "previous_ids": [
+        "ab6c2d71a16a965f4761"
+      ],
+      "request_sha256": "607778536e28ea07e7b9c9dd94c161032f503ce25bfd9befd1432802f2b2f6fb"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "afc489602bd1669c3d81",
+          "fingerprint": "1e0a7da9c50d6398b98192f75254ec2a9a4dc3c255f7f6fa24691f86eb00520b"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "merge",
+      "next_ids": [
+        "afc489602bd1669c3d81"
+      ],
+      "previous_ids": [
+        "afc489602bd1669c3d81",
+        "d54be9aef58e47494606"
+      ],
+      "request_sha256": "514c27e3ec1ae25e255699d7b9b549a700db4d3047598032d5851a5904310ed4"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "f7f36bd5e6fa560585e4",
+          "fingerprint": "49ef1453d4416f93a0ef1fc0a0dfb97e0128096db9f01ec50713e49271eaed5a"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "f7f36bd5e6fa560585e4"
+      ],
+      "previous_ids": [
+        "f7f36bd5e6fa560585e4"
+      ],
+      "request_sha256": "ac7b4dd4f5a2117fc1882bf8fb88137ea1e648e8da6dc47aad9e2676b70f45be"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "3bfd902e6cc7c29affed",
+          "fingerprint": "8f1905f872535f0681930ebc44cd04f8eb7b76395d8050324600f03d4c30cc8d"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "3bfd902e6cc7c29affed"
+      ],
+      "previous_ids": [
+        "3bfd902e6cc7c29affed"
+      ],
+      "request_sha256": "1788bbad857a4a329f7892002f847527101f37b3f1b4f3c83f265d73727f6f4b"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "c7157e56e68caf5e4f03",
+          "fingerprint": "abd567243edb18c20d3eb34de237d9965135453a129308b96166edb0d6afb843"
+        }
+      ],
+      "evidence": {
+        "reason": "Official revised start time following support act addition; verified same scheduled performance.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://www.livenationhip.co.jp/all-events/bruno-mars-tickets-ae147754"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "c7157e56e68caf5e4f03"
+      ],
+      "previous_ids": [
+        "c7157e56e68caf5e4f03"
+      ],
+      "request_sha256": "ef6d06b2c6d84b24d48bc7bf15b13b17767f0d1d44c1d1d1e6ff14789d9d201c"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_d06b4428b86b415ba6da3da258af3757",
+          "fingerprint": "035440454a83b5e374e9f50fa06cb939538c7fb2fe21ffb76208031cdebc18b9"
+        },
+        {
+          "event_uid": "evt_c3a4ed3aebf84957bc6ff905a4a3ea55",
+          "fingerprint": "dfd0c64067c70186977d50d17b3329d484b7e631de489f1b2aa16347fb82ed0f"
+        },
+        {
+          "event_uid": "evt_76b1d338dcc64e429bcf2d99d2770db2",
+          "fingerprint": "bd69fc5b38e0187367f0af5eaa8947c1e49f27b3ae4bffc39d323ada5a11c14e"
+        },
+        {
+          "event_uid": "evt_24547d679366424188fb1717f3b4d1b6",
+          "fingerprint": "27fc7a8a6303cd023ddddff1aef5cebc276f2e302b1d45f895e0fe78805535c9"
+        },
+        {
+          "event_uid": "evt_c0dbe62503ce47f4a897120677a9488f",
+          "fingerprint": "cee63088d30c2dec2e5286556001f5914e0926573f40ec6c514dd4f63c4af4c9"
+        },
+        {
+          "event_uid": "evt_40de142452b548fe93f2dfa1295c2111",
+          "fingerprint": "be05feff5337feb50c4c8b22ab127ec84fff84d95f03bbb1970a8fcc9fe041a5"
+        }
+      ],
+      "evidence": {
+        "reason": "Official schedule confirms each venue, date and start time for the Juliet tour.",
+        "reviewed_at_utc": "2026-11-06T06:45:45Z",
+        "url": "https://starto.jp/s/p/live/10602?ima=0057"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_d06b4428b86b415ba6da3da258af3757",
+        "evt_c3a4ed3aebf84957bc6ff905a4a3ea55",
+        "evt_76b1d338dcc64e429bcf2d99d2770db2",
+        "evt_24547d679366424188fb1717f3b4d1b6",
+        "evt_c0dbe62503ce47f4a897120677a9488f",
+        "evt_40de142452b548fe93f2dfa1295c2111"
+      ],
+      "previous_ids": [],
+      "request_sha256": "abf4ee328a57045c4bc5c0c2258fcfef14de4c94b5e82682955220425d1f2b05"
     }
   ],
-  "revision": 43,
+  "revision": 51,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
