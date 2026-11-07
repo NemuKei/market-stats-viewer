@@ -827,6 +827,9 @@ def build_lp_events(
     include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
     as_of_date: date | None = None,
     identity_registry_path: Path | None = None,
+    reviewed_source_map_path: Path | None = None,
+    reviewed_source_baseline_path: Path | None = None,
+    source_review_preview: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     from .event_identity_registry import DEFAULT_REGISTRY_PATH, apply_to_payload, load_registry
 
@@ -834,7 +837,102 @@ def build_lp_events(
     candidates = _build_lp_event_candidates(events_db_path=events_db_path,
         event_signals_db_path=event_signals_db_path, include_past=include_past,
         past_days=past_days, as_of_date=as_of_date)
-    return apply_to_payload(candidates, registry, registry_sha)
+    if bool(reviewed_source_map_path) != bool(reviewed_source_baseline_path):
+        raise ValueError("reviewed source map and verified baseline must be provided together")
+    failed_source_uids = set()
+    if reviewed_source_map_path is not None:
+        from .reviewed_source_map import reviewed_rows_for_publication
+        candidates["events"], failed_source_uids = reviewed_rows_for_publication(
+            candidates["events"], registry, reviewed_source_map_path.read_bytes(),
+            reviewed_source_baseline_path.read_bytes(), events_db_path, event_signals_db_path)
+    result = apply_to_payload(candidates, registry, registry_sha)
+    if reviewed_source_map_path is not None:
+        from .reviewed_source_map import publication_baseline, SourceMapError
+        baseline = publication_baseline(reviewed_source_baseline_path.read_bytes())
+        if baseline["schema_version"] == 5:
+            present = {row["event_key"] for row in result["events"]}
+            if any(held["reason"] in {"changed_or_unbound_observation", "multiple_candidates_for_fixed_id"}
+                   and (set(held["related_event_uids"]) & set(baseline["event_sources"]) - present)
+                   for held in result["identity_held_records"]):
+                raise SourceMapError("existing public ID has an unresolved identity change; review before replacement")
+    from .reviewed_source_map import guard_new_ids, read_official_sources, source_signature
+    from .public_lp_projection import attach_public_row_checks, embedded_urls, official_public_source, project_event, publication_preview
+    from .event_identity_registry import identity_from_row, observation_from_row, source_records_from_row
+    from collections import Counter
+
+    official_sources = {}
+    reviewed_ids = set()
+    retained_changes = []
+    if reviewed_source_map_path is not None:
+        official_sources = read_official_sources(events_db_path)
+        source_held = guard_new_ids(result["events"], reviewed_source_map_path.read_bytes(),
+                                   reviewed_source_baseline_path.read_bytes(),
+                                   {row["event_key"] for row in candidates["events"]},
+                                   official_sources, reviewed_event_uids=reviewed_ids,
+                                   registry=registry, retained_changes=retained_changes,
+                                   failed_source_uids=failed_source_uids)
+    else:
+        # ID registration alone does not turn a news-only observation into an
+        # official fact source, including on the legacy no-map path.
+        source_held = {row["event_key"] for row in result["events"] if not official_public_source(row)}
+    def candidate_observation(row):
+        pairs = {(item["source_id"], item["record_id"]) for item in source_records_from_row(row)}
+        matches = [observation_from_row(candidate) for candidate in candidates["events"]
+                   if identity_from_row(candidate) == identity_from_row(row)
+                   and pairs & {(item["source_id"], item["record_id"]) for item in source_records_from_row(candidate)}]
+        if len(matches) != 1:
+            raise ValueError("source-review hold cannot be bound unambiguously")
+        return matches[0]
+
+    for changed in retained_changes:
+        observation = candidate_observation(changed)
+        result["identity_held_records"].append({**observation, "reason": "existing_publication_change_held",
+                                               "related_event_uids": [changed["event_key"]]})
+        if source_review_preview is not None:
+            try:
+                request = {"mode": "preserve_source", "event_uid": changed["event_key"],
+                    "observation": observation, "source_signature": source_signature(changed, official_sources),
+                    "public_urls": sorted(set(embedded_urls(project_event(changed)))),
+                    "fact_review": "pending", "publication": publication_preview(changed)}
+            except ValueError:
+                request = None  # Invalid current metadata requires investigation first.
+            source_review_preview.append({"candidate": changed, "review_request": request,
+                "reason": "existing_publication_change_held; previous public row retained; review current source before replacement"})
+    if source_held:
+        kept = []
+        for row in result["events"]:
+            if row["event_key"] not in source_held:
+                kept.append(row)
+                continue
+            observation = candidate_observation(row)
+            result["identity_held_records"].append({**observation, "reason": "source_review_required",
+                                                     "related_event_uids": [row["event_key"]]})
+            if source_review_preview is not None:
+                source_review_preview.append({
+                    "candidate": row,
+                    "review_request": {
+                        "mode": "preserve_source", "event_uid": row["event_key"],
+                        "observation": observation,
+                        "source_signature": source_signature(row, official_sources),
+                        "public_urls": sorted(set(embedded_urls(project_event(row)))),
+                        "fact_review": "pending",
+                        "publication": publication_preview(row),
+                    },
+                })
+        result["events"] = kept
+    if source_held or retained_changes:
+        result["identity_held_records"].sort(key=lambda item: (item["fingerprint"], item["reason"]))
+        result["summary"].update(
+            event_count=len(result["events"]),
+            counts_by_display_source=dict(Counter(row["display_source_id"] for row in result["events"])),
+            identity_held_record_count=len(result["identity_held_records"]),
+        )
+    if reviewed_source_map_path is not None:
+        result["events"] = [project_event(row) if row["event_key"] in reviewed_ids else row for row in result["events"]]
+    # Private per-call integrity checks: the writer must not expose a different
+    # public row after the producer's source/publication decisions were checked.
+    attach_public_row_checks(result, reviewed_ids=reviewed_ids)
+    return result
 
 
 
@@ -844,6 +942,7 @@ def write_lp_events(
 ) -> None:
     from .event_identity_registry import DEFAULT_REGISTRY_PATH, atomic_write, load_registry, registry_lock, require, validate_resolved_rows
     from .validate_external_events import validate_payload
+    from .public_lp_projection import project_payload
 
     registry_path = identity_registry_path or DEFAULT_REGISTRY_PATH
     require(isinstance(payload.get("identity_registry"), dict), "resolved identity metadata required before writing")
@@ -855,14 +954,15 @@ def write_lp_events(
         registry, registry_sha = load_registry(registry_path)
         require(payload["identity_registry"] == {"schema_version": 1, "revision": registry["revision"], "sha256": registry_sha}, "registry changed during generation")
         validate_resolved_rows(payload["events"], registry)
-        public_payload = {key: value for key, value in payload.items() if key != "identity_held_records"}
+        public_payload = project_payload(payload)
+        validate_payload(public_payload)
         atomic_write(output_path, (json.dumps(public_payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8"))
 
 
 def report_identity_holds(count: int) -> None:
     if not count:
         return
-    message = f"{count} event identity candidates are held; review the private pending preview before reporting publication complete."
+    message = f"{count} event candidates await identity or source review; inspect the private pending preview before reporting publication complete."
     print(f"::warning::{message}")
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary_path:
@@ -880,6 +980,8 @@ def main() -> int:
     )
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     parser.add_argument("--identity-registry", type=Path, help="Reviewed fixed-ID registry; missing/invalid registry stops generation.")
+    parser.add_argument("--reviewed-source-map", type=Path, help="Explicit reviewed source selections; omitted by default.")
+    parser.add_argument("--reviewed-source-baseline", type=Path, help="Verified pre-change all-dates public ID baseline.")
     parser.add_argument(
         "--past-days",
         type=int,
@@ -892,15 +994,37 @@ def main() -> int:
         help="Include all past events retained in the source databases.",
     )
     args = parser.parse_args()
+    if bool(args.reviewed_source_map) != bool(args.reviewed_source_baseline):
+        parser.error("reviewed source map and verified baseline must be provided together")
+    if args.reviewed_source_map:
+        from .event_identity_registry import digest
+        from .event_identity_registry import DEFAULT_REGISTRY_PATH
+        guarded_inputs = [args.events_db, args.event_signals_db, args.reviewed_source_map, args.reviewed_source_baseline,
+                          args.identity_registry or DEFAULT_REGISTRY_PATH]
+        if args.output.resolve() in {p.resolve() for p in guarded_inputs}:
+            raise ValueError("LP output aliases reviewed source input")
+        for db in (args.events_db, args.event_signals_db):
+            wal=Path(str(db)+"-wal")
+            if wal.exists() and wal.stat().st_size:
+                raise ValueError("reviewed source input DB has an active WAL")
+        guarded_hashes = [digest(p.read_bytes()) for p in guarded_inputs]
     payload = build_lp_events(events_db_path=args.events_db,
         event_signals_db_path=args.event_signals_db,
         include_past=bool(args.include_past), past_days=args.past_days,
-        identity_registry_path=args.identity_registry)
+        identity_registry_path=args.identity_registry, reviewed_source_map_path=args.reviewed_source_map,
+        reviewed_source_baseline_path=args.reviewed_source_baseline)
+    if args.reviewed_source_map and [digest(p.read_bytes()) for p in guarded_inputs] != guarded_hashes:
+        raise ValueError("reviewed source inputs changed during generation")
+    if args.reviewed_source_map:
+        for db in (args.events_db, args.event_signals_db):
+            wal=Path(str(db)+"-wal")
+            if wal.exists() and wal.stat().st_size:
+                raise ValueError("reviewed source input DB acquired an active WAL")
     write_lp_events(payload, args.output, identity_registry_path=args.identity_registry)
     report_identity_holds(payload["summary"]["identity_held_record_count"])
     print(
         f"lp events written: {args.output} ({payload['summary']['event_count']} events; "
-        f"{payload['summary']['identity_held_record_count']} identity candidates held)"
+        f"{payload['summary']['identity_held_record_count']} candidates awaiting identity/source review)"
     )
     return 0
 

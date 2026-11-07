@@ -51,7 +51,7 @@ def test_additive_all_dates_preserves_current_fields_and_source_freshness(monkey
     assert "location_held_records" not in p
 
 
-@pytest.mark.parametrize("changed", ["title", "first_seen_at_utc", "event_key", "event_date"])
+@pytest.mark.parametrize("changed", ["title", "first_seen_at_utc", "event_key", "event_date", "capacity", "evidence_snippet"])
 def test_current_row_changes_are_rejected(monkeypatch, changed):
     p = all_payload()
     p["events"][1][changed] = "fictional-change" if changed != "event_date" else "2026-10-12"

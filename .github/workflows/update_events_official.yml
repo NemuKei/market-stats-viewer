@@ -40,7 +40,13 @@ jobs:
 
       - name: Build LP events
         run: |
-          uv run python -m scripts.build_lp_events
+          if git cat-file -e HEAD:data/reviewed_event_sources.json 2>/dev/null; then
+            git cat-file -e HEAD:data/reviewed_event_baseline.json
+            git diff --quiet HEAD -- data/reviewed_event_sources.json data/reviewed_event_baseline.json
+            uv run python -m scripts.build_lp_events --reviewed-source-map data/reviewed_event_sources.json --reviewed-source-baseline data/reviewed_event_baseline.json
+          else
+            uv run python -m scripts.build_lp_events
+          fi
 
       - name: Commit changes (if any)
         run: |
@@ -56,7 +62,13 @@ jobs:
               uv run python -m scripts.rebase_data_commit --branch "$branch"
               # The rebase keeps upstream's lp_events.json; rebuild it from the rebased DBs
               # and validate before pushing so summary and rows come from one build.
-              uv run python -m scripts.build_lp_events
+              if git cat-file -e HEAD:data/reviewed_event_sources.json 2>/dev/null; then
+                git cat-file -e HEAD:data/reviewed_event_baseline.json
+                git diff --quiet HEAD -- data/reviewed_event_sources.json data/reviewed_event_baseline.json
+                uv run python -m scripts.build_lp_events --reviewed-source-map data/reviewed_event_sources.json --reviewed-source-baseline data/reviewed_event_baseline.json
+              else
+                uv run python -m scripts.build_lp_events
+              fi
               uv run python -m scripts.validate_external_events --lp-events data/lp_events.json
               git add data/lp_events.json
               if ! git diff --cached --quiet; then

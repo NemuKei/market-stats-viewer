@@ -96,7 +96,7 @@ def validate_payload(payload: dict, *, expected_date: str | None = None) -> dict
             raise ValueError("identity held summary mismatch")
         for candidate in held or []:
             if (not isinstance(candidate, dict) or set(candidate) != {"candidate_key", "identity", "source_records", "fingerprint", "reason", "related_event_uids"}
-                    or candidate["reason"] not in {"superseded_observation", "changed_or_unbound_observation", "unregistered_candidate", "multiple_candidates_for_fixed_id"}
+                    or candidate["reason"] not in {"superseded_observation", "changed_or_unbound_observation", "unregistered_candidate", "multiple_candidates_for_fixed_id", "source_review_required", "existing_publication_change_held"}
                     or not isinstance(candidate["related_event_uids"], list)
                     or any(not isinstance(uid, str) or not uid for uid in candidate["related_event_uids"])):
                 raise ValueError("invalid identity held candidate")

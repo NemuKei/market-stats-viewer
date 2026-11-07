@@ -370,6 +370,8 @@ def test_registry_drift_all_held_and_output_write_failure_preserve_snapshot(tmp_
         builder.write_lp_events(resolved, output, identity_registry_path=path)
     registry, sha = ids.load_registry(path)
     resolved = ids.apply_to_payload(changed, registry, sha)
+    from scripts.public_lp_projection import attach_public_row_checks
+    attach_public_row_checks(resolved)
     monkeypatch.setattr(ids.os, "replace", lambda *_: (_ for _ in ()).throw(OSError("synthetic replace failed")))
     with pytest.raises(OSError):
         builder.write_lp_events(resolved, output, identity_registry_path=path)
