@@ -74,6 +74,10 @@ def candidate(source, day, title, subject, start_time, detail_url, verified_at):
     )
     if start_time:
         row["event_start_time"] = start_time
+    if source == "osaka-marvelous":
+        # These verified home-game cards are volleyball. A club name in the
+        # legacy artist field must not turn the match into a concert.
+        row["event_category"] = "その他"
     if len(row["evidence_snippet"]) > 400:
         raise ValueError("programme facts exceed the existing inbox evidence limit")
     return row

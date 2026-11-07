@@ -206,6 +206,148 @@
         "source_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/?date=2027-01"
       },
       "source_class": "venue_official"
+    },
+    {
+      "mode": "preserve_source",
+      "event_uid": "evt_7b70896bfe534bb694f252368bcfe322",
+      "observation": {
+        "candidate_key": "647de139a0b165ebb362",
+        "identity": {
+          "event_date": "2026-11-07",
+          "event_end_date": "2026-11-07",
+          "event_start_time": "15:00",
+          "venue_name": "味の素スタジアム",
+          "artist_name": "FC東京 vs 鹿島アントラーズ",
+          "title": "J.LEAGUE FC東京 vs 鹿島アントラーズ"
+        },
+        "source_records": [
+          {
+            "source_id": "venue_web_discovery",
+            "record_id": "86d8f48a7a751ab701f6d3845000c9c4147d6546d59cf95ede94676f3d8447ef"
+          }
+        ],
+        "fingerprint": "aa7b5b72aa76c8ab193d466a0a2f5c06565da25e4a740bf556a5bf2b0439bce5"
+      },
+      "source_signature": "5d737134137eec710ae5c9dd4a9df7cd750a6b0b282ee33280efafe3ac1878da",
+      "fact_review": "reviewed",
+      "public_urls": [
+        "https://www.jleague.jp/club/ftokyo/day/",
+        "https://www.jleague.jp/match/j1/2026/110709/"
+      ],
+      "publication": {
+        "status": "reviewed",
+        "row_sha256": "593bca99a84a2e950ec08b9649ae12d06a98a0bc70dbfcdf451d613e49510bec",
+        "public_urls": [
+          "https://www.jleague.jp/club/ftokyo/day/",
+          "https://www.jleague.jp/match/j1/2026/110709/"
+        ]
+      }
+    },
+    {
+      "mode": "preserve_source",
+      "event_uid": "evt_0db7c3bc6fc4434eae47a6b460d0a049",
+      "observation": {
+        "candidate_key": "b3baf03c106d0c79d826",
+        "identity": {
+          "event_date": "2026-11-21",
+          "event_end_date": "2026-11-21",
+          "event_start_time": "14:00",
+          "venue_name": "味の素スタジアム",
+          "artist_name": "東京ヴェルディ vs 名古屋グランパス",
+          "title": "J.LEAGUE 東京ヴェルディ vs 名古屋グランパス"
+        },
+        "source_records": [
+          {
+            "source_id": "venue_web_discovery",
+            "record_id": "ffbd561ebecf67fa0d26be5dd4eaa5e5be65f03ad2514af9db258656817495d5"
+          }
+        ],
+        "fingerprint": "a5d6865165ff7805a3f1a0f822eb3d9010caabf5a6e79abc72b2ae9abd56b517"
+      },
+      "source_signature": "52f68966ca378fd600f6f8960131be3bfafd7230f105d2a946a008157a9aed03",
+      "fact_review": "reviewed",
+      "public_urls": [
+        "https://www.jleague.jp/club/tokyov/day/",
+        "https://www.jleague.jp/match/j1/2026/112101/"
+      ],
+      "publication": {
+        "status": "reviewed",
+        "row_sha256": "8044f019094d73d7a04df497660716f970f04c9fe0fc6ab8a6fa69df1f02eeaf",
+        "public_urls": [
+          "https://www.jleague.jp/club/tokyov/day/",
+          "https://www.jleague.jp/match/j1/2026/112101/"
+        ]
+      }
+    },
+    {
+      "mode": "preserve_source",
+      "event_uid": "evt_3d4928a2aa3a449ab648ad7065a2b3dc",
+      "observation": {
+        "candidate_key": "a058b7897665d21867cb",
+        "identity": {
+          "event_date": "2026-11-25",
+          "event_end_date": "2026-11-25",
+          "event_start_time": "19:00",
+          "venue_name": "味の素スタジアム",
+          "artist_name": "FC東京 vs サンフレッチェ広島",
+          "title": "J.LEAGUE FC東京 vs サンフレッチェ広島"
+        },
+        "source_records": [
+          {
+            "source_id": "venue_web_discovery",
+            "record_id": "6a1bebf27dea5439c682886ebb386283442ff4b2799236fde1ab7d6898d4839f"
+          }
+        ],
+        "fingerprint": "2dbddcf32fe3418254390adeacaa158f812e5ecc7b9e545aa60bb60408674215"
+      },
+      "source_signature": "4611cc15e9e943fba1a95e41823b3a56581fc39eb7185590aa365d15645d5e49",
+      "fact_review": "reviewed",
+      "public_urls": [
+        "https://www.jleague.jp/club/ftokyo/day/",
+        "https://www.jleague.jp/match/j1/2026/112503/"
+      ],
+      "publication": {
+        "status": "reviewed",
+        "row_sha256": "c5c96244160f287266b66f14d891d672f7f95ef7a14e5318891218a7250913a8",
+        "public_urls": [
+          "https://www.jleague.jp/club/ftokyo/day/",
+          "https://www.jleague.jp/match/j1/2026/112503/"
+        ]
+      }
+    },
+    {
+      "mode": "preserve_source",
+      "event_uid": "evt_21a33d130a264598883d0d207e77d2f8",
+      "observation": {
+        "candidate_key": "527058e5e2ae0b8580c3",
+        "identity": {
+          "event_date": "2026-11-29",
+          "event_end_date": "2026-11-29",
+          "event_start_time": "13:05",
+          "venue_name": "Asueアリーナ大阪",
+          "artist_name": "大阪マーヴェラス",
+          "title": "大阪マーヴェラス vs 東レ滋賀"
+        },
+        "source_records": [
+          {
+            "source_id": "venue_web_discovery",
+            "record_id": "9e953c5d00f8b360af5c91b298f0b7a2077b4133ddf7ed16df8ac7f7be0e3433"
+          }
+        ],
+        "fingerprint": "6301caf96c8fce1291ee4ad3eb7151a7301e5a182483e3d65cb3a952be793caf"
+      },
+      "source_signature": "38cf38e46c42dcce865c8ebe33475befe30a4323ed873cdf0a389fa07b54a8b2",
+      "fact_review": "reviewed",
+      "public_urls": [
+        "https://www.osaka-marvelous.com/game/score/2026/index.html"
+      ],
+      "publication": {
+        "status": "reviewed",
+        "row_sha256": "e4767b9d89017b1ddbfbc630518f40bd44da95820a67a44be75c7ce8998d12a5",
+        "public_urls": [
+          "https://www.osaka-marvelous.com/game/score/2026/index.html"
+        ]
+      }
     }
   ],
   "schema_version": 1
