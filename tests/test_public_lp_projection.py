@@ -141,12 +141,12 @@ def test_writer_detects_public_url_change_after_producer_checks(tmp_path, monkey
     assert output.read_bytes() == before
 
 
-def test_existing_996_rows_keep_all_v1_fields_and_urls():
+def test_existing_snapshot_rows_keep_all_v1_fields_and_urls():
     original = json.loads((Path(__file__).resolve().parents[1] / "data/lp_events.json").read_text())
     candidate = deepcopy(original)
     attach_public_row_checks(candidate)  # Simulate the verified legacy-row path.
     result = project_payload(candidate)
-    assert len(result["events"]) == 996
+    assert len(result["events"]) == original["summary"]["event_count"] > 0
     assert result == original
     assert set(embedded_urls(result)) == set(embedded_urls(original))
 

@@ -499,11 +499,12 @@ def test_pending_from_current_candidates_works_when_all_held(tmp_path, monkeypat
     original = payload([record()])
     path = write_fixture_registry(tmp_path, original["events"])
     before = path.read_bytes()
-    monkeypatch.setattr(builder, "_build_lp_event_candidates", lambda: payload([record(title="未確認の訂正")]))
+    monkeypatch.setattr(builder, "_build_lp_event_candidates", lambda **kwargs: payload([record(title="未確認の訂正")]))
     output = tmp_path / "private-preview.json"
     assert ids.main(["--registry", str(path), "pending", "--output", str(output)]) == 0
     preview = json.loads(output.read_bytes())
     assert preview["resolved_count"] == 0 and len(preview["held_records"]) == 1
+    assert preview['programme_review_candidates'] == []
     assert path.read_bytes() == before
 
 

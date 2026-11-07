@@ -26872,44 +26872,6 @@
       "venue_name": "フェスティバルホール"
     },
     {
-      "artist_name": "MC TYSON",
-      "capacity": 17000,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-12-07",
-      "event_end_date": "2026-12-07",
-      "event_end_time": null,
-      "event_key": "1c5cec18a9509dfda322",
-      "event_start_time": "18:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E2%80%9Cbayside-story%E2%80%9D-yokohama-arena",
-      "first_seen_at_utc": "2026-09-13T09:23:15Z",
-      "pref_name": "神奈川県",
-      "raw_artist_name": "MC TYSON",
-      "raw_venue_name": "横浜アリーナ",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.yokohama-arena.co.jp/event/detail/%E2%80%9Cbayside-story%E2%80%9D-yokohama-arena",
-          "priority": 10,
-          "record_id": "yokohama_arena:/event/detail/%E2%80%9Cbayside-story%E2%80%9D-yokohama-arena",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "“BAYSIDE STORY” in YOKOHAMA ARENA",
-          "updated_at_utc": "2026-09-13T09:23:15Z",
-          "url": "https://www.yokohama-arena.co.jp/event/detail/%E2%80%9Cbayside-story%E2%80%9D-yokohama-arena"
-        }
-      ],
-      "title": "“BAYSIDE STORY” in YOKOHAMA ARENA",
-      "updated_at_utc": "2026-09-13T09:23:15Z",
-      "url": "https://www.yokohama-arena.co.jp/event/detail/%E2%80%9Cbayside-story%E2%80%9D-yokohama-arena",
-      "venue_name": "横浜アリーナ"
-    },
-    {
       "artist_name": "Monsta X",
       "capacity": 12360,
       "display_source_class": "venue_official",
@@ -28897,7 +28859,7 @@
     },
     {
       "artist_name": "桑田佳祐",
-      "capacity": 16000,
+      "capacity": null,
       "display_source_class": "venue_official",
       "display_source_id": "official_events",
       "display_source_label": "会場公式",
@@ -28906,25 +28868,37 @@
       "event_end_date": "2026-12-22",
       "event_end_time": null,
       "event_key": "6a39ddc6ec06f8fa880f",
-      "event_start_time": null,
+      "event_start_time": "18:30",
       "evidence_snippet": "",
-      "evidence_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+      "evidence_url": "https://www.osaka-johall.com/event?ym=202612",
       "first_seen_at_utc": "2026-09-04T08:48:14Z",
       "pref_name": "大阪府",
-      "raw_artist_name": "桑田佳祐",
-      "raw_venue_name": "大阪城ホール",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
       "source_priority": 10,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+          "evidence_url": "https://www.osaka-johall.com/event?ym=202612",
           "priority": 10,
           "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22",
-          "source_class": "venue_official",
+          "source_class": "",
           "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "桑田佳祐",
+          "source_label": "",
+          "title": "",
           "updated_at_utc": "2026-11-04T11:49:09Z",
+          "url": "https://kyodo-osaka.co.jp/search/detail/13532"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+          "priority": 10,
+          "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22#t=18:30",
+          "source_class": "",
+          "source_id": "official_events",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-07T11:30:19Z",
           "url": "https://kyodo-osaka.co.jp/search/detail/13532"
         }
       ],
@@ -29011,7 +28985,7 @@
     },
     {
       "artist_name": "桑田佳祐",
-      "capacity": 16000,
+      "capacity": null,
       "display_source_class": "venue_official",
       "display_source_id": "official_events",
       "display_source_label": "会場公式",
@@ -29020,25 +28994,37 @@
       "event_end_date": "2026-12-23",
       "event_end_time": null,
       "event_key": "30255cf4916d65e4ef9b",
-      "event_start_time": null,
+      "event_start_time": "18:30",
       "evidence_snippet": "",
-      "evidence_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+      "evidence_url": "https://www.osaka-johall.com/event?ym=202612",
       "first_seen_at_utc": "2026-09-04T08:48:14Z",
       "pref_name": "大阪府",
-      "raw_artist_name": "桑田佳祐",
-      "raw_venue_name": "大阪城ホール",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
       "source_priority": 10,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+          "evidence_url": "https://www.osaka-johall.com/event?ym=202612",
           "priority": 10,
           "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23",
-          "source_class": "venue_official",
+          "source_class": "",
           "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "桑田佳祐",
+          "source_label": "",
+          "title": "",
           "updated_at_utc": "2026-11-04T11:49:09Z",
+          "url": "https://kyodo-osaka.co.jp/search/detail/13532"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+          "priority": 10,
+          "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23#t=18:30",
+          "source_class": "",
+          "source_id": "official_events",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-07T11:30:19Z",
           "url": "https://kyodo-osaka.co.jp/search/detail/13532"
         }
       ],
@@ -31583,39 +31569,39 @@
     },
     {
       "artist_name": "REBECCA",
-      "capacity": 8000,
+      "capacity": null,
       "display_source_class": "venue_official",
       "display_source_id": "official_events",
       "display_source_label": "会場公式",
       "event_category": "コンサート",
       "event_date": "2027-01-09",
-      "event_end_date": "2027-01-09",
+      "event_end_date": "2027-01-10",
       "event_end_time": null,
       "event_key": "b2a071a167a47379cc1f",
       "event_start_time": null,
       "evidence_snippet": "",
-      "evidence_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+      "evidence_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/?date=2027-01",
       "first_seen_at_utc": "2026-04-25T06:07:41Z",
       "pref_name": "東京都",
-      "raw_artist_name": "REBECCA",
-      "raw_venue_name": "東京ガーデンシアター",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
       "source_priority": 10,
       "supporting_sources": [
         {
           "content_extractor": null,
-          "evidence_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+          "evidence_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/?date=2027-01",
           "priority": 10,
           "record_id": "tokyo_garden_theater:https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
-          "source_class": "venue_official",
+          "source_class": "",
           "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "REBECCA REBECCA『Cosmic Autonomy Tour 2026-2027』",
-          "updated_at_utc": "2026-04-25T06:07:41Z",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-07T11:40:05Z",
           "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/"
         }
       ],
       "title": "REBECCA REBECCA『Cosmic Autonomy Tour 2026-2027』",
-      "updated_at_utc": "2026-04-25T06:07:41Z",
+      "updated_at_utc": "2026-11-07T11:40:05Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
       "venue_name": "東京ガーデンシアター"
     },
@@ -39738,13 +39724,13 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-07T11:17:26Z",
+  "generated_at_utc": "2026-11-07T12:07:28Z",
   "history_start_date": "2026-08-09",
   "history_window_days": 90,
   "identity_registry": {
-    "revision": 52,
+    "revision": 56,
     "schema_version": 1,
-    "sha256": "90b5c28984624b1878aed52dd6e9750b5373052a4c93d524771c688ad47066be"
+    "sha256": "7c8b6aab929f07d3206222b3def540c73fe3dc2fe68df5b294f578f9def48b0d"
   },
   "include_past": true,
   "location_held_records": [
@@ -39933,18 +39919,18 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 713,
+      "official_events": 712,
       "starto_concert": 4,
       "venue_web_discovery": 279
     },
-    "event_count": 996,
-    "identity_held_record_count": 964,
+    "event_count": 995,
+    "identity_held_record_count": 1890,
     "location_held_record_count": 35,
-    "record_count_before_grouping": 2191,
-    "start_time_split_event_count": 66,
-    "start_time_split_group_count": 62,
+    "record_count_before_grouping": 3140,
+    "start_time_split_event_count": 77,
+    "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 20,
     "supplemental_merged_record_count": 24,
-    "suppressed_event_count": 4
+    "suppressed_event_count": 5
   }
 }

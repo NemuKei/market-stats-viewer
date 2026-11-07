@@ -30,6 +30,7 @@ class PanasonicStadiumSuitaScheduleTests(unittest.TestCase):
     def test_fetch_events_parses_month_table(self) -> None:
         html = """
         <html><body>
+        <h3>YEAR_MONTH月のイベントスケジュール</h3>
         <table>
           <tr><th>日付</th><th>イベントスケジュール</th></tr>
           <tr>
@@ -48,6 +49,7 @@ class PanasonicStadiumSuitaScheduleTests(unittest.TestCase):
             <td>
               <ul>
                 <li>試合前準備</li>
+                <li>試合開催準備</li>
               </ul>
             </td>
           </tr>
@@ -61,7 +63,7 @@ class PanasonicStadiumSuitaScheduleTests(unittest.TestCase):
           </tr>
         </table>
         </body></html>
-        """
+        """.replace('YEAR_MONTH', date.today().strftime('%Y.%m'))
         session = _DummySession(html)
         source = HtmlSource(session)
         venue = VenueRecord(
@@ -85,6 +87,32 @@ class PanasonicStadiumSuitaScheduleTests(unittest.TestCase):
         self.assertEqual(event.start_date[-5:], f"{date.today().month:02d}-04")
         self.assertEqual(event.start_time, "19:00")
         self.assertEqual(event.url, "https://www.gamba-osaka.net/")
+        self.assertTrue(session.urls[0].endswith(date.today().strftime('/schedule_%Y%m.html')))
+
+    def test_month_mismatch_cannot_relabel_a_redirected_calendar(self) -> None:
+        session = _DummySession('<h3>2001.01月のイベントスケジュール</h3><table></table>')
+        venue = VenueRecord('panasonic_stadium_suita', 'Panasonic Stadium Suita', '27', '大阪府',
+            40000, 'https://suitacityfootballstadium.jp/', 'html', 'https://suitacityfootballstadium.jp/schedule/',
+            '{"strategy":"panasonic_stadium_suita_schedule","months_ahead":0}', True)
+        self.assertEqual(HtmlSource(session).fetch_events(venue), [])
+
+        from scripts.update_events_data import ThrottledSession
+        class NoThrottle:
+            def wait(self, url):
+                pass
+        class MonthlySession(_DummySession):
+            def get(self, url, **kwargs):
+                self.urls.append(url)
+                good = '<h3>' + date.today().strftime('%Y.%m') + '''月のイベントスケジュール</h3>
+                    <table><tr><th>8</th><td><ul><li>15:00 ～ 正常な試合</li></ul></td></tr></table>'''
+                return _DummyResponse(good if len(self.urls) == 1 else self._html)
+        raw = MonthlySession('<h3>2001.01月のイベントスケジュール</h3><table></table>')
+        wrapped = ThrottledSession(raw, NoThrottle())
+        venue.config_json = '{"strategy":"panasonic_stadium_suita_schedule","months_ahead":1}'
+        rows = HtmlSource(wrapped).fetch_events(venue)
+        self.assertEqual([r.title for r in rows], ['正常な試合'])
+        self.assertEqual(wrapped.fetch_status(failed=False, raw_count=1)['status'], 'partial_or_failed_collection')
+        self.assertEqual(wrapped.parser_issue_count, 1)
 
     def test_soccer_titles_are_not_classified_as_baseball(self) -> None:
         self.assertEqual(
