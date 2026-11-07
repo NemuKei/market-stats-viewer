@@ -6,7 +6,7 @@ import json
 from datetime import date
 from pathlib import Path
 
-from .build_lp_events import build_lp_events, write_lp_events
+from .build_lp_events import build_lp_events, report_identity_holds, write_lp_events
 from .event_identity_registry import DEFAULT_REGISTRY_PATH
 from .validate_external_events import validate_payload
 
@@ -79,13 +79,36 @@ def main() -> int:
     parser.add_argument("--data-dir", type=Path, default=Path("data"))
     parser.add_argument("--identity-registry", type=Path, default=DEFAULT_REGISTRY_PATH)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--reviewed-source-map", type=Path, help="Explicit reviewed selections used by the recent asset.")
+    parser.add_argument("--reviewed-source-baseline", type=Path, help="Verified pre-change all-dates public ID baseline.")
     args = parser.parse_args()
+    if bool(args.reviewed_source_map) != bool(args.reviewed_source_baseline):
+        parser.error("reviewed source map and verified baseline must be provided together")
     root = args.data_dir.resolve()
     recent = json.loads((root / "lp_events.json").read_text(encoding="utf-8"))
-    payload = build_all_dates_payload(recent, events_db_path=root / "events.sqlite",
-        event_signals_db_path=root / "event_signals.sqlite", identity_registry_path=args.identity_registry)
     output = args.output or root / ALL_DATES_ASSET
+    if args.reviewed_source_map:
+        from .event_identity_registry import digest
+        inputs=[root / "events.sqlite",root / "event_signals.sqlite",args.identity_registry,args.reviewed_source_map,args.reviewed_source_baseline]
+        if output.resolve() in {p.resolve() for p in inputs}:
+            raise ValueError("all-dates output aliases reviewed input")
+        for db in inputs[:2]:
+            wal=Path(str(db)+"-wal")
+            if wal.exists() and wal.stat().st_size:
+                raise ValueError("reviewed input DB has an active WAL")
+        before=[digest(p.read_bytes()) for p in inputs]
+    payload = build_all_dates_payload(recent, events_db_path=root / "events.sqlite",
+        event_signals_db_path=root / "event_signals.sqlite", identity_registry_path=args.identity_registry,
+        reviewed_source_map_path=args.reviewed_source_map,reviewed_source_baseline_path=args.reviewed_source_baseline)
+    if args.reviewed_source_map:
+        if [digest(p.read_bytes()) for p in inputs] != before:
+            raise ValueError("reviewed all-dates inputs changed during generation")
+        for db in inputs[:2]:
+            wal=Path(str(db)+"-wal")
+            if wal.exists() and wal.stat().st_size:
+                raise ValueError("reviewed input DB acquired an active WAL")
     write_lp_events(payload, output, identity_registry_path=args.identity_registry)
+    report_identity_holds(payload["summary"]["identity_held_record_count"])
     print(f"all-dates verified retained events: {len(payload['events'])}; source generation preserved")
     return 0
 

@@ -1,0 +1,73 @@
+{
+  "records": [
+    {
+      "candidate_key": "5808eca2a0cb1fcbe80a",
+      "event_uid": "evt_607292d730f445068777a2fa76f6e5ea",
+      "evidence_url_sha256": "a9d2a2b1f99e70649587e7ab35f75c90ec7d00b4ce4f8df6c7832e77a9137bff",
+      "fact_review": "reviewed",
+      "fingerprint": "e756fde3c2b8bf1429c32a1e9223af6768b27ac4510d5f6af7333aa81a370fcd",
+      "mode": "artist_source_link",
+      "publication": {
+        "public_urls": [
+          "https://starto.jp/s/p/live/10602"
+        ],
+        "row_sha256": "d5ce80905b6babdca2be1d47cca521f53aeac26959bb237e4d495c424f7c7702",
+        "status": "reviewed"
+      },
+      "record_id": "39729524f0bd932adc03d2212cac45fc8b34c5b6838a0e3e16506289082f9ddb",
+      "source_id": "starto_concert"
+    },
+    {
+      "candidate_key": "712a1a50bfe581278b15",
+      "event_uid": "evt_b9b836e51a7644b7881314070f5e27d5",
+      "evidence_url_sha256": "a9d2a2b1f99e70649587e7ab35f75c90ec7d00b4ce4f8df6c7832e77a9137bff",
+      "fact_review": "reviewed",
+      "fingerprint": "21fffae613da5d8a0560654dda290e01b9d85a656a6a31c388fa2cd5e18e0813",
+      "mode": "artist_source_link",
+      "publication": {
+        "public_urls": [
+          "https://starto.jp/s/p/live/10602"
+        ],
+        "row_sha256": "e63422aef1040b977661cc063fc0e88b20c8e0c75e251c5688c3e33726914560",
+        "status": "reviewed"
+      },
+      "record_id": "82c7c8be59ad78dfd5e335daee0819ef8ca6b20437595f2e7cb9862c8a5b6f29",
+      "source_id": "starto_concert"
+    },
+    {
+      "candidate_key": "0af4fc44a65bb2946f72",
+      "event_uid": "evt_8532bb80a4ff45748eadb55423d3c06b",
+      "evidence_url_sha256": "a9d2a2b1f99e70649587e7ab35f75c90ec7d00b4ce4f8df6c7832e77a9137bff",
+      "fact_review": "reviewed",
+      "fingerprint": "113d1e03df3779ad787ecc56978819edcfe106e288cf8c86388051cf97ab062a",
+      "mode": "artist_source_link",
+      "publication": {
+        "public_urls": [
+          "https://starto.jp/s/p/live/10602"
+        ],
+        "row_sha256": "1a59f118b09ab49a982eaa9c205cd6cd79278d59ab61eb82a2c33104da2ec94f",
+        "status": "reviewed"
+      },
+      "record_id": "fc93abf6977130249c9ce7f3c2c78068a7017a850d8b3a476739352c980837de",
+      "source_id": "starto_concert"
+    },
+    {
+      "candidate_key": "e1b93f256b7d2a776a12",
+      "event_uid": "evt_59aa527ee44a46928b8ed82a4134aef5",
+      "evidence_url_sha256": "a9d2a2b1f99e70649587e7ab35f75c90ec7d00b4ce4f8df6c7832e77a9137bff",
+      "fact_review": "reviewed",
+      "fingerprint": "0f632109297f96e675672476849daf883935f64add0d9e788c6ca8dfd750ec32",
+      "mode": "artist_source_link",
+      "publication": {
+        "public_urls": [
+          "https://starto.jp/s/p/live/10602"
+        ],
+        "row_sha256": "a5ab45dbf461d70021229ee2873b9279aa3317e88771c39506066c3954d4fad9",
+        "status": "reviewed"
+      },
+      "record_id": "d3d52cf537da5c7ddeee8e9781b533295e354300eee5591442484ef5361934c7",
+      "source_id": "starto_concert"
+    }
+  ],
+  "schema_version": 1
+}

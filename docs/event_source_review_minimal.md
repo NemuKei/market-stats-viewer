@@ -1,0 +1,65 @@
+# schema v1を維持する対象行限定の公開制御の設計記録
+
+以下は2026-11-06の隔離検証時点の記録。2026-11-07に対象4公演と仕組みの公開承認を得たため、実際の採用範囲・出典判断・同世代入力・運用上の制約は [採用記録](event_source_adoption_20261107.md) を参照する。以下のSIMULATED試験を実配布や個別許諾の証拠として扱わない。
+
+隔離実装のみ。全既存行から項目や補助URLを削る前案は撤回した。実data・固定ID台帳・公開map・baseline・consumer policy・Release・本番は変更していない。認証基盤やjournalは追加せず、従来のGitレビューを人の判断記録に使う。
+
+## 既存行を維持する
+
+writerは行ごとの内部モードを必要とする。`legacy` は既存schema v1の行をdeepcopyし、capacity、raw名称、snippet、source_priority、supporting_sourcesのtitle/class/label/priority/URL等を削除・空欄化しない。現時点の既存996行では全フィールド・全値・全補助URLを維持する。これは過去の本文利用を新たに承認する処理ではない。既存行の一律除去が必要なら、別バージョン・別配布資産と利用者移行の判断が必要であり、この案では行わない。
+
+map/baseline有効時、既存公開行はbaselineの全公開行hashと出典情報を比較する。snippet、capacity、raw名称、補助metadata/URLなどの未確認変更はv4では停止し、v5では安全に保持できる旧公開行へ戻して変更候補を保留する。公演事実のidentity検査だけで新しい本文を通すことはしない。正常なUTC更新日時の進行はhashから除き、日時形式を別検査する。
+
+baseline v4は全項目のhash比較を行う。追加したopt-inのv5は、確認済みの公開全期間assetの行自体とchecksumも保持し、未確認変更を保留して旧行を使える。v4の従来の停止動作も互換のため残す。v5の生成は`--retain-published-rows`を明示し、既存の実baselineを勝手に移行しない。hashは版の照合であり、公開許可や承認者の証明ではない。
+
+## 新規・変更対象だけを制御する
+
+mapで固定ID・active観測・取得元を照合し、別の `publication` 判断がreviewedで、公開予定行hashと公開URL集合が一致した行だけを `reviewed` モードにする。新規IDにその判断がない場合は個別保留する。v5では既存行の未確認変更も、旧行が同じidentity・現在のactive観測に結び付く場合だけ旧行の全項目を保持し、変更候補をexisting_publication_change_heldとして私的な審査出力へ残す。旧行の更新日時も保持し、未確認の取得日時で内容を新しく見せない。mapのschema/重複/active-ID検査を先に通すため、壊れたmapを行単位保留で隠さない。
+
+reviewed行もschema_version 1の既存キーを維持する。evidence_snippet・raw名称を空文字、capacityをnullにし、行のsource_priorityは既存のsource ID別定数を使う。supporting_sourcesも既存キーを保持し、未提示のtitle/class/label・URLを空文字、content_extractorをnullにする。source ID・record ID・更新日時を保持し、補助URLは表示行の出典/公演URLと同じものだけに限定する。未定義の本文・画像等はこの対象行からコピーしない。空文字/nullが未提供を表すことは対象行の公開差分としてレビューする。対象外の既存行にはこの投影を適用しない。
+
+公開予定行hashは固定IDと公開値を結び付け、URL一覧は識別子内のURLも検査する。HTTP(S)の列挙を大文字小文字非依存に修正した。事実確認だけでは上流公開判断を兼ねない。pendingを自動承認する処理はなく、実際の公式根拠・各項目・各リンクの判断は既存Gitレビューに記録する。consumerのunknownから上流公開許可を推測しない。
+
+STARTOの新規artist_officialは、保存信号の日時・会場・公演名・URLを照合するartist_source_linkからだけ進める。Kstyle/STARTOのニュース単独候補は公式根拠にしない。通常producerでも個別保留し、writerでもニュース単独表示を拒否する。
+
+## writer・通常更新・全期間
+
+producerが行モードとhashを `_public_row_checks` に記録し、writerは非空の出力ではこれを必須にして再照合する。writer単独でキーを省略して公開する経路は拒否する。これは呼出内の整合検査であり、承認の自動認証ではない。検査情報は公開JSONや独立した台帳に保存しない。
+
+トップレベルの既存v1キー・数値集計も維持する。location_held_recordsは現在のsource ID/不透明record ID/固定reasonという形式の既存値を維持し、新しい本文・HTTP URLを含む診断をそのまま公開しない。公開JSONからidentity保留の私的詳細と内部チェック情報を除く。
+
+通常90日と全期間は行全体をそのまま比較する。最小投影同士で比較して、legacy行のcapacityや本文の差分を隠す方式は撤回した。新規の個別保留は集計・通知する。全件保留では例外を送出し、既存ファイルを維持する。全期間も空なら失敗する。既存workflowの通常生成・rebase後再生成・Releaseの全期間生成は同じmap/baselineを渡す。実Actionsは未実行。
+
+mapなし経路は従来の固定ID採用経路を維持するため、公式区分の新規・変更URLに公演単位の判断を強制するものではない。この未解決範囲を解消したと報告しない。導入候補は確認済みmap/baselineと一組でレビューし、コードのみを公開して全判断が接続済みとは扱わない。元SQLiteの配布範囲もこのLP修正の対象外である。
+
+## 実データ差分・外部影響
+
+隔離コピーの既存LP（2026-11-06基準、996行、台帳revision 51）から通常CLI相当を一時出力へ再生成した。既存996行は全フィールド・全値が完全一致、event項目削除0、supporting項目削除0、追加/削除URLとも0、location診断も一致。既存consumerのイベント配列996行も一致した。以前の32種類URL・112行224箇所の一律除去は発生しない。
+
+同じ入力での再生成結果も一致し、全期間1,104行を一時出力へ生成して通常版との一致検査を通した。実dataには書き込んでいない。今回の比較は隔離コピーのPython処理と既存policyであり、本番・ブラウザ・Node/WebMCP実行を検証した意味ではない。
+
+v4段階の検証は上流全体 **843 passed / 96 subtests passed**。v5の旧行保持・安全に保持できないidentity変更の停止・明示ID追加の13回帰ケースを加えた最新検証は **856 passed / 96 subtests passed**、ruff・差分チェック成功。既知のAltair非推奨warning 1件。producerテストは隣接consumer repoに依存しない。4ID採用後を模したGit-freeコピーでの関連20 testsと、通常/全期間CLI・consumer・保存日程付きruntimeの結合確認も別途記録した。
+
+外部利用者について、既存行の項目削除に伴う移行は不要な案に戻した。ただし、対象となる新規/明示変更行の空文字・nullを利用者が許容するか、STARTO artist区分の表示、対象行の補助情報制限は未確認であり、対象差分の承認が必要。未知の利用者へ破壊的変更が一切ないと断定しない。
+
+## 採用前に残ること
+
+JUMP残り4公演は福岡12/12 18:00・12/13 15:00、名古屋12/19 17:00・12/20 15:00。保存STARTO公演URLは https://starto.jp/s/p/live/10602 。実際の上流公開判断、4IDの正式採用、限定consumer policyは未承認・未適用である。試験中のreviewedは仮判断。
+
+最新main・Release・DB・台帳の同世代性を確認し、隔離で一度登録した4IDからmap・baseline v4・LP・限定policyを整合させる。基準SHA/revisionが変われば完成セットを再生成し、本番で再登録して異なるIDを作らない。以前のdraftのhashやbaselineをそのまま採用しない。
+
+実cron/rebase競合、実GitHubのmanifest/uploadと本番復旧、外部利用者、本番検索は未検証。隔離でのupload途中障害・同一世代の再送・保存日程を含む復元は追加検証し、手順と限界をevent_publication_recovery.mdへ記載した。manifest単独は正常生成の代用にしない。公開・push・本番反映は承認前に行わない。
+
+既存公開本文・metadata・URLの未確認変更はv5で旧行を保持し、他の正常な更新を継続する。保持できるのはbaselineに保存した承認済み行であり、常に直前の最新更新日時を持つ行とは限らない。identityが変わる、旧行がactive観測に結び付かない、baseline/mapが不正、DBに非空WALがある、生成中に入力が変わる場合は停止する。消えた候補や中止扱いの候補をbaselineから追加復活させない。v4のままなら既存変更で全体停止するので、新運用はv5と一組でレビューする。
+
+承認した新規IDを次回も保持できるよう、v5 baselineの拡張は`--previous-baseline`と重複のない`--approved-id`の完全な集合を指定する。新規集合の過不足・既存公開内容の変更は拒否する。既存IDのsource signatureは旧baselineから引き継ぎ、現在のDBにある未確認の取得元変更を自動承認しない。公開済み行だけを保存し、DB内の未公開取得元URLは保存しない。新しい本文やリンクへの置換は引き続きGitレビューが必要。baseline拡張は定時処理が自動実行する操作ではない。
+
+## 現行の配布・利用経路を用いた結合確認
+
+2026-11-06の実Release（main `492e7061`、台帳revision 51）と、SideBiz main `15828a77` に固定した別の隔離検証を実施した。既存のinbox・収集CLI・固定ID審査・通常/全期間生成・manifest検証を再利用し、PR #21の未承認機能や新たな認証・審査journalは追加していない。PR #31の旧「既存10件」停止記録はIssue #32で解消済みと確認した。
+
+STARTO公演ページの埋め込み日程から残る4公演の日時・会場を再確認した。取得元として選ぶのは実際のSTARTO観測であり、取得できていない福岡会場本文を確認済みにはしない。事実照合と公開判断は別で、STARTOのサイト条件から利用許諾が得られたとは扱わない。
+
+公演単位の限定consumer policyを仮定した結合試験では通常1,000/全期間1,108件、実際の保存日程付きruntimeは2,121→2,125件。既存runtime全行・保存日程metadataは完全一致し、既存のstage_event_snapshotによる再採用準備・仮の適用・同一要求の再実行を検証した。既存public_scheduleの2資産も変更せず、計6資産をmanifestへ含めて検証した。一般の架空新規候補はinbox→venue_web_discovery収集→既存ID審査を通し、確認待ちではruntime 2,121件を維持、個別確認後は2,122件へ進むことを確認した。
+
+これは隔離試験の仮判断で、4IDの正式採用・本番ポリシー変更・配備は行っていない。実行前には最新入力を再固定し、同じ4IDからmap/policy/LPを整合させる。既存の再採用要求は保存日程の差分だけを列挙するため、通常公演の追加4IDはpolicyと公開候補の差分で別にレビューする。基準が変われば再準備し、本番で登録コマンドを再実行してIDを採り直さない。実Actions、実配布・復旧、本番表示、外部利用者の確認は依然として未実施。

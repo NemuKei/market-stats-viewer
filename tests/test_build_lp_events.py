@@ -998,10 +998,14 @@ def test_fixed_id_publication_reads_temp_dbs_and_preserves_source_and_notes(tmp_
     notes.write_bytes(ids.canonical_bytes({row["event_uid"]: "own note" for row in public}))
     protected = (path.read_bytes(), notes.read_bytes())
     result = producer.build_lp_events(**basis, identity_registry_path=path)
-    assert result["events"] == candidates["events"] and result["identity_held_records"] == []
+    from scripts.public_lp_projection import official_public_source
+    expected = [row for row in candidates["events"] if official_public_source(row)]
+    assert result["events"] == expected
+    assert all(row["reason"] == "source_review_required" for row in result["identity_held_records"])
+    assert len(result["identity_held_records"]) == len(candidates["events"]) - len(expected)
     output = tmp_path / "published-lp.json"
     producer.write_lp_events(result, output, identity_registry_path=path)
-    assert json.loads(output.read_bytes())["events"] == candidates["events"]
+    assert json.loads(output.read_bytes())["events"] == expected
     assert before == (events_db.read_bytes(), signals_db.read_bytes())
     assert protected == (path.read_bytes(), notes.read_bytes())
 

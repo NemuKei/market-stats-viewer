@@ -500,6 +500,8 @@ def main(argv: list[str] | None = None) -> int:
     pending = commands.add_parser("pending", help="Inspect copied LP or current read-only source candidates; no registry/publication writes.")
     pending.add_argument("--lp-events", type=Path, help="Copied candidate/internal LP; omit to inspect current source DBs read-only.")
     pending.add_argument("--output", type=Path, required=True, help="New preview file only; an existing path is refused.")
+    pending.add_argument("--reviewed-source-map", type=Path, help="Source selections used by the producer.")
+    pending.add_argument("--reviewed-source-baseline", type=Path, help="Baseline used by the producer.")
     review = commands.add_parser("apply-review", help="Apply a reviewed new/correction/split/merge request; no publication.")
     review.add_argument("--request", type=Path, required=True)
     args = parser.parse_args(argv)
@@ -514,9 +516,19 @@ def main(argv: list[str] | None = None) -> int:
             write_registry(registry, args.registry, expected_sha256=None)
     elif args.command == "pending":
         registry, sha = load_registry(args.registry)
+        source_review_preview = []
+        require(bool(args.reviewed_source_map) == bool(args.reviewed_source_baseline), "source map and baseline must be supplied together")
+        require(not args.lp_events or not args.reviewed_source_map, "copied LP and source-review options cannot be combined")
         if args.lp_events:
             data = args.lp_events.read_bytes()
             source = parse_json(data)
+        elif args.reviewed_source_map:
+            from scripts.build_lp_events import build_lp_events
+            source = build_lp_events(identity_registry_path=args.registry,
+                reviewed_source_map_path=args.reviewed_source_map,
+                reviewed_source_baseline_path=args.reviewed_source_baseline,
+                source_review_preview=source_review_preview)
+            data = canonical_bytes(source)
         else:
             from scripts.build_lp_events import _build_lp_event_candidates
             source = _build_lp_event_candidates()
@@ -532,6 +544,8 @@ def main(argv: list[str] | None = None) -> int:
             rows, held = resolve_rows(source["events"], registry)
         preview = {"schema_version": 1, "registry_revision": registry["revision"], "registry_sha256": sha,
                    "input_sha256": digest(data), "resolved_count": len(rows), "held_records": held}
+        if args.reviewed_source_map:
+            preview["source_review_candidates"] = source_review_preview
         atomic_write(args.output, json.dumps(preview, ensure_ascii=False, indent=2).encode("utf-8") + b"\n", replace=False)
     elif args.command == "apply-review":
         registry, expected = load_registry(args.registry)

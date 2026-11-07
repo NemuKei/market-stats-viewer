@@ -72,7 +72,13 @@ jobs:
             public_manifest_args=(--include-public-schedule-days "${public_pins[@]}")
             public_validation_args=(--require-public-schedule-days "${public_pins[@]}")
           fi
-          python -m scripts.build_all_dates_lp_events
+          if git cat-file -e HEAD:data/reviewed_event_sources.json 2>/dev/null; then
+            git cat-file -e HEAD:data/reviewed_event_baseline.json
+            git diff --quiet HEAD -- data/reviewed_event_sources.json data/reviewed_event_baseline.json
+            python -m scripts.build_all_dates_lp_events --reviewed-source-map data/reviewed_event_sources.json --reviewed-source-baseline data/reviewed_event_baseline.json
+          else
+            python -m scripts.build_all_dates_lp_events
+          fi
           GITHUB_SHA="$source_sha" python -m scripts.build_external_events_manifest --release-tag external-events-latest "${public_manifest_args[@]}"
           python -m scripts.validate_external_events \
             --require-all-dates \
