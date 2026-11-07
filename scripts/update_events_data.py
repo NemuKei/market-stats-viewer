@@ -216,10 +216,44 @@ class ThrottledSession:
     def __init__(self, session: requests.Session, throttle: DomainThrottle):
         self._session = session
         self._throttle = throttle
+        self.begin_venue()
+
+    def begin_venue(self) -> None:
+        self.request_count = 0
+        self.http_error_count = 0
+        self.transport_error_count = 0
+        self.parser_issue_count = 0
+
+    def note_parser_issue(self) -> None:
+        self.parser_issue_count += 1
 
     def get(self, url: str, **kwargs):
         self._throttle.wait(url)
-        return self._session.get(url, **kwargs)
+        self.request_count += 1
+        try:
+            response = self._session.get(url, **kwargs)
+        except Exception:
+            self.transport_error_count += 1
+            raise
+        if response.status_code >= 400:
+            self.http_error_count += 1
+        return response
+
+    def fetch_status(self, *, failed: bool, raw_count: int) -> dict:
+        if failed:
+            status = 'failed'
+        elif self.http_error_count or self.transport_error_count or self.parser_issue_count:
+            status = 'partial_or_failed_collection'
+        elif not self.request_count:
+            status = 'not_requested'
+        elif not raw_count:
+            status = 'empty_unverified'
+        else:
+            status = 'fetched_completeness_unverified'
+        return dict(status=status, request_count=self.request_count,
+                    http_error_count=self.http_error_count,
+                    transport_error_count=self.transport_error_count,
+                    parser_issue_count=self.parser_issue_count)
 
     def __getattr__(self, name):
         return getattr(self._session, name)
@@ -370,12 +404,16 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=0, help="Process first N enabled venues only")
     parser.add_argument("--only", type=str, default="", help="Comma-separated venue_ids to process")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
+    parser.add_argument('--run-report', type=Path, help='Optional counts-only fetch report outside data/ (no source text or URLs).')
     parser.add_argument(
         "--skip-artist-inference",
         action="store_true",
         help="Skip rebuilding data/events_artist_inferred.csv after events update",
     )
     args = parser.parse_args()
+    if args.run_report and (args.run_report.resolve() == EVENTS_DB_PATH.resolve()
+            or DATA_DIR.resolve() in args.run_report.resolve().parents):
+        parser.error('fetch reports must be outside data/ and never replace a database')
 
     level = logging.DEBUG if args.verbose else logging.INFO
     logging.basicConfig(
@@ -419,22 +457,29 @@ def main() -> None:
     fail_count = 0
     total_events = 0
     total_changed = 0
+    run_report = dict(report_version=1, started_at_utc=datetime.now(timezone.utc).isoformat(), venues=[])
 
     for venue in targets:
         logger.info("--- %s (%s) ---", venue.venue_id, venue.venue_name)
+        session.begin_venue()
+        raw_count = filtered_count = 0
+        failed = False
         try:
             source = get_source(venue.source_type, session)
             if source is None:
                 logger.warning("No plugin for source_type=%s", venue.source_type)
                 fail_count += 1
+                failed = True
                 continue
 
             events = source.fetch_events(venue)
+            raw_count = len(events)
             unique_uids = len({e.event_uid for e in events})
             logger.info("  fetched %d event(s) (%d unique)", len(events), unique_uids)
 
             # Apply date window filter
             events = filter_events_by_date(events)
+            filtered_count = len(events)
             logger.info("  after date filter: %d event(s)", len(events))
             total_events += len(events)
 
@@ -492,9 +537,21 @@ def main() -> None:
             conn.rollback()
             logger.exception("  FAILED: %s", venue.venue_id)
             fail_count += 1
+            failed = True
             continue
+        finally:
+            run_report['venues'].append(dict(venue_id=venue.venue_id,
+                raw_count=raw_count, filtered_count=filtered_count,
+                **session.fetch_status(failed=failed, raw_count=raw_count)))
 
     conn.close()
+    if args.run_report:
+        run_report['finished_at_utc'] = datetime.now(timezone.utc).isoformat()
+        try:
+            args.run_report.write_text(json.dumps(run_report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        except OSError:
+            # Diagnostics cannot discard successfully collected source updates.
+            logger.warning('Could not write fetch report; fetch coverage remains unmeasured.')
 
     logger.info(
         "Done: %d success, %d failed, %d events fetched, %d changed",

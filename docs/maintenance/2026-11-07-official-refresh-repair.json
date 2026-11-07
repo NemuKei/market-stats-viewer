@@ -1,0 +1,191 @@
+{
+  "base_commit": "45484ed4435ee73c0dc085cb73bf04ee0817c955",
+  "cancelled_public_ID": "1c5cec18a9509dfda322",
+  "corrected_public_IDs": [
+    "30255cf4916d65e4ef9b",
+    "6a39ddc6ec06f8fa880f",
+    "b2a071a167a47379cc1f"
+  ],
+  "limits": [
+    "Failed runner did not retain its DB; diagnosis was reproduced from the same input DBs using fresh primary sources.",
+    "Ariake date-split and league-wide publication prototypes are excluded.",
+    "Other fourteen Nagoya published-year corrections and the separate BIGBANG merge remain separate review candidates."
+  ],
+  "next_registry_sha256": "7c8b6aab929f07d3206222b3def540c73fe3dc2fe68df5b294f578f9def48b0d",
+  "no_consumer_policy_change": true,
+  "no_new_fixed_IDs": true,
+  "previous_registry_sha256": "90b5c28984624b1878aed52dd6e9750b5373052a4c93d524771c688ad47066be",
+  "registry_revision": 56,
+  "requests": [
+    {
+      "candidates": [
+        {
+          "event_uid": "30255cf4916d65e4ef9b",
+          "observation": {
+            "candidate_key": "30255cf4916d65e4ef9b",
+            "fingerprint": "f152a3dcb3c4a2559b62239d4efc362598c67b7bea6008fd55148a8a0ff2cad3",
+            "identity": {
+              "artist_name": "桑田佳祐",
+              "event_date": "2026-12-23",
+              "event_end_date": "2026-12-23",
+              "event_start_time": "18:30",
+              "title": "桑田佳祐",
+              "venue_name": "大阪城ホール"
+            },
+            "source_records": [
+              {
+                "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23",
+                "source_id": "official_events"
+              },
+              {
+                "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23#t=18:30",
+                "source_id": "official_events"
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "reason": "Owner-authorized calendar maintenance. Venue/promoter body confirms the changed retained date interval or 18:30 start. Preserve the fixed ID and all prior observations. Existing publication policy only; no individual source licence or consent is asserted.",
+        "reviewed_at_utc": "2026-11-07T12:07:27.657062Z",
+        "url": "https://kyodo-osaka.co.jp/search/detail/13532"
+      },
+      "expected_revision": 52,
+      "kind": "correction",
+      "previous_ids": [
+        "30255cf4916d65e4ef9b"
+      ],
+      "schema_version": 1
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "6a39ddc6ec06f8fa880f",
+          "observation": {
+            "candidate_key": "6a39ddc6ec06f8fa880f",
+            "fingerprint": "b36c1cb2624dbfe9b3a156135c50b60405d1ad322da567ab46c12c53be841c3a",
+            "identity": {
+              "artist_name": "桑田佳祐",
+              "event_date": "2026-12-22",
+              "event_end_date": "2026-12-22",
+              "event_start_time": "18:30",
+              "title": "桑田佳祐",
+              "venue_name": "大阪城ホール"
+            },
+            "source_records": [
+              {
+                "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22",
+                "source_id": "official_events"
+              },
+              {
+                "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22#t=18:30",
+                "source_id": "official_events"
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "reason": "Owner-authorized calendar maintenance. Venue/promoter body confirms the changed retained date interval or 18:30 start. Preserve the fixed ID and all prior observations. Existing publication policy only; no individual source licence or consent is asserted.",
+        "reviewed_at_utc": "2026-11-07T12:07:27.657062Z",
+        "url": "https://kyodo-osaka.co.jp/search/detail/13532"
+      },
+      "expected_revision": 53,
+      "kind": "correction",
+      "previous_ids": [
+        "6a39ddc6ec06f8fa880f"
+      ],
+      "schema_version": 1
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "b2a071a167a47379cc1f",
+          "observation": {
+            "candidate_key": "b2a071a167a47379cc1f",
+            "fingerprint": "50430dbbcc5484b009684cb937e111e5704ce2e7ef8cf1cc12f63ad2ae98f838",
+            "identity": {
+              "artist_name": "REBECCA",
+              "event_date": "2027-01-09",
+              "event_end_date": "2027-01-10",
+              "event_start_time": "",
+              "title": "REBECCA REBECCA『Cosmic Autonomy Tour 2026-2027』",
+              "venue_name": "東京ガーデンシアター"
+            },
+            "source_records": [
+              {
+                "record_id": "tokyo_garden_theater:https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+                "source_id": "official_events"
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "reason": "Owner-authorized calendar maintenance. Venue/promoter body confirms the changed retained date interval or 18:30 start. Preserve the fixed ID and all prior observations. Existing publication policy only; no individual source licence or consent is asserted.",
+        "reviewed_at_utc": "2026-11-07T12:07:27.657062Z",
+        "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/"
+      },
+      "expected_revision": 54,
+      "kind": "correction",
+      "previous_ids": [
+        "b2a071a167a47379cc1f"
+      ],
+      "schema_version": 1
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_59aa527ee44a46928b8ed82a4134aef5",
+          "observation": {
+            "candidate_key": "d9480bb2bbbbfda50c39",
+            "fingerprint": "aa2a2ca753c69500ea67c854815c5fe37a4b72a76a87bc09623893e56310cafa",
+            "identity": {
+              "artist_name": "Hey! Say! JUMP",
+              "event_date": "2026-12-20",
+              "event_end_date": "2026-12-20",
+              "event_start_time": "15:00",
+              "title": "Hey! Say! JUMP DOME TOUR 2026-2027 Juliet",
+              "venue_name": "バンテリンドームナゴヤ"
+            },
+            "source_records": [
+              {
+                "record_id": "vantelin_dome_nagoya:https://starto.jp/s/p/live/10602#d=2026-12-20#t=15:00",
+                "source_id": "official_events"
+              },
+              {
+                "record_id": "d3d52cf537da5c7ddeee8e9781b533295e354300eee5591442484ef5361934c7",
+                "source_id": "starto_concert"
+              }
+            ]
+          }
+        }
+      ],
+      "evidence": {
+        "reason": "Owner-authorized calendar maintenance. Rebind the same approved Juliet facts and source pair after correcting the unrelated prior-year raw projection; only the transient consolidation key changed. Preserve the existing fixed ID and prior observation. No new source or link permission.",
+        "reviewed_at_utc": "2026-11-07T12:07:27.657062Z",
+        "url": "https://starto.jp/s/p/live/10602"
+      },
+      "expected_revision": 55,
+      "kind": "correction",
+      "previous_ids": [
+        "evt_59aa527ee44a46928b8ed82a4134aef5"
+      ],
+      "schema_version": 1
+    }
+  ],
+  "reviewed_at_utc": "2026-11-07T12:07:27.657062Z",
+  "saved_day_assets_unchanged": true,
+  "schema_version": 1,
+  "scope": "owner-authorized limited correction of failed official refresh",
+  "source_row_mutations": 6,
+  "unchanged_public_rows": 1104,
+  "verified_sources": [
+    "https://www.nagoya-dome.co.jp/enjoy/index.php",
+    "https://www.yokohama-arena.co.jp/event/202612?_format=json",
+    "https://www.creativeman.co.jp/event/mc-tyson/",
+    "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+    "https://www.osaka-johall.com/event/?ym=202612",
+    "https://kyodo-osaka.co.jp/search/detail/13532"
+  ]
+}

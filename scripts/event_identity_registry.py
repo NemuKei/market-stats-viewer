@@ -517,6 +517,7 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "pending":
         registry, sha = load_registry(args.registry)
         source_review_preview = []
+        programme_review_preview = []
         require(bool(args.reviewed_source_map) == bool(args.reviewed_source_baseline), "source map and baseline must be supplied together")
         require(not args.lp_events or not args.reviewed_source_map, "copied LP and source-review options cannot be combined")
         if args.lp_events:
@@ -527,11 +528,12 @@ def main(argv: list[str] | None = None) -> int:
             source = build_lp_events(identity_registry_path=args.registry,
                 reviewed_source_map_path=args.reviewed_source_map,
                 reviewed_source_baseline_path=args.reviewed_source_baseline,
-                source_review_preview=source_review_preview)
+                source_review_preview=source_review_preview,
+                programme_review_preview=programme_review_preview)
             data = canonical_bytes(source)
         else:
             from scripts.build_lp_events import _build_lp_event_candidates
-            source = _build_lp_event_candidates()
+            source = _build_lp_event_candidates(programme_review_preview=programme_review_preview)
             data = canonical_bytes(source)
         from scripts.validate_external_events import validate_payload
         validate_payload(source)
@@ -546,6 +548,7 @@ def main(argv: list[str] | None = None) -> int:
                    "input_sha256": digest(data), "resolved_count": len(rows), "held_records": held}
         if args.reviewed_source_map:
             preview["source_review_candidates"] = source_review_preview
+        preview["programme_review_candidates"] = programme_review_preview
         atomic_write(args.output, json.dumps(preview, ensure_ascii=False, indent=2).encode("utf-8") + b"\n", replace=False)
     elif args.command == "apply-review":
         registry, expected = load_registry(args.registry)

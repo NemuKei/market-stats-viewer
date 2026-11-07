@@ -47,6 +47,11 @@ jobs:
             uv run python -m scripts.build_lp_events
           fi
 
+      - name: Audit calendar coverage (read-only)
+        if: always()
+        continue-on-error: true # Monitoring errors must not discard other valid updates.
+        run: uv run python -m scripts.audit_event_calendar_coverage --summary "$GITHUB_STEP_SUMMARY"
+
       - name: Commit changes (if any)
         run: |
           git status --porcelain

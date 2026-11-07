@@ -96,6 +96,15 @@ class _YokohamaArenaJson(_BaseStrategy):
                 artist = item.get("artist") or None
                 if artist is False:
                     artist = None
+                # The official JSON adds a bounded status tag to the performer
+                # field. Preserve that observation, but don't treat a cancelled
+                # programme as a newly renamed artist/active occurrence.
+                status_text = unicodedata.normalize("NFKC", title + " " + (artist if isinstance(artist, str) else ""))
+                status = "scheduled"
+                if re.search(r"[【\[](?:公演|開催)中止[】\]]", status_text):
+                    status = "cancelled"
+                elif re.search(r"[【\[](?:公演|開催)延期[】\]]", status_text):
+                    status = "postponed"
                 detail_path = item.get("path", "")
                 event_url = (
                     f"https://www.yokohama-arena.co.jp{detail_path}"
@@ -112,7 +121,7 @@ class _YokohamaArenaJson(_BaseStrategy):
                     end_date=end_date if end_date != start_date else None,
                     end_time=end_time,
                     all_day=not bool(start_time),
-                    status="scheduled",
+                    status=status,
                     url=event_url,
                     description=None,
                     performers=artist if isinstance(artist, str) else None,
@@ -881,14 +890,37 @@ class _VantelinDomeSchedule(_BaseStrategy):
         soup = BeautifulSoup(resp.text, "html.parser")
         events: list[EventRecord] = []
         seen_uids: set[str] = set()
-        today = date.today()
-        base_year = today.year
+        # The page contains last year, this year and next year simultaneously.
+        # tabs-N is the zero-based month offset from the first labelled year.
+        # Its malformed self-closing divs leave the year in a text sibling.
+        years = []
+        for label in soup.select(".tabYear"):
+            text = label.get_text(" ", strip=True) or str(label.next_sibling or "")
+            match = re.match(r"\s*(\d{4})年", text)
+            if match:
+                years.append(int(match.group(1)))
+        if not years or years != list(range(years[0], years[0] + len(years))):
+            raise ValueError(
+                "vantelin_dome: missing or ambiguous source calendar years"
+            )
         # Table rows with date, open, start, end, event columns
         for table in soup.find_all("table"):
+            container = table.find_parent("div", class_="events")
+            tab = (
+                re.fullmatch(r"tabs-(\d+)", str(container.get("id", "")))
+                if container
+                else None
+            )
+            if tab is None or int(tab.group(1)) // 12 >= len(years):
+                logger.warning(
+                    "vantelin_dome: calendar table has no verified year/month"
+                )
+                continue
+            year_index, month_index = divmod(int(tab.group(1)), 12)
             rows = table.find_all("tr")
             for row in rows:
                 cells = row.find_all(["td", "th"])
-                if len(cells) < 2:
+                if len(cells) < 5:
                     continue
                 # First cell: date like "3/1(土)" or "12/25(木)"
                 date_text = cells[0].get_text(strip=True)
@@ -897,24 +929,23 @@ class _VantelinDomeSchedule(_BaseStrategy):
                     continue
                 month = int(dm.group(1))
                 day = int(dm.group(2))
-                # Infer year: if month is far behind current month, assume next year
-                inferred_year = base_year
-                if month < today.month and (today.month - month) > 6:
-                    inferred_year = base_year + 1
-                start_date = f"{inferred_year}-{month:02d}-{day:02d}"
+                if month != month_index + 1:
+                    logger.warning(
+                        "vantelin_dome: row month disagrees with calendar tab"
+                    )
+                    continue
+                start_date = date(years[year_index], month, day).isoformat()
                 # Last cell is usually the event name
                 title_cell = cells[-1]
                 title = title_cell.get_text(strip=True)
                 if not title:
                     continue
-                # Extract times from cells (open, start columns)
+                # Source columns are date/open/start/end/title. Neither the
+                # door time nor the end time may substitute for a missing start.
                 start_time = None
-                for cell in cells[1:-1]:
-                    ct = cell.get_text(strip=True)
-                    tm = re.match(r"(\d{1,2}:\d{2})", ct)
-                    if tm:
-                        start_time = _normalise_time(tm.group(1))
-                        # Prefer second time column (start) over first (open)
+                tm = re.match(r"(\d{1,2}:\d{2})", cells[2].get_text(strip=True))
+                if tm:
+                    start_time = _normalise_time(tm.group(1))
                 # Links
                 event_url = None
                 source_key = None
@@ -924,9 +955,7 @@ class _VantelinDomeSchedule(_BaseStrategy):
                     event_url = href
                     if not event_url.startswith("http"):
                         event_url = f"https://www.nagoya-dome.co.jp{href}"
-                    source_key = _source_key_with_schedule(
-                        href, start_date, start_time
-                    )
+                    source_key = _source_key_with_schedule(href, start_date, start_time)
                 uid = compute_event_uid(
                     venue.venue_id,
                     source_key,
@@ -1294,15 +1323,22 @@ class _MakuhariMesseSchedule(_BaseStrategy):
                     seen_uids=seen_uids,
                     allowed_categories=allowed_categories,
                 )
-                if not page_events:
-                    break
                 events.extend(page_events)
 
                 pagination = soup.find("div", class_=re.compile("pager|pagination"))
-                if pagination is None or str(page + 1) not in pagination.get_text(
-                    " ", strip=True
+                # A category-filtered page can be empty while a later page has
+                # matching programmes. Follow the source's navigation, not the
+                # accepted event count (which also becomes zero on duplicates).
+                if pagination is None or not any(
+                    re.search(rf"\bpager\(\s*{page + 1}\s*\)", a.get("href", ""))
+                    or re.search(rf"[?&]page={page + 1}(?:&|$)", a.get("href", ""))
+                    for a in pagination.find_all("a", href=True)
                 ):
                     break
+                if page == max_pages:
+                    logger.warning(
+                        "makuhari_messe: pagination limit reached for %s", ym
+                    )
 
         return events
 
@@ -1324,7 +1360,9 @@ class _MakuhariMesseSchedule(_BaseStrategy):
             category_label = ""
             category_node = li.select_one(".category, .cate")
             if category_node is not None:
-                category_label = " ".join(category_node.get_text(" ", strip=True).split())
+                category_label = " ".join(
+                    category_node.get_text(" ", strip=True).split()
+                )
             if allowed_categories and category_label not in allowed_categories:
                 continue
 
@@ -2626,6 +2664,25 @@ class _MufgStadiumSchedule(_BaseStrategy):
             if not hm:
                 continue
 
+            # This calendar includes AGF and Aminovital Field as well as the
+            # main stadium. The legacy venue_id is Ajinomoto Stadium, so never
+            # assign a sibling facility (or an unlabelled item) to that ID.
+            block = a_tag.find_parent("div", class_="columnBlock03")
+            facilities = (
+                []
+                if block is None
+                else [
+                    li.get_text(" ", strip=True)
+                    for li in block.select("ul.icon li")
+                    if any(re.fullmatch(r"icon0\d+", c) for c in li.get("class", []))
+                ]
+            )
+            if facilities != ["味の素スタジアム"]:
+                logger.info(
+                    "mufg_stadium: skipped non-main or unknown facility at %s", href
+                )
+                continue
+
             year = int(hm.group(1))
             month = int(hm.group(2))
             day = int(hm.group(3))
@@ -3842,9 +3899,9 @@ class _PanasonicStadiumSuitaSchedule(_BaseStrategy):
         for offset in range(months_ahead + 1):
             d = today.replace(day=1) + timedelta(days=32 * offset)
             d = d.replace(day=1)
-            month_url = (
-                f"https://suitacityfootballstadium.jp/schedule/index/year/"
-                f"{d.year}/month/{d.month:02d}/"
+            month_url = urljoin(
+                venue.source_url.rstrip("/") + "/",
+                f"schedule_{d.year}{d.month:02d}.html",
             )
             try:
                 resp = session.get(month_url, timeout=30)
@@ -3860,6 +3917,22 @@ class _PanasonicStadiumSuitaSchedule(_BaseStrategy):
                 continue
             resp.encoding = resp.apparent_encoding or "utf-8"
             soup = BeautifulSoup(resp.text, "html.parser")
+            headings = " ".join(
+                n.get_text(" ", strip=True) for n in soup.find_all(["h2", "h3"])
+            )
+            labelled_month = re.search(r"(\d{4})[.年]\s*(\d{1,2})月", headings)
+            if not labelled_month or (
+                int(labelled_month.group(1)),
+                int(labelled_month.group(2)),
+            ) != (d.year, d.month):
+                logger.warning(
+                    "panasonic_stadium_suita: source calendar year/month differs from request: %s",
+                    month_url,
+                )
+                note_issue = getattr(session, "note_parser_issue", None)
+                if note_issue is not None:
+                    note_issue()
+                continue
             events.extend(
                 self._parse_page(venue, soup, month_url, d.year, d.month, seen_uids)
             )
@@ -3910,7 +3983,11 @@ class _PanasonicStadiumSuitaSchedule(_BaseStrategy):
                     title = time_match.group(2).strip()
 
                 title = re.sub(r"\[お問い合わせ先\].*$", "", title).strip()
-                if not title or title in {"試合前準備", "スタジアムツアー 締切"}:
+                if not title or title in {
+                    "試合前準備",
+                    "試合開催準備",
+                    "スタジアムツアー 締切",
+                }:
                     continue
 
                 source_key = _source_key_with_schedule(

@@ -291,6 +291,12 @@ def load_official_events(
             artist_keep_map,
             artist_compact_map,
         )
+        # The legacy grouping field also identifies non-musical programmes.
+        # A missing performer match must not silently discard an official game
+        # or an unrecognised concert before fixed-ID/source review. Keep the
+        # complete official programme label; never infer a performer from it.
+        if not artist_name:
+            artist_name = str(row["title"] or "").strip()
         raw_venue_name = str(row["venue_name"] or "").strip()
         venue_name = canonicalize_venue_name(
             raw_venue_name,
@@ -316,7 +322,8 @@ def load_official_events(
                 "venue_name": venue_name,
                 "raw_venue_name": raw_venue_name,
                 "artist_name": artist_name,
-                "raw_artist_name": raw_artist_name or artist_name,
+                "raw_artist_name": raw_artist_name,
+                "_programme_subject_fallback": not bool(raw_artist_name),
                 "title": str(row["title"] or "").strip(),
                 "event_category": str(row["event_category"] or "").strip(),
                 "url": str(row["url"] or row["source_url"] or "").strip(),
@@ -718,6 +725,39 @@ def source_summary(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def defer_programme_subject_overlaps(
+    records: list[dict[str, Any]], preview: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
+    """Do not let a newly visible unresolved source rewrite a known programme.
+
+    Keep that source in the private review queue instead of changing source
+    priority, an existing fixed identity, or inferring that two shows are one.
+    New programmes without a matching resolved source still reach normal review.
+    """
+    resolved = [r for r in records if not r.get("_programme_subject_fallback")]
+    retained = []
+    for record in records:
+        if not record.get("_programme_subject_fallback"):
+            retained.append(record)
+            continue
+        matches = [other for other in resolved
+            if record["event_date"] == other["event_date"]
+            and record["venue_name"] == other["venue_name"]
+            and (normalize_key_part(record["artist_name"]) == normalize_key_part(other["artist_name"])
+                 or (supplemental_titles_match(record["title"], other["title"])
+                     and start_times_compatible(record.get("event_start_time"), other.get("event_start_time"))))]
+        if matches:
+            if preview is not None:
+                conflict = any(not start_times_compatible(record.get("event_start_time"), item.get("event_start_time")) for item in matches)
+                preview.append({"reason": "programme_subject_time_conflict" if conflict else "programme_subject_matches_resolved_event",
+                    "record": dict(record), "matched_source_records": [
+                        {"source_id": item["source_id"], "record_id": item["record_id"]}
+                        for item in matches]})
+        else:
+            retained.append(record)
+    return retained
+
+
 def load_lp_records(
     *,
     events_db_path: Path = DEFAULT_EVENTS_DB_PATH,
@@ -725,6 +765,7 @@ def load_lp_records(
     include_past: bool = False,
     past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
     as_of_date: date | None = None,
+    programme_review_preview: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     if past_days < 0:
         raise ValueError("past_days must be zero or greater")
@@ -761,7 +802,7 @@ def load_lp_records(
                 f"record_id={record.get('record_id')} url={record.get('url')}"
             ),
         )
-    return records
+    return defer_programme_subject_overlaps(records, programme_review_preview)
 
 
 def assemble_lp_payload(
@@ -804,6 +845,7 @@ def _build_lp_event_candidates(
     event_signals_db_path: Path = DEFAULT_EVENT_SIGNALS_DB_PATH,
     include_past: bool = False, past_days: int = DEFAULT_HISTORY_WINDOW_DAYS,
     as_of_date: date | None = None,
+    programme_review_preview: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     from .publication_filter import select_publishable_records
     from .signals.entity_aliases import load_venue_prefecture_map
@@ -811,7 +853,8 @@ def _build_lp_event_candidates(
     reference_date = as_of_date or today_jst()
     records = load_lp_records(events_db_path=events_db_path,
         event_signals_db_path=event_signals_db_path, include_past=include_past,
-        past_days=past_days, as_of_date=reference_date)
+        past_days=past_days, as_of_date=reference_date,
+        programme_review_preview=programme_review_preview)
     trusted, location_held = select_publishable_records(
         records, venue_prefectures=load_venue_prefecture_map())
     payload = assemble_lp_payload(trusted, as_of_date=reference_date,
@@ -830,13 +873,15 @@ def build_lp_events(
     reviewed_source_map_path: Path | None = None,
     reviewed_source_baseline_path: Path | None = None,
     source_review_preview: list[dict[str, Any]] | None = None,
+    programme_review_preview: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     from .event_identity_registry import DEFAULT_REGISTRY_PATH, apply_to_payload, load_registry
 
     registry, registry_sha = load_registry(identity_registry_path or DEFAULT_REGISTRY_PATH)
     candidates = _build_lp_event_candidates(events_db_path=events_db_path,
         event_signals_db_path=event_signals_db_path, include_past=include_past,
-        past_days=past_days, as_of_date=as_of_date)
+        past_days=past_days, as_of_date=as_of_date,
+        programme_review_preview=programme_review_preview)
     if bool(reviewed_source_map_path) != bool(reviewed_source_baseline_path):
         raise ValueError("reviewed source map and verified baseline must be provided together")
     failed_source_uids = set()
@@ -851,10 +896,15 @@ def build_lp_events(
         baseline = publication_baseline(reviewed_source_baseline_path.read_bytes())
         if baseline["schema_version"] == 5:
             present = {row["event_key"] for row in result["events"]}
-            if any(held["reason"] in {"changed_or_unbound_observation", "multiple_candidates_for_fixed_id"}
-                   and (set(held["related_event_uids"]) & set(baseline["event_sources"]) - present)
-                   for held in result["identity_held_records"]):
-                raise SourceMapError("existing public ID has an unresolved identity change; review before replacement")
+            unresolved_public_ids = sorted({
+                uid for held in result["identity_held_records"]
+                if held["reason"] in {"changed_or_unbound_observation", "multiple_candidates_for_fixed_id"}
+                for uid in (set(held["related_event_uids"]) & set(baseline["event_sources"]) - present)
+            })
+            if unresolved_public_ids:
+                # Existing public IDs only: no candidate body/URL in public
+                # Actions logs. Preserve the stop, but make it diagnosable.
+                raise SourceMapError("existing public ID has an unresolved identity change; review before replacement; affected_ids=" + ",".join(unresolved_public_ids))
     from .reviewed_source_map import guard_new_ids, read_official_sources, source_signature
     from .public_lp_projection import attach_public_row_checks, embedded_urls, official_public_source, project_event, publication_preview
     from .event_identity_registry import identity_from_row, observation_from_row, source_records_from_row

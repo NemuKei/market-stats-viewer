@@ -52,11 +52,11 @@
       "source_id": "starto_concert"
     },
     {
-      "candidate_key": "e1b93f256b7d2a776a12",
+      "candidate_key": "d9480bb2bbbbfda50c39",
       "event_uid": "evt_59aa527ee44a46928b8ed82a4134aef5",
       "evidence_url_sha256": "a9d2a2b1f99e70649587e7ab35f75c90ec7d00b4ce4f8df6c7832e77a9137bff",
       "fact_review": "reviewed",
-      "fingerprint": "0f632109297f96e675672476849daf883935f64add0d9e788c6ca8dfd750ec32",
+      "fingerprint": "aa2a2ca753c69500ea67c854815c5fe37a4b72a76a87bc09623893e56310cafa",
       "mode": "artist_source_link",
       "publication": {
         "public_urls": [
@@ -67,6 +67,145 @@
       },
       "record_id": "d3d52cf537da5c7ddeee8e9781b533295e354300eee5591442484ef5361934c7",
       "source_id": "starto_concert"
+    },
+    {
+      "event_uid": "30255cf4916d65e4ef9b",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "30255cf4916d65e4ef9b",
+        "fingerprint": "f152a3dcb3c4a2559b62239d4efc362598c67b7bea6008fd55148a8a0ff2cad3",
+        "identity": {
+          "artist_name": "桑田佳祐",
+          "event_date": "2026-12-23",
+          "event_end_date": "2026-12-23",
+          "event_start_time": "18:30",
+          "title": "桑田佳祐",
+          "venue_name": "大阪城ホール"
+        },
+        "source_records": [
+          {
+            "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23",
+            "source_id": "official_events"
+          },
+          {
+            "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23#t=18:30",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://kyodo-osaka.co.jp/search/detail/13532",
+        "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23",
+        "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23#t=18:30",
+        "https://www.osaka-johall.com/event?ym=202612"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://kyodo-osaka.co.jp/search/detail/13532",
+          "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23",
+          "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23#t=18:30",
+          "https://www.osaka-johall.com/event?ym=202612"
+        ],
+        "row_sha256": "87c5e7a021e463676f2decf0da028baf2a43a3a4c596977dd42157d0fedf3d79",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+        "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-23",
+        "source_id": "official_events",
+        "source_url": "https://www.osaka-johall.com/event?ym=202612"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "6a39ddc6ec06f8fa880f",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "6a39ddc6ec06f8fa880f",
+        "fingerprint": "b36c1cb2624dbfe9b3a156135c50b60405d1ad322da567ab46c12c53be841c3a",
+        "identity": {
+          "artist_name": "桑田佳祐",
+          "event_date": "2026-12-22",
+          "event_end_date": "2026-12-22",
+          "event_start_time": "18:30",
+          "title": "桑田佳祐",
+          "venue_name": "大阪城ホール"
+        },
+        "source_records": [
+          {
+            "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22",
+            "source_id": "official_events"
+          },
+          {
+            "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22#t=18:30",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://kyodo-osaka.co.jp/search/detail/13532",
+        "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22",
+        "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22#t=18:30",
+        "https://www.osaka-johall.com/event?ym=202612"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://kyodo-osaka.co.jp/search/detail/13532",
+          "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22",
+          "https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22#t=18:30",
+          "https://www.osaka-johall.com/event?ym=202612"
+        ],
+        "row_sha256": "9586c9e6985aad3bc26cb51a93ee2554b7c8a6f3bd342dd05f13e685e7413342",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://kyodo-osaka.co.jp/search/detail/13532",
+        "record_id": "osaka_jo_hall:https://kyodo-osaka.co.jp/search/detail/13532#d=2026-12-22",
+        "source_id": "official_events",
+        "source_url": "https://www.osaka-johall.com/event?ym=202612"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "b2a071a167a47379cc1f",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "b2a071a167a47379cc1f",
+        "fingerprint": "50430dbbcc5484b009684cb937e111e5704ce2e7ef8cf1cc12f63ad2ae98f838",
+        "identity": {
+          "artist_name": "REBECCA",
+          "event_date": "2027-01-09",
+          "event_end_date": "2027-01-10",
+          "event_start_time": "",
+          "title": "REBECCA REBECCA『Cosmic Autonomy Tour 2026-2027』",
+          "venue_name": "東京ガーデンシアター"
+        },
+        "source_records": [
+          {
+            "record_id": "tokyo_garden_theater:https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+        "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/?date=2027-01"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+          "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/?date=2027-01"
+        ],
+        "row_sha256": "5ea381bb189f97702a042e2cd57d1a5ef622e6cd98689aaac561c948e1dfb362",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+        "record_id": "tokyo_garden_theater:https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4872/",
+        "source_id": "official_events",
+        "source_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/?date=2027-01"
+      },
+      "source_class": "venue_official"
     }
   ],
   "schema_version": 1

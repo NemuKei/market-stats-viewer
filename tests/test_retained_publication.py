@@ -110,12 +110,62 @@ def test_identity_change_cannot_be_retained_under_old_id(tmp_path, monkeypatch):
             base.read_bytes(), set(), official, registry=registry, retained_changes=[])
 
 
-def test_unresolved_identity_change_cannot_silently_remove_existing_id(tmp_path, monkeypatch):
-    raw, _, _, reg, base, mapping, _ = setup(tmp_path, monkeypatch)
-    raw['event_start_time'] = '19:00'
-    with pytest.raises(review.SourceMapError, match='unresolved identity change'):
-        builder.build_lp_events(identity_registry_path=reg, reviewed_source_map_path=mapping,
-            reviewed_source_baseline_path=base, as_of_date=date(2026, 10, 6))
+def test_unresolved_identity_change_cannot_silently_remove_existing_id(
+    tmp_path, monkeypatch
+):
+    raw, old, _, reg, base, mapping, _ = setup(tmp_path, monkeypatch)
+    raw["event_start_time"] = "19:00"
+    with pytest.raises(
+        review.SourceMapError, match="unresolved identity change"
+    ) as error:
+        builder.build_lp_events(
+            identity_registry_path=reg,
+            reviewed_source_map_path=mapping,
+            reviewed_source_baseline_path=base,
+            as_of_date=date(2026, 10, 6),
+        )
+    assert str(error.value).endswith("affected_ids=" + old["event_key"])
+    assert "https://" not in str(error.value) and raw["title"] not in str(error.value)
+
+
+def test_audit_diagnoses_identity_stop_without_approving_a_candidate(
+    tmp_path, monkeypatch
+):
+    from scripts.audit_event_calendar_coverage import generate_review_diagnostics
+
+    raw, old, _, reg, base, mapping, _ = setup(tmp_path, monkeypatch)
+    raw["event_start_time"] = "19:00"
+    registry, _ = ids.load_registry(reg)
+    unchanged = (reg.read_bytes(), base.read_bytes(), mapping.read_bytes())
+    generated, _, status = generate_review_diagnostics(
+        registry=registry,
+        events_db_path=builder.DEFAULT_EVENTS_DB_PATH,
+        event_signals_db_path=builder.DEFAULT_EVENT_SIGNALS_DB_PATH,
+        identity_registry_path=reg,
+        reviewed_source_map_path=mapping,
+        reviewed_source_baseline_path=base,
+        as_of_date=date(2026, 10, 6),
+    )
+    assert status == {
+        "status": "blocked_unresolved_public_identity",
+        "affected_public_ids": [old["event_key"]],
+    }
+    assert any(
+        h["reason"] == "changed_or_unbound_observation"
+        for h in generated["identity_held_records"]
+    )
+    assert unchanged == (reg.read_bytes(), base.read_bytes(), mapping.read_bytes())
+    mapping.write_text('{"invalid":true}')
+    with pytest.raises(review.SourceMapError):
+        generate_review_diagnostics(
+            registry=registry,
+            events_db_path=builder.DEFAULT_EVENTS_DB_PATH,
+            event_signals_db_path=builder.DEFAULT_EVENT_SIGNALS_DB_PATH,
+            identity_registry_path=reg,
+            reviewed_source_map_path=mapping,
+            reviewed_source_baseline_path=base,
+            as_of_date=date(2026, 10, 6),
+        )
 
 
 @pytest.mark.parametrize('suppressed', [False, True])
