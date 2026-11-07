@@ -1,25 +1,223 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-11-06T03:13:41Z",
+  "run_at_utc": "2026-11-07T03:18:38Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-05-08",
-      "event_end_date": "2027-05-08",
+      "event_start_date": "2027-03-26",
+      "event_end_date": "2027-03-26",
       "event_start_time": null,
-      "venue_name": "MUFGスタジアム",
-      "raw_venue_name": "ＭＵＦＧスタジアム",
-      "artist_name": "２０２６／２７Ｊリーグ ヤマザキビスケット ルヴァンカップ 決勝",
-      "raw_artist_name": "２０２６／２７Ｊリーグ ヤマザキビスケット ルヴァンカップ 決勝",
-      "title": "２０２６／２７Ｊリーグ ヤマザキビスケット ルヴァンカップ 決勝",
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs 広島",
       "event_category": "スポーツ",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://www.jleague.jp/news/article/35230/?navicode=j1",
-      "evidence_snippet": "２０２６／２７Ｊリーグ ヤマザキビスケット ルヴァンカップ 決勝 開催日 キックオフ 対戦カード スタジアム ＴＶ放送 2027年5月8日（土） 未定 未定 （2027年3月28日（日）に決定） ＭＵＦＧスタジアム フジテレビ系列にて全国生中継",
+      "evidence_url": "https://npb.jp/games/2027/schedule_03_detail.html",
+      "evidence_snippet": "3/26（金） 巨人 - 中日 DeNA - ヤクルト 阪神 - 広島 京セラD大阪",
       "content_extractor": "requests_bs4",
-      "discovery_query": "MUFGスタジアム 開催決定 2027 ルヴァンカップ 決勝",
-      "verified_at_utc": "2026-11-06T03:13:41Z"
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-03-27",
+      "event_end_date": "2027-03-27",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs 広島",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_03_detail.html",
+      "evidence_snippet": "3/27（土） 巨人 - 中日 DeNA - ヤクルト 阪神 - 広島 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-03-28",
+      "event_end_date": "2027-03-28",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs 広島",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_03_detail.html",
+      "evidence_snippet": "3/28（日） 巨人 - 中日 DeNA - ヤクルト 阪神 - 広島 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-03-30",
+      "event_end_date": "2027-03-30",
+      "event_start_time": null,
+      "venue_name": "MUFGスタジアム",
+      "raw_venue_name": "国立競技場",
+      "artist_name": "キリンチャレンジカップ2027",
+      "raw_artist_name": "キリンチャレンジカップ2027",
+      "title": "キリンチャレンジカップ2027",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://jfa.jp/news/00036981/",
+      "evidence_snippet": "日時：2027年3月30日(火)キックオフ時間調整中 対戦カード：SAMURAI BLUE（日本代表） 対 対戦国調整中 会場：東京／国立競技場",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "MUFGスタジアム 国立競技場 2027 試合 開催 決定 2026年11月 サッカー ラグビー",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-07-21",
+      "event_end_date": "2027-07-21",
+      "event_start_time": null,
+      "venue_name": "みずほPayPayドーム福岡",
+      "raw_venue_name": "みずほPayPay",
+      "artist_name": "プロ野球オールスターゲーム",
+      "raw_artist_name": "オールスター",
+      "title": "プロ野球オールスターゲーム 2027",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_07_detail.html",
+      "evidence_snippet": "7/21（水） オールスター みずほPayPay",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "site:npb.jp 2027 オールスター 7月21日 みずほPayPay 7月22日 公式",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-08-10",
+      "event_end_date": "2027-08-10",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs 中日",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_08_detail.html",
+      "evidence_snippet": "8/10（火） 巨人 - ヤクルト DeNA - 広島 阪神 - 中日 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-08-11",
+      "event_end_date": "2027-08-11",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs 中日",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_08_detail.html",
+      "evidence_snippet": "8/11（水） 巨人 - ヤクルト DeNA - 広島 阪神 - 中日 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-08-12",
+      "event_end_date": "2027-08-12",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs 中日",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_08_detail.html",
+      "evidence_snippet": "8/12（木） 巨人 - ヤクルト DeNA - 広島 阪神 - 中日 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-08-21",
+      "event_end_date": "2027-08-21",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs ヤクルト",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_08_detail.html",
+      "evidence_snippet": "8/21（土） 巨人 - DeNA 中日 - 広島 阪神 - ヤクルト 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-08-22",
+      "event_end_date": "2027-08-22",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "阪神タイガース",
+      "raw_artist_name": "阪神",
+      "title": "阪神 vs ヤクルト",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_08_detail.html",
+      "evidence_snippet": "8/22（日） 巨人 - DeNA 中日 - 広島 阪神 - ヤクルト 京セラD大阪",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-08-31",
+      "event_end_date": "2027-08-31",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "読売ジャイアンツ",
+      "raw_artist_name": "巨人",
+      "title": "巨人 vs 中日",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_08_detail.html",
+      "evidence_snippet": "8/31（火） 巨人 - 中日 京セラD大阪 DeNA - ヤクルト 阪神 - 広島",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
+    },
+    {
+      "event_start_date": "2027-09-01",
+      "event_end_date": "2027-09-01",
+      "event_start_time": null,
+      "venue_name": "京セラドーム大阪",
+      "raw_venue_name": "京セラD大阪",
+      "artist_name": "読売ジャイアンツ",
+      "raw_artist_name": "巨人",
+      "title": "巨人 vs 中日",
+      "event_category": "スポーツ",
+      "source_class": "promoter_official",
+      "confidence": "high",
+      "evidence_url": "https://npb.jp/games/2027/schedule_09_detail.html",
+      "evidence_snippet": "9/1（水） 巨人 - 中日 京セラD大阪 DeNA - ヤクルト 阪神 - 広島",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "東京ドーム 京セラドーム大阪 バンテリンドーム 2027 試合 開催 日程 発表 2026年11月 プロ野球 11月6日",
+      "verified_at_utc": "2026-11-07T03:18:38Z"
     }
   ],
   "rejected": [
@@ -151,7 +349,7 @@
     {
       "query": "GMOアリーナさいたま iLiFE! JAPANLiFE!2027 4月6日 公式",
       "url": "https://ilife-heroines.com/topics/",
-      "reason": "2027-04-06 GMOアリーナさいたま iLiFE!「JAPANLiFE!2027」の発見導線はSNS・一般記事。アーティスト公式NEWS本文には当該日程・会場を確認できず、公式リンク先TimeTreeはJavaScript無効案内のみを抽出。Crawl4AI未導入。公式/準公式本文に日付・会場・名称が揃う根拠を取得できないため保留。"
+      "reason": "2026-11-07再確認。iLiFE!公式NEWSとTicketDive販売一覧の本文には2027-04-06の当該公演なし。会場公式の2027年4月ページはHTTP 404、公式サイトが案内するTimeTreeの同月はJavaScript有効化案内のみ。日付・会場・公演名が揃う公式本文を取得できず保留。"
     },
     {
       "query": "東京ドーム 2027 TOKYO SPACESHIP 開催決定",
@@ -246,7 +444,7 @@
     {
       "query": "バンテリンドームナゴヤ 開催決定 2027 公式 after:2026-10-24",
       "url": "https://befirst.tokyo/tour/dometour2027/",
-      "reason": "2026-11-06 requests_bs4で再確認。BE:FIRST愛知追加公演は公式本文に「ADDED AICHI 2027年春 VENUE バンテリンドーム ナゴヤ」とあるが具体日未発表のため保留。"
+      "reason": "2026-11-07 requests_bs4で再確認。BE:FIRST愛知追加公演は公式本文に「ADDED AICHI 2027年春 VENUE バンテリンドーム ナゴヤ」とあるが具体日未発表のため保留。"
     },
     {
       "query": "Creepy Nuts GMOアリーナさいたま 2027 チケット",
@@ -256,7 +454,7 @@
     {
       "query": "なにわ男子 東京ドーム 京セラドーム大阪 開催決定 2026-2027 ND⁵⁺",
       "url": "https://starto.jp/s/p/live/10617",
-      "reason": "2026-11-06 requests_bs4で再確認。STARTO公式本文にSCHEDULEの見出しはあるが東京公演日程を抽出できないため保留。京セラ12/31・1/1は会場公式由来の既存イベントのため追加しない。"
+      "reason": "2026-11-07 requests_bs4で再確認。STARTO公式本文にSCHEDULEの見出しはあるが東京公演日程を抽出できないため保留。京セラ12/31・1/1は会場公式由来の既存イベントのため追加しない。"
     },
     {
       "query": "2027 2027-01-27 横浜アリーナ KATSEYE: THE WILDWORLD TOUR",
@@ -276,17 +474,22 @@
     {
       "query": "有明アリーナ 開催決定 2027 [Alexandros] VIP PARTY TOUR",
       "url": "https://alexandros.jp/contents/1124117",
-      "reason": "2026-11-06 requests_bs4でアーティスト公式告知1124117と公演1124122を再取得したがいずれもHTTP 403。有明アリーナ2027-09-04・05の本文根拠を取得できず保留。検索結果・一般ニュースは採用根拠にしない。"
+      "reason": "2026-11-07 requests_bs4でアーティスト公式告知1124117と公演1124122を再取得したがいずれもHTTP 403。有明アリーナ2027-09-04・05の本文根拠を取得できず保留。検索結果・一般ニュースは採用根拠にしない。"
     },
     {
       "query": "みずほPayPayドーム福岡 2027 開催決定 チケット",
       "url": "https://www.softbankhawks.co.jp/stadium/event_schedule/2027",
-      "reason": "2026-11-06 requests_bs4本文は11/4 19:00開始・終了未定の緊急メンテナンス案内で、公演一覧を取得できない。検索結果のキャッシュを採用根拠にせず新規候補判断を保留。"
+      "reason": "2026-11-07 requests_bs4本文は11/4 19:00開始・終了未定の緊急メンテナンス案内で、公演一覧を取得できない。検索結果のキャッシュを採用根拠にせず新規候補判断を保留。"
     },
     {
       "query": "GMOアリーナさいたま 開催決定 2027 ChroNoiR",
       "url": "https://www.saitama-arena.co.jp/schedule/2027/05/",
       "reason": "2026-11-06 requests_bs4で会場公式本文を確認。2027-05-15 ChroNoiR 2nd Live “Twin King’s Gambit” は日付・会場・名称を確認できるが、events.sqliteに同日同会場同名の会場公式行が既存のため、新規候補には追加しない。LP未掲載を新規公演の根拠にしない。"
+    },
+    {
+      "query": "2027年3月26日 巨人 中日 東京ドーム 2027 日程 公式 巨人 2026年11月",
+      "url": "https://npb.jp/games/2027/schedule_03_detail.html",
+      "reason": "3/26〜28の巨人対中日はNPBの対戦表にあるが、その行に球場の記載なし。中日公式の月別カレンダーには東京ドームと日付があるが、requests_bs4本文では同じ行の対戦カードを抽出できない。日付・会場・対戦カードが揃う公式本文を再確認するまで保留。"
     }
   ]
 }
