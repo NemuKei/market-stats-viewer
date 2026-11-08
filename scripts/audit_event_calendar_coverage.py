@@ -130,6 +130,9 @@ def audit_runtime(
             flags.append(
                 "official_calendar_has_limited_horizon_use_supplementary_sources"
             )
+        year_conflicts = fetch.get(key, {}).get("calendar_year_conflict_count", 0)
+        if year_conflicts:
+            flags.append("retained_calendar_year_conflicts_require_review")
         by_day = defaultdict(list)
         for row in public_rows:
             for day in event_days(row, start, end):
@@ -172,6 +175,7 @@ def audit_runtime(
             flags=flags,
             coverage_expectation=expected or None,
             runtime_fetch_status=fetch.get(key, {}).get("status", "not_measured"),
+            calendar_year_conflict_count=year_conflicts,
         )
         result.append(item)
     return dict(

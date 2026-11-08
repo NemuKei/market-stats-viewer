@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Activation is a separate Git-reviewed data/publication change. Default OFF.
-      EVENTS_SQLITE_REVIEW_GATED_VENUES: "ariake_arena"
+      EVENTS_SQLITE_REVIEW_GATED_VENUES: "ariake_arena,vantelin_dome_nagoya"
     steps:
       - uses: actions/checkout@v6
         with:

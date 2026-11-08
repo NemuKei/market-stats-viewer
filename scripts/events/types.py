@@ -2,9 +2,19 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import json
 
 
 EVENT_HISTORY_WINDOW_DAYS = 90
+
+
+def requires_publication_review(config_json: str | None) -> bool:
+    """One opt-in shared by collection, public projection and other DB writers."""
+    config = json.loads(config_json or "{}")
+    if any(name in config and type(config[name]) is not bool
+           for name in ("dated_sessions", "publication_review")):
+        raise ValueError("publication review flags must be boolean")
+    return config.get("dated_sessions") is True or config.get("publication_review") is True
 
 
 JAPAN_PREFECTURES = frozenset("""

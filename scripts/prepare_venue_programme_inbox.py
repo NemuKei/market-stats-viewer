@@ -1,7 +1,7 @@
 """Prepare official programme facts for the existing Venue Web Discovery inbox.
 
 This is a review aid, not a scheduled collector or publication approval. It
-fetches only the two known primary calendars, keeps acquisition/detail URLs
+fetches only the known primary calendars, keeps acquisition/detail URLs
 separate and emits every dated game/show separately. No DB/config/ID writes.
 """
 
@@ -31,6 +31,11 @@ SOURCES = {
         "https://lalaarenatokyo-bay.com/event/",
         "ららアリーナ 東京ベイ",
         "venue_official",
+    ),
+    "bigbang-kyocera": (
+        "https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003004&fdate=2026-11-27&ldate=2026-11-29",
+        "京セラドーム大阪",
+        "artist_official",
     ),
 }
 
@@ -134,6 +139,30 @@ def parse_programmes(
                     verified_at,
                 )
             )
+    elif source == "bigbang-kyocera":
+        cards = soup.select("ul.tourData__lists")
+        if not cards or "BIGBANG" not in text(soup.title).upper():
+            raise ValueError("official artist tour structure not found")
+        for card in cards:
+            if text(card.select_one(".js-tourDataPlace")) != expected_venue:
+                skipped["other_facility"] += 1
+                continue
+            match = re.fullmatch(r"(\d{4})\.(\d{2})\.(\d{2})\[[A-Za-z]+\]", text(card.select_one(".tourData__date")))
+            if match is None:
+                raise ValueError("artist programme has no verified source date")
+            day = date(*map(int, match.groups()))
+            if not start <= day <= through:
+                skipped["outside_window"] += 1
+                continue
+            if any(word in text(card) for word in ("中止", "延期")):
+                skipped["status_requires_review"] += 1
+                continue
+            starts = explicit_times(text(card.select_one(".tourData__list--time")))
+            if len(starts) != 1:
+                raise ValueError("artist programme needs one labelled start per dated card")
+            row = candidate(source, day.isoformat(), "BIGBANG", "BIGBANG", starts[0], acquisition, verified_at)
+            row["event_category"] = "コンサート"
+            rows.append(row)
     else:
         months = {}
         for tab in soup.select("[data-target]"):

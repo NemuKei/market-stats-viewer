@@ -24,7 +24,7 @@ import requests
 
 from .events.category import classify_event_category
 from .events.registry import load_registry
-from .events.types import EVENT_HISTORY_WINDOW_DAYS, EventRecord, VenueRecord
+from .events.types import EVENT_HISTORY_WINDOW_DAYS, EventRecord, VenueRecord, requires_publication_review
 from .events.sources.base import EventSource
 from .events.sources.html import HtmlSource
 from .events.sources.ics import IcsSource
@@ -399,6 +399,29 @@ def resolve_source_artist(
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+def calendar_year_conflict_count(conn, venue_id, observed):
+    """Review signal only: exact programme/link/month-day/time, different year.
+
+    Use before the history filter for an explicitly year-labelled archive.
+    A genuine programme listed in both years is not a conflict. This never
+    changes, withdraws or merges a stored row and reports no source text.
+    """
+    years = {}
+    for event in observed:
+        day = date.fromisoformat(event.start_date)
+        key = (event.title, event.url, event.source_url, day.month, day.day, event.start_time)
+        years.setdefault(key, set()).add(day.year)
+    count = 0
+    for title, url, source_url, start_date, start_time in conn.execute(
+        "SELECT title,url,source_url,start_date,start_time FROM events WHERE venue_id=?", (venue_id,)
+    ):
+        day = date.fromisoformat(start_date)
+        matches = years.get((title, url, source_url, day.month, day.day, start_time), set())
+        if len(matches) == 1 and day.year not in matches:
+            count += 1
+    return count
+
+
 def validate_collection_target(db_path: Path, targets: list[VenueRecord], *, skip_artist_inference: bool) -> Path:
     """Do not let opt-in dated observations bypass the public DB review step."""
     aliases_public = db_path.exists() and EVENTS_DB_PATH.exists() and db_path.samefile(EVENTS_DB_PATH)
@@ -406,7 +429,7 @@ def validate_collection_target(db_path: Path, targets: list[VenueRecord], *, ski
         raise ValueError("private DB aliases the public DB; copy it instead of linking")
     if db_path.resolve() != EVENTS_DB_PATH.resolve() and not skip_artist_inference:
         raise ValueError("custom collection DB requires --skip-artist-inference; rebuild privately with explicit --db-path and --output")
-    dated = any(json.loads(venue.config_json or "{}").get("dated_sessions") is True for venue in targets)
+    dated = any(requires_publication_review(venue.config_json) for venue in targets)
     if dated and (aliases_public or db_path.resolve() == REPO_ROOT.resolve() or REPO_ROOT.resolve() in db_path.resolve().parents):
         raise ValueError("dated collection requires a private DB outside the public checkout")
     return db_path
@@ -481,7 +504,7 @@ def main() -> None:
     for venue in targets:
         logger.info("--- %s (%s) ---", venue.venue_id, venue.venue_name)
         session.begin_venue()
-        raw_count = filtered_count = 0
+        raw_count = filtered_count = year_conflicts = 0
         failed = False
         try:
             source = get_source(venue.source_type, session)
@@ -495,6 +518,11 @@ def main() -> None:
             raw_count = len(events)
             unique_uids = len({e.event_uid for e in events})
             logger.info("  fetched %d event(s) (%d unique)", len(events), unique_uids)
+
+            if json.loads(venue.config_json or "{}").get("strategy") == "vantelin_dome_schedule":
+                year_conflicts = calendar_year_conflict_count(conn, venue.venue_id, events)
+                if year_conflicts:
+                    logger.warning("  %d retained calendar-year conflicts require review; no automatic correction", year_conflicts)
 
             # Apply date window filter
             events = filter_events_by_date(events)
@@ -561,6 +589,7 @@ def main() -> None:
         finally:
             run_report['venues'].append(dict(venue_id=venue.venue_id,
                 raw_count=raw_count, filtered_count=filtered_count,
+                calendar_year_conflict_count=year_conflicts,
                 **session.fetch_status(failed=failed, raw_count=raw_count)))
 
     conn.close()
