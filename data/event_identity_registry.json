@@ -15465,7 +15465,7 @@
       "event_uid": "8c474fa2c7b811e357a7",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "8c474fa2c7b811e357a7",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -15475,6 +15475,30 @@
             "artist_name": "Mr.Children",
             "event_date": "2026-10-31",
             "event_end_date": "2026-11-01",
+            "event_start_time": "17:00",
+            "title": "Mr.Children",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-331",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "8c474fa2c7b811e357a7",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.418371Z",
+            "url": "https://ariake-arena.tokyo/event/"
+          },
+          "fingerprint": "7cbb2537c059dd26b533d295ca607247f626b8108820247f8c002a94d3be99ce",
+          "identity": {
+            "artist_name": "Mr.Children",
+            "event_date": "2026-10-31",
+            "event_end_date": "2026-10-31",
             "event_start_time": "17:00",
             "title": "Mr.Children",
             "venue_name": "有明アリーナ"
@@ -15600,7 +15624,7 @@
       "event_uid": "3cd9ea26c4b2cd9ebd9a",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "3cd9ea26c4b2cd9ebd9a",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -15615,6 +15639,34 @@
             "venue_name": "有明アリーナ"
           },
           "source_records": [
+            {
+              "record_id": "18cd09b9b3ae89fd3610eb1045863591b7f7eb7e0109d509d7a9fda4dc644b56",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "3cd9ea26c4b2cd9ebd9a",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.484315Z",
+            "url": "https://ariake-arena.tokyo/event/"
+          },
+          "fingerprint": "53965ce67cd2a18bdbd2735175c8c430aeecd51b31d8e6d76f03ab3fcfc1c2e6",
+          "identity": {
+            "artist_name": "Mr.Children",
+            "event_date": "2026-11-01",
+            "event_end_date": "2026-11-01",
+            "event_start_time": "16:00",
+            "title": "Mr.Children",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-331#d=2026-11-01",
+              "source_id": "official_events"
+            },
             {
               "record_id": "18cd09b9b3ae89fd3610eb1045863591b7f7eb7e0109d509d7a9fda4dc644b56",
               "source_id": "venue_web_discovery"
@@ -16496,7 +16548,7 @@
       "event_uid": "66fc27d3928765aa0dd9",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "66fc27d3928765aa0dd9",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -16506,6 +16558,30 @@
             "artist_name": "GENERATIONS from EXILE TRIBE",
             "event_date": "2026-11-07",
             "event_end_date": "2026-11-08",
+            "event_start_time": "16:00",
+            "title": "GENERATIONS",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-342",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "66fc27d3928765aa0dd9",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.556827Z",
+            "url": "https://ariake-arena.tokyo/event/"
+          },
+          "fingerprint": "7fe6d4f0f306b1a3a8cc532b011185331c4e931626e3b3e26fa224180f9a6a67",
+          "identity": {
+            "artist_name": "GENERATIONS from EXILE TRIBE",
+            "event_date": "2026-11-07",
+            "event_end_date": "2026-11-07",
             "event_start_time": "16:00",
             "title": "GENERATIONS",
             "venue_name": "有明アリーナ"
@@ -20108,7 +20184,7 @@
       "event_uid": "e361a60677e1f4b5ffab",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "e361a60677e1f4b5ffab",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20118,6 +20194,30 @@
             "artist_name": "GLAY",
             "event_date": "2026-11-28",
             "event_end_date": "2026-11-29",
+            "event_start_time": "17:00",
+            "title": "GLAY",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-334",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "e361a60677e1f4b5ffab",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.627451Z",
+            "url": "https://ariake-arena.tokyo/event/"
+          },
+          "fingerprint": "d24d4c4a00844448faa53111dc4d9c9b100cf413c71252dc3555d654cd51a809",
+          "identity": {
+            "artist_name": "GLAY",
+            "event_date": "2026-11-28",
+            "event_end_date": "2026-11-28",
             "event_start_time": "17:00",
             "title": "GLAY",
             "venue_name": "有明アリーナ"
@@ -21249,7 +21349,7 @@
       "event_uid": "0af1a0a481dc6eb1a798",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "0af1a0a481dc6eb1a798",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -21259,6 +21359,30 @@
             "artist_name": "マカロニえんぴつ",
             "event_date": "2026-12-05",
             "event_end_date": "2026-12-06",
+            "event_start_time": "17:00",
+            "title": "マカロニえんぴつ",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-338",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "0af1a0a481dc6eb1a798",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=0cc36f074ea0ff40776f3cd97df225bcb913d95f775212c9011d302105296290; observed_at=2026-11-08T05:42:26.134197+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.704717Z",
+            "url": "https://ariake-arena.tokyo/event/next/"
+          },
+          "fingerprint": "511b4eae27e92a1ef129c80c00fcf5a697cf53d741b647c9d333ded7efb97004",
+          "identity": {
+            "artist_name": "マカロニえんぴつ",
+            "event_date": "2026-12-05",
+            "event_end_date": "2026-12-05",
             "event_start_time": "17:00",
             "title": "マカロニえんぴつ",
             "venue_name": "有明アリーナ"
@@ -22200,7 +22324,7 @@
       "event_uid": "1b66efc4a2998c4bbd79",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "1b66efc4a2998c4bbd79",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -22210,6 +22334,30 @@
             "artist_name": "KAWAII LAB.",
             "event_date": "2026-12-12",
             "event_end_date": "2026-12-13",
+            "event_start_time": "17:00",
+            "title": "KAWAII LAB.",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-348",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "1b66efc4a2998c4bbd79",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=0cc36f074ea0ff40776f3cd97df225bcb913d95f775212c9011d302105296290; observed_at=2026-11-08T05:42:26.134197+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.774535Z",
+            "url": "https://ariake-arena.tokyo/event/next/"
+          },
+          "fingerprint": "94887ff22b07bb114a2e3ec641d1045d4d61a976f4dad0078797a6575264cc4f",
+          "identity": {
+            "artist_name": "KAWAII LAB.",
+            "event_date": "2026-12-12",
+            "event_end_date": "2026-12-12",
             "event_start_time": "17:00",
             "title": "KAWAII LAB.",
             "venue_name": "有明アリーナ"
@@ -32032,28 +32180,28 @@
       "event_uid": "evt_7b70896bfe534bb694f252368bcfe322",
       "observations": [
         {
+          "active": true,
           "candidate_key": "647de139a0b165ebb362",
+          "evidence": {
+            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 29c10c5599118929783d4644ee194ac4fee0114649a9974f96c39cdd77242a18. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
+            "reviewed_at_utc": "2026-11-07T22:40:42.630013Z",
+            "url": "https://www.jleague.jp/club/ftokyo/day/"
+          },
+          "fingerprint": "aa7b5b72aa76c8ab193d466a0a2f5c06565da25e4a740bf556a5bf2b0439bce5",
           "identity": {
+            "artist_name": "FC東京 vs 鹿島アントラーズ",
             "event_date": "2026-11-07",
             "event_end_date": "2026-11-07",
             "event_start_time": "15:00",
-            "venue_name": "味の素スタジアム",
-            "artist_name": "FC東京 vs 鹿島アントラーズ",
-            "title": "J.LEAGUE FC東京 vs 鹿島アントラーズ"
+            "title": "J.LEAGUE FC東京 vs 鹿島アントラーズ",
+            "venue_name": "味の素スタジアム"
           },
           "source_records": [
             {
-              "source_id": "venue_web_discovery",
-              "record_id": "86d8f48a7a751ab701f6d3845000c9c4147d6546d59cf95ede94676f3d8447ef"
+              "record_id": "86d8f48a7a751ab701f6d3845000c9c4147d6546d59cf95ede94676f3d8447ef",
+              "source_id": "venue_web_discovery"
             }
-          ],
-          "fingerprint": "aa7b5b72aa76c8ab193d466a0a2f5c06565da25e4a740bf556a5bf2b0439bce5",
-          "active": true,
-          "evidence": {
-            "url": "https://www.jleague.jp/club/ftokyo/day/",
-            "reviewed_at_utc": "2026-11-07T22:40:42.630013Z",
-            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 29c10c5599118929783d4644ee194ac4fee0114649a9974f96c39cdd77242a18. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
-          }
+          ]
         }
       ]
     },
@@ -32061,28 +32209,28 @@
       "event_uid": "evt_3d4928a2aa3a449ab648ad7065a2b3dc",
       "observations": [
         {
+          "active": true,
           "candidate_key": "a058b7897665d21867cb",
+          "evidence": {
+            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 29c10c5599118929783d4644ee194ac4fee0114649a9974f96c39cdd77242a18. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
+            "reviewed_at_utc": "2026-11-07T22:40:42.630013Z",
+            "url": "https://www.jleague.jp/club/ftokyo/day/"
+          },
+          "fingerprint": "2dbddcf32fe3418254390adeacaa158f812e5ecc7b9e545aa60bb60408674215",
           "identity": {
+            "artist_name": "FC東京 vs サンフレッチェ広島",
             "event_date": "2026-11-25",
             "event_end_date": "2026-11-25",
             "event_start_time": "19:00",
-            "venue_name": "味の素スタジアム",
-            "artist_name": "FC東京 vs サンフレッチェ広島",
-            "title": "J.LEAGUE FC東京 vs サンフレッチェ広島"
+            "title": "J.LEAGUE FC東京 vs サンフレッチェ広島",
+            "venue_name": "味の素スタジアム"
           },
           "source_records": [
             {
-              "source_id": "venue_web_discovery",
-              "record_id": "6a1bebf27dea5439c682886ebb386283442ff4b2799236fde1ab7d6898d4839f"
+              "record_id": "6a1bebf27dea5439c682886ebb386283442ff4b2799236fde1ab7d6898d4839f",
+              "source_id": "venue_web_discovery"
             }
-          ],
-          "fingerprint": "2dbddcf32fe3418254390adeacaa158f812e5ecc7b9e545aa60bb60408674215",
-          "active": true,
-          "evidence": {
-            "url": "https://www.jleague.jp/club/ftokyo/day/",
-            "reviewed_at_utc": "2026-11-07T22:40:42.630013Z",
-            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 29c10c5599118929783d4644ee194ac4fee0114649a9974f96c39cdd77242a18. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
-          }
+          ]
         }
       ]
     },
@@ -32090,28 +32238,28 @@
       "event_uid": "evt_0db7c3bc6fc4434eae47a6b460d0a049",
       "observations": [
         {
+          "active": true,
           "candidate_key": "b3baf03c106d0c79d826",
+          "evidence": {
+            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 90eb1a7005255594093f4509d443dfb0720f9230b8561f553ad25873bbfbe386. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
+            "reviewed_at_utc": "2026-11-07T22:40:42.625062Z",
+            "url": "https://www.jleague.jp/club/tokyov/day/"
+          },
+          "fingerprint": "a5d6865165ff7805a3f1a0f822eb3d9010caabf5a6e79abc72b2ae9abd56b517",
           "identity": {
+            "artist_name": "東京ヴェルディ vs 名古屋グランパス",
             "event_date": "2026-11-21",
             "event_end_date": "2026-11-21",
             "event_start_time": "14:00",
-            "venue_name": "味の素スタジアム",
-            "artist_name": "東京ヴェルディ vs 名古屋グランパス",
-            "title": "J.LEAGUE 東京ヴェルディ vs 名古屋グランパス"
+            "title": "J.LEAGUE 東京ヴェルディ vs 名古屋グランパス",
+            "venue_name": "味の素スタジアム"
           },
           "source_records": [
             {
-              "source_id": "venue_web_discovery",
-              "record_id": "ffbd561ebecf67fa0d26be5dd4eaa5e5be65f03ad2514af9db258656817495d5"
+              "record_id": "ffbd561ebecf67fa0d26be5dd4eaa5e5be65f03ad2514af9db258656817495d5",
+              "source_id": "venue_web_discovery"
             }
-          ],
-          "fingerprint": "a5d6865165ff7805a3f1a0f822eb3d9010caabf5a6e79abc72b2ae9abd56b517",
-          "active": true,
-          "evidence": {
-            "url": "https://www.jleague.jp/club/tokyov/day/",
-            "reviewed_at_utc": "2026-11-07T22:40:42.625062Z",
-            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 90eb1a7005255594093f4509d443dfb0720f9230b8561f553ad25873bbfbe386. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
-          }
+          ]
         }
       ]
     },
@@ -32119,28 +32267,637 @@
       "event_uid": "evt_21a33d130a264598883d0d207e77d2f8",
       "observations": [
         {
+          "active": true,
           "candidate_key": "527058e5e2ae0b8580c3",
+          "evidence": {
+            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 892a5df783a38b523369cea7973146d45498512220b3012d7e690e94fd36b02f. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
+            "reviewed_at_utc": "2026-11-07T22:40:42.478015Z",
+            "url": "https://www.osaka-marvelous.com/game/score/2026/index.html"
+          },
+          "fingerprint": "6301caf96c8fce1291ee4ad3eb7151a7301e5a182483e3d65cb3a952be793caf",
           "identity": {
+            "artist_name": "大阪マーヴェラス",
             "event_date": "2026-11-29",
             "event_end_date": "2026-11-29",
             "event_start_time": "13:05",
-            "venue_name": "Asueアリーナ大阪",
-            "artist_name": "大阪マーヴェラス",
-            "title": "大阪マーヴェラス vs 東レ滋賀"
+            "title": "大阪マーヴェラス vs 東レ滋賀",
+            "venue_name": "Asueアリーナ大阪"
           },
           "source_records": [
             {
-              "source_id": "venue_web_discovery",
-              "record_id": "9e953c5d00f8b360af5c91b298f0b7a2077b4133ddf7ed16df8ac7f7be0e3433"
+              "record_id": "9e953c5d00f8b360af5c91b298f0b7a2077b4133ddf7ed16df8ac7f7be0e3433",
+              "source_id": "venue_web_discovery"
             }
-          ],
-          "fingerprint": "6301caf96c8fce1291ee4ad3eb7151a7301e5a182483e3d65cb3a952be793caf",
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_2b9b21d123814fde81e54a378c91dcb2",
+      "observations": [
+        {
           "active": true,
+          "candidate_key": "807c13fa2ef87bbc1993",
           "evidence": {
-            "url": "https://www.osaka-marvelous.com/game/score/2026/index.html",
-            "reviewed_at_utc": "2026-11-07T22:40:42.478015Z",
-            "reason": "Approved four-game maintenance. Primary calendar body SHA-256 892a5df783a38b523369cea7973146d45498512220b3012d7e690e94fd36b02f. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
-          }
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.556827Z",
+            "url": "https://ariake-arena.tokyo/event/"
+          },
+          "fingerprint": "8e81243563f9f7f358e3d524b3402f21ae1b5ad93bb72262480f2916355c28a0",
+          "identity": {
+            "artist_name": "GENERATIONS from EXILE TRIBE",
+            "event_date": "2026-11-08",
+            "event_end_date": "2026-11-08",
+            "event_start_time": "15:00",
+            "title": "GENERATIONS",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-342#d=2026-11-08",
+              "source_id": "official_events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_e2b3c3f8c1cb4891a2b7c5a459039e02",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "c34b7851d78a13d496a7",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.627451Z",
+            "url": "https://ariake-arena.tokyo/event/"
+          },
+          "fingerprint": "f17d44066a7d12bdae709cd6811ba6d7e0925641c70f84ae3cc03dc1485f7f11",
+          "identity": {
+            "artist_name": "GLAY",
+            "event_date": "2026-11-29",
+            "event_end_date": "2026-11-29",
+            "event_start_time": "16:00",
+            "title": "GLAY",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-334#d=2026-11-29",
+              "source_id": "official_events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_60f4bb5fc4e142dd951e414df71dd2eb",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "ba2e9397f33b777f3996",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=0cc36f074ea0ff40776f3cd97df225bcb913d95f775212c9011d302105296290; observed_at=2026-11-08T05:42:26.134197+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.704717Z",
+            "url": "https://ariake-arena.tokyo/event/next/"
+          },
+          "fingerprint": "af811d6f499fc376175656ec299783f85f59d941ddaa07820726dff86065a2cf",
+          "identity": {
+            "artist_name": "マカロニえんぴつ",
+            "event_date": "2026-12-06",
+            "event_end_date": "2026-12-06",
+            "event_start_time": "16:30",
+            "title": "マカロニえんぴつ",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-338#d=2026-12-06",
+              "source_id": "official_events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_dfac0733d77b449f98eb9c3e049edee4",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "b28accb0f3711660ebb7",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=0cc36f074ea0ff40776f3cd97df225bcb913d95f775212c9011d302105296290; observed_at=2026-11-08T05:42:26.134197+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.774535Z",
+            "url": "https://ariake-arena.tokyo/event/next/"
+          },
+          "fingerprint": "b70aa1a495df9421350ace6ee03b5e7a207ed83cc49e495a619764b37dee4736",
+          "identity": {
+            "artist_name": "KAWAII LAB.",
+            "event_date": "2026-12-13",
+            "event_end_date": "2026-12-13",
+            "event_start_time": "16:00",
+            "title": "KAWAII LAB.",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ariake_arena:detail-348#d=2026-12-13",
+              "source_id": "official_events"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_c69279e3acfa4821a9c6f98bc672bb80",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "3d925c1c1625dcb51c5c",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=c99e11bd46f3a1044ecbe27b118984b549012770babb6581514c97764eb7c193; observed_at=2026-11-08T05:42:21.860369+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.846703Z",
+            "url": "https://www.streetleague.jp/"
+          },
+          "fingerprint": "18959f71b59c15e67e3ee3df08b0381318f019b44c23c8ce66a91c1aa686711c",
+          "identity": {
+            "artist_name": "SLS",
+            "event_date": "2026-11-14",
+            "event_end_date": "2026-11-14",
+            "event_start_time": "",
+            "title": "SLS TOKYO 2026",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "742dd64c60d285dca6baa650bd355b58437c68b74196f4003c51e04d8911dec1",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_7fe701b6e64f479bb8dafbcf2a4398cf",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "720efa372a51e4e79e41",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=9f537d7f88292981f6dcdd1007fad0396212037fb6f416f642fd4de90cfa9431; observed_at=2026-11-08T05:42:18.057600+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.915959Z",
+            "url": "https://lp.urayasu-d-rocks.com/202627kokuritsu/"
+          },
+          "fingerprint": "1504d5fa2a9fa033977ee8c4718c6dcf549671e997edeb9ddfb73f37e97b26d4",
+          "identity": {
+            "artist_name": "浦安D-Rocks vs コベルコ神戸スティーラーズ",
+            "event_date": "2027-01-22",
+            "event_end_date": "2027-01-22",
+            "event_start_time": "",
+            "title": "LEAGUE ONE 浦安D-Rocks vs コベルコ神戸スティーラーズ",
+            "venue_name": "国立競技場"
+          },
+          "source_records": [
+            {
+              "record_id": "0bb0928094cc8459a39b5f0e5aa639cb8691d9a4c7810bfc1f0e075c12c41a01",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_e4c0f6d892c44945b42bea4e1948c120",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "546bc0b5937fa23c452f",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=9f537d7f88292981f6dcdd1007fad0396212037fb6f416f642fd4de90cfa9431; observed_at=2026-11-08T05:42:18.057600+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.915959Z",
+            "url": "https://lp.urayasu-d-rocks.com/202627kokuritsu/"
+          },
+          "fingerprint": "1d292f9fa1161079b9d43caab99261a7b1e76f26fea8e275b475e9c2bb269573",
+          "identity": {
+            "artist_name": "浦安D-Rocks vs 東京サントリーサンゴリアス",
+            "event_date": "2027-02-05",
+            "event_end_date": "2027-02-05",
+            "event_start_time": "",
+            "title": "LEAGUE ONE 浦安D-Rocks vs 東京サントリーサンゴリアス",
+            "venue_name": "国立競技場"
+          },
+          "source_records": [
+            {
+              "record_id": "4328033a8ec631656232be610c0fe9891ffd52303b4ec7f9e56ce20e25c6f690",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_b55160ba14234093b339e942a82272e9",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "f9be7c508645d39251bd",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=4e534a7cfb43262d2a8d9f51b2d1ef4a21ced75635696a9a32f2b7eb3d03a627; observed_at=2026-11-08T05:42:18.057709+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.988659Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=475"
+          },
+          "fingerprint": "244c82bbded0c175f17e341c4e5ddcc66e08169dd7c3f3a9e044c5330a5dde4f",
+          "identity": {
+            "artist_name": "大阪 vs 広島",
+            "event_date": "2026-11-18",
+            "event_end_date": "2026-11-18",
+            "event_start_time": "19:05",
+            "title": "B.LEAGUE 大阪 vs 広島",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "517cbe145fce2796223b52698cf2976e8b7b5ee1613b60e5686704243b795dc2",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_afd0092f054e415fbfe009370553dc2b",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "ec279d7ce9de25258725",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=4e534a7cfb43262d2a8d9f51b2d1ef4a21ced75635696a9a32f2b7eb3d03a627; observed_at=2026-11-08T05:42:18.057709+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.988659Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=475"
+          },
+          "fingerprint": "91e08038dca4302f5b4a82d28fcaa52383721ee81764a004104d8b23a2057b26",
+          "identity": {
+            "artist_name": "大阪 vs 北海道",
+            "event_date": "2026-12-30",
+            "event_end_date": "2026-12-30",
+            "event_start_time": "14:05",
+            "title": "B.LEAGUE 大阪 vs 北海道",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "48418ac0c43a3781ac265c2302d13ac3c0f088206e336668a61d463376957f21",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_6d9b6cabf4d54f44b69ad50db4e107fd",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "2f58b8c0ab3b74fef019",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=4e534a7cfb43262d2a8d9f51b2d1ef4a21ced75635696a9a32f2b7eb3d03a627; observed_at=2026-11-08T05:42:18.057709+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:30.988659Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=475"
+          },
+          "fingerprint": "1c120e84e4e7c16639ac794419f877b17d67fd2354a8b9690d1ba4dce1f8ab36",
+          "identity": {
+            "artist_name": "大阪 vs 仙台",
+            "event_date": "2027-02-15",
+            "event_end_date": "2027-02-15",
+            "event_start_time": "",
+            "title": "B.LEAGUE 大阪 vs 仙台",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "0e134066870a04d7c1c12486a9a54a3873c303add9a2a001c27fad2e08aa87cc",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_d5ec6291f4b94dbb8068345957c7dd60",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "728222b75c27ff239705",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=f5c781ecc4d347bb74b21142c13d47522ec093a77f72dac59d9ceff68b07354c; observed_at=2026-11-08T05:42:23.231837+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.066609Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=646"
+          },
+          "fingerprint": "056259dac5a68c4defc4edcc6a6e93af2d5b7c168492c5f71808f4304abe3151",
+          "identity": {
+            "artist_name": "東京U vs 香川",
+            "event_date": "2027-01-19",
+            "event_end_date": "2027-01-19",
+            "event_start_time": "",
+            "title": "B.LEAGUE 東京U vs 香川",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "b0239aeee3019e6e7b5710ab24c5e5c80ed84cb8e62f1ce3e8155b9996a80647",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_9b19126007b740e2a029277d8ee10653",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "31616d22d73e536b787d",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=f5c781ecc4d347bb74b21142c13d47522ec093a77f72dac59d9ceff68b07354c; observed_at=2026-11-08T05:42:23.231837+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.066609Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=646"
+          },
+          "fingerprint": "5d2fe9d45ef2e7236ed694f0cd3bd1b9657d9e1a2a2e51e41c4ed05305a7199b",
+          "identity": {
+            "artist_name": "東京U vs 金沢",
+            "event_date": "2027-01-24",
+            "event_end_date": "2027-01-24",
+            "event_start_time": "",
+            "title": "B.LEAGUE 東京U vs 金沢",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "25dedf67a1261d21ead86483881e59a995e46654e271f9269d86c7b1b5f2d4d7",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_2ba2a9aff5c54b4498b6916a8c0079f0",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "a397be335b012829c748",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=f5c781ecc4d347bb74b21142c13d47522ec093a77f72dac59d9ceff68b07354c; observed_at=2026-11-08T05:42:23.231837+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.066609Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=646"
+          },
+          "fingerprint": "362cd55b9a346d2328efa0ff4e136847418e8f0ab46aa7f211d493aeb9b1cb27",
+          "identity": {
+            "artist_name": "東京U vs 金沢",
+            "event_date": "2027-01-25",
+            "event_end_date": "2027-01-25",
+            "event_start_time": "",
+            "title": "B.LEAGUE 東京U vs 金沢",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "db0dd3bf68fce94b27fb7ccbe9a4916b47cb56506e4aab7c69efce7df8ac5613",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_09ca950205ad4f28b22c0951aaf185d1",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "206de8c5b5d678582c6e",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=f5c781ecc4d347bb74b21142c13d47522ec093a77f72dac59d9ceff68b07354c; observed_at=2026-11-08T05:42:23.231837+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.066609Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=646"
+          },
+          "fingerprint": "d3eb5cea1936534b6523aad419c5d87ecf2b70491b6195a149f489b44ed403e0",
+          "identity": {
+            "artist_name": "東京U vs 立川",
+            "event_date": "2027-02-08",
+            "event_end_date": "2027-02-08",
+            "event_start_time": "",
+            "title": "B.LEAGUE 東京U vs 立川",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "8f361ea4151ccc81e545a61eb97b11ba736722cd22ddefbc4315ca11d5bc0ea3",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_7d5cbaaab4ed44b7b5f01dde842d2332",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "8f1f43abade89adb9b1f",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=f5c781ecc4d347bb74b21142c13d47522ec093a77f72dac59d9ceff68b07354c; observed_at=2026-11-08T05:42:23.231837+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.066609Z",
+            "url": "https://www.bleague.jp/arena_detail/?ArenaCD=646"
+          },
+          "fingerprint": "83e9ef42dc6824b15695bb76d707edb11439d110767da08139eb66c5c60b03cf",
+          "identity": {
+            "artist_name": "東京U vs 立川",
+            "event_date": "2027-02-09",
+            "event_end_date": "2027-02-09",
+            "event_start_time": "",
+            "title": "B.LEAGUE 東京U vs 立川",
+            "venue_name": "有明アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "96e4ce05480cb9e6cd80ef4635130030681908dc9be4cb7388bbda43334223b5",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_73dbeb6f24444cca88f45f89cd9e9102",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "f3bdba73d0c4f2a89edd",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=377ffd7e9241050aef997e659c07f12fbf477b0476e5d2926b1504a8fbeaf80d; observed_at=2026-11-08T05:42:18.057752+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.136579Z",
+            "url": "https://www.osaka-bluteon.com/news/2026/20261106_03.html"
+          },
+          "fingerprint": "c60dc51f139e20a497295f85d12b53f9399657ee9cf196e7f6ffbaeb7ec6df30",
+          "identity": {
+            "artist_name": "大阪B vs 北海道YS",
+            "event_date": "2027-01-02",
+            "event_end_date": "2027-01-02",
+            "event_start_time": "17:05",
+            "title": "SV.LEAGUE 第10節 GAME1 大阪B vs 北海道YS",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "2793179528467d6ce64b1ff8a6bb9d3cd0fe76ad6efbd10ab110371aac9b399e",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_5cad6bd34ef34de2868eecbb2f1864a4",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "2094a158bf165742f1c9",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=377ffd7e9241050aef997e659c07f12fbf477b0476e5d2926b1504a8fbeaf80d; observed_at=2026-11-08T05:42:18.057752+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.136579Z",
+            "url": "https://www.osaka-bluteon.com/news/2026/20261106_03.html"
+          },
+          "fingerprint": "38326d9c42ddff17ab183ac615851c2fbb84f141796d72b143ebe65d125734a5",
+          "identity": {
+            "artist_name": "大阪B vs 北海道YS",
+            "event_date": "2027-01-03",
+            "event_end_date": "2027-01-03",
+            "event_start_time": "17:05",
+            "title": "SV.LEAGUE 第10節 GAME2 大阪B vs 北海道YS",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "846e4368851bd5f90f75491767547807d0db87c433e01e1a9b1766fa3f16d647",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_e6cfb67d5e854ceb99b7e6c4c32699be",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "554c48040c7b1a3b89b1",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from browser-visible public schedule; ordinary HTTP remains 403; evidence_sha256=78055a40a2dbd3879a71fbed47a0604d7d3b2fb91904349d202f70476aea2ee2; observed_at=2026-11-08T05:57:13.479054+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.204186Z",
+            "url": "https://www.suntory.co.jp/culture-sports/sunbirds/game/2026.html"
+          },
+          "fingerprint": "e00160cf5b7cb559ca1cb36cd48cf8dfe19394febd7dfecc0fdecdaff12b8376",
+          "identity": {
+            "artist_name": "サントリー vs 大阪B",
+            "event_date": "2027-01-16",
+            "event_end_date": "2027-01-16",
+            "event_start_time": "13:05",
+            "title": "SV.LEAGUE 第11節 GAME1 サントリー vs 大阪B",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "6be6e9cec2e77f89b16b3a6f80090e74b3fdf0d245a5618ee46732538dcf18ee",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_5f60166a6a584e978a50c9f86eea1b8f",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "74de234b688657916881",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from browser-visible public schedule; ordinary HTTP remains 403; evidence_sha256=78055a40a2dbd3879a71fbed47a0604d7d3b2fb91904349d202f70476aea2ee2; observed_at=2026-11-08T05:57:13.479054+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.204186Z",
+            "url": "https://www.suntory.co.jp/culture-sports/sunbirds/game/2026.html"
+          },
+          "fingerprint": "9c7f33ae93ad4777b97b0eff8eda2b5ca54aaf88a681a12f6bc2bb8d423b60c2",
+          "identity": {
+            "artist_name": "サントリー vs 大阪B",
+            "event_date": "2027-01-17",
+            "event_end_date": "2027-01-17",
+            "event_start_time": "13:05",
+            "title": "SV.LEAGUE 第11節 GAME2 サントリー vs 大阪B",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "faa40af534c01dbecec2cf9985781d13014604d97d0e2a9b3de72fe8f32c12c7",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_b05c43fea3ad4d0abfd9304ddc78a757",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "da899a41e18bf665a986",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from browser-visible public schedule; ordinary HTTP remains 403; evidence_sha256=78055a40a2dbd3879a71fbed47a0604d7d3b2fb91904349d202f70476aea2ee2; observed_at=2026-11-08T05:57:13.479054+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.204186Z",
+            "url": "https://www.suntory.co.jp/culture-sports/sunbirds/game/2026.html"
+          },
+          "fingerprint": "1afc919245770d165e7ad9473201fbcc8024c40e7fde207e5f5aba6918bfc7a8",
+          "identity": {
+            "artist_name": "サントリー vs 松本TD",
+            "event_date": "2027-01-23",
+            "event_end_date": "2027-01-23",
+            "event_start_time": "13:05",
+            "title": "SV.LEAGUE 第12節 GAME1 サントリー vs 松本TD",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "36c8a1f871472cdc1409aa8a87dbb497cf3008783fa0573e7b78a38bb3e6743e",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_4c653008a1834bb0bd6f1b02ed4fa04a",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "f2ae4a2cf7797737d0a8",
+          "evidence": {
+            "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from browser-visible public schedule; ordinary HTTP remains 403; evidence_sha256=78055a40a2dbd3879a71fbed47a0604d7d3b2fb91904349d202f70476aea2ee2; observed_at=2026-11-08T05:57:13.479054+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+            "reviewed_at_utc": "2026-11-08T06:06:31.204186Z",
+            "url": "https://www.suntory.co.jp/culture-sports/sunbirds/game/2026.html"
+          },
+          "fingerprint": "1901ed7a7676909fd47fde1dce2ba0a7b3135a998d57a9ae5a30b6611b5e17e2",
+          "identity": {
+            "artist_name": "サントリー vs 松本TD",
+            "event_date": "2027-01-24",
+            "event_end_date": "2027-01-24",
+            "event_start_time": "13:05",
+            "title": "SV.LEAGUE 第12節 GAME2 サントリー vs 松本TD",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "c22c7a80e74775209d020a68137e4b840ea21cf8a236134f9560de1cfb0671ee",
+              "source_id": "venue_web_discovery"
+            }
+          ]
         }
       ]
     }
@@ -33563,12 +34320,6 @@
       "request_sha256": "f8df7b01bec92db338bccef1acb88c62679b3473fb8f3c7601a467641120084f"
     },
     {
-      "kind": "new",
-      "previous_ids": [],
-      "next_ids": [
-        "evt_7b70896bfe534bb694f252368bcfe322",
-        "evt_3d4928a2aa3a449ab648ad7065a2b3dc"
-      ],
       "candidates": [
         {
           "event_uid": "evt_7b70896bfe534bb694f252368bcfe322",
@@ -33580,18 +34331,19 @@
         }
       ],
       "evidence": {
-        "url": "https://www.jleague.jp/club/ftokyo/day/",
+        "reason": "Approved four-game maintenance. Primary calendar body SHA-256 29c10c5599118929783d4644ee194ac4fee0114649a9974f96c39cdd77242a18. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
         "reviewed_at_utc": "2026-11-07T22:40:42.630013Z",
-        "reason": "Approved four-game maintenance. Primary calendar body SHA-256 29c10c5599118929783d4644ee194ac4fee0114649a9974f96c39cdd77242a18. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
+        "url": "https://www.jleague.jp/club/ftokyo/day/"
       },
+      "kind": "new",
+      "next_ids": [
+        "evt_7b70896bfe534bb694f252368bcfe322",
+        "evt_3d4928a2aa3a449ab648ad7065a2b3dc"
+      ],
+      "previous_ids": [],
       "request_sha256": "ea9ec7325a32e4cba537d0e16392fc3f5fa41ce7e707955ea1ae863801fcbf9f"
     },
     {
-      "kind": "new",
-      "previous_ids": [],
-      "next_ids": [
-        "evt_0db7c3bc6fc4434eae47a6b460d0a049"
-      ],
       "candidates": [
         {
           "event_uid": "evt_0db7c3bc6fc4434eae47a6b460d0a049",
@@ -33599,18 +34351,18 @@
         }
       ],
       "evidence": {
-        "url": "https://www.jleague.jp/club/tokyov/day/",
+        "reason": "Approved four-game maintenance. Primary calendar body SHA-256 90eb1a7005255594093f4509d443dfb0720f9230b8561f553ad25873bbfbe386. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
         "reviewed_at_utc": "2026-11-07T22:40:42.625062Z",
-        "reason": "Approved four-game maintenance. Primary calendar body SHA-256 90eb1a7005255594093f4509d443dfb0720f9230b8561f553ad25873bbfbe386. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
+        "url": "https://www.jleague.jp/club/tokyov/day/"
       },
+      "kind": "new",
+      "next_ids": [
+        "evt_0db7c3bc6fc4434eae47a6b460d0a049"
+      ],
+      "previous_ids": [],
       "request_sha256": "ba4ba99d8acf8b746b97691598297e6398728d0f160b095e443045e31853b052"
     },
     {
-      "kind": "new",
-      "previous_ids": [],
-      "next_ids": [
-        "evt_21a33d130a264598883d0d207e77d2f8"
-      ],
       "candidates": [
         {
           "event_uid": "evt_21a33d130a264598883d0d207e77d2f8",
@@ -33618,14 +34370,334 @@
         }
       ],
       "evidence": {
-        "url": "https://www.osaka-marvelous.com/game/score/2026/index.html",
+        "reason": "Approved four-game maintenance. Primary calendar body SHA-256 892a5df783a38b523369cea7973146d45498512220b3012d7e690e94fd36b02f. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only.",
         "reviewed_at_utc": "2026-11-07T22:40:42.478015Z",
-        "reason": "Approved four-game maintenance. Primary calendar body SHA-256 892a5df783a38b523369cea7973146d45498512220b3012d7e690e94fd36b02f. Exact date, start, main venue and opponents verified; Nov28 existing duplicate excluded. Facts and official links only."
+        "url": "https://www.osaka-marvelous.com/game/score/2026/index.html"
       },
+      "kind": "new",
+      "next_ids": [
+        "evt_21a33d130a264598883d0d207e77d2f8"
+      ],
+      "previous_ids": [],
       "request_sha256": "e3253ff0daef8ad3a7f4322b8f2bc263fa6da128bc9626e52299e0857757dc9c"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "8c474fa2c7b811e357a7",
+          "fingerprint": "7cbb2537c059dd26b533d295ca607247f626b8108820247f8c002a94d3be99ce"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.418371Z",
+        "url": "https://ariake-arena.tokyo/event/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "8c474fa2c7b811e357a7"
+      ],
+      "previous_ids": [
+        "8c474fa2c7b811e357a7"
+      ],
+      "request_sha256": "38d0913dfd0c365264b367b57647249bdddefba535da3984bfc5913bd6abf966"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "3cd9ea26c4b2cd9ebd9a",
+          "fingerprint": "53965ce67cd2a18bdbd2735175c8c430aeecd51b31d8e6d76f03ab3fcfc1c2e6"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.484315Z",
+        "url": "https://ariake-arena.tokyo/event/"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "3cd9ea26c4b2cd9ebd9a"
+      ],
+      "previous_ids": [
+        "3cd9ea26c4b2cd9ebd9a"
+      ],
+      "request_sha256": "a2769805c5f85fe7ae3f2e7cfdf1b0f5220aefae0b1f4373f7950f127a9b7402"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "66fc27d3928765aa0dd9",
+          "fingerprint": "7fe6d4f0f306b1a3a8cc532b011185331c4e931626e3b3e26fa224180f9a6a67"
+        },
+        {
+          "event_uid": "evt_2b9b21d123814fde81e54a378c91dcb2",
+          "fingerprint": "8e81243563f9f7f358e3d524b3402f21ae1b5ad93bb72262480f2916355c28a0"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.556827Z",
+        "url": "https://ariake-arena.tokyo/event/"
+      },
+      "kind": "split",
+      "next_ids": [
+        "66fc27d3928765aa0dd9",
+        "evt_2b9b21d123814fde81e54a378c91dcb2"
+      ],
+      "previous_ids": [
+        "66fc27d3928765aa0dd9"
+      ],
+      "request_sha256": "550516bb123c69a251147c5b59ac236bb0ece5d1c69941e4e534147694f52bd0"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "e361a60677e1f4b5ffab",
+          "fingerprint": "d24d4c4a00844448faa53111dc4d9c9b100cf413c71252dc3555d654cd51a809"
+        },
+        {
+          "event_uid": "evt_e2b3c3f8c1cb4891a2b7c5a459039e02",
+          "fingerprint": "f17d44066a7d12bdae709cd6811ba6d7e0925641c70f84ae3cc03dc1485f7f11"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=32946ce54808bee1a0803d311e32a9ba0142a02ce3cf11064ddb9aff00e52504; observed_at=2026-11-08T05:42:18.057406+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.627451Z",
+        "url": "https://ariake-arena.tokyo/event/"
+      },
+      "kind": "split",
+      "next_ids": [
+        "e361a60677e1f4b5ffab",
+        "evt_e2b3c3f8c1cb4891a2b7c5a459039e02"
+      ],
+      "previous_ids": [
+        "e361a60677e1f4b5ffab"
+      ],
+      "request_sha256": "06fde57d86e4771504f97d73c01171a61bc1a1b64c16381986f04f943fbebd2b"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "0af1a0a481dc6eb1a798",
+          "fingerprint": "511b4eae27e92a1ef129c80c00fcf5a697cf53d741b647c9d333ded7efb97004"
+        },
+        {
+          "event_uid": "evt_60f4bb5fc4e142dd951e414df71dd2eb",
+          "fingerprint": "af811d6f499fc376175656ec299783f85f59d941ddaa07820726dff86065a2cf"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=0cc36f074ea0ff40776f3cd97df225bcb913d95f775212c9011d302105296290; observed_at=2026-11-08T05:42:26.134197+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.704717Z",
+        "url": "https://ariake-arena.tokyo/event/next/"
+      },
+      "kind": "split",
+      "next_ids": [
+        "0af1a0a481dc6eb1a798",
+        "evt_60f4bb5fc4e142dd951e414df71dd2eb"
+      ],
+      "previous_ids": [
+        "0af1a0a481dc6eb1a798"
+      ],
+      "request_sha256": "8e4bef0d6e50fe11612b46af2a4350b46178f3a754b2fff11879cb23149a679b"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "1b66efc4a2998c4bbd79",
+          "fingerprint": "94887ff22b07bb114a2e3ec641d1045d4d61a976f4dad0078797a6575264cc4f"
+        },
+        {
+          "event_uid": "evt_dfac0733d77b449f98eb9c3e049edee4",
+          "fingerprint": "b70aa1a495df9421350ace6ee03b5e7a207ed83cc49e495a619764b37dee4736"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=0cc36f074ea0ff40776f3cd97df225bcb913d95f775212c9011d302105296290; observed_at=2026-11-08T05:42:26.134197+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.774535Z",
+        "url": "https://ariake-arena.tokyo/event/next/"
+      },
+      "kind": "split",
+      "next_ids": [
+        "1b66efc4a2998c4bbd79",
+        "evt_dfac0733d77b449f98eb9c3e049edee4"
+      ],
+      "previous_ids": [
+        "1b66efc4a2998c4bbd79"
+      ],
+      "request_sha256": "da77f4212cca81ae0b37c727f74b6d0d3a472f60f54fc54c39070ed6806d267d"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_c69279e3acfa4821a9c6f98bc672bb80",
+          "fingerprint": "18959f71b59c15e67e3ee3df08b0381318f019b44c23c8ce66a91c1aa686711c"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=c99e11bd46f3a1044ecbe27b118984b549012770babb6581514c97764eb7c193; observed_at=2026-11-08T05:42:21.860369+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.846703Z",
+        "url": "https://www.streetleague.jp/"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_c69279e3acfa4821a9c6f98bc672bb80"
+      ],
+      "previous_ids": [],
+      "request_sha256": "6d5a4eea48c9cb6cb8572e1462fc08c98f3c02fe49ccd55f3713d26505cf1309"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_7fe701b6e64f479bb8dafbcf2a4398cf",
+          "fingerprint": "1504d5fa2a9fa033977ee8c4718c6dcf549671e997edeb9ddfb73f37e97b26d4"
+        },
+        {
+          "event_uid": "evt_e4c0f6d892c44945b42bea4e1948c120",
+          "fingerprint": "1d292f9fa1161079b9d43caab99261a7b1e76f26fea8e275b475e9c2bb269573"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=9f537d7f88292981f6dcdd1007fad0396212037fb6f416f642fd4de90cfa9431; observed_at=2026-11-08T05:42:18.057600+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.915959Z",
+        "url": "https://lp.urayasu-d-rocks.com/202627kokuritsu/"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_7fe701b6e64f479bb8dafbcf2a4398cf",
+        "evt_e4c0f6d892c44945b42bea4e1948c120"
+      ],
+      "previous_ids": [],
+      "request_sha256": "7e264f1fd9bebaee0df49a571a82f3d94023e48965c133195acd783e131067ae"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_b55160ba14234093b339e942a82272e9",
+          "fingerprint": "244c82bbded0c175f17e341c4e5ddcc66e08169dd7c3f3a9e044c5330a5dde4f"
+        },
+        {
+          "event_uid": "evt_afd0092f054e415fbfe009370553dc2b",
+          "fingerprint": "91e08038dca4302f5b4a82d28fcaa52383721ee81764a004104d8b23a2057b26"
+        },
+        {
+          "event_uid": "evt_6d9b6cabf4d54f44b69ad50db4e107fd",
+          "fingerprint": "1c120e84e4e7c16639ac794419f877b17d67fd2354a8b9690d1ba4dce1f8ab36"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=4e534a7cfb43262d2a8d9f51b2d1ef4a21ced75635696a9a32f2b7eb3d03a627; observed_at=2026-11-08T05:42:18.057709+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:30.988659Z",
+        "url": "https://www.bleague.jp/arena_detail/?ArenaCD=475"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_b55160ba14234093b339e942a82272e9",
+        "evt_afd0092f054e415fbfe009370553dc2b",
+        "evt_6d9b6cabf4d54f44b69ad50db4e107fd"
+      ],
+      "previous_ids": [],
+      "request_sha256": "67812d6e2cb7b0e4cb7a69c7100d46762312f6646d76c11090823d1aa9ee499c"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_d5ec6291f4b94dbb8068345957c7dd60",
+          "fingerprint": "056259dac5a68c4defc4edcc6a6e93af2d5b7c168492c5f71808f4304abe3151"
+        },
+        {
+          "event_uid": "evt_9b19126007b740e2a029277d8ee10653",
+          "fingerprint": "5d2fe9d45ef2e7236ed694f0cd3bd1b9657d9e1a2a2e51e41c4ed05305a7199b"
+        },
+        {
+          "event_uid": "evt_2ba2a9aff5c54b4498b6916a8c0079f0",
+          "fingerprint": "362cd55b9a346d2328efa0ff4e136847418e8f0ab46aa7f211d493aeb9b1cb27"
+        },
+        {
+          "event_uid": "evt_09ca950205ad4f28b22c0951aaf185d1",
+          "fingerprint": "d3eb5cea1936534b6523aad419c5d87ecf2b70491b6195a149f489b44ed403e0"
+        },
+        {
+          "event_uid": "evt_7d5cbaaab4ed44b7b5f01dde842d2332",
+          "fingerprint": "83e9ef42dc6824b15695bb76d707edb11439d110767da08139eb66c5c60b03cf"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=f5c781ecc4d347bb74b21142c13d47522ec093a77f72dac59d9ceff68b07354c; observed_at=2026-11-08T05:42:23.231837+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:31.066609Z",
+        "url": "https://www.bleague.jp/arena_detail/?ArenaCD=646"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_d5ec6291f4b94dbb8068345957c7dd60",
+        "evt_9b19126007b740e2a029277d8ee10653",
+        "evt_2ba2a9aff5c54b4498b6916a8c0079f0",
+        "evt_09ca950205ad4f28b22c0951aaf185d1",
+        "evt_7d5cbaaab4ed44b7b5f01dde842d2332"
+      ],
+      "previous_ids": [],
+      "request_sha256": "cfecdc3ea2c89fd137fbe69101d21e6614f50c5f1f4a4618b1895b9e37f9d1a2"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_73dbeb6f24444cca88f45f89cd9e9102",
+          "fingerprint": "c60dc51f139e20a497295f85d12b53f9399657ee9cf196e7f6ffbaeb7ec6df30"
+        },
+        {
+          "event_uid": "evt_5cad6bd34ef34de2868eecbb2f1864a4",
+          "fingerprint": "38326d9c42ddff17ab183ac615851c2fbb84f141796d72b143ebe65d125734a5"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from primary public HTML; evidence_sha256=377ffd7e9241050aef997e659c07f12fbf477b0476e5d2926b1504a8fbeaf80d; observed_at=2026-11-08T05:42:18.057752+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:31.136579Z",
+        "url": "https://www.osaka-bluteon.com/news/2026/20261106_03.html"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_73dbeb6f24444cca88f45f89cd9e9102",
+        "evt_5cad6bd34ef34de2868eecbb2f1864a4"
+      ],
+      "previous_ids": [],
+      "request_sha256": "fe552f584b024478c84fd8f8550d73cf1b04255b0d6e68d6a290cb19bca195d9"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_e6cfb67d5e854ceb99b7e6c4c32699be",
+          "fingerprint": "e00160cf5b7cb559ca1cb36cd48cf8dfe19394febd7dfecc0fdecdaff12b8376"
+        },
+        {
+          "event_uid": "evt_5f60166a6a584e978a50c9f86eea1b8f",
+          "fingerprint": "9c7f33ae93ad4777b97b0eff8eda2b5ca54aaf88a681a12f6bc2bb8d423b60c2"
+        },
+        {
+          "event_uid": "evt_b05c43fea3ad4d0abfd9304ddc78a757",
+          "fingerprint": "1afc919245770d165e7ad9473201fbcc8024c40e7fde207e5f5aba6918bfc7a8"
+        },
+        {
+          "event_uid": "evt_4c653008a1834bb0bd6f1b02ed4fa04a",
+          "fingerprint": "1901ed7a7676909fd47fde1dce2ba0a7b3135a998d57a9ae5a30b6611b5e17e2"
+        }
+      ],
+      "evidence": {
+        "reason": "Issue #42 scoped maintenance: dates, planned start/unknown time, venue and subject verified from browser-visible public schedule; ordinary HTTP remains 403; evidence_sha256=78055a40a2dbd3879a71fbed47a0604d7d3b2fb91904349d202f70476aea2ee2; observed_at=2026-11-08T05:57:13.479054+00:00. Preserve inherited fixed IDs and history. Facts and official links only; no images/introductory prose or assertion of individual permission.",
+        "reviewed_at_utc": "2026-11-08T06:06:31.204186Z",
+        "url": "https://www.suntory.co.jp/culture-sports/sunbirds/game/2026.html"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_e6cfb67d5e854ceb99b7e6c4c32699be",
+        "evt_5f60166a6a584e978a50c9f86eea1b8f",
+        "evt_b05c43fea3ad4d0abfd9304ddc78a757",
+        "evt_4c653008a1834bb0bd6f1b02ed4fa04a"
+      ],
+      "previous_ids": [],
+      "request_sha256": "2ed494cd74a1b5cdefc304989c43b7754b21969edc1d0315101d3a2f11b0c35a"
     }
   ],
-  "revision": 59,
+  "revision": 71,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
