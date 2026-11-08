@@ -1,0 +1,68 @@
+{
+  "status": "LOCAL_VERIFICATION_REAL_SOURCES_NOT_PRODUCTION_SUCCESS",
+  "producer_test_count": 1006,
+  "subtests": 96,
+  "ruff": true,
+  "collector": {
+    "status": "OFFLINE_REAL_RECORDED_CALENDAR_FULL_WORKFLOW_PATH",
+    "production_changed": false,
+    "real_URL_observations": 13,
+    "calls_match_exact_recorded_URLs": true,
+    "counts": {
+      "venue_id": "yoyogi_gymnasium",
+      "raw_count": 12,
+      "filtered_count": 12,
+      "calendar_year_conflict_count": 0,
+      "status": "fetched_completeness_unverified",
+      "request_count": 13,
+      "http_error_count": 0,
+      "transport_error_count": 0,
+      "parser_issue_count": 0
+    },
+    "projection": {
+      "reviewed": 2,
+      "held_new": 4,
+      "held_changed": 0,
+      "withdrawals": 0,
+      "normal_changes": 0,
+      "held_venue_metadata": 1,
+      "absent_retained": 0
+    },
+    "raw_count": 2352,
+    "unrelated_raw_all_fields_exact": 2344,
+    "old_unregistered_display_keys_not_resurrected": 16,
+    "existing_LP_all_fields_exact": 1131,
+    "new_eight_facts_and_links_exact": true,
+    "normal_count": 1008,
+    "all_count": 1139,
+    "repeated_projection_rows_exact": true,
+    "alternate_unreviewed_links_held": 8,
+    "alternate_links_kept_public_DB_bytes": true
+  },
+  "consumer": {
+    "status": "LOCAL_PLACEHOLDER_MANIFEST_ORDINARY_PATH_NOT_FOR_DEPLOYMENT",
+    "source_commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "real_release_verified": false,
+    "production_changed": false,
+    "old_count": 2148,
+    "new_count": 2156,
+    "new_IDs": [
+      "evt_4d2778490ddc4ea4a443a84f215bd79c",
+      "evt_5ca95c2c810f4df2ae2425fb7f7e8eb4",
+      "evt_60adc5750ba84638a5982cf6ff82e781",
+      "evt_a06282aa41da4adc8f834d7ff500c450",
+      "evt_aea07e8796cc481cbf9b29c9782afd46",
+      "evt_b13e160d14cc449380ccd078c5a5b497",
+      "evt_daadb5506c1448f1b8a601ada4479377",
+      "evt_de3ad008614546edbfa5f9d3f179fb95"
+    ],
+    "old_2148_all_fields_exact": true,
+    "saved_days_all_fields_exact": 1017,
+    "policy_bytes_unchanged": true,
+    "history_head_and_all_archives_bytes_unchanged": true,
+    "new_readoption_request_required": false,
+    "repeated_ordinary_refresh_bytes_exact": true,
+    "runtime_sha256": "20f9b2b460b343ba9f4be644b4c5cb493dc966eba8c01b6e518cbe7044761286",
+    "source_manifest_sha256": "0c86d7d8421576b59dd08cd88d9d405197f0fabafbda83937878894052bf3a21"
+  }
+}

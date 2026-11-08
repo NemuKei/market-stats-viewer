@@ -8,7 +8,7 @@ import logging
 import re
 import unicodedata
 from datetime import date, timedelta
-from urllib.parse import unquote, urljoin, urlparse
+from urllib.parse import parse_qs, unquote, urljoin, urlparse
 
 from bs4 import BeautifulSoup
 from pypdf import PdfReader
@@ -3623,13 +3623,77 @@ class _YoyogiGymnasiumSchedule(_BaseStrategy):
     Each table has class="event-calendar" with simple date/title rows.
     """
 
+    @staticmethod
+    def _detail(venue, session, event_url, expected_day, expected_title):
+        parts = urlparse(event_url)
+        query = parse_qs(parts.query)
+        if (parts.scheme != "https" or parts.netloc != urlparse(venue.source_url).netloc
+                or parts.path.lower() != "/yoyogi/default.aspx" or parts.fragment
+                or set(query) != {"TabId", "eid", "etype"} or query["TabId"] != ["59"]
+                or len(query["eid"]) != 1 or not query["eid"][0].isdecimal()
+                or query["etype"] not in (["1"], ["2"])):
+            raise ValueError("unexpected Yoyogi first-arena detail URL")
+        key = f"eid:{query['eid'][0]}#date:{expected_day}"
+        response = session.get(event_url, timeout=30)
+        response.raise_for_status()
+        if getattr(response, "url", None) != event_url:
+            raise ValueError("Yoyogi detail redirected; review the new source")
+        response.encoding = response.apparent_encoding or "utf-8"
+        soup = BeautifulSoup(response.text, "html.parser")
+        headings = [h.get_text(" ", strip=True) for h in soup.select("h1")]
+        if not any("第一体育館" in h for h in headings) or any("第二体育館" in h for h in headings):
+            raise ValueError("Yoyogi detail facility is not the first arena")
+        def normal(s):
+            return re.sub(r"\s+", "", unicodedata.normalize("NFKC", s))
+        observations = set()
+        for table in soup.select("table.event-calendar"):
+            fields = {}
+            for tr in table.select("tr"):
+                if not tr.th or not tr.td:
+                    continue
+                label = tr.th.get_text(strip=True)
+                if label not in {"日程", "イベント名", "開始時間"}:
+                    continue
+                if label in fields:
+                    raise ValueError("duplicate Yoyogi detail fact label; review each performance")
+                fields[label] = tr.td.get_text(" ", strip=True)
+            if not fields:
+                continue
+            if not {"日程", "イベント名", "開始時間"} <= fields.keys():
+                raise ValueError("Yoyogi detail facts missing")
+            match = re.fullmatch(r"(\d{4})/(\d{1,2})/(\d{1,2})", fields["日程"])
+            if match is None:
+                raise ValueError("Yoyogi detail full date missing")
+            day = date(*map(int, match.groups())).isoformat()
+            clock = unicodedata.normalize("NFKC", fields["開始時間"])
+            if clock in {"", "未定", "調整中"}:
+                clock = None
+            elif not re.fullmatch(r"(?:[01]?\d|2[0-3]):[0-5]\d", clock):
+                raise ValueError("Yoyogi detail start is ambiguous; no guessed performance count")
+            else:
+                hour, minute = clock.split(":")
+                clock = f"{int(hour):02d}:{minute}"
+            if day != expected_day or normal(fields["イベント名"]) != normal(expected_title):
+                raise ValueError("Yoyogi detail date/title differs from calendar")
+            observations.add(clock)
+        if len(observations) != 1:
+            raise ValueError("Yoyogi detail has conflicting or missing start observations")
+        return key, observations.pop()
+
     def parse(self, venue: VenueRecord, session, config: dict) -> list[EventRecord]:
+        fetch_details = config.get("fetch_details", False)
+        if type(fetch_details) is not bool or fetch_details and config.get("publication_review") is not True:
+            raise ValueError("Yoyogi detail collection requires explicit private publication review")
         resp = session.get(venue.source_url, timeout=30)
         resp.raise_for_status()
+        if fetch_details and getattr(resp, "url", None) != venue.source_url:
+            raise ValueError("Yoyogi calendar redirected; review the actual acquisition source")
         resp.encoding = resp.apparent_encoding or "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
         events: list[EventRecord] = []
         seen_uids: set[str] = set()
+        detail_cache = {}
+        native_details = {}
 
         for table in soup.find_all("table", class_="event-calendar"):
             rows = table.find_all("tr")
@@ -3661,6 +3725,21 @@ class _YoyogiGymnasiumSchedule(_BaseStrategy):
                 if not title:
                     continue
 
+                start_time = None
+                if fetch_details:
+                    # Native event ID/date survives etype's current/next-month
+                    # presentation switch; its public URL remains independently
+                    # reviewed by the existing map/baseline and SQLite gate.
+                    cache_key = event_url or ""
+                    title_key = re.sub(r"\s+", "", unicodedata.normalize("NFKC", title))
+                    if cache_key not in detail_cache:
+                        detail_cache[cache_key] = self._detail(venue, session, event_url or "", start_date, title)
+                    source_key, start_time = detail_cache[cache_key]
+                    observation = (title_key, start_time, start_date)
+                    if source_key in native_details and native_details[source_key] != observation:
+                        raise ValueError("one Yoyogi native event has conflicting detail observations")
+                    native_details[source_key] = observation
+
                 uid = compute_event_uid(
                     venue.venue_id,
                     source_key,
@@ -3676,10 +3755,10 @@ class _YoyogiGymnasiumSchedule(_BaseStrategy):
                     venue_id=venue.venue_id,
                     title=title,
                     start_date=start_date,
-                    start_time=None,
+                    start_time=start_time,
                     end_date=None,
                     end_time=None,
-                    all_day=True,
+                    all_day=start_time is None,
                     status="scheduled",
                     url=event_url,
                     description=None,

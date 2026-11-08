@@ -49,6 +49,14 @@ jobs:
         run: |
           uv run python -m scripts.apply_venue_discovery_inbox
 
+      - name: Prepare league review drafts (private, counts only)
+        continue-on-error: true # Restricted/changed sources must not discard other valid updates.
+        timeout-minutes: 6
+        run: |
+          start="$(date -u +%F)"
+          through="$(date -u --date='+89 days' +%F)"
+          uv run python -m scripts.collect_league_review --source jleague-ftokyo --source jleague-tokyov --source bleague-ariake --source bleague-asue --source leagueone --venue-id mufg_stadium --venue-id national_stadium --venue-id panasonic_stadium_suita --venue-id ariake_arena --venue-id asue_arena_osaka --start "$start" --through "$through" --private-dir "$RUNNER_TEMP/league-review-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" --summary "$GITHUB_STEP_SUMMARY"
+
       - name: Update venue web discovery signals
         run: |
           uv run python -m scripts.update_event_signals_data --only venue_web_discovery
