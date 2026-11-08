@@ -399,19 +399,34 @@ def resolve_source_artist(
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+def validate_collection_target(db_path: Path, targets: list[VenueRecord], *, skip_artist_inference: bool) -> Path:
+    """Do not let opt-in dated observations bypass the public DB review step."""
+    aliases_public = db_path.exists() and EVENTS_DB_PATH.exists() and db_path.samefile(EVENTS_DB_PATH)
+    if aliases_public and db_path.resolve() != EVENTS_DB_PATH.resolve():
+        raise ValueError("private DB aliases the public DB; copy it instead of linking")
+    if db_path.resolve() != EVENTS_DB_PATH.resolve() and not skip_artist_inference:
+        raise ValueError("custom collection DB requires --skip-artist-inference; rebuild privately with explicit --db-path and --output")
+    dated = any(json.loads(venue.config_json or "{}").get("dated_sessions") is True for venue in targets)
+    if dated and (aliases_public or db_path.resolve() == REPO_ROOT.resolve() or REPO_ROOT.resolve() in db_path.resolve().parents):
+        raise ValueError("dated collection requires a private DB outside the public checkout")
+    return db_path
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Update events data")
     parser.add_argument("--limit", type=int, default=0, help="Process first N enabled venues only")
     parser.add_argument("--only", type=str, default="", help="Comma-separated venue_ids to process")
     parser.add_argument("--verbose", action="store_true", help="Enable debug logging")
     parser.add_argument('--run-report', type=Path, help='Optional counts-only fetch report outside data/ (no source text or URLs).')
+    parser.add_argument('--db-path', type=Path, default=EVENTS_DB_PATH,
+                        help='Collection target; custom paths require --skip-artist-inference.')
     parser.add_argument(
         "--skip-artist-inference",
         action="store_true",
         help="Skip rebuilding data/events_artist_inferred.csv after events update",
     )
     args = parser.parse_args()
-    if args.run_report and (args.run_report.resolve() == EVENTS_DB_PATH.resolve()
+    if args.run_report and (args.run_report.resolve() == args.db_path.resolve()
             or DATA_DIR.resolve() in args.run_report.resolve().parents):
         parser.error('fetch reports must be outside data/ and never replace a database')
 
@@ -433,6 +448,10 @@ def main() -> None:
             targets.append(v)
     if args.limit > 0:
         targets = targets[: args.limit]
+    try:
+        db_path = validate_collection_target(args.db_path, targets, skip_artist_inference=args.skip_artist_inference)
+    except ValueError as exc:
+        parser.error(str(exc))
 
     if not targets:
         logger.info("No venues to process.")
@@ -445,7 +464,7 @@ def main() -> None:
     throttle = DomainThrottle(min_interval=3.0, default_interval=1.0)
     session = ThrottledSession(raw_session, throttle)
 
-    conn = init_db(EVENTS_DB_PATH)
+    conn = init_db(db_path)
     artist_keep_map, artist_compact_map = load_artist_lookup_maps()
     logger.info(
         "Loaded artist normalization maps: keep=%d compact=%d",

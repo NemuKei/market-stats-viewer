@@ -17,6 +17,7 @@ from datetime import date
 from pathlib import Path
 
 from .events.category import classify_event_category
+from .events.registry import load_registry as load_venue_registry
 from .signals.entity_aliases import load_artist_lookup_maps, normalize_with_lookup
 from .signals.artist_registry import (
     ArtistEntry,
@@ -568,6 +569,13 @@ def sync_resolved_artists_to_events(
 ) -> tuple[int, int]:
     if not events_db_path.exists():
         return 0, 0
+    # Every public writer, including the monthly artist refresh, respects the
+    # same Git-reviewed venue opt-in. Private collection still infers normally.
+    public_target = (events_db_path.resolve() == EVENTS_DB_PATH.resolve()
+                     or EVENTS_DB_PATH.exists() and events_db_path.samefile(EVENTS_DB_PATH))
+    protected_venues = {v.venue_id for v in load_venue_registry()
+        if json.loads(v.config_json or "{}").get("dated_sessions") is True
+    } if public_target else set()
 
     inferred_map = {
         str(row.get("event_uid", "")).strip(): (
@@ -590,7 +598,7 @@ def sync_resolved_artists_to_events(
                 COALESCE(TRIM(performers), ''),
                 COALESCE(TRIM(artist_name_resolved), ''),
                 COALESCE(TRIM(artist_confidence), 'low'),
-                COALESCE(TRIM(event_category), '')
+                COALESCE(TRIM(event_category), ''), venue_id
             FROM events
             """
         ).fetchall()
@@ -609,7 +617,10 @@ def sync_resolved_artists_to_events(
             current_resolved,
             current_confidence,
             current_category,
+            venue_id,
         ) in rows:
+            if venue_id in protected_venues:
+                continue
             event_uid = str(event_uid or "").strip()
             performers = str(performers or "").strip()
             title = str(title or "").strip()
@@ -679,6 +690,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output", default=str(OUTPUT_PATH))
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--skip-events-sync", action="store_true",
+                        help="Generate the CSV without modifying a reviewed public events DB.")
     return parser.parse_args()
 
 
@@ -740,6 +753,9 @@ def main() -> None:
     else:
         logger.info("No changes in %s", output_path)
 
+    if args.skip_events_sync:
+        logger.info("CSV rebuilt; reviewed public events DB left unchanged.")
+        return
     total_events, updated_events = sync_resolved_artists_to_events(events_db_path, rows)
     logger.info(
         "Synced resolved artists into events.sqlite: updated %d / %d rows",

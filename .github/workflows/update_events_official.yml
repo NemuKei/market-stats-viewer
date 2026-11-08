@@ -15,6 +15,9 @@ permissions:
 jobs:
   update-events-official:
     runs-on: ubuntu-latest
+    env:
+      # Activation is a separate Git-reviewed data/publication change. Default OFF.
+      EVENTS_SQLITE_REVIEW_GATED_VENUES: ""
     steps:
       - uses: actions/checkout@v6
         with:
@@ -35,8 +38,19 @@ jobs:
 
       - name: Update events official data
         run: |
-          uv run python -m scripts.update_events_data --skip-artist-inference --run-report "$RUNNER_TEMP/events-official-fetch.json"
-          uv run python -m scripts.build_events_artist_inferred
+          if [ -n "$EVENTS_SQLITE_REVIEW_GATED_VENUES" ]; then
+            git rev-parse HEAD > "$RUNNER_TEMP/events-review-base"
+            git cat-file -e HEAD:data/reviewed_event_sources.json
+            git cat-file -e HEAD:data/reviewed_event_baseline.json
+            cp data/events.sqlite "$RUNNER_TEMP/events-collected.sqlite"
+            uv run python -m scripts.update_events_data --db-path "$RUNNER_TEMP/events-collected.sqlite" --skip-artist-inference --run-report "$RUNNER_TEMP/events-official-fetch.json"
+            uv run python -m scripts.build_events_artist_inferred --db-path "$RUNNER_TEMP/events-collected.sqlite" --output "$RUNNER_TEMP/events-artists-private.csv"
+            uv run python -m scripts.reviewed_events_db --previous-db data/events.sqlite --candidate-db "$RUNNER_TEMP/events-collected.sqlite" --output data/events.sqlite --reviewed-venues "$EVENTS_SQLITE_REVIEW_GATED_VENUES" --registry-path data/event_identity_registry.json --source-map-path data/reviewed_event_sources.json --baseline-path data/reviewed_event_baseline.json --signals-db data/event_signals.sqlite
+            uv run python -m scripts.build_events_artist_inferred --skip-events-sync
+          else
+            uv run python -m scripts.update_events_data --skip-artist-inference --run-report "$RUNNER_TEMP/events-official-fetch.json"
+            uv run python -m scripts.build_events_artist_inferred
+          fi
 
       - name: Build LP events
         run: |
@@ -68,8 +82,19 @@ jobs:
             git commit -m "chore: update events official data"
             branch="${GITHUB_REF_NAME:-main}"
             for i in 1 2 3; do
-              # Aborts the step on a conflict in this run's data; only push races are retried.
-              uv run python -m scripts.rebase_data_commit --branch "$branch"
+              if [ -n "$EVENTS_SQLITE_REVIEW_GATED_VENUES" ]; then
+                git fetch origin "$branch"
+                # Never rebase a projection approved against another generation.
+                # Leave the remote unchanged; restart from the new tip instead.
+                test "$(git rev-parse FETCH_HEAD)" = "$(cat "$RUNNER_TEMP/events-review-base")" || {
+                  echo "Review projection base changed; rerun from current main."
+                  exit 1
+                }
+              else
+                # Only the legacy path rebases. Gated projections never fetch
+                # again or replay onto a newer map/registry generation.
+                uv run python -m scripts.rebase_data_commit --branch "$branch"
+              fi
               # The rebase keeps upstream's lp_events.json; rebuild it from the rebased DBs
               # and validate before pushing so summary and rows come from one build.
               if git cat-file -e HEAD:data/reviewed_event_sources.json 2>/dev/null; then
