@@ -1357,6 +1357,646 @@
         "status": "reviewed"
       },
       "source_signature": "d2295902ce59ca4077d1c301d0db0d68a2e618afaef135561ca6f9df44a7a061"
+    },
+    {
+      "event_uid": "9107a8d4a0cc4996bb68",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "4a8ad680e3660849dfa3",
+        "fingerprint": "887dec6fb54ef6d000bd950dbe1470f67e8992199514cf6a16393fee06b7eac5",
+        "identity": {
+          "artist_name": "TWICE",
+          "event_date": "2025-08-23",
+          "event_end_date": "2025-08-23",
+          "event_start_time": "17:30",
+          "title": "TWICE ＜THIS IS FOR＞ WORLD TOUR IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2025-08-23#t=17:30",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.nagoya-dome.co.jp/enjoy/index.php",
+        "https://www.twicejapan.com/feature/dometour2025#",
+        "https://www.twicejapan.com/feature/dometour2025##d=2025-08-23#t=17:30"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.nagoya-dome.co.jp/enjoy/index.php",
+          "https://www.twicejapan.com/feature/dometour2025#",
+          "https://www.twicejapan.com/feature/dometour2025##d=2025-08-23#t=17:30"
+        ],
+        "row_sha256": "3d45061cc389e87e24e260f0048fafd51f8dbf8e6ea04896c11fdf283a7c7ec5",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.twicejapan.com/feature/dometour2025#",
+        "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2025-08-23#t=17:30",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "488fe2d104a921fcd9e9",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "88d140d206a11c57e365",
+        "fingerprint": "0c537c628565d19cc83d6922077576240d95db0cef3ac04ca4469fe99471b3b0",
+        "identity": {
+          "artist_name": "TWICE",
+          "event_date": "2025-08-24",
+          "event_end_date": "2025-08-24",
+          "event_start_time": "16:30",
+          "title": "TWICE ＜THIS IS FOR＞ WORLD TOUR IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2025-08-24#t=16:30",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.nagoya-dome.co.jp/enjoy/index.php",
+        "https://www.twicejapan.com/feature/dometour2025#",
+        "https://www.twicejapan.com/feature/dometour2025##d=2025-08-24#t=16:30"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.nagoya-dome.co.jp/enjoy/index.php",
+          "https://www.twicejapan.com/feature/dometour2025#",
+          "https://www.twicejapan.com/feature/dometour2025##d=2025-08-24#t=16:30"
+        ],
+        "row_sha256": "d4c7f3f9d2cc7364d11e330134808552f822b44ab4f8c7ca4ec790759a81e5c5",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.twicejapan.com/feature/dometour2025#",
+        "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2025-08-24#t=16:30",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "0b45f88b74c1ebf99228",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "0c957e29c2e182d694f5",
+        "fingerprint": "5102261b889bf40be9590fbf4bce6ca6f87e4d4900d622f27496757b631c8006",
+        "identity": {
+          "artist_name": "INI",
+          "event_date": "2025-09-13",
+          "event_end_date": "2025-09-13",
+          "event_start_time": "18:00",
+          "title": "2025 INI LIVE [XQUARE - MASTERPIECE]",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-13#t=18:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://cf.ini-official.com/feature/xquare_masterpiece",
+        "https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-13#t=18:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://cf.ini-official.com/feature/xquare_masterpiece",
+          "https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-13#t=18:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "ab3ec3836cbee69061a9bc4f2b5d047a014a7f7cc3393e240a778af941255d3c",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://cf.ini-official.com/feature/xquare_masterpiece",
+        "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-13#t=18:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "eef2f26641aac49d75aa",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "8661df73ce50ecc6a6eb",
+        "fingerprint": "82d5128661b6a26fd8a3a39f3ad162d7e1d92900c840a0eaa36cafd7e87718be",
+        "identity": {
+          "artist_name": "INI",
+          "event_date": "2025-09-14",
+          "event_end_date": "2025-09-14",
+          "event_start_time": "16:00",
+          "title": "2025 INI LIVE [XQUARE - MASTERPIECE]",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-14#t=16:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://cf.ini-official.com/feature/xquare_masterpiece",
+        "https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-14#t=16:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://cf.ini-official.com/feature/xquare_masterpiece",
+          "https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-14#t=16:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "822c72460ef965938bd00f7a2f9e36109ac886ed6e65cc951b595a8a2be5632d",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://cf.ini-official.com/feature/xquare_masterpiece",
+        "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-14#t=16:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "5632fd1e4ab8a049899b",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "6de76d031ffdbf595a9b",
+        "fingerprint": "2a6b21328d43547c9de8577e7d5abaa57b560498d07816d9c27abe762375ead3",
+        "identity": {
+          "artist_name": "INI",
+          "event_date": "2025-09-15",
+          "event_end_date": "2025-09-15",
+          "event_start_time": "16:00",
+          "title": "2025 INI LIVE [XQUARE - MASTERPIECE]",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-15#t=16:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://cf.ini-official.com/feature/xquare_masterpiece",
+        "https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-15#t=16:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://cf.ini-official.com/feature/xquare_masterpiece",
+          "https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-15#t=16:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "3fba23e986d44b3d92c22d54e62793076c274569cb19a78bd808745da94a955b",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://cf.ini-official.com/feature/xquare_masterpiece",
+        "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-15#t=16:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "5b6e15f5a5a00fe33681",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "e3375320171c23e0896a",
+        "fingerprint": "91dd774fdd2205d197343166f4bda4753eb27ac153577d52791e3faafcc1c6e4",
+        "identity": {
+          "artist_name": "Mrs. GREEN APPLE",
+          "event_date": "2025-10-25",
+          "event_end_date": "2025-10-25",
+          "event_start_time": "18:00",
+          "title": "Mrs. GREEN APPLE DOME TOUR 2025 \"BABEL no TOH\"",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-25#t=18:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://mrsgreenapple.com/feature/babelnotoh",
+        "https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-25#t=18:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://mrsgreenapple.com/feature/babelnotoh",
+          "https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-25#t=18:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "f1336fc98e874773c10085752797aa0c2263e93f6f4139a431aeac3c67f4efe3",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://mrsgreenapple.com/feature/babelnotoh",
+        "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-25#t=18:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "bde7ed5b75def76979e2",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "09136e91df4f01fa2094",
+        "fingerprint": "dc2b80583c09e37d55dea77c5f2b9f6d3eb411e869ae86ca6656bc58cecbc871",
+        "identity": {
+          "artist_name": "Mrs. GREEN APPLE",
+          "event_date": "2025-10-26",
+          "event_end_date": "2025-10-26",
+          "event_start_time": "16:00",
+          "title": "Mrs. GREEN APPLE DOME TOUR 2025 \"BABEL no TOH\"",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-26#t=16:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://mrsgreenapple.com/feature/babelnotoh",
+        "https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-26#t=16:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://mrsgreenapple.com/feature/babelnotoh",
+          "https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-26#t=16:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "7fc427845823e748c630452d76d2e65b167f6baa0cd99bdff6aa03780fba6da3",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://mrsgreenapple.com/feature/babelnotoh",
+        "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-26#t=16:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "8cbd3c0b72a023a70d2d",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "d854f0876d64e718609f",
+        "fingerprint": "af86bd0e18ebdb95f1f1a907b6e402cd7229234aab9f5ce518b76efe32f00d6b",
+        "identity": {
+          "artist_name": "SEVENTEEN",
+          "event_date": "2025-11-27",
+          "event_end_date": "2025-11-27",
+          "event_start_time": "18:00",
+          "title": "SEVENTEEN WORLD TOUR [NEW_] IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-27#t=18:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://seventeen.hybejapan.events/new_",
+        "https://seventeen.hybejapan.events/new_#d=2025-11-27#t=18:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://seventeen.hybejapan.events/new_",
+          "https://seventeen.hybejapan.events/new_#d=2025-11-27#t=18:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "7b5578628e0ea094e0b46945372287adb01c44db03e4b916b56ee19be993c058",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://seventeen.hybejapan.events/new_",
+        "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-27#t=18:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "cacf5e9dea38840a0ef3",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "cf003906338e0190c7bd",
+        "fingerprint": "d3aa685edab69485f8a667f4029610030077e53a8e64d2129cd22f4dda8ab89a",
+        "identity": {
+          "artist_name": "SEVENTEEN",
+          "event_date": "2025-11-29",
+          "event_end_date": "2025-11-29",
+          "event_start_time": "18:00",
+          "title": "SEVENTEEN WORLD TOUR [NEW_] IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-29#t=18:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://seventeen.hybejapan.events/new_",
+        "https://seventeen.hybejapan.events/new_#d=2025-11-29#t=18:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://seventeen.hybejapan.events/new_",
+          "https://seventeen.hybejapan.events/new_#d=2025-11-29#t=18:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "23b3fe7b90abab8de97aa69790ec472845b6c33761ee1ca67810c8fafa5adf42",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://seventeen.hybejapan.events/new_",
+        "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-29#t=18:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "e4eff0598a0661ff94af",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "c0e5464939320978c9fa",
+        "fingerprint": "76dd4fd1ff419d7622a407fbdece3894a40dcbe6e4fba34302609e6da91945d8",
+        "identity": {
+          "artist_name": "SEVENTEEN",
+          "event_date": "2025-11-30",
+          "event_end_date": "2025-11-30",
+          "event_start_time": "18:00",
+          "title": "SEVENTEEN WORLD TOUR [NEW_] IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-30#t=18:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://seventeen.hybejapan.events/new_",
+        "https://seventeen.hybejapan.events/new_#d=2025-11-30#t=18:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://seventeen.hybejapan.events/new_",
+          "https://seventeen.hybejapan.events/new_#d=2025-11-30#t=18:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "b4c7fa45604fd63c02c4485f3cfefd5e429aa1a0b89d6a76d5f158848545f9e2",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://seventeen.hybejapan.events/new_",
+        "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-30#t=18:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "37675831d56c1c8067c1",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "e80dfb40471971c88f36",
+        "fingerprint": "190de011db81186c2fc4fe817be30f536d6abd04ac2bd7a92ae0ba4ec432ac25",
+        "identity": {
+          "artist_name": "TOMORROW X TOGETHER",
+          "event_date": "2025-12-06",
+          "event_end_date": "2025-12-06",
+          "event_start_time": "17:00",
+          "title": "TOMORROW X TOGETHER WORLD TOUR ＜ACT : TOMORROW＞ IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-06#t=17:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://txt.hybejapan.events/act_tomorrow_in_japan",
+        "https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-06#t=17:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://txt.hybejapan.events/act_tomorrow_in_japan",
+          "https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-06#t=17:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "d1199a86e515870a222a2ea98f3d00ced38f65e864a64dcedf20e7a6c60757e3",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://txt.hybejapan.events/act_tomorrow_in_japan",
+        "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-06#t=17:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "06358e19b1448856a8ec",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "ea7bba5692848a071fbd",
+        "fingerprint": "bc396f5af93079302aeb7a1b86ae98863dccbab49a84e3e97810f6dac9806272",
+        "identity": {
+          "artist_name": "TOMORROW X TOGETHER",
+          "event_date": "2025-12-07",
+          "event_end_date": "2025-12-07",
+          "event_start_time": "16:00",
+          "title": "TOMORROW X TOGETHER WORLD TOUR ＜ACT : TOMORROW＞ IN JAPAN",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-07#t=16:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://txt.hybejapan.events/act_tomorrow_in_japan",
+        "https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-07#t=16:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://txt.hybejapan.events/act_tomorrow_in_japan",
+          "https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-07#t=16:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "f10ce16584bd6f2198158090f65835944deb7324e0b98e6d65e571b3cbc895e2",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://txt.hybejapan.events/act_tomorrow_in_japan",
+        "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-07#t=16:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "08e2a106cea3a405f683",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "c7212938ffb181c72b40",
+        "fingerprint": "284407cea35b64fe632ad1babd5242e1f2a289a11ad42dbe8e4fcef69416c34e",
+        "identity": {
+          "artist_name": "EXILE",
+          "event_date": "2025-12-27",
+          "event_end_date": "2025-12-27",
+          "event_start_time": "16:00",
+          "title": "EXILE LIVE TOUR 2025 \"THE REASON\"",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-27#t=16:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.ldh-liveschedule.jp/sys/tour/35109/",
+        "https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-27#t=16:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.ldh-liveschedule.jp/sys/tour/35109/",
+          "https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-27#t=16:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "a091dae3424f41542b799c77406d4f6e89fc739d953c0e616eb4bccfa2422653",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.ldh-liveschedule.jp/sys/tour/35109/",
+        "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-27#t=16:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "3afd421129ee1433ee06",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "8041a403d76987c61911",
+        "fingerprint": "155fc2d8f629b93c8b4462934c41ce3472b02d03a5d762dbc32a1ec1e1f91abe",
+        "identity": {
+          "artist_name": "EXILE",
+          "event_date": "2025-12-28",
+          "event_end_date": "2025-12-28",
+          "event_start_time": "16:00",
+          "title": "EXILE LIVE TOUR 2025 \"THE REASON\"",
+          "venue_name": "バンテリンドームナゴヤ"
+        },
+        "source_records": [
+          {
+            "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-28#t=16:00",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.ldh-liveschedule.jp/sys/tour/35109/",
+        "https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-28#t=16:00",
+        "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.ldh-liveschedule.jp/sys/tour/35109/",
+          "https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-28#t=16:00",
+          "https://www.nagoya-dome.co.jp/enjoy/index.php"
+        ],
+        "row_sha256": "582abb048c73fc76efbe59cbd89bb2ccdce75bbfe6e697d3b2bc067cd6b13224",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.ldh-liveschedule.jp/sys/tour/35109/",
+        "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-28#t=16:00",
+        "source_id": "official_events",
+        "source_url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "6d094ea0c8861d6a55ef",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "84cc558769bdf31e1ae2",
+        "fingerprint": "2794064bde4d99d7570ff4da04c12aa64463b39fce01fe56a0283fd083c2946b",
+        "identity": {
+          "artist_name": "BIGBANG",
+          "event_date": "2026-11-29",
+          "event_end_date": "2026-11-29",
+          "event_start_time": "17:00",
+          "title": "BIGBANG 2026-2027 WORLD TOUR < XX : COSMOS > IN JAPAN",
+          "venue_name": "京セラドーム大阪"
+        },
+        "source_records": [
+          {
+            "record_id": "kyocera_dome_osaka:h:33ce86d05df63af7",
+            "source_id": "official_events"
+          },
+          {
+            "record_id": "71c67d335cb40064436853d5266ab85752c02b388103f91d26850486563caf2d",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026"
+        ],
+        "row_sha256": "258303749bb95569f82195e7d270708b380b82a229de0edf08f0e5a40a6c2bc2",
+        "status": "reviewed"
+      },
+      "source_signature": "32c111c0fc40632100eccf75a0acc52e0eeaf942dee2572dc14d6d8664e6c320"
     }
   ],
   "schema_version": 1

@@ -254,4 +254,11 @@ class VenueWebDiscoverySource(SignalSource):
             return raw
         if DATE_RE.match(raw):
             return f"{raw}T00:00:00Z"
+        if "T" in raw:
+            try:
+                stamp = datetime.fromisoformat(raw)
+                if stamp.utcoffset() is not None:
+                    return to_utc_z(stamp)
+            except ValueError:
+                pass
         return to_utc_z(datetime.now(timezone.utc))

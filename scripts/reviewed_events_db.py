@@ -19,7 +19,8 @@ import tempfile
 from .build_lp_events import _build_lp_event_candidates
 from .event_identity_registry import load_registry, parse_json, resolve_rows, registry_lock
 from .events.sources.base import compute_data_hash
-from .events.types import EventRecord
+from .events.registry import REGISTRY_PATH, load_registry as load_venue_registry
+from .events.types import EventRecord, requires_publication_review
 from .public_lp_projection import check_timestamp, embedded_urls, host, publication_is_reviewed
 from .reviewed_source_map import reviewed_rows_for_publication
 
@@ -113,18 +114,20 @@ def _public_row(raw, decision):
 
 def build_reviewed_events_db(*, previous_db: Path, candidate_db: Path, output: Path,
                             reviewed_venues: set[str], registry_path: Path,
-                            source_map_path: Path, baseline_path: Path, signals_db: Path):
+                            source_map_path: Path, baseline_path: Path, signals_db: Path,
+                            venue_registry_path: Path = REGISTRY_PATH):
     output.parent.mkdir(parents=True, exist_ok=True)
     # Reuse the existing exclusive-file primitive; no new lock protocol/ledger.
     # Non-cooperating writers must still be excluded by Actions repo-write.
     with registry_lock(output):
         return _build_reviewed_events_db(previous_db=previous_db, candidate_db=candidate_db,
             output=output, reviewed_venues=reviewed_venues, registry_path=registry_path,
-            source_map_path=source_map_path, baseline_path=baseline_path, signals_db=signals_db)
+            source_map_path=source_map_path, baseline_path=baseline_path, signals_db=signals_db,
+            venue_registry_path=venue_registry_path)
 
 
 def _build_reviewed_events_db(*, previous_db, candidate_db, output, reviewed_venues,
-                            registry_path, source_map_path, baseline_path, signals_db):
+                            registry_path, source_map_path, baseline_path, signals_db, venue_registry_path):
     """Merge approved gated observations; retain held rows without blocking others.
 
     Missing observations never imply cancellation. A same-source, same-identity
@@ -132,7 +135,7 @@ def _build_reviewed_events_db(*, previous_db, candidate_db, output, reviewed_ven
     """
     if not reviewed_venues or any(not v or v.strip() != v for v in reviewed_venues):
         raise ValueError("explicit nonempty reviewed venues required")
-    inputs = (previous_db, candidate_db, registry_path, source_map_path, baseline_path, signals_db)
+    inputs = (previous_db, candidate_db, registry_path, source_map_path, baseline_path, signals_db, venue_registry_path)
     if (output.is_symlink() or output.resolve() in {p.resolve() for p in inputs[1:]}
             or output.exists() and any(p.exists() and output.samefile(p) for p in inputs[1:])):
         raise ValueError("output must not replace private inputs or review files")
@@ -143,10 +146,12 @@ def _build_reviewed_events_db(*, previous_db, candidate_db, output, reviewed_ven
     decisions = reviewed_official_rows(candidate_db=candidate_db, registry_path=registry_path,
         source_map_path=source_map_path, baseline_path=baseline_path, signals_db=signals_db)
     old, current = _tables(previous_db), _tables(candidate_db)
+    required_venues = {venue.venue_id for venue in load_venue_registry(venue_registry_path)
+                       if requires_publication_review(venue.config_json)}
     dated_venues = {uid for uid, venue in current["venues"].items()
-                    if json.loads(venue["config_json"] or "{}").get("dated_sessions") is True}
-    if dated_venues - reviewed_venues:
-        raise ValueError("every dated venue must be explicitly gated before publication")
+                    if requires_publication_review(venue["config_json"])}
+    if (dated_venues | required_venues) - reviewed_venues:
+        raise ValueError("every dated venue or reviewed venue must be explicitly gated before publication")
     merged = {table: dict(rows) for table, rows in old.items()}
     report = dict(reviewed=0, held_new=0, held_changed=0, withdrawals=0, normal_changes=0,
                   held_venue_metadata=0, absent_retained=0)
@@ -224,6 +229,7 @@ def main():
     for name in ("previous-db", "candidate-db", "output", "registry-path", "source-map-path", "baseline-path", "signals-db"):
         parser.add_argument("--" + name, required=True, type=Path)
     parser.add_argument("--reviewed-venues", required=True, help="Comma-separated opted-in venue IDs")
+    parser.add_argument("--venue-registry-path", type=Path, default=REGISTRY_PATH)
     args = vars(parser.parse_args())
     args["reviewed_venues"] = set(args["reviewed_venues"].split(","))
     report = build_reviewed_events_db(**args)

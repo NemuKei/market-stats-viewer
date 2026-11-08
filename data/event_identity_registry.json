@@ -4467,7 +4467,7 @@
       "event_uid": "9107a8d4a0cc4996bb68",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "9107a8d4a0cc4996bb68",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -4484,6 +4484,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2026-08-23#t=17:30",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "4a8ad680e3660849dfa3",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "887dec6fb54ef6d000bd950dbe1470f67e8992199514cf6a16393fee06b7eac5",
+          "identity": {
+            "artist_name": "TWICE",
+            "event_date": "2025-08-23",
+            "event_end_date": "2025-08-23",
+            "event_start_time": "17:30",
+            "title": "TWICE ＜THIS IS FOR＞ WORLD TOUR IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2025-08-23#t=17:30",
               "source_id": "official_events"
             }
           ]
@@ -4548,7 +4572,7 @@
       "event_uid": "488fe2d104a921fcd9e9",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "488fe2d104a921fcd9e9",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -4565,6 +4589,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2026-08-24#t=16:30",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "88d140d206a11c57e365",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "0c537c628565d19cc83d6922077576240d95db0cef3ac04ca4469fe99471b3b0",
+          "identity": {
+            "artist_name": "TWICE",
+            "event_date": "2025-08-24",
+            "event_end_date": "2025-08-24",
+            "event_start_time": "16:30",
+            "title": "TWICE ＜THIS IS FOR＞ WORLD TOUR IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://www.twicejapan.com/feature/dometour2025##d=2025-08-24#t=16:30",
               "source_id": "official_events"
             }
           ]
@@ -6809,7 +6857,7 @@
       "event_uid": "0b45f88b74c1ebf99228",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "0b45f88b74c1ebf99228",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -6826,6 +6874,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2026-09-13#t=18:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "0c957e29c2e182d694f5",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "5102261b889bf40be9590fbf4bce6ca6f87e4d4900d622f27496757b631c8006",
+          "identity": {
+            "artist_name": "INI",
+            "event_date": "2025-09-13",
+            "event_end_date": "2025-09-13",
+            "event_start_time": "18:00",
+            "title": "2025 INI LIVE [XQUARE - MASTERPIECE]",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-13#t=18:00",
               "source_id": "official_events"
             }
           ]
@@ -6917,7 +6989,7 @@
       "event_uid": "eef2f26641aac49d75aa",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "eef2f26641aac49d75aa",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -6934,6 +7006,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2026-09-14#t=16:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "8661df73ce50ecc6a6eb",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "82d5128661b6a26fd8a3a39f3ad162d7e1d92900c840a0eaa36cafd7e87718be",
+          "identity": {
+            "artist_name": "INI",
+            "event_date": "2025-09-14",
+            "event_end_date": "2025-09-14",
+            "event_start_time": "16:00",
+            "title": "2025 INI LIVE [XQUARE - MASTERPIECE]",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-14#t=16:00",
               "source_id": "official_events"
             }
           ]
@@ -6995,7 +7091,7 @@
       "event_uid": "5632fd1e4ab8a049899b",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "5632fd1e4ab8a049899b",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -7012,6 +7108,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2026-09-15#t=16:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "6de76d031ffdbf595a9b",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "2a6b21328d43547c9de8577e7d5abaa57b560498d07816d9c27abe762375ead3",
+          "identity": {
+            "artist_name": "INI",
+            "event_date": "2025-09-15",
+            "event_end_date": "2025-09-15",
+            "event_start_time": "16:00",
+            "title": "2025 INI LIVE [XQUARE - MASTERPIECE]",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://cf.ini-official.com/feature/xquare_masterpiece#d=2025-09-15#t=16:00",
               "source_id": "official_events"
             }
           ]
@@ -14581,7 +14701,7 @@
       "event_uid": "5b6e15f5a5a00fe33681",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "5b6e15f5a5a00fe33681",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -14598,6 +14718,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2026-10-25#t=18:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "e3375320171c23e0896a",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "91dd774fdd2205d197343166f4bda4753eb27ac153577d52791e3faafcc1c6e4",
+          "identity": {
+            "artist_name": "Mrs. GREEN APPLE",
+            "event_date": "2025-10-25",
+            "event_end_date": "2025-10-25",
+            "event_start_time": "18:00",
+            "title": "Mrs. GREEN APPLE DOME TOUR 2025 \"BABEL no TOH\"",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-25#t=18:00",
               "source_id": "official_events"
             }
           ]
@@ -14662,7 +14806,7 @@
       "event_uid": "bde7ed5b75def76979e2",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "bde7ed5b75def76979e2",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -14679,6 +14823,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2026-10-26#t=16:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "09136e91df4f01fa2094",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "dc2b80583c09e37d55dea77c5f2b9f6d3eb411e869ae86ca6656bc58cecbc871",
+          "identity": {
+            "artist_name": "Mrs. GREEN APPLE",
+            "event_date": "2025-10-26",
+            "event_end_date": "2025-10-26",
+            "event_start_time": "16:00",
+            "title": "Mrs. GREEN APPLE DOME TOUR 2025 \"BABEL no TOH\"",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://mrsgreenapple.com/feature/babelnotoh#d=2025-10-26#t=16:00",
               "source_id": "official_events"
             }
           ]
@@ -19910,7 +20078,7 @@
       "event_uid": "8cbd3c0b72a023a70d2d",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "8cbd3c0b72a023a70d2d",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -19927,6 +20095,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2026-11-27#t=18:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "d854f0876d64e718609f",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "af86bd0e18ebdb95f1f1a907b6e402cd7229234aab9f5ce518b76efe32f00d6b",
+          "identity": {
+            "artist_name": "SEVENTEEN",
+            "event_date": "2025-11-27",
+            "event_end_date": "2025-11-27",
+            "event_start_time": "18:00",
+            "title": "SEVENTEEN WORLD TOUR [NEW_] IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-27#t=18:00",
               "source_id": "official_events"
             }
           ]
@@ -20343,7 +20535,7 @@
       "event_uid": "57de0b817607c6e40c40",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "57de0b817607c6e40c40",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20428,7 +20620,7 @@
       "event_uid": "6d094ea0c8861d6a55ef",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "6d094ea0c8861d6a55ef",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20446,6 +20638,34 @@
             {
               "record_id": "kyocera_dome_osaka:h:33ce86d05df63af7",
               "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "84cc558769bdf31e1ae2",
+          "evidence": {
+            "reason": "Artist and venue calendars agree: Nov29 doors15:00/start17:00, one occurrence. Correct same signal, retain official fixed ID and preserve retired-ID merge history. Primary body sha256=148a4d89f4143d75f2eedbf8e1f8bba567d5a33b1a87b105b4fe6b483da7257e",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745603Z",
+            "url": "https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003004&fdate=2026-11-27&ldate=2026-11-29"
+          },
+          "fingerprint": "2794064bde4d99d7570ff4da04c12aa64463b39fce01fe56a0283fd083c2946b",
+          "identity": {
+            "artist_name": "BIGBANG",
+            "event_date": "2026-11-29",
+            "event_end_date": "2026-11-29",
+            "event_start_time": "17:00",
+            "title": "BIGBANG 2026-2027 WORLD TOUR < XX : COSMOS > IN JAPAN",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "kyocera_dome_osaka:h:33ce86d05df63af7",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "71c67d335cb40064436853d5266ab85752c02b388103f91d26850486563caf2d",
+              "source_id": "venue_web_discovery"
             }
           ]
         }
@@ -20563,7 +20783,7 @@
       "event_uid": "cacf5e9dea38840a0ef3",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "cacf5e9dea38840a0ef3",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20583,6 +20803,30 @@
               "source_id": "official_events"
             }
           ]
+        },
+        {
+          "active": true,
+          "candidate_key": "cf003906338e0190c7bd",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "d3aa685edab69485f8a667f4029610030077e53a8e64d2129cd22f4dda8ab89a",
+          "identity": {
+            "artist_name": "SEVENTEEN",
+            "event_date": "2025-11-29",
+            "event_end_date": "2025-11-29",
+            "event_start_time": "18:00",
+            "title": "SEVENTEEN WORLD TOUR [NEW_] IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-29#t=18:00",
+              "source_id": "official_events"
+            }
+          ]
         }
       ]
     },
@@ -20590,7 +20834,7 @@
       "event_uid": "e4eff0598a0661ff94af",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "e4eff0598a0661ff94af",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20607,6 +20851,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2026-11-30#t=18:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "c0e5464939320978c9fa",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "76dd4fd1ff419d7622a407fbdece3894a40dcbe6e4fba34302609e6da91945d8",
+          "identity": {
+            "artist_name": "SEVENTEEN",
+            "event_date": "2025-11-30",
+            "event_end_date": "2025-11-30",
+            "event_start_time": "18:00",
+            "title": "SEVENTEEN WORLD TOUR [NEW_] IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://seventeen.hybejapan.events/new_#d=2025-11-30#t=18:00",
               "source_id": "official_events"
             }
           ]
@@ -21702,7 +21970,7 @@
       "event_uid": "37675831d56c1c8067c1",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "37675831d56c1c8067c1",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -21719,6 +21987,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2026-12-06#t=17:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "e80dfb40471971c88f36",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "190de011db81186c2fc4fe817be30f536d6abd04ac2bd7a92ae0ba4ec432ac25",
+          "identity": {
+            "artist_name": "TOMORROW X TOGETHER",
+            "event_date": "2025-12-06",
+            "event_end_date": "2025-12-06",
+            "event_start_time": "17:00",
+            "title": "TOMORROW X TOGETHER WORLD TOUR ＜ACT : TOMORROW＞ IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-06#t=17:00",
               "source_id": "official_events"
             }
           ]
@@ -21810,7 +22102,7 @@
       "event_uid": "06358e19b1448856a8ec",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "06358e19b1448856a8ec",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -21827,6 +22119,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2026-12-07#t=16:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "ea7bba5692848a071fbd",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "bc396f5af93079302aeb7a1b86ae98863dccbab49a84e3e97810f6dac9806272",
+          "identity": {
+            "artist_name": "TOMORROW X TOGETHER",
+            "event_date": "2025-12-07",
+            "event_end_date": "2025-12-07",
+            "event_start_time": "16:00",
+            "title": "TOMORROW X TOGETHER WORLD TOUR ＜ACT : TOMORROW＞ IN JAPAN",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://txt.hybejapan.events/act_tomorrow_in_japan#d=2025-12-07#t=16:00",
               "source_id": "official_events"
             }
           ]
@@ -24115,7 +24431,7 @@
       "event_uid": "08e2a106cea3a405f683",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "08e2a106cea3a405f683",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -24132,6 +24448,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2026-12-27#t=16:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "c7212938ffb181c72b40",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "284407cea35b64fe632ad1babd5242e1f2a289a11ad42dbe8e4fcef69416c34e",
+          "identity": {
+            "artist_name": "EXILE",
+            "event_date": "2025-12-27",
+            "event_end_date": "2025-12-27",
+            "event_start_time": "16:00",
+            "title": "EXILE LIVE TOUR 2025 \"THE REASON\"",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-27#t=16:00",
               "source_id": "official_events"
             }
           ]
@@ -24277,7 +24617,7 @@
       "event_uid": "3afd421129ee1433ee06",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "3afd421129ee1433ee06",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -24294,6 +24634,30 @@
           "source_records": [
             {
               "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2026-12-28#t=16:00",
+              "source_id": "official_events"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "8041a403d76987c61911",
+          "evidence": {
+            "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+            "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+            "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+          },
+          "fingerprint": "155fc2d8f629b93c8b4462934c41ce3472b02d03a5d762dbc32a1ec1e1f91abe",
+          "identity": {
+            "artist_name": "EXILE",
+            "event_date": "2025-12-28",
+            "event_end_date": "2025-12-28",
+            "event_start_time": "16:00",
+            "title": "EXILE LIVE TOUR 2025 \"THE REASON\"",
+            "venue_name": "バンテリンドームナゴヤ"
+          },
+          "source_records": [
+            {
+              "record_id": "vantelin_dome_nagoya:https://www.ldh-liveschedule.jp/sys/tour/35109/#d=2025-12-28#t=16:00",
               "source_id": "official_events"
             }
           ]
@@ -34695,9 +35059,325 @@
       ],
       "previous_ids": [],
       "request_sha256": "2ed494cd74a1b5cdefc304989c43b7754b21969edc1d0315101d3a2f11b0c35a"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "9107a8d4a0cc4996bb68",
+          "fingerprint": "887dec6fb54ef6d000bd950dbe1470f67e8992199514cf6a16393fee06b7eac5"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "9107a8d4a0cc4996bb68"
+      ],
+      "previous_ids": [
+        "9107a8d4a0cc4996bb68"
+      ],
+      "request_sha256": "300e34c839bb8ce9b096fed9bbde5ae83ce87bb6275d741edec85bfb818bb4ef"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "488fe2d104a921fcd9e9",
+          "fingerprint": "0c537c628565d19cc83d6922077576240d95db0cef3ac04ca4469fe99471b3b0"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "488fe2d104a921fcd9e9"
+      ],
+      "previous_ids": [
+        "488fe2d104a921fcd9e9"
+      ],
+      "request_sha256": "228eae54bfb2a09dcc6847b3ee456d432e0be88bb92e13275b8b7f55f8e7f107"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "0b45f88b74c1ebf99228",
+          "fingerprint": "5102261b889bf40be9590fbf4bce6ca6f87e4d4900d622f27496757b631c8006"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "0b45f88b74c1ebf99228"
+      ],
+      "previous_ids": [
+        "0b45f88b74c1ebf99228"
+      ],
+      "request_sha256": "3c889dea78b177fc18cc88b8dd827a3734a0d7e9003149096d2f06d405ab7297"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "eef2f26641aac49d75aa",
+          "fingerprint": "82d5128661b6a26fd8a3a39f3ad162d7e1d92900c840a0eaa36cafd7e87718be"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "eef2f26641aac49d75aa"
+      ],
+      "previous_ids": [
+        "eef2f26641aac49d75aa"
+      ],
+      "request_sha256": "91ad124e99b25f139ce84a5f467e79f25748dd389b1c1a6314ff9cf50f746cd6"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "5632fd1e4ab8a049899b",
+          "fingerprint": "2a6b21328d43547c9de8577e7d5abaa57b560498d07816d9c27abe762375ead3"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "5632fd1e4ab8a049899b"
+      ],
+      "previous_ids": [
+        "5632fd1e4ab8a049899b"
+      ],
+      "request_sha256": "fe1fd074eda916f5379ec2aa8108b71766947f3c1b372ecfa1ef563351f77bcf"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "5b6e15f5a5a00fe33681",
+          "fingerprint": "91dd774fdd2205d197343166f4bda4753eb27ac153577d52791e3faafcc1c6e4"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "5b6e15f5a5a00fe33681"
+      ],
+      "previous_ids": [
+        "5b6e15f5a5a00fe33681"
+      ],
+      "request_sha256": "c0b2fb1bb1c0117d92d94186763f846e960e97f6e7a57e975e417a3b6b69ab7c"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "bde7ed5b75def76979e2",
+          "fingerprint": "dc2b80583c09e37d55dea77c5f2b9f6d3eb411e869ae86ca6656bc58cecbc871"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "bde7ed5b75def76979e2"
+      ],
+      "previous_ids": [
+        "bde7ed5b75def76979e2"
+      ],
+      "request_sha256": "5bb8609ba97b59326e87b0bfaa9a2ecf1c9ad7c5f03d0a2540582e39a682bf76"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "8cbd3c0b72a023a70d2d",
+          "fingerprint": "af86bd0e18ebdb95f1f1a907b6e402cd7229234aab9f5ce518b76efe32f00d6b"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "8cbd3c0b72a023a70d2d"
+      ],
+      "previous_ids": [
+        "8cbd3c0b72a023a70d2d"
+      ],
+      "request_sha256": "a632d15a4c65a557fb52ee5cef1973ce9969fa2c23a26f57fb3d430eb6a15a7c"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "cacf5e9dea38840a0ef3",
+          "fingerprint": "d3aa685edab69485f8a667f4029610030077e53a8e64d2129cd22f4dda8ab89a"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "cacf5e9dea38840a0ef3"
+      ],
+      "previous_ids": [
+        "cacf5e9dea38840a0ef3"
+      ],
+      "request_sha256": "94afb0383d27fcaa8bb057105dcb0d42b4fe901bda3c5f6f475bc9c340feb2d6"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "e4eff0598a0661ff94af",
+          "fingerprint": "76dd4fd1ff419d7622a407fbdece3894a40dcbe6e4fba34302609e6da91945d8"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "e4eff0598a0661ff94af"
+      ],
+      "previous_ids": [
+        "e4eff0598a0661ff94af"
+      ],
+      "request_sha256": "9f45101d9f93a7d43d74337e18a1e9659a58554bdb1122bfd7d76729c50dc153"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "37675831d56c1c8067c1",
+          "fingerprint": "190de011db81186c2fc4fe817be30f536d6abd04ac2bd7a92ae0ba4ec432ac25"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "37675831d56c1c8067c1"
+      ],
+      "previous_ids": [
+        "37675831d56c1c8067c1"
+      ],
+      "request_sha256": "ae817b4f8c6f3732a3153e1302480d9421a27d4c60dbf829847950f7fac8d31b"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "06358e19b1448856a8ec",
+          "fingerprint": "bc396f5af93079302aeb7a1b86ae98863dccbab49a84e3e97810f6dac9806272"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "06358e19b1448856a8ec"
+      ],
+      "previous_ids": [
+        "06358e19b1448856a8ec"
+      ],
+      "request_sha256": "e25ea74fd4fc20949045786e48695605182ad1c9645d1d3147348fd39287ad39"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "08e2a106cea3a405f683",
+          "fingerprint": "284407cea35b64fe632ad1babd5242e1f2a289a11ad42dbe8e4fcef69416c34e"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "08e2a106cea3a405f683"
+      ],
+      "previous_ids": [
+        "08e2a106cea3a405f683"
+      ],
+      "request_sha256": "faec5a5ef5ee938d75844a18e68222c0f0b03bd32b7f44d753defee9e5a156f2"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "3afd421129ee1433ee06",
+          "fingerprint": "155fc2d8f629b93c8b4462934c41ce3472b02d03a5d762dbc32a1ec1e1f91abe"
+        }
+      ],
+      "evidence": {
+        "reason": "Exact source-labelled calendar year correction 2026→2025; retain fixed ID and all previous observations. Not a cancellation. Primary body sha256=2e33963b9cad4d28cf92cd18a761b6f3dea4edc357f3adccf18a7fd64a434746",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745351Z",
+        "url": "https://www.nagoya-dome.co.jp/enjoy/index.php"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "3afd421129ee1433ee06"
+      ],
+      "previous_ids": [
+        "3afd421129ee1433ee06"
+      ],
+      "request_sha256": "a1ceb0cb4552176f5ec92f6253719b074f51bc7a5d3819d1259cd5a198a0b358"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "6d094ea0c8861d6a55ef",
+          "fingerprint": "2794064bde4d99d7570ff4da04c12aa64463b39fce01fe56a0283fd083c2946b"
+        }
+      ],
+      "evidence": {
+        "reason": "Artist and venue calendars agree: Nov29 doors15:00/start17:00, one occurrence. Correct same signal, retain official fixed ID and preserve retired-ID merge history. Primary body sha256=148a4d89f4143d75f2eedbf8e1f8bba567d5a33b1a87b105b4fe6b483da7257e",
+        "reviewed_at_utc": "2026-11-08T07:27:10.745603Z",
+        "url": "https://ygex.jp/bigbang/20th-anniv/live/tour.php?id=1003004&fdate=2026-11-27&ldate=2026-11-29"
+      },
+      "kind": "merge",
+      "next_ids": [
+        "6d094ea0c8861d6a55ef"
+      ],
+      "previous_ids": [
+        "6d094ea0c8861d6a55ef",
+        "57de0b817607c6e40c40"
+      ],
+      "request_sha256": "68467dff7fe0493e267455da5e2d6b9012af08e5cb7dc9d8b351bd2fc1d3ec0a"
     }
   ],
-  "revision": 71,
+  "revision": 86,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",

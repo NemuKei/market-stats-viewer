@@ -18,6 +18,7 @@ from pathlib import Path
 
 from .events.category import classify_event_category
 from .events.registry import load_registry as load_venue_registry
+from .events.types import requires_publication_review
 from .signals.entity_aliases import load_artist_lookup_maps, normalize_with_lookup
 from .signals.artist_registry import (
     ArtistEntry,
@@ -574,7 +575,7 @@ def sync_resolved_artists_to_events(
     public_target = (events_db_path.resolve() == EVENTS_DB_PATH.resolve()
                      or EVENTS_DB_PATH.exists() and events_db_path.samefile(EVENTS_DB_PATH))
     protected_venues = {v.venue_id for v in load_venue_registry()
-        if json.loads(v.config_json or "{}").get("dated_sessions") is True
+        if requires_publication_review(v.config_json)
     } if public_target else set()
 
     inferred_map = {

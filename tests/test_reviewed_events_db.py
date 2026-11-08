@@ -43,12 +43,21 @@ def publication(row):
 
 
 def options(tmp_path, monkeypatch, old, current, decisions=None):
+    import csv
+    import json
     monkeypatch.setattr(gate, "reviewed_official_rows", lambda **kw: decisions or {})
     for name in ("registry.json", "map.json", "baseline.json", "signals.sqlite"):
         (tmp_path / name).write_bytes(b"{}")
+    venue_registry = tmp_path / "venues.csv"
+    with venue_registry.open("w") as stream:
+        writer = csv.DictWriter(stream, fieldnames=["venue_id", "venue_name", "pref_code", "pref_name", "source_type", "source_url", "config_json"])
+        writer.writeheader()
+        writer.writerow(dict(venue_id="gated", venue_name="Fixture", pref_code="13", pref_name="東京都",
+            source_type="html", source_url="https://official.example/calendar", config_json=json.dumps({"publication_review": True})))
     return dict(previous_db=database(tmp_path / "old.sqlite", old), candidate_db=database(tmp_path / "private.sqlite", current),
         output=tmp_path / "public.sqlite", reviewed_venues={"gated"}, registry_path=tmp_path / "registry.json",
-        source_map_path=tmp_path / "map.json", baseline_path=tmp_path / "baseline.json", signals_db=tmp_path / "signals.sqlite")
+        source_map_path=tmp_path / "map.json", baseline_path=tmp_path / "baseline.json", signals_db=tmp_path / "signals.sqlite",
+        venue_registry_path=venue_registry)
 
 
 def test_private_held_rows_do_not_block_unrelated_normal_updates(tmp_path, monkeypatch):
@@ -130,7 +139,7 @@ def test_real_map_requires_publication_review_and_holds_stale_source(tmp_path):
     import shutil
     from scripts.build_lp_events import _build_lp_event_candidates
     from scripts.event_identity_registry import load_registry, observation_from_row, resolve_rows
-    from scripts.public_lp_projection import publication_preview
+    from scripts.public_lp_projection import embedded_urls, publication_preview
     from scripts.reviewed_source_map import apply_reviewed_source_map
 
     data = Path(__file__).resolve().parents[1] / "data"
@@ -143,12 +152,18 @@ def test_real_map_requires_publication_review_and_holds_stale_source(tmp_path):
     fixed, _ = resolve_rows(rows, registry)
     selected = next(r for r in fixed if r["display_source_id"] == "official_events"
                     and len(r["supporting_sources"]) == 1)
-    original = next(r for r in rows if r["event_key"] == observation_from_row(selected)["candidate_key"])
+    # A corrected occurrence retains its fixed ID even when its candidate key
+    # changes. Match the actual observation, not the resolved public key.
+    selected_observation = observation_from_row(selected)
+    original = next(r for r in rows
+                    if observation_from_row(r)["source_records"] == selected_observation["source_records"]
+                    and observation_from_row(r)["identity"] == selected_observation["identity"])
     uid = original["supporting_sources"][0]["record_id"]
     raw_row = read(candidate)[uid]
     rec = dict(event_uid=selected["event_key"], observation=observation_from_row(original),
         source=dict(source_id="official_events", record_id=uid, source_url=raw_row["source_url"], detail_url=raw_row["url"]),
-        source_class="venue_official", fact_review="reviewed", public_urls=sorted({raw_row["source_url"], raw_row["url"]}))
+        source_class="venue_official", fact_review="reviewed",
+        public_urls=sorted({raw_row["source_url"], raw_row["url"]} | set(embedded_urls(original["supporting_sources"]))))
     doc = {"schema_version": 1, "records": [rec]}
     mapped = apply_reviewed_source_map([original], registry, json.dumps(doc).encode(), candidate)[0]
     mapped["event_key"] = selected["event_key"]
@@ -209,10 +224,12 @@ def test_existing_inference_confidence_values_are_compatible(tmp_path, monkeypat
     assert read(kw["output"])["new"]["artist_confidence"] == confidence
 
 
-def test_misconfigured_dated_venue_cannot_escape_projection(tmp_path, monkeypatch):
+@pytest.mark.parametrize("review_flag", ["dated_sessions", "publication_review"])
+def test_misconfigured_dated_venue_cannot_escape_projection(tmp_path, monkeypatch, review_flag):
+    import json
     kw = options(tmp_path, monkeypatch, [], [raw("new", venue="not_gated")])
     with sqlite3.connect(kw["candidate_db"]) as conn:
-        conn.execute("INSERT INTO venues (venue_id,venue_name,pref_code,pref_name,source_type,source_url,config_json,created_at_utc,updated_at_utc) VALUES ('not_gated','A','13','東京都','html','https://official.example/','{\"dated_sessions\":true}','2026-11-08T00:00:00Z','2026-11-08T00:00:00Z')")
+        conn.execute("INSERT INTO venues (venue_id,venue_name,pref_code,pref_name,source_type,source_url,config_json,created_at_utc,updated_at_utc) VALUES ('not_gated','A','13','東京都','html','https://official.example/',?,'2026-11-08T00:00:00Z','2026-11-08T00:00:00Z')", (json.dumps({review_flag: True}),))
         conn.commit()
         conn.execute("pragma wal_checkpoint(TRUNCATE)")
     conn.close()
@@ -221,14 +238,25 @@ def test_misconfigured_dated_venue_cannot_escape_projection(tmp_path, monkeypatc
     assert not kw["output"].exists()
 
 
-def test_other_public_inference_writer_respects_venue_opt_in(tmp_path, monkeypatch):
+def test_failed_collection_cannot_escape_csv_opt_in_with_stale_db_metadata(tmp_path, monkeypatch):
+    # A failed/empty fetch leaves old DB venue metadata in place. CSV remains
+    # the authority for which venues every public DB writer must protect.
+    kw = options(tmp_path, monkeypatch, [], [raw("new")])
+    kw["reviewed_venues"] = {"unrelated"}
+    with pytest.raises(ValueError, match="reviewed venue"):
+        gate.build_reviewed_events_db(**kw)
+    assert not kw["output"].exists()
+
+
+@pytest.mark.parametrize("review_flag", ["dated_sessions", "publication_review"])
+def test_other_public_inference_writer_respects_venue_opt_in(tmp_path, monkeypatch, review_flag):
     import json
     from scripts import build_events_artist_inferred as infer
     from scripts.events.types import VenueRecord
     path = database(tmp_path / "public.sqlite", [raw("old"), raw("normal", venue="normal")])
     monkeypatch.setattr(infer, "EVENTS_DB_PATH", path)
     venue = VenueRecord("gated", "有明アリーナ", "13", "東京都", None, "https://official.example/",
-        "html", "https://official.example/", json.dumps({"dated_sessions": True}), True)
+        "html", "https://official.example/", json.dumps({review_flag: True}), True)
     monkeypatch.setattr(infer, "load_venue_registry", lambda: [venue])
     infer.sync_resolved_artists_to_events(path, [])
     assert read(path)["old"] == raw("old")
