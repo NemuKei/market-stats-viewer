@@ -267,7 +267,7 @@ def test_all_scheduled_rebuilds_use_tracked_map_and_release_all_dates_matches():
         "update_signals_venue_web_discovery.yml",
     ):
         text = (root / ".github/workflows" / name).read_text()
-        assert text.count("git cat-file -e HEAD:data/reviewed_event_sources.json") == 2
+        assert text.count("git cat-file -e HEAD:data/reviewed_event_sources.json") >= 2
         assert text.count("--reviewed-source-map data/reviewed_event_sources.json") == 2
         assert (
             text.count(

@@ -3217,6 +3217,12 @@ class _AriakeArenaSchedule(_BaseStrategy):
         seen_uids: set[str] = set()
         base = venue.source_url.rstrip("/")
 
+        # Staged migration: existing aggregate identities must be reviewed as
+        # splits/corrections before enabling dated records. No registry/config
+        # activation accompanies this code change.
+        dated = config.get("dated_sessions", False)
+        if type(dated) is not bool:
+            raise ValueError("ariake_arena: dated_sessions must be boolean")
         for slug in self._SLUGS:
             page_url = f"{base}/{slug}" if slug else f"{base}/"
             try:
@@ -3233,9 +3239,24 @@ class _AriakeArenaSchedule(_BaseStrategy):
             if not year or not month:
                 continue
 
-            events.extend(
-                self._parse_page(venue, soup, page_url, year, month, seen_uids)
-            )
+            if dated:
+                events.extend(
+                    self._parse_page(
+                        venue,
+                        soup,
+                        page_url,
+                        year,
+                        month,
+                        seen_uids,
+                        note_issue=getattr(session, "note_parser_issue", None),
+                    )
+                )
+            else:
+                events.extend(
+                    self._parse_legacy_page(
+                        venue, soup, page_url, year, month, seen_uids
+                    )
+                )
 
         return events
 
@@ -3282,7 +3303,7 @@ class _AriakeArenaSchedule(_BaseStrategy):
                         pass
         return None, None
 
-    def _parse_page(
+    def _parse_legacy_page(
         self,
         venue: VenueRecord,
         soup: BeautifulSoup,
@@ -3389,6 +3410,205 @@ class _AriakeArenaSchedule(_BaseStrategy):
             )
             rec.data_hash = compute_data_hash(rec)
             events.append(rec)
+        return events
+
+    @staticmethod
+    def _calendar_date(value: str, year: int, month: int) -> date:
+        match = re.match(r"(\d{1,2})[./](\d{1,2})(?!\d)", value.strip())
+        if not match:
+            raise ValueError("missing explicit calendar date")
+        event_month, event_day = map(int, match.groups())
+        event_year = year
+        if event_month - month > 6:
+            event_year -= 1
+        elif month - event_month > 6:
+            event_year += 1
+        return date(event_year, event_month, event_day)
+
+    @staticmethod
+    def _start_times(value: str) -> list[str | None]:
+        times = []
+        for match in re.finditer(
+            r"(?:開演|試合開始)\s*[:]?\s*"
+            r"(\d{1,2}:\d{2}(?:\s*/\s*\d{1,2}:\d{2})*)",
+            value,
+        ):
+            for hour, minute in re.findall(r"(\d{1,2}):(\d{2})", match.group(1)):
+                if int(hour) > 23 or int(minute) > 59:
+                    raise ValueError("invalid explicit start time")
+                times.append(f"{int(hour):02d}:{int(minute):02d}")
+        if len(times) != len(set(times)):
+            raise ValueError("duplicate sessions require source review")
+        # Opening, end and unlabelled clock values are never start times.
+        return times or [None]
+
+    @classmethod
+    def _session_times(cls, value: str):
+        """Keep an observed session number, rather than its mutable clock."""
+        markers = list(re.finditer(r"\[session=(\d+)\]", value))
+        if not markers:
+            return [(clock, slot) for slot, clock in enumerate(cls._start_times(value), 1)]
+        if any(clock is not None for clock in cls._start_times(value[:markers[0].start()])):
+            raise ValueError("unlabelled start before numbered sessions")
+        sessions = []
+        for index, marker in enumerate(markers):
+            end = markers[index + 1].start() if index + 1 < len(markers) else len(value)
+            clocks = cls._start_times(value[marker.end():end])
+            if len(clocks) != 1:
+                raise ValueError("multiple starts under one session number")
+            sessions.append((clocks[0], int(marker.group(1))))
+        if len({slot for _, slot in sessions}) != len(sessions):
+            raise ValueError("duplicate source session number")
+        if len(sessions) > 1 and any(clock is None for clock, _ in sessions):
+            raise ValueError("unknown start in multiple sessions requires source review")
+        known = [clock for clock, _ in sessions if clock is not None]
+        if len(known) != len(set(known)):
+            raise ValueError("equal session start times require source review")
+        return sessions
+
+    def _dated_sessions(self, li, year: int, month: int):
+        day_div = li.select_one(".event_day")
+        if day_div is None:
+            raise ValueError("missing calendar date block")
+        labels = [
+            unicodedata.normalize("NFKC", n.get_text(" ", strip=True))
+            for n in day_div.find_all("span")
+            if n.get_text(strip=True)
+        ]
+        days = [self._calendar_date(label, year, month) for label in labels]
+        if not days or len(set(days)) != len(days) or days != sorted(days):
+            raise ValueError("missing, duplicate or unordered calendar dates")
+        is_range = len(days) == 2 and bool(re.search(r"[-–—〜~]", " ".join(labels)))
+        table = li.select_one("table.detail_table")
+        time_cell = None
+        if table:
+            for row in table.find_all("tr"):
+                heading = row.find("th")
+                if heading and "公演時間" in heading.get_text():
+                    time_cell = row.find("td")
+                    break
+        value = time_cell.get_text(" ", strip=True) if time_cell else ""
+        # Preserve circled source identifiers before NFKC turns ① into 1.
+        value = re.sub("[①-⑳]", lambda m: f"[session={int(unicodedata.numeric(m.group()))}]", value)
+        value = unicodedata.normalize("NFKC", value)
+        # A slash inside 13:00/18:30 is a clock separator, not a date marker.
+        markers = list(re.finditer(r"(?<![\d:])(\d{1,2}[./]\d{1,2})(?![\d:])", value))
+        sessions = []
+        if markers:
+            dated = []
+            for index, marker in enumerate(markers):
+                day = self._calendar_date(marker.group(), year, month)
+                if (is_range and not days[0] <= day <= days[-1]) or (
+                    not is_range and day not in days
+                ):
+                    raise ValueError("time date disagrees with the calendar dates")
+                if day in dated:
+                    raise ValueError("duplicate time date requires source review")
+                dated.append(day)
+                end = (
+                    markers[index + 1].start()
+                    if index + 1 < len(markers)
+                    else len(value)
+                )
+                sessions.extend(
+                    (day, clock, slot)
+                    for clock, slot in self._session_times(value[marker.end() : end])
+                )
+            if not set(days) <= set(dated) or dated != sorted(dated):
+                raise ValueError("calendar dates lack complete dated start information")
+        elif is_range:
+            # A range alone does not prove every intermediate day is a show.
+            raise ValueError("date range requires explicitly dated sessions")
+        else:
+            times = self._session_times(value)
+            if len(days) > 1 and not re.search(r"各日|両日|全日", value):
+                times = [(None, 1)]
+            sessions = [(day, clock, slot) for day in days for clock, slot in times]
+        return sessions
+
+    def _parse_page(
+        self,
+        venue: VenueRecord,
+        soup: BeautifulSoup,
+        source_url: str,
+        year: int,
+        month: int,
+        seen_uids: set[str],
+        note_issue=None,
+    ) -> list[EventRecord]:
+        events: list[EventRecord] = []
+        event_list = soup.find("ul", class_="event_detail_list")
+        if not event_list:
+            return events
+
+        for li in event_list.find_all("li", id=re.compile(r"^detail-")):
+            try:
+                sessions = self._dated_sessions(li, year, month)
+            except ValueError as exc:
+                logger.warning("ariake_arena: %s: %s", li.get("id"), exc)
+                if note_issue:
+                    note_issue()
+                continue
+
+            # Title
+            name_div = li.find("div", class_="event_name")
+            if not name_div:
+                continue
+            title = name_div.get_text(strip=True)
+            if not title:
+                continue
+
+            # External URL from detail table
+            event_url = None
+            legacy_key = li.get("id")
+            url_a = li.find("a", class_="other_link")
+            if url_a:
+                event_url = url_a.get("href")
+
+            anchor_day = min(day for day, _, _ in sessions)
+            for day, start_time, slot in sessions:
+                start_date = day.isoformat()
+                # Replace the old aggregate raw record, retaining its key for
+                # session 1 on the anchor day. Fixed-ID split/correction review is
+                # still required; this collector never registers public IDs.
+                source_key = legacy_key
+                if day != anchor_day or slot != 1:
+                    source_key = _source_key_with_schedule(
+                        legacy_key, start_date, None
+                    )
+                if slot != 1:
+                    source_key += f"#s={slot}"
+                uid = compute_event_uid(
+                    venue.venue_id,
+                    source_key,
+                    title,
+                    start_date,
+                    start_time=start_time,
+                    url=event_url,
+                )
+                if uid in seen_uids:
+                    continue
+                seen_uids.add(uid)
+                rec = EventRecord(
+                    event_uid=uid,
+                    venue_id=venue.venue_id,
+                    title=title,
+                    start_date=start_date,
+                    start_time=start_time,
+                    end_date=None,
+                    end_time=None,
+                    all_day=not bool(start_time),
+                    status="scheduled",
+                    url=event_url,
+                    description=None,
+                    performers=None,
+                    capacity=None,
+                    source_type=venue.source_type,
+                    source_url=source_url,
+                    source_event_key=source_key,
+                )
+                rec.data_hash = compute_data_hash(rec)
+                events.append(rec)
         return events
 
 

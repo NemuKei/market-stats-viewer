@@ -83,3 +83,22 @@ class UpdateEventsDataTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_private_collection_requires_explicit_private_inference(tmp_path):
+    import pytest
+    from scripts.update_events_data import validate_collection_target
+    with pytest.raises(ValueError, match="skip-artist-inference"):
+        validate_collection_target(tmp_path / "private.sqlite", [], skip_artist_inference=False)
+
+
+def test_dated_collection_cannot_write_into_public_checkout(tmp_path):
+    import pytest
+    from scripts.events.types import VenueRecord
+    from scripts.update_events_data import validate_collection_target, EVENTS_DB_PATH
+    venue = VenueRecord("ariake_arena", "有明アリーナ", "13", "東京都", None,
+        "https://ariake-arena.tokyo/", "html", "https://ariake-arena.tokyo/event/",
+        '{"strategy":"ariake_arena_schedule","dated_sessions":true}', True)
+    with pytest.raises(ValueError, match="outside"):
+        validate_collection_target(EVENTS_DB_PATH, [venue], skip_artist_inference=True)
+    assert validate_collection_target(tmp_path / "private.sqlite", [venue], skip_artist_inference=True) == tmp_path / "private.sqlite"
