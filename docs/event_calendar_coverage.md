@@ -133,9 +133,11 @@ runner's discarded DB. Do not deploy the replay DB: its unrelated ordinary
 observation timestamps also advanced. Only the reviewed six-row whitelist was
 used for the limited repair.
 
-The current Nagoya archive exposes at least 14 published occurrences misdated as
-2026 instead of 2025, including TXT December 6–7 and EXILE December 27–28. Fixing
-the parser alone does not repair retained DB rows. Prepare exact old/new source
+Fourteen Nagoya occurrences misdated as 2026 instead of 2025, including TXT
+December 6–7 and EXILE December 27–28, were repaired in PR #48. The exact sources,
+ID history and limited consumer scopes are recorded in
+[`reviews/issue42-date-corrections-2026-11-08/README.md`](reviews/issue42-date-corrections-2026-11-08/README.md).
+Fixing the parser alone does not repair retained DB rows. Prepare exact old/new source
 row pairs and **correction** requests preserving each fixed ID, not cancellations,
 deletions or fresh-ID registrations. Retain every previous observation/relation.
 BIGBANG November 29 at Kyocera has one official 17:00 performance; the competing
@@ -143,10 +145,10 @@ BIGBANG November 29 at Kyocera has one official 17:00 performance; the competing
 merge retaining the existing official 17:00 ID. Distinct genuine show times elsewhere
 must remain separate.
 
-These maintenance drafts are separate from the default-compatible code. Accurate
-Nagoya acquisition links require a proposed consumer grant pinned to the exact
-14 IDs, facts and acquisition/detail URLs. The consumer's default domain policy
-currently excludes those corrected source tuples. No domain-wide grant is needed.
+The adopted Nagoya acquisition links use consumer event scopes pinned to the exact
+14 IDs, facts and acquisition/detail URLs. The default domain policy is unchanged;
+the limited scopes are already adopted. Additional raw archive-year conflicts
+remain review candidates and are not automatically corrected.
 The [link-button conditions](https://www.nagoya-dome.co.jp/linkinfo.php) concern
 the supplied image button; this proposal uses ordinary text links and no images
 or descriptive prose. Do not expand those button terms into an unverified legal
@@ -179,8 +181,49 @@ Do not reset the registry to an older revision or resurrect a confirmed cancelle
 show. A code rollback that restores the known bad calendar year/status parser
 must not resume collection until the replacement is ready.
 
-Ariake per-date/matinee splitting, league-wide preparation/publication and a
-cron-minute change are not activated by this patch. Their isolated proposals
-need their remaining identity/link decisions. Draft PR #21's additional state,
-writers and handoffs are not enabled; this patch reuses only its read-only venue
-inventory audit. This is not a national-completeness claim or closure of #42.
+Ariake's eleven reviewed dates and the sixteen reviewed league fixtures are
+published (PR #47). Their IDs, source scopes and saved-day history remain.
+Yoyogi's native-ID/date review and private league observation are described below.
+Cron remains unchanged. Draft PR #21's additional state, writers and handoffs are
+not enabled; the existing read-only venue inventory is reused. This is not a
+national-completeness claim or closure of #42.
+
+## Yoyogi details and ordinary new-ID publication
+
+The reviewed `fetch_details: true` venue option requires `publication_review: true`
+and the existing private SQLite projection. Default parsing remains compatible.
+Each distinct actual detail URL is validated and fetched once. Date, first-arena
+heading, programme name and the labelled start must agree. Repeated fact labels,
+multiple clocks, redirects or conflicting detail observations stop this venue's
+collection for review; other venue updates continue. An unpublished start remains
+unknown. Door times are never substituted for starts.
+
+The source key uses native `eid` plus the explicit full date. Current/next-month
+`etype` presentation parameters do not allocate another occurrence. The selected
+public detail URL is still checked separately by the existing source map/baseline;
+an unreviewed URL change retains the previous public row. The eight first-arena
+programmes, old unregistered raw duplicates and one-time ID allocation are recorded
+in [`reviews/issue42-yoyogi-2026-11-08/README.md`](reviews/issue42-yoyogi-2026-11-08/README.md).
+They fit the existing consumer policy and use ordinary publication, preserving
+previous public rows, saved days and immutable adoption history.
+
+## Private league observation
+
+The existing daily Venue Web Discovery workflow runs `collect_league_review`
+before updating its signals. It reuses the existing J.LEAGUE, B.LEAGUE and League
+One parsers and inbox schema for five explicit registered venues, split into
+calendar-month windows within the next 90 days. Drafts stay in `RUNNER_TEMP` and
+are not committed or uploaded as artifacts. Only counts/status reach the Actions
+summary. The monitor does not write the public inbox, config, IDs, DB or LP.
+
+It reports exact confirmed observations, the same match at another official URL,
+time changes and unreviewed candidates separately. Empty results remain unverified.
+HTTP 401/403/429 stop all further routes on that host for this run; the collector
+does not switch endpoints to evade a restriction. SV League access remains a
+separate normal-browser review. The nonblocking six-minute diagnostic step must
+not discard another valid collection update. It does not fix GitHub's schedule
+creation delay or change any cron time.
+
+Operators inspect the counts, rerun the selected existing draft CLI privately,
+verify the actual source body and each public link, then use the established
+inbox/ID/map/Git review. New domains and fixtures are not adopted automatically.

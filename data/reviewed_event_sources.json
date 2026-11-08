@@ -1997,6 +1997,334 @@
         "status": "reviewed"
       },
       "source_signature": "32c111c0fc40632100eccf75a0acc52e0eeaf942dee2572dc14d6d8664e6c320"
+    },
+    {
+      "event_uid": "evt_5ca95c2c810f4df2ae2425fb7f7e8eb4",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "023910987b8df9a9bbe8",
+        "fingerprint": "f999441d2a6496ce0d415a98e1ece5a4fad6781ef1cb024153fa93267698f665",
+        "identity": {
+          "artist_name": "NMIXX JAPAN DEBUT SHOWCASE “N=MIXX”",
+          "event_date": "2026-11-08",
+          "event_end_date": "2026-11-08",
+          "event_start_time": "17:30",
+          "title": "NMIXX JAPAN DEBUT SHOWCASE “N=MIXX”",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6172#date:2026-11-08",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6172&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6172&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "360dba597b39e3466cf16e0026358939b065481c94b60d539e822faf8f322765",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6172&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6172#date:2026-11-08",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_b13e160d14cc449380ccd078c5a5b497",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "9b50c29fcfe74afcc473",
+        "fingerprint": "098ff1e7d0eca01e8435756d5b024f752b1bfe0b00f63cff00a846d613e5faaf",
+        "identity": {
+          "artist_name": "羊文学",
+          "event_date": "2026-11-10",
+          "event_end_date": "2026-11-10",
+          "event_start_time": "19:00",
+          "title": "羊文学 TOUR 2026 \"すーーーはーーー\"",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6173#date:2026-11-10",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6173&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6173&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "3c6c0697068f538222f5681833d5da365e4b244b9eb75c36ba351226d9fcd2a1",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6173&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6173#date:2026-11-10",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_de3ad008614546edbfa5f9d3f179fb95",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "0fb59bde011c378e7ba2",
+        "fingerprint": "f321a5d8138ad02de77204745081213c86a985634a17b1171417887a2c32e1e0",
+        "identity": {
+          "artist_name": "羊文学",
+          "event_date": "2026-11-11",
+          "event_end_date": "2026-11-11",
+          "event_start_time": "19:00",
+          "title": "羊文学 TOUR 2026 \"すーーーはーーー\"",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6174#date:2026-11-11",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6174&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6174&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "a44a3710c83657eea8ac31602a6c6319f45f5a332169fc3274c48daf5504af0e",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6174&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6174#date:2026-11-11",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_4d2778490ddc4ea4a443a84f215bd79c",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "ae96be5925cca1ff1fe7",
+        "fingerprint": "242481a18b7e2d8800982b8d43d292b6870a464d6f8c0b7783935083023df9f8",
+        "identity": {
+          "artist_name": "U18 日清食品トップリーグ バスケットボール競技大会",
+          "event_date": "2026-11-14",
+          "event_end_date": "2026-11-14",
+          "event_start_time": "",
+          "title": "U18 日清食品トップリーグ バスケットボール競技大会",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6175#date:2026-11-14",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6175&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6175&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "06abadfcefb0e255e5eb91681edfa12bff9b3fba315adc571ecbde51888bb4a5",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6175&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6175#date:2026-11-14",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_60adc5750ba84638a5982cf6ff82e781",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "d3807d14df52851a22cb",
+        "fingerprint": "2e3b23e35f7a511829b83ca7a8c2268a70ecf811f62e37830d078182f21882f6",
+        "identity": {
+          "artist_name": "U18 日清食品トップリーグ バスケットボール競技大会",
+          "event_date": "2026-11-15",
+          "event_end_date": "2026-11-15",
+          "event_start_time": "",
+          "title": "U18 日清食品トップリーグ バスケットボール競技大会",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6176#date:2026-11-15",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6176&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6176&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "3eda86cd009a8d9ecc16b7d5bc5542615bc4fb238f750ae7cb1fa6a1d6341217",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6176&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6176#date:2026-11-15",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_a06282aa41da4adc8f834d7ff500c450",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "ca2baaa30115041c3629",
+        "fingerprint": "7533bf3a309a03c21da789630c64491d7458f3a2b1f6c103bab1c182a97864ab",
+        "identity": {
+          "artist_name": "ANI-ROCK FES.2026「僕のヒーローアカデミア PLUS ULTRA LIVE」",
+          "event_date": "2026-11-22",
+          "event_end_date": "2026-11-22",
+          "event_start_time": "16:00",
+          "title": "ANI-ROCK FES.2026「僕のヒーローアカデミア PLUS ULTRA LIVE」",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6177#date:2026-11-22",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6177&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6177&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "4826fc9e216d5978886d14e1ba8b058cd416667435249d9bbf2fad0c2bb59356",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6177&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6177#date:2026-11-22",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_aea07e8796cc481cbf9b29c9782afd46",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "9dfd66ea735f8addd7c2",
+        "fingerprint": "4b4a98cd41f30bdeb1211fda2f8322307e11af4010b5a234ad7a955d0e4c7e1b",
+        "identity": {
+          "artist_name": "ANI-ROCK FES.2026「僕のヒーローアカデミア PLUS ULTRA LIVE」",
+          "event_date": "2026-11-23",
+          "event_end_date": "2026-11-23",
+          "event_start_time": "16:00",
+          "title": "ANI-ROCK FES.2026「僕のヒーローアカデミア PLUS ULTRA LIVE」",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6178#date:2026-11-23",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6178&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6178&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "5e2845af6068e3a435a07ced613480d8fde9b5fa2d36e144016d79388975f76b",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6178&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6178#date:2026-11-23",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
+    },
+    {
+      "event_uid": "evt_daadb5506c1448f1b8a601ada4479377",
+      "fact_review": "reviewed",
+      "observation": {
+        "candidate_key": "c5d1015f2024bafc8586",
+        "fingerprint": "62c0f4f3f08d36f1a908b2f12561dba440e43b467f519f67522fb801eb5d3c01",
+        "identity": {
+          "artist_name": "文部科学大臣杯 第20回JKJO全日本ジュニア空手道選手権大会第1回JKC全国高等学校空手道選手権大会",
+          "event_date": "2026-11-29",
+          "event_end_date": "2026-11-29",
+          "event_start_time": "",
+          "title": "文部科学大臣杯 第20回JKJO全日本ジュニア空手道選手権大会第1回JKC全国高等学校空手道選手権大会",
+          "venue_name": "国立代々木競技場第一体育館"
+        },
+        "source_records": [
+          {
+            "record_id": "yoyogi_gymnasium:eid:6179#date:2026-11-29",
+            "source_id": "official_events"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6179&etype=1",
+        "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6179&etype=1",
+          "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+        ],
+        "row_sha256": "3a7f651ca5207dfaa539535eaa0cfeabb97ef20352a1fb73928a9010090fed0e",
+        "status": "reviewed"
+      },
+      "source": {
+        "detail_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6179&etype=1",
+        "record_id": "yoyogi_gymnasium:eid:6179#date:2026-11-29",
+        "source_id": "official_events",
+        "source_url": "https://www.jpnsport.go.jp/yoyogi/event/tabid/59/Default.aspx"
+      },
+      "source_class": "venue_official"
     }
   ],
   "schema_version": 1
