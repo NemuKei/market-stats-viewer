@@ -45,6 +45,26 @@ def test_team_programme_keeps_game2_and_filters_other_facilities():
     assert len({r["event_id"] for r in result.config["confirmed_events"]}) == 2
 
 
+def test_club_match_keeps_sport_category_through_inbox_and_signal_collector(tmp_path):
+    import json
+    from scripts.signals.sources.venue_web_discovery import VenueWebDiscoverySource
+    from scripts.signals.types import SignalSourceRecord
+
+    rows, _ = parse(game("29"))
+    applied = apply_inbox(
+        dict(schema_version=1, run_at_utc=STAMP, candidates=rows),
+        dict(watch_venues=[dict(venue_name="Asueアリーナ大阪", aliases=[])],
+             accepted_source_classes=["promoter_official"], confirmed_events=[]),
+        venue_maps=({}, {}), artist_maps=({}, {}),
+    )
+    path = tmp_path / "config.json"
+    path.write_text(json.dumps(applied.config, ensure_ascii=False))
+    source = SignalSourceRecord("venue_web_discovery", "会場確認", "", "manual", json.dumps(dict(config_path=str(path))), True)
+    signals = VenueWebDiscoverySource(None).fetch_signals(source)
+    assert len(signals) == 1
+    assert json.loads(signals[0].labels_json)["event_category"] == "その他"
+
+
 def test_away_game_is_not_classified_as_this_clubs_promoter_programme():
     rows, skipped = parse(game("29").replace("homegame", "awaygame"))
     assert rows == []

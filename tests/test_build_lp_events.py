@@ -357,6 +357,25 @@ def _signal(
     return rec
 
 
+@pytest.mark.parametrize("category", ["スポーツ", "sports"])
+def test_explicit_sports_category_survives_signal_to_lp_conversion(tmp_path, category):
+    """Do not erase the source's sport classification into an unknown event."""
+    events_db, signals_db = tmp_path / "events.sqlite", tmp_path / "signals.sqlite"
+    _create_events_db(events_db)
+    _create_signals_db(signals_db)
+    record = _signal(
+        "venue_web_discovery", "SLS TOKYO 2026", "2026-11-14",
+        "有明アリーナ", "SLS", source_class="promoter_official",
+        event_category=category,
+    )
+    with sqlite3.connect(signals_db) as conn:
+        _insert_signal_with_connection(conn, record)
+    payload = build_lp_events(events_db_path=events_db, event_signals_db_path=signals_db, include_past=True)
+    event = next(row for row in payload["events"] if row["artist_name"] == "SLS")
+    assert event["event_category"] == "その他"
+    assert event["display_source_class"] == "promoter_official"
+
+
 def test_lp_events_prefers_official_then_venue_web_discovery(tmp_path: Path):
     events_db = tmp_path / "events.sqlite"
     signals_db = tmp_path / "event_signals.sqlite"
