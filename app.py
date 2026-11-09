@@ -142,8 +142,31 @@ CHART_VALUE_MODES = {
 }
 
 
-@st.cache_data(show_spinner=False)
+def statistics_db_generation() -> tuple[str, tuple[int, ...] | None]:
+    """Identify the current DB, including replacement and missing-to-present changes."""
+    path = SQLITE_PATH.resolve()
+    try:
+        stat = path.stat()
+    except FileNotFoundError:
+        return str(path), None
+    return str(path), (
+        stat.st_dev,
+        stat.st_ino,
+        stat.st_size,
+        stat.st_mtime_ns,
+        stat.st_ctime_ns,
+    )
+
+
 def load_data() -> pd.DataFrame:
+    return _load_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
@@ -156,8 +179,15 @@ def load_data() -> pd.DataFrame:
         return pd.DataFrame()
 
 
-@st.cache_data(show_spinner=False)
 def load_stay_facility_occupancy_data() -> pd.DataFrame:
+    return _load_stay_facility_occupancy_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_stay_facility_occupancy_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
@@ -1496,8 +1526,15 @@ def load_tcd_meta() -> dict:
     return json.loads(TCD_META_PATH.read_text(encoding="utf-8"))
 
 
-@st.cache_data(show_spinner=False)
 def load_tcd_data() -> pd.DataFrame:
+    return _load_tcd_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_tcd_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
@@ -1926,8 +1963,15 @@ def load_icd_meta() -> dict:
     return json.loads(ICD_META_PATH.read_text(encoding="utf-8"))
 
 
-@st.cache_data(show_spinner=False)
 def load_icd_spend_data() -> pd.DataFrame:
+    return _load_icd_spend_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_icd_spend_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
@@ -1959,8 +2003,15 @@ def load_icd_spend_data() -> pd.DataFrame:
     return df
 
 
-@st.cache_data(show_spinner=False)
 def load_icd_entry_data() -> pd.DataFrame:
+    return _load_icd_entry_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_icd_entry_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
@@ -2501,8 +2552,15 @@ def load_ta_meta() -> dict:
     return json.loads(TA_META_PATH.read_text(encoding="utf-8"))
 
 
-@st.cache_data(show_spinner=False)
 def load_ta_data() -> pd.DataFrame:
+    return _load_ta_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_ta_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
@@ -2721,8 +2779,15 @@ def load_airport_volume_meta() -> dict:
     return json.loads(AIRPORT_VOLUME_META_PATH.read_text(encoding="utf-8"))
 
 
-@st.cache_data(show_spinner=False)
 def load_airport_volume_data() -> pd.DataFrame:
+    return _load_airport_volume_data_cached(statistics_db_generation())
+
+
+@st.cache_data(show_spinner=False)
+def _load_airport_volume_data_cached(
+    db_generation: tuple[str, tuple[int, ...] | None],
+) -> pd.DataFrame:
+    # db_generation is a hashed cache argument, refreshed by the public loader.
     if not SQLITE_PATH.exists():
         return pd.DataFrame()
     try:
