@@ -1,10 +1,55 @@
 {
   "source_index_url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku.html",
-  "signature": "175651938b4698871ce39bd498f002c3695c91ccc56d3dbf53985655e0a74dce",
-  "extractor_version": 5,
+  "signature": "8a42b693c78fcf6899d7b511e2a68a5ec5d9a4b1927520214c0f215c6d71fc10",
+  "extractor_version": 6,
   "duplicate_selection": "his-2026-03-main-table",
-  "last_checked_at": "2026-10-29T09:12:30.084571+00:00",
+  "last_checked_at": "2026-11-09T23:05:54.081720+00:00",
   "processed_files": [
+    {
+      "page_url": "https://www.mlit.go.jp/kankocho/page06_00039.html",
+      "excel_url": "https://www.mlit.go.jp/kankocho/content/002029201.xlsx",
+      "excel_link_text": "令和8年（2026年）8月各社別内訳【10/30訂正】［Excel:23KB］",
+      "sha256": "022a1f5de8d0ee262dd6c194e84ed7402fe6dccc65847d0cf980ef3ed10e1953",
+      "fiscal_year": "2026",
+      "period": "2026-08",
+      "rows": 212
+    },
+    {
+      "page_url": "https://www.mlit.go.jp/kankocho/page06_00039.html",
+      "excel_url": "https://www.mlit.go.jp/kankocho/content/002023840.xlsx",
+      "excel_link_text": "令和8年（2026年）7月各社別内訳［Excel:24KB］",
+      "sha256": "e37cde6fcc0be5ce2b2d80eb2e9598cdc83eb8d94fc6a25c5aaf0de06f64f75d",
+      "fiscal_year": "2026",
+      "period": "2026-07",
+      "rows": 212
+    },
+    {
+      "page_url": "https://www.mlit.go.jp/kankocho/page06_00039.html",
+      "excel_url": "https://www.mlit.go.jp/kankocho/content/002018551.xlsx",
+      "excel_link_text": "令和8年（2026年）6月各社別内訳［Excel:24KB］",
+      "sha256": "17db99fee3269d198a918640caa8e47d957ad66742ebff74b8c03470e8dab5fd",
+      "fiscal_year": "2026",
+      "period": "2026-06",
+      "rows": 212
+    },
+    {
+      "page_url": "https://www.mlit.go.jp/kankocho/page06_00039.html",
+      "excel_url": "https://www.mlit.go.jp/kankocho/content/002012283.xlsx",
+      "excel_link_text": "令和8年（2026年）5月各社別内訳［Excel:27KB］",
+      "sha256": "54387bb4159a6c9c6e106f65e0da626ead5975beb5877c0af5cd179a4f84f007",
+      "fiscal_year": "2026",
+      "period": "2026-05",
+      "rows": 212
+    },
+    {
+      "page_url": "https://www.mlit.go.jp/kankocho/page06_00039.html",
+      "excel_url": "https://www.mlit.go.jp/kankocho/content/002010963.xlsx",
+      "excel_link_text": "令和8年（2026年）4月各社別内訳［Excel:26KB］",
+      "sha256": "1b4c81dcfc710d41d6b4bc4312ffa1970d568ba0e4c9dc19b94431632b566187",
+      "fiscal_year": "2026",
+      "period": "2026-04",
+      "rows": 212
+    },
     {
       "page_url": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r7.html",
       "excel_url": "https://www.mlit.go.jp/kankocho/content/002006785.xlsx",
@@ -591,8 +636,9 @@
       "rows": 184
     }
   ],
-  "row_count": 11368,
+  "row_count": 12236,
   "fiscal_years": [
+    "2026",
     "2025",
     "2024",
     "2023",
@@ -660,6 +706,11 @@
     "2026-01",
     "2026-02",
     "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07",
+    "2026-08",
     "total"
   ],
   "segments": [
