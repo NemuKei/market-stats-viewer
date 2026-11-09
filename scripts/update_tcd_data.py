@@ -28,7 +28,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_TCD_PATH = DATA_DIR / "meta_tcd.json"
 TABLE_NAME = "tcd_stay_nights"
-EXTRACTOR_VERSION = 4
+EXTRACTOR_VERSION = 5
 
 NIGHTS_BIN_ORDER = ["1泊", "2泊", "3泊", "4泊", "5泊", "6泊", "7泊", "8泊以上"]
 TARGET_SEGMENTS = [("domestic_total", 2), ("domestic_business", 5)]
@@ -164,10 +164,42 @@ def parse_period_from_text(text: str) -> tuple[str, str, str] | None:
     return None
 
 
-def parse_title_metadata(title_a1: str, link_text: str) -> tuple[str, str, str, str]:
+def parse_legacy_2018_period(workbook: Workbook | None, link_text: str) -> tuple[str, str, str]:
+    """Recover only the verified 2018 layout, using two independent cell cues.
+
+    These workbooks have no cover sheet/year in A1. Never infer a period
+    from an arbitrary link alone, or apply this exception to another year.
+    """
+    match = re.fullmatch(
+        r"2018年(1-3|4-6|7-9|10-12)月期\s*集計表[（(]確報[）)]",
+        link_text.strip(),
+    )
+    if match is None or workbook is None or not {"T01", "T10"}.issubset(workbook.sheetnames):
+        raise ValueError("Unverified legacy TCD period evidence")
+    start, end = map(int, match.group(1).split("-"))
+    months = [normalize_text(workbook["T01"].cell(row, 1).value) for row in range(9, 12)]
+    if months != [f"{month}月" for month in range(start, end + 1)]:
+        raise ValueError("Legacy TCD link/month evidence conflicts")
+    population_note = normalize_text(workbook["T10"]["B39"].value)
+    dates = re.findall(r"(20\d{2})年(\d{1,2})月(\d{1,2})日", population_note)
+    if "人口推計" not in population_note or dates != [("2018", str(start), "1")]:
+        raise ValueError("Legacy TCD link/year evidence conflicts")
+    quarter = (start - 1) // 3 + 1
+    return "quarter", f"2018Q{quarter}", f"2018年Q{quarter}"
+
+
+def parse_title_metadata(
+    title_a1: str, link_text: str, *, workbook: Workbook | None = None,
+) -> tuple[str, str, str, str]:
     period = parse_period_from_text(title_a1)
     if period is None:
-        raise ValueError(f"Failed to parse period from title A1: {title_a1}")
+        if normalize_text(title_a1) != "第1表":
+            raise ValueError(f"Failed to parse period from title A1: {title_a1}")
+        period = parse_legacy_2018_period(workbook, link_text)
+    else:
+        link_period = parse_period_from_text(link_text)
+        if link_period is not None and link_period[:2] != period[:2]:
+            raise ValueError("TCD title/link period evidence conflicts")
     period_type, period_key, period_label = period
 
     release_type = normalize_release_type(title_a1) or normalize_release_type(link_text)
@@ -579,7 +611,7 @@ def _main(update: StatsUpdate) -> int:
 
             try:
                 period_type, period_key, period_label, release_type = parse_title_metadata(
-                    title_a1, link_text
+                    title_a1, link_text, workbook=wb
                 )
                 source_unit = read_t06_unit(wb["T06"])
                 parsed = extract_t06_rows(
@@ -653,3 +685,4 @@ def _main(update: StatsUpdate) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

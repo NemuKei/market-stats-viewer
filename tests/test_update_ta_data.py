@@ -82,7 +82,7 @@ def update_paths(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> tuple[Path,
     monkeypatch.setattr(updater, "SQLITE_PATH", sqlite_path)
     monkeypatch.setattr(updater, "META_PATH", meta_path)
 
-    fiscal_url = "https://example.test/ryokogyotoriatsukaigaku_r6.html"
+    fiscal_url = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r6.html"
     excel_url = "https://example.test/companies.xlsx"
     pages = {
         updater.TA_SOURCE_INDEX_URL: f'<a href="{fiscal_url}">2024年度</a>',
@@ -106,7 +106,7 @@ def read_stored_rows(sqlite_path: Path) -> list[tuple]:
         ).fetchall()
 
 
-@pytest.mark.parametrize("old_version", [None, 0, 1, 2, 3, 4])
+@pytest.mark.parametrize("old_version", [None, 0, 1, 2, 3, 4, 5])
 def test_unchanged_source_reprocesses_with_missing_or_old_extractor_version(
     update_paths: tuple[Path, Path], old_version: int | None
 ) -> None:
@@ -213,7 +213,7 @@ def published_two_periods(
     monkeypatch.setattr(updater, "DATA_DIR", data_dir)
     monkeypatch.setattr(updater, "SQLITE_PATH", sqlite_path)
     monkeypatch.setattr(updater, "META_PATH", meta_path)
-    fiscal_url = "https://example.test/ryokogyotoriatsukaigaku_r6.html"
+    fiscal_url = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r6.html"
     source_paths = {
         "https://example.test/annual.xlsx": annual,
         "https://example.test/monthly.xlsx": monthly,
@@ -248,7 +248,7 @@ def test_partial_parse_failure_preserves_database_and_metadata(
     if replacement_url:
         new_url = "https://example.test/monthly_replacement.xlsx"
         sources[new_url] = sources.pop(monthly_url)
-        fiscal_url = "https://example.test/ryokogyotoriatsukaigaku_r6.html"
+        fiscal_url = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r6.html"
         pages[fiscal_url] = pages[fiscal_url].replace(monthly_url, new_url)
         monthly_url = new_url
     if failure == "invalid_workbook":
@@ -273,7 +273,7 @@ def test_unclassified_sources_preserve_database_and_metadata(
     failure: str,
 ) -> None:
     sqlite_path, meta_path, pages, sources = published_two_periods
-    fiscal_url = "https://example.test/ryokogyotoriatsukaigaku_r6.html"
+    fiscal_url = "https://www.mlit.go.jp/kankocho/tokei_hakusyo/ryokogyotoriatsukaigaku_r6.html"
     if failure == "unsupported_xls":
         xlsx_url = "https://example.test/monthly.xlsx"
         xls_url = "https://example.test/monthly.xls"
@@ -689,3 +689,4 @@ def test_non_object_preview_stops_before_fetch_or_save(
         assert conn.execute(
             "SELECT amount FROM ta_company_amounts WHERE segment='overseas'"
         ).fetchall() == [(10.0,)]
+
