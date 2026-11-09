@@ -29,7 +29,7 @@ DATA_DIR = REPO_ROOT / "data"
 SQLITE_PATH = DATA_DIR / "market_stats.sqlite"
 META_PATH = DATA_DIR / "meta_ta.json"
 TABLE_NAME = "ta_company_amounts"
-EXTRACTOR_VERSION = 5
+EXTRACTOR_VERSION = 6
 TA_KEY_FIELDS = ("fiscal_year", "period", "company", "segment")
 HIS_MAIN_SELECTION = "his-2026-03-main-table"
 HIS_MAIN_KEY = ("2025", "2026-03", "エイチ・アイ・エス（6社計 ＊4）", "total")
@@ -139,11 +139,23 @@ def extract_fiscal_page_links(html: str, base_url: str) -> list[dict[str, str]]:
             continue
 
         abs_url = urljoin(base_url, href)
-        if "ryokogyotoriatsukaigaku" not in abs_url:
+        parsed_url = urlparse(abs_url)
+        # The FY2026 page uses a generic CMS name, not the old TA slug.
+        # Match official paths rather than a substring anywhere in the URL.
+        if (
+            parsed_url.scheme not in {"http", "https"}
+            or parsed_url.netloc.lower() != "www.mlit.go.jp"
+            or parsed_url.query
+            or parsed_url.fragment
+            or parsed_url.params
+        ):
             continue
-        if not abs_url.lower().endswith(".html"):
-            continue
-        if "年度" not in text and "_r" not in abs_url:
+        legacy_page = re.fullmatch(
+            r"/kankocho/(?:tokei_hakusyo/)?ryokogyotoriatsukaigaku_r[0-9]+\.html",
+            parsed_url.path,
+        )
+        cms_page = re.fullmatch(r"/kankocho/page[0-9]{2}_[0-9]{5}\.html", parsed_url.path)
+        if not legacy_page and not (cms_page and parse_fiscal_year(text)):
             continue
         if abs_url in seen:
             continue
@@ -283,7 +295,18 @@ def parse_ta_excel_rows(path: Path, fiscal_year: str, period: str) -> list[dict]
         for segment, col in amount_cols.items():
             cell = ws.cell(row=r, column=col)
             try:
-                if cell.value is not None and cell.font.strike:
+                # Explicit rich-text runs carry their own font. The August
+                # 2026 correction retains a struck cell style but overrides
+                # it on the replacement run. Plain strings still inherit
+                # the cell's cancellation and must never be accepted.
+                if (
+                    cell.value is not None
+                    and cell.font.strike
+                    and not (
+                        isinstance(cell.value, CellRichText)
+                        and all(isinstance(run, TextBlock) for run in cell.value)
+                    )
+                ):
                     raise ValueError("Amount cell is cancelled without a replacement")
                 amount = to_float(cell.value)
             except ValueError as exc:
@@ -625,3 +648,4 @@ if __name__ == "__main__":
     parser.add_argument("--approved-preview", type=Path, help="Reviewed preview manifest to verify before writing")
     args = parser.parse_args()
     raise SystemExit(main(duplicate_selection=args.duplicate_selection, approved_preview=args.approved_preview))
+

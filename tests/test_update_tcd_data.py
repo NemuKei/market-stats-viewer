@@ -192,3 +192,120 @@ def test_duplicate_sources_saved_with_provenance_and_conflict_preserves_files(tm
     with pytest.raises(error, match=message):
         updater.main()
     assert before == [p.read_bytes() for p in [updater.SQLITE_PATH, updater.META_TCD_PATH]]
+
+
+def legacy_2018_book(quarter=1):
+    book = Workbook()
+    book.active.title = "T01"
+    book.active["A1"] = "　　　　第1表　"
+    for row, month in enumerate(range(quarter * 3 - 2, quarter * 3 + 1), 9):
+        book.active.cell(row, 1, f"　{month}月")
+    book.create_sheet("T10")["B39"] = (
+        f"1) 総務省「人口推計」の2018年{quarter * 3 - 2}月1日現在の総人口を用いている。"
+    )
+    return book
+
+
+@pytest.mark.parametrize("quarter", [1, 2, 3, 4])
+def test_legacy_2018_metadata_requires_matching_internal_evidence(quarter):
+    book = legacy_2018_book(quarter)
+    label = f"2018年{quarter * 3 - 2}-{quarter * 3}月期　集計表（確報）"
+    assert updater.parse_title_metadata("第1表", label, workbook=book) == (
+        "quarter",
+        f"2018Q{quarter}",
+        f"2018年Q{quarter}",
+        "確報",
+    )
+
+
+@pytest.mark.parametrize(
+    "mutation", ["year", "month", "title", "missing", "release", "range"]
+)
+def test_legacy_metadata_rejects_incomplete_or_conflicting_evidence(mutation):
+    book = legacy_2018_book()
+    title, label = "第1表", "2018年1-3月期　集計表（確報）"
+    if mutation == "year":
+        book["T10"]["B39"] = "2019年1月1日"
+    if mutation == "month":
+        book["T01"]["A11"] = "4月"
+    if mutation == "title":
+        title = "2018年4-6月期（確報）"
+    if mutation == "missing":
+        book.remove(book["T10"])
+    if mutation == "release":
+        label = "2018年1-3月期　集計表（2次速報）"
+    if mutation == "range":
+        label = "2018年1-6月期　集計表（確報）"
+    with pytest.raises(ValueError):
+        updater.parse_title_metadata(title, label, workbook=book)
+
+
+def test_arbitrary_untitled_workbook_does_not_inherit_link_period():
+    with pytest.raises(ValueError):
+        updater.parse_title_metadata(
+            "推移表", "2018年1-3月期 集計表（確報）", workbook=legacy_2018_book()
+        )
+
+
+def test_legacy_requires_workbook_and_new_extractor_version():
+    with pytest.raises(ValueError):
+        updater.parse_title_metadata("第1表", "2018年1-3月期 集計表（確報）")
+    assert updater.EXTRACTOR_VERSION > 4
+
+
+def test_version_upgrade_reincludes_unchanged_legacy_source_and_is_idempotent(
+    tmp_path, monkeypatch
+):
+    annual = annual_book_with_quarter_detail()
+    annual.create_sheet("表題")["A1"] = "2025年旅行・観光消費動向調査（確報）"
+    annual.save(tmp_path / "annual.xlsx")
+    legacy = legacy_2018_book()
+    sheet = legacy.create_sheet("T06")
+    sheet["I2"] = "(千泊)"
+    sheet["A67"] = "宿泊数"
+    for row, label in enumerate(NIGHTS_BIN_ORDER, 68):
+        sheet.cell(row, 1, label)
+        sheet.cell(row, 2, row * 10)
+        sheet.cell(row, 5, row)
+    legacy.save(tmp_path / "legacy.xlsx")
+    data = tmp_path / "data"
+    data.mkdir()
+    monkeypatch.setattr(updater, "DATA_DIR", data)
+    monkeypatch.setattr(updater, "SQLITE_PATH", data / "stats.sqlite")
+    monkeypatch.setattr(updater, "META_TCD_PATH", data / "meta.json")
+    links = [
+        {"url": "annual", "link_text": "2025年確報"},
+        {"url": "legacy", "link_text": "2018年1-3月期　集計表（確報）"},
+    ]
+    monkeypatch.setattr(updater, "fetch_source_page", lambda _: "")
+    monkeypatch.setattr(updater, "extract_target_excel_links", lambda *_: links)
+    monkeypatch.setattr(
+        updater,
+        "download_file",
+        lambda url, dst: shutil.copyfile(tmp_path / f"{url}.xlsx", dst),
+    )
+    assert updater.main() == 0
+    with sqlite3.connect(updater.SQLITE_PATH) as conn:
+        baseline = conn.execute(
+            "select * from tcd_stay_nights order by period_key, segment, nights_bin"
+        ).fetchall()
+        conn.execute("delete from tcd_stay_nights where period_key='2018Q1'")
+    meta = json.loads(updater.META_TCD_PATH.read_text())
+    meta["extractor_version"] = 4
+    meta["available_periods"] = [
+        p for p in meta["available_periods"] if p["period_key"] != "2018Q1"
+    ]
+    updater.META_TCD_PATH.write_text(json.dumps(meta))
+    assert updater.main() == 0
+    with sqlite3.connect(updater.SQLITE_PATH) as conn:
+        assert (
+            conn.execute(
+                "select * from tcd_stay_nights order by period_key, segment, nights_bin"
+            ).fetchall()
+            == baseline
+        )
+    saved = [p.read_bytes() for p in (updater.SQLITE_PATH, updater.META_TCD_PATH)]
+    assert updater.main() == 0
+    assert saved == [
+        p.read_bytes() for p in (updater.SQLITE_PATH, updater.META_TCD_PATH)
+    ]
