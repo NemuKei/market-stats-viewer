@@ -40268,7 +40268,7 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-10T04:51:31Z",
+  "generated_at_utc": "2026-11-10T07:05:43Z",
   "history_start_date": "2026-08-12",
   "history_window_days": 90,
   "identity_registry": {
@@ -40287,6 +40287,11 @@
       "reason": "unresolved_domestic_location",
       "record_id": "615d426852e7736ba133252ee68d985653d7fa6b99df881d43cc6f848184bfae",
       "source_id": "starto_concert"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "7ae4303173a54a0cc633d0b9a6091f68082583adb93b53b2b4398984d5870d3c",
+      "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
@@ -40468,9 +40473,9 @@
       "venue_web_discovery": 305
     },
     "event_count": 1009,
-    "identity_held_record_count": 1921,
-    "location_held_record_count": 35,
-    "record_count_before_grouping": 3183,
+    "identity_held_record_count": 1929,
+    "location_held_record_count": 36,
+    "record_count_before_grouping": 3179,
     "start_time_split_event_count": 76,
     "start_time_split_group_count": 72,
     "supplemental_merged_group_count": 20,
