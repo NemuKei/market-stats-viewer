@@ -24876,7 +24876,7 @@
       "venue_name": "東京ドーム"
     },
     {
-      "artist_name": "L'Arc〜en〜Ciel",
+      "artist_name": "L'Arc-en-Ciel",
       "capacity": 17000,
       "display_source_class": "venue_official",
       "display_source_id": "official_events",
@@ -40268,13 +40268,13 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-10T12:56:41Z",
+  "generated_at_utc": "2026-11-10T15:04:33Z",
   "history_start_date": "2026-08-12",
   "history_window_days": 90,
   "identity_registry": {
-    "revision": 89,
+    "revision": 90,
     "schema_version": 1,
-    "sha256": "8f01eae8cb760a82221110012eea107702b6793fd601d7ad625d0b686f8f3a8b"
+    "sha256": "f4f3cd7813a9b4c4d4341e05c07e9376176049a18019c48cd44864cdd62643c6"
   },
   "include_past": true,
   "location_held_records": [
@@ -40478,8 +40478,8 @@
     "record_count_before_grouping": 3179,
     "start_time_split_event_count": 76,
     "start_time_split_group_count": 72,
-    "supplemental_merged_group_count": 20,
-    "supplemental_merged_record_count": 24,
+    "supplemental_merged_group_count": 19,
+    "supplemental_merged_record_count": 23,
     "suppressed_event_count": 5
   }
 }

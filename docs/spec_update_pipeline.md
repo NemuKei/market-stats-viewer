@@ -331,6 +331,16 @@ python -m scripts.event_identity_registry --registry scratch/identity.json seed 
    python -m pytest tests/test_event_identity_registry.py tests/test_build_lp_events.py -q
    ```
 
+#### 既公開行のアーティスト表記だけを訂正する限定レビュー
+
+`reviewed_event_sources.json` の `mode: legacy_artist_correction` は、v5 baselineに既掲載の会場公式公演について、同一固定IDのレビュー済み `correction` と組み合わせる限定経路。公開承認を代替しない。通常のreviewed公開投影や新規公演には適用しない。
+
+必須項目は `event_uid`、現在候補の `observation`、`source_signature`、`previous_row_sha256`、`correction_request_sha256`、台帳relationと同じ `evidence`。`previous_row_sha256` は旧公開行全体の `digest(canonical_bytes(row))` であり、時刻を省略する `public_row_sha256` ではない。旧baselineは変更しない。
+
+開催日・終了日・開始時刻・会場・題名・情報単位・出典record集合を変えず、非空の `artist_name` だけ訂正できる。旧観測履歴、現在active観測、同じIDへのcorrection relation、公式DBの取得URL・詳細URL、現在候補の署名を検証する。別ID、新規/split/merge、候補消失・曖昧化・後続driftは拒否する。90日窓の外へ自然に移った行はrecent assetから除外でき、全期間assetでは引き続き検証する。
+
+出力は旧公開行の完全コピーの `artist_name` だけを置換する。capacity、raw名称、補助出典情報、URL、時刻を含む他fieldは旧公開値を保持し、新たな本文やURLを公開しない。legacy出力チェックを使い、通常のreviewed行の制限投影は変更しない。生成時刻・台帳revisionなどassetメタデータは通常どおり更新する。
+
 #### 取り込み後の確認待ちの引き継ぎ
 
 - 収集担当（Codex Automation）はinboxだけを更新し、取り込み担当（GitHub Actions）はconfig・DB・LPの更新と検証を行う。inboxへの候補数、DBへの取り込み数、固定ID保留数、LP掲載数は別々に報告し、取り込み成功だけでLPへの新着反映完了としない。
