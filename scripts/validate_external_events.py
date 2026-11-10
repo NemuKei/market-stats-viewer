@@ -139,6 +139,11 @@ def validate_package(
         raise ValueError("public schedule validation requires all three reviewed pins")
     if present:
         filenames += (PUBLIC_ASSET_FILENAME, PUBLIC_BASELINE_FILENAME)
+    has_tickets = "ticket_rounds.json" in manifest.get("assets", {})
+    if has_tickets:
+        if not has_all_dates:
+            raise ValueError("tickets require all-dates generation")
+        filenames += ("ticket_rounds.json",)
     for filename in filenames:
         path = data_dir / filename
         meta = manifest["assets"][filename]
@@ -164,6 +169,16 @@ def validate_package(
     if present:
         result.update(validate_public_package(data_dir, expected_public_sha256=expected_public_sha256,
             expected_baseline_sha256=expected_baseline_sha256, expected_approval_sha256=expected_approval_sha256))
+    if has_tickets:
+        from .ticket_rounds import validate as validate_tickets
+        all_bytes = (data_dir / ALL_DATES_ASSET_FILENAME).read_bytes()
+        rows = json.loads(all_bytes)["events"]
+        uids = {r["event_key"] for r in rows}
+        if len(uids) != len(rows):
+            raise ValueError("duplicate event identity")
+        tickets = validate_tickets(json.loads((data_dir / "ticket_rounds.json").read_bytes()),
+            event_generation_sha256=hashlib.sha256(all_bytes).hexdigest(), event_uids=uids)
+        result["ticket_round_count"] = len(tickets["rounds"])
     return result
 
 
