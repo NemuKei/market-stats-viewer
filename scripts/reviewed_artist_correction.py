@@ -6,6 +6,7 @@ correction transaction. This is not an automatic alias/identity repair.
 """
 
 from copy import deepcopy
+from functools import wraps
 
 from .event_identity_registry import (
     canonical_bytes,
@@ -28,6 +29,24 @@ FIELDS = {
 }
 
 
+def source_map_errors(function):
+    """Preserve the public source-map exception contract at this boundary."""
+
+    @wraps(function)
+    def checked(*args, **kwargs):
+        from .reviewed_source_map import SourceMapError
+
+        try:
+            return function(*args, **kwargs)
+        except ValueError as exc:
+            if isinstance(exc, SourceMapError):
+                raise
+            raise SourceMapError(str(exc)) from exc
+
+    return checked
+
+
+@source_map_errors
 def split_records(doc):
     regular, corrections = [], []
     if (
@@ -48,13 +67,10 @@ def split_records(doc):
             if rec.get("mode") == "artist_source_link"
             else rec.get("observation", {}).get("candidate_key")
         )
-        if (
-            not isinstance(uid, str)
-            or not isinstance(key, str)
-            or uid in uids
-            or key in keys
-        ):
-            raise ValueError("duplicate or invalid reviewed selection")
+        if not isinstance(uid, str) or not isinstance(key, str):
+            raise ValueError("invalid reviewed selection")
+        if uid in uids or key in keys:
+            raise ValueError("duplicate reviewed selection")
         uids.add(uid)
         keys.add(key)
         if rec.get("mode") != MODE:
@@ -80,6 +96,7 @@ def split_records(doc):
     return {"schema_version": 1, "records": regular}, corrections
 
 
+@source_map_errors
 def validate_correction(rec, baseline, registry, official_sources, candidate=None):
     """Return an exact baseline copy changing only artist_name, or fail closed."""
     from .reviewed_source_map import source_signature
@@ -131,6 +148,7 @@ def validate_correction(rec, baseline, registry, official_sources, candidate=Non
     ):
         raise ValueError("correction transaction does not match publication review")
     relation_index = registry["relations"].index(relation)
+
     def affected(r):
         return uid in r["previous_ids"] or uid in r["next_ids"]
 

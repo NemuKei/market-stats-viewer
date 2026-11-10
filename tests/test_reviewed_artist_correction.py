@@ -213,3 +213,16 @@ def test_stale_baseline_cannot_skip_an_intermediate_correction(case):
         validate_correction(second, base, updated, sources, newest)
     with pytest.raises(ValueError):
         validate_correction(rec, base, updated, sources, current)
+
+
+def test_source_map_exception_contract(case):
+    from scripts.reviewed_source_map import SourceMapError
+
+    _, cur, _, reg, src, base, rec, *_ = case
+    with pytest.raises(SourceMapError, match="invalid reviewed source map"):
+        split_records({"invalid": True})
+    with pytest.raises(SourceMapError, match="duplicate reviewed selection"):
+        split_records({"schema_version": 1, "records": [rec, deepcopy(rec)]})
+    rec["source_signature"] = "0" * 64
+    with pytest.raises(SourceMapError, match="changed after correction review"):
+        validate_correction(rec, base, reg, src, cur)
