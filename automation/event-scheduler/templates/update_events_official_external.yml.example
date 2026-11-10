@@ -1,0 +1,142 @@
+name: Update events official data
+
+on:
+  workflow_dispatch:
+    inputs:
+      expected_at:
+        required: true
+        type: string
+      dispatch_nonce:
+        required: true
+        type: string
+
+concurrency:
+  group: repo-write-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  update-events-official:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      # Activation is a separate Git-reviewed data/publication change. Default OFF.
+      EVENTS_SQLITE_REVIEW_GATED_VENUES: "ariake_arena,vantelin_dome_nagoya,yoyogi_gymnasium"
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Queued behind repo-write concurrency; start from the current tip, not the trigger SHA.
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Scheduler admission
+        id: scheduler_admission
+        env:
+          SCHEDULER_ORIGIN: ${{ vars.EVENT_SCHEDULER_ORIGIN }}
+          EXPECTED_AT: ${{ inputs.expected_at }}
+          DISPATCH_NONCE: ${{ inputs.dispatch_nonce }}
+        run: python -m scripts.scheduler_admission
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: python -m pip install --upgrade uv
+
+      - name: Install deps
+        run: |
+          uv sync --frozen --no-dev
+
+      - name: Update events official data
+        run: |
+          if [ -n "$EVENTS_SQLITE_REVIEW_GATED_VENUES" ]; then
+            git rev-parse HEAD > "$RUNNER_TEMP/events-review-base"
+            git cat-file -e HEAD:data/reviewed_event_sources.json
+            git cat-file -e HEAD:data/reviewed_event_baseline.json
+            cp data/events.sqlite "$RUNNER_TEMP/events-collected.sqlite"
+            uv run python -m scripts.update_events_data --db-path "$RUNNER_TEMP/events-collected.sqlite" --skip-artist-inference --run-report "$RUNNER_TEMP/events-official-fetch.json"
+            uv run python -m scripts.build_events_artist_inferred --db-path "$RUNNER_TEMP/events-collected.sqlite" --output "$RUNNER_TEMP/events-artists-private.csv"
+            uv run python -m scripts.reviewed_events_db --previous-db data/events.sqlite --candidate-db "$RUNNER_TEMP/events-collected.sqlite" --output data/events.sqlite --reviewed-venues "$EVENTS_SQLITE_REVIEW_GATED_VENUES" --registry-path data/event_identity_registry.json --source-map-path data/reviewed_event_sources.json --baseline-path data/reviewed_event_baseline.json --signals-db data/event_signals.sqlite
+            uv run python -m scripts.build_events_artist_inferred --skip-events-sync
+          else
+            uv run python -m scripts.update_events_data --skip-artist-inference --run-report "$RUNNER_TEMP/events-official-fetch.json"
+            uv run python -m scripts.build_events_artist_inferred
+          fi
+
+      - name: Build LP events
+        run: |
+          if git cat-file -e HEAD:data/reviewed_event_sources.json 2>/dev/null; then
+            git cat-file -e HEAD:data/reviewed_event_baseline.json
+            git diff --quiet HEAD -- data/reviewed_event_sources.json data/reviewed_event_baseline.json
+            uv run python -m scripts.build_lp_events --reviewed-source-map data/reviewed_event_sources.json --reviewed-source-baseline data/reviewed_event_baseline.json
+          else
+            uv run python -m scripts.build_lp_events
+          fi
+
+      - name: Audit calendar coverage (read-only)
+        if: always() && steps.scheduler_admission.outputs.admitted == 'true'
+        continue-on-error: true # Monitoring errors must not discard other valid updates.
+        run: |
+          report_args=()
+          if [ -f "$RUNNER_TEMP/events-official-fetch.json" ]; then
+            report_args=(--fetch-report "$RUNNER_TEMP/events-official-fetch.json")
+          fi
+          uv run python -m scripts.audit_event_calendar_coverage "${report_args[@]}" --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit changes (if any)
+        run: |
+          git status --porcelain
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/ scripts/ app.py pyproject.toml uv.lock README.md
+            git commit -m "chore: update events official data"
+            branch="${GITHUB_REF_NAME:-main}"
+            for i in 1 2 3; do
+              if [ -n "$EVENTS_SQLITE_REVIEW_GATED_VENUES" ]; then
+                git fetch origin "$branch"
+                # Never rebase a projection approved against another generation.
+                # Leave the remote unchanged; restart from the new tip instead.
+                test "$(git rev-parse FETCH_HEAD)" = "$(cat "$RUNNER_TEMP/events-review-base")" || {
+                  echo "Review projection base changed; rerun from current main."
+                  exit 1
+                }
+              else
+                # Only the legacy path rebases. Gated projections never fetch
+                # again or replay onto a newer map/registry generation.
+                uv run python -m scripts.rebase_data_commit --branch "$branch"
+              fi
+              # The rebase keeps upstream's lp_events.json; rebuild it from the rebased DBs
+              # and validate before pushing so summary and rows come from one build.
+              if git cat-file -e HEAD:data/reviewed_event_sources.json 2>/dev/null; then
+                git cat-file -e HEAD:data/reviewed_event_baseline.json
+                git diff --quiet HEAD -- data/reviewed_event_sources.json data/reviewed_event_baseline.json
+                uv run python -m scripts.build_lp_events --reviewed-source-map data/reviewed_event_sources.json --reviewed-source-baseline data/reviewed_event_baseline.json
+              else
+                uv run python -m scripts.build_lp_events
+              fi
+              uv run python -m scripts.validate_external_events --lp-events data/lp_events.json
+              git add data/lp_events.json
+              if ! git diff --cached --quiet; then
+                # A commit whose patch is already upstream is dropped by rebase; never amend upstream's commit.
+                if [ "$(git rev-parse HEAD)" = "$(git rev-parse FETCH_HEAD)" ]; then
+                  git commit -m "chore: update events official data"
+                else
+                  git commit --amend --no-edit
+                fi
+              fi
+              git push origin "HEAD:$branch" && break
+              if [ "$i" -eq 3 ]; then
+                echo "Push failed after 3 retries"
+                exit 1
+              fi
+              echo "Push retry $i failed. Retrying..."
+              sleep 3
+            done
+          else
+            echo "No changes to commit."
+          fi
