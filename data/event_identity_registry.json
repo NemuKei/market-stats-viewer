@@ -33641,6 +33641,64 @@
           ]
         }
       ]
+    },
+    {
+      "event_uid": "evt_505ce8eaf3ff47ebacd410d4b72e756b",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "bb575816a812f8035289",
+          "evidence": {
+            "reason": "Sony Music公式本文で2027年5月4日ヤンマースタジアム長居 START 17:00、5月5日 START 16:30、Stray Kids World Tour <RUN IT JAPAN>を照合。既存台帳の同日時・同会場の公演と重複せず、両候補の関連固定IDなし。新規2公演として採用。",
+            "reviewed_at_utc": "2026-11-10T04:49:44.122309+00:00",
+            "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+          },
+          "fingerprint": "074738a5938a5e95b0d2f01aa7deccf8bb90b9c99877b0cdccafacf2ddb89ad9",
+          "identity": {
+            "artist_name": "Stray Kids",
+            "event_date": "2027-05-04",
+            "event_end_date": "2027-05-04",
+            "event_start_time": "17:00",
+            "title": "Stray Kids World Tour <RUN IT JAPAN>",
+            "venue_name": "ヤンマースタジアム長居"
+          },
+          "source_records": [
+            {
+              "record_id": "d3da5717aa9429afbce761f1ab64b5a2981043f617d170c7866838f4cd421a5d",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_d0eace2ac2234d6885b1e0934c041510",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "14e1d92193421b761396",
+          "evidence": {
+            "reason": "Sony Music公式本文で2027年5月4日ヤンマースタジアム長居 START 17:00、5月5日 START 16:30、Stray Kids World Tour <RUN IT JAPAN>を照合。既存台帳の同日時・同会場の公演と重複せず、両候補の関連固定IDなし。新規2公演として採用。",
+            "reviewed_at_utc": "2026-11-10T04:49:44.122309+00:00",
+            "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+          },
+          "fingerprint": "8604bf8573dd2038dd7d9fa74a6ab38c0e61006931f96feabfe9c41571c7e8ad",
+          "identity": {
+            "artist_name": "Stray Kids",
+            "event_date": "2027-05-05",
+            "event_end_date": "2027-05-05",
+            "event_start_time": "16:30",
+            "title": "Stray Kids World Tour <RUN IT JAPAN>",
+            "venue_name": "ヤンマースタジアム長居"
+          },
+          "source_records": [
+            {
+              "record_id": "cd80f101411922b2da664f665990812af8018c25267ea9d24e6b46d5ad5bbdd5",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -35845,9 +35903,33 @@
       ],
       "previous_ids": [],
       "request_sha256": "a5109a3eb39d9eeb445985415ca8f93a5fb6b1b8653c0432b0a7ec1116091b28"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_505ce8eaf3ff47ebacd410d4b72e756b",
+          "fingerprint": "074738a5938a5e95b0d2f01aa7deccf8bb90b9c99877b0cdccafacf2ddb89ad9"
+        },
+        {
+          "event_uid": "evt_d0eace2ac2234d6885b1e0934c041510",
+          "fingerprint": "8604bf8573dd2038dd7d9fa74a6ab38c0e61006931f96feabfe9c41571c7e8ad"
+        }
+      ],
+      "evidence": {
+        "reason": "Sony Music公式本文で2027年5月4日ヤンマースタジアム長居 START 17:00、5月5日 START 16:30、Stray Kids World Tour <RUN IT JAPAN>を照合。既存台帳の同日時・同会場の公演と重複せず、両候補の関連固定IDなし。新規2公演として採用。",
+        "reviewed_at_utc": "2026-11-10T04:49:44.122309+00:00",
+        "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_505ce8eaf3ff47ebacd410d4b72e756b",
+        "evt_d0eace2ac2234d6885b1e0934c041510"
+      ],
+      "previous_ids": [],
+      "request_sha256": "7fe01ae29472185d6150ab944cb3a9d0cccea02938c27e61a7c4b160fe9ae3d8"
     }
   ],
-  "revision": 88,
+  "revision": 89,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
