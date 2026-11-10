@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "rounds": [
+    {
+      "ticket_round_id": "tr_25a6dbd2b1a5492e8217595af7cddec8",
+      "title": "NiziU Live with U 2026-2027「Who? U! NiziU Fes.」WithU先行受付（抽選）",
+      "sale_method": "lottery",
+      "round_type": "fan_club",
+      "eligibility_label": "申込者はWithU会員（公演当日まで継続）。同行者は非会員可。その他条件は公式案内参照。",
+      "status": "active",
+      "revision": 1,
+      "first_seen_at_utc": "2026-11-10T03:25:04Z",
+      "last_verified_at_utc": "2026-11-10T03:25:04Z",
+      "milestones": [
+        {
+          "kind": "application_open",
+          "knowledge_status": "confirmed",
+          "precision": "time",
+          "date": "2026-10-13",
+          "time": "20:00",
+          "end_date": null,
+          "end_time": null,
+          "timezone": "Asia/Tokyo",
+          "source": {
+            "url": "https://niziu.com/s/n123/news/detail/12239?ima=0839",
+            "name": "NiziU公式・WithU先行受付案内",
+            "source_class": "artist_official",
+            "checked_at_utc": "2026-11-10T03:25:04Z"
+          }
+        },
+        {
+          "kind": "application_close",
+          "knowledge_status": "confirmed",
+          "precision": "time",
+          "date": "2026-10-18",
+          "time": "23:59",
+          "end_date": null,
+          "end_time": null,
+          "timezone": "Asia/Tokyo",
+          "source": {
+            "url": "https://niziu.com/s/n123/news/detail/12239?ima=0839",
+            "name": "NiziU公式・WithU先行受付案内",
+            "source_class": "artist_official",
+            "checked_at_utc": "2026-11-10T03:25:04Z"
+          }
+        },
+        {
+          "kind": "results",
+          "knowledge_status": "unverified",
+          "precision": null,
+          "date": null,
+          "time": null,
+          "end_date": null,
+          "end_time": null,
+          "timezone": "Asia/Tokyo",
+          "source": null
+        },
+        {
+          "kind": "payment_deadline",
+          "knowledge_status": "unverified",
+          "precision": null,
+          "date": null,
+          "time": null,
+          "end_date": null,
+          "end_time": null,
+          "timezone": "Asia/Tokyo",
+          "source": null
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "ticket_round_id": "tr_25a6dbd2b1a5492e8217595af7cddec8",
+      "event_uid": "evt_c6ed5050ed8f4cdc9795754041d89b09"
+    },
+    {
+      "ticket_round_id": "tr_25a6dbd2b1a5492e8217595af7cddec8",
+      "event_uid": "evt_89a4a3686cc64eba8dd0cc998b4e50e1"
+    },
+    {
+      "ticket_round_id": "tr_25a6dbd2b1a5492e8217595af7cddec8",
+      "event_uid": "evt_731ad6efa975420ba00969c5cec7b1af"
+    },
+    {
+      "ticket_round_id": "tr_25a6dbd2b1a5492e8217595af7cddec8",
+      "event_uid": "evt_e9d39423c9604ab8bf847fb42ae3548b"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "facts_sha256": "e56c3210c8d823cf6c2649bbac27b9256a2462626baf90255eee862b23c28f58",
+    "reviewed_at_utc": "2026-11-10T03:25:04Z"
+  },
+  "history": []
+}
