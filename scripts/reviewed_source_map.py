@@ -383,6 +383,17 @@ def guard_new_ids(
         )
     ):
         raise SourceMapError("invalid verified publication baseline")
+    from .reviewed_artist_correction import split_records, validate_correction
+    regular, corrections = split_records(selection)
+    correction_by_uid = {r['event_uid']: r for r in corrections}
+    for rec in corrections:
+        if registry is None:
+            raise SourceMapError("artist correction requires fixed-ID registry")
+        validate_correction(rec, baseline, registry, official_sources)
+    present_uids = {row['event_key'] for row in rows}
+    if any(rec['observation']['candidate_key'] in applied_candidate_keys and rec['event_uid'] not in present_uids for rec in corrections):
+        raise SourceMapError('reviewed artist correction did not resolve uniquely')
+    selection = regular
     reviewed = {
         rec["event_uid"]: rec
         for rec in selection["records"]
@@ -396,6 +407,12 @@ def guard_new_ids(
     held = set()
     for index, row in enumerate(rows):
         uid = row["event_key"]
+        if uid in correction_by_uid:
+            rec = correction_by_uid[uid]
+            if rec['observation']['candidate_key'] not in applied_candidate_keys or uid in failed_source_uids:
+                raise SourceMapError("artist correction candidate was not applied")
+            rows[index] = validate_correction(rec, baseline, registry, official_sources, row)
+            continue
         publication_changed = False
         if uid in reviewed and uid not in failed_source_uids:
             try:
@@ -456,9 +473,26 @@ def publication_baseline(raw):
     return baseline
 
 
-def reviewed_rows_for_publication(rows, registry, map_bytes, baseline_bytes, events_db, signals_db):
+def reviewed_rows_for_publication(rows, registry, map_bytes, baseline_bytes, events_db, signals_db, *, history_start_date=None):
     """Validate the complete map first; isolate stale row choices only on v5."""
     baseline = publication_baseline(baseline_bytes)
+    from .reviewed_artist_correction import split_records, validate_correction
+    regular, corrections = split_records(parse_json(map_bytes))
+    if corrections:
+        official_sources = read_official_sources(events_db)
+        for rec in corrections:
+            validate_correction(rec, baseline, registry, official_sources)
+        for rec in corrections:
+            identity = rec['observation']['identity']
+            in_window = history_start_date is None or (identity.get('event_end_date') or identity['event_date']) >= history_start_date
+            matches = [row for row in rows if row['event_key'] == rec['observation']['candidate_key']]
+            if in_window and len(matches) != 1:
+                raise SourceMapError('reviewed artist correction candidate missing or ambiguous')
+        by_key = {rec['observation']['candidate_key']: rec for rec in corrections}
+        for row in rows:
+            if row['event_key'] in by_key:
+                validate_correction(by_key[row['event_key']], baseline, registry, official_sources, row)
+    map_bytes = canonical_bytes(regular)
     if baseline["schema_version"] == 4:
         return apply_reviewed_source_map(rows, registry, map_bytes, events_db, signals_db), set()
     # Empty rows still exercise all schema, duplicate and active-ID checks.

@@ -20589,7 +20589,7 @@
       "event_uid": "eabe3053b027e8fc2181",
       "observations": [
         {
-          "active": true,
+          "active": false,
           "candidate_key": "eabe3053b027e8fc2181",
           "evidence": {
             "published_seed_sha256": "7923829a5875b31f544c5780c342832c625bd3967a5887ae1ec8b9c25de9a277"
@@ -20597,6 +20597,34 @@
           "fingerprint": "cc88aa211d42e90ca5c23bc80d4869feec32b0dc276e7bcea821502692f7e43f",
           "identity": {
             "artist_name": "L'Arc〜en〜Ciel",
+            "event_date": "2026-11-29",
+            "event_end_date": "2026-11-29",
+            "event_start_time": "16:00",
+            "title": "L'Arc-en-Ciel 35th L'Anniversary TOUR",
+            "venue_name": "横浜アリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "yokohama_arena:/event/detail/larc-en-ciel-35th-lanniversary-tour",
+              "source_id": "official_events"
+            },
+            {
+              "record_id": "4232cf4d9c7594ef8004a01068932198aaea9f15d0cc801eca703d6be2cfe8cb",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        },
+        {
+          "active": true,
+          "candidate_key": "a3355b1434d7bff65467",
+          "evidence": {
+            "reason": "Official Yokohama Arena detail page and November schedule JSON confirm the same 2026-11-29 16:00 occurrence. Performer typography changed to hyphenated artist name; title, venue, date and start time are unchanged. Retain existing fixed ID and observation history. User approved this single-occurrence correction and publication on 2026-11-10.",
+            "reviewed_at_utc": "2026-11-10T14:55:30.045465+00:00",
+            "url": "https://www.yokohama-arena.co.jp/event/detail/larc-en-ciel-35th-lanniversary-tour"
+          },
+          "fingerprint": "6c146bb0443e7ae8292a405bad77ea07b213c641ae946abf2369d20fb43f71ef",
+          "identity": {
+            "artist_name": "L'Arc-en-Ciel",
             "event_date": "2026-11-29",
             "event_end_date": "2026-11-29",
             "event_start_time": "16:00",
@@ -35927,9 +35955,30 @@
       ],
       "previous_ids": [],
       "request_sha256": "7fe01ae29472185d6150ab944cb3a9d0cccea02938c27e61a7c4b160fe9ae3d8"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "eabe3053b027e8fc2181",
+          "fingerprint": "6c146bb0443e7ae8292a405bad77ea07b213c641ae946abf2369d20fb43f71ef"
+        }
+      ],
+      "evidence": {
+        "reason": "Official Yokohama Arena detail page and November schedule JSON confirm the same 2026-11-29 16:00 occurrence. Performer typography changed to hyphenated artist name; title, venue, date and start time are unchanged. Retain existing fixed ID and observation history. User approved this single-occurrence correction and publication on 2026-11-10.",
+        "reviewed_at_utc": "2026-11-10T14:55:30.045465+00:00",
+        "url": "https://www.yokohama-arena.co.jp/event/detail/larc-en-ciel-35th-lanniversary-tour"
+      },
+      "kind": "correction",
+      "next_ids": [
+        "eabe3053b027e8fc2181"
+      ],
+      "previous_ids": [
+        "eabe3053b027e8fc2181"
+      ],
+      "request_sha256": "67721d054ce8110ed4afca99d23e5c1bd5ef41957139622689bad9484863a85d"
     }
   ],
-  "revision": 89,
+  "revision": 90,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",

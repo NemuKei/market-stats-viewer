@@ -891,7 +891,8 @@ def build_lp_events(
         from .reviewed_source_map import reviewed_rows_for_publication
         candidates["events"], failed_source_uids = reviewed_rows_for_publication(
             candidates["events"], registry, reviewed_source_map_path.read_bytes(),
-            reviewed_source_baseline_path.read_bytes(), events_db_path, event_signals_db_path)
+            reviewed_source_baseline_path.read_bytes(), events_db_path, event_signals_db_path,
+            history_start_date=candidates["history_start_date"])
     result = apply_to_payload(candidates, registry, registry_sha)
     if reviewed_source_map_path is not None:
         from .reviewed_source_map import publication_baseline, SourceMapError
