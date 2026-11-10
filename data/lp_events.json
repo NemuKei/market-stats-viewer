@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-11-10",
+  "as_of_date": "2026-11-11",
   "events": [
-    {
-      "artist_name": "TOKYO WASOU COLLECTION VOL.4",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-12",
-      "event_end_date": "2026-08-12",
-      "event_end_time": null,
-      "event_key": "6ed01bbe2a5ea4f1547b",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8670.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "TOKYO WASOU COLLECTION VOL.4",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8670.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8670.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "TOKYO WASOU COLLECTION VOL.4",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8670.html"
-        }
-      ],
-      "title": "TOKYO WASOU COLLECTION VOL.4",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8670.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "EBiDAN",
       "capacity": 12542,
@@ -40268,8 +40230,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-10T15:04:33Z",
-  "history_start_date": "2026-08-12",
+  "generated_at_utc": "2026-11-10T19:43:12Z",
+  "history_start_date": "2026-08-13",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 90,
@@ -40287,6 +40249,11 @@
       "reason": "unresolved_domestic_location",
       "record_id": "615d426852e7736ba133252ee68d985653d7fa6b99df881d43cc6f848184bfae",
       "source_id": "starto_concert"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "e91637a43cf580f42119c5a2ddfc0127177eb425120da99e21219b3d4a2f666e",
+      "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
@@ -40415,11 +40382,6 @@
     },
     {
       "reason": "unresolved_domestic_location",
-      "record_id": "0c894384352bf4192abde35edd2abfe512d9a9ef1e06e7c455002c9939c4e9c8",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
       "record_id": "36e26a6d5dfbfd126a8cae6b930f15ab376aca9c024304e59373ae5d287b6802",
       "source_id": "kstyle_music"
     },
@@ -40468,14 +40430,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 700,
+      "official_events": 699,
       "starto_concert": 4,
       "venue_web_discovery": 305
     },
-    "event_count": 1009,
-    "identity_held_record_count": 1929,
+    "event_count": 1008,
+    "identity_held_record_count": 1922,
     "location_held_record_count": 36,
-    "record_count_before_grouping": 3179,
+    "record_count_before_grouping": 3171,
     "start_time_split_event_count": 76,
     "start_time_split_group_count": 72,
     "supplemental_merged_group_count": 19,
