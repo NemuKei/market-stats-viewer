@@ -7,6 +7,10 @@ on:
     paths:
       - .github/workflows/publish_external_events_assets.yml
       - scripts/build_external_events_manifest.py
+      - scripts/build_ticket_rounds.py
+      - scripts/ticket_rounds.py
+      - scripts/ticket_review_history.py
+      - data/reviewed_ticket_rounds.json
       - scripts/build_all_dates_lp_events.py
       - scripts/validate_external_events.py
       - scripts/upload_release_assets.py
@@ -41,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # No bootstrap or real pins are committed. Missing configuration stays disabled.
+      TICKET_ROUNDS_ENABLED: ${{ vars.TICKET_ROUNDS_ENABLED == 'true' && 'true' || 'false' }}
       PUBLIC_SCHEDULE_DAYS_ENABLED: ${{ vars.PUBLIC_SCHEDULE_DAYS_ENABLED == 'true' && 'true' || 'false' }}
       PUBLIC_SCHEDULE_DAYS_SHA256: ${{ vars.PUBLIC_SCHEDULE_DAYS_SHA256 }}
       PUBLIC_SCHEDULE_BASELINE_SHA256: ${{ vars.PUBLIC_SCHEDULE_BASELINE_SHA256 }}
@@ -63,6 +68,7 @@ jobs:
         run: |
           set -euo pipefail
           source_sha="$(git rev-parse HEAD)"
+          ticket_manifest_args=()
           public_manifest_args=()
           public_validation_args=()
           if [[ "$PUBLIC_SCHEDULE_DAYS_ENABLED" == "true" ]]; then
@@ -79,7 +85,19 @@ jobs:
           else
             python -m scripts.build_all_dates_lp_events
           fi
-          GITHUB_SHA="$source_sha" python -m scripts.build_external_events_manifest --release-tag external-events-latest "${public_manifest_args[@]}"
+          echo "TICKET_ROUNDS_READY=false" >> "$GITHUB_ENV"
+          if [[ "$TICKET_ROUNDS_ENABLED" == "true" ]]; then
+            if python -m scripts.build_ticket_rounds --ledger data/reviewed_ticket_rounds.json \
+                --events data/lp_events_all.json --output data/ticket_rounds.json \
+                --generated-at-utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)"; then
+              ticket_manifest_args=(--include-ticket-rounds)
+              echo "TICKET_ROUNDS_READY=true" >> "$GITHUB_ENV"
+              echo "Ticket sidecar validated for this all-dates generation."
+            else
+              echo "::warning::Ticket update failed; event publication continues without a ticket asset in the manifest."
+            fi
+          fi
+          GITHUB_SHA="$source_sha" python -m scripts.build_external_events_manifest --release-tag external-events-latest "${public_manifest_args[@]}" "${ticket_manifest_args[@]}"
           python -m scripts.validate_external_events \
             --require-all-dates \
             --expected-commit "$source_sha" \
@@ -106,6 +124,9 @@ jobs:
           assets=(data/events.sqlite data/event_signals.sqlite data/lp_events.json data/lp_events_all.json)
           if [[ "$PUBLIC_SCHEDULE_DAYS_ENABLED" == "true" ]]; then
             assets+=(data/public_schedule_days.json data/public_schedule_baseline.json)
+          fi
+          if [[ "${TICKET_ROUNDS_READY:-false}" == "true" ]]; then
+            assets+=(data/ticket_rounds.json)
           fi
           assets+=(data/manifest.json)
           python -m scripts.upload_release_assets --tag external-events-latest "${assets[@]}"
