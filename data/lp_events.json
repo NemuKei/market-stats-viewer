@@ -39204,6 +39204,82 @@
       "venue_name": "Kアリーナ横浜"
     },
     {
+      "artist_name": "Stray Kids",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-05-04",
+      "event_end_date": "2027-05-04",
+      "event_end_time": null,
+      "event_key": "evt_505ce8eaf3ff47ebacd410d4b72e756b",
+      "event_start_time": "17:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400",
+      "first_seen_at_utc": "2026-11-10T03:21:52Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400",
+          "priority": 20,
+          "record_id": "d3da5717aa9429afbce761f1ab64b5a2981043f617d170c7866838f4cd421a5d",
+          "source_class": "",
+          "source_id": "venue_web_discovery",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-10T03:21:52Z",
+          "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+        }
+      ],
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "updated_at_utc": "2026-11-10T03:21:52Z",
+      "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400",
+      "venue_name": "ヤンマースタジアム長居"
+    },
+    {
+      "artist_name": "Stray Kids",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2027-05-05",
+      "event_end_date": "2027-05-05",
+      "event_end_time": null,
+      "event_key": "evt_d0eace2ac2234d6885b1e0934c041510",
+      "event_start_time": "16:30",
+      "evidence_snippet": "",
+      "evidence_url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400",
+      "first_seen_at_utc": "2026-11-10T03:21:52Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400",
+          "priority": 20,
+          "record_id": "cd80f101411922b2da664f665990812af8018c25267ea9d24e6b46d5ad5bbdd5",
+          "source_class": "",
+          "source_id": "venue_web_discovery",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-10T03:21:52Z",
+          "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+        }
+      ],
+      "title": "Stray Kids World Tour <RUN IT JAPAN>",
+      "updated_at_utc": "2026-11-10T03:21:52Z",
+      "url": "https://www.sonymusic.co.jp/artist/StrayKids/info/588400",
+      "venue_name": "ヤンマースタジアム長居"
+    },
+    {
       "artist_name": "Mrs. GREEN APPLE",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -40192,13 +40268,13 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-10T03:22:14Z",
+  "generated_at_utc": "2026-11-10T04:51:31Z",
   "history_start_date": "2026-08-12",
   "history_window_days": 90,
   "identity_registry": {
-    "revision": 88,
+    "revision": 89,
     "schema_version": 1,
-    "sha256": "c649813f78a49f6ff7635a9735742e038238a3779514580354524e4f535fa717"
+    "sha256": "8f01eae8cb760a82221110012eea107702b6793fd601d7ad625d0b686f8f3a8b"
   },
   "include_past": true,
   "location_held_records": [
@@ -40389,10 +40465,10 @@
     "counts_by_display_source": {
       "official_events": 700,
       "starto_concert": 4,
-      "venue_web_discovery": 303
+      "venue_web_discovery": 305
     },
-    "event_count": 1007,
-    "identity_held_record_count": 1923,
+    "event_count": 1009,
+    "identity_held_record_count": 1921,
     "location_held_record_count": 35,
     "record_count_before_grouping": 3183,
     "start_time_split_event_count": 76,

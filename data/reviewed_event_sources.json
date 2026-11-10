@@ -2495,6 +2495,74 @@
         "status": "reviewed"
       },
       "source_signature": "cc15bdd46dbbc37f68022e66f2f5fcb90ca3e6b5a506a887fd57ef7e014e1c43"
+    },
+    {
+      "event_uid": "evt_505ce8eaf3ff47ebacd410d4b72e756b",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "bb575816a812f8035289",
+        "fingerprint": "074738a5938a5e95b0d2f01aa7deccf8bb90b9c99877b0cdccafacf2ddb89ad9",
+        "identity": {
+          "artist_name": "Stray Kids",
+          "event_date": "2027-05-04",
+          "event_end_date": "2027-05-04",
+          "event_start_time": "17:00",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "venue_name": "ヤンマースタジアム長居"
+        },
+        "source_records": [
+          {
+            "record_id": "d3da5717aa9429afbce761f1ab64b5a2981043f617d170c7866838f4cd421a5d",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+        ],
+        "row_sha256": "b63646ccb1bdc2ad9d2a82197ab435168ee286fe1b0b208e661316a68a18e521",
+        "status": "reviewed"
+      },
+      "source_signature": "e3a6c4ca6c90af2b25f993ae32db39cae23efe8e92025a90e3cb217f4093cbff"
+    },
+    {
+      "event_uid": "evt_d0eace2ac2234d6885b1e0934c041510",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "14e1d92193421b761396",
+        "fingerprint": "8604bf8573dd2038dd7d9fa74a6ab38c0e61006931f96feabfe9c41571c7e8ad",
+        "identity": {
+          "artist_name": "Stray Kids",
+          "event_date": "2027-05-05",
+          "event_end_date": "2027-05-05",
+          "event_start_time": "16:30",
+          "title": "Stray Kids World Tour <RUN IT JAPAN>",
+          "venue_name": "ヤンマースタジアム長居"
+        },
+        "source_records": [
+          {
+            "record_id": "cd80f101411922b2da664f665990812af8018c25267ea9d24e6b46d5ad5bbdd5",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://www.sonymusic.co.jp/artist/StrayKids/info/588400"
+        ],
+        "row_sha256": "bb0107defc9689c0241604de933ba9cd3f66e70c20bb1970ae92d9d56a2b6e52",
+        "status": "reviewed"
+      },
+      "source_signature": "b2aaeb479169531f1f3ee632bd05d3d93463cfd377d644e9cd5e2e752b7ade89"
     }
   ],
   "schema_version": 1
