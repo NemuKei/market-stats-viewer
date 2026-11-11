@@ -20348,6 +20348,44 @@
       "venue_name": "東京ガーデンシアター"
     },
     {
+      "artist_name": "JX",
+      "capacity": null,
+      "display_source_class": "ticket_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-14",
+      "event_end_date": "2026-11-14",
+      "event_end_time": null,
+      "event_key": "evt_cd7098c9a7594a998d4a22d5ce8611a3",
+      "event_start_time": "17:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://eplus.jp/sf/detail/4208760002-P0030003P021001?P6=001",
+      "first_seen_at_utc": "2026-11-11T03:19:06Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://eplus.jp/sf/detail/4208760002-P0030003P021001?P6=001",
+          "priority": 20,
+          "record_id": "ce630a17b2f63922489daa09dd5b0a8a991793c28a3763acfffcd826286710f2",
+          "source_class": "",
+          "source_id": "venue_web_discovery",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-11T03:19:06Z",
+          "url": "https://eplus.jp/sf/detail/4208760002-P0030003P021001?P6=001"
+        }
+      ],
+      "title": "JX 2026 TOUR CONCERT <CORE>",
+      "updated_at_utc": "2026-11-11T03:19:06Z",
+      "url": "https://eplus.jp/sf/detail/4208760002-P0030003P021001?P6=001",
+      "venue_name": "Asueアリーナ大阪 メインアリーナ"
+    },
+    {
       "artist_name": "きゅるりんってしてみて",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -21040,6 +21078,44 @@
       "updated_at_utc": "2026-09-07T16:27:55Z",
       "url": "https://www.yokohama-arena.co.jp/event/detail/aiko-live-tour%E3%80%8Clove-pop-vol26%E3%80%8D",
       "venue_name": "横浜アリーナ"
+    },
+    {
+      "artist_name": "JX",
+      "capacity": null,
+      "display_source_class": "artist_official",
+      "display_source_id": "venue_web_discovery",
+      "display_source_label": "Venue Web Discovery (Official/Semi-official)",
+      "event_category": "コンサート",
+      "event_date": "2026-11-15",
+      "event_end_date": "2026-11-15",
+      "event_end_time": null,
+      "event_key": "evt_33f4414526c546b9a6812ceac6a82a2d",
+      "event_start_time": "17:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://jaefans.com/information/schedule/schedule/2618",
+      "first_seen_at_utc": "2026-11-11T03:19:06Z",
+      "pref_name": "大阪府",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
+      "source_priority": 20,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://jaefans.com/information/schedule/schedule/2618",
+          "priority": 20,
+          "record_id": "3a5403416a27255ca1f7126edf3d9545003c21c39a671cd32c601d691dbfbd76",
+          "source_class": "",
+          "source_id": "venue_web_discovery",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-11T03:19:06Z",
+          "url": "https://jaefans.com/information/schedule/schedule/2618"
+        }
+      ],
+      "title": "JX 2026 TOUR CONCERT <CORE>",
+      "updated_at_utc": "2026-11-11T03:19:06Z",
+      "url": "https://jaefans.com/information/schedule/schedule/2618",
+      "venue_name": "Asueアリーナ大阪"
     },
     {
       "artist_name": "日常組",
@@ -40230,13 +40306,13 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-11T03:19:23Z",
+  "generated_at_utc": "2026-11-11T04:03:24Z",
   "history_start_date": "2026-08-13",
   "history_window_days": 90,
   "identity_registry": {
-    "revision": 90,
+    "revision": 91,
     "schema_version": 1,
-    "sha256": "f4f3cd7813a9b4c4d4341e05c07e9376176049a18019c48cd44864cdd62643c6"
+    "sha256": "6761b773feb61375f443bf57efd008ee82829504cbfaaeae08c9032a4f9634db"
   },
   "include_past": true,
   "location_held_records": [
@@ -40432,10 +40508,10 @@
     "counts_by_display_source": {
       "official_events": 699,
       "starto_concert": 4,
-      "venue_web_discovery": 305
+      "venue_web_discovery": 307
     },
-    "event_count": 1008,
-    "identity_held_record_count": 1990,
+    "event_count": 1010,
+    "identity_held_record_count": 1988,
     "location_held_record_count": 36,
     "record_count_before_grouping": 3239,
     "start_time_split_event_count": 76,
