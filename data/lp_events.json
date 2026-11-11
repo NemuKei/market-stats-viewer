@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-11-11",
+  "as_of_date": "2026-11-12",
   "events": [
-    {
-      "artist_name": "EBiDAN",
-      "capacity": 12542,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-13",
-      "event_end_date": "2026-08-13",
-      "event_end_time": null,
-      "event_key": "87389c6c5b602ebceb35",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6036&etype=1",
-      "first_seen_at_utc": "2026-08-01T08:24:21Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "EBiDAN",
-      "raw_venue_name": "国立代々木競技場第一体育館",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6036&etype=1",
-          "priority": 10,
-          "record_id": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6036&etype=1",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "EBiDAN THE LIVE 2026 15th Anniversary",
-          "updated_at_utc": "2026-08-31T10:59:53Z",
-          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6036&etype=1"
-        }
-      ],
-      "title": "EBiDAN THE LIVE 2026 15th Anniversary",
-      "updated_at_utc": "2026-08-31T10:59:53Z",
-      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6036&etype=1",
-      "venue_name": "国立代々木競技場第一体育館"
-    },
     {
       "artist_name": "めざましWANGANフェス～人気バラエティと夏の最強コラボ～",
       "capacity": 8000,
@@ -76,44 +38,6 @@
       "updated_at_utc": "2026-04-10T06:17:52Z",
       "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/4623/",
       "venue_name": "東京ガーデンシアター"
-    },
-    {
-      "artist_name": "STEVE LACY",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-13",
-      "event_end_date": "2026-08-13",
-      "event_end_time": null,
-      "event_key": "e8dea1411d8fb0419fa7",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8658.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "STEVE LACY",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8658.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8658.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "STEVE LACY SUMMER SONIC EXTRA",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8658.html"
-        }
-      ],
-      "title": "STEVE LACY SUMMER SONIC EXTRA",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8658.html",
-      "venue_name": "豊洲PIT"
     },
     {
       "artist_name": "渋谷すばる",
@@ -40306,8 +40230,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-11T12:06:23Z",
-  "history_start_date": "2026-08-13",
+  "generated_at_utc": "2026-11-11T19:36:05Z",
+  "history_start_date": "2026-08-14",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 91,
@@ -40506,18 +40430,18 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 699,
+      "official_events": 697,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 1010,
-    "identity_held_record_count": 1988,
+    "event_count": 1008,
+    "identity_held_record_count": 1978,
     "location_held_record_count": 36,
-    "record_count_before_grouping": 3239,
+    "record_count_before_grouping": 3226,
     "start_time_split_event_count": 76,
     "start_time_split_group_count": 72,
-    "supplemental_merged_group_count": 19,
-    "supplemental_merged_record_count": 23,
+    "supplemental_merged_group_count": 18,
+    "supplemental_merged_record_count": 22,
     "suppressed_event_count": 5
   }
 }
