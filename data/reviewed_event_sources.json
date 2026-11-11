@@ -2597,6 +2597,74 @@
       },
       "previous_row_sha256": "6d08ec7ab637853af1ce0f42cc2da24b30fd7fb8f443c031c396c5cbd70635d1",
       "source_signature": "b78e9353d02b2ff19d51c1edb8947b8105a9744777cdf17ea65f534b1e5d01c9"
+    },
+    {
+      "event_uid": "evt_cd7098c9a7594a998d4a22d5ce8611a3",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "7150cdbffad36a825e7c",
+        "fingerprint": "a5a1a2dc851206e9a6b166639c249333bc62cec278b89f5a4297d34e1b37ed77",
+        "identity": {
+          "artist_name": "JX",
+          "event_date": "2026-11-14",
+          "event_end_date": "2026-11-14",
+          "event_start_time": "17:00",
+          "title": "JX 2026 TOUR CONCERT <CORE>",
+          "venue_name": "Asueアリーナ大阪 メインアリーナ"
+        },
+        "source_records": [
+          {
+            "record_id": "ce630a17b2f63922489daa09dd5b0a8a991793c28a3763acfffcd826286710f2",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://eplus.jp/sf/detail/4208760002-P0030003P021001?P6=001"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://eplus.jp/sf/detail/4208760002-P0030003P021001?P6=001"
+        ],
+        "row_sha256": "da858f4e8ce546880b298de9aeae12c2fc6630ea9b9511b32c55b9cd72f294d5",
+        "status": "reviewed"
+      },
+      "source_signature": "130c339b593ee2bf67c660099f06f89b7ec1bd6a9cbe67c657209af8f7b0e7f0"
+    },
+    {
+      "event_uid": "evt_33f4414526c546b9a6812ceac6a82a2d",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "10961d4858e204b7fc04",
+        "fingerprint": "cdda1262656c479de1278768327bc7d4439a5a041da1567b59bd3b4536336cc8",
+        "identity": {
+          "artist_name": "JX",
+          "event_date": "2026-11-15",
+          "event_end_date": "2026-11-15",
+          "event_start_time": "17:00",
+          "title": "JX 2026 TOUR CONCERT <CORE>",
+          "venue_name": "Asueアリーナ大阪"
+        },
+        "source_records": [
+          {
+            "record_id": "3a5403416a27255ca1f7126edf3d9545003c21c39a671cd32c601d691dbfbd76",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://jaefans.com/information/schedule/schedule/2618"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://jaefans.com/information/schedule/schedule/2618"
+        ],
+        "row_sha256": "9de02d6ca557e700aad6692205b7916089bf737b935cbbab7f9128903c157b07",
+        "status": "reviewed"
+      },
+      "source_signature": "8a9856d4d887a4ba51410d4a686838e192190a3a268963f6b993a022f93570a1"
     }
   ],
   "schema_version": 1

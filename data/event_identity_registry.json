@@ -33727,6 +33727,64 @@
           ]
         }
       ]
+    },
+    {
+      "event_uid": "evt_cd7098c9a7594a998d4a22d5ce8611a3",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "7150cdbffad36a825e7c",
+          "evidence": {
+            "reason": "Official venue November schedule and jaefans schedule pages 2617/2618 confirm JX CORE at Asue Arena Osaka on 2026-11-14 and 2026-11-15, both START 17:00. User explicitly approved these two existing candidates for registration, distribution and production publication on 2026-11-11. No other candidates are adopted.",
+            "reviewed_at_utc": "2026-11-11T04:03:23.034079+00:00",
+            "url": "https://www.yahataya-park.jp/osaka_arena/schedule/schedule1.html"
+          },
+          "fingerprint": "a5a1a2dc851206e9a6b166639c249333bc62cec278b89f5a4297d34e1b37ed77",
+          "identity": {
+            "artist_name": "JX",
+            "event_date": "2026-11-14",
+            "event_end_date": "2026-11-14",
+            "event_start_time": "17:00",
+            "title": "JX 2026 TOUR CONCERT <CORE>",
+            "venue_name": "Asueアリーナ大阪 メインアリーナ"
+          },
+          "source_records": [
+            {
+              "record_id": "ce630a17b2f63922489daa09dd5b0a8a991793c28a3763acfffcd826286710f2",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_33f4414526c546b9a6812ceac6a82a2d",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "10961d4858e204b7fc04",
+          "evidence": {
+            "reason": "Official venue November schedule and jaefans schedule pages 2617/2618 confirm JX CORE at Asue Arena Osaka on 2026-11-14 and 2026-11-15, both START 17:00. User explicitly approved these two existing candidates for registration, distribution and production publication on 2026-11-11. No other candidates are adopted.",
+            "reviewed_at_utc": "2026-11-11T04:03:23.034079+00:00",
+            "url": "https://www.yahataya-park.jp/osaka_arena/schedule/schedule1.html"
+          },
+          "fingerprint": "cdda1262656c479de1278768327bc7d4439a5a041da1567b59bd3b4536336cc8",
+          "identity": {
+            "artist_name": "JX",
+            "event_date": "2026-11-15",
+            "event_end_date": "2026-11-15",
+            "event_start_time": "17:00",
+            "title": "JX 2026 TOUR CONCERT <CORE>",
+            "venue_name": "Asueアリーナ大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "3a5403416a27255ca1f7126edf3d9545003c21c39a671cd32c601d691dbfbd76",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -35976,9 +36034,33 @@
         "eabe3053b027e8fc2181"
       ],
       "request_sha256": "67721d054ce8110ed4afca99d23e5c1bd5ef41957139622689bad9484863a85d"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_cd7098c9a7594a998d4a22d5ce8611a3",
+          "fingerprint": "a5a1a2dc851206e9a6b166639c249333bc62cec278b89f5a4297d34e1b37ed77"
+        },
+        {
+          "event_uid": "evt_33f4414526c546b9a6812ceac6a82a2d",
+          "fingerprint": "cdda1262656c479de1278768327bc7d4439a5a041da1567b59bd3b4536336cc8"
+        }
+      ],
+      "evidence": {
+        "reason": "Official venue November schedule and jaefans schedule pages 2617/2618 confirm JX CORE at Asue Arena Osaka on 2026-11-14 and 2026-11-15, both START 17:00. User explicitly approved these two existing candidates for registration, distribution and production publication on 2026-11-11. No other candidates are adopted.",
+        "reviewed_at_utc": "2026-11-11T04:03:23.034079+00:00",
+        "url": "https://www.yahataya-park.jp/osaka_arena/schedule/schedule1.html"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_cd7098c9a7594a998d4a22d5ce8611a3",
+        "evt_33f4414526c546b9a6812ceac6a82a2d"
+      ],
+      "previous_ids": [],
+      "request_sha256": "075e7ac5c6c4eae612bad92d4073ecbcf9715f6e559e59f2d6cdfdda0c7eb429"
     }
   ],
-  "revision": 90,
+  "revision": 91,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
