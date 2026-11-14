@@ -1,208 +1,6 @@
 {
-  "as_of_date": "2026-11-14",
+  "as_of_date": "2026-11-15",
   "events": [
-    {
-      "artist_name": "日向坂46",
-      "capacity": 2801,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-16",
-      "event_end_date": "2026-08-16",
-      "event_end_time": null,
-      "event_key": "7a9271f50b639967c2cd",
-      "event_start_time": "17:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=165759",
-      "first_seen_at_utc": "2026-06-28T08:06:32Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "日向坂46",
-      "raw_venue_name": "Zepp Osaka Bayside",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=165759",
-          "priority": 10,
-          "record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=165759",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "日向坂46 三期生LIVE",
-          "updated_at_utc": "2026-08-31T10:58:59Z",
-          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=165759"
-        }
-      ],
-      "title": "日向坂46 三期生LIVE",
-      "updated_at_utc": "2026-08-31T10:58:59Z",
-      "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=165759",
-      "venue_name": "Zepp Osaka Bayside"
-    },
-    {
-      "artist_name": "EBiDAN",
-      "capacity": 12542,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-16",
-      "event_end_date": "2026-08-16",
-      "event_end_time": null,
-      "event_key": "dbeec631ff1de038a3e2",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6039&etype=1",
-      "first_seen_at_utc": "2026-08-01T08:24:21Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "EBiDAN",
-      "raw_venue_name": "国立代々木競技場第一体育館",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6039&etype=1",
-          "priority": 10,
-          "record_id": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6039&etype=1",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "EBiDAN THE LIVE 2026 15th Anniversary",
-          "updated_at_utc": "2026-08-31T10:59:53Z",
-          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6039&etype=1"
-        }
-      ],
-      "title": "EBiDAN THE LIVE 2026 15th Anniversary",
-      "updated_at_utc": "2026-08-31T10:59:53Z",
-      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6039&etype=1",
-      "venue_name": "国立代々木競技場第一体育館"
-    },
-    {
-      "artist_name": "DOH KYUNG SOO",
-      "capacity": 8000,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-16",
-      "event_end_date": "2026-08-16",
-      "event_end_time": null,
-      "event_key": "4e2691cb74b46048e688",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5265/",
-      "first_seen_at_utc": "2026-06-19T09:22:37Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "DOH KYUNG SOO",
-      "raw_venue_name": "東京ガーデンシアター",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5265/",
-          "priority": 10,
-          "record_id": "tokyo_garden_theater:https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5265/",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "DOH KYUNG SOO 2026 DOH KYUNG SOO JAPAN FANMEETING ‘This station is SUMMER’",
-          "updated_at_utc": "2026-06-19T09:22:37Z",
-          "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5265/"
-        }
-      ],
-      "title": "DOH KYUNG SOO 2026 DOH KYUNG SOO JAPAN FANMEETING ‘This station is SUMMER’",
-      "updated_at_utc": "2026-06-19T09:22:37Z",
-      "url": "https://www.shopping-sumitomo-rd.com/tokyo_garden_theater/schedule/5265/",
-      "venue_name": "東京ガーデンシアター"
-    },
-    {
-      "artist_name": "SEKAI NO OWARI",
-      "capacity": 55000,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-16",
-      "event_end_date": "2026-08-16",
-      "event_end_time": null,
-      "event_key": "f8818abcca7879f8da76",
-      "event_start_time": "18:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-      "first_seen_at_utc": "2026-02-27T04:48:43Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "SEKAI NO OWARI",
-      "raw_venue_name": "東京ドーム",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-          "priority": 10,
-          "record_id": "tokyo_dome:https://www.sekainoowari-tour.jp/#d=2026-08-16#t=18:00",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "SEKAI NO OWARI DOME TOUR 2026「THE CINEMA」",
-          "updated_at_utc": "2026-08-31T10:45:25Z",
-          "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html"
-        },
-        {
-          "content_extractor": "requests_bs4",
-          "evidence_url": "https://sekainoowari.jp/info/2026/06/29/4466/",
-          "priority": 20,
-          "record_id": "6f23244a8a6f7b30ae91068f5059a8516de1dde70eeea1cce9de2c06bbbd1b98",
-          "source_class": "artist_official",
-          "source_id": "venue_web_discovery",
-          "source_label": "Venue Web Discovery (Official/Semi-official)",
-          "title": "SEKAI NO OWARI DOME TOUR 2026「THE CINEMA」",
-          "updated_at_utc": "2026-10-10T15:18:49Z",
-          "url": "https://sekainoowari.jp/info/2026/06/29/4466/"
-        }
-      ],
-      "title": "SEKAI NO OWARI DOME TOUR 2026「THE CINEMA」",
-      "updated_at_utc": "2026-08-31T10:45:25Z",
-      "url": "https://www.tokyo-dome.co.jp/dome/event/schedule.html",
-      "venue_name": "東京ドーム"
-    },
-    {
-      "artist_name": "MeseMoa.",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-16",
-      "event_end_date": "2026-08-16",
-      "event_end_time": null,
-      "event_key": "44641328e8bec2c153ae",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202608/8735.html",
-      "first_seen_at_utc": "2026-08-10T05:54:01Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "MeseMoa.",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202608/8735.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202608/8735.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "MeseMoa. MeseMoa.の日2026 〜今年は祭りだ!! ＼ワッショイ!ワッショイ!／",
-          "updated_at_utc": "2026-08-10T05:54:01Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202608/8735.html"
-        }
-      ],
-      "title": "MeseMoa. MeseMoa.の日2026 〜今年は祭りだ!! ＼ワッショイ!ワッショイ!／",
-      "updated_at_utc": "2026-08-10T05:54:01Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202608/8735.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "日向坂46",
       "capacity": 2886,
@@ -39952,8 +39750,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-14T11:43:38Z",
-  "history_start_date": "2026-08-16",
+  "generated_at_utc": "2026-11-14T17:59:48Z",
+  "history_start_date": "2026-08-17",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 91,
@@ -40005,6 +39803,26 @@
     {
       "reason": "unresolved_domestic_location",
       "record_id": "7ae4303173a54a0cc633d0b9a6091f68082583adb93b53b2b4398984d5870d3c",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "3204bec217372cec5146a053f95edb87cd5e726c5457cbd90a9f5f7410913246",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "a6f015d882426109fdd75622153c27f3ade788cb023c570f89df82b55a46e2f2",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "bc96e29a399cd581947a882bf319c1b80ff584c74b0eb640e14c044b6a9973ce",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "73e9c5b5dc99981c19edd470ce69125c035d31101d4cfcff08a46b4d92be7796",
       "source_id": "kstyle_music"
     },
     {
@@ -40147,14 +39965,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 690,
+      "official_events": 685,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 1001,
-    "identity_held_record_count": 2070,
-    "location_held_record_count": 35,
-    "record_count_before_grouping": 3312,
+    "event_count": 996,
+    "identity_held_record_count": 2056,
+    "location_held_record_count": 39,
+    "record_count_before_grouping": 3292,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 18,
