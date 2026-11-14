@@ -19,3 +19,8 @@ jobs:
       - name: Check venue discovery inbox freshness
         run: |
           python -m scripts.check_automation_freshness --file data/venue_discovery_inbox.json --max-age-days 3
+      - name: Check venue discovery backlog is draining
+        # A fresh inbox does not mean deferred candidates were applied.
+        if: always()
+        run: |
+          python -m scripts.check_automation_freshness --backlog data/venue_discovery_backlog.json --max-pending-age-days 7

@@ -152,7 +152,8 @@ uv run streamlit run app.py
 - Codex app automation `msv-venue-discovery` はMacBook Pro上で毎日実行し、公式/準公式本文で確認した候補を `data/venue_discovery_inbox.json` だけに書いてpushする。候補0件でも実行時刻を更新する。
 - `.github/workflows/update_signals_venue_web_discovery.yml` はinboxの`main`へのpush、毎日のschedule、手動実行で起動する。inbox適用、DB更新、LP JSON生成、検証を行い、成功後にRelease公開workflowが走る。
 - `.github/workflows/update_signals.yml` はニュース（STARTO/Kstyle）を12時間ごとに更新する。
-- `.github/workflows/watch_automation_freshness.yml` は毎日、inboxの`run_at_utc`が3日より古い場合に失敗する。
+- inboxの`candidates`は1回30件まで。あふれた候補は`deferred_candidates`に入り、Actionsが`data/venue_discovery_backlog.json`に持ち越して1回30件ずつ古い順に取り込む。
+- `.github/workflows/watch_automation_freshness.yml` は毎日、inboxの`run_at_utc`が3日より古い場合に失敗する。持ち越しの最古の残件が7日を超えた場合も失敗する。
 - 詳細なinbox契約と実行順は `docs/spec_update_pipeline.md` を参照。
 
 ## ワークスペース索引

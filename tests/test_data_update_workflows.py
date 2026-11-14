@@ -92,6 +92,7 @@ class LpBuildingWorkflowPushScriptTest(unittest.TestCase):
         "data/event_signals.sqlite",
         "data/lp_events.json",
         "data/venue_web_discovery_config.json",
+        "data/venue_discovery_backlog.json",
         "scripts/placeholder.py",
         "docs/placeholder.md",
         "app.py",

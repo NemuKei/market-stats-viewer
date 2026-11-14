@@ -32,8 +32,8 @@ description: 会場起点のWeb検索・公式/準公式ページ確認で大型
    - アーティスト名またはイベント名
    - 公式/準公式 source class
    - evidence URL と短い evidence snippet
-5. 既に `confirmed_events` または `data/lp_events.json` にある公演は候補から除く。候補は1回30件まで。
-6. `data/venue_discovery_inbox.json` を schema_version=1 で丸ごと書き直す。`run_at_utc` は実行時刻（UTC、末尾Z）。`candidates` の各行は `confirmed_events` と同じfield名（`event_start_date`、`event_end_date`、`event_start_time`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`title`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet`、`content_extractor`、`discovery_query`、`verified_at_utc`）を使う。採用しなかった有力候補は `rejected` に `query`、`url`、`reason` を残す。候補0件でも `run_at_utc` を更新する（停止検知の生存信号）。
+5. 既に `confirmed_events` または `data/lp_events.json` にある公演は候補から除く。`candidates` は1回30件まで。30件を超えた分は切り捨てず、理由文にまとめず、同じ形の行で `deferred_candidates`（最大120件）に1件ずつ入れる。Actions が `data/venue_discovery_backlog.json` に持ち越し、1回30件ずつ古い順に取り込む。backlog の `pending` にある候補は再掲しなくてよい（再掲しても重複せず、根拠が変わっていれば新しい根拠で置き換わる）。開始時刻が本文にない行は `event_start_time` を入れない。
+6. `data/venue_discovery_inbox.json` を schema_version=1 で丸ごと書き直す。`run_at_utc` は実行時刻（UTC、末尾Z）。`candidates` の各行は `confirmed_events` と同じfield名（`event_start_date`、`event_end_date`、`event_start_time`、`venue_name`、`raw_venue_name`、`artist_name`、`raw_artist_name`、`title`、`event_category`、`source_class`、`confidence`、`evidence_url`、`evidence_snippet`、`content_extractor`、`discovery_query`、`verified_at_utc`）を使う。`deferred_candidates` の行も同じfield名を使う。採用しなかった有力候補は `rejected` に `query`、`url`、`reason` を残す（上限であふれた候補は `rejected` に入れない）。候補0件でも `run_at_utc` を更新する（停止検知の生存信号）。
 7. `data/venue_web_discovery_config.json` の一時コピーに対して `python -m scripts.apply_venue_discovery_inbox --config <一時コピー>` を実行し、rejected が出たら理由を見て inbox を直す。repo の config は変更しない。
 8. `data/venue_discovery_inbox.json` だけを commit / push する。push を合図に Actions が検証・config追記・signals・LP・Release まで反映する。
 
@@ -59,3 +59,4 @@ description: 会場起点のWeb検索・公式/準公式ページ確認で大型
 - `lp_events.json` は同一キー `event_date + canonical venue_name + canonical artist_name` で統合し、`display_source_id` と `supporting_sources` を持つ。
 - `lp_impact` は通常 `display_count_change`、`source_priority_change`、`manifest_asset_change` のいずれかまたは複数になる。
 - inbox が3日更新されないと `watch_automation_freshness.yml` が失敗する。
+- backlog の最古の残件が7日を超えて残ると、同じ workflow の別の段が失敗する。inbox が新しいことは持ち越しの取り込み済みを意味しない。

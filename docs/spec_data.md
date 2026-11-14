@@ -104,7 +104,7 @@
 
 ### 外部アプリ向けのイベントデータ契約
 - 外部アプリが利用する配布単位は GitHub Release `external-events-latest` の `events.sqlite` / `event_signals.sqlite` / `lp_events.json` / `manifest.json` とする。
-- `data/venue_discovery_inbox.json` はCodex Automationが書く入力ファイルであり、Release assetではない。`schema_version=1`、`run_at_utc`、`automation_id`、`candidates`、`rejected` を持ち、候補が0件でも実行時刻を更新する。候補の項目と検証条件は `docs/spec_update_pipeline.md` に従う。
+- `data/venue_discovery_inbox.json` はCodex Automationが書く入力ファイルであり、Release assetではない。`schema_version=1`、`run_at_utc`、`automation_id`、`candidates`、`rejected` を持ち、候補が0件でも実行時刻を更新する。候補の項目と検証条件は `docs/spec_update_pipeline.md` に従う。30件を超えた候補は任意の `deferred_candidates` に入る。`data/venue_discovery_backlog.json` はActionsだけが書く持ち越し台帳で、未処理の候補（`pending`）と残件数・最古の残件を持つ。Release assetではない。
 - `manifest.json` は配布ファイルの鮮度と同一性を確認するためのメタデータであり、利用側は `generated_at_utc`、各 asset の `sha256`、`size_bytes` を確認できる。
 - LP向けイベント一覧は、重複統合済みの `lp_events.json` を読む。LP側で同じsource priorityを再実装しない。
 - `lp_events.json` のpayloadには `ticketjam_policy`、`discovery_source_ids`、`ticketjam_promoted_held_records`、`summary.ticketjam_*` を含めない。国内所在地を確定できない掲載候補は `location_held_records` にsource_id/record_id/reasonを残し、`summary.location_held_record_count` に件数を保持する。
