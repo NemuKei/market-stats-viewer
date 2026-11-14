@@ -323,8 +323,14 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--inbox", type=Path, default=DEFAULT_INBOX)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--backlog", type=Path, default=DEFAULT_BACKLOG)
+    parser.add_argument("--backlog", type=Path, default=None,
+                        help="backlog to read and update (default: data/venue_discovery_backlog.json)")
     args = parser.parse_args(argv)
+    # A check against a temporary config copy (the automation's pre-push validation) must
+    # not touch the tracked backlog: read it so pending rows are visible, but never save.
+    save_backlog = args.backlog is not None or args.config.resolve() == DEFAULT_CONFIG.resolve()
+    if args.backlog is None:
+        args.backlog = DEFAULT_BACKLOG
     config = json.loads(args.config.read_text(encoding="utf-8"))
     try:
         inbox = json.loads(args.inbox.read_text(encoding="utf-8")) if args.inbox.exists() else None
@@ -341,8 +347,10 @@ def main(argv: list[str] | None = None) -> int:
     if run.applied_count:
         args.config.write_text(json.dumps(run.config, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
                                encoding="utf-8")
-    if run.backlog != backlog or not args.backlog.exists():
+    if save_backlog and (run.backlog != backlog or not args.backlog.exists()):
         args.backlog.write_text(json.dumps(run.backlog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    elif not save_backlog:
+        print(f"validation run: backlog not saved ({args.backlog})")
     lines = _summary_lines(run)
     for line in lines:
         print(line)

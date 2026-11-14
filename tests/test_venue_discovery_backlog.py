@@ -168,6 +168,27 @@ def test_main_writes_backlog_and_config(tmp_path, monkeypatch, capsys):
     assert json.loads((tmp_path / "backlog.json").read_text(encoding="utf-8"))["pending_count"] == 0
 
 
+def test_validation_with_temporary_config_does_not_save_tracked_backlog(tmp_path, monkeypatch, capsys):
+    tracked = tmp_path / "tracked_backlog.json"
+    tracked.write_text(json.dumps(empty_backlog()), encoding="utf-8")
+    before = tracked.read_text(encoding="utf-8")
+    monkeypatch.setattr("scripts.apply_venue_discovery_inbox.DEFAULT_BACKLOG", tracked)
+    monkeypatch.setattr("scripts.apply_venue_discovery_inbox.load_venue_lookup_maps", lambda: VENUE_MAPS)
+    monkeypatch.setattr("scripts.apply_venue_discovery_inbox.load_artist_lookup_maps", lambda: ARTIST_MAPS)
+    (tmp_path / "inbox.json").write_text(json.dumps(inbox("2026-11-14T03:00:00Z", [game(1)], [game(2)])),
+                                         encoding="utf-8")
+    temp_config = tmp_path / "config-check.json"
+    temp_config.write_text(json.dumps(CONFIG), encoding="utf-8")
+    args = ["--inbox", str(tmp_path / "inbox.json"), "--config", str(temp_config)]
+    assert main(args) == 0
+    assert tracked.read_text(encoding="utf-8") == before
+    assert "validation run: backlog not saved" in capsys.readouterr().out
+    # A fresh temporary copy validates the same rows again instead of seeing them as ingested.
+    temp_config.write_text(json.dumps(CONFIG), encoding="utf-8")
+    assert main(args) == 0
+    assert "queued=2" in capsys.readouterr().out
+
+
 NOW = datetime(2026, 11, 20, tzinfo=timezone.utc)
 
 
