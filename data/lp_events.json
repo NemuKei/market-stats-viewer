@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-11-15",
+  "as_of_date": "2026-11-16",
   "events": [
-    {
-      "artist_name": "日向坂46",
-      "capacity": 2886,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-17",
-      "event_end_date": "2026-08-17",
-      "event_end_time": null,
-      "event_key": "83b919ff3fcdf375e7d6",
-      "event_start_time": "18:30",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162654",
-      "first_seen_at_utc": "2026-04-10T06:14:53Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "日向坂46",
-      "raw_venue_name": "Zepp Haneda(Tokyo)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162654",
-          "priority": 10,
-          "record_id": "zepp_haneda:https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162654",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "日向坂46三期生 LIVE",
-          "updated_at_utc": "2026-08-31T10:57:31Z",
-          "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162654"
-        }
-      ],
-      "title": "日向坂46三期生 LIVE",
-      "updated_at_utc": "2026-08-31T10:57:31Z",
-      "url": "https://www.zepp.co.jp/hall/haneda/schedule/single/?rid=162654",
-      "venue_name": "Zepp Haneda(Tokyo)"
-    },
     {
       "artist_name": "CNBLUE",
       "capacity": 8000,
@@ -39750,8 +39712,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-15T12:13:37Z",
-  "history_start_date": "2026-08-17",
+  "generated_at_utc": "2026-11-15T18:50:14Z",
+  "history_start_date": "2026-08-18",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 91,
@@ -39955,14 +39917,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 685,
+      "official_events": 684,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 996,
-    "identity_held_record_count": 2094,
+    "event_count": 995,
+    "identity_held_record_count": 2089,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 3330,
+    "record_count_before_grouping": 3324,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 18,
