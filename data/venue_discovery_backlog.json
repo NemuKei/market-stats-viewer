@@ -2,663 +2,85 @@
   "schema_version": 1,
   "last_ingested_inbox_run_at_utc": "2026-11-15T03:10:54Z",
   "next_seq": 39,
-  "pending_count": 8,
-  "oldest_pending_first_detected_at_utc": "2026-11-15T03:10:54Z",
-  "pending": [
-    {
-      "seq": 31,
-      "queue_key": [
-        "2027-09-19",
-        "バンテリンドームナゴヤ",
-        "中日ドラゴンズ"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-09-19",
-        "event_end_date": "2027-09-19",
-        "venue_name": "バンテリンドームナゴヤ",
-        "raw_venue_name": "バンテリンドーム ナゴヤ",
-        "artist_name": "中日ドラゴンズ",
-        "raw_artist_name": "中日",
-        "title": "中日 vs DeNA",
-        "event_category": "野球",
-        "source_class": "venue_official",
-        "confidence": "high",
-        "evidence_url": "https://www.nagoya-dome.co.jp/sp/eventcalen.php?ym=202703",
-        "evidence_snippet": "9/19( 日 ) 開場 --- ／ 開始 --- 中日vsDeNA",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "2027 バンテリンドーム 中日ドラゴンズ 公式戦 イベントカレンダー",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 32,
-      "queue_key": [
-        "2027-09-20",
-        "バンテリンドームナゴヤ",
-        "中日ドラゴンズ"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-09-20",
-        "event_end_date": "2027-09-20",
-        "venue_name": "バンテリンドームナゴヤ",
-        "raw_venue_name": "バンテリンドーム ナゴヤ",
-        "artist_name": "中日ドラゴンズ",
-        "raw_artist_name": "中日",
-        "title": "中日 vs DeNA",
-        "event_category": "野球",
-        "source_class": "venue_official",
-        "confidence": "high",
-        "evidence_url": "https://www.nagoya-dome.co.jp/sp/eventcalen.php?ym=202703",
-        "evidence_snippet": "9/20(月) 開場 --- ／ 開始 --- 中日vsDeNA",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "2027 バンテリンドーム 中日ドラゴンズ 公式戦 イベントカレンダー",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 33,
-      "queue_key": [
-        "2027-09-22",
-        "バンテリンドームナゴヤ",
-        "中日ドラゴンズ"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-09-22",
-        "event_end_date": "2027-09-22",
-        "venue_name": "バンテリンドームナゴヤ",
-        "raw_venue_name": "バンテリンドーム ナゴヤ",
-        "artist_name": "中日ドラゴンズ",
-        "raw_artist_name": "中日",
-        "title": "中日 vs 巨人",
-        "event_category": "野球",
-        "source_class": "venue_official",
-        "confidence": "high",
-        "evidence_url": "https://www.nagoya-dome.co.jp/sp/eventcalen.php?ym=202703",
-        "evidence_snippet": "9/22(水) 開場 --- ／ 開始 --- 中日vs巨人",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "2027 バンテリンドーム 中日ドラゴンズ 公式戦 イベントカレンダー",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 34,
-      "queue_key": [
-        "2027-09-23",
-        "バンテリンドームナゴヤ",
-        "中日ドラゴンズ"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-09-23",
-        "event_end_date": "2027-09-23",
-        "venue_name": "バンテリンドームナゴヤ",
-        "raw_venue_name": "バンテリンドーム ナゴヤ",
-        "artist_name": "中日ドラゴンズ",
-        "raw_artist_name": "中日",
-        "title": "中日 vs 巨人",
-        "event_category": "野球",
-        "source_class": "venue_official",
-        "confidence": "high",
-        "evidence_url": "https://www.nagoya-dome.co.jp/sp/eventcalen.php?ym=202703",
-        "evidence_snippet": "9/23( 木･祝 ) 開場 --- ／ 開始 --- 中日vs巨人",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "2027 バンテリンドーム 中日ドラゴンズ 公式戦 イベントカレンダー",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 35,
-      "queue_key": [
-        "2027-09-25",
-        "バンテリンドームナゴヤ",
-        "中日ドラゴンズ"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-09-25",
-        "event_end_date": "2027-09-25",
-        "venue_name": "バンテリンドームナゴヤ",
-        "raw_venue_name": "バンテリンドーム ナゴヤ",
-        "artist_name": "中日ドラゴンズ",
-        "raw_artist_name": "中日",
-        "title": "中日 vs 阪神",
-        "event_category": "野球",
-        "source_class": "venue_official",
-        "confidence": "high",
-        "evidence_url": "https://www.nagoya-dome.co.jp/sp/eventcalen.php?ym=202703",
-        "evidence_snippet": "9/25( 土 ) 開場 --- ／ 開始 --- 中日vs阪神",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "2027 バンテリンドーム 中日ドラゴンズ 公式戦 イベントカレンダー",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 36,
-      "queue_key": [
-        "2027-09-26",
-        "バンテリンドームナゴヤ",
-        "中日ドラゴンズ"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-09-26",
-        "event_end_date": "2027-09-26",
-        "venue_name": "バンテリンドームナゴヤ",
-        "raw_venue_name": "バンテリンドーム ナゴヤ",
-        "artist_name": "中日ドラゴンズ",
-        "raw_artist_name": "中日",
-        "title": "中日 vs 阪神",
-        "event_category": "野球",
-        "source_class": "venue_official",
-        "confidence": "high",
-        "evidence_url": "https://www.nagoya-dome.co.jp/sp/eventcalen.php?ym=202703",
-        "evidence_snippet": "9/26( 日 ) 開場 --- ／ 開始 --- 中日vs阪神",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "2027 バンテリンドーム 中日ドラゴンズ 公式戦 イベントカレンダー",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 37,
-      "queue_key": [
-        "2027-12-17",
-        "横浜アリーナ",
-        "ときのそら"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-12-17",
-        "event_end_date": "2027-12-17",
-        "venue_name": "横浜アリーナ",
-        "raw_venue_name": "横浜アリーナ",
-        "artist_name": "ときのそら",
-        "raw_artist_name": "ときのそら",
-        "title": "ときのそら 10th Anniversary Party",
-        "event_category": "コンサート",
-        "source_class": "artist_official",
-        "confidence": "high",
-        "evidence_url": "https://tokinosora-live.com/sorapa2027-yokohama-arena/",
-        "evidence_snippet": "ときのそら 10th Anniversary Party 開催日 2027年12月17日(金)・18日(土) 2DAYS 会場 横浜アリーナ",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "ときのそら 横浜アリーナ 2027 12月17日 18日 10周年 公式",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    },
-    {
-      "seq": 38,
-      "queue_key": [
-        "2027-12-18",
-        "横浜アリーナ",
-        "ときのそら"
-      ],
-      "origin": "deferred_candidates",
-      "first_detected_at_utc": "2026-11-15T03:10:54Z",
-      "last_seen_at_utc": "2026-11-15T03:10:54Z",
-      "revisions": 0,
-      "candidate": {
-        "event_start_date": "2027-12-18",
-        "event_end_date": "2027-12-18",
-        "venue_name": "横浜アリーナ",
-        "raw_venue_name": "横浜アリーナ",
-        "artist_name": "ときのそら",
-        "raw_artist_name": "ときのそら",
-        "title": "ときのそら 10th Anniversary Party",
-        "event_category": "コンサート",
-        "source_class": "artist_official",
-        "confidence": "high",
-        "evidence_url": "https://tokinosora-live.com/sorapa2027-yokohama-arena/",
-        "evidence_snippet": "ときのそら 10th Anniversary Party 開催日 2027年12月17日(金)・18日(土) 2DAYS 会場 横浜アリーナ",
-        "content_extractor": "requests_bs4",
-        "discovery_query": "ときのそら 横浜アリーナ 2027 12月17日 18日 10周年 公式",
-        "verified_at_utc": "2026-11-15T03:10:54Z"
-      }
-    }
-  ],
+  "pending_count": 0,
+  "oldest_pending_first_detected_at_utc": null,
+  "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-15T03:11:37Z",
+    "at_utc": "2026-11-15T12:12:14Z",
     "ingest": {
       "inbox_run_at_utc": "2026-11-15T03:10:54Z",
-      "status": "ingested",
-      "queued": [
-        {
-          "title": "第20回世界剣道選手権大会",
-          "seq": 1,
-          "origin": "candidates"
-        },
-        {
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "seq": 2,
-          "origin": "candidates"
-        },
-        {
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "seq": 3,
-          "origin": "candidates"
-        },
-        {
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "seq": 4,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs DeNA",
-          "seq": 5,
-          "origin": "candidates"
-        },
-        {
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "seq": 6,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 7,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 8,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 9,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 10,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 11,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 12,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 広島",
-          "seq": 13,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 広島",
-          "seq": 14,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 広島",
-          "seq": 15,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 16,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 17,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 18,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 広島",
-          "seq": 19,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 広島",
-          "seq": 20,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 広島",
-          "seq": 21,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 22,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 23,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 24,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs ヤクルト",
-          "seq": 25,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs ヤクルト",
-          "seq": 26,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs ヤクルト",
-          "seq": 27,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs DeNA",
-          "seq": 28,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs DeNA",
-          "seq": 29,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs ヤクルト",
-          "seq": 30,
-          "origin": "candidates"
-        },
-        {
-          "title": "中日 vs DeNA",
-          "seq": 31,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "中日 vs DeNA",
-          "seq": 32,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 33,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "中日 vs 巨人",
-          "seq": 34,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 35,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "中日 vs 阪神",
-          "seq": 36,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "ときのそら 10th Anniversary Party",
-          "seq": 37,
-          "origin": "deferred_candidates"
-        },
-        {
-          "title": "ときのそら 10th Anniversary Party",
-          "seq": 38,
-          "origin": "deferred_candidates"
-        }
-      ],
+      "status": "already_ingested",
+      "queued": [],
       "updated": [],
       "duplicates": [],
       "rejected": []
     },
     "process": {
       "limit": 30,
-      "processed": 30,
-      "applied": 30,
+      "processed": 8,
+      "applied": 8,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 1,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "第20回世界剣道選手権大会",
-          "event_id": "vwd-fb1a6908a243"
-        },
-        {
-          "seq": 2,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "event_id": "vwd-9e57c8451556"
-        },
-        {
-          "seq": 3,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "event_id": "vwd-d71dd8353d00"
-        },
-        {
-          "seq": 4,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "event_id": "vwd-2ddff924aeb0"
-        },
-        {
-          "seq": 5,
+          "seq": 31,
           "first_detected_at_utc": "2026-11-15T03:10:54Z",
           "outcome": "applied",
           "title": "中日 vs DeNA",
-          "event_id": "vwd-1e4db634fe00"
+          "event_id": "vwd-b8b89610d452"
         },
         {
-          "seq": 6,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "SEKAI NO OWARI ARENA TOUR 2027",
-          "event_id": "vwd-2cdabcf28da3"
-        },
-        {
-          "seq": 7,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-88350314c1c3"
-        },
-        {
-          "seq": 8,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-4a45c1c2b51b"
-        },
-        {
-          "seq": 9,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-cc8cfe447b26"
-        },
-        {
-          "seq": 10,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-68552871fe04"
-        },
-        {
-          "seq": 11,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-57b18203c982"
-        },
-        {
-          "seq": 12,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-bd84f2d2267e"
-        },
-        {
-          "seq": 13,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 広島",
-          "event_id": "vwd-00ee1228f523"
-        },
-        {
-          "seq": 14,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 広島",
-          "event_id": "vwd-93c8ffcf04d5"
-        },
-        {
-          "seq": 15,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 広島",
-          "event_id": "vwd-e52120f43599"
-        },
-        {
-          "seq": 16,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-791d69929d56"
-        },
-        {
-          "seq": 17,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-f7180547afba"
-        },
-        {
-          "seq": 18,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-1f2e071ffa58"
-        },
-        {
-          "seq": 19,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 広島",
-          "event_id": "vwd-f973272398ec"
-        },
-        {
-          "seq": 20,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 広島",
-          "event_id": "vwd-722fe81836bd"
-        },
-        {
-          "seq": 21,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 広島",
-          "event_id": "vwd-cbe1d122bdca"
-        },
-        {
-          "seq": 22,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-f02a60468dec"
-        },
-        {
-          "seq": 23,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-b6f803f78a1c"
-        },
-        {
-          "seq": 24,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-fac278d37684"
-        },
-        {
-          "seq": 25,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs ヤクルト",
-          "event_id": "vwd-7c7b92542695"
-        },
-        {
-          "seq": 26,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs ヤクルト",
-          "event_id": "vwd-a855881c993b"
-        },
-        {
-          "seq": 27,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs ヤクルト",
-          "event_id": "vwd-d654a490c503"
-        },
-        {
-          "seq": 28,
+          "seq": 32,
           "first_detected_at_utc": "2026-11-15T03:10:54Z",
           "outcome": "applied",
           "title": "中日 vs DeNA",
-          "event_id": "vwd-c6d3a18e8c9b"
+          "event_id": "vwd-7fcf0f8ba693"
         },
         {
-          "seq": 29,
+          "seq": 33,
           "first_detected_at_utc": "2026-11-15T03:10:54Z",
           "outcome": "applied",
-          "title": "中日 vs DeNA",
-          "event_id": "vwd-a70bc8f43ee0"
+          "title": "中日 vs 巨人",
+          "event_id": "vwd-62212ebf0fec"
         },
         {
-          "seq": 30,
+          "seq": 34,
           "first_detected_at_utc": "2026-11-15T03:10:54Z",
           "outcome": "applied",
-          "title": "中日 vs ヤクルト",
-          "event_id": "vwd-f0e0fbd5e802"
+          "title": "中日 vs 巨人",
+          "event_id": "vwd-02edeb8800df"
+        },
+        {
+          "seq": 35,
+          "first_detected_at_utc": "2026-11-15T03:10:54Z",
+          "outcome": "applied",
+          "title": "中日 vs 阪神",
+          "event_id": "vwd-75c73599d400"
+        },
+        {
+          "seq": 36,
+          "first_detected_at_utc": "2026-11-15T03:10:54Z",
+          "outcome": "applied",
+          "title": "中日 vs 阪神",
+          "event_id": "vwd-db533a29b602"
+        },
+        {
+          "seq": 37,
+          "first_detected_at_utc": "2026-11-15T03:10:54Z",
+          "outcome": "applied",
+          "title": "ときのそら 10th Anniversary Party",
+          "event_id": "vwd-09ae4430f952"
+        },
+        {
+          "seq": 38,
+          "first_detected_at_utc": "2026-11-15T03:10:54Z",
+          "outcome": "applied",
+          "title": "ときのそら 10th Anniversary Party",
+          "event_id": "vwd-d74551858005"
         }
       ],
-      "pending_after": 8,
-      "oldest_pending_first_detected_at_utc": "2026-11-15T03:10:54Z"
+      "pending_after": 0,
+      "oldest_pending_first_detected_at_utc": null
     }
   }
 }
