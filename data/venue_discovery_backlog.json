@@ -1,82 +1,51 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-15T03:10:54Z",
-  "next_seq": 39,
+  "last_ingested_inbox_run_at_utc": "2026-11-16T03:12:56Z",
+  "next_seq": 41,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-15T12:12:14Z",
+    "at_utc": "2026-11-16T03:13:33Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-15T03:10:54Z",
-      "status": "already_ingested",
-      "queued": [],
+      "inbox_run_at_utc": "2026-11-16T03:12:56Z",
+      "status": "ingested",
+      "queued": [
+        {
+          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
+          "seq": 39,
+          "origin": "candidates"
+        },
+        {
+          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
+          "seq": 40,
+          "origin": "candidates"
+        }
+      ],
       "updated": [],
       "duplicates": [],
       "rejected": []
     },
     "process": {
       "limit": 30,
-      "processed": 8,
-      "applied": 8,
+      "processed": 2,
+      "applied": 2,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 31,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
+          "seq": 39,
+          "first_detected_at_utc": "2026-11-16T03:12:56Z",
           "outcome": "applied",
-          "title": "中日 vs DeNA",
-          "event_id": "vwd-b8b89610d452"
+          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
+          "event_id": "vwd-52bbfc11cc27"
         },
         {
-          "seq": 32,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
+          "seq": 40,
+          "first_detected_at_utc": "2026-11-16T03:12:56Z",
           "outcome": "applied",
-          "title": "中日 vs DeNA",
-          "event_id": "vwd-7fcf0f8ba693"
-        },
-        {
-          "seq": 33,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-62212ebf0fec"
-        },
-        {
-          "seq": 34,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 巨人",
-          "event_id": "vwd-02edeb8800df"
-        },
-        {
-          "seq": 35,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-75c73599d400"
-        },
-        {
-          "seq": 36,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "中日 vs 阪神",
-          "event_id": "vwd-db533a29b602"
-        },
-        {
-          "seq": 37,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "ときのそら 10th Anniversary Party",
-          "event_id": "vwd-09ae4430f952"
-        },
-        {
-          "seq": 38,
-          "first_detected_at_utc": "2026-11-15T03:10:54Z",
-          "outcome": "applied",
-          "title": "ときのそら 10th Anniversary Party",
-          "event_id": "vwd-d74551858005"
+          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
+          "event_id": "vwd-7a61be0eb541"
         }
       ],
       "pending_after": 0,
