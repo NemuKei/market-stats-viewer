@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-11-17",
+  "as_of_date": "2026-11-18",
   "events": [
-    {
-      "artist_name": "すとぷり",
-      "capacity": 12542,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-19",
-      "event_end_date": "2026-08-19",
-      "event_end_time": null,
-      "event_key": "44861b4ac72539bee1c3",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6050&etype=1",
-      "first_seen_at_utc": "2026-08-01T08:24:21Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "すとぷり",
-      "raw_venue_name": "国立代々木競技場第一体育館",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6050&etype=1",
-          "priority": 10,
-          "record_id": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6050&etype=1",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "すとろべりーめもりー Vol.10th anniversary ～すとぷり ARENA TOUR～",
-          "updated_at_utc": "2026-08-31T10:59:53Z",
-          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6050&etype=1"
-        }
-      ],
-      "title": "すとろべりーめもりー Vol.10th anniversary ～すとぷり ARENA TOUR～",
-      "updated_at_utc": "2026-08-31T10:59:53Z",
-      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6050&etype=1",
-      "venue_name": "国立代々木競技場第一体育館"
-    },
-    {
-      "artist_name": "GIGA•GIGA SONIC",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-19",
-      "event_end_date": "2026-08-19",
-      "event_end_time": null,
-      "event_key": "a604a807c1d27cb16718",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202608/8761.html",
-      "first_seen_at_utc": "2026-08-19T04:59:58Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "GIGA•GIGA SONIC",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202608/8761.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202608/8761.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "GIGA•GIGA SONIC",
-          "updated_at_utc": "2026-08-19T04:59:58Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202608/8761.html"
-        }
-      ],
-      "title": "GIGA•GIGA SONIC",
-      "updated_at_utc": "2026-08-19T04:59:58Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202608/8761.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "すとぷり",
       "capacity": 12542,
@@ -39560,8 +39484,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-17T13:48:27Z",
-  "history_start_date": "2026-08-19",
+  "generated_at_utc": "2026-11-17T20:51:10Z",
+  "history_start_date": "2026-08-20",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 91,
@@ -39765,14 +39689,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 680,
+      "official_events": 678,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 991,
-    "identity_held_record_count": 2112,
+    "event_count": 989,
+    "identity_held_record_count": 2104,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 3343,
+    "record_count_before_grouping": 3333,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 18,
