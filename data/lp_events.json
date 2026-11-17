@@ -39560,7 +39560,7 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-17T03:15:13Z",
+  "generated_at_utc": "2026-11-17T07:45:45Z",
   "history_start_date": "2026-08-19",
   "history_window_days": 90,
   "identity_registry": {
@@ -39584,6 +39584,11 @@
       "reason": "unresolved_domestic_location",
       "record_id": "615d426852e7736ba133252ee68d985653d7fa6b99df881d43cc6f848184bfae",
       "source_id": "starto_concert"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "92b29a2f90da7714f79e61f2a4c7ea1fd68eb7d36d8eaffdfff61833c7ec1a3b",
+      "source_id": "kstyle_music"
     },
     {
       "reason": "unresolved_domestic_location",
@@ -39712,11 +39717,6 @@
     },
     {
       "reason": "unresolved_domestic_location",
-      "record_id": "1759c601e5520606c26583ec770a33206279baa27a24dc588f0175a0c7225db7",
-      "source_id": "kstyle_music"
-    },
-    {
-      "reason": "unresolved_domestic_location",
       "record_id": "36e26a6d5dfbfd126a8cae6b930f15ab376aca9c024304e59373ae5d287b6802",
       "source_id": "kstyle_music"
     },
@@ -39770,9 +39770,9 @@
       "venue_web_discovery": 307
     },
     "event_count": 991,
-    "identity_held_record_count": 2114,
+    "identity_held_record_count": 2112,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 3345,
+    "record_count_before_grouping": 3343,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 18,
