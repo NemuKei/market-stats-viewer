@@ -1,43 +1,43 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-11-16T03:12:56Z",
+  "run_at_utc": "2026-11-17T03:13:28Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-02-13",
-      "event_end_date": "2027-02-13",
-      "event_start_time": "17:00",
-      "venue_name": "東京ドーム",
-      "raw_venue_name": "東京ドーム",
-      "artist_name": "ラブライブ!",
-      "raw_artist_name": "ラブライブ！シリーズ",
-      "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
-      "event_category": "コンサート",
+      "event_start_date": "2027-02-27",
+      "event_end_date": "2027-02-27",
+      "event_start_time": null,
+      "venue_name": "国立競技場",
+      "raw_venue_name": "ＭＵＦＧスタジアム（国立競技場）",
+      "artist_name": "福島ユナイテッドFC vs ツエーゲン金沢",
+      "raw_artist_name": "福島ユナイテッドＦＣ vs ツエーゲン金沢",
+      "title": "MUFG THE国立DAY ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢",
+      "event_category": "スポーツ",
       "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://go-for-launch.net/special/live/live_detail.php?p=15th_lovelivefest_encore",
-      "evidence_snippet": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME … 日程・会場 ■日程 Day.1：2027年2月13日（土）15:00開場／17:00開演 Day.2：2027年2月14日（日）15:00開場／17:00開演 ■会場 東京・ 東京ドーム",
+      "evidence_url": "https://www.frontale.co.jp/info/2026/1109_2.html",
+      "evidence_snippet": "日時：2027年2月27日（土） 会場：ＭＵＦＧスタジアム（国立競技場） … ◇第2試合 ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢 ※キックオフ時刻は、11月30日（月）発表予定です。",
       "content_extractor": "requests_bs4",
-      "discovery_query": "東京ドーム 2027 公演 ライブ 開催決定 ラブライブ フェス Encore",
-      "verified_at_utc": "2026-11-16T03:12:56Z"
+      "discovery_query": "福島ユナイテッドFC ツエーゲン金沢 2027 2月27日 MUFG THE国立DAY J3 公式 同日 国立競技場",
+      "verified_at_utc": "2026-11-17T03:13:28Z"
     },
     {
-      "event_start_date": "2027-02-14",
-      "event_end_date": "2027-02-14",
-      "event_start_time": "17:00",
-      "venue_name": "東京ドーム",
-      "raw_venue_name": "東京ドーム",
-      "artist_name": "ラブライブ!",
-      "raw_artist_name": "ラブライブ！シリーズ",
-      "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
+      "event_start_date": "2027-03-15",
+      "event_end_date": "2027-03-15",
+      "event_start_time": "16:00",
+      "venue_name": "日本武道館",
+      "raw_venue_name": "日本武道館",
+      "artist_name": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
+      "raw_artist_name": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
+      "title": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
       "event_category": "コンサート",
-      "source_class": "promoter_official",
+      "source_class": "ticket_official",
       "confidence": "high",
-      "evidence_url": "https://go-for-launch.net/special/live/live_detail.php?p=15th_lovelivefest_encore",
-      "evidence_snippet": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME … 日程・会場 ■日程 Day.1：2027年2月13日（土）15:00開場／17:00開演 Day.2：2027年2月14日（日）15:00開場／17:00開演 ■会場 東京・ 東京ドーム",
+      "evidence_url": "https://eplus.jp/sf/detail/4308980002",
+      "evidence_snippet": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館のチケット情報ページです。 … 2027/3/15(月) 開演：16:00～ (開場 15:00～) 日本武道館 （東京都）",
       "content_extractor": "requests_bs4",
-      "discovery_query": "東京ドーム 2027 公演 ライブ 開催決定 ラブライブ フェス Encore",
-      "verified_at_utc": "2026-11-16T03:12:56Z"
+      "discovery_query": "GIOVANNI DREAM OF SOUL 2027 3月15日 日本武道館 公式 イープラス",
+      "verified_at_utc": "2026-11-17T03:13:28Z"
     }
   ],
   "deferred_candidates": [],
@@ -265,7 +265,7 @@
     {
       "query": "バンテリンドームナゴヤ 開催決定 2027 公式 after:2026-10-24",
       "url": "https://befirst.tokyo/tour/dometour2027/",
-      "reason": "2026-11-12 requests_bs4で再確認。バンテリンドーム ナゴヤでの愛知追加公演は2027年春とのみ記載され、具体日は未発表。"
+      "reason": "2026-11-17 requests_bs4で再確認。バンテリンドーム ナゴヤでの愛知追加公演は2027年春とのみ記載され、具体日は未発表。"
     },
     {
       "query": "Creepy Nuts GMOアリーナさいたま 2027 チケット",
@@ -380,7 +380,7 @@
     {
       "query": "Kアリーナ横浜 MyGO!!!!! 10th LIVE 僕たちのいまを越えて 2027",
       "url": "https://bang-dream.com/events/mygo_10th/",
-      "reason": "2027-04-29・30 Kアリーナ横浜。公式ページのWeb本文に日程・会場・開演予定時刻があるが、指定のrequests_bs4はHTTP 404。ブシロードの公式発表はPDFで同抽出器では本文を取得できず、採用を保留。"
+      "reason": "2026-11-17再確認。2027-04-29・30 Kアリーナ横浜の公式公演ページは指定のrequests_bs4でHTTP 404。ブシロード公式発表はPDFで指定抽出器による本文取得ができず、採用保留。"
     }
   ]
 }
