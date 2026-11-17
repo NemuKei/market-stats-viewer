@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-16T03:12:56Z",
-  "next_seq": 41,
+  "last_ingested_inbox_run_at_utc": "2026-11-17T03:13:28Z",
+  "next_seq": 43,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-16T03:13:33Z",
+    "at_utc": "2026-11-17T03:13:59Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-16T03:12:56Z",
+      "inbox_run_at_utc": "2026-11-17T03:13:28Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
-          "seq": 39,
+          "title": "MUFG THE国立DAY ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢",
+          "seq": 41,
           "origin": "candidates"
         },
         {
-          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
-          "seq": 40,
+          "title": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
+          "seq": 42,
           "origin": "candidates"
         }
       ],
@@ -34,18 +34,18 @@
       "rejected": 0,
       "settled": [
         {
-          "seq": 39,
-          "first_detected_at_utc": "2026-11-16T03:12:56Z",
+          "seq": 41,
+          "first_detected_at_utc": "2026-11-17T03:13:28Z",
           "outcome": "applied",
-          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
-          "event_id": "vwd-52bbfc11cc27"
+          "title": "MUFG THE国立DAY ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢",
+          "event_id": "vwd-a6dde806e5ba"
         },
         {
-          "seq": 40,
-          "first_detected_at_utc": "2026-11-16T03:12:56Z",
+          "seq": 42,
+          "first_detected_at_utc": "2026-11-17T03:13:28Z",
           "outcome": "applied",
-          "title": "LoveLive! Series 15th Anniversary ラブライブ！フェス Encore in TOKYO DOME",
-          "event_id": "vwd-7a61be0eb541"
+          "title": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
+          "event_id": "vwd-655aadc370b5"
         }
       ],
       "pending_after": 0,
