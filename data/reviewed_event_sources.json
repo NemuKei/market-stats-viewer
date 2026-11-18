@@ -2665,6 +2665,102 @@
         "status": "reviewed"
       },
       "source_signature": "8a9856d4d887a4ba51410d4a686838e192190a3a268963f6b993a022f93570a1"
+    },
+    {
+      "event_uid": "evt_8123aa1eadad4c998065dcf17dfe326a",
+      "observation": {
+        "candidate_key": "7d7d62c9b820b87a21b6",
+        "identity": {
+          "event_date": "2026-11-21",
+          "event_end_date": "2026-11-21",
+          "event_start_time": "17:00",
+          "venue_name": "ベルーナドーム",
+          "artist_name": "ジョンハン",
+          "title": "コンサート JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN 詳細"
+        },
+        "source_records": [
+          {
+            "source_id": "official_events",
+            "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-21"
+          },
+          {
+            "source_id": "venue_web_discovery",
+            "record_id": "e5787057bfffb5d47b810e003368251906b2fd517030376f64517330285dd7e1"
+          }
+        ],
+        "fingerprint": "a217a8159bc7df9a2d1f78d6986c060f5632713f0d4b1d7cfddc754ed6670f2d"
+      },
+      "source": {
+        "source_id": "official_events",
+        "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-21",
+        "source_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+        "detail_url": "https://www.seventeen-17.jp/statics/dreaming"
+      },
+      "source_class": "venue_official",
+      "fact_review": "reviewed",
+      "public_urls": [
+        "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+        "https://www.seventeen-17.jp/posts/schedule/ztckpb",
+        "https://www.seventeen-17.jp/statics/dreaming",
+        "https://www.seventeen-17.jp/statics/dreaming#d=2026-11-21"
+      ],
+      "publication": {
+        "status": "reviewed",
+        "row_sha256": "e723cee735da0f515ba74f5a4f078f867e56d1e31df67b3e6485187205840ff2",
+        "public_urls": [
+          "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+          "https://www.seventeen-17.jp/statics/dreaming",
+          "https://www.seventeen-17.jp/statics/dreaming#d=2026-11-21"
+        ]
+      }
+    },
+    {
+      "event_uid": "evt_c9777eb584ea4218b7930518a4fac90c",
+      "observation": {
+        "candidate_key": "d8877181a8140d318a67",
+        "identity": {
+          "event_date": "2026-11-22",
+          "event_end_date": "2026-11-22",
+          "event_start_time": "17:00",
+          "venue_name": "ベルーナドーム",
+          "artist_name": "ジョンハン",
+          "title": "コンサート JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN 詳細"
+        },
+        "source_records": [
+          {
+            "source_id": "official_events",
+            "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22"
+          },
+          {
+            "source_id": "venue_web_discovery",
+            "record_id": "13557c4aed0499e691be716f12df2f0cab1a3fcc6f02793577736dd843b41e71"
+          }
+        ],
+        "fingerprint": "5bd7218923c097b5e4409906a9a8cd66ca55ad45793ebf75f4ddb6758cd1e176"
+      },
+      "source": {
+        "source_id": "official_events",
+        "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22",
+        "source_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+        "detail_url": "https://www.seventeen-17.jp/statics/dreaming"
+      },
+      "source_class": "venue_official",
+      "fact_review": "reviewed",
+      "public_urls": [
+        "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+        "https://www.seventeen-17.jp/posts/schedule/ztckpb",
+        "https://www.seventeen-17.jp/statics/dreaming",
+        "https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22"
+      ],
+      "publication": {
+        "status": "reviewed",
+        "row_sha256": "4d4f6be470f16c35320619ce3e2c93674b4beb531747d03c0191a85e9c2369b3",
+        "public_urls": [
+          "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+          "https://www.seventeen-17.jp/statics/dreaming",
+          "https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22"
+        ]
+      }
     }
   ],
   "schema_version": 1

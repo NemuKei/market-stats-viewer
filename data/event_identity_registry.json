@@ -33785,6 +33785,72 @@
           ]
         }
       ]
+    },
+    {
+      "event_uid": "evt_8123aa1eadad4c998065dcf17dfe326a",
+      "observations": [
+        {
+          "candidate_key": "7d7d62c9b820b87a21b6",
+          "identity": {
+            "event_date": "2026-11-21",
+            "event_end_date": "2026-11-21",
+            "event_start_time": "17:00",
+            "venue_name": "ベルーナドーム",
+            "artist_name": "ジョンハン",
+            "title": "コンサート JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN 詳細"
+          },
+          "source_records": [
+            {
+              "source_id": "official_events",
+              "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-21"
+            },
+            {
+              "source_id": "venue_web_discovery",
+              "record_id": "e5787057bfffb5d47b810e003368251906b2fd517030376f64517330285dd7e1"
+            }
+          ],
+          "fingerprint": "a217a8159bc7df9a2d1f78d6986c060f5632713f0d4b1d7cfddc754ed6670f2d",
+          "active": true,
+          "evidence": {
+            "url": "https://www.seventeen-17.jp/posts/schedule/ztckpb",
+            "reviewed_at_utc": "2026-11-17T05:51:54Z",
+            "reason": "Official artist page confirms Belluna Dome 2026-11-21 and 22, each 17:00 JST. Existing venue rows retained; official artist signals supplement missing times. Only factual names, dates, times, venue and reviewed links; no prose/images."
+          }
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_c9777eb584ea4218b7930518a4fac90c",
+      "observations": [
+        {
+          "candidate_key": "d8877181a8140d318a67",
+          "identity": {
+            "event_date": "2026-11-22",
+            "event_end_date": "2026-11-22",
+            "event_start_time": "17:00",
+            "venue_name": "ベルーナドーム",
+            "artist_name": "ジョンハン",
+            "title": "コンサート JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN 詳細"
+          },
+          "source_records": [
+            {
+              "source_id": "official_events",
+              "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22"
+            },
+            {
+              "source_id": "venue_web_discovery",
+              "record_id": "13557c4aed0499e691be716f12df2f0cab1a3fcc6f02793577736dd843b41e71"
+            }
+          ],
+          "fingerprint": "5bd7218923c097b5e4409906a9a8cd66ca55ad45793ebf75f4ddb6758cd1e176",
+          "active": true,
+          "evidence": {
+            "url": "https://www.seventeen-17.jp/posts/schedule/ztckpb",
+            "reviewed_at_utc": "2026-11-17T05:51:54Z",
+            "reason": "Official artist page confirms Belluna Dome 2026-11-21 and 22, each 17:00 JST. Existing venue rows retained; official artist signals supplement missing times. Only factual names, dates, times, venue and reviewed links; no prose/images."
+          }
+        }
+      ]
     }
   ],
   "relations": [
@@ -36058,9 +36124,33 @@
       ],
       "previous_ids": [],
       "request_sha256": "075e7ac5c6c4eae612bad92d4073ecbcf9715f6e559e59f2d6cdfdda0c7eb429"
+    },
+    {
+      "kind": "new",
+      "previous_ids": [],
+      "next_ids": [
+        "evt_8123aa1eadad4c998065dcf17dfe326a",
+        "evt_c9777eb584ea4218b7930518a4fac90c"
+      ],
+      "candidates": [
+        {
+          "event_uid": "evt_8123aa1eadad4c998065dcf17dfe326a",
+          "fingerprint": "a217a8159bc7df9a2d1f78d6986c060f5632713f0d4b1d7cfddc754ed6670f2d"
+        },
+        {
+          "event_uid": "evt_c9777eb584ea4218b7930518a4fac90c",
+          "fingerprint": "5bd7218923c097b5e4409906a9a8cd66ca55ad45793ebf75f4ddb6758cd1e176"
+        }
+      ],
+      "evidence": {
+        "url": "https://www.seventeen-17.jp/posts/schedule/ztckpb",
+        "reviewed_at_utc": "2026-11-17T05:51:54Z",
+        "reason": "Official artist page confirms Belluna Dome 2026-11-21 and 22, each 17:00 JST. Existing venue rows retained; official artist signals supplement missing times. Only factual names, dates, times, venue and reviewed links; no prose/images."
+      },
+      "request_sha256": "c37c9362aa5450647cc5137b449e821fc9a93d997a5b37704388b37114592741"
     }
   ],
-  "revision": 91,
+  "revision": 92,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
