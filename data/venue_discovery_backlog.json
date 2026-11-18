@@ -1,24 +1,34 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-17T03:13:28Z",
-  "next_seq": 43,
+  "last_ingested_inbox_run_at_utc": "2026-11-18T03:14:37Z",
+  "next_seq": 47,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-17T03:13:59Z",
+    "at_utc": "2026-11-18T03:15:19Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-17T03:13:28Z",
+      "inbox_run_at_utc": "2026-11-18T03:14:37Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "MUFG THE国立DAY ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢",
-          "seq": 41,
+          "title": "Travis Japan Concert Tour 2027 Jewelry Basket",
+          "seq": 43,
           "origin": "candidates"
         },
         {
-          "title": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
-          "seq": 42,
+          "title": "CITTA'WORKS PRESENTS SUPER LIVE 2027 VOW WOW「THE 40 YEARS OF V CELEBRATION」",
+          "seq": 44,
+          "origin": "candidates"
+        },
+        {
+          "title": "King & Prince LIVE TOUR 2027",
+          "seq": 45,
+          "origin": "candidates"
+        },
+        {
+          "title": "King & Prince LIVE TOUR 2027",
+          "seq": 46,
           "origin": "candidates"
         }
       ],
@@ -28,24 +38,38 @@
     },
     "process": {
       "limit": 30,
-      "processed": 2,
-      "applied": 2,
+      "processed": 4,
+      "applied": 4,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 41,
-          "first_detected_at_utc": "2026-11-17T03:13:28Z",
+          "seq": 43,
+          "first_detected_at_utc": "2026-11-18T03:14:37Z",
           "outcome": "applied",
-          "title": "MUFG THE国立DAY ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢",
-          "event_id": "vwd-a6dde806e5ba"
+          "title": "Travis Japan Concert Tour 2027 Jewelry Basket",
+          "event_id": "vwd-d887d4677937"
         },
         {
-          "seq": 42,
-          "first_detected_at_utc": "2026-11-17T03:13:28Z",
+          "seq": 44,
+          "first_detected_at_utc": "2026-11-18T03:14:37Z",
           "outcome": "applied",
-          "title": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
-          "event_id": "vwd-655aadc370b5"
+          "title": "CITTA'WORKS PRESENTS SUPER LIVE 2027 VOW WOW「THE 40 YEARS OF V CELEBRATION」",
+          "event_id": "vwd-77089150c3ce"
+        },
+        {
+          "seq": 45,
+          "first_detected_at_utc": "2026-11-18T03:14:37Z",
+          "outcome": "applied",
+          "title": "King & Prince LIVE TOUR 2027",
+          "event_id": "vwd-8cb6cd645a0c"
+        },
+        {
+          "seq": 46,
+          "first_detected_at_utc": "2026-11-18T03:14:37Z",
+          "outcome": "applied",
+          "title": "King & Prince LIVE TOUR 2027",
+          "event_id": "vwd-16078b23b3b7"
         }
       ],
       "pending_after": 0,
