@@ -1,43 +1,79 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-11-17T03:13:28Z",
+  "run_at_utc": "2026-11-18T03:14:37Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-02-27",
-      "event_end_date": "2027-02-27",
-      "event_start_time": null,
-      "venue_name": "国立競技場",
-      "raw_venue_name": "ＭＵＦＧスタジアム（国立競技場）",
-      "artist_name": "福島ユナイテッドFC vs ツエーゲン金沢",
-      "raw_artist_name": "福島ユナイテッドＦＣ vs ツエーゲン金沢",
-      "title": "MUFG THE国立DAY ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢",
-      "event_category": "スポーツ",
-      "source_class": "promoter_official",
+      "event_start_date": "2027-03-26",
+      "event_end_date": "2027-03-26",
+      "event_start_time": "18:00",
+      "venue_name": "ららアリーナ 東京ベイ",
+      "raw_venue_name": "LaLa arena TOKYO-BAY",
+      "artist_name": "Travis Japan",
+      "raw_artist_name": "Travis Japan",
+      "title": "Travis Japan Concert Tour 2027 Jewelry Basket",
+      "event_category": "コンサート",
+      "source_class": "venue_official",
       "confidence": "high",
-      "evidence_url": "https://www.frontale.co.jp/info/2026/1109_2.html",
-      "evidence_snippet": "日時：2027年2月27日（土） 会場：ＭＵＦＧスタジアム（国立競技場） … ◇第2試合 ２０２６／２７明治安田J3リーグ第24節 福島ユナイテッドＦＣ vs ツエーゲン金沢 ※キックオフ時刻は、11月30日（月）発表予定です。",
+      "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+      "evidence_snippet": "ENTERTAINMENT 3.26 金 Travis Japan Travis Japan Concert Tour 2027 Jewelry Basket 開場開演 開演 18:00",
       "content_extractor": "requests_bs4",
-      "discovery_query": "福島ユナイテッドFC ツエーゲン金沢 2027 2月27日 MUFG THE国立DAY J3 公式 同日 国立競技場",
-      "verified_at_utc": "2026-11-17T03:13:28Z"
+      "discovery_query": "ららアリーナ 2027 開催決定 Travis Japan",
+      "verified_at_utc": "2026-11-18T03:14:37Z"
     },
     {
-      "event_start_date": "2027-03-15",
-      "event_end_date": "2027-03-15",
-      "event_start_time": "16:00",
+      "event_start_date": "2027-05-01",
+      "event_end_date": "2027-05-01",
+      "event_start_time": "17:00",
       "venue_name": "日本武道館",
-      "raw_venue_name": "日本武道館",
-      "artist_name": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
-      "raw_artist_name": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
-      "title": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館",
+      "raw_venue_name": "東京 日本武道館",
+      "artist_name": "VOW WOW",
+      "raw_artist_name": "VOW WOW",
+      "title": "CITTA'WORKS PRESENTS SUPER LIVE 2027 VOW WOW「THE 40 YEARS OF V CELEBRATION」",
       "event_category": "コンサート",
-      "source_class": "ticket_official",
+      "source_class": "promoter_official",
       "confidence": "high",
-      "evidence_url": "https://eplus.jp/sf/detail/4308980002",
-      "evidence_snippet": "GIOVANNI DREAM OF SOUL 2027 at 日本武道館のチケット情報ページです。 … 2027/3/15(月) 開演：16:00～ (開場 15:00～) 日本武道館 （東京都）",
+      "evidence_url": "https://www.cittaworks.com/event/vow-wow-2027/",
+      "evidence_snippet": "CITTA'WORKS PRESENTS SUPER LIVE 2027 VOW WOW 「THE 40 YEARS OF V CELEBRATION」 … 2027年 5月 1日（土） 時間：OPEN 16:00 / START 17:00 会場：東京 日本武道館",
       "content_extractor": "requests_bs4",
-      "discovery_query": "GIOVANNI DREAM OF SOUL 2027 3月15日 日本武道館 公式 イープラス",
-      "verified_at_utc": "2026-11-17T03:13:28Z"
+      "discovery_query": "日本武道館 2027 開催決定 VOW WOW 公式",
+      "verified_at_utc": "2026-11-18T03:14:37Z"
+    },
+    {
+      "event_start_date": "2027-06-25",
+      "event_end_date": "2027-06-25",
+      "event_start_time": "18:00",
+      "venue_name": "ららアリーナ 東京ベイ",
+      "raw_venue_name": "LaLa arena TOKYO-BAY",
+      "artist_name": "King & Prince",
+      "raw_artist_name": "King & Prince",
+      "title": "King & Prince LIVE TOUR 2027",
+      "event_category": "コンサート",
+      "source_class": "venue_official",
+      "confidence": "high",
+      "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+      "evidence_snippet": "ENTERTAINMENT 6.25 金 King & Prince King & Prince LIVE TOUR 2027 開場開演 開演 18:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "ららアリーナ 2027 開催決定 King & Prince",
+      "verified_at_utc": "2026-11-18T03:14:37Z"
+    },
+    {
+      "event_start_date": "2027-06-27",
+      "event_end_date": "2027-06-27",
+      "event_start_time": "15:00",
+      "venue_name": "ららアリーナ 東京ベイ",
+      "raw_venue_name": "LaLa arena TOKYO-BAY",
+      "artist_name": "King & Prince",
+      "raw_artist_name": "King & Prince",
+      "title": "King & Prince LIVE TOUR 2027",
+      "event_category": "コンサート",
+      "source_class": "venue_official",
+      "confidence": "high",
+      "evidence_url": "https://lalaarenatokyo-bay.com/event/",
+      "evidence_snippet": "ENTERTAINMENT 6.27 日 King & Prince King & Prince LIVE TOUR 2027 開場開演 開演 15:00",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "ららアリーナ 2027 開催決定 King & Prince",
+      "verified_at_utc": "2026-11-18T03:14:37Z"
     }
   ],
   "deferred_candidates": [],
@@ -349,8 +385,8 @@
     },
     {
       "query": "Travis Japan Jewelry Basket 2027 3月26 ららアリーナ",
-      "url": "https://starto.jp/s/p/live/10616?artist=60&ima=3538",
-      "reason": "公式公演ページのWeb本文に2027-03-26〜28の千葉日程があるが、requests_bs4の取得本文では日程表を確認できないため保留。"
+      "url": "https://lalaarenatokyo-bay.com/event/",
+      "reason": "2026-11-18会場公式一覧のrequests_bs4本文で日程と開演を確認。2027-03-26の18:00単独枠は候補化。03-27・28は13:00と18:00の2公演があり、現行inboxの同日重複判定では両枠を保持できないため保留。"
     },
     {
       "query": "ディズニー 塔の上のラプンツェル 横浜アリーナ 2027 開演",
@@ -381,6 +417,16 @@
       "query": "Kアリーナ横浜 MyGO!!!!! 10th LIVE 僕たちのいまを越えて 2027",
       "url": "https://bang-dream.com/events/mygo_10th/",
       "reason": "2026-11-17再確認。2027-04-29・30 Kアリーナ横浜の公式公演ページは指定のrequests_bs4でHTTP 404。ブシロード公式発表はPDFで指定抽出器による本文取得ができず、採用保留。"
+    },
+    {
+      "query": "日本武道館 2027 幕張メッセ ヒロアカウルトラエキスポ メインステージ",
+      "url": "https://heroaca-expo.jp/mainstage/",
+      "reason": "公式本文で2027-04-17・18幕張メッセ、両日とも11:30・15:00・18:30の別有料ステージを確認。現行inboxで同日の複数枠を保持できないため保留。展示の9:00を公演開始時刻に転用しない。"
+    },
+    {
+      "query": "ららアリーナ 2027 King & Prince LIVE TOUR",
+      "url": "https://lalaarenatokyo-bay.com/event/",
+      "reason": "会場公式本文で2027-06-26は13:00と18:00の2公演。現行inboxの同日重複判定では両枠を保持できないため保留。06-25・27の単独枠は候補化。"
     }
   ]
 }
