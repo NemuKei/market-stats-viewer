@@ -21966,6 +21966,56 @@
       "venue_name": "ぴあアリーナMM"
     },
     {
+      "artist_name": "ジョンハン",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "official_events",
+      "display_source_label": "会場公式",
+      "event_category": "コンサート",
+      "event_date": "2026-11-21",
+      "event_end_date": "2026-11-21",
+      "event_end_time": null,
+      "event_key": "evt_8123aa1eadad4c998065dcf17dfe326a",
+      "event_start_time": "17:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+      "first_seen_at_utc": "2026-10-01T11:03:00Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
+      "source_priority": 10,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+          "priority": 10,
+          "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-21",
+          "source_class": "",
+          "source_id": "official_events",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-16T12:29:36Z",
+          "url": "https://www.seventeen-17.jp/statics/dreaming"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "",
+          "priority": 20,
+          "record_id": "e5787057bfffb5d47b810e003368251906b2fd517030376f64517330285dd7e1",
+          "source_class": "",
+          "source_id": "venue_web_discovery",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-18T17:23:19Z",
+          "url": ""
+        }
+      ],
+      "title": "コンサート JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN 詳細",
+      "updated_at_utc": "2026-11-16T12:29:36Z",
+      "url": "https://www.seventeen-17.jp/statics/dreaming",
+      "venue_name": "ベルーナドーム"
+    },
+    {
       "artist_name": "MAMA AWARDS",
       "capacity": null,
       "display_source_class": "venue_official",
@@ -22268,6 +22318,56 @@
       "updated_at_utc": "2026-11-16T12:30:53Z",
       "url": "https://www.festivalhall.jp/events/6673/",
       "venue_name": "フェスティバルホール"
+    },
+    {
+      "artist_name": "ジョンハン",
+      "capacity": null,
+      "display_source_class": "venue_official",
+      "display_source_id": "official_events",
+      "display_source_label": "会場公式",
+      "event_category": "コンサート",
+      "event_date": "2026-11-22",
+      "event_end_date": "2026-11-22",
+      "event_end_time": null,
+      "event_key": "evt_c9777eb584ea4218b7930518a4fac90c",
+      "event_start_time": "17:00",
+      "evidence_snippet": "",
+      "evidence_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+      "first_seen_at_utc": "2026-10-01T11:03:00Z",
+      "pref_name": "埼玉県",
+      "raw_artist_name": "",
+      "raw_venue_name": "",
+      "source_priority": 10,
+      "supporting_sources": [
+        {
+          "content_extractor": null,
+          "evidence_url": "https://bellunadome.seibulions.co.jp/schedule/202611/all/index.html",
+          "priority": 10,
+          "record_id": "belluna_dome:https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22",
+          "source_class": "",
+          "source_id": "official_events",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-16T12:29:36Z",
+          "url": "https://www.seventeen-17.jp/statics/dreaming"
+        },
+        {
+          "content_extractor": null,
+          "evidence_url": "",
+          "priority": 20,
+          "record_id": "13557c4aed0499e691be716f12df2f0cab1a3fcc6f02793577736dd843b41e71",
+          "source_class": "",
+          "source_id": "venue_web_discovery",
+          "source_label": "",
+          "title": "",
+          "updated_at_utc": "2026-11-18T17:23:19Z",
+          "url": ""
+        }
+      ],
+      "title": "コンサート JEONGHAN X JOSHUA JOURNEY INTO [DREAMING] - JAPAN 詳細",
+      "updated_at_utc": "2026-11-16T12:29:36Z",
+      "url": "https://www.seventeen-17.jp/statics/dreaming",
+      "venue_name": "ベルーナドーム"
     },
     {
       "artist_name": "ANI-ROCK FES.2026「僕のヒーローアカデミア PLUS ULTRA LIVE」",
@@ -39484,13 +39584,13 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-18T13:23:29Z",
+  "generated_at_utc": "2026-11-18T17:23:19Z",
   "history_start_date": "2026-08-20",
   "history_window_days": 90,
   "identity_registry": {
-    "revision": 91,
+    "revision": 92,
     "schema_version": 1,
-    "sha256": "6761b773feb61375f443bf57efd008ee82829504cbfaaeae08c9032a4f9634db"
+    "sha256": "e98a41dcf59aaf4a4be21b9b9ff962fd1b243522c1a7e13e7c69ad3d980d6d86"
   },
   "include_past": true,
   "location_held_records": [
@@ -39689,18 +39789,18 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 678,
+      "official_events": 680,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 989,
-    "identity_held_record_count": 2104,
+    "event_count": 991,
+    "identity_held_record_count": 2102,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 3336,
+    "record_count_before_grouping": 3338,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 73,
-    "supplemental_merged_group_count": 18,
-    "supplemental_merged_record_count": 22,
+    "supplemental_merged_group_count": 20,
+    "supplemental_merged_record_count": 24,
     "suppressed_event_count": 5
   }
 }
