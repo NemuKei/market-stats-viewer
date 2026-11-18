@@ -64,3 +64,14 @@ using the existing writer, with all previous SQLite rows and the source table
 unchanged. Current-window rows 989 → 991 at the accepted as-of 2026-11-18;
 all-dates rows 1148 → 1150. Existing published rows are fully unchanged.
 No collection dispatch or scheduling configuration change is included.
+
+Release freshness revalidation (2026-11-19 JST): the publication guard correctly
+rejected the prior-day recent artifact before upload. Regenerated the recent
+artifact with the normal builder and current JST date, without changing guards
+or collection scope. Recent rows 991 → 989 solely because two 2026-08-20 rows
+aged out of the rolling window: b021d069fcbf854393e8 and 9fab4f9d625b26ceea12.
+Both remain exactly unchanged in the 1150-row all-dates artifact. Every one of
+the previous Release's 1148 retained records remains exactly equal; only the
+two reviewed Belluna fixed IDs are added. Full manifest validation passes with
+the existing public-schedule pins and ticket sidecar. No DB, identity, source
+review, public-schedule, workflow, or guard change is part of this date refresh.

@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-11-18",
+  "as_of_date": "2026-11-19",
   "events": [
-    {
-      "artist_name": "すとぷり",
-      "capacity": 12542,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-20",
-      "event_end_date": "2026-08-20",
-      "event_end_time": null,
-      "event_key": "9fab4f9d625b26ceea12",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6051&etype=1",
-      "first_seen_at_utc": "2026-08-01T08:24:21Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "すとぷり",
-      "raw_venue_name": "国立代々木競技場第一体育館",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6051&etype=1",
-          "priority": 10,
-          "record_id": "yoyogi_gymnasium:https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6051&etype=1",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "すとろべりーめもりー Vol.10th anniversary ～すとぷり ARENA TOUR～",
-          "updated_at_utc": "2026-08-31T10:59:53Z",
-          "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6051&etype=1"
-        }
-      ],
-      "title": "すとろべりーめもりー Vol.10th anniversary ～すとぷり ARENA TOUR～",
-      "updated_at_utc": "2026-08-31T10:59:53Z",
-      "url": "https://www.jpnsport.go.jp/yoyogi/Default.aspx?TabId=59&eid=6051&etype=1",
-      "venue_name": "国立代々木競技場第一体育館"
-    },
-    {
-      "artist_name": "BRAVE SONIC",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-20",
-      "event_end_date": "2026-08-20",
-      "event_end_time": null,
-      "event_key": "b021d069fcbf854393e8",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8627.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "BRAVE SONIC",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8627.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8627.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "BRAVE SONIC",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8627.html"
-        }
-      ],
-      "title": "BRAVE SONIC",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8627.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "SOPHIA",
       "capacity": 2473,
@@ -39584,8 +39508,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-18T17:23:19Z",
-  "history_start_date": "2026-08-20",
+  "generated_at_utc": "2026-11-18T17:29:21Z",
+  "history_start_date": "2026-08-21",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 92,
@@ -39789,14 +39713,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 680,
+      "official_events": 678,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 991,
-    "identity_held_record_count": 2102,
+    "event_count": 989,
+    "identity_held_record_count": 2092,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 3338,
+    "record_count_before_grouping": 3326,
     "start_time_split_event_count": 77,
     "start_time_split_group_count": 73,
     "supplemental_merged_group_count": 20,
