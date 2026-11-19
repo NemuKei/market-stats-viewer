@@ -1,34 +1,29 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-18T03:14:37Z",
-  "next_seq": 47,
+  "last_ingested_inbox_run_at_utc": "2026-11-19T03:15:16Z",
+  "next_seq": 50,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-18T03:15:19Z",
+    "at_utc": "2026-11-19T03:15:49Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-18T03:14:37Z",
+      "inbox_run_at_utc": "2026-11-19T03:15:16Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "Travis Japan Concert Tour 2027 Jewelry Basket",
-          "seq": 43,
+          "title": "IMP. LIVE TOUR 2027 PERIOD.",
+          "seq": 47,
           "origin": "candidates"
         },
         {
-          "title": "CITTA'WORKS PRESENTS SUPER LIVE 2027 VOW WOW「THE 40 YEARS OF V CELEBRATION」",
-          "seq": 44,
+          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
+          "seq": 48,
           "origin": "candidates"
         },
         {
-          "title": "King & Prince LIVE TOUR 2027",
-          "seq": 45,
-          "origin": "candidates"
-        },
-        {
-          "title": "King & Prince LIVE TOUR 2027",
-          "seq": 46,
+          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
+          "seq": 49,
           "origin": "candidates"
         }
       ],
@@ -38,38 +33,31 @@
     },
     "process": {
       "limit": 30,
-      "processed": 4,
-      "applied": 4,
+      "processed": 3,
+      "applied": 3,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 43,
-          "first_detected_at_utc": "2026-11-18T03:14:37Z",
+          "seq": 47,
+          "first_detected_at_utc": "2026-11-19T03:15:16Z",
           "outcome": "applied",
-          "title": "Travis Japan Concert Tour 2027 Jewelry Basket",
-          "event_id": "vwd-d887d4677937"
+          "title": "IMP. LIVE TOUR 2027 PERIOD.",
+          "event_id": "vwd-fd96dd68f6e4"
         },
         {
-          "seq": 44,
-          "first_detected_at_utc": "2026-11-18T03:14:37Z",
+          "seq": 48,
+          "first_detected_at_utc": "2026-11-19T03:15:16Z",
           "outcome": "applied",
-          "title": "CITTA'WORKS PRESENTS SUPER LIVE 2027 VOW WOW「THE 40 YEARS OF V CELEBRATION」",
-          "event_id": "vwd-77089150c3ce"
+          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
+          "event_id": "vwd-e18be98da855"
         },
         {
-          "seq": 45,
-          "first_detected_at_utc": "2026-11-18T03:14:37Z",
+          "seq": 49,
+          "first_detected_at_utc": "2026-11-19T03:15:16Z",
           "outcome": "applied",
-          "title": "King & Prince LIVE TOUR 2027",
-          "event_id": "vwd-8cb6cd645a0c"
-        },
-        {
-          "seq": 46,
-          "first_detected_at_utc": "2026-11-18T03:14:37Z",
-          "outcome": "applied",
-          "title": "King & Prince LIVE TOUR 2027",
-          "event_id": "vwd-16078b23b3b7"
+          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
+          "event_id": "vwd-c94553e8ec40"
         }
       ],
       "pending_after": 0,
