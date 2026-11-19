@@ -44,13 +44,14 @@ export async function digestItems(db, targets, now) {
   const cached = new Map((await all(db,"SELECT target_id,state FROM workflow_states")).map(row=>[row.target_id,row.state]));
   const rows = await all(db,`SELECT * FROM slots WHERE (planned_at>=? AND planned_at<?)
     OR (state='missed' AND next_at>=? AND next_at<=?)
-    OR (state='still_missing' AND planned_at+?<=?) ORDER BY
+    OR (state='still_missing' AND planned_at+?<=?)
+    OR (state='recovered' AND created_at>=? AND created_at<=?) ORDER BY
     CASE state WHEN 'missed' THEN 0 WHEN 'still_missing' THEN 1 ELSE 2 END, planned_at,target_id`,
-    yesterday,today,yesterday,now,12*hour,now);
+    yesterday,today,yesterday,now,12*hour,now,yesterday,now);
   for (const row of rows) {
     const target = byId.get(row.target_id);
     if (!target || cached.get(row.target_id) !== "active") continue;
-    const once = row.state === "missed" || row.state === "still_missing";
+    const once = row.state === "missed" || row.state === "still_missing" || row.state === "recovered";
     const kind = once ? row.state : "digest";
     items.push({id:`${kind}:${once ? "" : dayKey}:${target.id}:${row.planned_at}`,kind,line:slotLine(target,row,now)});
   }
@@ -80,27 +81,29 @@ export async function digestItems(db, targets, now) {
   return items;
 }
 
-export async function deliver(db, fetcher, webhook, realtime, now) {
-  if (!daytime(now)) return;
-  const today = jstDate(now);
-  const pending = await all(db,`SELECT id FROM outbox WHERE state='pending' AND next_attempt<=?
-    AND ((kind='digest' AND local_day=?) OR (kind='realtime' AND ?=1
-      AND (local_day=? OR (attempts>0 AND created_at>=?))))
+export async function deliver(db, fetcher, webhook, realtime, clock) {
+  const polledAt = clock();
+  if (!daytime(polledAt)) return;
+  const pending = await all(db,`SELECT id,kind FROM outbox WHERE state='pending' AND next_attempt<=?
+    AND ((kind='digest' AND local_day=?) OR (kind='realtime' AND ?=1 AND created_at>=?))
     ORDER BY CASE kind WHEN 'digest' THEN 0 ELSE 1 END,created_at,id LIMIT 11`,
-    now,today,Number(realtime),today,now-day);
-  for (const {id} of pending) {
+    polledAt,jstDate(polledAt),Number(realtime),polledAt-day);
+  for (const {id,kind} of pending) {
     const items = await all(db,`SELECT line FROM notice_items WHERE outbox_id=? AND (kind<>'late' OR
       EXISTS (SELECT 1 FROM workflow_states WHERE target_id=notice_items.target_id AND state='active')) ORDER BY rowid`,id);
     if (!items.length) {
       await stmt(db,"UPDATE outbox SET state='suppressed' WHERE id=? AND state='pending'",id).run();
       continue;
     }
+    const attemptAt = clock();
+    if (!daytime(attemptAt)) return;
+    const today = jstDate(attemptAt);
     const claim = crypto.randomUUID();
     const [,reservation] = await db.batch([
       stmt(db,"INSERT OR IGNORE INTO deliveries(day) VALUES (?)",today),
       stmt(db,`UPDATE outbox SET state='sending',attempts=attempts+1,claim=?
         WHERE id=? AND state='pending' AND next_attempt<=? AND attempts<3
-        AND (SELECT attempts FROM deliveries WHERE day=?)<10`,claim,id,now,today),
+        AND (SELECT attempts FROM deliveries WHERE day=?)<10`,claim,id,attemptAt,today),
       stmt(db,`UPDATE deliveries SET attempts=attempts+1 WHERE day=? AND EXISTS
         (SELECT 1 FROM outbox WHERE id=? AND claim=?)`,today,id,claim),
       stmt(db,`UPDATE deliveries SET capped=1 WHERE day=? AND attempts>=10 AND EXISTS
@@ -109,19 +112,28 @@ export async function deliver(db, fetcher, webhook, realtime, now) {
         AND (SELECT capped FROM deliveries WHERE day=?)=1`,id,today),
     ]);
     if (Number(reservation.meta.changes) !== 1) continue;
+    const sendAt = clock();
+    if (!daytime(sendAt) || jstDate(sendAt) !== today) {
+      await db.batch([
+        stmt(db,`UPDATE deliveries SET attempts=attempts-1 WHERE day=? AND EXISTS
+          (SELECT 1 FROM outbox WHERE id=? AND claim=?)`,today,id,claim),
+        stmt(db,"UPDATE outbox SET state='pending',attempts=attempts-1,claim=NULL WHERE id=? AND claim=?",id,claim),
+      ]);
+      return;
+    }
     let state;
     try {
       const response = await fetcher(webhook,{method:"POST",redirect:"error",signal:AbortSignal.timeout(8_000),
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({text:items.map(item=>item.line).join("\n"),mrkdwn:false,unfurl_links:false,unfurl_media:false})});
       state = response.ok ? "sent" : "pending";
-      await response.body?.cancel();
+      await response.body?.cancel().catch(()=>{});
     } catch {
       // A network failure may have happened after Slack accepted the POST.
-      state = "uncertain";
+      state = kind === "digest" ? "pending" : "uncertain";
     }
     await stmt(db,`UPDATE outbox SET claim=NULL,next_attempt=?,
       state=CASE WHEN ?='pending' AND attempts>=3 THEN 'failed' ELSE ? END WHERE id=? AND claim=?`,
-      now+15*minute,state,state,id,claim).run();
+      sendAt+15*minute,state,state,id,claim).run();
   }
 }

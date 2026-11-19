@@ -15,7 +15,8 @@ const cron = {a:"0 10 * * *", b:"30 10 * * *", c:"37 5 */3 * *", d:"0 4 */3 * *"
 const target = id => ({id, label:`架空 ${id}`, repository:"sample-owner/sample-repo", workflow:`${id}.yml`, cron:cron[id]});
 const run = (id, createdAt, extra={}) => ({id, createdAt, event:"schedule", branch:"main", ...extra});
 
-function fixture(t, {status="active", reply=200, enabled=true, sends=true, realtime=true, records=[]}={}) {
+function fixture(t, {status="active", reply=200, enabled=true, sends=true, realtime=true, records=[],
+  readDelay=0, reservationDelay=0, transportFailures=0}={}) {
   const sql = new DatabaseSync(":memory:");
   t.after(() => sql.close());
   sql.exec(schema);
@@ -33,6 +34,8 @@ function fixture(t, {status="active", reply=200, enabled=true, sends=true, realt
       const result = [];
       for (const statement of statements) result.push(await statement.run());
       sql.exec("COMMIT");
+      if (reservationDelay && sql.prepare("SELECT count(*) AS n FROM outbox WHERE state='sending'").get().n)
+        wall += reservationDelay;
       return result;
     } catch (error) {
       sql.exec("ROLLBACK");
@@ -51,12 +54,14 @@ function fixture(t, {status="active", reply=200, enabled=true, sends=true, realt
     if (address.hostname === "hooks.slack.com") {
       assert.ok(sql.prepare("SELECT count(*) AS n FROM outbox WHERE state='sending'").get().n>0);
       messages.push(JSON.parse(options.body).text);
+      if (messages.length <= transportFailures) throw new Error("Synthetic transport failure");
       return new Response(reply === 200 ? "ok" : "fixture-only-read-token", {status:reply});
     }
     if (address.hostname === "freshness.example.invalid")
       return Response.json({update:"2026-11-20", other:"fixture-only-read-token"});
     assert.equal(address.hostname, "api.github.com");
     assert.equal(options.method, "GET");
+    wall = now + readDelay;
     if (status === "unauthorized") return new Response("fixture-only-read-token",{status:401});
     if (address.pathname.endsWith("/runs")) {
       assert.equal(address.searchParams.get("event"),"schedule");
@@ -69,8 +74,10 @@ function fixture(t, {status="active", reply=200, enabled=true, sends=true, realt
     }
     return Response.json({state:workflowState, name:"fixture-only-read-token"});
   };
-  let now;
-  return {sql, env, calls, messages, setWorkflowState(value) { workflowState = value; }, async tick(value) { now=value; await runWatch(env,{now:value,fetcher}); }};
+  let now, wall;
+  return {sql, env, calls, messages, setWorkflowState(value) { workflowState = value; }, async tick(value) {
+    now=wall=value; await runWatch(env,{now:value,clock:()=>wall,fetcher});
+  }};
 }
 
 test("01 historical replay: all 30 were late and recovered at the recorded second", () => {
@@ -167,6 +174,8 @@ test("07 the quiet window starts at 22:00, and the morning digest reports the de
   assert.equal(f.messages.length,1);
   assert.match(f.messages[0],/遅れて来ました.*9時間45分0秒/u);
   assert.match(f.messages[0],/market.*2026-11-20/u);
+  await f.tick(time("21","08:00:00"));
+  assert.equal(f.messages.filter(text=>/11-19 21:30.*遅れて来ました/u.test(text)).length,1);
 });
 
 test("08 a disabled workflow has no slot alerts and appears in the digest", async t => {
@@ -287,4 +296,54 @@ test("freshness is recorded separately, including targets without a public fresh
   assert.match(f.messages[0],/market 2026-11-20/u);
   assert.match(f.messages[0],/架空 b.*対象外/u);
   assert.equal(f.sql.prepare("SELECT value FROM freshness WHERE field='target:b'").get().value,"対象外");
+});
+
+test("review 1: morning digests retry transport errors up to three attempts", async t => {
+  const f=fixture(t,{transportFailures:2});
+  for (const clock of ["08:00:00","08:00:00","08:15:00","08:30:00","08:45:00"])
+    await f.tick(time("21",clock));
+  assert.equal(f.messages.length,3);
+  assert.equal(new Set(f.messages).size,1);
+  const digest=f.sql.prepare("SELECT attempts,state FROM outbox WHERE kind='digest'").get();
+  assert.deepEqual({...digest},{attempts:3,state:"sent"});
+  const terminal=fixture(t,{transportFailures:9});
+  for (const clock of ["08:00:00","08:15:00","08:30:00","08:45:00"])
+    await terminal.tick(time("21",clock));
+  assert.equal(terminal.messages.length,3);
+  assert.equal(terminal.sql.prepare("SELECT state FROM outbox WHERE kind='digest'").get().state,"failed");
+  const immediate=fixture(t,{transportFailures:2});
+  await immediate.tick(time("21","19:30:00"));
+  await immediate.tick(time("21","19:45:00"));
+  assert.equal(immediate.messages.length,1);
+  assert.equal(immediate.sql.prepare("SELECT state FROM outbox WHERE kind='realtime'").get().state,"uncertain");
+});
+
+test("review 2: crossing 22:00 during a poll defers sending and uses the next day's budget", async t => {
+  for (const delays of [{readDelay:2000},{reservationDelay:2000}]) {
+    await t.test(Object.keys(delays)[0],async subtest=>{
+      const f=fixture(subtest,delays);
+      await f.tick(time("19","21:59:59"));
+      assert.equal(f.messages.length,0);
+      const before=f.sql.prepare("SELECT attempts,state FROM outbox").get();
+      assert.deepEqual({...before},{attempts:0,state:"pending"});
+      assert.equal(f.sql.prepare("SELECT attempts FROM deliveries WHERE day='2026-11-19'").get()?.attempts ?? 0,0);
+      await f.tick(time("20","07:00:00"));
+      assert.equal(f.messages.length,1);
+      assert.equal(f.sql.prepare("SELECT attempts FROM deliveries WHERE day='2026-11-20'").get().attempts,1);
+    });
+  }
+});
+
+test("review 3: recovery after the morning digest appears once the next morning", async t => {
+  const f=fixture(t,{realtime:false,records:[run(111,time("21","09:10:00"),{conclusion:"failure"})]});
+  await f.tick(time("20","19:30:00"));
+  await f.tick(time("21","08:00:00"));
+  assert.match(f.messages[0],/11-20 19:00.*まだ来ません/u);
+  await f.tick(time("21","09:15:00"));
+  assert.equal(f.sql.prepare("SELECT state FROM slots WHERE planned_at=?").get(time("20","19:00:00")).state,"recovered");
+  await f.tick(time("22","08:00:00"));
+  await f.tick(time("22","08:15:00"));
+  await f.tick(time("23","08:00:00"));
+  assert.equal(f.messages.filter(text=>/11-20 19:00.*遅れて来ました.*14時間10分0秒.*失敗/u.test(text)).length,1);
+  assert.match(f.messages[1],/11-20 19:00.*遅れて来ました.*14時間10分0秒.*失敗/u);
 });

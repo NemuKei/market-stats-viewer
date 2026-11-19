@@ -105,7 +105,7 @@ async function observeFreshness(db, fetcher, config, targets, now) {
 }
 
 const enabled = value => value === true || value === "true";
-export async function runWatch(env, {now,fetcher=fetch}) {
+export async function runWatch(env, {clock=Date.now,now=clock(),fetcher=fetch}={}) {
   if (!enabled(env.WATCH_ENABLED)) return;
   const {targets,freshness} = readConfig(env.WATCH_CONFIG);
   const {DB:db} = env;
@@ -130,11 +130,11 @@ export async function runWatch(env, {now,fetcher=fetch}) {
   if (!send) return;
   if (morning(now)) await enqueue(db,`digest:${today}`,"digest",now,await digestItems(db,targets,now));
   if (realtime && daytime(now)) await enqueue(db,`realtime:${now}`,"realtime",now,items);
-  await deliver(db,fetcher,webhook,realtime,now);
+  await deliver(db,fetcher,webhook,realtime,clock);
 }
 
 export default {
   async scheduled(controller,env) {
-    await runWatch(env,{now:Date.now()});
+    await runWatch(env);
   },
 };
