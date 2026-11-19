@@ -207,6 +207,10 @@ test("11 message and records omit secrets and remote text", async t => {
 });
 
 test("12 default worker has only a scheduled entry and disabled settings touch nothing", async t => {
+  const example = JSON.parse(readFileSync(new URL("../wrangler.jsonc.example",import.meta.url)));
+  assert.equal(example.vars.WATCH_ENABLED,false);
+  assert.equal(example.vars.SEND_NOTICES,false);
+  assert.equal(example.observability.traces.enabled,false);
   assert.deepEqual(Object.keys(worker),["scheduled"]);
   const f=fixture(t,{enabled:false});
   await f.tick(time("19","19:30:00"));

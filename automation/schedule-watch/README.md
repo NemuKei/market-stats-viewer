@@ -38,6 +38,8 @@ node --test automation/schedule-watch/test/*.test.mjs
 
 配備には独立したWorker、15分ごとのCron Trigger、新しいD1、秘密の `GITHUB_READ_TOKEN` と `SLACK_WEBHOOK_URL` が必要です。GitHubの鍵は対象リポジトリだけの Actions読み取りと Metadata読み取りに絞ります。Slackの宛先は承認されたIncoming Webhookを使います。秘密はWorkerの秘密の保管場所に登録します。
 
+Cloudflareの自動トレースは外向きのURL全体を記録するため、Slackの秘密URLを保持しないよう `observability.traces.enabled` はfalseのままにします。 [記録される項目](https://developers.cloudflare.com/workers/observability/traces/spans-and-attributes/)
+
 導入の承認後、担当者がCloudflareのプランと空きCron枠を確認し、独立したD1に `migrations/0001_init.sql` を適用します。 `wrangler.jsonc.example` を基に配備側で実際の設定を用意し、最初は通知を無効にして数日分の記録を手作業の集計と照合します。通知の有効化にも承認が必要です。停止は `WATCH_ENABLED`、通知だけの停止は `SEND_NOTICES` をfalseに戻します。
 
 [Cloudflare Scheduled Handler](https://developers.cloudflare.com/workers/runtime-apis/handlers/scheduled/) · [D1 Worker API](https://developers.cloudflare.com/d1/worker-api/d1-database/) · [GitHub Actions REST API](https://docs.github.com/en/rest/actions/workflow-runs#list-workflow-runs-for-a-workflow) · [Slack Incoming Webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks/)
