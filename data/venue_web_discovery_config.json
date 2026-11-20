@@ -30041,6 +30041,27 @@
       "url": "https://fruitszipper.asobisystem.com/live_information/detail/47571",
       "venue_name": "国立競技場",
       "verified_at_utc": "2026-11-19T03:15:16Z"
+    },
+    {
+      "artist_name": "Vulfpeck",
+      "confidence": "high",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "vulfpeck 日本武道館 2027 公式",
+      "enabled": true,
+      "event_category": "コンサート",
+      "event_end_date": "2027-05-24",
+      "event_id": "vwd-243178b817c5",
+      "event_start_date": "2027-05-24",
+      "event_start_time": "19:00",
+      "evidence_snippet": "vulfpeckのチケット情報 vulfpeckのチケット情報ページです。日程、会場情報や料金を確認し、チケットの簡単オンライン予約・購入ができます。 … 2027/5/24(月) 開演：19:00～ (開場 18:00～) 日本武道館 （東京都）",
+      "evidence_url": "https://eplus.jp/sf/detail/4632550001",
+      "raw_artist_name": "vulfpeck",
+      "raw_venue_name": "日本武道館",
+      "source_class": "ticket_official",
+      "title": "vulfpeck",
+      "url": "https://eplus.jp/sf/detail/4632550001",
+      "venue_name": "日本武道館",
+      "verified_at_utc": "2026-11-20T03:07:53Z"
     }
   ],
   "future_only": true,

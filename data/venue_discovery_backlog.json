@@ -1,29 +1,19 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-19T03:15:16Z",
-  "next_seq": 50,
+  "last_ingested_inbox_run_at_utc": "2026-11-20T03:07:53Z",
+  "next_seq": 51,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-19T03:15:49Z",
+    "at_utc": "2026-11-20T03:08:45Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-19T03:15:16Z",
+      "inbox_run_at_utc": "2026-11-20T03:07:53Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "IMP. LIVE TOUR 2027 PERIOD.",
-          "seq": 47,
-          "origin": "candidates"
-        },
-        {
-          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
-          "seq": 48,
-          "origin": "candidates"
-        },
-        {
-          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
-          "seq": 49,
+          "title": "vulfpeck",
+          "seq": 50,
           "origin": "candidates"
         }
       ],
@@ -33,31 +23,17 @@
     },
     "process": {
       "limit": 30,
-      "processed": 3,
-      "applied": 3,
+      "processed": 1,
+      "applied": 1,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 47,
-          "first_detected_at_utc": "2026-11-19T03:15:16Z",
+          "seq": 50,
+          "first_detected_at_utc": "2026-11-20T03:07:53Z",
           "outcome": "applied",
-          "title": "IMP. LIVE TOUR 2027 PERIOD.",
-          "event_id": "vwd-fd96dd68f6e4"
-        },
-        {
-          "seq": 48,
-          "first_detected_at_utc": "2026-11-19T03:15:16Z",
-          "outcome": "applied",
-          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
-          "event_id": "vwd-e18be98da855"
-        },
-        {
-          "seq": 49,
-          "first_detected_at_utc": "2026-11-19T03:15:16Z",
-          "outcome": "applied",
-          "title": "FRUITS ZIPPER 5周年スタジアムツアー",
-          "event_id": "vwd-c94553e8ec40"
+          "title": "vulfpeck",
+          "event_id": "vwd-243178b817c5"
         }
       ],
       "pending_after": 0,
