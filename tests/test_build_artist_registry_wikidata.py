@@ -1,6 +1,5 @@
 import argparse
 import csv
-import json
 
 import pytest
 import requests
@@ -22,33 +21,53 @@ def payload(qid="Q1", name="Artist", aliases="Alias"):
     }
 
 
-def test_japan_queries_split_person_and_group_and_merge_aliases(monkeypatch):
+def mock_japan_payload(params):
+    if "ids" in params:
+        return {
+            "entities": {
+                q: {
+                    "id": q,
+                    "labels": {"en": {"value": "Artist" if q == "Q1" else "Group"}},
+                    "aliases": {"en": [{"value": "Alias"}]},
+                }
+                for q in params["ids"].split("|")
+            }
+        }
+    if "?occupation WHERE" in params["query"]:
+        return {
+            "results": {
+                "bindings": [
+                    {"occupation": {"value": "http://www.wikidata.org/entity/Q177220"}}
+                ]
+            }
+        }
+    return payload("Q1") if "wdt:P106" in params["query"] else payload("Q2", "Group")
+
+
+def test_japan_fetches_ids_before_attributes_and_deduplicates(monkeypatch):
     calls = []
 
-    def fetch(endpoint, query, request_timeout):
-        calls.append((endpoint, query, request_timeout))
-        return payload(aliases="One") if len(calls) == 1 else payload(aliases="Two")
+    def fetch(endpoint, params, request_timeout, *args, **kwargs):
+        calls.append(params)
+        return mock_japan_payload(params)
 
-    monkeypatch.setattr(builder, "fetch_sparql_with_retry", fetch)
+    monkeypatch.setattr(builder, "_fetch_json_with_retry", fetch)
     rows = builder.fetch_seed_rows(["jp"], 90)
-    assert len(calls) == 2
+    assert len(calls) == 4
+    assert "?occupation WHERE" in calls[0]["query"]
     assert all(
-        "UNION" not in query and "wd:Q17" in query and timeout == 90
-        for _, query, timeout in calls
+        "itemLabel" not in p["query"] and "GROUP BY" not in p["query"]
+        for p in calls[:3]
     )
-    assert "wdt:P106/wdt:P279* wd:Q639669" in calls[0][1]
-    assert "wdt:P495 ?country" not in calls[0][1]
-    assert "wdt:P495 ?country" in calls[1][1]
-    assert "wdt:P106" not in calls[1][1]
-    assert len(rows) == 1
-    assert json.loads(rows[0]["aliases_json"]) == ["One", "Two"]
+    assert calls[3]["ids"] == "Q1|Q2"
+    assert [r["artist_id"] for r in rows] == ["wd:Q1", "wd:Q2"]
 
 
 @pytest.mark.parametrize("countries", [[], ["kr"]])
 def test_non_japanese_queries_remain_single_request(monkeypatch, countries):
     calls = []
 
-    def fetch(endpoint, query, request_timeout):
+    def fetch(endpoint, query, request_timeout, **kwargs):
         calls.append(query)
         return payload()
 
@@ -73,8 +92,8 @@ def cli_paths(tmp_path, monkeypatch):
     return output, manual
 
 
-@pytest.mark.parametrize("fail_at", [1, 2])
-@pytest.mark.parametrize("failure", ["timeout", "empty", "malformed"])
+@pytest.mark.parametrize("fail_at", [1, 2, 3, 4])
+@pytest.mark.parametrize("failure", ["timeout", "malformed"])
 def test_incomplete_fetch_preserves_seed_and_manual(
     cli_paths, monkeypatch, fail_at, failure
 ):
@@ -83,16 +102,16 @@ def test_incomplete_fetch_preserves_seed_and_manual(
     manual.write_text("existing manual", encoding="utf-8")
     calls = 0
 
-    def fetch(*args, **kwargs):
+    def fetch(endpoint, params, request_timeout, *args, **kwargs):
         nonlocal calls
         calls += 1
         if calls == fail_at:
             if failure == "timeout":
                 raise RuntimeError("Wikidata fetch failed after 5 attempts")
-            return {} if failure == "malformed" else {"results": {"bindings": []}}
-        return payload()
+            return {}
+        return mock_japan_payload(params)
 
-    monkeypatch.setattr(builder, "fetch_sparql_with_retry", fetch)
+    monkeypatch.setattr(builder, "_fetch_json_with_retry", fetch)
     with pytest.raises(RuntimeError):
         builder.main()
     assert output.read_text(encoding="utf-8") == "existing seed"
@@ -109,9 +128,10 @@ def test_success_writes_both_kinds_and_preserves_watch_settings(cli_paths, monke
         ticketjam_watch_reason="reviewed",
     )
     builder.write_seed_csv_noop([old], output)
-    replies = iter([payload(), payload("Q2", "Group")])
     monkeypatch.setattr(
-        builder, "fetch_sparql_with_retry", lambda *a, **k: next(replies)
+        builder,
+        "_fetch_json_with_retry",
+        lambda endpoint, params, *a, **k: mock_japan_payload(params),
     )
     builder.main()
     with output.open(encoding="utf-8") as f:
@@ -162,3 +182,28 @@ def test_timeout_exhaustion(monkeypatch):
     with pytest.raises(RuntimeError, match="after 5 attempts"):
         builder.fetch_sparql_with_retry("https://example.test", "query")
     assert len(calls) == 5
+
+
+@pytest.mark.parametrize("reason", ["deadline", "name"])
+def test_late_validation_failure_keeps_seed_and_manual(cli_paths, monkeypatch, reason):
+    output, manual = cli_paths
+    builder.write_seed_csv_noop(builder.build_seed_rows(payload()), output)
+    manual.write_bytes(b"unchanged manual\n")
+    seed_before = output.read_bytes()
+    clock = [0.0]
+    monkeypatch.setattr(builder.time, "monotonic", lambda: clock[0])
+
+    def fetch(endpoint, params, *args, **kwargs):
+        result = mock_japan_payload(params)
+        if "ids" in params:
+            if reason == "deadline":
+                clock[0] = builder.MAX_FETCH_SECONDS + 1
+            else:
+                result["entities"]["Q1"]["labels"] = {}
+        return result
+
+    monkeypatch.setattr(builder, "_fetch_json_with_retry", fetch)
+    with pytest.raises(RuntimeError, match="deadline|name.*guard"):
+        builder.main()
+    assert output.read_bytes() == seed_before
+    assert manual.read_bytes() == b"unchanged manual\n"
