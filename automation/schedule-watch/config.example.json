@@ -1,0 +1,25 @@
+{
+  "targets": [
+    {
+      "id": "sample-daily",
+      "label": "架空の日次公開",
+      "repository": "example-owner/example-daily",
+      "workflow": "example-publish.yml",
+      "cron": "0 10 * * *",
+      "freshnessFields": ["sample_publication"]
+    },
+    {
+      "id": "sample-every-three-days",
+      "label": "架空の収集",
+      "repository": "example-owner/example-collector",
+      "workflow": "example-collect.yml",
+      "cron": "37 5 */3 * *"
+    }
+  ],
+  "freshness": {
+    "url": "https://example.invalid/data/freshness.json",
+    "fields": {
+      "sample_publication": "published.market"
+    }
+  }
+}
