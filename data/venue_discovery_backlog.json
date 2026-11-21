@@ -1,19 +1,94 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-20T03:07:53Z",
-  "next_seq": 51,
+  "last_ingested_inbox_run_at_utc": "2026-11-21T03:14:46Z",
+  "next_seq": 67,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-20T03:08:45Z",
+    "at_utc": "2026-11-21T03:15:38Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-20T03:07:53Z",
+      "inbox_run_at_utc": "2026-11-21T03:14:46Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "vulfpeck",
-          "seq": 50,
+          "title": "シンガーズハイ We are SINGER’S HIGH from Tokyo.",
+          "seq": 51,
+          "origin": "candidates"
+        },
+        {
+          "title": "絢香",
+          "seq": 52,
+          "origin": "candidates"
+        },
+        {
+          "title": "スキマスイッチ",
+          "seq": 53,
+          "origin": "candidates"
+        },
+        {
+          "title": "THE ALFEE",
+          "seq": 54,
+          "origin": "candidates"
+        },
+        {
+          "title": "THE ALFEE",
+          "seq": 55,
+          "origin": "candidates"
+        },
+        {
+          "title": "TK from 凛として時雨",
+          "seq": 56,
+          "origin": "candidates"
+        },
+        {
+          "title": "BUCK∞TICK",
+          "seq": 57,
+          "origin": "candidates"
+        },
+        {
+          "title": "布袋寅泰",
+          "seq": 58,
+          "origin": "candidates"
+        },
+        {
+          "title": "布袋寅泰",
+          "seq": 59,
+          "origin": "candidates"
+        },
+        {
+          "title": "清水ミチコ",
+          "seq": 60,
+          "origin": "candidates"
+        },
+        {
+          "title": "森山良子",
+          "seq": 61,
+          "origin": "candidates"
+        },
+        {
+          "title": "ラブライブ!蓮ノ空女学院スクールアイドルクラブ Link Live Dream ～106期新入生入部記念公演～",
+          "seq": 62,
+          "origin": "candidates"
+        },
+        {
+          "title": "ラブライブ!蓮ノ空女学院スクールアイドルクラブ Link Live Dream ～103期卒業公演～",
+          "seq": 63,
+          "origin": "candidates"
+        },
+        {
+          "title": "ラブライブ!蓮ノ空女学院スクールアイドルクラブ Link Live Dream ～103期卒業公演～",
+          "seq": 64,
+          "origin": "candidates"
+        },
+        {
+          "title": "hololive 8th fes. Brand-New Fanfare Supported By LAWSON hololive STAGE1",
+          "seq": 65,
+          "origin": "candidates"
+        },
+        {
+          "title": "hololive 8th fes. Brand-New Fanfare Supported By LAWSON hololive STAGE3",
+          "seq": 66,
           "origin": "candidates"
         }
       ],
@@ -23,17 +98,122 @@
     },
     "process": {
       "limit": 30,
-      "processed": 1,
-      "applied": 1,
+      "processed": 16,
+      "applied": 16,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 50,
-          "first_detected_at_utc": "2026-11-20T03:07:53Z",
+          "seq": 51,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
           "outcome": "applied",
-          "title": "vulfpeck",
-          "event_id": "vwd-243178b817c5"
+          "title": "シンガーズハイ We are SINGER’S HIGH from Tokyo.",
+          "event_id": "vwd-b105fa132ec5"
+        },
+        {
+          "seq": 52,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "絢香",
+          "event_id": "vwd-be9876dced27"
+        },
+        {
+          "seq": 53,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "スキマスイッチ",
+          "event_id": "vwd-ba6fceb7c955"
+        },
+        {
+          "seq": 54,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "THE ALFEE",
+          "event_id": "vwd-3f72cf825093"
+        },
+        {
+          "seq": 55,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "THE ALFEE",
+          "event_id": "vwd-d1b6dad70954"
+        },
+        {
+          "seq": 56,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "TK from 凛として時雨",
+          "event_id": "vwd-334b12e6d266"
+        },
+        {
+          "seq": 57,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "BUCK∞TICK",
+          "event_id": "vwd-a4833e7c07bc"
+        },
+        {
+          "seq": 58,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "布袋寅泰",
+          "event_id": "vwd-f11678da5d53"
+        },
+        {
+          "seq": 59,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "布袋寅泰",
+          "event_id": "vwd-4e88f189df24"
+        },
+        {
+          "seq": 60,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "清水ミチコ",
+          "event_id": "vwd-561881c75890"
+        },
+        {
+          "seq": 61,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "森山良子",
+          "event_id": "vwd-e970d1be8ece"
+        },
+        {
+          "seq": 62,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "ラブライブ!蓮ノ空女学院スクールアイドルクラブ Link Live Dream ～106期新入生入部記念公演～",
+          "event_id": "vwd-429fe49d5fe5"
+        },
+        {
+          "seq": 63,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "ラブライブ!蓮ノ空女学院スクールアイドルクラブ Link Live Dream ～103期卒業公演～",
+          "event_id": "vwd-54c3e5e73b57"
+        },
+        {
+          "seq": 64,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "ラブライブ!蓮ノ空女学院スクールアイドルクラブ Link Live Dream ～103期卒業公演～",
+          "event_id": "vwd-84abf933def4"
+        },
+        {
+          "seq": 65,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "hololive 8th fes. Brand-New Fanfare Supported By LAWSON hololive STAGE1",
+          "event_id": "vwd-045a7fc6f446"
+        },
+        {
+          "seq": 66,
+          "first_detected_at_utc": "2026-11-21T03:14:46Z",
+          "outcome": "applied",
+          "title": "hololive 8th fes. Brand-New Fanfare Supported By LAWSON hololive STAGE3",
+          "event_id": "vwd-b09799810994"
         }
       ],
       "pending_after": 0,
