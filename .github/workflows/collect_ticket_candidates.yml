@@ -1,0 +1,68 @@
+name: Collect official ticket candidates (review only)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: ticket-candidate-read-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Restore previous candidate observation history
+        id: history
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/ticket-history
+          key: ticket-history-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            ticket-history-v1-${{ github.ref_name }}-
+      - name: Collect approved official sources
+        run: |
+          previous=()
+          if [[ -f "$RUNNER_TEMP/ticket-history/current.json" ]]; then
+            previous=(--previous "$RUNNER_TEMP/ticket-history/current.json")
+            echo "Candidate history restored; schema/hash will be validated." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No previous history available (first run or cache eviction); not proof of no prior changes." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          python -m scripts.collect_ticket_candidates "${previous[@]}" \
+            --sources config/ticket_sources.json \
+            --events data/lp_events.json \
+            --output "$RUNNER_TEMP/ticket-candidates.json" \
+            --checked-at-utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+      - name: Prepare next observation history
+        run: |
+          mkdir -p "$RUNNER_TEMP/ticket-history"
+          cp "$RUNNER_TEMP/ticket-candidates.json" "$RUNNER_TEMP/ticket-history/current.json"
+      - name: Save candidate history
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/ticket-history
+          key: ticket-history-v1-${{ github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Retain unreviewed facts and source hashes (no raw HTML)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ticket-candidates-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/ticket-candidates.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Review-only summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, os
+          from pathlib import Path
+          data = json.loads((Path(os.environ['RUNNER_TEMP']) / 'ticket-candidates.json').read_text())
+          print('## Ticket candidates: not published\n')
+          for r in data['results']:
+              print(f"- {r['source_id']}: {r['status']}")
+          print('\nOfficial-source and individual-show applicability review is required. No ledger, DB, Release or live data was changed.')
+          PY
