@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-11-22",
+  "as_of_date": "2026-11-23",
   "events": [
-    {
-      "artist_name": "Paledusk",
-      "capacity": 2801,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-24",
-      "event_end_date": "2026-08-24",
-      "event_end_time": null,
-      "event_key": "e031ca020cbe9e95fe4a",
-      "event_start_time": "19:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=163968",
-      "first_seen_at_utc": "2026-06-07T08:10:06Z",
-      "pref_name": "大阪府",
-      "raw_artist_name": "Paledusk",
-      "raw_venue_name": "Zepp Osaka Bayside",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=163968",
-          "priority": 10,
-          "record_id": "zepp_osaka_bayside:https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=163968",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "Age Factory x ENTH x Paledusk presents「GOBLIN」TOUR 2026",
-          "updated_at_utc": "2026-08-31T10:58:59Z",
-          "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=163968"
-        }
-      ],
-      "title": "Age Factory x ENTH x Paledusk presents「GOBLIN」TOUR 2026",
-      "updated_at_utc": "2026-08-31T10:58:59Z",
-      "url": "https://www.zepp.co.jp/hall/osakabayside/schedule/single/?rid=163968",
-      "venue_name": "Zepp Osaka Bayside"
-    },
-    {
-      "artist_name": "EPIC RIDE EXTRA 2026　THE BIG BANG",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-24",
-      "event_end_date": "2026-08-24",
-      "event_end_time": null,
-      "event_key": "9188a4ca508a4abdc97e",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8692.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "EPIC RIDE EXTRA 2026　THE BIG BANG",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8692.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8692.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "EPIC RIDE EXTRA 2026　THE BIG BANG Lesson in Japan",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8692.html"
-        }
-      ],
-      "title": "EPIC RIDE EXTRA 2026　THE BIG BANG Lesson in Japan",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8692.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "EPIC RIDE EXTRA 2026　THE BIG BANG",
       "capacity": 3103,
@@ -38786,8 +38710,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-22T12:50:12Z",
-  "history_start_date": "2026-08-24",
+  "generated_at_utc": "2026-11-22T19:32:03Z",
+  "history_start_date": "2026-08-25",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 92,
@@ -38824,6 +38748,26 @@
     {
       "reason": "unresolved_domestic_location",
       "record_id": "7ae4303173a54a0cc633d0b9a6091f68082583adb93b53b2b4398984d5870d3c",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "3204bec217372cec5146a053f95edb87cd5e726c5457cbd90a9f5f7410913246",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "a6f015d882426109fdd75622153c27f3ade788cb023c570f89df82b55a46e2f2",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "bc96e29a399cd581947a882bf319c1b80ff584c74b0eb640e14c044b6a9973ce",
+      "source_id": "kstyle_music"
+    },
+    {
+      "reason": "unresolved_domestic_location",
+      "record_id": "73e9c5b5dc99981c19edd470ce69125c035d31101d4cfcff08a46b4d92be7796",
       "source_id": "kstyle_music"
     },
     {
@@ -38966,16 +38910,16 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 659,
+      "official_events": 657,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 970,
-    "identity_held_record_count": 2077,
-    "location_held_record_count": 32,
-    "record_count_before_grouping": 3294,
-    "start_time_split_event_count": 76,
-    "start_time_split_group_count": 72,
+    "event_count": 968,
+    "identity_held_record_count": 2070,
+    "location_held_record_count": 36,
+    "record_count_before_grouping": 3279,
+    "start_time_split_event_count": 75,
+    "start_time_split_group_count": 71,
     "supplemental_merged_group_count": 20,
     "supplemental_merged_record_count": 24,
     "suppressed_event_count": 5
