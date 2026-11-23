@@ -1,44 +1,6 @@
 {
-  "as_of_date": "2026-11-23",
+  "as_of_date": "2026-11-24",
   "events": [
-    {
-      "artist_name": "EPIC RIDE EXTRA 2026　THE BIG BANG",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-25",
-      "event_end_date": "2026-08-25",
-      "event_end_time": null,
-      "event_key": "f1ba044e153fe7efb9e7",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8694.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "EPIC RIDE EXTRA 2026　THE BIG BANG",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8694.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8694.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "EPIC RIDE EXTRA 2026　THE BIG BANG Lesson in Japan",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8694.html"
-        }
-      ],
-      "title": "EPIC RIDE EXTRA 2026　THE BIG BANG Lesson in Japan",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8694.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "ILiFE!",
       "capacity": 20033,
@@ -38710,8 +38672,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-23T07:20:16Z",
-  "history_start_date": "2026-08-25",
+  "generated_at_utc": "2026-11-23T15:16:00Z",
+  "history_start_date": "2026-08-26",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 92,
@@ -38915,14 +38877,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 657,
+      "official_events": 656,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 968,
-    "identity_held_record_count": 2073,
+    "event_count": 967,
+    "identity_held_record_count": 2063,
     "location_held_record_count": 37,
-    "record_count_before_grouping": 3282,
+    "record_count_before_grouping": 3271,
     "start_time_split_event_count": 75,
     "start_time_split_group_count": 71,
     "supplemental_merged_group_count": 20,
