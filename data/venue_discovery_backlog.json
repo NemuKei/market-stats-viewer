@@ -1,34 +1,69 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-22T03:09:38Z",
-  "next_seq": 71,
+  "last_ingested_inbox_run_at_utc": "2026-11-23T03:15:19Z",
+  "next_seq": 82,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-22T03:10:30Z",
+    "at_utc": "2026-11-23T03:16:23Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-22T03:09:38Z",
+      "inbox_run_at_utc": "2026-11-23T03:15:19Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "seq": 67,
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 71,
           "origin": "candidates"
         },
         {
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "seq": 68,
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 72,
           "origin": "candidates"
         },
         {
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "seq": 69,
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 73,
           "origin": "candidates"
         },
         {
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "seq": 70,
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 74,
+          "origin": "candidates"
+        },
+        {
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 75,
+          "origin": "candidates"
+        },
+        {
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 76,
+          "origin": "candidates"
+        },
+        {
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 77,
+          "origin": "candidates"
+        },
+        {
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 78,
+          "origin": "candidates"
+        },
+        {
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 79,
+          "origin": "candidates"
+        },
+        {
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "seq": 80,
+          "origin": "candidates"
+        },
+        {
+          "title": "センダイガールズプロレスリング 日本武道館大会",
+          "seq": 81,
           "origin": "candidates"
         }
       ],
@@ -38,38 +73,87 @@
     },
     "process": {
       "limit": 30,
-      "processed": 4,
-      "applied": 4,
+      "processed": 11,
+      "applied": 11,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 67,
-          "first_detected_at_utc": "2026-11-22T03:09:38Z",
+          "seq": 71,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
           "outcome": "applied",
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "event_id": "vwd-fcb69bc915b3"
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-4c5bf82bfaa5"
         },
         {
-          "seq": 68,
-          "first_detected_at_utc": "2026-11-22T03:09:38Z",
+          "seq": 72,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
           "outcome": "applied",
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "event_id": "vwd-7ff44de548b7"
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-863c149a0a97"
         },
         {
-          "seq": 69,
-          "first_detected_at_utc": "2026-11-22T03:09:38Z",
+          "seq": 73,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
           "outcome": "applied",
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "event_id": "vwd-3a8b04171651"
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-be234294a6ce"
         },
         {
-          "seq": 70,
-          "first_detected_at_utc": "2026-11-22T03:09:38Z",
+          "seq": 74,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
           "outcome": "applied",
-          "title": "Vaundy JAPAN ARENA TOUR 2027-2028",
-          "event_id": "vwd-2e986a2263ae"
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-c419b6051826"
+        },
+        {
+          "seq": 75,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-d46fac460b05"
+        },
+        {
+          "seq": 76,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-1233d68b1d64"
+        },
+        {
+          "seq": 77,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-e3e5a8adc599"
+        },
+        {
+          "seq": 78,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-f03f99430e46"
+        },
+        {
+          "seq": 79,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-d81f71e3bf76"
+        },
+        {
+          "seq": 80,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "event_id": "vwd-da25c6eeddb1"
+        },
+        {
+          "seq": 81,
+          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "outcome": "applied",
+          "title": "センダイガールズプロレスリング 日本武道館大会",
+          "event_id": "vwd-b61d50513922"
         }
       ],
       "pending_after": 0,
