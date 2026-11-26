@@ -1,39 +1,24 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-26T12:19:16Z",
-  "next_seq": 87,
+  "last_ingested_inbox_run_at_utc": "2026-11-26T14:19:25Z",
+  "next_seq": 89,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-26T12:19:45Z",
+    "at_utc": "2026-11-26T14:20:53Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-26T12:19:16Z",
+      "inbox_run_at_utc": "2026-11-26T14:19:25Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "OLIVIA DEAN - The Art of Loving LIVE 2027",
-          "seq": 82,
+          "title": "日向坂46「おひさま感謝祭 2027」",
+          "seq": 87,
           "origin": "candidates"
         },
         {
-          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
-          "seq": 83,
-          "origin": "candidates"
-        },
-        {
-          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
-          "seq": 84,
-          "origin": "candidates"
-        },
-        {
-          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
-          "seq": 85,
-          "origin": "candidates"
-        },
-        {
-          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
-          "seq": 86,
+          "title": "日向坂46「おひさま感謝祭 2027」",
+          "seq": 88,
           "origin": "candidates"
         }
       ],
@@ -43,45 +28,24 @@
     },
     "process": {
       "limit": 30,
-      "processed": 5,
-      "applied": 5,
+      "processed": 2,
+      "applied": 2,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 82,
-          "first_detected_at_utc": "2026-11-26T12:19:16Z",
+          "seq": 87,
+          "first_detected_at_utc": "2026-11-26T14:19:25Z",
           "outcome": "applied",
-          "title": "OLIVIA DEAN - The Art of Loving LIVE 2027",
-          "event_id": "vwd-48893c203f48"
+          "title": "日向坂46「おひさま感謝祭 2027」",
+          "event_id": "vwd-ee0e01af110e"
         },
         {
-          "seq": 83,
-          "first_detected_at_utc": "2026-11-26T12:19:16Z",
+          "seq": 88,
+          "first_detected_at_utc": "2026-11-26T14:19:25Z",
           "outcome": "applied",
-          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
-          "event_id": "vwd-90cab27183e3"
-        },
-        {
-          "seq": 84,
-          "first_detected_at_utc": "2026-11-26T12:19:16Z",
-          "outcome": "applied",
-          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
-          "event_id": "vwd-c48f61568880"
-        },
-        {
-          "seq": 85,
-          "first_detected_at_utc": "2026-11-26T12:19:16Z",
-          "outcome": "applied",
-          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
-          "event_id": "vwd-a53bac959ca9"
-        },
-        {
-          "seq": 86,
-          "first_detected_at_utc": "2026-11-26T12:19:16Z",
-          "outcome": "applied",
-          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
-          "event_id": "vwd-70c1b473b07e"
+          "title": "日向坂46「おひさま感謝祭 2027」",
+          "event_id": "vwd-1e77b2ecec1c"
         }
       ],
       "pending_after": 0,
