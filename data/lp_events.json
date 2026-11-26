@@ -1,82 +1,6 @@
 {
-  "as_of_date": "2026-11-26",
+  "as_of_date": "2026-11-27",
   "events": [
-    {
-      "artist_name": "MONGOL800",
-      "capacity": 2473,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-28",
-      "event_end_date": "2026-08-28",
-      "event_end_time": null,
-      "event_key": "98722cdce20770cee96f",
-      "event_start_time": "19:00",
-      "evidence_snippet": "",
-      "evidence_url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158451",
-      "first_seen_at_utc": "2026-04-07T06:01:57Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "MONGOL800",
-      "raw_venue_name": "Zepp DiverCity(Tokyo)",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158451",
-          "priority": 10,
-          "record_id": "zepp_divercity:https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158451",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "MONGOL800 -etc.works- TOUR 2026",
-          "updated_at_utc": "2026-08-31T10:57:53Z",
-          "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158451"
-        }
-      ],
-      "title": "MONGOL800 -etc.works- TOUR 2026",
-      "updated_at_utc": "2026-08-31T10:57:53Z",
-      "url": "https://www.zepp.co.jp/hall/divercity/schedule/single/?rid=158451",
-      "venue_name": "Zepp DiverCity(Tokyo)"
-    },
-    {
-      "artist_name": "ぼーんとぅ盆踊り2026夏～私たちは盆踊りをするために生まれてきた～ ㏌ TOKYO",
-      "capacity": 3103,
-      "display_source_class": "venue_official",
-      "display_source_id": "official_events",
-      "display_source_label": "会場公式",
-      "event_category": "コンサート",
-      "event_date": "2026-08-28",
-      "event_end_date": "2026-08-28",
-      "event_end_time": null,
-      "event_key": "09507c84dfe974b228aa",
-      "event_start_time": null,
-      "evidence_snippet": "",
-      "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8667.html",
-      "first_seen_at_utc": "2026-08-01T08:25:09Z",
-      "pref_name": "東京都",
-      "raw_artist_name": "ぼーんとぅ盆踊り2026夏～私たちは盆踊りをするために生まれてきた～ ㏌ TOKYO",
-      "raw_venue_name": "豊洲PIT",
-      "source_priority": 10,
-      "supporting_sources": [
-        {
-          "content_extractor": null,
-          "evidence_url": "https://toyosu.pia-pit.jp/schedule/202607/8667.html",
-          "priority": 10,
-          "record_id": "toyosu_pit:../../../schedule/202607/8667.html",
-          "source_class": "venue_official",
-          "source_id": "official_events",
-          "source_label": "会場公式",
-          "title": "ぼーんとぅ盆踊り2026夏～私たちは盆踊りをするために生まれてきた～ ㏌ TOKYO",
-          "updated_at_utc": "2026-08-01T08:25:09Z",
-          "url": "https://toyosu.pia-pit.jp/schedule/202607/8667.html"
-        }
-      ],
-      "title": "ぼーんとぅ盆踊り2026夏～私たちは盆踊りをするために生まれてきた～ ㏌ TOKYO",
-      "updated_at_utc": "2026-08-01T08:25:09Z",
-      "url": "https://toyosu.pia-pit.jp/schedule/202607/8667.html",
-      "venue_name": "豊洲PIT"
-    },
     {
       "artist_name": "のんふぃく!",
       "capacity": 2473,
@@ -38420,8 +38344,8 @@
       "venue_name": "大阪城ホール"
     }
   ],
-  "generated_at_utc": "2026-11-26T14:22:09Z",
-  "history_start_date": "2026-08-28",
+  "generated_at_utc": "2026-11-26T21:26:49Z",
+  "history_start_date": "2026-08-29",
   "history_window_days": 90,
   "identity_registry": {
     "revision": 92,
@@ -38620,14 +38544,14 @@
   ],
   "summary": {
     "counts_by_display_source": {
-      "official_events": 650,
+      "official_events": 648,
       "starto_concert": 4,
       "venue_web_discovery": 307
     },
-    "event_count": 961,
-    "identity_held_record_count": 2044,
+    "event_count": 959,
+    "identity_held_record_count": 2037,
     "location_held_record_count": 36,
-    "record_count_before_grouping": 3236,
+    "record_count_before_grouping": 3227,
     "start_time_split_event_count": 74,
     "start_time_split_group_count": 70,
     "supplemental_merged_group_count": 20,
