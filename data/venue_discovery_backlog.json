@@ -1,69 +1,39 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-23T03:15:19Z",
-  "next_seq": 82,
+  "last_ingested_inbox_run_at_utc": "2026-11-26T12:19:16Z",
+  "next_seq": 87,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-23T03:16:23Z",
+    "at_utc": "2026-11-26T12:19:45Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-23T03:15:19Z",
+      "inbox_run_at_utc": "2026-11-26T12:19:16Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 71,
+          "title": "OLIVIA DEAN - The Art of Loving LIVE 2027",
+          "seq": 82,
           "origin": "candidates"
         },
         {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 72,
+          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
+          "seq": 83,
           "origin": "candidates"
         },
         {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 73,
+          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
+          "seq": 84,
           "origin": "candidates"
         },
         {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 74,
+          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
+          "seq": 85,
           "origin": "candidates"
         },
         {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 75,
-          "origin": "candidates"
-        },
-        {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 76,
-          "origin": "candidates"
-        },
-        {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 77,
-          "origin": "candidates"
-        },
-        {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 78,
-          "origin": "candidates"
-        },
-        {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 79,
-          "origin": "candidates"
-        },
-        {
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "seq": 80,
-          "origin": "candidates"
-        },
-        {
-          "title": "センダイガールズプロレスリング 日本武道館大会",
-          "seq": 81,
+          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
+          "seq": 86,
           "origin": "candidates"
         }
       ],
@@ -73,87 +43,45 @@
     },
     "process": {
       "limit": 30,
-      "processed": 11,
-      "applied": 11,
+      "processed": 5,
+      "applied": 5,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 71,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "seq": 82,
+          "first_detected_at_utc": "2026-11-26T12:19:16Z",
           "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-4c5bf82bfaa5"
+          "title": "OLIVIA DEAN - The Art of Loving LIVE 2027",
+          "event_id": "vwd-48893c203f48"
         },
         {
-          "seq": 72,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "seq": 83,
+          "first_detected_at_utc": "2026-11-26T12:19:16Z",
           "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-863c149a0a97"
+          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
+          "event_id": "vwd-90cab27183e3"
         },
         {
-          "seq": 73,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "seq": 84,
+          "first_detected_at_utc": "2026-11-26T12:19:16Z",
           "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-be234294a6ce"
+          "title": "MyGO!!!!! 10th LIVE 「僕たちのいまを越えて」",
+          "event_id": "vwd-c48f61568880"
         },
         {
-          "seq": 74,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "seq": 85,
+          "first_detected_at_utc": "2026-11-26T12:19:16Z",
           "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-c419b6051826"
+          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
+          "event_id": "vwd-a53bac959ca9"
         },
         {
-          "seq": 75,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
+          "seq": 86,
+          "first_detected_at_utc": "2026-11-26T12:19:16Z",
           "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-d46fac460b05"
-        },
-        {
-          "seq": 76,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
-          "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-1233d68b1d64"
-        },
-        {
-          "seq": 77,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
-          "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-e3e5a8adc599"
-        },
-        {
-          "seq": 78,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
-          "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-f03f99430e46"
-        },
-        {
-          "seq": 79,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
-          "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-d81f71e3bf76"
-        },
-        {
-          "seq": 80,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
-          "outcome": "applied",
-          "title": "Mr.Children Dome & Stadium Tour 2027",
-          "event_id": "vwd-da25c6eeddb1"
-        },
-        {
-          "seq": 81,
-          "first_detected_at_utc": "2026-11-23T03:15:19Z",
-          "outcome": "applied",
-          "title": "センダイガールズプロレスリング 日本武道館大会",
-          "event_id": "vwd-b61d50513922"
+          "title": "GENERATIONS LIVE TOUR 2027 \"ISM\"",
+          "event_id": "vwd-70c1b473b07e"
         }
       ],
       "pending_after": 0,
