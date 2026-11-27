@@ -199,8 +199,10 @@ snapshotは停止済み/SQLite backupで作った単体ファイルを使う。�
 - Schedule: monthly (`cron: 20 3 1 * *`) + `workflow_dispatch`
 - Flow:
   1. `artist_registry.seed.csv` を Wikidata（`--countries kr`）で更新
-  2. `artist_registry.jp.seed.csv` を Wikidata（`--countries jp`）で更新。個人とグループは別クエリで取得し、両方の成功後に `artist_id` で統合する（重複IDのaliasも統合）。タイムアウト・空結果・利用可能な行のない結果ではseedを書き換えず失敗にする。
-  3. `build_events_artist_inferred` を実行して補完CSVを再生成
+  2. `artist_registry.jp.seed.csv` を Wikidata v2（`--countries jp`、`https://query-next.wikidata.org/sparql`）で更新。個人とグループを別々に取得する。正規名の優先順は日本語、英語、韓国語、共通ラベル。`--countries kr`、国の指定なし、日韓混在指定は従来のv1を使う。
+  3. 日本分は両方の取得成功後に `artist_id` で既存seedへ合流する。v2の応答から消えたIDは行ごと残す。正規名が変われば旧名を別名へ加え、既存別名を既存順で残した上で新しい表記を末尾に文字列順で加える。正規名と完全一致する別名は外し、QIDしか返らない場合は既存名を保持する。
+  4. タイムアウト・空結果・利用可能な行のない結果、またはv2の応答に前回seedの90%のIDが含まれない場合は、既存日本seedを維持して失敗とする。韓国seed・日本seed・manualを統合した監視・参照設定も書き換え前に照合し、保持できない場合は失敗とする。
+  5. `build_events_artist_inferred` を実行して補完CSVを再生成
 - No-op policy:
   - seed生成時、`artist_id` ごとに実データ（canonical/aliases/source/is_enabled）が不変なら既存 `updated_at` を保持する。
   - 実データ差分がある行だけ `updated_at` を当日へ更新する。

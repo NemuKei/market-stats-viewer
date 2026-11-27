@@ -7,18 +7,28 @@ import csv
 import json
 import logging
 import random
+import stat
 import time
 from datetime import date
+from email.utils import parsedate_to_datetime
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import requests
+
+if __package__:
+    from .signals.artist_registry import load_registry
+else:
+    from signals.artist_registry import load_registry
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 SEED_PATH = DATA_DIR / "artist_registry.seed.csv"
+JP_SEED_PATH = DATA_DIR / "artist_registry.jp.seed.csv"
 MANUAL_PATH = DATA_DIR / "artist_registry.manual.csv"
 
 SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
+JP_SPARQL_ENDPOINT = "https://query-next.wikidata.org/sparql"
 USER_AGENT = "market-stats-viewer/1.0 (+https://github.com/NemuKei/market-stats-viewer)"
 
 SPARQL_QUERY_LEGACY = """
@@ -50,6 +60,21 @@ SEED_COLUMNS = [
 ]
 
 
+def _retry_after_seconds(header: str) -> float | None:
+    value = header.strip()
+    if value.isdecimal():
+        return float(int(value))
+    if not value:
+        return None
+    try:
+        retry_at = parsedate_to_datetime(value)
+    except ValueError:
+        return None
+    if retry_at.tzinfo is None:
+        return None
+    return max(0.0, retry_at.timestamp() - time.time())
+
+
 def fetch_sparql_with_retry(
     endpoint: str,
     query: str,
@@ -64,6 +89,7 @@ def fetch_sparql_with_retry(
     params = {"query": query, "format": "json"}
 
     for attempt in range(1, max_attempts + 1):
+        retry_after = None
         try:
             resp = requests.get(
                 endpoint, params=params, headers=headers, timeout=request_timeout
@@ -71,6 +97,12 @@ def fetch_sparql_with_retry(
             if resp.status_code == 200:
                 return resp.json()
             if resp.status_code in {429, 500, 502, 503, 504}:
+                if endpoint == JP_SPARQL_ENDPOINT:
+                    retry_after = _retry_after_seconds(
+                        resp.headers.get("Retry-After", "")
+                    )
+                    if retry_after is None and resp.status_code == 429:
+                        retry_after = 60.0
                 raise requests.HTTPError(f"retryable status={resp.status_code}")
             resp.raise_for_status()
         except Exception as exc:
@@ -78,7 +110,10 @@ def fetch_sparql_with_retry(
                 raise RuntimeError(
                     f"Wikidata fetch failed after {attempt} attempts"
                 ) from exc
-            wait = base_wait * (2 ** (attempt - 1)) + random.uniform(0.0, 0.6)
+            wait = max(
+                base_wait * (2 ** (attempt - 1)) + random.uniform(0.0, 0.6),
+                retry_after or 0.0,
+            )
             logger.warning(
                 "Retry %d/%d after error: %s (wait %.1fs)",
                 attempt,
@@ -214,6 +249,89 @@ def write_seed_csv_noop(rows: list[dict[str, object]], path: Path) -> bool:
     return True
 
 
+def _seed_aliases(row: dict[str, object]) -> list[str]:
+    aliases = json.loads(str(row["aliases_json"]) or "[]")
+    if not isinstance(aliases, list) or any(
+        not isinstance(alias, str) for alias in aliases
+    ):
+        raise ValueError(f"Invalid seed aliases for {row['artist_id']}")
+    return aliases
+
+
+def _monitoring_settings(jp_seed_path: Path) -> dict[str, tuple[bool, str, str]]:
+    return {
+        entry.artist_id: (
+            entry.ticketjam_watch,
+            entry.ticketjam_benchmark_tier,
+            entry.ticketjam_watch_reason,
+        )
+        for entry in load_registry(jp_seed_path=jp_seed_path)
+        if entry.ticketjam_watch
+        or entry.ticketjam_benchmark_tier
+        or entry.ticketjam_watch_reason
+    }
+
+
+def write_japan_seed(
+    rows: list[dict[str, object]], path: Path, updated_at: str
+) -> bool:
+    existing = _load_existing_rows(path)
+    # Check the response itself before retained rows or added IDs can mask a drop.
+    fetched_ids = {str(row["artist_id"]) for row in rows}
+    overlap = len(fetched_ids & existing.keys())
+    if not fetched_ids or overlap * 10 < len(existing) * 9:
+        raise RuntimeError(
+            f"Wikidata Japan coverage too low: {overlap}/{len(existing)} previous IDs "
+            f"in {len(fetched_ids)} fetched IDs (minimum 90% of previous IDs)"
+        )
+
+    merged: dict[str, dict[str, object]] = {
+        artist_id: dict(row) for artist_id, row in existing.items()
+    }
+    for incoming in rows:
+        artist_id = str(incoming["artist_id"])
+        saved = merged.get(artist_id)
+        old_aliases = _seed_aliases(saved) if saved else []
+        old_name = str(saved["canonical_name"]) if saved else ""
+        name = str(incoming["canonical_name"])
+        if old_name and name == artist_id.removeprefix("wd:"):
+            name = old_name
+        additions = set(_seed_aliases(incoming)) | {old_name}
+        aliases = [alias for alias in old_aliases if alias != name]
+        aliases.extend(sorted(additions - set(old_aliases) - {name, ""}))
+        if saved is not None and name == old_name and aliases == old_aliases:
+            continue
+        merged[artist_id] = {
+            **(saved if saved is not None else incoming),
+            "canonical_name": name,
+            "aliases_json": json.dumps(aliases, ensure_ascii=False),
+            "updated_at": updated_at,
+        }
+
+    # Use the same overlay rules as readers before replacing the previous seed.
+    ordered = sorted(merged.values(), key=lambda row: str(row["canonical_name"]))
+    with TemporaryDirectory(dir=path.parent) as directory:
+        candidate = Path(directory) / path.name
+        write_seed_csv_noop(ordered, candidate)
+        previous_monitoring = _monitoring_settings(path)
+        current_monitoring = _monitoring_settings(candidate)
+        missing = sorted(
+            artist_id
+            for artist_id, settings in previous_monitoring.items()
+            if current_monitoring.get(artist_id) != settings
+        )
+        if missing:
+            raise RuntimeError(
+                f"Wikidata Japan would drop monitoring settings: {', '.join(missing)}"
+            )
+        if path.exists():
+            if path.read_bytes() == candidate.read_bytes():
+                return False
+            candidate.chmod(stat.S_IMODE(path.stat().st_mode))
+        candidate.replace(path)
+    return True
+
+
 def ensure_manual_csv(path: Path) -> None:
     if path.exists():
         return
@@ -241,6 +359,10 @@ def _qid_from_uri(uri: str) -> str:
     return qid
 
 
+def _uses_japan_v2(country_codes: list[str]) -> bool:
+    return set(country_codes).intersection(COUNTRY_QID_MAP) == {"jp"}
+
+
 def build_country_filtered_query(
     country_codes: list[str], artist_kind: str | None = None
 ) -> str:
@@ -264,12 +386,17 @@ def build_country_filtered_query(
     else:
         raise ValueError(f"Unknown artist kind: {artist_kind}")
     values = " ".join(f"wd:{qid}" for qid in country_qids)
+    languages = (
+        "ja,en,ko,mul"
+        if _uses_japan_v2(country_codes)
+        else "ja,en,ko,[AUTO_LANGUAGE],mul"
+    )
     return f"""
 SELECT ?item ?itemLabel (GROUP_CONCAT(DISTINCT ?alias; separator="|") AS ?aliases) WHERE {{
   VALUES ?country {{ {values} }}
   {pattern}
   OPTIONAL {{ ?item skos:altLabel ?alias . FILTER (lang(?alias) IN ("ja","en","ko")) }}
-  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "ja,en,ko,[AUTO_LANGUAGE],mul". }}
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "{languages}". }}
 }}
 GROUP BY ?item ?itemLabel
 """.strip()
@@ -278,7 +405,8 @@ GROUP BY ?item ?itemLabel
 def fetch_seed_rows(
     country_codes: list[str], request_timeout: int
 ) -> list[dict[str, object]]:
-    # Keep the existing Korean/legacy request; Japan no longer runs the UNION.
+    # Mixed-country and Korean requests retain their existing v1 behavior.
+    endpoint = JP_SPARQL_ENDPOINT if _uses_japan_v2(country_codes) else SPARQL_ENDPOINT
     kinds = ["person", "group"] if "jp" in country_codes else [None]
     by_id: dict[str, dict[str, object]] = {}
     for kind in kinds:
@@ -288,7 +416,7 @@ def fetch_seed_rows(
             kind or "combined",
         )
         payload = fetch_sparql_with_retry(
-            SPARQL_ENDPOINT,
+            endpoint,
             build_country_filtered_query(country_codes, kind),
             request_timeout=request_timeout,
         )
@@ -324,8 +452,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--output",
-        default=str(SEED_PATH),
-        help="Output CSV path.",
+        help="Output CSV path. Defaults to the Japan seed for jp or the standard seed otherwise.",
     )
     parser.add_argument(
         "--request-timeout",
@@ -346,18 +473,21 @@ def main() -> None:
     countries = [
         c.strip().lower() for c in str(args.countries).split(",") if c and c.strip()
     ]
-    output_path = Path(args.output)
-    rows = fetch_seed_rows(countries, max(10, int(args.request_timeout)))
-    rows = stabilize_updated_at_with_existing(
-        rows=rows,
-        path=output_path,
-        updated_at=date.today().strftime("%Y-%m-%d"),
+    japan_v2 = _uses_japan_v2(countries)
+    output_path = (
+        Path(args.output) if args.output else (JP_SEED_PATH if japan_v2 else SEED_PATH)
     )
-    changed = write_seed_csv_noop(rows, output_path)
+    rows = fetch_seed_rows(countries, max(10, int(args.request_timeout)))
+    updated_at = date.today().isoformat()
+    if japan_v2:
+        changed = write_japan_seed(rows, output_path, updated_at)
+    else:
+        rows = stabilize_updated_at_with_existing(rows, output_path, updated_at)
+        changed = write_seed_csv_noop(rows, output_path)
     ensure_manual_csv(MANUAL_PATH)
 
     if changed:
-        logger.info("Wrote %d rows to %s", len(rows), output_path)
+        logger.info("Updated %s after fetching %d artists", output_path, len(rows))
     else:
         logger.info("No changes in %s", output_path)
 

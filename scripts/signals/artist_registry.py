@@ -28,9 +28,9 @@ class ArtistEntry:
     ticketjam_watch_reason: str = ""
 
 
-def load_registry() -> list[ArtistEntry]:
+def load_registry(*, jp_seed_path: Path | None = None) -> list[ArtistEntry]:
     merged: dict[str, ArtistEntry] = {}
-    for path in (SEED_PATH, JP_SEED_PATH, MANUAL_PATH):
+    for path in (SEED_PATH, jp_seed_path or JP_SEED_PATH, MANUAL_PATH):
         if not path.exists():
             continue
         for row in _read_registry_csv(path):
