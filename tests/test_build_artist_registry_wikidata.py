@@ -2,6 +2,7 @@ import argparse
 import csv
 import json
 from email.utils import formatdate
+from io import BytesIO
 
 import pytest
 import requests
@@ -13,22 +14,26 @@ from scripts.signals import artist_registry
 
 def payload(qid="Q1", name="Artist", aliases="Alias"):
     return {
+        "head": {"vars": ["item", "itemLabel", "aliases"]},
         "results": {
             "bindings": [
                 {
-                    "item": {"value": f"http://www.wikidata.org/entity/{qid}"},
-                    "itemLabel": {"value": name},
-                    "aliases": {"value": aliases},
+                    "item": {
+                        "type": "uri",
+                        "value": f"http://www.wikidata.org/entity/{qid}",
+                    },
+                    "itemLabel": {"type": "literal", "value": name},
+                    "aliases": {"type": "literal", "value": aliases},
                 }
             ]
-        }
+        },
     }
 
 
 def test_japan_queries_split_person_and_group_and_merge_aliases(monkeypatch):
     calls = []
 
-    def fetch(endpoint, query, request_timeout):
+    def fetch(endpoint, query, request_timeout, **kwargs):
         calls.append((endpoint, query, request_timeout))
         return payload(aliases="One") if len(calls) == 1 else payload(aliases="Two")
 
@@ -103,7 +108,11 @@ def test_incomplete_fetch_preserves_seed_and_manual(
         if calls == fail_at:
             if failure == "timeout":
                 raise RuntimeError("Wikidata fetch failed after 5 attempts")
-            return {} if failure == "malformed" else {"results": {"bindings": []}}
+            return (
+                {}
+                if failure == "malformed"
+                else {"head": payload()["head"], "results": {"bindings": []}}
+            )
         return payload()
 
     monkeypatch.setattr(builder, "fetch_sparql_with_retry", fetch)
@@ -186,6 +195,7 @@ def seed_row(qid, name, aliases="", **fields):
 def replies_for(*groups):
     return iter(
         {
+            "head": payload()["head"],
             "results": {
                 "bindings": [
                     payload(*row)["results"]["bindings"][0]
@@ -193,7 +203,7 @@ def replies_for(*groups):
                     else payload(*row, aliases="")["results"]["bindings"][0]
                     for row in group
                 ]
-            }
+            },
         }
         for group in groups
     )
@@ -355,6 +365,8 @@ def test_japan_update_cannot_hide_a_monitored_korean_entry(
         (429, "17", 17),
         (503, formatdate(1_800_000_030, usegmt=True), 30),
         (429, None, 60),
+        pytest.param(429, "9" * 310, 60, id="float-overflow"),
+        pytest.param(429, "9" * 5000, 60, id="integer-digit-limit"),
     ],
 )
 def test_japan_v2_respects_retry_after_and_identifies_the_client(
@@ -366,6 +378,8 @@ def test_japan_v2_respects_retry_after_and_identifies_the_client(
         responses[0].headers["Retry-After"] = retry_after
     responses[1].status_code = 200
     responses[1]._content = json.dumps(payload()).encode()
+    responses[0].raw = BytesIO()
+    responses[1].raw = BytesIO(responses[1]._content)
     calls = []
     waits = []
 
@@ -426,3 +440,244 @@ def test_japan_cli_defaults_to_japan_seed_without_replacing_korean_seed(
     builder.main()
     assert korean.read_bytes() == original_korean
     assert set(read_rows(japan)) == {"wd:Q2", "wd:Q3"}
+
+
+def http_response(status=200, body=None, **headers):
+    response = requests.Response()
+    response.status_code = status
+    response._content = body if body is not None else json.dumps(payload()).encode()
+    response.raw = BytesIO(response._content)
+    response.headers.update(headers)
+    return response
+
+
+@pytest.mark.parametrize("retry_after", ["121", "301", "3600"])
+def test_japan_v2_excessive_wait_stops_without_retry(
+    cli_paths, monkeypatch, retry_after
+):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    calls = []
+    waits = []
+
+    def get(*args, **kwargs):
+        calls.append(1)
+        return http_response(429, **{"Retry-After": retry_after})
+
+    monkeypatch.setattr(builder.requests, "get", get)
+    monkeypatch.setattr(builder.time, "sleep", waits.append)
+    with pytest.raises(RuntimeError, match="wait limit"):
+        builder.main()
+    assert len(calls) == 1
+    assert waits == []
+    assert output.read_bytes() == original
+
+
+def test_japan_v2_budget_is_shared_by_both_queries(cli_paths, monkeypatch):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    monkeypatch.setattr(
+        builder,
+        "parse_args",
+        lambda: argparse.Namespace(
+            countries="jp", output=str(output), request_timeout=280
+        ),
+    )
+    now = 0
+    timeouts = []
+    waits = []
+
+    def get(*args, **kwargs):
+        nonlocal now
+        timeouts.append(kwargs["timeout"])
+        if len(timeouts) == 1:
+            now += 250
+            return http_response()
+        return http_response(429, **{"Retry-After": "60"})
+
+    monkeypatch.setattr(builder.requests, "get", get)
+    monkeypatch.setattr(builder.time, "monotonic", lambda: now)
+    monkeypatch.setattr(builder.time, "sleep", waits.append)
+    with pytest.raises(RuntimeError, match="time budget"):
+        builder.main()
+    assert timeouts == [280, 50]
+    assert waits == []
+    assert output.read_bytes() == original
+
+
+def test_japan_v2_rejects_redirect_before_reading_body(cli_paths, monkeypatch):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    redirect = http_response(302, Location="https://example.invalid/query")
+    calls = []
+
+    def get(*args, **kwargs):
+        calls.append(kwargs)
+        hook = kwargs.get("hooks", {}).get("response")
+        if hook:
+            hook(redirect)
+        return redirect
+
+    monkeypatch.setattr(builder.requests, "get", get)
+    monkeypatch.setattr(builder.time, "sleep", lambda _seconds: None)
+    with pytest.raises(RuntimeError, match="redirect"):
+        builder.main()
+    assert len(calls) == 1
+    assert calls[0]["allow_redirects"] is False
+    assert redirect.raw.closed
+    assert output.read_bytes() == original
+
+
+def test_japan_v2_checks_budget_during_stream(cli_paths, monkeypatch):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    now = 0
+    answer = http_response()
+    calls = []
+
+    class SlowBody(BytesIO):
+        def read1(self, size):
+            nonlocal now
+            now = 301
+            return super().read1(size)
+
+    answer.raw = SlowBody(answer._content)
+
+    def get(*args, **kwargs):
+        calls.append(1)
+        return answer
+
+    monkeypatch.setattr(builder.requests, "get", get)
+    monkeypatch.setattr(builder.time, "monotonic", lambda: now)
+    with pytest.raises(RuntimeError, match="time budget"):
+        builder.main()
+    assert calls == [1]
+    assert answer.raw.closed
+    assert output.read_bytes() == original
+
+
+@pytest.mark.parametrize("declared_size", [False, True])
+def test_japan_v2_stops_at_body_size_limit(cli_paths, monkeypatch, declared_size):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    valid_json = json.dumps(payload()).encode()
+    limit = len(valid_json) + 1
+    body = valid_json + b" " * 40
+    answer = http_response(body=body)
+    if declared_size:
+        answer.headers["Content-Length"] = str(len(body))
+    consumed = []
+
+    class TracedBody(BytesIO):
+        def read1(self, size):
+            data = super().read1(size)
+            consumed.append(len(data))
+            return data
+
+    answer.raw = TracedBody(body)
+    monkeypatch.setattr(builder, "JP_MAX_RESPONSE_BYTES", limit, raising=False)
+    monkeypatch.setattr(builder.requests, "get", lambda *a, **kw: answer)
+    with pytest.raises(RuntimeError, match="body size"):
+        builder.main()
+    assert sum(consumed) == (0 if declared_size else limit + 1)
+    assert answer.raw.closed
+    assert output.read_bytes() == original
+
+
+def test_promoting_a_qid_name_does_not_add_it_as_an_alias(cli_paths, monkeypatch):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Q1", "Saved alias")], output)
+    replies = replies_for([("Q1", "Proper name", "New alias")], [("Q2", "Group")])
+    monkeypatch.setattr(
+        builder, "fetch_sparql_with_retry", lambda *args, **kwargs: next(replies)
+    )
+    builder.main()
+    promoted = read_rows(output)["wd:Q1"]
+    assert promoted["canonical_name"] == "Proper name"
+    assert json.loads(promoted["aliases_json"]) == ["Saved alias", "New alias"]
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("head", {"vars": ["item", "aliases"]}),
+        ("results", None),
+        ("bindings", {}),
+        ("row", ["invalid"]),
+        ("item", {"type": "literal", "value": "http://www.wikidata.org/entity/Q1"}),
+        ("item", {"type": "uri", "value": "http://example.invalid/entity/Q1"}),
+        ("item", {"type": "uri", "value": "https://www.wikidata.org/entity/Q01"}),
+        ("item", {"type": "uri", "value": "https://www.wikidata.org/entity/Q1٢"}),
+        ("item", {"type": "uri", "value": "https://www.wikidata.org/entity/Q1?a=1"}),
+        ("item", {"type": "uri", "value": "https://www.wikidata.org/entity/Q1\n"}),
+        ("itemLabel", {"type": "literal", "value": 123}),
+        ("itemLabel", {"type": "literal", "value": "Name\nNew line"}),
+        ("itemLabel", {"type": "literal", "value": " "}),
+        ("aliases", {"type": "literal", "value": "Alias\tTab"}),
+        ("aliases", {"type": "literal", "value": "Alias\u2028Break"}),
+        ("aliases", {"type": "literal", "value": ["Alias"]}),
+    ],
+)
+def test_japan_v2_rejects_invalid_binding_before_writing(
+    cli_paths, monkeypatch, field, value
+):
+    output, _ = cli_paths
+    builder.write_seed_csv_noop([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    invalid = payload()
+    if field in {"head", "results"}:
+        invalid[field] = value
+    elif field == "bindings":
+        invalid["results"][field] = value
+    elif field == "row":
+        invalid["results"]["bindings"].append(value)
+    else:
+        invalid["results"]["bindings"].append(
+            dict(invalid["results"]["bindings"][0], **{field: value})
+        )
+    replies = iter([payload(), invalid])
+    monkeypatch.setattr(
+        builder, "fetch_sparql_with_retry", lambda *args, **kwargs: next(replies)
+    )
+    with pytest.raises(RuntimeError, match="Invalid Wikidata v2"):
+        builder.main()
+    assert output.read_bytes() == original
+
+
+@pytest.mark.parametrize(
+    ("old_text", "damaged_text"),
+    [
+        ("canonical_name", "invalid_column"),
+        ("wd:Q2", "wd:Q9"),
+        ("Group name", "Other name"),
+        ("wd:Q2,Group name,[],wikidata,", "wd:Q2,Group name,[],wikidata,EXTRA,"),
+    ],
+)
+def test_candidate_csv_must_round_trip_before_replacing_seed(
+    cli_paths, monkeypatch, old_text, damaged_text
+):
+    output, _ = cli_paths
+    writer = builder.write_seed_csv_noop
+    writer([seed_row("Q1", "Existing")], output)
+    original = output.read_bytes()
+    replies = replies_for([("Q1", "Existing")], [("Q2", "Group name")])
+    monkeypatch.setattr(
+        builder, "fetch_sparql_with_retry", lambda *args, **kwargs: next(replies)
+    )
+
+    def damage(rows, path):
+        writer(rows, path)
+        content = path.read_text(encoding="utf-8")
+        assert old_text in content
+        path.write_text(content.replace(old_text, damaged_text, 1), encoding="utf-8")
+        return True
+
+    monkeypatch.setattr(builder, "write_seed_csv_noop", damage)
+    with pytest.raises(RuntimeError, match="candidate CSV"):
+        builder.main()
+    assert output.read_bytes() == original
