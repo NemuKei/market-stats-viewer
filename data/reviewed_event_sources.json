@@ -2761,6 +2761,142 @@
           "https://www.seventeen-17.jp/statics/dreaming#d=2026-11-22"
         ]
       }
+    },
+    {
+      "event_uid": "evt_d9ac2b545c29402eb000ed07bed6f7dc",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "9881fcd89bf0a72a10ca",
+        "fingerprint": "2ba9163ce07b0798bd66699e87c98e75ecc644e96e1397218c6999a42ccc67f0",
+        "identity": {
+          "artist_name": "Mr.Children",
+          "event_date": "2027-05-22",
+          "event_end_date": "2027-05-22",
+          "event_start_time": "17:00",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "venue_name": "京セラドーム大阪"
+        },
+        "source_records": [
+          {
+            "record_id": "7e55ec4993ff052ed1f22d8aef3405358963fff95e2dcccc4a4410916c2274d1",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://tour.mrchildren.jp/2027/"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://tour.mrchildren.jp/2027/"
+        ],
+        "row_sha256": "8a4790e942ac954c3232d07006f03932557f7cf8c442dbd5aaf27439eb22ed1b",
+        "status": "reviewed"
+      },
+      "source_signature": "23eef94e54590438a85631b7eb6e8c167d35a8843be687a417a173c462e01790"
+    },
+    {
+      "event_uid": "evt_ff059b1a9d0d42e39af7e24926e64314",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "3861034eb80b464422e5",
+        "fingerprint": "2bd4edf399a523c8cf5ce8f8d00721d78f8f2947431d42312fe43d62bdbfafc9",
+        "identity": {
+          "artist_name": "Mr.Children",
+          "event_date": "2027-05-23",
+          "event_end_date": "2027-05-23",
+          "event_start_time": "16:00",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "venue_name": "京セラドーム大阪"
+        },
+        "source_records": [
+          {
+            "record_id": "c8276f03a2b8514581e52704069dd81e17a958d52bcdd66325ebebc0fd20b023",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://tour.mrchildren.jp/2027/"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://tour.mrchildren.jp/2027/"
+        ],
+        "row_sha256": "6c52e86066204eeddc6fd8c617ee481fe66a652e86ee0adabc8aaba211dcfbd0",
+        "status": "reviewed"
+      },
+      "source_signature": "bedfc7b10a70ac43eccaa6cade3d78cc37fdeefbc17ce45b4a3d4734d3df9770"
+    },
+    {
+      "event_uid": "evt_8edb18bb4d5b419f88fd363144ee9b6b",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "c7ca0fbe37e06e847705",
+        "fingerprint": "5c69ac6d148badd421cce3167990b6ca237cd2196274c6e8a204d3ef75dc76eb",
+        "identity": {
+          "artist_name": "Mr.Children",
+          "event_date": "2027-06-26",
+          "event_end_date": "2027-06-26",
+          "event_start_time": "17:00",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "venue_name": "ヤンマースタジアム長居"
+        },
+        "source_records": [
+          {
+            "record_id": "9a6eaaa20b76f9acb291d00905bf2869434e6af515bf9f6c23df1345b146f70e",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://tour.mrchildren.jp/2027/"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://tour.mrchildren.jp/2027/"
+        ],
+        "row_sha256": "c9ba64a531d53a5989caf94d457cbef5a6a6b05bc9ca6f26a9fbfbd72c504625",
+        "status": "reviewed"
+      },
+      "source_signature": "8c8507c8431d5d5dad47d07c2ea091997caa9858de132eb8a21a9dc240111471"
+    },
+    {
+      "event_uid": "evt_2ff4a09c2da842daab68ff3b3c24bbd2",
+      "fact_review": "reviewed",
+      "mode": "preserve_source",
+      "observation": {
+        "candidate_key": "7e1858c238b1adac9213",
+        "fingerprint": "b09085d9d8a5ac732410752808a2deb5a55aa57bbd726ff88033e481aacb9406",
+        "identity": {
+          "artist_name": "Mr.Children",
+          "event_date": "2027-06-27",
+          "event_end_date": "2027-06-27",
+          "event_start_time": "17:00",
+          "title": "Mr.Children Dome & Stadium Tour 2027",
+          "venue_name": "ヤンマースタジアム長居"
+        },
+        "source_records": [
+          {
+            "record_id": "f2209d1491e2b3e875e3abdc8b52cb9efc55a8659f63031eb9da7320d0225359",
+            "source_id": "venue_web_discovery"
+          }
+        ]
+      },
+      "public_urls": [
+        "https://tour.mrchildren.jp/2027/"
+      ],
+      "publication": {
+        "public_urls": [
+          "https://tour.mrchildren.jp/2027/"
+        ],
+        "row_sha256": "6009e87adf8affd865a77c1b5f848ce65b8eb650842b620361eaa022427e517c",
+        "status": "reviewed"
+      },
+      "source_signature": "323234cb88b4dc240c21bd49ad110a6a7c8a28a271319dbbf215b358805e4560"
     }
   ],
   "schema_version": 1
