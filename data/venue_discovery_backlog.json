@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-26T14:19:25Z",
-  "next_seq": 89,
+  "last_ingested_inbox_run_at_utc": "2026-11-27T03:17:08Z",
+  "next_seq": 91,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-26T14:20:53Z",
+    "at_utc": "2026-11-27T03:17:40Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-26T14:19:25Z",
+      "inbox_run_at_utc": "2026-11-27T03:17:08Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "日向坂46「おひさま感謝祭 2027」",
-          "seq": 87,
+          "title": "AKB48 KICK OFF PARTY 2027 in YOYOGI Supported by 30th ANNIVERSARY ローソンチケット 大運動会",
+          "seq": 89,
           "origin": "candidates"
         },
         {
-          "title": "日向坂46「おひさま感謝祭 2027」",
-          "seq": 88,
+          "title": "ロクデナシ 4th Oneman Live「千夜」",
+          "seq": 90,
           "origin": "candidates"
         }
       ],
@@ -34,18 +34,18 @@
       "rejected": 0,
       "settled": [
         {
-          "seq": 87,
-          "first_detected_at_utc": "2026-11-26T14:19:25Z",
+          "seq": 89,
+          "first_detected_at_utc": "2026-11-27T03:17:08Z",
           "outcome": "applied",
-          "title": "日向坂46「おひさま感謝祭 2027」",
-          "event_id": "vwd-ee0e01af110e"
+          "title": "AKB48 KICK OFF PARTY 2027 in YOYOGI Supported by 30th ANNIVERSARY ローソンチケット 大運動会",
+          "event_id": "vwd-f79b57c45bf1"
         },
         {
-          "seq": 88,
-          "first_detected_at_utc": "2026-11-26T14:19:25Z",
+          "seq": 90,
+          "first_detected_at_utc": "2026-11-27T03:17:08Z",
           "outcome": "applied",
-          "title": "日向坂46「おひさま感謝祭 2027」",
-          "event_id": "vwd-1e77b2ecec1c"
+          "title": "ロクデナシ 4th Oneman Live「千夜」",
+          "event_id": "vwd-95f3e8baa4bf"
         }
       ],
       "pending_after": 0,
