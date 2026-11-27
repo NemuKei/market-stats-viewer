@@ -1,43 +1,43 @@
 {
   "schema_version": 1,
-  "run_at_utc": "2026-11-26T14:19:25Z",
+  "run_at_utc": "2026-11-27T03:17:08Z",
   "automation_id": "msv-venue-discovery",
   "candidates": [
     {
-      "event_start_date": "2027-01-16",
-      "event_end_date": "2027-01-16",
+      "event_start_date": "2027-02-21",
+      "event_end_date": "2027-02-21",
       "event_start_time": "16:00",
-      "venue_name": "日本武道館",
-      "raw_venue_name": "日本武道館",
-      "artist_name": "日向坂46",
-      "raw_artist_name": "日向坂46",
-      "title": "日向坂46「おひさま感謝祭 2027」",
-      "event_category": "コンサート",
+      "venue_name": "国立代々木競技場第一体育館",
+      "raw_venue_name": "国立代々木競技場 第一体育館",
+      "artist_name": "AKB48",
+      "raw_artist_name": "AKB48",
+      "title": "AKB48 KICK OFF PARTY 2027 in YOYOGI Supported by 30th ANNIVERSARY ローソンチケット 大運動会",
+      "event_category": "その他",
       "source_class": "artist_official",
       "confidence": "high",
-      "evidence_url": "https://www.hinatazaka46.com/s/official/news/detail/E00933",
-      "evidence_snippet": "<公演情報> 日向坂46「おひさま感謝祭 2027」 【出演】 日向坂46 ※出演者は予告なく変更となる場合がございます。あらかじめご了承ください。 【日程】 2027年1月16日(土) 開場14:30/開演16:00 2027年1月17日(日) 開場14:30/開演16:00 【会場】 日本武道館",
+      "evidence_url": "https://org.akb48.co.jp/news/detailpage/497974910",
+      "evidence_snippet": "■イベントタイトル AKB48 KICK OFF PARTY 2027 in YOYOGI Supported by 30th ANNIVERSARY ローソンチケット ■会場 東京都 / 国立代々木競技場 第一体育館 ■公演概要 【１】新曲記念コンサート 日程：2027年2月20日 (土) 開場11:00 / 開演12:00 【２】一致団結コンサート 日程：2027年2月20日 (土) 開場17:00 / 開演18:00 【３】大運動会 日程：2027年2月21日 (日) 開場15:00 / 開演16:00",
       "content_extractor": "requests_bs4",
-      "discovery_query": "日本武道館 開催決定 日向坂46 おひさま感謝祭 2027",
-      "verified_at_utc": "2026-11-26T12:19:39Z"
+      "discovery_query": "国立代々木競技場第一体育館 AKB48 2027 開催決定",
+      "verified_at_utc": "2026-11-27T03:17:08Z"
     },
     {
-      "event_start_date": "2027-01-17",
-      "event_end_date": "2027-01-17",
-      "event_start_time": "16:00",
+      "event_start_date": "2027-12-01",
+      "event_end_date": "2027-12-01",
+      "event_start_time": "19:00",
       "venue_name": "日本武道館",
       "raw_venue_name": "日本武道館",
-      "artist_name": "日向坂46",
-      "raw_artist_name": "日向坂46",
-      "title": "日向坂46「おひさま感謝祭 2027」",
+      "artist_name": "ロクデナシ",
+      "raw_artist_name": "ロクデナシ",
+      "title": "ロクデナシ 4th Oneman Live「千夜」",
       "event_category": "コンサート",
       "source_class": "artist_official",
       "confidence": "high",
-      "evidence_url": "https://www.hinatazaka46.com/s/official/news/detail/E00933",
-      "evidence_snippet": "<公演情報> 日向坂46「おひさま感謝祭 2027」 【出演】 日向坂46 ※出演者は予告なく変更となる場合がございます。あらかじめご了承ください。 【日程】 2027年1月16日(土) 開場14:30/開演16:00 2027年1月17日(日) 開場14:30/開演16:00 【会場】 日本武道館",
+      "evidence_url": "https://rokudenashi-official.com/news/detail/97109",
+      "evidence_snippet": "ロクデナシ 4th Oneman Live「千夜」 ⚫︎公演日時 2027年12月1日（水）日本武道館 開場18:00 / 開演19:00",
       "content_extractor": "requests_bs4",
-      "discovery_query": "日本武道館 開催決定 日向坂46 おひさま感謝祭 2027",
-      "verified_at_utc": "2026-11-26T12:19:39Z"
+      "discovery_query": "日本武道館 ロクデナシ 2027 開催決定",
+      "verified_at_utc": "2026-11-27T03:17:08Z"
     }
   ],
   "deferred_candidates": [],
@@ -416,6 +416,11 @@
       "query": "横浜アリーナ 超ときめき♡STAGE 2027 あけおめ新年会フォーエバー",
       "url": "https://event.1242.com/events/tokimeki_stage/",
       "reason": "2026-11-26 requests_bs4で主催公式本文を確認。2027-01-24 開演16:00 横浜アリーナ。同日同会場同名の会場公式行がevents.sqliteに既存のため追加しない。"
+    },
+    {
+      "query": "国立代々木競技場第一体育館 AKB48 KICK OFF PARTY 2027",
+      "url": "https://org.akb48.co.jp/news/detailpage/497974910",
+      "reason": "2026-11-27 requests_bs4公式本文確認。2027-02-20は新曲記念コンサート12:00と一致団結コンサート18:00の別公演。現行inboxの同日同会場同アーティスト判定では両枠を保持できないため保留。翌21日の大運動会16:00は候補化。"
     }
   ]
 }
