@@ -33851,6 +33851,122 @@
           }
         }
       ]
+    },
+    {
+      "event_uid": "evt_d9ac2b545c29402eb000ed07bed6f7dc",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "9881fcd89bf0a72a10ca",
+          "evidence": {
+            "reason": "Owner approved registration and production publication of the four Osaka performances on 2026-11-27 JST. Official artist schedule confirms May 22 and 23 at Kyocera Dome Osaka (17:00 and 16:00) and June 26 and 27 at Yanmar Stadium Nagai (17:00 each). Ticket rounds and other cities are outside scope.",
+            "reviewed_at_utc": "2026-11-27T00:11:06.581095+00:00",
+            "url": "https://tour.mrchildren.jp/2027/"
+          },
+          "fingerprint": "2ba9163ce07b0798bd66699e87c98e75ecc644e96e1397218c6999a42ccc67f0",
+          "identity": {
+            "artist_name": "Mr.Children",
+            "event_date": "2027-05-22",
+            "event_end_date": "2027-05-22",
+            "event_start_time": "17:00",
+            "title": "Mr.Children Dome & Stadium Tour 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "7e55ec4993ff052ed1f22d8aef3405358963fff95e2dcccc4a4410916c2274d1",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_ff059b1a9d0d42e39af7e24926e64314",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "3861034eb80b464422e5",
+          "evidence": {
+            "reason": "Owner approved registration and production publication of the four Osaka performances on 2026-11-27 JST. Official artist schedule confirms May 22 and 23 at Kyocera Dome Osaka (17:00 and 16:00) and June 26 and 27 at Yanmar Stadium Nagai (17:00 each). Ticket rounds and other cities are outside scope.",
+            "reviewed_at_utc": "2026-11-27T00:11:06.581095+00:00",
+            "url": "https://tour.mrchildren.jp/2027/"
+          },
+          "fingerprint": "2bd4edf399a523c8cf5ce8f8d00721d78f8f2947431d42312fe43d62bdbfafc9",
+          "identity": {
+            "artist_name": "Mr.Children",
+            "event_date": "2027-05-23",
+            "event_end_date": "2027-05-23",
+            "event_start_time": "16:00",
+            "title": "Mr.Children Dome & Stadium Tour 2027",
+            "venue_name": "京セラドーム大阪"
+          },
+          "source_records": [
+            {
+              "record_id": "c8276f03a2b8514581e52704069dd81e17a958d52bcdd66325ebebc0fd20b023",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_8edb18bb4d5b419f88fd363144ee9b6b",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "c7ca0fbe37e06e847705",
+          "evidence": {
+            "reason": "Owner approved registration and production publication of the four Osaka performances on 2026-11-27 JST. Official artist schedule confirms May 22 and 23 at Kyocera Dome Osaka (17:00 and 16:00) and June 26 and 27 at Yanmar Stadium Nagai (17:00 each). Ticket rounds and other cities are outside scope.",
+            "reviewed_at_utc": "2026-11-27T00:11:06.581095+00:00",
+            "url": "https://tour.mrchildren.jp/2027/"
+          },
+          "fingerprint": "5c69ac6d148badd421cce3167990b6ca237cd2196274c6e8a204d3ef75dc76eb",
+          "identity": {
+            "artist_name": "Mr.Children",
+            "event_date": "2027-06-26",
+            "event_end_date": "2027-06-26",
+            "event_start_time": "17:00",
+            "title": "Mr.Children Dome & Stadium Tour 2027",
+            "venue_name": "ヤンマースタジアム長居"
+          },
+          "source_records": [
+            {
+              "record_id": "9a6eaaa20b76f9acb291d00905bf2869434e6af515bf9f6c23df1345b146f70e",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event_uid": "evt_2ff4a09c2da842daab68ff3b3c24bbd2",
+      "observations": [
+        {
+          "active": true,
+          "candidate_key": "7e1858c238b1adac9213",
+          "evidence": {
+            "reason": "Owner approved registration and production publication of the four Osaka performances on 2026-11-27 JST. Official artist schedule confirms May 22 and 23 at Kyocera Dome Osaka (17:00 and 16:00) and June 26 and 27 at Yanmar Stadium Nagai (17:00 each). Ticket rounds and other cities are outside scope.",
+            "reviewed_at_utc": "2026-11-27T00:11:06.581095+00:00",
+            "url": "https://tour.mrchildren.jp/2027/"
+          },
+          "fingerprint": "b09085d9d8a5ac732410752808a2deb5a55aa57bbd726ff88033e481aacb9406",
+          "identity": {
+            "artist_name": "Mr.Children",
+            "event_date": "2027-06-27",
+            "event_end_date": "2027-06-27",
+            "event_start_time": "17:00",
+            "title": "Mr.Children Dome & Stadium Tour 2027",
+            "venue_name": "ヤンマースタジアム長居"
+          },
+          "source_records": [
+            {
+              "record_id": "f2209d1491e2b3e875e3abdc8b52cb9efc55a8659f63031eb9da7320d0225359",
+              "source_id": "venue_web_discovery"
+            }
+          ]
+        }
+      ]
     }
   ],
   "relations": [
@@ -36148,9 +36264,43 @@
         "reason": "Official artist page confirms Belluna Dome 2026-11-21 and 22, each 17:00 JST. Existing venue rows retained; official artist signals supplement missing times. Only factual names, dates, times, venue and reviewed links; no prose/images."
       },
       "request_sha256": "c37c9362aa5450647cc5137b449e821fc9a93d997a5b37704388b37114592741"
+    },
+    {
+      "candidates": [
+        {
+          "event_uid": "evt_d9ac2b545c29402eb000ed07bed6f7dc",
+          "fingerprint": "2ba9163ce07b0798bd66699e87c98e75ecc644e96e1397218c6999a42ccc67f0"
+        },
+        {
+          "event_uid": "evt_ff059b1a9d0d42e39af7e24926e64314",
+          "fingerprint": "2bd4edf399a523c8cf5ce8f8d00721d78f8f2947431d42312fe43d62bdbfafc9"
+        },
+        {
+          "event_uid": "evt_8edb18bb4d5b419f88fd363144ee9b6b",
+          "fingerprint": "5c69ac6d148badd421cce3167990b6ca237cd2196274c6e8a204d3ef75dc76eb"
+        },
+        {
+          "event_uid": "evt_2ff4a09c2da842daab68ff3b3c24bbd2",
+          "fingerprint": "b09085d9d8a5ac732410752808a2deb5a55aa57bbd726ff88033e481aacb9406"
+        }
+      ],
+      "evidence": {
+        "reason": "Owner approved registration and production publication of the four Osaka performances on 2026-11-27 JST. Official artist schedule confirms May 22 and 23 at Kyocera Dome Osaka (17:00 and 16:00) and June 26 and 27 at Yanmar Stadium Nagai (17:00 each). Ticket rounds and other cities are outside scope.",
+        "reviewed_at_utc": "2026-11-27T00:11:06.581095+00:00",
+        "url": "https://tour.mrchildren.jp/2027/"
+      },
+      "kind": "new",
+      "next_ids": [
+        "evt_d9ac2b545c29402eb000ed07bed6f7dc",
+        "evt_ff059b1a9d0d42e39af7e24926e64314",
+        "evt_8edb18bb4d5b419f88fd363144ee9b6b",
+        "evt_2ff4a09c2da842daab68ff3b3c24bbd2"
+      ],
+      "previous_ids": [],
+      "request_sha256": "642de9e171dd6e75ae89cc62c1f34d6835e7c492277958e7aa40d4b4430ceca6"
     }
   ],
-  "revision": 92,
+  "revision": 93,
   "schema_version": 1,
   "seed_event_count": 1060,
   "seed_ids_sha256": "040a95d8fae2612a9661066c3b5d471a00d7aac7e5735e3f543e4cda5bd00476",
