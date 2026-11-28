@@ -1,24 +1,19 @@
 {
   "schema_version": 1,
-  "last_ingested_inbox_run_at_utc": "2026-11-27T03:17:08Z",
-  "next_seq": 91,
+  "last_ingested_inbox_run_at_utc": "2026-11-28T03:08:49Z",
+  "next_seq": 92,
   "pending_count": 0,
   "oldest_pending_first_detected_at_utc": null,
   "pending": [],
   "last_activity": {
-    "at_utc": "2026-11-27T03:17:40Z",
+    "at_utc": "2026-11-28T03:09:15Z",
     "ingest": {
-      "inbox_run_at_utc": "2026-11-27T03:17:08Z",
+      "inbox_run_at_utc": "2026-11-28T03:08:49Z",
       "status": "ingested",
       "queued": [
         {
-          "title": "AKB48 KICK OFF PARTY 2027 in YOYOGI Supported by 30th ANNIVERSARY ローソンチケット 大運動会",
-          "seq": 89,
-          "origin": "candidates"
-        },
-        {
-          "title": "ロクデナシ 4th Oneman Live「千夜」",
-          "seq": 90,
+          "title": "ブクロック!フェスティバル2027幕張",
+          "seq": 91,
           "origin": "candidates"
         }
       ],
@@ -28,24 +23,17 @@
     },
     "process": {
       "limit": 30,
-      "processed": 2,
-      "applied": 2,
+      "processed": 1,
+      "applied": 1,
       "duplicates": 0,
       "rejected": 0,
       "settled": [
         {
-          "seq": 89,
-          "first_detected_at_utc": "2026-11-27T03:17:08Z",
+          "seq": 91,
+          "first_detected_at_utc": "2026-11-28T03:08:49Z",
           "outcome": "applied",
-          "title": "AKB48 KICK OFF PARTY 2027 in YOYOGI Supported by 30th ANNIVERSARY ローソンチケット 大運動会",
-          "event_id": "vwd-f79b57c45bf1"
-        },
-        {
-          "seq": 90,
-          "first_detected_at_utc": "2026-11-27T03:17:08Z",
-          "outcome": "applied",
-          "title": "ロクデナシ 4th Oneman Live「千夜」",
-          "event_id": "vwd-95f3e8baa4bf"
+          "title": "ブクロック!フェスティバル2027幕張",
+          "event_id": "vwd-e7778bbcdd29"
         }
       ],
       "pending_after": 0,

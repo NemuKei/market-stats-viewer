@@ -30902,6 +30902,27 @@
       "url": "https://rokudenashi-official.com/news/detail/97109",
       "venue_name": "日本武道館",
       "verified_at_utc": "2026-11-27T03:17:08Z"
+    },
+    {
+      "artist_name": "ブクロック!フェスティバル2027幕張",
+      "confidence": "high",
+      "content_extractor": "requests_bs4",
+      "discovery_query": "幕張メッセ ブクロック!フェスティバル2027幕張 チケット",
+      "enabled": true,
+      "event_category": "コンサート",
+      "event_end_date": "2027-02-11",
+      "event_id": "vwd-e7778bbcdd29",
+      "event_start_date": "2027-02-11",
+      "event_start_time": "11:00",
+      "evidence_snippet": "ブクロック!フェスティバル2027幕張 BUKUROCK FESTIVAL ARTIST TICKET AUDITION INFORMATION 2027.2.11 Thu 幕張メッセ 国際展示場 1〜３ホール 開場/開演 9:30/11:00",
+      "evidence_url": "https://ldandk.com/bukurock/",
+      "raw_artist_name": "ブクロック!フェスティバル2027幕張",
+      "raw_venue_name": "幕張メッセ 国際展示場 1〜３ホール",
+      "source_class": "promoter_official",
+      "title": "ブクロック!フェスティバル2027幕張",
+      "url": "https://ldandk.com/bukurock/",
+      "venue_name": "幕張メッセ",
+      "verified_at_utc": "2026-11-28T03:08:49Z"
     }
   ],
   "future_only": true,
